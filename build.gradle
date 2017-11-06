@@ -1,0 +1,55 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url 'https://plugins.gradle.org/m2/' }
+    }
+}
+
+plugins {
+    id 'com.github.johnrengelman.shadow' version '1.2.4'
+}
+
+apply from: 'gradle/util.gradle'
+
+subprojects {
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+    apply plugin: 'java'
+    apply plugin: 'maven'
+    apply plugin: 'com.github.johnrengelman.shadow'
+
+    group = 'com.enjin'
+    version = '0.0.1-SNAPSHOT'
+
+    idea {
+        module {
+            scopes.PROVIDED.plus += [configurations.shadow]
+        }
+    }
+
+    tasks.build.dependsOn(shadowJar)
+    artifacts.archives shadowJar
+
+    tasks.withType(AbstractCompile) {
+        classpath += configurations.shadow
+    }
+
+    ext {
+        junit = '4.12'
+    }
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    dependencies {
+        testCompile group: 'junit', name: 'junit', version: junit
+    }
+
+    install {
+        repositories.mavenInstaller {
+            pom.artifactId = "sdk-${project.name}"
+        }
+    }
+}
