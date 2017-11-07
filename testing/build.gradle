@@ -7,10 +7,8 @@ configureJavaCompilers(8)
 
 ext {
     wiremock = '2.10.1'
-    jsonrpc2client = '1.16.4'
 }
 
 dependencies {
     testCompile group: 'com.github.tomakehurst', name: 'wiremock', version: wiremock
-    runtime group: 'com.thetransactioncompany', name: 'jsonrpc2-client', version: jsonrpc2client 
 }

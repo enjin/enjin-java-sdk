@@ -1,5 +1,6 @@
 package com.enjin.coin.sdk;
 
+
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 
 import com.github.tomakehurst.wiremock.junit.WireMockRule;

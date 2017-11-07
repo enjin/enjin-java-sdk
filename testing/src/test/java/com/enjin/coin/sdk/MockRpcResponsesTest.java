@@ -1,5 +1,6 @@
 package com.enjin.coin.sdk;
 
+
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
 import static com.github.tomakehurst.wiremock.client.WireMock.matchingJsonPath;
@@ -14,13 +15,6 @@ public class MockRpcResponsesTest {
 	/** Port wiremock will run in **/
 	private static final int WIREMOCK_PORT = 8080;
 	
-	/** Constant for the accept header **/
-	private static final String ACCEPT_HEADER = "Accept";	
-	/** Constant for the content type header **/
-	private static final String CONTENT_TYPE_HEADER = "Content-Type";	
-	/** Constant for the json rpc type **/
-	private static final String TYPE_JSON_RPC = "application/json-rpc";
-	
 	/** Constant for the json method label **/
 	private static final String JSON_METHOD_LABEL = "$.method";
 	
@@ -30,6 +24,13 @@ public class MockRpcResponsesTest {
 	private static final String TOKENS_URL = "/Tokens.php";
 	/** Base url for the TransactionRequests **/
 	private static final String TRANSACTION_REQUESTS_URL = "/TransactionRequests.php";
+	
+	/** Constant for the accept header **/
+	private static final String ACCEPT_HEADER = "Accept";	
+	/** Constant for the content type header **/
+	private static final String CONTENT_TYPE_HEADER = "Content-Type";	
+	/** Constant for the json rpc type **/
+	private static final String TYPE_JSON_RPC = "application/json-rpc";
 	
 	/**
 	 * Main method to run the class
