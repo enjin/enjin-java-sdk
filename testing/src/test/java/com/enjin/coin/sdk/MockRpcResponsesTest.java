@@ -104,7 +104,7 @@ public class MockRpcResponsesTest {
 	private void setUpStub(String url, String method, String response) {
 		// See http://wiremock.org/docs/request-matching/ for request matching
 		stubFor(post(urlEqualTo(url))
-				.withHeader(ACCEPT_HEADER, equalTo(TYPE_JSON_RPC))
+				//.withHeader(ACCEPT_HEADER, equalTo(TYPE_JSON_RPC))
 				.withRequestBody(matchingJsonPath(JSON_METHOD_LABEL, equalTo(method)))
 				.willReturn(aResponse()
 						.withStatus(200)

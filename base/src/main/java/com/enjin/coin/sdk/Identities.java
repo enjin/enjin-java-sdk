@@ -42,6 +42,7 @@ public class Identities {
 		// Create new JSON-RPC 2.0 client session
 		JSONRPC2Session mySession = new JSONRPC2Session(serverURL);
 		mySession.getOptions().setRequestContentType(Constants.TYPE_JSON_RPC);
+
 		// Once the client session object is created, you can use to send a series
 		// of JSON-RPC 2.0 requests and notifications to it.
 
