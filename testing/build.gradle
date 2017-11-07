@@ -7,8 +7,12 @@ configureJavaCompilers(8)
 
 ext {
     wiremock = '2.10.1'
+    slf4j = '1.7.25'
+    logbackClassic = '1.2.3'
 }
 
 dependencies {
     testCompile group: 'com.github.tomakehurst', name: 'wiremock', version: wiremock
+   	compile group: 'org.slf4j', name: 'jcl-over-slf4j', version: slf4j
+	compile group: 'ch.qos.logback', name: 'logback-classic', version: logbackClassic
 }

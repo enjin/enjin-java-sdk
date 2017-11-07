@@ -5,6 +5,8 @@ import java.net.URL;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.thetransactioncompany.jsonrpc2.JSONRPC2Request;
 import com.thetransactioncompany.jsonrpc2.JSONRPC2Response;
@@ -13,6 +15,8 @@ import com.thetransactioncompany.jsonrpc2.client.JSONRPC2SessionException;
 
 public class JsonRpcUtils {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(JsonRpcUtils.class);	
+	
 	/**
 	 * Method to send a json rpc request
 	 * @param url
@@ -22,56 +26,47 @@ public class JsonRpcUtils {
 	 * @param requestId
 	 * @return
 	 */
-	public static Object sendJsonRpcRequest(String url, Class<?> responseClass, String method, Map<String, Object> params, Integer requestId) {
+	public static Object sendJsonRpcRequest(String url, Class<?> responseClass, String method, Map<String, Object> params, String requestId) {
 		Object responseObject = null;
 		
-		if (StringUtils.isEmpty(url) || StringUtils.isEmpty(method) || requestId == null) {
-			//TODO: replace System.out with logging framework
-			System.out.println("url or method or requestId passed in are null or empty or the requestId is null");
+		if (StringUtils.isEmpty(url) || StringUtils.isEmpty(method) || StringUtils.isEmpty(requestId)) {
+			LOGGER.error("url or method or requestId passed in are null or empty");
 			return responseObject;
 		}		
 		
-		// Creating a new session to a JSON-RPC 2.0 web service at a specified URL
-		// The JSON-RPC 2.0 server URL
-		URL serverURL = null;
-
 		try {
-			serverURL = new URL(url);
-
+			// Creating a new session to a JSON-RPC 2.0 web service at a specified URL
+			// The JSON-RPC 2.0 server URL
+			URL serverURL = new URL(url);
+			
+			// Create new JSON-RPC 2.0 client session
+			JSONRPC2Session mySession = new JSONRPC2Session(serverURL);
+			mySession.getOptions().setRequestContentType(Constants.TYPE_JSON_RPC);
+			
+			
+			JSONRPC2Request jsonRpcRequest = new JSONRPC2Request(method, params, requestId);
+			LOGGER.info("jsonRpcRequest:{}", jsonRpcRequest);
+			// Send request
+			JSONRPC2Response jsonRpcResponse = mySession.send(jsonRpcRequest);
+	
+			// Print response result / error
+			if (jsonRpcResponse != null && jsonRpcResponse.indicatesSuccess()) {
+				String responseString = jsonRpcResponse.getResult().toString();
+				
+				responseObject = JsonUtils.convertJsonToObject(responseString, responseClass);
+				
+			} else if (jsonRpcResponse != null) {
+				LOGGER.error("Message:{}", jsonRpcResponse.getError().getMessage());
+			} else {
+				LOGGER.error("Error has occured");
+			}
+			
 		} catch (MalformedURLException e) {
-			System.out.println("A MalformedURLException has occured. Exception: " + e);
-			return responseObject;
-		}
-
-		// Create new JSON-RPC 2.0 client session
-		JSONRPC2Session mySession = new JSONRPC2Session(serverURL);
-		mySession.getOptions().setRequestContentType(Constants.TYPE_JSON_RPC);
-		
-		
-		JSONRPC2Request jsonRpcRequest = new JSONRPC2Request(method, params, requestId);
-		System.out.println("jsonRpcRequest:"+jsonRpcRequest);
-		// Send request
-		JSONRPC2Response jsonRpcResponse = null;
-
-		try {
-			jsonRpcResponse = mySession.send(jsonRpcRequest);
-
+			LOGGER.error("A MalformedURLException has occured. Exception: {}", e);
 		} catch (JSONRPC2SessionException e) {
-			System.out.println("A JSONRPC2SessionException has occured. Exception: " + e);
-			return responseObject;
+			LOGGER.error("A JSONRPC2SessionException has occured. Exception: {}", e);
 		}
 
-		// Print response result / error
-		if (jsonRpcResponse != null && jsonRpcResponse.indicatesSuccess()) {
-			String responseString = jsonRpcResponse.getResult().toString();
-			
-			responseObject = JsonUtils.convertJsonToObject(responseString, responseClass);
-			
-		} else if (jsonRpcResponse != null) {
-			System.out.println("Message:" + jsonRpcResponse.getError().getMessage());
-		} else {
-			System.out.println("Error has occured");
-		}
 		return responseObject;
 	}
 

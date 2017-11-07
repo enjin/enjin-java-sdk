@@ -3,12 +3,16 @@ package com.enjin.coin.sdk.util;
 import java.io.IOException;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonUtils {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(JsonUtils.class);
+	
 	/**
 	 * Method to convert a json string to an object
 	 * @param responseString
@@ -19,8 +23,7 @@ public class JsonUtils {
 		Object responseObject = null;
 		
 		if (StringUtils.isEmpty(responseString) || responseClass == null) {
-			//TODO: replace System.out with logging framework
-			System.out.println("responseString passed in is null or empty or the responseClass is null");
+			LOGGER.error("responseString passed in is null or empty or the responseClass is null");
 			return responseObject;
 		}		
 		
@@ -30,7 +33,7 @@ public class JsonUtils {
 		try {
 			responseObject = mapper.readValue(responseString, responseClass);
 		} catch (IOException e) {
-			System.out.println("An IOException has occured. Exception:" + e);
+			LOGGER.error("An IOException has occured. Exception: {}", e);
 		}
 
 		return responseObject;
@@ -46,8 +49,7 @@ public class JsonUtils {
 		String responseJson = null;
 		
 		if (jsonObject == null) {
-			//TODO: replace System.out with logging framework
-			System.out.println("jsonObject passed in is null");
+			LOGGER.error("jsonObject passed in is null");
 			return responseJson;
 		}		
 		
@@ -55,7 +57,7 @@ public class JsonUtils {
 		try {
 			responseJson = mapper.writeValueAsString(jsonObject);
 		} catch (JsonProcessingException e) {
-			System.out.println("A JsonProcessingException has occured. Exception:" + e);
+			LOGGER.error("A JsonProcessingException has occured. Exception: {}", e);
 		}
 
 		return responseJson;

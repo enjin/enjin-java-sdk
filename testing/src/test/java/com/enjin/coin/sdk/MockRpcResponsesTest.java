@@ -8,9 +8,15 @@ import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.github.tomakehurst.wiremock.WireMockServer;
 
 public class MockRpcResponsesTest {
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(MockRpcResponsesTest.class);	
+	
 	
 	/** Port wiremock will run in **/
 	private static final int WIREMOCK_PORT = 8080;
@@ -26,7 +32,7 @@ public class MockRpcResponsesTest {
 	private static final String TRANSACTION_REQUESTS_URL = "/TransactionRequests.php";
 	
 	/** Constant for the accept header **/
-	private static final String ACCEPT_HEADER = "Accept";	
+	//private static final String ACCEPT_HEADER = "Accept";	
 	/** Constant for the content type header **/
 	private static final String CONTENT_TYPE_HEADER = "Content-Type";	
 	/** Constant for the json rpc type **/

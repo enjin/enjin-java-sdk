@@ -9,6 +9,8 @@ ext {
     jsonrpc2client = '1.16.4'
     commonsLang = '3.6'
     jackson = '2.9.2'
+    slf4j = '1.7.25'
+    logbackClassic = '1.2.3'
 }
 
 dependencies {
@@ -16,5 +18,8 @@ dependencies {
 	compile group: 'org.apache.commons', name: 'commons-lang3', version: commonsLang
 	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jackson
 	compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: jackson
+	compile group: 'org.slf4j', name: 'jcl-over-slf4j', version: slf4j
+	compile group: 'ch.qos.logback', name: 'logback-classic', version: logbackClassic
+	
 	   
 }
