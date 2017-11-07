@@ -47,6 +47,14 @@ subprojects {
         testCompile group: 'junit', name: 'junit', version: junit
     }
 
+    jar {
+        archiveName = "${project.name}-slim.jar"
+    }
+
+    shadowJar {
+        archiveName = "${project.name}.jar"
+    }
+
     install {
         repositories.mavenInstaller {
             pom.artifactId = "sdk-${project.name}"
