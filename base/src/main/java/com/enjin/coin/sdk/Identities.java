@@ -20,7 +20,7 @@ public class Identities {
 		String identityId = "123456";
 		String requestId = "1";
 		GetIdentityResponseVO getIdentityResponseVO = Identities.getIdentities(auth, identityId, requestId);
-		LOGGER.info("getIdentityResponseVO: {}" + getIdentityResponseVO);
+		LOGGER.info("getIdentityResponseVO: {}", getIdentityResponseVO);
 	}
 	
 	
