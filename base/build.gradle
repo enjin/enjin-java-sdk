@@ -7,8 +7,14 @@ configureJavaCompilers(8)
 
 ext {
     jsonrpc2client = '1.16.4'
+    commonsLang = '3.6'
+    jackson = '2.9.2'
 }
 
 dependencies {
     compile group: 'com.thetransactioncompany', name: 'jsonrpc2-client', version: jsonrpc2client 
+	compile group: 'org.apache.commons', name: 'commons-lang3', version: commonsLang
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jackson
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: jackson
+	   
 }
