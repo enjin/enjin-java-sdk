@@ -31,6 +31,10 @@ public class MockRpcResponsesTest {
 	/** Base url for the TransactionRequests **/
 	private static final String TRANSACTION_REQUESTS_URL = "/TransactionRequests.php";
 	
+	/**
+	 * Main method to run the class
+	 * @param args
+	 */
 	public static void main(String args[]) {
 		MockRpcResponsesTest identitiesResponseTest = new MockRpcResponsesTest();
 		identitiesResponseTest.startWiremockServer();
@@ -38,6 +42,7 @@ public class MockRpcResponsesTest {
 
 	/**
 	 * Method to start the wiremock server
+	 * Note: we dont actually stop the server as we want the server to be available to requests can be mocked
 	 */
 	private void startWiremockServer() {
 		WireMockServer wireMockServer = new WireMockServer(WIREMOCK_PORT);
@@ -62,15 +67,13 @@ public class MockRpcResponsesTest {
 		setUpStub(IDENTITIES_URL, identitiesListMethod, identitiesListResponse);
 		setUpStub(IDENTITIES_URL, identitiesCreateMethod, identitiesCreateResponse);
 		setUpStub(IDENTITIES_URL, identitiesUpdateMethod, identitiesUpdateResponse);
-		setUpStub(IDENTITIES_URL, identitiesDeleteMethod, identitiesDeleteResponse);
-		
+		setUpStub(IDENTITIES_URL, identitiesDeleteMethod, identitiesDeleteResponse);		
 		
 		//Setup the tokens stubs
 		String tokensGetMethod   = "Tokens.get";
 		String tokensGetResponse = "{\"jsonrpc\":\"2.0\",\"result\":{\"token_id\":\"123456\",\"creator\":\"0x0000000000000000000000000000000000000000\",\"adapter\":\"0x0000000000000000000000000000000000000000\",\"name\":\"Sword of Glory\",\"icon\":\"https://enjincoin.io/images/bubble.png\",\"totalSupply\":\"100000\",\"exchangeRate\":\"1000000000000000000\",\"decimals\":\"0\",\"maxMeltFee\":\"0\",\"transferable\":\"0\"},\"id\":\"1\"}";
 
-		setUpStub(TOKENS_URL, tokensGetMethod, tokensGetResponse);
-		
+		setUpStub(TOKENS_URL, tokensGetMethod, tokensGetResponse);		
 		
 		//Setup the TransactionRequests stubs
 		String transactionRequestsGetMethod    = "TransactionRequests.get";
@@ -106,6 +109,5 @@ public class MockRpcResponsesTest {
 						.withStatus(200)
 						.withHeader(CONTENT_TYPE_HEADER, TYPE_JSON_RPC)
 						.withBody(response)));
-
 	}
 }
