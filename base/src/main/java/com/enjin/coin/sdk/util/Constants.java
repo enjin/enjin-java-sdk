@@ -7,6 +7,7 @@ public class Constants {
 	}
 	
 	private static final String TRUSTED_PLATFORM_BASE_URL = "http://localhost:8080";
+	//private static final String TRUSTED_PLATFORM_BASE_URL = "http://localhost:81";
 	public static final String IDENTITIES_URL             = TRUSTED_PLATFORM_BASE_URL + "/Identities.php";
 	public static final String TOKENS_URL                 = TRUSTED_PLATFORM_BASE_URL + "/Tokens.php";
 	public static final String TRANSACTION_REQUESTS_URL   = TRUSTED_PLATFORM_BASE_URL + "/TransactionRequests.php";

@@ -16,8 +16,7 @@ import com.thetransactioncompany.jsonrpc2.client.RawResponseInspector;
 public class Identities {
 
 	public static void main(String args[]) {
-		Identities identities = new Identities();
-		String identitiesStr = identities.getIdentities();
+		String identitiesStr = Identities.getIdentities();
 		System.out.println("identitiesStr:" + identitiesStr);
 	}
 	
@@ -63,26 +62,15 @@ public class Identities {
 		JSONRPC2Response jsonRpcResponse = null;
 
 		try {
-			RawResponseInspector responseInspector = new RawResponseInspector() {
-				
-				@Override
-				public void inspect(RawResponse rawResponse) {
-					System.out.println("rawResponse:"+rawResponse);
-					
-				}
-			};
-			mySession.setRawResponseInspector(responseInspector );
 			jsonRpcResponse = mySession.send(jsonRpcRequest);
 
 		} catch (JSONRPC2SessionException e) {
 			System.out.println("A JSONRPC2SessionException has occured. Exception: " + e);
-			e.printStackTrace();
 			return responseString;
 		}
 
 		// Print response result / error
 		if (jsonRpcResponse != null && jsonRpcResponse.indicatesSuccess()) {
-			System.out.println("Result:" + jsonRpcResponse.getResult());
 			responseString = jsonRpcResponse.getResult().toString();
 		} else if (jsonRpcResponse != null) {
 			System.out.println("Message:" + jsonRpcResponse.getError().getMessage());
