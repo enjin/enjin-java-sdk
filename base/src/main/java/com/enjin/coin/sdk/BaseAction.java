@@ -3,20 +3,22 @@ package com.enjin.coin.sdk;
 import org.apache.commons.lang3.StringUtils;
 
 import com.enjin.coin.sdk.util.Constants;
+import com.enjin.coin.sdk.util.JsonRpcUtils;
 
 public class BaseAction {
-	
 
-
+	private String trustedPlatformUrl;
+	protected JsonRpcUtils jsonRpcUtils;
 	public BaseAction() {
-		
+		jsonRpcUtils = new JsonRpcUtils();
 	}
 	
 	public BaseAction(String trustedPlatformUrl) {
 		super();
 		this.trustedPlatformUrl = trustedPlatformUrl;
+		jsonRpcUtils = new JsonRpcUtils();
 	}
-	private String trustedPlatformUrl;
+
 	
 	/**
 	 * Method to get the identities url

@@ -25,7 +25,7 @@ public class JsonRpcUtils {
 	 * @param params
 	 * @return
 	 */
-	public static Object sendJsonRpcRequest(String url, Class<?> responseClass, String method, Map<String, Object> params) {
+	public Object sendJsonRpcRequest(String url, Class<?> responseClass, String method, Map<String, Object> params) {
 		Object responseObject = null;
 		
 		if (StringUtils.isEmpty(url) || StringUtils.isEmpty(method)) {

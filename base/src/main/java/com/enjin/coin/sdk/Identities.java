@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.enjin.coin.sdk.util.Constants;
-import com.enjin.coin.sdk.util.JsonRpcUtils;
 import com.enjin.coin.sdk.vo.identity.CreateIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.CreateIdentityResponseVO;
 import com.enjin.coin.sdk.vo.identity.DeleteIdentityRequestVO;
@@ -61,7 +60,7 @@ public class Identities extends BaseAction{
 		// Construct new request
 		String method = Constants.METHOD_IDENTITIES_GET;
 
-		getIdentityResponseVO = (GetIdentityResponseVO) JsonRpcUtils.sendJsonRpcRequest(getIdentitiesUrl(), GetIdentityResponseVO.class, method, params);
+		getIdentityResponseVO = (GetIdentityResponseVO) jsonRpcUtils.sendJsonRpcRequest(getIdentitiesUrl(), GetIdentityResponseVO.class, method, params);
 
 		return getIdentityResponseVO;
 	}
@@ -89,7 +88,7 @@ public class Identities extends BaseAction{
 		// Construct new request
 		String method = Constants.METHOD_IDENTITIES_LIST;
 
-		listIdentitiesResponseVO = (ListIdentitiesResponseVO[]) JsonRpcUtils.sendJsonRpcRequest(getIdentitiesUrl(), ListIdentitiesResponseVO[].class, method, params);
+		listIdentitiesResponseVO = (ListIdentitiesResponseVO[]) jsonRpcUtils.sendJsonRpcRequest(getIdentitiesUrl(), ListIdentitiesResponseVO[].class, method, params);
 
 		return listIdentitiesResponseVO;
 	}
@@ -115,7 +114,7 @@ public class Identities extends BaseAction{
 		// Construct new request
 		String method = Constants.METHOD_IDENTITIES_CREATE;
 
-		createIdentityResponseVO = (CreateIdentityResponseVO) JsonRpcUtils.sendJsonRpcRequest(getIdentitiesUrl(), CreateIdentityResponseVO.class, method, params);
+		createIdentityResponseVO = (CreateIdentityResponseVO) jsonRpcUtils.sendJsonRpcRequest(getIdentitiesUrl(), CreateIdentityResponseVO.class, method, params);
 
 		return createIdentityResponseVO;
 	}
@@ -142,7 +141,7 @@ public class Identities extends BaseAction{
 		// Construct new request
 		String method = Constants.METHOD_IDENTITIES_UPDATE;
 
-		updateIdentityResponseVO = (UpdateIdentityResponseVO) JsonRpcUtils.sendJsonRpcRequest(getIdentitiesUrl(), UpdateIdentityResponseVO.class, method, params);
+		updateIdentityResponseVO = (UpdateIdentityResponseVO) jsonRpcUtils.sendJsonRpcRequest(getIdentitiesUrl(), UpdateIdentityResponseVO.class, method, params);
 
 		return updateIdentityResponseVO;
 	}
@@ -169,7 +168,7 @@ public class Identities extends BaseAction{
 		String method = Constants.METHOD_IDENTITIES_DELETE;
 
 		deleteIdentityResponseVO = new DeleteIdentityResponseVO();
-		Boolean result = (Boolean) JsonRpcUtils.sendJsonRpcRequest(getIdentitiesUrl(), Boolean.class, method, params);
+		Boolean result = (Boolean) jsonRpcUtils.sendJsonRpcRequest(getIdentitiesUrl(), Boolean.class, method, params);
 		deleteIdentityResponseVO.setResult(result);
 		return deleteIdentityResponseVO;
 	}
