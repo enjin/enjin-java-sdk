@@ -4,9 +4,6 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
-import com.enjin.coin.sdk.util.Constants;
-import com.enjin.coin.sdk.util.Utils;
-
 public class UtilsTest {
 
 
@@ -18,15 +15,14 @@ public class UtilsTest {
 	
 	@Test
 	public void testGenerateRandomId_InTestMode() {
-		Constants.inTestMode = true;
-		String randomId = Utils.generateRandomId();
+		String randomId = Utils.generateRandomId(true);
 		assertNotNull(randomId);
 	}
 	
+	
 	@Test
 	public void testGenerateRandomId_NotInTestMode() {
-		Constants.inTestMode = false;
-		String randomId = Utils.generateRandomId();
+		String randomId = Utils.generateRandomId(false);
 		assertNotNull(randomId);
 	}
 	@Test

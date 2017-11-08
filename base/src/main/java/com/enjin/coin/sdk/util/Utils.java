@@ -6,11 +6,12 @@ public class Utils {
 
 	/**
 	 * Method to generate a randomId
+	 * @param inTestMode
 	 * @return
 	 */
-	public static String generateRandomId() {
+	public static String generateRandomId(boolean inTestMode) {
 		//If in test mode - send the test mode id - otherwise create an id
-		if (Constants.inTestMode) {
+		if (inTestMode) {
 			return Constants.testModeId;
 		}
 		

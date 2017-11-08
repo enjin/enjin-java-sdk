@@ -22,7 +22,8 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer{
 	
 	@Before
 	public void init() {
-		tokens = new TokenService();
+		int port = wireMockRule.port();
+		tokens = new TokenService("http://localhost:" + port +"/", true);
 		tokenId = "12345";
 		appId = "352";
 		afterTokenId = "123456";
@@ -30,7 +31,7 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer{
 	}
 	
 	@Test
-	public void testGetToken() {		
+	public void testGetToken() {
 		GetTokenRequestVO getTokenRequestVO = new GetTokenRequestVO();
 		getTokenRequestVO.setTokenId(tokenId);
 		GetTokenResponseVO getTokenResponseVO = tokens.getToken(getTokenRequestVO);

@@ -33,6 +33,25 @@ public class TokenService extends BaseAction{
 	}
 	
 	/**
+	 * Class contructor
+	 * @param trustedPlatformUrl
+	 * @param inTestMode
+	 */
+	public TokenService(boolean inTestMode) {
+		super(inTestMode);
+	}
+	
+	/**
+	 * Class contructor
+	 * @param trustedPlatformUrl
+	 * @param inTestMode
+	 */
+	public TokenService(String trustedPlatformUrl, boolean inTestMode) {
+		super(trustedPlatformUrl, inTestMode);
+	}
+	
+	
+	/**
 	 * Method to get an identity
 	 * @param getTokenRequestVO
 	 * @return

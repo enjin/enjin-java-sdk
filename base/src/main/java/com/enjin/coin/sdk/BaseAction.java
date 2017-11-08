@@ -17,8 +17,18 @@ public class BaseAction {
 		this.trustedPlatformUrl = trustedPlatformUrl;
 		jsonRpcUtils = new JsonRpcUtils();
 	}
-
 	
+	public BaseAction(String trustedPlatformUrl, boolean inTestMode) {
+		super();
+		this.trustedPlatformUrl = trustedPlatformUrl;
+		jsonRpcUtils = new JsonRpcUtils();
+		jsonRpcUtils.setInTestMode(inTestMode);
+	}
+	public BaseAction(boolean inTestMode) {
+		super();
+		jsonRpcUtils = new JsonRpcUtils();
+		jsonRpcUtils.setInTestMode(inTestMode);
+	}
 	/**
 	 * Method to get the identities url
 	 * @return

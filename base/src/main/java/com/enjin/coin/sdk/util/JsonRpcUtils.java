@@ -17,6 +17,18 @@ public class JsonRpcUtils {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(JsonRpcUtils.class);	
 	
+	private boolean inTestMode = false;
+	
+	
+	public boolean getInTestMode() {
+		return inTestMode;
+	}
+
+	public void setInTestMode(boolean inTestMode) {
+		this.inTestMode = inTestMode;
+	}
+
+
 	/**
 	 * Method to send a json rpc request
 	 * @param url
@@ -58,7 +70,7 @@ public class JsonRpcUtils {
 			jsonRPC2SessionOptions.setAllowedResponseContentTypes(new String[]{ ContentType.TEXT_JSON, ContentType.APPLICATION_JSON, ContentType.APPLICATION_JSON_RPC });
 			jsonRpcSession.setOptions(jsonRPC2SessionOptions);
 			
-			String requestId = Utils.generateRandomId();
+			String requestId = Utils.generateRandomId(inTestMode);
 			
 			JSONRPC2Request jsonRpcRequest;
 			if (ValidationUtils.isNotEmpty(params)) {

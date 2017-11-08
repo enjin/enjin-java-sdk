@@ -37,7 +37,18 @@ public class TokensServiceTest {
 		assertNotNull(tokenService);
 		assertNotNull(tokenService.toString());
 	}
-	
+	@Test
+	public void testContructor3() {
+		tokenService = new TokenService("http://localhost:8080", false);
+		assertNotNull(tokenService);
+		assertNotNull(tokenService.toString());
+	}
+	@Test
+	public void testContructor4() {
+		tokenService = new TokenService(false);
+		assertNotNull(tokenService);
+		assertNotNull(tokenService.toString());
+	}
 	@Test
 	public void testGetToken_GetTokenRequestVOIsNull() {
 		GetTokenRequestVO getTokenRequestVO = null;

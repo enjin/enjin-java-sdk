@@ -46,7 +46,18 @@ public class IdentitiesServiceTest {
 		assertNotNull(identitiesService);
 		assertNotNull(identitiesService.toString());
 	}
-	
+	@Test
+	public void testContructor3() {
+		identitiesService = new IdentitiesService("http://localhost:8080", true);
+		assertNotNull(identitiesService);
+		assertNotNull(identitiesService.toString());
+	}
+	@Test
+	public void testContructor4() {
+		identitiesService = new IdentitiesService(true);
+		assertNotNull(identitiesService);
+		assertNotNull(identitiesService.toString());
+	}
 	@Test
 	public void testGetIdentity_GetIdentityRequestVOIsNull() {
 		GetIdentityRequestVO getIdentityRequestVO = null;

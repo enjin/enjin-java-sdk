@@ -6,10 +6,6 @@ public class Constants {
 		
 	}
 	
-	//Boolean to state if we are in test mode or not
-	//When in test mode - the id in wiremock must match what is sent from the test client
-	public static boolean inTestMode = true;
-	
 	//the id to use for requests when in test mode
 	public static String testModeId = "1";
 	

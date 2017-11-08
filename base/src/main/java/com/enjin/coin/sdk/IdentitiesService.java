@@ -41,6 +41,25 @@ public class IdentitiesService extends BaseAction{
 	}
 	
 	/**
+	 * Class contructor
+	 * @param trustedPlatformUrl
+	 * @param inTestMode
+	 */
+	public IdentitiesService(boolean inTestMode) {
+		super(inTestMode);
+	}
+	
+	/**
+	 * Class contructor
+	 * @param trustedPlatformUrl
+	 * @param inTestMode
+	 */
+	public IdentitiesService(String trustedPlatformUrl, boolean inTestMode) {
+		super(trustedPlatformUrl, inTestMode);
+	}
+	
+	
+	/**
 	 * Method to get an identity
 	 * @param getIdentityRequestVO
 	 * @return
