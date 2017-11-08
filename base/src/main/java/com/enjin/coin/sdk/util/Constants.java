@@ -13,12 +13,12 @@ public class Constants {
 	//the id to use for requests when in test mode
 	public static String testModeId = "1";
 	
-	private static final String TRUSTED_PLATFORM_BASE_URL = "http://localhost:8080";
+	public static final String TRUSTED_PLATFORM_BASE_URL = "http://localhost:8080";
 	//Port 81 used when trying out the tcp ip monitor in eclipse
 	//private static final String TRUSTED_PLATFORM_BASE_URL = "http://localhost:81";
-	public static final String IDENTITIES_URL             = TRUSTED_PLATFORM_BASE_URL + "/Identities.php";
-	public static final String TOKENS_URL                 = TRUSTED_PLATFORM_BASE_URL + "/Tokens.php";
-	public static final String TRANSACTION_REQUESTS_URL   = TRUSTED_PLATFORM_BASE_URL + "/TransactionRequests.php";
+	public static final String IDENTITIES_URL             = "Identities.php";
+	public static final String TOKENS_URL                 = "Tokens.php";
+	public static final String TRANSACTION_REQUESTS_URL   = "TransactionRequests.php";
 	
 	/** Constant for the accept header **/
 	public static final String ACCEPT_HEADER = "Accept";	
