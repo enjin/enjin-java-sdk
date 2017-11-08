@@ -12,8 +12,9 @@ ext {
     slf4j = '1.7.25'
     logbackClassic = '1.2.3'
     commonsCollections = '4.1'
-    mockito = '2.12.0'
+    mockito = '2.9.0'
     junit = '4.12'
+    powermock = '1.7.3'
 }
 
 dependencies {
@@ -26,5 +27,8 @@ dependencies {
 	compile group: 'org.apache.commons', name: 'commons-collections4', version: commonsCollections
 	testCompile group: 'org.mockito', name: 'mockito-core', version: mockito
 	testCompile group: 'junit', name: 'junit', version: junit
+	testCompile group: 'org.powermock', name: 'powermock-api-mockito2', version: powermock
+	testCompile group: 'org.powermock', name: 'powermock-module-junit4', version: powermock
+	
   
 }

@@ -46,7 +46,7 @@ public class JsonUtils {
 	 * @param jsonObject
 	 * @return
 	 */
-	public static String convertJsonToObject(Object jsonObject) {
+	public static String convertObjectToJson(Object jsonObject) {
 		String jsonString = null;
 		
 		if (jsonObject == null) {
