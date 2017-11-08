@@ -20,14 +20,14 @@ import com.enjin.coin.sdk.vo.identity.ListIdentitiesResponseVO;
 import com.enjin.coin.sdk.vo.identity.UpdateIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.UpdateIdentityResponseVO;
 
-public class Identities extends BaseAction{
+public class IdentitiesService extends BaseAction{
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(Identities.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(IdentitiesService.class);
 	
 	/**
 	 * Class contructor
 	 */
-	public Identities() {
+	public IdentitiesService() {
 		
 	}
 
@@ -35,7 +35,7 @@ public class Identities extends BaseAction{
 	 * Class contructor
 	 * @param trustedPlatformUrl
 	 */
-	public Identities(String trustedPlatformUrl) {
+	public IdentitiesService(String trustedPlatformUrl) {
 		super(trustedPlatformUrl);
 	}
 	

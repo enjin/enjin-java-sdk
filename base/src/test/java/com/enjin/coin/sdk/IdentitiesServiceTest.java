@@ -28,31 +28,31 @@ import com.enjin.coin.sdk.vo.identity.UpdateIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.UpdateIdentityResponseVO;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest(Identities.class)
-public class IdentitiesTest {
+@PrepareForTest(IdentitiesService.class)
+public class IdentitiesServiceTest {
 
-	Identities identities;
+	IdentitiesService identitiesService;
 
 	@Test
 	public void testContructor1() {
-		identities = new Identities();
-		assertNotNull(identities);
-		assertNotNull(identities.toString());
+		identitiesService = new IdentitiesService();
+		assertNotNull(identitiesService);
+		assertNotNull(identitiesService.toString());
 	}
 	
 	@Test
 	public void testContructor2() {
-		identities = new Identities("http://localhost:8080");
-		assertNotNull(identities);
-		assertNotNull(identities.toString());
+		identitiesService = new IdentitiesService("http://localhost:8080");
+		assertNotNull(identitiesService);
+		assertNotNull(identitiesService.toString());
 	}
 	
 	@Test
 	public void testGetIdentity_GetIdentityRequestVOIsNull() {
 		GetIdentityRequestVO getIdentityRequestVO = null;
 		
-		identities = new Identities();
-		GetIdentityResponseVO getIdentityResponseVO = identities.getIdentity(getIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		GetIdentityResponseVO getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
 		assertNull(getIdentityResponseVO);
 	}
 	@Test
@@ -60,8 +60,8 @@ public class IdentitiesTest {
 		GetIdentityRequestVO getIdentityRequestVO = new GetIdentityRequestVO();
 		getIdentityRequestVO.setAuth(null);
 		
-		identities = new Identities();
-		GetIdentityResponseVO getIdentityResponseVO = identities.getIdentity(getIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		GetIdentityResponseVO getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
 		assertNull(getIdentityResponseVO);
 	}
 	@Test
@@ -69,8 +69,8 @@ public class IdentitiesTest {
 		GetIdentityRequestVO getIdentityRequestVO = new GetIdentityRequestVO();
 		getIdentityRequestVO.setAuth("");
 		
-		identities = new Identities();
-		GetIdentityResponseVO getIdentityResponseVO = identities.getIdentity(getIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		GetIdentityResponseVO getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
 		assertNull(getIdentityResponseVO);
 	}
 	@Test
@@ -80,8 +80,8 @@ public class IdentitiesTest {
 		Map<String, Object> identityMap = null;
 		getIdentityRequestVO.setIdentity(identityMap);
 		
-		identities = new Identities();
-		GetIdentityResponseVO getIdentityResponseVO = identities.getIdentity(getIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		GetIdentityResponseVO getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
 		assertNull(getIdentityResponseVO);
 	}
 	@Test
@@ -91,8 +91,8 @@ public class IdentitiesTest {
 		Map<String, Object> identityMap = new HashMap<>();
 		getIdentityRequestVO.setIdentity(identityMap);
 		
-		identities = new Identities();
-		GetIdentityResponseVO getIdentityResponseVO = identities.getIdentity(getIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		GetIdentityResponseVO getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
 		assertNull(getIdentityResponseVO);
 	}
 	
@@ -111,8 +111,8 @@ public class IdentitiesTest {
 		PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
 		Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(),  Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetIdentityResponseVO);
 		
-		identities = new Identities();
-		GetIdentityResponseVO getIdentityResponseVO = identities.getIdentity(getIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		GetIdentityResponseVO getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
 		assertNull(getIdentityResponseVO);
 		
 		PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
@@ -134,8 +134,8 @@ public class IdentitiesTest {
 		PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
 		Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(),  Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetIdentityResponseVO);
 		
-		identities = new Identities();
-		GetIdentityResponseVO getIdentityResponseVO = identities.getIdentity(getIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		GetIdentityResponseVO getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
 		assertNotNull(getIdentityResponseVO);
 		
 		PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
@@ -146,8 +146,8 @@ public class IdentitiesTest {
 	public void testListIdentities_ListIdentitiesRequestVOIsNull() {
 		ListIdentitiesRequestVO listIdentitiesRequestVO = null;
 		
-		identities = new Identities();
-		ListIdentitiesResponseVO[] listIdentitiesResponseVO = identities.listIdentities(listIdentitiesRequestVO);
+		identitiesService = new IdentitiesService();
+		ListIdentitiesResponseVO[] listIdentitiesResponseVO = identitiesService.listIdentities(listIdentitiesRequestVO);
 		assertNull(listIdentitiesResponseVO);
 	}
 	@Test
@@ -155,8 +155,8 @@ public class IdentitiesTest {
 		ListIdentitiesRequestVO listIdentitiesRequestVO = new ListIdentitiesRequestVO();
 		listIdentitiesRequestVO.setAuth(null);
 		
-		identities = new Identities();
-		ListIdentitiesResponseVO[] listIdentitiesResponseVO = identities.listIdentities(listIdentitiesRequestVO);
+		identitiesService = new IdentitiesService();
+		ListIdentitiesResponseVO[] listIdentitiesResponseVO = identitiesService.listIdentities(listIdentitiesRequestVO);
 		assertNull(listIdentitiesResponseVO);
 	}
 	@Test
@@ -164,8 +164,8 @@ public class IdentitiesTest {
 		ListIdentitiesRequestVO listIdentitiesRequestVO = new ListIdentitiesRequestVO();
 		listIdentitiesRequestVO.setAuth("");
 		
-		identities = new Identities();
-		ListIdentitiesResponseVO[] listIdentitiesResponseVO = identities.listIdentities(listIdentitiesRequestVO);
+		identitiesService = new IdentitiesService();
+		ListIdentitiesResponseVO[] listIdentitiesResponseVO = identitiesService.listIdentities(listIdentitiesRequestVO);
 		assertNull(listIdentitiesResponseVO);
 	}
 	@Test
@@ -175,8 +175,8 @@ public class IdentitiesTest {
 		Map<String, Object> identityMap = null;
 		listIdentitiesRequestVO.setIdentity(identityMap);
 		
-		identities = new Identities();
-		ListIdentitiesResponseVO[] listIdentitiesResponseVO = identities.listIdentities(listIdentitiesRequestVO);
+		identitiesService = new IdentitiesService();
+		ListIdentitiesResponseVO[] listIdentitiesResponseVO = identitiesService.listIdentities(listIdentitiesRequestVO);
 		assertNull(listIdentitiesResponseVO);
 	}
 	@Test
@@ -186,8 +186,8 @@ public class IdentitiesTest {
 		Map<String, Object> identityMap = new HashMap<>();
 		listIdentitiesRequestVO.setIdentity(identityMap);
 		
-		identities = new Identities();
-		ListIdentitiesResponseVO[] listIdentitiesResponseVO = identities.listIdentities(listIdentitiesRequestVO);
+		identitiesService = new IdentitiesService();
+		ListIdentitiesResponseVO[] listIdentitiesResponseVO = identitiesService.listIdentities(listIdentitiesRequestVO);
 		assertNull(listIdentitiesResponseVO);
 	}
 	
@@ -206,8 +206,8 @@ public class IdentitiesTest {
 		PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
 		Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(),  Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedListIdentitiesResponseVO);
 		
-		identities = new Identities();
-		ListIdentitiesResponseVO[] listIdentitiesResponseVO = identities.listIdentities(listIdentitiesRequestVO);
+		identitiesService = new IdentitiesService();
+		ListIdentitiesResponseVO[] listIdentitiesResponseVO = identitiesService.listIdentities(listIdentitiesRequestVO);
 		assertNull(listIdentitiesResponseVO);
 		
 		PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
@@ -228,8 +228,8 @@ public class IdentitiesTest {
 		PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
 		Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(),  Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedListIdentitiesResponseVO);
 		
-		identities = new Identities();
-		ListIdentitiesResponseVO[] listIdentitiesResponseVO = identities.listIdentities(listIdentitiesRequestVO);
+		identitiesService = new IdentitiesService();
+		ListIdentitiesResponseVO[] listIdentitiesResponseVO = identitiesService.listIdentities(listIdentitiesRequestVO);
 		assertNotNull(listIdentitiesResponseVO);
 		assertNotNull(listIdentitiesResponseVO.length == 0);
 		
@@ -251,8 +251,8 @@ public class IdentitiesTest {
 		PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
 		Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(),  Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedListIdentitiesResponseVO);
 		
-		identities = new Identities();
-		ListIdentitiesResponseVO[] listIdentitiesResponseVO = identities.listIdentities(listIdentitiesRequestVO);
+		identitiesService = new IdentitiesService();
+		ListIdentitiesResponseVO[] listIdentitiesResponseVO = identitiesService.listIdentities(listIdentitiesRequestVO);
 		assertNotNull(listIdentitiesResponseVO);
 		assertNotNull(listIdentitiesResponseVO.length == 1);
 		
@@ -274,8 +274,8 @@ public class IdentitiesTest {
 		PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
 		Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(),  Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedListIdentitiesResponseVO);
 		
-		identities = new Identities();
-		ListIdentitiesResponseVO[] listIdentitiesResponseVO = identities.listIdentities(listIdentitiesRequestVO);
+		identitiesService = new IdentitiesService();
+		ListIdentitiesResponseVO[] listIdentitiesResponseVO = identitiesService.listIdentities(listIdentitiesRequestVO);
 		assertNotNull(listIdentitiesResponseVO);
 		assertNotNull(listIdentitiesResponseVO.length == 2);
 		
@@ -287,8 +287,8 @@ public class IdentitiesTest {
 	public void testCreateIdentity_CreateIdentityRequestVOIsNull() {
 		CreateIdentityRequestVO createIdentityRequestVO = null;
 		
-		identities = new Identities();
-		CreateIdentityResponseVO createIdentityResponseVO = identities.createIdentity(createIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		CreateIdentityResponseVO createIdentityResponseVO = identitiesService.createIdentity(createIdentityRequestVO);
 		assertNull(createIdentityResponseVO);
 	}
 	@Test
@@ -296,8 +296,8 @@ public class IdentitiesTest {
 		CreateIdentityRequestVO createIdentityRequestVO = new CreateIdentityRequestVO();
 		createIdentityRequestVO.setAuth(null);
 		
-		identities = new Identities();
-		CreateIdentityResponseVO createIdentityResponseVO = identities.createIdentity(createIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		CreateIdentityResponseVO createIdentityResponseVO = identitiesService.createIdentity(createIdentityRequestVO);
 		assertNull(createIdentityResponseVO);
 	}
 	@Test
@@ -305,8 +305,8 @@ public class IdentitiesTest {
 		CreateIdentityRequestVO createIdentityRequestVO = new CreateIdentityRequestVO();
 		createIdentityRequestVO.setAuth("");
 		
-		identities = new Identities();
-		CreateIdentityResponseVO createIdentityResponseVO = identities.createIdentity(createIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		CreateIdentityResponseVO createIdentityResponseVO = identitiesService.createIdentity(createIdentityRequestVO);
 		assertNull(createIdentityResponseVO);
 	}
 	@Test
@@ -316,8 +316,8 @@ public class IdentitiesTest {
 		Map<String, Object> identityMap = null;
 		createIdentityRequestVO.setIdentity(identityMap);
 		
-		identities = new Identities();
-		CreateIdentityResponseVO createIdentityResponseVO = identities.createIdentity(createIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		CreateIdentityResponseVO createIdentityResponseVO = identitiesService.createIdentity(createIdentityRequestVO);
 		assertNull(createIdentityResponseVO);
 	}
 	@Test
@@ -327,8 +327,8 @@ public class IdentitiesTest {
 		Map<String, Object> identityMap = new HashMap<>();
 		createIdentityRequestVO.setIdentity(identityMap);
 		
-		identities = new Identities();
-		CreateIdentityResponseVO createIdentityResponseVO = identities.createIdentity(createIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		CreateIdentityResponseVO createIdentityResponseVO = identitiesService.createIdentity(createIdentityRequestVO);
 		assertNull(createIdentityResponseVO);
 	}
 	
@@ -347,8 +347,8 @@ public class IdentitiesTest {
 		PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
 		Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(),  Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedCreateIdentityResponseVO);
 		
-		identities = new Identities();
-		CreateIdentityResponseVO createIdentityResponseVO = identities.createIdentity(createIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		CreateIdentityResponseVO createIdentityResponseVO = identitiesService.createIdentity(createIdentityRequestVO);
 		assertNull(createIdentityResponseVO);
 		
 		PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
@@ -370,8 +370,8 @@ public class IdentitiesTest {
 		PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
 		Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(),  Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedCreateIdentityResponseVO);
 		
-		identities = new Identities();
-		CreateIdentityResponseVO createIdentityResponseVO = identities.createIdentity(createIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		CreateIdentityResponseVO createIdentityResponseVO = identitiesService.createIdentity(createIdentityRequestVO);
 		assertNotNull(createIdentityResponseVO);
 		
 		PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
@@ -382,8 +382,8 @@ public class IdentitiesTest {
 	public void testUpdateIdentity_UpdateIdentityRequestVOIsNull() {
 		UpdateIdentityRequestVO updateIdentityRequestVO = null;
 		
-		identities = new Identities();
-		UpdateIdentityResponseVO updateIdentityResponseVO = identities.updateIdentity(updateIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		UpdateIdentityResponseVO updateIdentityResponseVO = identitiesService.updateIdentity(updateIdentityRequestVO);
 		assertNull(updateIdentityResponseVO);
 	}
 	@Test
@@ -391,8 +391,8 @@ public class IdentitiesTest {
 		UpdateIdentityRequestVO updateIdentityRequestVO = new UpdateIdentityRequestVO();
 		updateIdentityRequestVO.setAuth(null);
 		
-		identities = new Identities();
-		UpdateIdentityResponseVO updateIdentityResponseVO = identities.updateIdentity(updateIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		UpdateIdentityResponseVO updateIdentityResponseVO = identitiesService.updateIdentity(updateIdentityRequestVO);
 		assertNull(updateIdentityResponseVO);
 	}
 	@Test
@@ -400,8 +400,8 @@ public class IdentitiesTest {
 		UpdateIdentityRequestVO updateIdentityRequestVO = new UpdateIdentityRequestVO();
 		updateIdentityRequestVO.setAuth("");
 		
-		identities = new Identities();
-		UpdateIdentityResponseVO updateIdentityResponseVO = identities.updateIdentity(updateIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		UpdateIdentityResponseVO updateIdentityResponseVO = identitiesService.updateIdentity(updateIdentityRequestVO);
 		assertNull(updateIdentityResponseVO);
 	}
 	@Test
@@ -411,8 +411,8 @@ public class IdentitiesTest {
 		Map<String, Object> identityMap = null;
 		updateIdentityRequestVO.setIdentity(identityMap);
 		
-		identities = new Identities();
-		UpdateIdentityResponseVO updateIdentityResponseVO = identities.updateIdentity(updateIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		UpdateIdentityResponseVO updateIdentityResponseVO = identitiesService.updateIdentity(updateIdentityRequestVO);
 		assertNull(updateIdentityResponseVO);
 	}
 	@Test
@@ -422,8 +422,8 @@ public class IdentitiesTest {
 		Map<String, Object> identityMap = new HashMap<>();
 		updateIdentityRequestVO.setIdentity(identityMap);
 		
-		identities = new Identities();
-		UpdateIdentityResponseVO updateIdentityResponseVO = identities.updateIdentity(updateIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		UpdateIdentityResponseVO updateIdentityResponseVO = identitiesService.updateIdentity(updateIdentityRequestVO);
 		assertNull(updateIdentityResponseVO);
 	}
 	@Test
@@ -437,8 +437,8 @@ public class IdentitiesTest {
 		Map<String, Object> updateMap = null;
 		updateIdentityRequestVO.setUpdate(updateMap);
 		
-		identities = new Identities();
-		UpdateIdentityResponseVO updateIdentityResponseVO = identities.updateIdentity(updateIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		UpdateIdentityResponseVO updateIdentityResponseVO = identitiesService.updateIdentity(updateIdentityRequestVO);
 		assertNull(updateIdentityResponseVO);
 	}
 	@Test
@@ -452,8 +452,8 @@ public class IdentitiesTest {
 		Map<String, Object> updateMap = new HashMap<>();
 		updateIdentityRequestVO.setUpdate(updateMap);
 		
-		identities = new Identities();
-		UpdateIdentityResponseVO updateIdentityResponseVO = identities.updateIdentity(updateIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		UpdateIdentityResponseVO updateIdentityResponseVO = identitiesService.updateIdentity(updateIdentityRequestVO);
 		assertNull(updateIdentityResponseVO);
 	}
 	@SuppressWarnings("unchecked")
@@ -475,8 +475,8 @@ public class IdentitiesTest {
 		PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
 		Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(),  Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedUpdateIdentityResponseVO);
 		
-		identities = new Identities();
-		UpdateIdentityResponseVO updateIdentityResponseVO = identities.updateIdentity(updateIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		UpdateIdentityResponseVO updateIdentityResponseVO = identitiesService.updateIdentity(updateIdentityRequestVO);
 		assertNull(updateIdentityResponseVO);
 		
 		PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
@@ -502,8 +502,8 @@ public class IdentitiesTest {
 		PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
 		Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(),  Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedUpdateIdentityResponseVO);
 		
-		identities = new Identities();
-		UpdateIdentityResponseVO updateIdentityResponseVO = identities.updateIdentity(updateIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		UpdateIdentityResponseVO updateIdentityResponseVO = identitiesService.updateIdentity(updateIdentityRequestVO);
 		assertNotNull(updateIdentityResponseVO);
 		
 		PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
@@ -514,8 +514,8 @@ public class IdentitiesTest {
 	public void testDeleteIdentity_DeleteIdentityRequestVOIsNull() {
 		DeleteIdentityRequestVO deleteIdentityRequestVO = null;
 		
-		identities = new Identities();
-		DeleteIdentityResponseVO deleteIdentityResponseVO = identities.deleteIdentity(deleteIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		DeleteIdentityResponseVO deleteIdentityResponseVO = identitiesService.deleteIdentity(deleteIdentityRequestVO);
 		assertNull(deleteIdentityResponseVO);
 	}
 	@Test
@@ -523,8 +523,8 @@ public class IdentitiesTest {
 		DeleteIdentityRequestVO deleteIdentityRequestVO = new DeleteIdentityRequestVO();
 		deleteIdentityRequestVO.setAuth(null);
 		
-		identities = new Identities();
-		DeleteIdentityResponseVO deleteIdentityResponseVO = identities.deleteIdentity(deleteIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		DeleteIdentityResponseVO deleteIdentityResponseVO = identitiesService.deleteIdentity(deleteIdentityRequestVO);
 		assertNull(deleteIdentityResponseVO);
 	}
 	@Test
@@ -532,8 +532,8 @@ public class IdentitiesTest {
 		DeleteIdentityRequestVO deleteIdentityRequestVO = new DeleteIdentityRequestVO();
 		deleteIdentityRequestVO.setAuth("");
 		
-		identities = new Identities();
-		DeleteIdentityResponseVO deleteIdentityResponseVO = identities.deleteIdentity(deleteIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		DeleteIdentityResponseVO deleteIdentityResponseVO = identitiesService.deleteIdentity(deleteIdentityRequestVO);
 		assertNull(deleteIdentityResponseVO);
 	}
 	@Test
@@ -543,8 +543,8 @@ public class IdentitiesTest {
 		Map<String, Object> identityMap = null;
 		deleteIdentityRequestVO.setIdentity(identityMap);
 		
-		identities = new Identities();
-		DeleteIdentityResponseVO deleteIdentityResponseVO = identities.deleteIdentity(deleteIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		DeleteIdentityResponseVO deleteIdentityResponseVO = identitiesService.deleteIdentity(deleteIdentityRequestVO);
 		assertNull(deleteIdentityResponseVO);
 	}
 	@Test
@@ -554,8 +554,8 @@ public class IdentitiesTest {
 		Map<String, Object> identityMap = new HashMap<>();
 		deleteIdentityRequestVO.setIdentity(identityMap);
 		
-		identities = new Identities();
-		DeleteIdentityResponseVO deleteIdentityResponseVO = identities.deleteIdentity(deleteIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		DeleteIdentityResponseVO deleteIdentityResponseVO = identitiesService.deleteIdentity(deleteIdentityRequestVO);
 		assertNull(deleteIdentityResponseVO);
 	}
 	
@@ -574,8 +574,8 @@ public class IdentitiesTest {
 		PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
 		Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(),  Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(result);
 		
-		identities = new Identities();
-		DeleteIdentityResponseVO deleteIdentityResponseVO = identities.deleteIdentity(deleteIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		DeleteIdentityResponseVO deleteIdentityResponseVO = identitiesService.deleteIdentity(deleteIdentityRequestVO);
 		assertNotNull(deleteIdentityResponseVO);
 		assertNull(deleteIdentityResponseVO.getResult());
 		
@@ -597,8 +597,8 @@ public class IdentitiesTest {
 		PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
 		Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(),  Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(result);
 		
-		identities = new Identities();
-		DeleteIdentityResponseVO deleteIdentityResponseVO = identities.deleteIdentity(deleteIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		DeleteIdentityResponseVO deleteIdentityResponseVO = identitiesService.deleteIdentity(deleteIdentityRequestVO);
 		assertNotNull(deleteIdentityResponseVO);
 		assertFalse(deleteIdentityResponseVO.getResult());
 		
@@ -620,8 +620,8 @@ public class IdentitiesTest {
 		PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
 		Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(),  Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(result);
 		
-		identities = new Identities();
-		DeleteIdentityResponseVO deleteIdentityResponseVO = identities.deleteIdentity(deleteIdentityRequestVO);
+		identitiesService = new IdentitiesService();
+		DeleteIdentityResponseVO deleteIdentityResponseVO = identitiesService.deleteIdentity(deleteIdentityRequestVO);
 		assertNotNull(deleteIdentityResponseVO);
 		assertTrue(deleteIdentityResponseVO.getResult());
 		

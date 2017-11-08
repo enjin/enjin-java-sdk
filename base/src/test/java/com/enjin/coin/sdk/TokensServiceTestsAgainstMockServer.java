@@ -10,9 +10,9 @@ import com.enjin.coin.sdk.vo.token.GetTokenResponseVO;
 import com.enjin.coin.sdk.vo.token.ListTokensRequestVO;
 import com.enjin.coin.sdk.vo.token.ListTokensResponseVO;
 
-public class TokensTestsAgainstMockServer {
+public class TokensServiceTestsAgainstMockServer {
 
-	private Tokens tokens;
+	private TokenService tokens;
 	
 	private String tokenId;	
 	private String appId;
@@ -20,7 +20,7 @@ public class TokensTestsAgainstMockServer {
 	private String limit;
 	@Before
 	public void setUp() {
-		tokens = new Tokens();
+		tokens = new TokenService();
 		tokenId = "12345";
 		appId = "352";
 		afterTokenId = "123456";

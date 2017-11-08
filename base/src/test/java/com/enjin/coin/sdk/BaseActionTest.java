@@ -12,19 +12,19 @@ public class BaseActionTest {
 	
 	@Before
 	public void setUp() {
-		baseAction = new Identities();
+		baseAction = new IdentitiesService();
 	}
 	
 	@Test
 	public void testContructor1() {
-		baseAction = new Identities();
+		baseAction = new IdentitiesService();
 		assertNotNull(baseAction);
 		assertNotNull(baseAction.toString());
 	}
 	
 	@Test
 	public void testContructor2() {
-		baseAction = new Identities("http://localhost:8080");
+		baseAction = new IdentitiesService("http://localhost:8080");
 		assertNotNull(baseAction);
 		assertNotNull(baseAction.toString());
 	}

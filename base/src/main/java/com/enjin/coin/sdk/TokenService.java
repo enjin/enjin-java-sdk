@@ -14,14 +14,14 @@ import com.enjin.coin.sdk.vo.token.GetTokenResponseVO;
 import com.enjin.coin.sdk.vo.token.ListTokensRequestVO;
 import com.enjin.coin.sdk.vo.token.ListTokensResponseVO;
 
-public class Tokens extends BaseAction{
+public class TokenService extends BaseAction{
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(Tokens.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(TokenService.class);
 	
 	/**
 	 * Class contructor
 	 */
-	public Tokens() {
+	public TokenService() {
 		
 	}
 
@@ -29,7 +29,7 @@ public class Tokens extends BaseAction{
 	 * Class contructor
 	 * @param trustedPlatformUrl
 	 */
-	public Tokens(String trustedPlatformUrl) {
+	public TokenService(String trustedPlatformUrl) {
 		super(trustedPlatformUrl);
 	}
 	

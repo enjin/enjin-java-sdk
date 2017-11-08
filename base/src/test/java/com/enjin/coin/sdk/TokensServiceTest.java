@@ -19,31 +19,31 @@ import com.enjin.coin.sdk.vo.token.ListTokensRequestVO;
 import com.enjin.coin.sdk.vo.token.ListTokensResponseVO;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest(Tokens.class)
-public class TokensTest {
+@PrepareForTest(TokenService.class)
+public class TokensServiceTest {
 
-	Tokens tokens;
+	TokenService tokenService;
 
 	@Test
 	public void testContructor1() {
-		tokens = new Tokens();
-		assertNotNull(tokens);
-		assertNotNull(tokens.toString());
+		tokenService = new TokenService();
+		assertNotNull(tokenService);
+		assertNotNull(tokenService.toString());
 	}
 	
 	@Test
 	public void testContructor2() {
-		tokens = new Tokens("http://localhost:8080");
-		assertNotNull(tokens);
-		assertNotNull(tokens.toString());
+		tokenService = new TokenService("http://localhost:8080");
+		assertNotNull(tokenService);
+		assertNotNull(tokenService.toString());
 	}
 	
 	@Test
 	public void testGetToken_GetTokenRequestVOIsNull() {
 		GetTokenRequestVO getTokenRequestVO = null;
 		
-		tokens = new Tokens();
-		GetTokenResponseVO getTokenResponseVO = tokens.getToken(getTokenRequestVO);
+		tokenService = new TokenService();
+		GetTokenResponseVO getTokenResponseVO = tokenService.getToken(getTokenRequestVO);
 		assertNull(getTokenResponseVO);
 	}
 	@Test
@@ -51,8 +51,8 @@ public class TokensTest {
 		GetTokenRequestVO getTokenRequestVO = new GetTokenRequestVO();
 		getTokenRequestVO.setTokenId(null);
 		
-		tokens = new Tokens();
-		GetTokenResponseVO getTokenResponseVO = tokens.getToken(getTokenRequestVO);
+		tokenService = new TokenService();
+		GetTokenResponseVO getTokenResponseVO = tokenService.getToken(getTokenRequestVO);
 		assertNull(getTokenResponseVO);
 	}
 	@Test
@@ -60,8 +60,8 @@ public class TokensTest {
 		GetTokenRequestVO getTokenRequestVO = new GetTokenRequestVO();
 		getTokenRequestVO.setTokenId("");
 		
-		tokens = new Tokens();
-		GetTokenResponseVO getTokenResponseVO = tokens.getToken(getTokenRequestVO);
+		tokenService = new TokenService();
+		GetTokenResponseVO getTokenResponseVO = tokenService.getToken(getTokenRequestVO);
 		assertNull(getTokenResponseVO);
 	}
 
@@ -78,8 +78,8 @@ public class TokensTest {
 		PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
 		Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(),  Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetTokenResponseVO);
 		
-		tokens = new Tokens();
-		GetTokenResponseVO getTokenResponseVO = tokens.getToken(getTokenRequestVO);
+		tokenService = new TokenService();
+		GetTokenResponseVO getTokenResponseVO = tokenService.getToken(getTokenRequestVO);
 		assertNull(getTokenResponseVO);
 		
 		PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
@@ -98,8 +98,8 @@ public class TokensTest {
 		PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
 		Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(),  Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetTokenResponseVO);
 		
-		tokens = new Tokens();
-		GetTokenResponseVO getTokenResponseVO = tokens.getToken(getTokenRequestVO);
+		tokenService = new TokenService();
+		GetTokenResponseVO getTokenResponseVO = tokenService.getToken(getTokenRequestVO);
 		assertNotNull(getTokenResponseVO);
 		
 		PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
@@ -110,8 +110,8 @@ public class TokensTest {
 	public void testListTokens_ListTokensRequestVOIsNull() {
 		ListTokensRequestVO listTokensRequestVO = null;
 		
-		tokens = new Tokens();
-		ListTokensResponseVO listTokensResponseVO = tokens.listTokens(listTokensRequestVO);
+		tokenService = new TokenService();
+		ListTokensResponseVO listTokensResponseVO = tokenService.listTokens(listTokensRequestVO);
 		assertNull(listTokensResponseVO);
 	}
 	@Test
@@ -120,8 +120,8 @@ public class TokensTest {
 		listTokensRequestVO.setAfterTokenId(null);
 		listTokensRequestVO.setAppId("appId");
 		listTokensRequestVO.setLimit("limit");
-		tokens = new Tokens();
-		ListTokensResponseVO listTokensResponseVO = tokens.listTokens(listTokensRequestVO);
+		tokenService = new TokenService();
+		ListTokensResponseVO listTokensResponseVO = tokenService.listTokens(listTokensRequestVO);
 		assertNull(listTokensResponseVO);
 	}
 	@Test
@@ -131,8 +131,8 @@ public class TokensTest {
 		listTokensRequestVO.setAppId("appId");
 		listTokensRequestVO.setLimit("limit");
 		
-		tokens = new Tokens();
-		ListTokensResponseVO listTokensResponseVO = tokens.listTokens(listTokensRequestVO);
+		tokenService = new TokenService();
+		ListTokensResponseVO listTokensResponseVO = tokenService.listTokens(listTokensRequestVO);
 		assertNull(listTokensResponseVO);
 	}
 	@Test
@@ -141,8 +141,8 @@ public class TokensTest {
 		listTokensRequestVO.setAfterTokenId("afterTokenId");
 		listTokensRequestVO.setAppId(null);
 		listTokensRequestVO.setLimit("limit");
-		tokens = new Tokens();
-		ListTokensResponseVO listTokensResponseVO = tokens.listTokens(listTokensRequestVO);
+		tokenService = new TokenService();
+		ListTokensResponseVO listTokensResponseVO = tokenService.listTokens(listTokensRequestVO);
 		assertNull(listTokensResponseVO);
 	}
 	@Test
@@ -151,8 +151,8 @@ public class TokensTest {
 		listTokensRequestVO.setAfterTokenId("afterTokenId");
 		listTokensRequestVO.setAppId("appId");
 		listTokensRequestVO.setLimit("");
-		tokens = new Tokens();
-		ListTokensResponseVO listTokensResponseVO = tokens.listTokens(listTokensRequestVO);
+		tokenService = new TokenService();
+		ListTokensResponseVO listTokensResponseVO = tokenService.listTokens(listTokensRequestVO);
 		assertNull(listTokensResponseVO);
 	}
 	@Test
@@ -161,8 +161,8 @@ public class TokensTest {
 		listTokensRequestVO.setAfterTokenId("afterTokenId");
 		listTokensRequestVO.setAppId("appId");
 		listTokensRequestVO.setLimit(null);
-		tokens = new Tokens();
-		ListTokensResponseVO listTokensResponseVO = tokens.listTokens(listTokensRequestVO);
+		tokenService = new TokenService();
+		ListTokensResponseVO listTokensResponseVO = tokenService.listTokens(listTokensRequestVO);
 		assertNull(listTokensResponseVO);
 	}
 	
@@ -180,8 +180,8 @@ public class TokensTest {
 		PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
 		Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(),  Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedListTokensResponseVO);
 		
-		tokens = new Tokens();
-		ListTokensResponseVO listTokensResponseVO = tokens.listTokens(listTokensRequestVO);
+		tokenService = new TokenService();
+		ListTokensResponseVO listTokensResponseVO = tokenService.listTokens(listTokensRequestVO);
 		assertNull(listTokensResponseVO);
 		
 		PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
@@ -201,8 +201,8 @@ public class TokensTest {
 		PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
 		Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(),  Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedListTokensResponseVO);
 		
-		tokens = new Tokens();
-		ListTokensResponseVO listTokensResponseVO = tokens.listTokens(listTokensRequestVO);
+		tokenService = new TokenService();
+		ListTokensResponseVO listTokensResponseVO = tokenService.listTokens(listTokensRequestVO);
 		assertNull(listTokensResponseVO);
 
 		PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
@@ -222,8 +222,8 @@ public class TokensTest {
 		PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
 		Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(),  Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedListTokensResponseVO);
 		
-		tokens = new Tokens();
-		ListTokensResponseVO listTokensResponseVO = tokens.listTokens(listTokensRequestVO);
+		tokenService = new TokenService();
+		ListTokensResponseVO listTokensResponseVO = tokenService.listTokens(listTokensRequestVO);
 		assertNotNull(listTokensResponseVO);
 		assertNotNull(listTokensResponseVO.getGetTokenResponseVOArray());
 		assertNotNull(listTokensResponseVO.getGetTokenResponseVOArray().length == 1);
@@ -245,8 +245,8 @@ public class TokensTest {
 		PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
 		Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(),  Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedListTokensResponseVO);
 		
-		tokens = new Tokens();
-		ListTokensResponseVO listTokensResponseVO = tokens.listTokens(listTokensRequestVO);
+		tokenService = new TokenService();
+		ListTokensResponseVO listTokensResponseVO = tokenService.listTokens(listTokensRequestVO);
 		assertNotNull(listTokensResponseVO);
 		assertNotNull(listTokensResponseVO.getGetTokenResponseVOArray());
 		assertNotNull(listTokensResponseVO.getGetTokenResponseVOArray().length == 2);
