@@ -25,7 +25,8 @@ public class Constants {
 	/** Constant for the content type header **/
 	public static final String CONTENT_TYPE_HEADER = "Content-Type";	
 	/** Constant for the json rpc type **/
-	public static final String TYPE_JSON_RPC = "application/json-rpc";	
+	//public static final String TYPE_JSON_RPC = "application/json-rpc";	
+	public static final String TYPE_JSON_RPC = "text/json";
 	
 	/** Constants for the Identities methods **/
 	public static final String METHOD_IDENTITIES_GET    = "Identities.get";

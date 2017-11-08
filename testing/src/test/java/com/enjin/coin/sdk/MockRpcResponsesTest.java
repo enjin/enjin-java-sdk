@@ -38,7 +38,8 @@ public class MockRpcResponsesTest {
 	/** Constant for the content type header **/
 	private static final String CONTENT_TYPE_HEADER = "Content-Type";	
 	/** Constant for the json rpc type **/
-	private static final String TYPE_JSON_RPC = "application/json-rpc";
+	//private static final String TYPE_JSON_RPC = "application/json-rpc";
+	private static final String TYPE_JSON_RPC = "text/json";
 	
 	/**
 	 * Main method to run the class
