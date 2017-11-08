@@ -20,7 +20,7 @@ import com.enjin.coin.sdk.vo.identity.ListIdentitiesResponseVO;
 import com.enjin.coin.sdk.vo.identity.UpdateIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.UpdateIdentityResponseVO;
 
-public class IdentitiesServiceTestsAgainstMockServer {
+public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer{
 
 	private IdentitiesService identities;
 	
@@ -28,8 +28,9 @@ public class IdentitiesServiceTestsAgainstMockServer {
 	private String identityId;	
 	private Map<String, Object> identityMap;
 	private Map<String, Object> updateMap;
+	
 	@Before
-	public void setUp() {
+	public void init() {
 		identities = new IdentitiesService("http://localhost:8080/");
 		auth = "xxzcxcxz";
 		identityId = "123456";

@@ -1,13 +1,13 @@
-package com.enjin.coin.sdk;
-
-import com.enjin.coin.sdk.http.ContentType;
-import com.thetransactioncompany.jsonrpc2.JSONRPC2Request;
-import com.thetransactioncompany.jsonrpc2.client.JSONRPC2Session;
-import com.thetransactioncompany.jsonrpc2.client.JSONRPC2SessionOptions;
+package com.enjin.coin.sdk.evan;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
+
+import com.enjin.coin.sdk.util.ContentType;
+import com.thetransactioncompany.jsonrpc2.JSONRPC2Request;
+import com.thetransactioncompany.jsonrpc2.client.JSONRPC2Session;
+import com.thetransactioncompany.jsonrpc2.client.JSONRPC2SessionOptions;
 
 public class JsonRpcBase extends WireMockBase {
 

@@ -1,4 +1,4 @@
-package com.enjin.coin.sdk.http;
+package com.enjin.coin.sdk.util;
 
 public class ContentType {
 

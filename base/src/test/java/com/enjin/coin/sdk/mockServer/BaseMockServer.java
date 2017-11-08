@@ -1,5 +1,4 @@
-package com.enjin.coin.sdk;
-
+package com.enjin.coin.sdk.mockServer;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
@@ -8,18 +7,26 @@ import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Rule;
 
-import com.github.tomakehurst.wiremock.WireMockServer;
+import com.enjin.coin.sdk.util.ContentType;
+import com.enjin.coin.sdk.util.Header;
+import com.github.tomakehurst.wiremock.client.WireMock;
+import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
+import com.github.tomakehurst.wiremock.junit.WireMockRule;
 
-public class MockRpcResponsesTest {
-	
-	private static final Logger LOGGER = LoggerFactory.getLogger(MockRpcResponsesTest.class);	
-	
-	
+public class BaseMockServer {
+
 	/** Port wiremock will run in **/
 	private static final int WIREMOCK_PORT = 8080;
+	
+    @Rule
+    public WireMockRule wireMockRule = new WireMockRule(WireMockConfiguration.wireMockConfig()
+    		.port(WIREMOCK_PORT)
+            .dynamicHttpsPort());
+	
 	
 	/** Constant for the json method label **/
 	private static final String JSON_METHOD_LABEL = "$.method";
@@ -33,31 +40,26 @@ public class MockRpcResponsesTest {
 	/** Base url for the events **/
 	private static final String EVENTS_URL = "/Events.php";
 	
-	/** Constant for the accept header **/
-	//private static final String ACCEPT_HEADER = "Accept";	
-	/** Constant for the content type header **/
-	private static final String CONTENT_TYPE_HEADER = "Content-Type";	
-	/** Constant for the json rpc type **/
-	//private static final String TYPE_JSON_RPC = "application/json-rpc";
-	private static final String TYPE_JSON_RPC = "text/json";
-	
-	/**
-	 * Main method to run the class
-	 * @param args
-	 */
-	public static void main(String args[]) {
-		MockRpcResponsesTest identitiesResponseTest = new MockRpcResponsesTest();
-		identitiesResponseTest.startWiremockServer();
+
+	@Before
+	public void setUp() {
+		startWiremockServer();
 	}
+
+	@After
+	public void tearDown() {
+        wireMockRule.stop();
+	}
+
 
 	/**
 	 * Method to start the wiremock server
 	 * Note: we dont actually stop the server as we want the server to be available to requests can be mocked
 	 */
 	private void startWiremockServer() {
-		WireMockServer wireMockServer = new WireMockServer(WIREMOCK_PORT);
-		
-		wireMockServer.start();
+		System.out.println("wireMockRule.port():"+wireMockRule.port());
+        WireMock.configureFor("localhost", wireMockRule.port());
+        wireMockRule.start();
 		
 		//Formatted with https://www.freeformatter.com/json-formatter.html
 		
@@ -113,10 +115,9 @@ public class MockRpcResponsesTest {
 		
 		setUpStub(EVENTS_URL, eventsGetMethod, eventsGetResponse);		
 		setUpStub(EVENTS_URL, eventsListMethod, eventsListResponse);	
-		
-		//wireMockServer.stop();		
+	
 	}
-
+	
 	/**
 	 * Method to set up the stub
 	 * 
@@ -124,14 +125,14 @@ public class MockRpcResponsesTest {
 	 * @param methodToCall
 	 * @param responseBody
 	 */
-	private void setUpStub(String baseURL, String methodToCall, String responseBody) {
+	private static void setUpStub(String baseURL, String methodToCall, String responseBody) {
 		// See http://wiremock.org/docs/request-matching/ for request matching
 		stubFor(post(urlEqualTo(baseURL))
-				//.withHeader(ACCEPT_HEADER, equalTo(TYPE_JSON_RPC))
+				.withHeader(Header.ACCEPT, equalTo(ContentType.ANY))
 				.withRequestBody(matchingJsonPath(JSON_METHOD_LABEL, equalTo(methodToCall)))
 				.willReturn(aResponse()
 						.withStatus(200)
-						.withHeader(CONTENT_TYPE_HEADER, TYPE_JSON_RPC)
+						.withHeader(Header.CONTENT_TYPE, ContentType.TEXT_JSON)
 						.withBody(responseBody)));
 	}
 }

@@ -13,6 +13,7 @@ import com.thetransactioncompany.jsonrpc2.JSONRPC2Request;
 import com.thetransactioncompany.jsonrpc2.JSONRPC2Response;
 import com.thetransactioncompany.jsonrpc2.client.JSONRPC2Session;
 import com.thetransactioncompany.jsonrpc2.client.JSONRPC2SessionException;
+import com.thetransactioncompany.jsonrpc2.client.JSONRPC2SessionOptions;
 
 public class JsonRpcUtils {
 
@@ -54,7 +55,10 @@ public class JsonRpcUtils {
 			
 			// Create new JSON-RPC 2.0 client session
 			JSONRPC2Session jsonRpcSession = new JSONRPC2Session(serverURL);
-			jsonRpcSession.getOptions().setRequestContentType(Constants.TYPE_JSON_RPC);
+			JSONRPC2SessionOptions jsonRPC2SessionOptions = jsonRpcSession.getOptions();
+			jsonRPC2SessionOptions.setRequestContentType(ContentType.TEXT_JSON);
+			jsonRPC2SessionOptions.setAllowedResponseContentTypes(new String[]{ ContentType.TEXT_JSON, ContentType.APPLICATION_JSON, ContentType.APPLICATION_JSON_RPC });
+			jsonRpcSession.setOptions(jsonRPC2SessionOptions);
 			
 			String requestId = Utils.generateRandomId();
 			

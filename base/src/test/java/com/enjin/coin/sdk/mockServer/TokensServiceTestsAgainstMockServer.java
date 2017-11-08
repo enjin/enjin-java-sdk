@@ -11,7 +11,7 @@ import com.enjin.coin.sdk.vo.token.GetTokenResponseVO;
 import com.enjin.coin.sdk.vo.token.ListTokensRequestVO;
 import com.enjin.coin.sdk.vo.token.ListTokensResponseVO;
 
-public class TokensServiceTestsAgainstMockServer {
+public class TokensServiceTestsAgainstMockServer extends BaseMockServer{
 
 	private TokenService tokens;
 	
@@ -19,8 +19,9 @@ public class TokensServiceTestsAgainstMockServer {
 	private String appId;
 	private String afterTokenId;
 	private String limit;
+	
 	@Before
-	public void setUp() {
+	public void init() {
 		tokens = new TokenService();
 		tokenId = "12345";
 		appId = "352";

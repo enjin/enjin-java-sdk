@@ -20,14 +20,6 @@ public class Constants {
 	public static final String TOKENS_URL                 = "Tokens.php";
 	public static final String TRANSACTION_REQUESTS_URL   = "TransactionRequests.php";
 	
-	/** Constant for the accept header **/
-	public static final String ACCEPT_HEADER = "Accept";	
-	/** Constant for the content type header **/
-	public static final String CONTENT_TYPE_HEADER = "Content-Type";	
-	/** Constant for the json rpc type **/
-	//public static final String TYPE_JSON_RPC = "application/json-rpc";	
-	public static final String TYPE_JSON_RPC = "text/json";
-	
 	/** Constants for the Identities methods **/
 	public static final String METHOD_IDENTITIES_GET    = "Identities.get";
 	public static final String METHOD_IDENTITIES_LIST   = "Identities.list";

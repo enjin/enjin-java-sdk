@@ -1,20 +1,26 @@
-package com.enjin.coin.sdk;
+package com.enjin.coin.sdk.evan;
 
 
-import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
+import static com.github.tomakehurst.wiremock.client.WireMock.post;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 
-import com.enjin.coin.sdk.http.ContentType;
-import com.enjin.coin.sdk.http.Header;
-import com.fasterxml.jackson.databind.JsonNode;
+import java.util.HashMap;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import com.enjin.coin.sdk.util.ContentType;
+import com.enjin.coin.sdk.util.Header;
 import com.github.tomakehurst.wiremock.common.Json;
 import com.thetransactioncompany.jsonrpc2.JSONRPC2Request;
 import com.thetransactioncompany.jsonrpc2.JSONRPC2Response;
 import com.thetransactioncompany.jsonrpc2.client.JSONRPC2Session;
 import com.thetransactioncompany.jsonrpc2.client.JSONRPC2SessionException;
-import org.junit.Assert;
-import org.junit.Test;
 
-import java.util.HashMap;
+import wiremock.com.fasterxml.jackson.databind.JsonNode;
+
 
 public class IdentitiesServiceTest extends JsonRpcBase {
 
