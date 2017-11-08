@@ -39,26 +39,25 @@ public class JsonRpcUtils {
 			URL serverURL = new URL(url);
 			
 			// Create new JSON-RPC 2.0 client session
-			JSONRPC2Session mySession = new JSONRPC2Session(serverURL);
-			mySession.getOptions().setRequestContentType(Constants.TYPE_JSON_RPC);
+			JSONRPC2Session jsonRpcSession = new JSONRPC2Session(serverURL);
+			jsonRpcSession.getOptions().setRequestContentType(Constants.TYPE_JSON_RPC);
 			
 			String requestId = Utils.generateRandomId();
 			
 			JSONRPC2Request jsonRpcRequest = new JSONRPC2Request(method, params, requestId);
-			LOGGER.info("jsonRpcRequest:{}", jsonRpcRequest);
+			LOGGER.debug("jsonRpcRequest:{}", jsonRpcRequest);
+			
 			// Send request
-			JSONRPC2Response jsonRpcResponse = mySession.send(jsonRpcRequest);
+			JSONRPC2Response jsonRpcResponse = jsonRpcSession.send(jsonRpcRequest);
 	
 			// Print response result / error
 			if (jsonRpcResponse != null && jsonRpcResponse.indicatesSuccess()) {
-				String responseString = jsonRpcResponse.getResult().toString();
-				
-				responseObject = JsonUtils.convertJsonToObject(responseString, responseClass);
-				
+				String responseString = jsonRpcResponse.getResult().toString();				
+				responseObject = JsonUtils.convertJsonToObject(responseString, responseClass);				
 			} else if (jsonRpcResponse != null) {
-				LOGGER.error("Message:{}", jsonRpcResponse.getError().getMessage());
+				LOGGER.error("Error Message:{}", jsonRpcResponse.getError().getMessage());
 			} else {
-				LOGGER.error("Error has occured");
+				LOGGER.error("Error has occured - jsonRpcResponse is null");
 			}
 			
 		} catch (MalformedURLException e) {

@@ -22,7 +22,6 @@ public class Identities {
 	public static void main(String args[]) {
 		String auth = "xxzcxcxz";
 		String identityId = "123456";
-		String requestId = "1";
 		
 		Map<String, Object> identityMap = new HashMap<>();
 		identityMap.put("identity_id", identityId);
@@ -91,7 +90,6 @@ public class Identities {
 			return listIdentitiesResponseVO;
 		}
 		
-
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("auth",  listIdentitiesRequestVO.getAuth());
 		params.put("identity", listIdentitiesRequestVO.getIdentity());

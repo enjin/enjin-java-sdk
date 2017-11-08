@@ -31,7 +31,7 @@ public class JsonUtils {
 
 		//JSON from file to Object
 		try {
-			LOGGER.info("jsonString:{}", jsonString);
+			LOGGER.debug("jsonString:{}", jsonString);
 			responseObject = mapper.readValue(jsonString, responseClass);
 		} catch (IOException e) {
 			LOGGER.error("An IOException has occured. Exception: {}", e);
@@ -57,6 +57,7 @@ public class JsonUtils {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			jsonString = mapper.writeValueAsString(jsonObject);
+			LOGGER.debug("jsonString:{}", jsonString);
 		} catch (JsonProcessingException e) {
 			LOGGER.error("A JsonProcessingException has occured. Exception: {}", e);
 		}
