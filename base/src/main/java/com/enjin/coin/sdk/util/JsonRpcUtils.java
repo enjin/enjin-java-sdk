@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
 
+import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,14 +23,27 @@ public class JsonRpcUtils {
 	 * @param url
 	 * @param responseClass 
 	 * @param method 
+	 * @return
+	 */
+	public Object sendJsonRpcRequest(String url, Class<?> responseClass, String method) {
+		Object responseObject = sendJsonRpcRequest(url, responseClass, method, null);
+		return responseObject;
+	}
+	
+	
+	/**
+	 * Method to send a json rpc request
+	 * @param url
+	 * @param responseClass 
+	 * @param method 
 	 * @param params
 	 * @return
 	 */
 	public Object sendJsonRpcRequest(String url, Class<?> responseClass, String method, Map<String, Object> params) {
 		Object responseObject = null;
 		
-		if (StringUtils.isEmpty(url) || StringUtils.isEmpty(method)) {
-			LOGGER.error("url or method passed in are null or empty");
+		if (StringUtils.isEmpty(url) || responseClass == null || StringUtils.isEmpty(method)) {
+			LOGGER.error("url or method passed in are null or empty or the responseClass is null");
 			return responseObject;
 		}		
 		
@@ -44,10 +58,16 @@ public class JsonRpcUtils {
 			
 			String requestId = Utils.generateRandomId();
 			
-			JSONRPC2Request jsonRpcRequest = new JSONRPC2Request(method, params, requestId);
+			JSONRPC2Request jsonRpcRequest;
+			if (MapUtils.isNotEmpty(params)) {
+				jsonRpcRequest = new JSONRPC2Request(method, params, requestId);
+			} else {
+				jsonRpcRequest = new JSONRPC2Request(method, requestId);
+			}
+
 			LOGGER.debug("jsonRpcRequest:{}", jsonRpcRequest);
 			
-			// Send request
+			// Send request - exception here
 			JSONRPC2Response jsonRpcResponse = jsonRpcSession.send(jsonRpcRequest);
 	
 			// Print response result / error

@@ -3,17 +3,13 @@ package com.enjin.coin.sdk.util;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import static org.powermock.api.mockito.PowerMockito.mock;
-import static org.powermock.api.mockito.PowerMockito.when;
-import static org.powermock.api.mockito.PowerMockito.whenNew;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.times;
 
 import java.io.IOException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
@@ -59,14 +55,15 @@ public class JsonUtilsTest {
 		String jsonString = "{}";
 		Class<?> responseClass = BaseResponseVO.class;
 		
-		ObjectMapper mockObjectMapper = mock(ObjectMapper.class);
-		whenNew(ObjectMapper.class).withNoArguments().thenReturn(mockObjectMapper);
+		ObjectMapper mockObjectMapper = PowerMockito.mock(ObjectMapper.class);
+		PowerMockito.whenNew(ObjectMapper.class).withNoArguments().thenReturn(mockObjectMapper);
 		
-		when(mockObjectMapper.readValue(Mockito.anyString(), Mockito.isA(Class.class))).thenThrow(new IOException());
+		Mockito.when(mockObjectMapper.readValue(Mockito.anyString(), Mockito.isA(Class.class))).thenThrow(new IOException());
 		Object responseObject = JsonUtils.convertJsonToObject(jsonString, responseClass);
 		assertNull(responseObject);
 		
-		verify(mockObjectMapper, times(1)).readValue(Mockito.anyString(), Mockito.isA(Class.class));
+		PowerMockito.verifyNew(ObjectMapper.class, Mockito.times(1)).withNoArguments();
+		Mockito.verify(mockObjectMapper, Mockito.times(1)).readValue(Mockito.anyString(), Mockito.isA(Class.class));
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -75,14 +72,15 @@ public class JsonUtilsTest {
 		String jsonString = "{}";
 		Class<?> responseClass = BaseResponseVO.class;
 		
-		ObjectMapper mockObjectMapper = mock(ObjectMapper.class);
-		whenNew(ObjectMapper.class).withNoArguments().thenReturn(mockObjectMapper);
+		ObjectMapper mockObjectMapper = PowerMockito.mock(ObjectMapper.class);
+		PowerMockito.whenNew(ObjectMapper.class).withNoArguments().thenReturn(mockObjectMapper);
 		
-		when(mockObjectMapper.readValue(Mockito.anyString(), Mockito.isA(Class.class))).thenReturn(new BaseResponseVO());
+		Mockito.when(mockObjectMapper.readValue(Mockito.anyString(), Mockito.isA(Class.class))).thenReturn(new BaseResponseVO());
 		Object responseObject = JsonUtils.convertJsonToObject(jsonString, responseClass);
 		assertNotNull(responseObject);
 		
-		verify(mockObjectMapper, times(1)).readValue(Mockito.anyString(), Mockito.isA(Class.class));
+		PowerMockito.verifyNew(ObjectMapper.class, Mockito.times(1)).withNoArguments();
+		Mockito.verify(mockObjectMapper, Mockito.times(1)).readValue(Mockito.anyString(), Mockito.isA(Class.class));
 	}
 	
 	@Test
@@ -96,47 +94,50 @@ public class JsonUtilsTest {
 	public void testConvertObjectToJson_JsonProcessingException() throws Exception {
 		Object jsonObject = new BaseResponseVO();
 		
-		JsonProcessingException mockJsonProcessingException = mock(JsonProcessingException.class);
-		ObjectMapper mockObjectMapper = mock(ObjectMapper.class);
-		whenNew(ObjectMapper.class).withNoArguments().thenReturn(mockObjectMapper);
+		JsonProcessingException mockJsonProcessingException = PowerMockito.mock(JsonProcessingException.class);
+		ObjectMapper mockObjectMapper = PowerMockito.mock(ObjectMapper.class);
+		PowerMockito.whenNew(ObjectMapper.class).withNoArguments().thenReturn(mockObjectMapper);
 		
-		when(mockObjectMapper.writeValueAsString(Mockito.any())).thenThrow(mockJsonProcessingException);
+		Mockito.when(mockObjectMapper.writeValueAsString(Mockito.any())).thenThrow(mockJsonProcessingException);
 		
 		String jsonResponse = JsonUtils.convertObjectToJson(jsonObject);
 		assertNull(jsonResponse);
 		
-		verify(mockObjectMapper, times(1)).writeValueAsString(Mockito.any());
+		PowerMockito.verifyNew(ObjectMapper.class, Mockito.times(1)).withNoArguments();
+		Mockito.verify(mockObjectMapper, Mockito.times(1)).writeValueAsString(Mockito.any());
 	}
 	@Test
 	public void testConvertObjectToJson_SuccessButJsonIsEmpty() throws Exception {
 		String jsonStrResponse = "";
 		Object jsonObject = new BaseResponseVO();
 		
-		ObjectMapper mockObjectMapper = mock(ObjectMapper.class);
-		whenNew(ObjectMapper.class).withNoArguments().thenReturn(mockObjectMapper);
+		ObjectMapper mockObjectMapper = PowerMockito.mock(ObjectMapper.class);
+		PowerMockito.whenNew(ObjectMapper.class).withNoArguments().thenReturn(mockObjectMapper);
 		
-		when(mockObjectMapper.writeValueAsString(Mockito.any())).thenReturn(jsonStrResponse);
+		Mockito.when(mockObjectMapper.writeValueAsString(Mockito.any())).thenReturn(jsonStrResponse);
 		
 		String jsonResponse = JsonUtils.convertObjectToJson(jsonObject);
 		assertNotNull(jsonResponse);
 		assertTrue(jsonResponse.length() == 0);
 		
-		verify(mockObjectMapper, times(1)).writeValueAsString(Mockito.any());
+		PowerMockito.verifyNew(ObjectMapper.class, Mockito.times(1)).withNoArguments();
+		Mockito.verify(mockObjectMapper, Mockito.times(1)).writeValueAsString(Mockito.any());
 	}
 	@Test
 	public void testConvertObjectToJson_Success() throws Exception {
 		String jsonStrResponse = "{}";
 		Object jsonObject = new BaseResponseVO();
 		
-		ObjectMapper mockObjectMapper = mock(ObjectMapper.class);
-		whenNew(ObjectMapper.class).withNoArguments().thenReturn(mockObjectMapper);
+		ObjectMapper mockObjectMapper = PowerMockito.mock(ObjectMapper.class);
+		PowerMockito.whenNew(ObjectMapper.class).withNoArguments().thenReturn(mockObjectMapper);
 		
-		when(mockObjectMapper.writeValueAsString(Mockito.any())).thenReturn(jsonStrResponse);
+		Mockito.when(mockObjectMapper.writeValueAsString(Mockito.any())).thenReturn(jsonStrResponse);
 		
 		String jsonResponse = JsonUtils.convertObjectToJson(jsonObject);
 		assertNotNull(jsonResponse);
 		assertTrue(jsonResponse.length() > 0);
 		
-		verify(mockObjectMapper, times(1)).writeValueAsString(Mockito.any());
+		PowerMockito.verifyNew(ObjectMapper.class, Mockito.times(1)).withNoArguments();
+		Mockito.verify(mockObjectMapper, Mockito.times(1)).writeValueAsString(Mockito.any());
 	}
 }
