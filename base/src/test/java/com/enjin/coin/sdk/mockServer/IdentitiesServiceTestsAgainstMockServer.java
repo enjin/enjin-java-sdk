@@ -54,9 +54,12 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer{
 		
 		GetIdentityResponseVO getIdentityResponseVO = identities.getIdentity(getIdentityRequestVO);
 		assertNotNull(getIdentityResponseVO);
-		assertNotNull(getIdentityResponseVO.getOtherFields());
+		assertNotNull(getIdentityResponseVO.getOtherFields().get("identity_id"));
+		assertNotNull(getIdentityResponseVO.getOtherFields().get("ethereum_address"));
+		assertNotNull(getIdentityResponseVO.getOtherFields().get("uuid"));
+		assertNotNull(getIdentityResponseVO.getOtherFields().get("player_name"));
 	}
-	
+
 	@Test
 	public void testListIdentities() {		
 		String afterIdentityId = "after-1";
@@ -74,6 +77,9 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer{
 		for (ListIdentitiesResponseVO listIdentitiesResponseVO : listIdentitiesResponseVOArray) {
 			assertNotNull(listIdentitiesResponseVO);
 			assertNotNull(listIdentitiesResponseVO.getOtherFields());
+			assertNotNull(listIdentitiesResponseVO.getOtherFields().get("identity_id"));
+			assertNotNull(listIdentitiesResponseVO.getOtherFields().get("ethereum_address"));
+			assertNotNull(listIdentitiesResponseVO.getOtherFields().get("player_name"));
 		}
 	}
 	
@@ -87,8 +93,11 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer{
 		CreateIdentityResponseVO createIdentityResponseVO = identities.createIdentity(createIdentityRequestVO);
 		assertNotNull(createIdentityResponseVO);
 		assertNotNull(createIdentityResponseVO.getOtherFields());	
+		assertNotNull(createIdentityResponseVO.getOtherFields().get("identity_id"));
+		assertNotNull(createIdentityResponseVO.getOtherFields().get("identity_code"));
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testUpdateIdentity() {		
 		UpdateIdentityRequestVO updateIdentityRequestVO = new UpdateIdentityRequestVO();
@@ -99,6 +108,11 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer{
 		UpdateIdentityResponseVO updateIdentityResponseVO = identities.updateIdentity(updateIdentityRequestVO);
 		assertNotNull(updateIdentityResponseVO);
 		assertNotNull(updateIdentityResponseVO.getOtherFields());
+		assertNotNull(updateIdentityResponseVO.getOtherFields().get("identity"));
+		Map<String, Object> identityMap = (Map<String, Object>) updateIdentityResponseVO.getOtherFields().get("identity");
+		assertNotNull(identityMap.get("identity_id"));
+		assertNotNull(identityMap.get("ethereum_address"));
+		assertNotNull(identityMap.get("uuid"));
 	}
 	
 	@Test
@@ -112,5 +126,6 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer{
 		assertNotNull(deleteIdentityResponseVO);
 		assertNotNull(deleteIdentityResponseVO.getOtherFields());
 		assertNotNull(deleteIdentityResponseVO.getResult());	
+
 	}
 }
