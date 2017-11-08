@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 
 import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.JsonRpcUtils;
+import com.enjin.coin.sdk.vo.identity.CreateIdentityRequestVO;
+import com.enjin.coin.sdk.vo.identity.CreateIdentityResponseVO;
 import com.enjin.coin.sdk.vo.identity.GetIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.GetIdentityResponseVO;
 import com.enjin.coin.sdk.vo.identity.ListIdentitiesRequestVO;
@@ -28,18 +30,23 @@ public class Identities {
 		identityMap.put("test_damien1", "test_damien1_value");
 		identityMap.put("test_damien2", "test_damien2_value");
 		
+		//Test the get identity request
 		GetIdentityRequestVO getIdentityRequestVO = new GetIdentityRequestVO();
 		getIdentityRequestVO.setAuth(auth);
 		getIdentityRequestVO.setIdentity(identityMap);
 		
-		GetIdentityResponseVO getIdentityResponseVO = Identities.getIdentities(getIdentityRequestVO);
+		GetIdentityResponseVO getIdentityResponseVO = Identities.getIdentity(getIdentityRequestVO);
 		LOGGER.info("getIdentityResponseVO other fields: {}", getIdentityResponseVO.getOtherFields());
 		
+		//Test the list identities request
+		String afterIdentityId = "after-1";
+		String limit = "limit1";
+		boolean linked = false;
 		ListIdentitiesRequestVO listIdentitiesRequestVO = new ListIdentitiesRequestVO();
-		listIdentitiesRequestVO.setAfterIdentityId("after-1");
+		listIdentitiesRequestVO.setAfterIdentityId(afterIdentityId);
 		listIdentitiesRequestVO.setAuth(auth);
-		listIdentitiesRequestVO.setLimit("limit1");
-		listIdentitiesRequestVO.setLinked(false);
+		listIdentitiesRequestVO.setLimit(limit);
+		listIdentitiesRequestVO.setLinked(linked);
 		listIdentitiesRequestVO.setIdentity(identityMap);
 		
 		ListIdentitiesResponseVO[] listIdentitiesResponseVOArray = Identities.listIdentities(listIdentitiesRequestVO);
@@ -48,15 +55,21 @@ public class Identities {
 			LOGGER.info("listIdentitiesResponseVO.getOtherFields(): {}", listIdentitiesResponseVO.getOtherFields());
 		}
 
+		//Test the create identity request
+		CreateIdentityRequestVO createIdentityRequestVO = new CreateIdentityRequestVO();
+		createIdentityRequestVO.setAuth(auth);
+		createIdentityRequestVO.setIdentity(identityMap);
+		
+		CreateIdentityResponseVO createIdentityResponseVO = Identities.createIdentity(createIdentityRequestVO);
+		LOGGER.info("createIdentityResponseVO other fields: {}", createIdentityResponseVO.getOtherFields());
 	}
 	
 	/**
-	 * Method to get the identities
+	 * Method to get an identity
 	 * @param getIdentityRequestVO
-	 * @param requestId
 	 * @return
 	 */
-	public static final GetIdentityResponseVO getIdentities(GetIdentityRequestVO getIdentityRequestVO) {
+	public static final GetIdentityResponseVO getIdentity(GetIdentityRequestVO getIdentityRequestVO) {
 		GetIdentityResponseVO getIdentityResponseVO = null;
 
 		if (getIdentityRequestVO == null || StringUtils.isEmpty(getIdentityRequestVO.getAuth()) || MapUtils.isEmpty(getIdentityRequestVO.getIdentity())) {
@@ -78,7 +91,7 @@ public class Identities {
 	}
 	
 	/**
-	 * Method to list identities
+	 * Method to list the identities
 	 * @param listIdentitiesRequestVO
 	 * @return
 	 */
@@ -103,5 +116,31 @@ public class Identities {
 		listIdentitiesResponseVO = (ListIdentitiesResponseVO[]) JsonRpcUtils.sendJsonRpcRequest(Constants.IDENTITIES_URL, ListIdentitiesResponseVO[].class, method, params);
 
 		return listIdentitiesResponseVO;
+	}
+	
+	/**
+	 * Method to create an identity
+	 * @param createIdentityRequestVO
+	 * @return
+	 */
+	public static final CreateIdentityResponseVO createIdentity(CreateIdentityRequestVO createIdentityRequestVO) {
+		CreateIdentityResponseVO createIdentityResponseVO = null;
+
+		if (createIdentityRequestVO == null || StringUtils.isEmpty(createIdentityRequestVO.getAuth()) || MapUtils.isEmpty(createIdentityRequestVO.getIdentity())) {
+			LOGGER.error("createIdentityRequestVO is null or auth, identidyId or requestId passed in are null or empty");
+			return createIdentityResponseVO;
+		}
+		
+
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("auth",  createIdentityRequestVO.getAuth());
+		params.put("identity", createIdentityRequestVO.getIdentity());
+
+		// Construct new request
+		String method = Constants.METHOD_IDENTITIES_CREATE;
+
+		createIdentityResponseVO = (CreateIdentityResponseVO) JsonRpcUtils.sendJsonRpcRequest(Constants.IDENTITIES_URL, CreateIdentityResponseVO.class, method, params);
+
+		return createIdentityResponseVO;
 	}
 }

@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class BaseIdentityRequestVO {
 
+	@JsonProperty("auth")
+	private String auth;
+
 	@JsonProperty("identity")
 	private Map<String, Object> identity;
 	public Map<String, Object> getIdentity() {
@@ -16,11 +19,17 @@ public class BaseIdentityRequestVO {
 		this.identity = identity;
 	}
 
+	public String getAuth() {
+		return auth;
+	}
+
+	public void setAuth(String auth) {
+		this.auth = auth;
+	}
+
 	@Override
 	public String toString() {
-		return "BaseIdentityRequestVO [identity=" + identity + "]";
+		return "BaseIdentityRequestVO [auth=" + auth + ", identity=" + identity + "]";
 	}
-	
-	
 	
 }

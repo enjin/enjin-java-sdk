@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ListIdentitiesRequestVO extends BaseIdentityRequestVO{
 
-	@JsonProperty("auth")
-	private String auth;
 
 	@JsonProperty("linked")
 	private Boolean linked;
@@ -15,14 +13,6 @@ public class ListIdentitiesRequestVO extends BaseIdentityRequestVO{
 	
 	@JsonProperty("limit")
 	private String limit;
-
-	public String getAuth() {
-		return auth;
-	}
-
-	public void setAuth(String auth) {
-		this.auth = auth;
-	}
 
 	public Boolean getLinked() {
 		return linked;
@@ -50,7 +40,7 @@ public class ListIdentitiesRequestVO extends BaseIdentityRequestVO{
 
 	@Override
 	public String toString() {
-		return "ListIdentitiesRequestVO [auth=" + auth + ", linked=" + linked + ", afterIdentityId=" + afterIdentityId
+		return "ListIdentitiesRequestVO [linked=" + linked + ", afterIdentityId=" + afterIdentityId
 				+ ", limit=" + limit + "]";
 	}
 

@@ -30,8 +30,8 @@ public class Constants {
 	/** Constants for the Identities methods **/
 	public static final String METHOD_IDENTITIES_GET    = "Identities.get";
 	public static final String METHOD_IDENTITIES_LIST   = "Identities.list";
-	public static final String METHOD_IDENTITIES_DELETE = "Identities.delete";
 	public static final String METHOD_IDENTITIES_CREATE = "Identities.create";
+	public static final String METHOD_IDENTITIES_DELETE = "Identities.delete";
 	public static final String METHOD_IDENTITIES_UPDATE = "Identities.update";
 	
 	/** Constants for the Tokens methods **/
