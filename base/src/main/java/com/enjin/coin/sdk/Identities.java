@@ -88,7 +88,6 @@ public class Identities extends BaseAction{
 		String method = Constants.METHOD_IDENTITIES_LIST;
 
 		listIdentitiesResponseVO = (ListIdentitiesResponseVO[]) jsonRpcUtils.sendJsonRpcRequest(getIdentitiesUrl(), ListIdentitiesResponseVO[].class, method, params);
-
 		return listIdentitiesResponseVO;
 	}
 	

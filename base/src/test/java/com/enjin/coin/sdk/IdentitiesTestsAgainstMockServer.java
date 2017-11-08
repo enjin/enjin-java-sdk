@@ -50,7 +50,8 @@ public class IdentitiesTestsAgainstMockServer {
 		getIdentityRequestVO.setIdentity(identityMap);
 		
 		GetIdentityResponseVO getIdentityResponseVO = identities.getIdentity(getIdentityRequestVO);
-		assertNotNull(getIdentityResponseVO.getOtherFields());		
+		assertNotNull(getIdentityResponseVO);
+		assertNotNull(getIdentityResponseVO.getOtherFields());
 	}
 	
 	@Test
@@ -68,6 +69,7 @@ public class IdentitiesTestsAgainstMockServer {
 		ListIdentitiesResponseVO[] listIdentitiesResponseVOArray = identities.listIdentities(listIdentitiesRequestVO);
 
 		for (ListIdentitiesResponseVO listIdentitiesResponseVO : listIdentitiesResponseVOArray) {
+			assertNotNull(listIdentitiesResponseVO);
 			assertNotNull(listIdentitiesResponseVO.getOtherFields());
 		}
 	}
@@ -80,7 +82,8 @@ public class IdentitiesTestsAgainstMockServer {
 		createIdentityRequestVO.setIdentity(identityMap);
 		
 		CreateIdentityResponseVO createIdentityResponseVO = identities.createIdentity(createIdentityRequestVO);
-		assertNotNull(createIdentityResponseVO.getOtherFields());		
+		assertNotNull(createIdentityResponseVO);
+		assertNotNull(createIdentityResponseVO.getOtherFields());	
 	}
 	
 	@Test
@@ -91,7 +94,8 @@ public class IdentitiesTestsAgainstMockServer {
 		updateIdentityRequestVO.setUpdate(updateMap);
 
 		UpdateIdentityResponseVO updateIdentityResponseVO = identities.updateIdentity(updateIdentityRequestVO);
-		assertNotNull(updateIdentityResponseVO.getOtherFields());		
+		assertNotNull(updateIdentityResponseVO);
+		assertNotNull(updateIdentityResponseVO.getOtherFields());
 	}
 	
 	@Test
@@ -102,6 +106,8 @@ public class IdentitiesTestsAgainstMockServer {
 		deleteIdentityRequestVO.setIdentity(identityMap);
 
 		DeleteIdentityResponseVO deleteIdentityResponseVO = identities.deleteIdentity(deleteIdentityRequestVO);
-		assertNotNull(deleteIdentityResponseVO.getOtherFields());		
+		assertNotNull(deleteIdentityResponseVO);
+		assertNotNull(deleteIdentityResponseVO.getOtherFields());
+		assertNotNull(deleteIdentityResponseVO.getResult());	
 	}
 }

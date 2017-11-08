@@ -3,7 +3,7 @@ package com.enjin.coin.sdk;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.collections4.MapUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,8 +62,8 @@ public class Tokens extends BaseAction{
 	 * @param listTokensRequestVO
 	 * @return
 	 */
-	public ListTokensResponseVO[] listTokens(ListTokensRequestVO listTokensRequestVO) {
-		ListTokensResponseVO[] listTokensResponseVO = null;
+	public ListTokensResponseVO listTokens(ListTokensRequestVO listTokensRequestVO) {
+		ListTokensResponseVO listTokensResponseVO = null;
 
 		if (listTokensRequestVO == null || StringUtils.isEmpty(listTokensRequestVO.getAppId()) || StringUtils.isEmpty(listTokensRequestVO.getAfterTokenId()) || StringUtils.isEmpty(listTokensRequestVO.getLimit())) {
 			LOGGER.error("listTokensRequestVO is null, appId, afterTokenId or limit passed in are null or empty");
@@ -78,8 +78,14 @@ public class Tokens extends BaseAction{
 		// Construct new request
 		String method = Constants.METHOD_TOKENS_LIST;
 
-		listTokensResponseVO = (ListTokensResponseVO[]) jsonRpcUtils.sendJsonRpcRequest(getTokensUrl(), ListTokensResponseVO[].class, method, params);
-
+		GetTokenResponseVO[] getTokenResponseVOArray = (GetTokenResponseVO[]) jsonRpcUtils.sendJsonRpcRequest(getTokensUrl(), GetTokenResponseVO[].class, method, params);
+		if (ArrayUtils.isEmpty(getTokenResponseVOArray)) {
+			LOGGER.error("No tokens returned");
+			return listTokensResponseVO;
+		}
+		listTokensResponseVO = new ListTokensResponseVO();
+		listTokensResponseVO.setGetTokenResponseVOArray(getTokenResponseVOArray);
+		
 		return listTokensResponseVO;
 	}
 }

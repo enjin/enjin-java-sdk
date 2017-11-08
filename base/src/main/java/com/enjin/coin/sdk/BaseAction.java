@@ -32,7 +32,7 @@ public class BaseAction {
 	 * @return
 	 */
 	protected String getTokensUrl() {		
-		return getJsonRpcURL(Constants.IDENTITIES_URL);
+		return getJsonRpcURL(Constants.TOKENS_URL);
 	}	
 	/**
 	 * Method to get the Transaction Requests url
