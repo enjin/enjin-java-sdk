@@ -8,16 +8,16 @@ import com.fasterxml.jackson.annotation.JsonAnySetter;
 
 public class BaseResponseVO {
 
-	Map<String, String> unknownFields = new HashMap<>();
+	Map<String, Object> unknownFields = new HashMap<>();
 
 	// Capture all other fields that Jackson do not match other members
 	@JsonAnyGetter
-	public Map<String, String> getOtherFields() {
+	public Map<String, Object> getOtherFields() {
 		return unknownFields;
 	}
 
 	@JsonAnySetter
-	public void setOtherField(String name, String value) {
+	public void setOtherField(String name, Object value) {
 		unknownFields.put(name, value);
 	}
 	

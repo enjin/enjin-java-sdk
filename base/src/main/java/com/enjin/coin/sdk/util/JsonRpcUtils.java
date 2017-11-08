@@ -52,7 +52,7 @@ public class JsonRpcUtils {
 	
 			// Print response result / error
 			if (jsonRpcResponse != null && jsonRpcResponse.indicatesSuccess()) {
-				String responseString = jsonRpcResponse.getResult().toString();				
+				String responseString = jsonRpcResponse.getResult().toString();	
 				responseObject = JsonUtils.convertJsonToObject(responseString, responseClass);				
 			} else if (jsonRpcResponse != null) {
 				LOGGER.error("Error Message:{}", jsonRpcResponse.getError().getMessage());

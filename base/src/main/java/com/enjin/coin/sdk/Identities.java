@@ -12,10 +12,14 @@ import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.JsonRpcUtils;
 import com.enjin.coin.sdk.vo.identity.CreateIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.CreateIdentityResponseVO;
+import com.enjin.coin.sdk.vo.identity.DeleteIdentityRequestVO;
+import com.enjin.coin.sdk.vo.identity.DeleteIdentityResponseVO;
 import com.enjin.coin.sdk.vo.identity.GetIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.GetIdentityResponseVO;
 import com.enjin.coin.sdk.vo.identity.ListIdentitiesRequestVO;
 import com.enjin.coin.sdk.vo.identity.ListIdentitiesResponseVO;
+import com.enjin.coin.sdk.vo.identity.UpdateIdentityRequestVO;
+import com.enjin.coin.sdk.vo.identity.UpdateIdentityResponseVO;
 
 public class Identities {
 
@@ -62,6 +66,27 @@ public class Identities {
 		
 		CreateIdentityResponseVO createIdentityResponseVO = Identities.createIdentity(createIdentityRequestVO);
 		LOGGER.info("createIdentityResponseVO other fields: {}", createIdentityResponseVO.getOtherFields());
+		
+		// Test the update identity request
+		Map<String, Object> updateMap = new HashMap<>();
+		updateMap.put("player_name", null);
+		updateMap.put("ethereum_address", "0x1111111111111111111111111111111111111111");
+		
+		UpdateIdentityRequestVO updateIdentityRequestVO = new UpdateIdentityRequestVO();
+		updateIdentityRequestVO.setAuth(auth);
+		updateIdentityRequestVO.setIdentity(identityMap);
+		updateIdentityRequestVO.setUpdate(updateMap);
+
+		UpdateIdentityResponseVO updateIdentityResponseVO = Identities.updateIdentity(updateIdentityRequestVO);
+		LOGGER.info("updateIdentityResponseVO other fields: {}", updateIdentityResponseVO.getOtherFields());	
+		
+		// Test the delete identity request
+		DeleteIdentityRequestVO deleteIdentityRequestVO = new DeleteIdentityRequestVO();
+		deleteIdentityRequestVO.setAuth(auth);
+		deleteIdentityRequestVO.setIdentity(identityMap);
+
+		DeleteIdentityResponseVO deleteIdentityResponseVO = Identities.deleteIdentity(deleteIdentityRequestVO);
+		LOGGER.info("deleteIdentityResponseVO result: {}", deleteIdentityResponseVO.getResult());
 	}
 	
 	/**
@@ -73,7 +98,7 @@ public class Identities {
 		GetIdentityResponseVO getIdentityResponseVO = null;
 
 		if (getIdentityRequestVO == null || StringUtils.isEmpty(getIdentityRequestVO.getAuth()) || MapUtils.isEmpty(getIdentityRequestVO.getIdentity())) {
-			LOGGER.error("getIdentityRequestVO is null or auth, identidyId or requestId passed in are null or empty");
+			LOGGER.error("getIdentityRequestVO is null, auth or identidyId passed in are null or empty");
 			return getIdentityResponseVO;
 		}
 		
@@ -99,7 +124,7 @@ public class Identities {
 		ListIdentitiesResponseVO[] listIdentitiesResponseVO = null;
 
 		if (listIdentitiesRequestVO == null || StringUtils.isEmpty(listIdentitiesRequestVO.getAuth()) || MapUtils.isEmpty(listIdentitiesRequestVO.getIdentity())) {
-			LOGGER.error("listIdentitiesRequestVO is null or auth, identidyId or requestId passed in are null or empty");
+			LOGGER.error("listIdentitiesRequestVO is null, auth or identity passed in are null or empty");
 			return listIdentitiesResponseVO;
 		}
 		
@@ -127,7 +152,7 @@ public class Identities {
 		CreateIdentityResponseVO createIdentityResponseVO = null;
 
 		if (createIdentityRequestVO == null || StringUtils.isEmpty(createIdentityRequestVO.getAuth()) || MapUtils.isEmpty(createIdentityRequestVO.getIdentity())) {
-			LOGGER.error("createIdentityRequestVO is null or auth, identidyId or requestId passed in are null or empty");
+			LOGGER.error("createIdentityRequestVO is null, auth or identity passed in are null or empty");
 			return createIdentityResponseVO;
 		}
 		
@@ -143,4 +168,58 @@ public class Identities {
 
 		return createIdentityResponseVO;
 	}
+	
+	/**
+	 * Method to update an identity
+	 * @param updateIdentityRequestVO
+	 * @return
+	 */
+	public static final UpdateIdentityResponseVO updateIdentity(UpdateIdentityRequestVO updateIdentityRequestVO) {
+		UpdateIdentityResponseVO updateIdentityResponseVO = null;
+
+		if (updateIdentityRequestVO == null || StringUtils.isEmpty(updateIdentityRequestVO.getAuth()) || MapUtils.isEmpty(updateIdentityRequestVO.getIdentity()) || MapUtils.isEmpty(updateIdentityRequestVO.getUpdate())) {
+			LOGGER.error("updateIdentityRequestVO is null or auth, identidy or update passed in are null or empty");
+			return updateIdentityResponseVO;
+		}
+		
+
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("auth",  updateIdentityRequestVO.getAuth());
+		params.put("identity", updateIdentityRequestVO.getIdentity());
+		params.put("update", updateIdentityRequestVO.getUpdate());
+
+		// Construct new request
+		String method = Constants.METHOD_IDENTITIES_UPDATE;
+
+		updateIdentityResponseVO = (UpdateIdentityResponseVO) JsonRpcUtils.sendJsonRpcRequest(Constants.IDENTITIES_URL, UpdateIdentityResponseVO.class, method, params);
+
+		return updateIdentityResponseVO;
+	}
+	
+	/**
+	 * Method to delete an identity
+	 * @param deleteIdentityRequestVO
+	 * @return
+	 */
+	public static final DeleteIdentityResponseVO deleteIdentity(DeleteIdentityRequestVO deleteIdentityRequestVO) {
+		DeleteIdentityResponseVO deleteIdentityResponseVO = null;
+
+		if (deleteIdentityRequestVO == null || StringUtils.isEmpty(deleteIdentityRequestVO.getAuth()) || MapUtils.isEmpty(deleteIdentityRequestVO.getIdentity())) {
+			LOGGER.error("deleteIdentityRequestVO is null, auth or identity passed in are null or empty");
+			return deleteIdentityResponseVO;
+		}
+		
+
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("auth",  deleteIdentityRequestVO.getAuth());
+		params.put("identity", deleteIdentityRequestVO.getIdentity());
+
+		// Construct new request
+		String method = Constants.METHOD_IDENTITIES_DELETE;
+
+		deleteIdentityResponseVO = new DeleteIdentityResponseVO();
+		Boolean result = (Boolean) JsonRpcUtils.sendJsonRpcRequest(Constants.IDENTITIES_URL, Boolean.class, method, params);
+		deleteIdentityResponseVO.setResult(result);
+		return deleteIdentityResponseVO;
+	}	
 }
