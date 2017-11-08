@@ -4,6 +4,9 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
+import com.enjin.coin.sdk.util.Constants;
+import com.enjin.coin.sdk.util.Utils;
+
 public class UtilsTest {
 
 
