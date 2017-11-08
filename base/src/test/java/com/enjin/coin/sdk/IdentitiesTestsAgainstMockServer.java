@@ -19,7 +19,7 @@ import com.enjin.coin.sdk.vo.identity.ListIdentitiesResponseVO;
 import com.enjin.coin.sdk.vo.identity.UpdateIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.UpdateIdentityResponseVO;
 
-public class IdentitiesTestAgainstMockServer {
+public class IdentitiesTestsAgainstMockServer {
 
 	private Identities identities;
 	
