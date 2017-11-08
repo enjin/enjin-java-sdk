@@ -15,15 +15,15 @@ public class JsonUtils {
 	
 	/**
 	 * Method to convert a json string to an object
-	 * @param responseString
+	 * @param jsonString
 	 * @param responseClass
 	 * @return
 	 */
-	public static Object convertJsonToObject(String responseString, Class<?> responseClass) {
+	public static Object convertJsonToObject(String jsonString, Class<?> responseClass) {
 		Object responseObject = null;
 		
-		if (StringUtils.isEmpty(responseString) || responseClass == null) {
-			LOGGER.error("responseString passed in is null or empty or the responseClass is null");
+		if (StringUtils.isEmpty(jsonString) || responseClass == null) {
+			LOGGER.error("jsonString passed in is null or empty or the responseClass is null");
 			return responseObject;
 		}		
 		
@@ -31,7 +31,8 @@ public class JsonUtils {
 
 		//JSON from file to Object
 		try {
-			responseObject = mapper.readValue(responseString, responseClass);
+			LOGGER.info("jsonString:{}", jsonString);
+			responseObject = mapper.readValue(jsonString, responseClass);
 		} catch (IOException e) {
 			LOGGER.error("An IOException has occured. Exception: {}", e);
 		}
@@ -46,20 +47,20 @@ public class JsonUtils {
 	 * @return
 	 */
 	public static String convertJsonToObject(Object jsonObject) {
-		String responseJson = null;
+		String jsonString = null;
 		
 		if (jsonObject == null) {
 			LOGGER.error("jsonObject passed in is null");
-			return responseJson;
+			return jsonString;
 		}		
 		
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			responseJson = mapper.writeValueAsString(jsonObject);
+			jsonString = mapper.writeValueAsString(jsonObject);
 		} catch (JsonProcessingException e) {
 			LOGGER.error("A JsonProcessingException has occured. Exception: {}", e);
 		}
 
-		return responseJson;
+		return jsonString;
 	}
 }

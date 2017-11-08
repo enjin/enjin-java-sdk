@@ -1,5 +1,6 @@
-package com.enjin.coin.sdk.vo;
+package com.enjin.coin.sdk.vo.identity;
 
+import com.enjin.coin.sdk.vo.BaseResponseVO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class GetIdentityResponseVO extends BaseResponseVO{
@@ -51,6 +52,6 @@ public class GetIdentityResponseVO extends BaseResponseVO{
 	@Override
 	public String toString() {
 		return "GetIdentityResponseVO [identityId=" + identityId + ", ethereumAddress=" + ethereumAddress
-				+ ", playerName=" + playerName + ", uuid=" + uuid + ", unknownFields=" + unknownFields + "]";
+				+ ", playerName=" + playerName + ", uuid=" + uuid + "]";
 	}
 }

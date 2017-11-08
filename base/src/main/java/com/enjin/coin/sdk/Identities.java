@@ -10,8 +10,10 @@ import org.slf4j.LoggerFactory;
 
 import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.JsonRpcUtils;
-import com.enjin.coin.sdk.vo.GetIdentityRequestVO;
-import com.enjin.coin.sdk.vo.GetIdentityResponseVO;
+import com.enjin.coin.sdk.vo.identity.GetIdentityRequestVO;
+import com.enjin.coin.sdk.vo.identity.GetIdentityResponseVO;
+import com.enjin.coin.sdk.vo.identity.ListIdentitiesRequestVO;
+import com.enjin.coin.sdk.vo.identity.ListIdentitiesResponseVO;
 
 public class Identities {
 
@@ -34,9 +36,27 @@ public class Identities {
 		GetIdentityResponseVO getIdentityResponseVO = Identities.getIdentities(getIdentityRequestVO, requestId);
 		LOGGER.info("getIdentityResponseVO: {}", getIdentityResponseVO);
 		LOGGER.info("getIdentityResponseVO other fields: {}", getIdentityResponseVO.getOtherFields());
+		
+		ListIdentitiesRequestVO listIdentitiesRequestVO = new ListIdentitiesRequestVO();
+		listIdentitiesRequestVO.setAfterIdentityId("after-1");
+		listIdentitiesRequestVO.setAuth(auth);
+		listIdentitiesRequestVO.setLimit("limit1");
+		listIdentitiesRequestVO.setLinked(false);
+		listIdentitiesRequestVO.setIdentity(identityMap);
+		
+		ListIdentitiesResponseVO[] listIdentitiesResponseVOArray = Identities.listIdentities(listIdentitiesRequestVO, requestId);
+		LOGGER.info("listIdentitiesResponseVOArray: {}", listIdentitiesResponseVOArray);
+		
+		for (ListIdentitiesResponseVO listIdentitiesResponseVO : listIdentitiesResponseVOArray) {
+			LOGGER.info("listIdentitiesResponseVO.getOtherFields(): {}", listIdentitiesResponseVO.getOtherFields());
+		}
+
 	}
 	
 	
+	
+
+
 	/**
 	 * Method to get the identities
 	 * @param getIdentityRequestVO
@@ -44,7 +64,6 @@ public class Identities {
 	 * @return
 	 */
 	public static final GetIdentityResponseVO getIdentities(GetIdentityRequestVO getIdentityRequestVO, String requestId) {
-
 		GetIdentityResponseVO getIdentityResponseVO = null;
 
 		if (getIdentityRequestVO == null || StringUtils.isEmpty(getIdentityRequestVO.getAuth()) || MapUtils.isEmpty(getIdentityRequestVO.getIdentity()) || StringUtils.isEmpty(requestId)) {
@@ -58,10 +77,40 @@ public class Identities {
 		params.put("identity", getIdentityRequestVO.getIdentity());
 
 		// Construct new request
-		String method = "Identities.get";
+		String method = Constants.METHOD_IDENTITIES_GET;
 
 		getIdentityResponseVO = (GetIdentityResponseVO) JsonRpcUtils.sendJsonRpcRequest(Constants.IDENTITIES_URL, GetIdentityResponseVO.class, method, params, requestId);
 
 		return getIdentityResponseVO;
+	}
+	
+	/**
+	 * Method to list identities
+	 * @param listIdentitiesRequestVO
+	 * @param requestId
+	 * @return
+	 */
+	private static ListIdentitiesResponseVO[] listIdentities(ListIdentitiesRequestVO listIdentitiesRequestVO, String requestId) {
+		ListIdentitiesResponseVO[] listIdentitiesResponseVO = null;
+
+		if (listIdentitiesRequestVO == null || StringUtils.isEmpty(listIdentitiesRequestVO.getAuth()) || MapUtils.isEmpty(listIdentitiesRequestVO.getIdentity()) || StringUtils.isEmpty(requestId)) {
+			LOGGER.error("listIdentitiesRequestVO is null or auth, identidyId or requestId passed in are null or empty");
+			return listIdentitiesResponseVO;
+		}
+		
+
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put("auth",  listIdentitiesRequestVO.getAuth());
+		params.put("identity", listIdentitiesRequestVO.getIdentity());
+		params.put("linked", listIdentitiesRequestVO.getLimit());
+		params.put("after_identity_id", listIdentitiesRequestVO.getAfterIdentityId());
+		params.put("limit", listIdentitiesRequestVO.getLimit());
+
+		// Construct new request
+		String method = Constants.METHOD_IDENTITIES_LIST;
+
+		listIdentitiesResponseVO = (ListIdentitiesResponseVO[]) JsonRpcUtils.sendJsonRpcRequest(Constants.IDENTITIES_URL, ListIdentitiesResponseVO[].class, method, params, requestId);
+
+		return listIdentitiesResponseVO;
 	}
 }

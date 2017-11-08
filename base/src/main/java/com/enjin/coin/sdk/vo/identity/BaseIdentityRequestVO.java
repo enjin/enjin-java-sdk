@@ -1,25 +1,13 @@
-package com.enjin.coin.sdk.vo;
+package com.enjin.coin.sdk.vo.identity;
 
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class GetIdentityRequestVO extends BaseResponseVO{
-
-	@JsonProperty("auth")
-	private String auth;
+public class BaseIdentityRequestVO {
 
 	@JsonProperty("identity")
 	private Map<String, Object> identity;
-
-	public String getAuth() {
-		return auth;
-	}
-
-	public void setAuth(String auth) {
-		this.auth = auth;
-	}
-
 	public Map<String, Object> getIdentity() {
 		return identity;
 	}
@@ -30,6 +18,9 @@ public class GetIdentityRequestVO extends BaseResponseVO{
 
 	@Override
 	public String toString() {
-		return "GetIdentityRequestVO [auth=" + auth + "]";
+		return "BaseIdentityRequestVO [identity=" + identity + "]";
 	}
+	
+	
+	
 }
