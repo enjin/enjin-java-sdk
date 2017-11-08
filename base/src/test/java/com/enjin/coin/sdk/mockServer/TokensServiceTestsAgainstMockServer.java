@@ -5,7 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.enjin.coin.sdk.TokenService;
+import com.enjin.coin.sdk.TokensService;
 import com.enjin.coin.sdk.vo.token.GetTokenRequestVO;
 import com.enjin.coin.sdk.vo.token.GetTokenResponseVO;
 import com.enjin.coin.sdk.vo.token.ListTokensRequestVO;
@@ -13,7 +13,7 @@ import com.enjin.coin.sdk.vo.token.ListTokensResponseVO;
 
 public class TokensServiceTestsAgainstMockServer extends BaseMockServer{
 
-	private TokenService tokens;
+	private TokensService tokens;
 	
 	private String tokenId;	
 	private String appId;
@@ -23,7 +23,7 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer{
 	@Before
 	public void init() {
 		int port = wireMockRule.port();
-		tokens = new TokenService("http://localhost:" + port +"/", true);
+		tokens = new TokensService("http://localhost:" + port +"/", true);
 		tokenId = "12345";
 		appId = "352";
 		afterTokenId = "123456";
@@ -59,7 +59,7 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer{
 		
 		ListTokensResponseVO listTokensResponseVOArray = tokens.listTokens(listTokensRequestVO);
 
-		for (GetTokenResponseVO getTokenResponseVO : listTokensResponseVOArray.getGetTokenResponseVOArray()) {
+		for (GetTokenResponseVO getTokenResponseVO : listTokensResponseVOArray.getGetTokensResponseVOArray()) {
 			assertNotNull(getTokenResponseVO);
 			assertNotNull(getTokenResponseVO.getAdapter());
 			assertNotNull(getTokenResponseVO.getCreator());	

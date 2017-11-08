@@ -50,7 +50,13 @@ public class BaseAction {
 	protected String getTransactionRequestsUrl() {		
 		return getJsonRpcURL(Constants.TRANSACTION_REQUESTS_URL);
 	}	
-	
+	/**
+	 * Method to get the Events url
+	 * @return
+	 */
+	protected String getEventsUrl() {		
+		return getJsonRpcURL(Constants.EVENTS_URL);
+	}	
 	/**
 	 * Method to get the rpc url to use
 	 * @param endpoint

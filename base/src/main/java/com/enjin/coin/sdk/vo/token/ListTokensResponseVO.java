@@ -8,19 +8,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ListTokensResponseVO extends BaseResponseVO{
 
 	@JsonProperty("getTokenResponseVOArray")
-	private GetTokenResponseVO[] getTokenResponseVOArray;
+	private GetTokenResponseVO[] getTokensResponseVOArray;
 
-	public GetTokenResponseVO[] getGetTokenResponseVOArray() {
-		return getTokenResponseVOArray;
+	public GetTokenResponseVO[] getGetTokensResponseVOArray() {
+		return getTokensResponseVOArray;
 	}
 
-	public void setGetTokenResponseVOArray(GetTokenResponseVO[] getTokenResponseVOArray) {
-		this.getTokenResponseVOArray = getTokenResponseVOArray;
+	public void setGetTokensResponseVOArray(GetTokenResponseVO[] getTokensResponseVOArray) {
+		this.getTokensResponseVOArray = getTokensResponseVOArray;
 	}
 
 	@Override
 	public String toString() {
-		return "ListTokensResponseVO [getTokenResponseVOArray=" + Arrays.toString(getTokenResponseVOArray) + "]";
+		return "ListTokensResponseVO [getTokensResponseVOArray=" + Arrays.toString(getTokensResponseVOArray) + "]";
 	}
 	
 	

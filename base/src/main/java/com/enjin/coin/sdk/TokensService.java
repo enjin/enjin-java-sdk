@@ -13,14 +13,14 @@ import com.enjin.coin.sdk.vo.token.GetTokenResponseVO;
 import com.enjin.coin.sdk.vo.token.ListTokensRequestVO;
 import com.enjin.coin.sdk.vo.token.ListTokensResponseVO;
 
-public class TokenService extends BaseAction{
+public class TokensService extends BaseAction{
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(TokenService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(TokensService.class);
 	
 	/**
 	 * Class contructor
 	 */
-	public TokenService() {
+	public TokensService() {
 		
 	}
 
@@ -28,7 +28,7 @@ public class TokenService extends BaseAction{
 	 * Class contructor
 	 * @param trustedPlatformUrl
 	 */
-	public TokenService(String trustedPlatformUrl) {
+	public TokensService(String trustedPlatformUrl) {
 		super(trustedPlatformUrl);
 	}
 	
@@ -37,7 +37,7 @@ public class TokenService extends BaseAction{
 	 * @param trustedPlatformUrl
 	 * @param inTestMode
 	 */
-	public TokenService(boolean inTestMode) {
+	public TokensService(boolean inTestMode) {
 		super(inTestMode);
 	}
 	
@@ -46,13 +46,13 @@ public class TokenService extends BaseAction{
 	 * @param trustedPlatformUrl
 	 * @param inTestMode
 	 */
-	public TokenService(String trustedPlatformUrl, boolean inTestMode) {
+	public TokensService(String trustedPlatformUrl, boolean inTestMode) {
 		super(trustedPlatformUrl, inTestMode);
 	}
 	
 	
 	/**
-	 * Method to get an identity
+	 * Method to get a token
 	 * @param getTokenRequestVO
 	 * @return
 	 */
@@ -76,7 +76,7 @@ public class TokenService extends BaseAction{
 	}
 	
 	/**
-	 * Method to list the identities
+	 * Method to list the tokens
 	 * @param listTokensRequestVO
 	 * @return
 	 */
@@ -102,7 +102,7 @@ public class TokenService extends BaseAction{
 			return listTokensResponseVO;
 		}
 		listTokensResponseVO = new ListTokensResponseVO();
-		listTokensResponseVO.setGetTokenResponseVOArray(getTokenResponseVOArray);
+		listTokensResponseVO.setGetTokensResponseVOArray(getTokenResponseVOArray);
 		
 		return listTokensResponseVO;
 	}

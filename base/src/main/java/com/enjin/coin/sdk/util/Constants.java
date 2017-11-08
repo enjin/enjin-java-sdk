@@ -15,6 +15,7 @@ public class Constants {
 	public static final String IDENTITIES_URL             = "Identities.php";
 	public static final String TOKENS_URL                 = "Tokens.php";
 	public static final String TRANSACTION_REQUESTS_URL   = "TransactionRequests.php";
+	public static final String EVENTS_URL                 = "Events.php";
 	
 	/** Constants for the Identities methods **/
 	public static final String METHOD_IDENTITIES_GET    = "Identities.get";
