@@ -65,7 +65,7 @@ public class JsonRpcUtils {
 				jsonRpcRequest = new JSONRPC2Request(method, requestId);
 			}
 
-			LOGGER.debug("jsonRpcRequest:{}", jsonRpcRequest);
+			LOGGER.info("jsonRpcRequest:{}", jsonRpcRequest);
 			
 			// Send request - exception here
 			JSONRPC2Response jsonRpcResponse = jsonRpcSession.send(jsonRpcRequest);
