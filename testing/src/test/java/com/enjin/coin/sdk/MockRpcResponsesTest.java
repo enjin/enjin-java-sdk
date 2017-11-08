@@ -60,7 +60,8 @@ public class MockRpcResponsesTest {
 		
 		//Setup the identities stubs
 		String identitiesGetMethod      = "Identities.get";
-		String identitiesGetResponse    = "{\"jsonrpc\":\"2.0\",\"result\":{\"identity_id\":\"123456\",\"ethereum_address\":\"0x0000000000000000000000000000000000000000\",\"uuid\":\"069a79f4-44e9-4726-a5be-fca90e38aaf5\",\"player_name\":\"notch\"},\"id\":\"1\"}";
+		String identitiesGetResponse    = "{\"jsonrpc\":\"2.0\",\"result\":{\"identity_id\":\"123456\",\"ethereum_address\":\"0x0000000000000000000000000000000000000000\",\"uuid\":\"069a79f4-44e9-4726-a5be-fca90e38aaf5\",\"player_name\":\"notch\", \"unknown_1\":\"unknown_1_value\", \"unknown_2\":\"unknown_2_value\"},\"id\":\"1\"}";
+		//String identitiesGetResponse    = "{\"jsonrpc\":\"2.0\",\"result\":{\"identity_id\":\"123456\",\"ethereum_address\":\"0x0000000000000000000000000000000000000000\",\"uuid\":\"069a79f4-44e9-4726-a5be-fca90e38aaf5\",\"player_name\":\"notch\"},\"id\":\"1\"}";
 		String identitiesListMethod     = "Identities.list";
 		String identitiesListResponse   = "{\"jsonrpc\":\"2.0\",\"result\":[{\"identity_id\":\"123456\",\"ethereum_address\":\"0x0000000000000000000000000000000000000000\",\"player_name\":\"john\"},{\"identity_id\":\"234567\",\"ethereum_address\":\"0x0000000000000000000000000000000000000000\",\"player_name\":\"george\"}],\"id\":\"1\"}";
 		String identitiesCreateMethod   = "Identities.create";
