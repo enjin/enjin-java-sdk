@@ -62,7 +62,7 @@ public class ValidationUtils {
 
 	/**
 	 * Method to check if a map is empty
-	 * @param array
+	 * @param map
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
@@ -77,7 +77,7 @@ public class ValidationUtils {
 	
 	/**
 	 * Method to check if a map is not empty
-	 * @param array
+	 * @param map
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")

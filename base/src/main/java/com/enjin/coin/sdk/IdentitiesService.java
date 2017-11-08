@@ -19,8 +19,6 @@ import com.enjin.coin.sdk.vo.identity.ListIdentitiesResponseVO;
 import com.enjin.coin.sdk.vo.identity.UpdateIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.UpdateIdentityResponseVO;
 
-import wiremock.org.apache.commons.collections4.MapUtils;
-
 public class IdentitiesService extends BaseAction{
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(IdentitiesService.class);
@@ -48,7 +46,7 @@ public class IdentitiesService extends BaseAction{
 	public GetIdentityResponseVO getIdentity(GetIdentityRequestVO getIdentityRequestVO) {
 		GetIdentityResponseVO getIdentityResponseVO = null;
 
-		if (getIdentityRequestVO == null || ValidationUtils.isEmpty(getIdentityRequestVO.getAuth()) || MapUtils.isEmpty(getIdentityRequestVO.getIdentity())) {
+		if (getIdentityRequestVO == null || ValidationUtils.isEmpty(getIdentityRequestVO.getAuth()) || ValidationUtils.isEmpty(getIdentityRequestVO.getIdentity())) {
 			LOGGER.error("getIdentityRequestVO is null, auth or identidyId passed in are null or empty");
 			return getIdentityResponseVO;
 		}		
