@@ -50,8 +50,7 @@ public class Identities extends BaseAction{
 		if (getIdentityRequestVO == null || StringUtils.isEmpty(getIdentityRequestVO.getAuth()) || MapUtils.isEmpty(getIdentityRequestVO.getIdentity())) {
 			LOGGER.error("getIdentityRequestVO is null, auth or identidyId passed in are null or empty");
 			return getIdentityResponseVO;
-		}
-		
+		}		
 
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("auth",  getIdentityRequestVO.getAuth());
@@ -104,8 +103,7 @@ public class Identities extends BaseAction{
 		if (createIdentityRequestVO == null || StringUtils.isEmpty(createIdentityRequestVO.getAuth()) || MapUtils.isEmpty(createIdentityRequestVO.getIdentity())) {
 			LOGGER.error("createIdentityRequestVO is null, auth or identity passed in are null or empty");
 			return createIdentityResponseVO;
-		}
-		
+		}		
 
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("auth",  createIdentityRequestVO.getAuth());
@@ -130,8 +128,7 @@ public class Identities extends BaseAction{
 		if (updateIdentityRequestVO == null || StringUtils.isEmpty(updateIdentityRequestVO.getAuth()) || MapUtils.isEmpty(updateIdentityRequestVO.getIdentity()) || MapUtils.isEmpty(updateIdentityRequestVO.getUpdate())) {
 			LOGGER.error("updateIdentityRequestVO is null or auth, identidy or update passed in are null or empty");
 			return updateIdentityResponseVO;
-		}
-		
+		}		
 
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("auth",  updateIdentityRequestVO.getAuth());
@@ -157,8 +154,7 @@ public class Identities extends BaseAction{
 		if (deleteIdentityRequestVO == null || StringUtils.isEmpty(deleteIdentityRequestVO.getAuth()) || MapUtils.isEmpty(deleteIdentityRequestVO.getIdentity())) {
 			LOGGER.error("deleteIdentityRequestVO is null, auth or identity passed in are null or empty");
 			return deleteIdentityResponseVO;
-		}
-		
+		}		
 
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("auth",  deleteIdentityRequestVO.getAuth());
@@ -173,5 +169,4 @@ public class Identities extends BaseAction{
 		return deleteIdentityResponseVO;
 	}
 
-	
 }

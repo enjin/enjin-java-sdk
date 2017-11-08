@@ -6,13 +6,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class DeleteIdentityResponseVO extends BaseResponseVO{
 
 	@JsonProperty("result")
-	private boolean result;
+	private Boolean result;
 
-	public boolean getResult() {
+	public Boolean getResult() {
 		return result;
 	}
 
-	public void setResult(boolean result) {
+	public void setResult(Boolean result) {
 		this.result = result;
 	}
 
