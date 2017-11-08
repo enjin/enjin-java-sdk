@@ -34,7 +34,6 @@ public class Identities {
 		getIdentityRequestVO.setIdentity(identityMap);
 		
 		GetIdentityResponseVO getIdentityResponseVO = Identities.getIdentities(getIdentityRequestVO, requestId);
-		LOGGER.info("getIdentityResponseVO: {}", getIdentityResponseVO);
 		LOGGER.info("getIdentityResponseVO other fields: {}", getIdentityResponseVO.getOtherFields());
 		
 		ListIdentitiesRequestVO listIdentitiesRequestVO = new ListIdentitiesRequestVO();
@@ -45,8 +44,7 @@ public class Identities {
 		listIdentitiesRequestVO.setIdentity(identityMap);
 		
 		ListIdentitiesResponseVO[] listIdentitiesResponseVOArray = Identities.listIdentities(listIdentitiesRequestVO, requestId);
-		LOGGER.info("listIdentitiesResponseVOArray: {}", listIdentitiesResponseVOArray);
-		
+
 		for (ListIdentitiesResponseVO listIdentitiesResponseVO : listIdentitiesResponseVOArray) {
 			LOGGER.info("listIdentitiesResponseVO.getOtherFields(): {}", listIdentitiesResponseVO.getOtherFields());
 		}
