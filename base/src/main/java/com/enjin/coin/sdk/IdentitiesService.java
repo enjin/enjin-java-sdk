@@ -3,12 +3,11 @@ package com.enjin.coin.sdk;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.collections4.MapUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.enjin.coin.sdk.util.Constants;
+import com.enjin.coin.sdk.util.ValidationUtils;
 import com.enjin.coin.sdk.vo.identity.CreateIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.CreateIdentityResponseVO;
 import com.enjin.coin.sdk.vo.identity.DeleteIdentityRequestVO;
@@ -19,6 +18,8 @@ import com.enjin.coin.sdk.vo.identity.ListIdentitiesRequestVO;
 import com.enjin.coin.sdk.vo.identity.ListIdentitiesResponseVO;
 import com.enjin.coin.sdk.vo.identity.UpdateIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.UpdateIdentityResponseVO;
+
+import wiremock.org.apache.commons.collections4.MapUtils;
 
 public class IdentitiesService extends BaseAction{
 
@@ -47,7 +48,7 @@ public class IdentitiesService extends BaseAction{
 	public GetIdentityResponseVO getIdentity(GetIdentityRequestVO getIdentityRequestVO) {
 		GetIdentityResponseVO getIdentityResponseVO = null;
 
-		if (getIdentityRequestVO == null || StringUtils.isEmpty(getIdentityRequestVO.getAuth()) || MapUtils.isEmpty(getIdentityRequestVO.getIdentity())) {
+		if (getIdentityRequestVO == null || ValidationUtils.isEmpty(getIdentityRequestVO.getAuth()) || MapUtils.isEmpty(getIdentityRequestVO.getIdentity())) {
 			LOGGER.error("getIdentityRequestVO is null, auth or identidyId passed in are null or empty");
 			return getIdentityResponseVO;
 		}		
@@ -72,7 +73,7 @@ public class IdentitiesService extends BaseAction{
 	public ListIdentitiesResponseVO[] listIdentities(ListIdentitiesRequestVO listIdentitiesRequestVO) {
 		ListIdentitiesResponseVO[] listIdentitiesResponseVO = null;
 
-		if (listIdentitiesRequestVO == null || StringUtils.isEmpty(listIdentitiesRequestVO.getAuth()) || MapUtils.isEmpty(listIdentitiesRequestVO.getIdentity())) {
+		if (listIdentitiesRequestVO == null || ValidationUtils.isEmpty(listIdentitiesRequestVO.getAuth()) || ValidationUtils.isEmpty(listIdentitiesRequestVO.getIdentity())) {
 			LOGGER.error("listIdentitiesRequestVO is null, auth or identity passed in are null or empty");
 			return listIdentitiesResponseVO;
 		}
@@ -99,7 +100,7 @@ public class IdentitiesService extends BaseAction{
 	public CreateIdentityResponseVO createIdentity(CreateIdentityRequestVO createIdentityRequestVO) {
 		CreateIdentityResponseVO createIdentityResponseVO = null;
 
-		if (createIdentityRequestVO == null || StringUtils.isEmpty(createIdentityRequestVO.getAuth()) || MapUtils.isEmpty(createIdentityRequestVO.getIdentity())) {
+		if (createIdentityRequestVO == null || ValidationUtils.isEmpty(createIdentityRequestVO.getAuth()) || ValidationUtils.isEmpty(createIdentityRequestVO.getIdentity())) {
 			LOGGER.error("createIdentityRequestVO is null, auth or identity passed in are null or empty");
 			return createIdentityResponseVO;
 		}		
@@ -124,7 +125,7 @@ public class IdentitiesService extends BaseAction{
 	public UpdateIdentityResponseVO updateIdentity(UpdateIdentityRequestVO updateIdentityRequestVO) {
 		UpdateIdentityResponseVO updateIdentityResponseVO = null;
 
-		if (updateIdentityRequestVO == null || StringUtils.isEmpty(updateIdentityRequestVO.getAuth()) || MapUtils.isEmpty(updateIdentityRequestVO.getIdentity()) || MapUtils.isEmpty(updateIdentityRequestVO.getUpdate())) {
+		if (updateIdentityRequestVO == null || ValidationUtils.isEmpty(updateIdentityRequestVO.getAuth()) || ValidationUtils.isEmpty(updateIdentityRequestVO.getIdentity()) || ValidationUtils.isEmpty(updateIdentityRequestVO.getUpdate())) {
 			LOGGER.error("updateIdentityRequestVO is null or auth, identidy or update passed in are null or empty");
 			return updateIdentityResponseVO;
 		}		
@@ -150,7 +151,7 @@ public class IdentitiesService extends BaseAction{
 	public DeleteIdentityResponseVO deleteIdentity(DeleteIdentityRequestVO deleteIdentityRequestVO) {
 		DeleteIdentityResponseVO deleteIdentityResponseVO = null;
 
-		if (deleteIdentityRequestVO == null || StringUtils.isEmpty(deleteIdentityRequestVO.getAuth()) || MapUtils.isEmpty(deleteIdentityRequestVO.getIdentity())) {
+		if (deleteIdentityRequestVO == null || ValidationUtils.isEmpty(deleteIdentityRequestVO.getAuth()) || ValidationUtils.isEmpty(deleteIdentityRequestVO.getIdentity())) {
 			LOGGER.error("deleteIdentityRequestVO is null, auth or identity passed in are null or empty");
 			return deleteIdentityResponseVO;
 		}		

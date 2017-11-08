@@ -2,7 +2,6 @@ package com.enjin.coin.sdk.util;
 
 import java.io.IOException;
 
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,7 +21,7 @@ public class JsonUtils {
 	public static Object convertJsonToObject(String jsonString, Class<?> responseClass) {
 		Object responseObject = null;
 		
-		if (StringUtils.isEmpty(jsonString) || responseClass == null) {
+		if (ValidationUtils.isEmpty(jsonString) || responseClass == null) {
 			LOGGER.error("jsonString passed in is null or empty or the responseClass is null");
 			return responseObject;
 		}		

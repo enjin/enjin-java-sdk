@@ -1,9 +1,8 @@
 package com.enjin.coin.sdk;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.JsonRpcUtils;
+import com.enjin.coin.sdk.util.ValidationUtils;
 
 public class BaseAction {
 
@@ -49,7 +48,7 @@ public class BaseAction {
 	 */
 	private String getJsonRpcURL(String endpoint) {
 		String baseURL = Constants.TRUSTED_PLATFORM_BASE_URL;
-		if (StringUtils.isNotEmpty(trustedPlatformUrl)) {
+		if (ValidationUtils.isNotEmpty(trustedPlatformUrl)) {
 			baseURL = trustedPlatformUrl;
 		}
 		

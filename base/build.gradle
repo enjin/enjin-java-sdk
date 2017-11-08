@@ -20,12 +20,10 @@ ext {
 
 dependencies {
     compile group: 'com.thetransactioncompany', name: 'jsonrpc2-client', version: jsonrpc2client 
-	compile group: 'org.apache.commons', name: 'commons-lang3', version: commonsLang
 	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jackson
 	compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: jackson
 	compile group: 'org.slf4j', name: 'jcl-over-slf4j', version: slf4j
 	compile group: 'ch.qos.logback', name: 'logback-classic', version: logbackClassic	
-	compile group: 'org.apache.commons', name: 'commons-collections4', version: commonsCollections
 	testCompile group: 'org.mockito', name: 'mockito-core', version: mockito
 	testCompile group: 'junit', name: 'junit', version: junit
 	testCompile group: 'org.powermock', name: 'powermock-api-mockito2', version: powermock

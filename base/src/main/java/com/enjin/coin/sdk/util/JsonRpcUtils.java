@@ -4,8 +4,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
 
-import org.apache.commons.collections4.MapUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,7 +41,7 @@ public class JsonRpcUtils {
 	public Object sendJsonRpcRequest(String url, Class<?> responseClass, String method, Map<String, Object> params) {
 		Object responseObject = null;
 		
-		if (StringUtils.isEmpty(url) || responseClass == null || StringUtils.isEmpty(method)) {
+		if (ValidationUtils.isEmpty(url) || responseClass == null || ValidationUtils.isEmpty(method)) {
 			LOGGER.error("url or method passed in are null or empty or the responseClass is null");
 			return responseObject;
 		}		
@@ -63,7 +61,7 @@ public class JsonRpcUtils {
 			String requestId = Utils.generateRandomId();
 			
 			JSONRPC2Request jsonRpcRequest;
-			if (MapUtils.isNotEmpty(params)) {
+			if (ValidationUtils.isNotEmpty(params)) {
 				jsonRpcRequest = new JSONRPC2Request(method, params, requestId);
 			} else {
 				jsonRpcRequest = new JSONRPC2Request(method, requestId);
