@@ -33,7 +33,7 @@ public class Identities {
 		getIdentityRequestVO.setAuth(auth);
 		getIdentityRequestVO.setIdentity(identityMap);
 		
-		GetIdentityResponseVO getIdentityResponseVO = Identities.getIdentities(getIdentityRequestVO, requestId);
+		GetIdentityResponseVO getIdentityResponseVO = Identities.getIdentities(getIdentityRequestVO);
 		LOGGER.info("getIdentityResponseVO other fields: {}", getIdentityResponseVO.getOtherFields());
 		
 		ListIdentitiesRequestVO listIdentitiesRequestVO = new ListIdentitiesRequestVO();
@@ -43,7 +43,7 @@ public class Identities {
 		listIdentitiesRequestVO.setLinked(false);
 		listIdentitiesRequestVO.setIdentity(identityMap);
 		
-		ListIdentitiesResponseVO[] listIdentitiesResponseVOArray = Identities.listIdentities(listIdentitiesRequestVO, requestId);
+		ListIdentitiesResponseVO[] listIdentitiesResponseVOArray = Identities.listIdentities(listIdentitiesRequestVO);
 
 		for (ListIdentitiesResponseVO listIdentitiesResponseVO : listIdentitiesResponseVOArray) {
 			LOGGER.info("listIdentitiesResponseVO.getOtherFields(): {}", listIdentitiesResponseVO.getOtherFields());
@@ -51,20 +51,16 @@ public class Identities {
 
 	}
 	
-	
-	
-
-
 	/**
 	 * Method to get the identities
 	 * @param getIdentityRequestVO
 	 * @param requestId
 	 * @return
 	 */
-	public static final GetIdentityResponseVO getIdentities(GetIdentityRequestVO getIdentityRequestVO, String requestId) {
+	public static final GetIdentityResponseVO getIdentities(GetIdentityRequestVO getIdentityRequestVO) {
 		GetIdentityResponseVO getIdentityResponseVO = null;
 
-		if (getIdentityRequestVO == null || StringUtils.isEmpty(getIdentityRequestVO.getAuth()) || MapUtils.isEmpty(getIdentityRequestVO.getIdentity()) || StringUtils.isEmpty(requestId)) {
+		if (getIdentityRequestVO == null || StringUtils.isEmpty(getIdentityRequestVO.getAuth()) || MapUtils.isEmpty(getIdentityRequestVO.getIdentity())) {
 			LOGGER.error("getIdentityRequestVO is null or auth, identidyId or requestId passed in are null or empty");
 			return getIdentityResponseVO;
 		}
@@ -77,7 +73,7 @@ public class Identities {
 		// Construct new request
 		String method = Constants.METHOD_IDENTITIES_GET;
 
-		getIdentityResponseVO = (GetIdentityResponseVO) JsonRpcUtils.sendJsonRpcRequest(Constants.IDENTITIES_URL, GetIdentityResponseVO.class, method, params, requestId);
+		getIdentityResponseVO = (GetIdentityResponseVO) JsonRpcUtils.sendJsonRpcRequest(Constants.IDENTITIES_URL, GetIdentityResponseVO.class, method, params);
 
 		return getIdentityResponseVO;
 	}
@@ -85,13 +81,12 @@ public class Identities {
 	/**
 	 * Method to list identities
 	 * @param listIdentitiesRequestVO
-	 * @param requestId
 	 * @return
 	 */
-	private static ListIdentitiesResponseVO[] listIdentities(ListIdentitiesRequestVO listIdentitiesRequestVO, String requestId) {
+	private static ListIdentitiesResponseVO[] listIdentities(ListIdentitiesRequestVO listIdentitiesRequestVO) {
 		ListIdentitiesResponseVO[] listIdentitiesResponseVO = null;
 
-		if (listIdentitiesRequestVO == null || StringUtils.isEmpty(listIdentitiesRequestVO.getAuth()) || MapUtils.isEmpty(listIdentitiesRequestVO.getIdentity()) || StringUtils.isEmpty(requestId)) {
+		if (listIdentitiesRequestVO == null || StringUtils.isEmpty(listIdentitiesRequestVO.getAuth()) || MapUtils.isEmpty(listIdentitiesRequestVO.getIdentity())) {
 			LOGGER.error("listIdentitiesRequestVO is null or auth, identidyId or requestId passed in are null or empty");
 			return listIdentitiesResponseVO;
 		}
@@ -107,7 +102,7 @@ public class Identities {
 		// Construct new request
 		String method = Constants.METHOD_IDENTITIES_LIST;
 
-		listIdentitiesResponseVO = (ListIdentitiesResponseVO[]) JsonRpcUtils.sendJsonRpcRequest(Constants.IDENTITIES_URL, ListIdentitiesResponseVO[].class, method, params, requestId);
+		listIdentitiesResponseVO = (ListIdentitiesResponseVO[]) JsonRpcUtils.sendJsonRpcRequest(Constants.IDENTITIES_URL, ListIdentitiesResponseVO[].class, method, params);
 
 		return listIdentitiesResponseVO;
 	}

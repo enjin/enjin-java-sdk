@@ -23,14 +23,13 @@ public class JsonRpcUtils {
 	 * @param responseClass 
 	 * @param method 
 	 * @param params
-	 * @param requestId
 	 * @return
 	 */
-	public static Object sendJsonRpcRequest(String url, Class<?> responseClass, String method, Map<String, Object> params, String requestId) {
+	public static Object sendJsonRpcRequest(String url, Class<?> responseClass, String method, Map<String, Object> params) {
 		Object responseObject = null;
 		
-		if (StringUtils.isEmpty(url) || StringUtils.isEmpty(method) || StringUtils.isEmpty(requestId)) {
-			LOGGER.error("url or method or requestId passed in are null or empty");
+		if (StringUtils.isEmpty(url) || StringUtils.isEmpty(method)) {
+			LOGGER.error("url or method passed in are null or empty");
 			return responseObject;
 		}		
 		
@@ -43,6 +42,7 @@ public class JsonRpcUtils {
 			JSONRPC2Session mySession = new JSONRPC2Session(serverURL);
 			mySession.getOptions().setRequestContentType(Constants.TYPE_JSON_RPC);
 			
+			String requestId = Utils.generateRandomId();
 			
 			JSONRPC2Request jsonRpcRequest = new JSONRPC2Request(method, params, requestId);
 			LOGGER.info("jsonRpcRequest:{}", jsonRpcRequest);
