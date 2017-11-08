@@ -1,4 +1,4 @@
-package com.enjin.coin.sdk;
+package com.enjin.coin.sdk.mockServer;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -8,6 +8,7 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.enjin.coin.sdk.IdentitiesService;
 import com.enjin.coin.sdk.vo.identity.CreateIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.CreateIdentityResponseVO;
 import com.enjin.coin.sdk.vo.identity.DeleteIdentityRequestVO;
