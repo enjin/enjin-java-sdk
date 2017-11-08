@@ -11,6 +11,7 @@ ext {
     jackson = '2.9.2'
     slf4j = '1.7.25'
     logbackClassic = '1.2.3'
+    commonsCollections = '4.1'
 }
 
 dependencies {
@@ -19,7 +20,8 @@ dependencies {
 	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jackson
 	compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: jackson
 	compile group: 'org.slf4j', name: 'jcl-over-slf4j', version: slf4j
-	compile group: 'ch.qos.logback', name: 'logback-classic', version: logbackClassic
+	compile group: 'ch.qos.logback', name: 'logback-classic', version: logbackClassic	
+	compile group: 'org.apache.commons', name: 'commons-collections4', version: commonsCollections
 	
 	   
 }
