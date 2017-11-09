@@ -22,14 +22,14 @@ public class IdentitiesService extends BaseAction{
 	private static final Logger LOGGER = Logger.getLogger(IdentitiesService.class.getName());
 	
 	/**
-	 * Class contructor
+	 * Class constructor
 	 */
 	public IdentitiesService() {
 		
 	}
 
 	/**
-	 * Class contructor
+	 * Class constructor
 	 * @param trustedPlatformUrl
 	 */
 	public IdentitiesService(String trustedPlatformUrl) {
@@ -37,7 +37,7 @@ public class IdentitiesService extends BaseAction{
 	}
 	
 	/**
-	 * Class contructor
+	 * Class constructor
 	 * @param inTestMode
 	 */
 	public IdentitiesService(boolean inTestMode) {
@@ -45,7 +45,7 @@ public class IdentitiesService extends BaseAction{
 	}
 	
 	/**
-	 * Class contructor
+	 * Class constructor
 	 * @param trustedPlatformUrl
 	 * @param inTestMode
 	 */

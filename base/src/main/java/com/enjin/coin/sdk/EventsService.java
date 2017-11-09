@@ -16,14 +16,14 @@ public class EventsService extends BaseAction{
 	private static final Logger LOGGER = Logger.getLogger(EventsService.class.getName());
 	
 	/**
-	 * Class contructor
+	 * Class constructor
 	 */
 	public EventsService() {
 		
 	}
 
 	/**
-	 * Class contructor
+	 * Class constructor
 	 * @param trustedPlatformUrl
 	 */
 	public EventsService(String trustedPlatformUrl) {
@@ -31,7 +31,7 @@ public class EventsService extends BaseAction{
 	}
 	
 	/**
-	 * Class contructor
+	 * Class constructor
 	 * @param inTestMode
 	 */
 	public EventsService(boolean inTestMode) {
@@ -39,7 +39,7 @@ public class EventsService extends BaseAction{
 	}
 	
 	/**
-	 * Class contructor
+	 * Class constructor
 	 * @param trustedPlatformUrl
 	 * @param inTestMode
 	 */

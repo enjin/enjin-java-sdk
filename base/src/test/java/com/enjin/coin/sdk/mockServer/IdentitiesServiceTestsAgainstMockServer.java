@@ -23,32 +23,22 @@ import com.enjin.coin.sdk.vo.identity.UpdateIdentityResponseVO;
 public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer{
 
 	private IdentitiesService identities;
-	
-	private String auth;
-	private String identityId;	
-	private Map<String, Object> identityMap;
-	private Map<String, Object> updateMap;
-	
+
 	@Before
 	public void init() {
 		identities = new IdentitiesService(getURL(), true);
-		auth = "xxzcxcxz";
-		identityId = "123456";
-		
-		identityMap = new HashMap<>();
-		identityMap.put("identity_id", identityId);
-		identityMap.put("test_damien1", "test_damien1_value");
-		identityMap.put("test_damien2", "test_damien2_value");
-		
-		updateMap = new HashMap<>();
-		updateMap.put("player_name", null);
-		updateMap.put("ethereum_address", "0x1111111111111111111111111111111111111111");
 	}
 	
 	@Test
-	public void testGetIdentity() {		
+	public void testGetIdentity() {
+		
+		Map<String, Object> identityMap = new HashMap<>();
+		identityMap.put("identity_id", "123456");
+		identityMap.put("test_damien1", "test_damien1_value");
+		identityMap.put("test_damien2", "test_damien2_value");
+		
 		GetIdentityRequestVO getIdentityRequestVO = new GetIdentityRequestVO();
-		getIdentityRequestVO.setAuth(auth);
+		getIdentityRequestVO.setAuth("xxzcxcxz");
 		getIdentityRequestVO.setIdentity(identityMap);
 		
 		GetIdentityResponseVO getIdentityResponseVO = identities.getIdentity(getIdentityRequestVO);
@@ -60,13 +50,19 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer{
 	}
 
 	@Test
-	public void testListIdentities() {		
+	public void testListIdentities() {	
+		Map<String, Object> identityMap = new HashMap<>();
+		identityMap.put("identity_id", "123456");
+		identityMap.put("test_damien1", "test_damien1_value");
+		identityMap.put("test_damien2", "test_damien2_value");
+		
+		
 		String afterIdentityId = "after-1";
 		String limit = "limit1";
 		boolean linked = false;
 		ListIdentitiesRequestVO listIdentitiesRequestVO = new ListIdentitiesRequestVO();
 		listIdentitiesRequestVO.setAfterIdentityId(afterIdentityId);
-		listIdentitiesRequestVO.setAuth(auth);
+		listIdentitiesRequestVO.setAuth("xxzcxcxz");
 		listIdentitiesRequestVO.setLimit(limit);
 		listIdentitiesRequestVO.setLinked(linked);
 		listIdentitiesRequestVO.setIdentity(identityMap);
@@ -82,10 +78,15 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer{
 	}
 	
 	@Test
-	public void testCreateIdentity() {		
+	public void testCreateIdentity() {
+		Map<String, Object> identityMap = new HashMap<>();
+		identityMap.put("identity_id", "123456");
+		identityMap.put("test_damien1", "test_damien1_value");
+		identityMap.put("test_damien2", "test_damien2_value");
+		
 		//Test the create identity request
 		CreateIdentityRequestVO createIdentityRequestVO = new CreateIdentityRequestVO();
-		createIdentityRequestVO.setAuth(auth);
+		createIdentityRequestVO.setAuth("xxzcxcxz");
 		createIdentityRequestVO.setIdentity(identityMap);
 		
 		CreateIdentityResponseVO createIdentityResponseVO = identities.createIdentity(createIdentityRequestVO);
@@ -95,9 +96,18 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer{
 	}
 
 	@Test
-	public void testUpdateIdentity() {		
+	public void testUpdateIdentity() {	
+		Map<String, Object> identityMap = new HashMap<>();
+		identityMap.put("identity_id", "123456");
+		identityMap.put("test_damien1", "test_damien1_value");
+		identityMap.put("test_damien2", "test_damien2_value");
+		
+		Map<String, Object> updateMap = new HashMap<>();
+		updateMap.put("player_name", null);
+		updateMap.put("ethereum_address", "0x1111111111111111111111111111111111111111");
+		
 		UpdateIdentityRequestVO updateIdentityRequestVO = new UpdateIdentityRequestVO();
-		updateIdentityRequestVO.setAuth(auth);
+		updateIdentityRequestVO.setAuth("xxzcxcxz");
 		updateIdentityRequestVO.setIdentity(identityMap);
 		updateIdentityRequestVO.setUpdate(updateMap);
 
@@ -110,10 +120,15 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer{
 	}
 	
 	@Test
-	public void testDeleteIdentity() {		
+	public void testDeleteIdentity() {	
+		Map<String, Object> identityMap = new HashMap<>();
+		identityMap.put("identity_id", "123456");
+		identityMap.put("test_damien1", "test_damien1_value");
+		identityMap.put("test_damien2", "test_damien2_value");
+		
 		// Test the delete identity request
 		DeleteIdentityRequestVO deleteIdentityRequestVO = new DeleteIdentityRequestVO();
-		deleteIdentityRequestVO.setAuth(auth);
+		deleteIdentityRequestVO.setAuth("xxzcxcxz");
 		deleteIdentityRequestVO.setIdentity(identityMap);
 
 		DeleteIdentityResponseVO deleteIdentityResponseVO = identities.deleteIdentity(deleteIdentityRequestVO);

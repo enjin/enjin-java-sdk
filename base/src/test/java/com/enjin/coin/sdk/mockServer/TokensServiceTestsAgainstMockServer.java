@@ -15,24 +15,16 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer{
 
 	private TokensService tokens;
 	
-	private String tokenId;	
-	private String appId;
-	private String afterTokenId;
-	private String limit;
 	
 	@Before
 	public void init() {
 		tokens = new TokensService(getURL(), true);
-		tokenId = "12345";
-		appId = "352";
-		afterTokenId = "123456";
-		limit = "limit1";
 	}
 	
 	@Test
 	public void testGetToken() {
 		GetTokenRequestVO getTokenRequestVO = new GetTokenRequestVO();
-		getTokenRequestVO.setTokenId(tokenId);
+		getTokenRequestVO.setTokenId("12345");
 		GetTokenResponseVO getTokenResponseVO = tokens.getToken(getTokenRequestVO);
 		assertNotNull(getTokenResponseVO);
 		assertNotNull(getTokenResponseVO.getAdapter());
@@ -51,9 +43,9 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer{
 	@Test
 	public void testListIdentities() {		
 		ListTokensRequestVO listTokensRequestVO = new ListTokensRequestVO();
-		listTokensRequestVO.setAfterTokenId(afterTokenId);
-		listTokensRequestVO.setAppId(appId);
-		listTokensRequestVO.setLimit(limit);
+		listTokensRequestVO.setAfterTokenId("123456");
+		listTokensRequestVO.setAppId("352");
+		listTokensRequestVO.setLimit("limit1");
 		
 		ListTokensResponseVO listTokensResponseVOArray = tokens.listTokens(listTokensRequestVO);
 

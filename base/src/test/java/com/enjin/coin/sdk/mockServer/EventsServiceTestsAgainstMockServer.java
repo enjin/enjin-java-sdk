@@ -17,28 +17,17 @@ import com.enjin.coin.sdk.vo.event.ListEventsResponseVO;
 public class EventsServiceTestsAgainstMockServer extends BaseMockServer{
 
 	private EventsService events;
-	
-	private String eventId;	
-	private String appId;
-	private String auth;
-	private String afterEventId;
-	private String limit;
-	
+
 	@Before
 	public void init() {
 		events = new EventsService(getURL(), true);
-		eventId = "12345";
-		appId   = "12345";
-		auth    = "auth";
-		afterEventId = "123456";
-		limit = "limit1";
 	}
 	
 	@Test
 	public void testGetEvent() {
 		GetEventRequestVO getEventRequestVO = new GetEventRequestVO();
-		getEventRequestVO.setEventId(eventId);
-		getEventRequestVO.setAuth(auth);
+		getEventRequestVO.setEventId("12345");
+		getEventRequestVO.setAuth("auth");
 		GetEventResponseVO getEventResponseVO = events.getEvent(getEventRequestVO);
 		assertNotNull(getEventResponseVO);
 		assertNotNull(getEventResponseVO.getAppId());
@@ -57,10 +46,10 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer{
 	@Test
 	public void testListIdentities() {		
 		ListEventsRequestVO listEventsRequestVO = new ListEventsRequestVO();
-		listEventsRequestVO.setAfterEventId(afterEventId);
-		listEventsRequestVO.setAppId(appId);
-		listEventsRequestVO.setAuth(auth);
-		listEventsRequestVO.setLimit(limit);
+		listEventsRequestVO.setAfterEventId("123456");
+		listEventsRequestVO.setAppId("12345");
+		listEventsRequestVO.setAuth("auth");
+		listEventsRequestVO.setLimit("limit1");
 		
 		ListEventsResponseVO listEventsResponseVOArray = events.listEvents(listEventsRequestVO);
 

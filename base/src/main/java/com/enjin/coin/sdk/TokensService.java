@@ -16,14 +16,14 @@ public class TokensService extends BaseAction{
 	private static final Logger LOGGER = Logger.getLogger(TokensService.class.getName());
 	
 	/**
-	 * Class contructor
+	 * Class constructor
 	 */
 	public TokensService() {
 		
 	}
 
 	/**
-	 * Class contructor
+	 * Class constructor
 	 * @param trustedPlatformUrl
 	 */
 	public TokensService(String trustedPlatformUrl) {
@@ -31,7 +31,7 @@ public class TokensService extends BaseAction{
 	}
 	
 	/**
-	 * Class contructor
+	 * Class constructor
 	 * @param inTestMode
 	 */
 	public TokensService(boolean inTestMode) {
@@ -39,7 +39,7 @@ public class TokensService extends BaseAction{
 	}
 	
 	/**
-	 * Class contructor
+	 * Class constructor
 	 * @param trustedPlatformUrl
 	 * @param inTestMode
 	 */
