@@ -2,9 +2,7 @@ package com.enjin.coin.sdk;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.logging.Logger;
 
 import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.ValidationUtils;
@@ -21,7 +19,7 @@ import com.enjin.coin.sdk.vo.identity.UpdateIdentityResponseVO;
 
 public class IdentitiesService extends BaseAction{
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(IdentitiesService.class);
+	private static final Logger LOGGER = Logger.getLogger(IdentitiesService.class.getName());
 	
 	/**
 	 * Class contructor
@@ -65,7 +63,7 @@ public class IdentitiesService extends BaseAction{
 		GetIdentityResponseVO getIdentityResponseVO = null;
 
 		if (getIdentityRequestVO == null || ValidationUtils.isEmpty(getIdentityRequestVO.getAuth()) || ValidationUtils.isEmpty(getIdentityRequestVO.getIdentity())) {
-			LOGGER.error("getIdentityRequestVO is null, auth or identidyId passed in are null or empty");
+			LOGGER.warning("getIdentityRequestVO is null, auth or identidyId passed in are null or empty");
 			return getIdentityResponseVO;
 		}		
 
@@ -90,7 +88,7 @@ public class IdentitiesService extends BaseAction{
 		ListIdentitiesResponseVO[] listIdentitiesResponseVO = null;
 
 		if (listIdentitiesRequestVO == null || ValidationUtils.isEmpty(listIdentitiesRequestVO.getAuth()) || ValidationUtils.isEmpty(listIdentitiesRequestVO.getIdentity())) {
-			LOGGER.error("listIdentitiesRequestVO is null, auth or identity passed in are null or empty");
+			LOGGER.warning("listIdentitiesRequestVO is null, auth or identity passed in are null or empty");
 			return listIdentitiesResponseVO;
 		}
 		
@@ -117,7 +115,7 @@ public class IdentitiesService extends BaseAction{
 		CreateIdentityResponseVO createIdentityResponseVO = null;
 
 		if (createIdentityRequestVO == null || ValidationUtils.isEmpty(createIdentityRequestVO.getAuth()) || ValidationUtils.isEmpty(createIdentityRequestVO.getIdentity())) {
-			LOGGER.error("createIdentityRequestVO is null, auth or identity passed in are null or empty");
+			LOGGER.warning("createIdentityRequestVO is null, auth or identity passed in are null or empty");
 			return createIdentityResponseVO;
 		}		
 
@@ -142,7 +140,7 @@ public class IdentitiesService extends BaseAction{
 		UpdateIdentityResponseVO updateIdentityResponseVO = null;
 
 		if (updateIdentityRequestVO == null || ValidationUtils.isEmpty(updateIdentityRequestVO.getAuth()) || ValidationUtils.isEmpty(updateIdentityRequestVO.getIdentity()) || ValidationUtils.isEmpty(updateIdentityRequestVO.getUpdate())) {
-			LOGGER.error("updateIdentityRequestVO is null or auth, identidy or update passed in are null or empty");
+			LOGGER.warning("updateIdentityRequestVO is null or auth, identidy or update passed in are null or empty");
 			return updateIdentityResponseVO;
 		}		
 
@@ -168,7 +166,7 @@ public class IdentitiesService extends BaseAction{
 		DeleteIdentityResponseVO deleteIdentityResponseVO = null;
 
 		if (deleteIdentityRequestVO == null || ValidationUtils.isEmpty(deleteIdentityRequestVO.getAuth()) || ValidationUtils.isEmpty(deleteIdentityRequestVO.getIdentity())) {
-			LOGGER.error("deleteIdentityRequestVO is null, auth or identity passed in are null or empty");
+			LOGGER.warning("deleteIdentityRequestVO is null, auth or identity passed in are null or empty");
 			return deleteIdentityResponseVO;
 		}		
 

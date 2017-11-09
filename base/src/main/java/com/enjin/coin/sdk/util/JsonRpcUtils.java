@@ -3,9 +3,7 @@ package com.enjin.coin.sdk.util;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.logging.Logger;
 
 import com.thetransactioncompany.jsonrpc2.JSONRPC2Request;
 import com.thetransactioncompany.jsonrpc2.JSONRPC2Response;
@@ -15,7 +13,7 @@ import com.thetransactioncompany.jsonrpc2.client.JSONRPC2SessionOptions;
 
 public class JsonRpcUtils {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(JsonRpcUtils.class);	
+	private static final Logger LOGGER = Logger.getLogger(JsonRpcUtils.class.getName());
 	
 	private boolean inTestMode = false;
 	
@@ -54,7 +52,7 @@ public class JsonRpcUtils {
 		Object responseObject = null;
 		
 		if (ValidationUtils.isEmpty(url) || responseClass == null || ValidationUtils.isEmpty(method)) {
-			LOGGER.error("url or method passed in are null or empty or the responseClass is null");
+			LOGGER.warning("url or method passed in are null or empty or the responseClass is null");
 			return responseObject;
 		}		
 		
@@ -79,26 +77,26 @@ public class JsonRpcUtils {
 				jsonRpcRequest = new JSONRPC2Request(method, requestId);
 			}
 
-			LOGGER.info("jsonRpcRequest:{}", jsonRpcRequest);
+			LOGGER.info(String.format("jsonRpcRequest:%s", jsonRpcRequest.toJSONString()));
 			
 			// Send request - exception here
 			JSONRPC2Response jsonRpcResponse = jsonRpcSession.send(jsonRpcRequest);
 	
 			// Print response result / error
 			if (jsonRpcResponse != null && jsonRpcResponse.indicatesSuccess()) {
-				String responseString = jsonRpcResponse.getResult().toString();	
-				LOGGER.info("responseString:{}", responseString);
+				String responseString = jsonRpcResponse.getResult().toString();
+				LOGGER.info(String.format("responseString:%s", responseString));
 				responseObject = JsonUtils.convertJsonToObject(responseString, responseClass);				
 			} else if (jsonRpcResponse != null) {
-				LOGGER.error("Error Message:{}", jsonRpcResponse.getError().getMessage());
+				LOGGER.warning(String.format("Error Message:%s", jsonRpcResponse.getError().getMessage()));
 			} else {
-				LOGGER.error("Error has occured - jsonRpcResponse is null");
+				LOGGER.warning("Error has occured - jsonRpcResponse is null");
 			}
 			
 		} catch (MalformedURLException e) {
-			LOGGER.error("A MalformedURLException has occured. Exception: {}", e);
+			LOGGER.warning(String.format("A MalformedURLException has occured. Exception: %s", StringUtils.exceptionToString(e)));
 		} catch (JSONRPC2SessionException e) {
-			LOGGER.error("A JSONRPC2SessionException has occured. Exception: {}", e);
+			LOGGER.warning(String.format("A JSONRPC2SessionException has occured. Exception: %s", StringUtils.exceptionToString(e)));
 		}
 
 		return responseObject;

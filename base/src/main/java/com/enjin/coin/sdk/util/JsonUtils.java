@@ -1,16 +1,14 @@
 package com.enjin.coin.sdk.util;
 
 import java.io.IOException;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.logging.Logger;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonUtils {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(JsonUtils.class);
+	private static final Logger LOGGER = Logger.getLogger(JsonUtils.class.getName());
 	
 	/**
 	 * Method to convert a json string to an object
@@ -22,7 +20,7 @@ public class JsonUtils {
 		Object responseObject = null;
 		
 		if (ValidationUtils.isEmpty(jsonString) || responseClass == null) {
-			LOGGER.error("jsonString passed in is null or empty or the responseClass is null");
+			LOGGER.warning("jsonString passed in is null or empty or the responseClass is null");
 			return responseObject;
 		}		
 		
@@ -30,10 +28,10 @@ public class JsonUtils {
 
 		//JSON from file to Object
 		try {
-			LOGGER.debug("jsonString:{}", jsonString);
+			LOGGER.fine(String.format("jsonString:%s", jsonString));
 			responseObject = mapper.readValue(jsonString, responseClass);
 		} catch (IOException e) {
-			LOGGER.error("An IOException has occured. Exception: {}", e);
+			LOGGER.warning(String.format("An IOException has occured. Exception: %s", StringUtils.exceptionToString(e)));
 		}
 
 		return responseObject;
@@ -49,16 +47,16 @@ public class JsonUtils {
 		String jsonString = null;
 		
 		if (jsonObject == null) {
-			LOGGER.error("jsonObject passed in is null");
+			LOGGER.warning("jsonObject passed in is null");
 			return jsonString;
 		}		
 		
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			jsonString = mapper.writeValueAsString(jsonObject);
-			LOGGER.debug("jsonString:{}", jsonString);
+			LOGGER.fine(String.format("jsonString:%s", jsonString));
 		} catch (JsonProcessingException e) {
-			LOGGER.error("A JsonProcessingException has occured. Exception: {}", e);
+			LOGGER.warning(String.format("A JsonProcessingException has occured. Exception: %e", StringUtils.exceptionToString(e)));
 		}
 
 		return jsonString;

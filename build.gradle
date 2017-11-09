@@ -35,7 +35,9 @@ subprojects {
     }
 
     ext {
+        mockito = '2.9.0'
         junit = '4.12'
+        powermock = '1.7.3'
     }
 
     repositories {
@@ -44,7 +46,11 @@ subprojects {
     }
 
     dependencies {
+        // testCompile dependencies
+        testCompile group: 'org.mockito', name: 'mockito-core', version: mockito
         testCompile group: 'junit', name: 'junit', version: junit
+        testCompile group: 'org.powermock', name: 'powermock-api-mockito2', version: powermock
+        testCompile group: 'org.powermock', name: 'powermock-module-junit4', version: powermock
     }
 
     jar {

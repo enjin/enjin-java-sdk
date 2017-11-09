@@ -2,9 +2,7 @@ package com.enjin.coin.sdk;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.logging.Logger;
 
 import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.ValidationUtils;
@@ -15,7 +13,7 @@ import com.enjin.coin.sdk.vo.event.ListEventsResponseVO;
 
 public class EventsService extends BaseAction{
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(EventsService.class);
+	private static final Logger LOGGER = Logger.getLogger(EventsService.class.getName());
 	
 	/**
 	 * Class contructor
@@ -59,7 +57,7 @@ public class EventsService extends BaseAction{
 		GetEventResponseVO getEventResponseVO = null;
 
 		if (getEventRequestVO == null || ValidationUtils.isEmpty(getEventRequestVO.getAuth()) || ValidationUtils.isEmpty(getEventRequestVO.getEventId())) {
-			LOGGER.error("getEventRequestVO is null, auth or eventId passed in are null or empty");
+			LOGGER.warning("getEventRequestVO is null, auth or eventId passed in are null or empty");
 			return getEventResponseVO;
 		}		
 
@@ -84,7 +82,7 @@ public class EventsService extends BaseAction{
 		ListEventsResponseVO listEventsResponseVO = null;
 
 		if (listEventsRequestVO == null || ValidationUtils.isEmpty(listEventsRequestVO.getAuth()) || ValidationUtils.isEmpty(listEventsRequestVO.getAppId()) || ValidationUtils.isEmpty(listEventsRequestVO.getAfterEventId()) || ValidationUtils.isEmpty(listEventsRequestVO.getLimit())) {
-			LOGGER.error("listEventsRequestVO is null, auth, appId, afterEventId or limit passed in are null or empty");
+			LOGGER.warning("listEventsRequestVO is null, auth, appId, afterEventId or limit passed in are null or empty");
 			return listEventsResponseVO;
 		}
 		
@@ -100,7 +98,7 @@ public class EventsService extends BaseAction{
 
 		GetEventResponseVO[] getEventResponseVOArray = (GetEventResponseVO[]) jsonRpcUtils.sendJsonRpcRequest(getEventsUrl(), GetEventResponseVO[].class, method, params);
 		if (ValidationUtils.isEmpty(getEventResponseVOArray)) {
-			LOGGER.error("No Events returned");
+			LOGGER.warning("No Events returned");
 			return listEventsResponseVO;
 		}
 		listEventsResponseVO = new ListEventsResponseVO();
