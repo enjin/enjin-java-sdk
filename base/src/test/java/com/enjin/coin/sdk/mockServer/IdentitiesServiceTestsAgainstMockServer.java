@@ -31,8 +31,7 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer{
 	
 	@Before
 	public void init() {
-		int port = wireMockRule.port();
-		identities = new IdentitiesService("http://localhost:" + port +"/", true);
+		identities = new IdentitiesService(getURL(), true);
 		auth = "xxzcxcxz";
 		identityId = "123456";
 		

@@ -25,8 +25,7 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer{
 	
 	@Before
 	public void init() {
-		int port = wireMockRule.port();
-		events = new EventsService("http://localhost:" + port +"/", true);
+		events = new EventsService(getURL(), true);
 		eventId = "12345";
 		appId   = "12345";
 		auth    = "auth";

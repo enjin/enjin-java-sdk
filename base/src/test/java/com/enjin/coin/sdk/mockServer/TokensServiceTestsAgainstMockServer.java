@@ -22,8 +22,7 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer{
 	
 	@Before
 	public void init() {
-		int port = wireMockRule.port();
-		tokens = new TokensService("http://localhost:" + port +"/", true);
+		tokens = new TokensService(getURL(), true);
 		tokenId = "12345";
 		appId = "352";
 		afterTokenId = "123456";

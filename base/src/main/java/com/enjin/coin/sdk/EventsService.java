@@ -34,7 +34,6 @@ public class EventsService extends BaseAction{
 	
 	/**
 	 * Class contructor
-	 * @param trustedPlatformUrl
 	 * @param inTestMode
 	 */
 	public EventsService(boolean inTestMode) {

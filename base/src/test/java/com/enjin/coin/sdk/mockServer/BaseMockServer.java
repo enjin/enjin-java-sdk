@@ -7,6 +7,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 
+import com.enjin.coin.sdk.util.Constants;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -29,15 +30,18 @@ public class BaseMockServer {
 	
 	/** Constant for the json method label **/
 	private static final String JSON_METHOD_LABEL = "$.method";
-	
+
+	/** Constant for the hostname **/
+	private static final String HOSTNAME = "localhost";
+
 	/** Base url for the identities **/
-	private static final String IDENTITIES_URL = "/Identities.php";
+	private static final String IDENTITIES_URL = String.format("/%s", Constants.IDENTITIES_URL);
 	/** Base url for the tokens **/
-	private static final String TOKENS_URL = "/Tokens.php";
+	private static final String TOKENS_URL = String.format("/%s", Constants.TOKENS_URL);
 	/** Base url for the TransactionRequests **/
-	private static final String TRANSACTION_REQUESTS_URL = "/TransactionRequests.php";
+	private static final String TRANSACTION_REQUESTS_URL = String.format("/%s", Constants.TRANSACTION_REQUESTS_URL);
 	/** Base url for the events **/
-	private static final String EVENTS_URL = "/Events.php";
+	private static final String EVENTS_URL = String.format("/%s", Constants.EVENTS_URL);
 	
 
 	@Before
@@ -114,6 +118,10 @@ public class BaseMockServer {
 		setUpStub(EVENTS_URL, eventsGetMethod, eventsGetResponse);		
 		setUpStub(EVENTS_URL, eventsListMethod, eventsListResponse);	
 	
+	}
+
+	protected String getURL() {
+		return String.format("http://%s:%d/", HOSTNAME, wireMockRule.port());
 	}
 	
 	/**

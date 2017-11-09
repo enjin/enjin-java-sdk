@@ -40,7 +40,6 @@ public class IdentitiesService extends BaseAction{
 	
 	/**
 	 * Class contructor
-	 * @param trustedPlatformUrl
 	 * @param inTestMode
 	 */
 	public IdentitiesService(boolean inTestMode) {

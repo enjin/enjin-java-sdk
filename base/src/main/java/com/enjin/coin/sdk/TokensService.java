@@ -34,7 +34,6 @@ public class TokensService extends BaseAction{
 	
 	/**
 	 * Class contructor
-	 * @param trustedPlatformUrl
 	 * @param inTestMode
 	 */
 	public TokensService(boolean inTestMode) {
