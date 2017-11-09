@@ -6,9 +6,14 @@ import java.io.StringWriter;
 
 public final class StringUtils {
 
-    private StringUtils() {
+    protected StringUtils() {
     }
 
+    /**
+     * Method to convert an exception to string
+     * @param e
+     * @return
+     */
     public static String exceptionToString(Exception e) {
         String stacktrace = null;
         if (e != null) {
