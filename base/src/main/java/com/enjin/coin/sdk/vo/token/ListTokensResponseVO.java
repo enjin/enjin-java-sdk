@@ -2,10 +2,9 @@ package com.enjin.coin.sdk.vo.token;
 
 import java.util.Arrays;
 
-import com.enjin.coin.sdk.vo.BaseResponseVO;
 import com.google.gson.annotations.SerializedName;
 
-public class ListTokensResponseVO extends BaseResponseVO{
+public class ListTokensResponseVO {
 
 	@SerializedName("getTokenResponseVOArray")
 	private GetTokenResponseVO[] getTokensResponseVOArray;

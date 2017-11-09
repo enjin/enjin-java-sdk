@@ -2,10 +2,9 @@ package com.enjin.coin.sdk.vo.event;
 
 import java.util.Arrays;
 
-import com.enjin.coin.sdk.vo.BaseResponseVO;
 import com.google.gson.annotations.SerializedName;
 
-public class ListEventsResponseVO extends BaseResponseVO{
+public class ListEventsResponseVO {
 
 	@SerializedName("getEventResponseVOArray")
 	private GetEventResponseVO[] getEventsResponseVOArray;

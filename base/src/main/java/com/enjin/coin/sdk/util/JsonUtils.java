@@ -3,6 +3,7 @@ package com.enjin.coin.sdk.util;
 import java.util.logging.Logger;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 
 public class JsonUtils {
@@ -22,8 +23,9 @@ public class JsonUtils {
 			LOGGER.warning("jsonString passed in is null or empty or the responseClass is null");
 			return responseObject;
 		}		
-		
-		Gson gson = new Gson();
+				
+		GsonBuilder builder = new GsonBuilder();
+		Gson gson = builder.create();
 
 		//JSON from file to Object
 		try {
@@ -50,7 +52,8 @@ public class JsonUtils {
 			return jsonString;
 		}		
 		
-		Gson gson = new Gson();
+		GsonBuilder builder = new GsonBuilder();
+		Gson gson = builder.create();
 		jsonString = gson.toJson(jsonObject);
 		LOGGER.fine(String.format("jsonString:%s", jsonString));	
 		return jsonString;

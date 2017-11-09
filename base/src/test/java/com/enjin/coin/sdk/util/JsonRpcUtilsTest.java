@@ -16,7 +16,7 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.enjin.coin.sdk.vo.BaseResponseVO;
+import com.enjin.coin.sdk.vo.event.GetEventDataVO;
 import com.enjin.coin.sdk.vo.identity.CreateIdentityRequestVO;
 import com.thetransactioncompany.jsonrpc2.JSONRPC2Error;
 import com.thetransactioncompany.jsonrpc2.JSONRPC2Request;
@@ -44,7 +44,7 @@ public class JsonRpcUtilsTest {
 	@Test
 	public void testSendJsonRpcRequestNoParamsPassed_SuccessResponse() throws Exception {
 		String url = "http://localhost:8080/Identities.php";
-		Class<?> responseClass = BaseResponseVO.class;
+		Class<?> responseClass = GetEventDataVO.class;
 		String method = "method1";
 		Map<String, Object> params = new HashMap<>();
 		params.put("param1", "value1");
@@ -81,7 +81,7 @@ public class JsonRpcUtilsTest {
 	@Test
 	public void testSendJsonRpcRequest_UrlIsEmpty() {
 		String url = "";
-		Class<?> responseClass = BaseResponseVO.class;
+		Class<?> responseClass = GetEventDataVO.class;
 		String method = "method";
 		Map<String, Object> params = new HashMap<>();
 		Object responseObject = jsonRpcUtils.sendJsonRpcRequest(url, responseClass, method, params );
@@ -90,7 +90,7 @@ public class JsonRpcUtilsTest {
 	@Test
 	public void testSendJsonRpcRequest_UrlIsNull() {
 		String url = null;
-		Class<?> responseClass = BaseResponseVO.class;
+		Class<?> responseClass = GetEventDataVO.class;
 		String method = "method";
 		Map<String, Object> params = new HashMap<>();
 		Object responseObject = jsonRpcUtils.sendJsonRpcRequest(url, responseClass, method, params );
@@ -109,7 +109,7 @@ public class JsonRpcUtilsTest {
 	@Test
 	public void testSendJsonRpcRequest_MethodIsEmpty() {
 		String url = "http://localhost:8080/Identities.php";
-		Class<?> responseClass = BaseResponseVO.class;		
+		Class<?> responseClass = GetEventDataVO.class;		
 		String method = "";
 		Map<String, Object> params = new HashMap<>();
 		Object responseObject = jsonRpcUtils.sendJsonRpcRequest(url, responseClass, method, params );
@@ -118,7 +118,7 @@ public class JsonRpcUtilsTest {
 	@Test
 	public void testSendJsonRpcRequest_MethodIsNull() {
 		String url = "http://localhost:8080/Identities.php";
-		Class<?> responseClass = BaseResponseVO.class;		
+		Class<?> responseClass = GetEventDataVO.class;		
 		String method = null;
 		Map<String, Object> params = new HashMap<>();
 		Object responseObject = jsonRpcUtils.sendJsonRpcRequest(url, responseClass, method, params );
@@ -128,7 +128,7 @@ public class JsonRpcUtilsTest {
 	@Test
 	public void testSendJsonRpcRequest_MalformedUrlExceptionCreatingURL() throws Exception {
 		String url = "http://localhost:8080/Identities.php";
-		Class<?> responseClass = BaseResponseVO.class;		
+		Class<?> responseClass = GetEventDataVO.class;		
 		String method = "method1";
 		Map<String, Object> params = new HashMap<>();
 		params.put("param1", "value1");
@@ -144,7 +144,7 @@ public class JsonRpcUtilsTest {
 	@Test
 	public void testSendJsonRpcRequest_JSONRPC2SessionExceptionSendingRequest() throws Exception {
 		String url = "http://localhost:8080/Identities.php";
-		Class<?> responseClass = BaseResponseVO.class;		
+		Class<?> responseClass = GetEventDataVO.class;		
 		String method = "method1";
 		Map<String, Object> params = new HashMap<>();
 		params.put("param1", "value1");
@@ -173,7 +173,7 @@ public class JsonRpcUtilsTest {
 	@Test
 	public void testSendJsonRpcRequest_SuccessResponse() throws Exception {
 		String url = "http://localhost:8080/Identities.php";
-		Class<?> responseClass = BaseResponseVO.class;
+		Class<?> responseClass = GetEventDataVO.class;
 		String method = "method1";
 		Map<String, Object> params = new HashMap<>();
 		params.put("param1", "value1");
@@ -209,7 +209,7 @@ public class JsonRpcUtilsTest {
 	@Test
 	public void testSendJsonRpcRequest_SuccessResponseNullParamsPassed() throws Exception {
 		String url = "http://localhost:8080/Identities.php";
-		Class<?> responseClass = BaseResponseVO.class;
+		Class<?> responseClass = GetEventDataVO.class;
 		String method = "method1";
 		Map<String, Object> params = null;
 		CreateIdentityRequestVO createIdentityRequestVO = new CreateIdentityRequestVO();
@@ -244,7 +244,7 @@ public class JsonRpcUtilsTest {
 	@Test
 	public void testSendJsonRpcRequest_ResponseIsNull() throws Exception {
 		String url = "http://localhost:8080/Identities.php";
-		Class<?> responseClass = BaseResponseVO.class;
+		Class<?> responseClass = GetEventDataVO.class;
 		String method = "method1";
 		Map<String, Object> params = new HashMap<>();
 		params.put("param1", "value1");
@@ -273,7 +273,7 @@ public class JsonRpcUtilsTest {
 	@Test
 	public void testSendJsonRpcRequest_ResponseIsNotSuccessful() throws Exception {
 		String url = "http://localhost:8080/Identities.php";
-		Class<?> responseClass = BaseResponseVO.class;
+		Class<?> responseClass = GetEventDataVO.class;
 		String method = "method1";
 		Map<String, Object> params = new HashMap<>();
 		params.put("param1", "value1");

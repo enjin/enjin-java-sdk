@@ -7,12 +7,12 @@ import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 
-import com.enjin.coin.sdk.util.Constants;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Rule;
 
+import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.ContentType;
 import com.enjin.coin.sdk.util.Header;
 import com.github.tomakehurst.wiremock.client.WireMock;

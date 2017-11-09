@@ -1,9 +1,8 @@
 package com.enjin.coin.sdk.vo.identity;
 
-import com.enjin.coin.sdk.vo.BaseResponseVO;
 import com.google.gson.annotations.SerializedName;
 
-public class DeleteIdentityResponseVO extends BaseResponseVO{
+public class DeleteIdentityResponseVO {
 
 	@SerializedName("result")
 	private Boolean result;

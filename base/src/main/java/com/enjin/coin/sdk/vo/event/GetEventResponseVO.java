@@ -1,9 +1,8 @@
 package com.enjin.coin.sdk.vo.event;
 
-import com.enjin.coin.sdk.vo.BaseResponseVO;
 import com.google.gson.annotations.SerializedName;
 
-public class GetEventResponseVO extends BaseResponseVO {
+public class GetEventResponseVO  {
 
 	@SerializedName("event_id")
 	private String eventId;

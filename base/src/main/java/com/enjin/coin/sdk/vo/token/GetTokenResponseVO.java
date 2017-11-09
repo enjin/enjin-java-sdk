@@ -1,9 +1,8 @@
 package com.enjin.coin.sdk.vo.token;
 
-import com.enjin.coin.sdk.vo.BaseResponseVO;
 import com.google.gson.annotations.SerializedName;
 
-public class GetTokenResponseVO extends BaseResponseVO {
+public class GetTokenResponseVO  {
 
 	@SerializedName("token_id")
 	private String tokenId;

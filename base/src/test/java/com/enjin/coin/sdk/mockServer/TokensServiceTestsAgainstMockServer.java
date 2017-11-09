@@ -42,8 +42,7 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer{
 		assertNotNull(getTokenResponseVO.getIcon());	
 		assertNotNull(getTokenResponseVO.getMaxMeltFee());	
 		assertNotNull(getTokenResponseVO.getMeltFee());	
-		assertNotNull(getTokenResponseVO.getName());	
-		assertNotNull(getTokenResponseVO.getOtherFields());	
+		assertNotNull(getTokenResponseVO.getName());		
 		assertNotNull(getTokenResponseVO.getTokenId());	
 		assertNotNull(getTokenResponseVO.getTotalSupply());
 		assertNotNull(getTokenResponseVO.getTransferable());
@@ -68,7 +67,6 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer{
 			assertNotNull(getTokenResponseVO.getMaxMeltFee());	
 			assertNotNull(getTokenResponseVO.getMeltFee());	
 			assertNotNull(getTokenResponseVO.getName());	
-			assertNotNull(getTokenResponseVO.getOtherFields());	
 			assertNotNull(getTokenResponseVO.getTokenId());	
 			assertNotNull(getTokenResponseVO.getTotalSupply());
 			assertNotNull(getTokenResponseVO.getTransferable());
