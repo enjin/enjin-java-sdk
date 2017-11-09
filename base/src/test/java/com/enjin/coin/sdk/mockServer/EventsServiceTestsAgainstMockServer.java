@@ -98,12 +98,12 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer{
 				assertNotNull(getEventDataBalancesVO.getIdentityMap().get("player_name"));
 				assertNotNull(getEventDataBalancesVO.getFromMap());
 				assertNotNull(getEventDataBalancesVO.getFromMap().get("ethereum_address"));
-				assertNotNull(getEventDataBalancesVO.getBalancePendingMap());
-				assertNotNull(getEventDataBalancesVO.getBalancePendingMap().get("ENJ"));
-				assertNotNull(getEventDataBalancesVO.getBalancePendingMap().get("123456"));	
-				assertNotNull(getEventDataBalancesVO.getBalanceConfirmedMap());
-				assertNotNull(getEventDataBalancesVO.getBalanceConfirmedMap().get("234567"));
-				assertNotNull(getEventDataBalancesVO.getBalanceConfirmedMap().get("345678"));	
+				assertNotNull(getEventDataBalancesVO.getPendingMap());
+				assertNotNull(getEventDataBalancesVO.getPendingMap().get("ENJ"));
+				assertNotNull(getEventDataBalancesVO.getPendingMap().get("123456"));	
+				assertNotNull(getEventDataBalancesVO.getConfirmedMap());
+				assertNotNull(getEventDataBalancesVO.getConfirmedMap().get("234567"));
+				assertNotNull(getEventDataBalancesVO.getConfirmedMap().get("345678"));	
 				break;	
 			case "balance_melted":
 				assertNotNull(identityMap.get("identity_id"));

@@ -12,11 +12,11 @@ public class GetEventDataBalancesVO  {
 	@SerializedName("from")
 	private Map<String, Object> fromMap;	
 	
-	@SerializedName("balance_pending")
-	private Map<String, Object> balancePendingMap;	
+	@SerializedName("pending")
+	private Map<String, Object> pendingMap;	
 	
-	@SerializedName("balance_confirmed")
-	private Map<String, Object> balanceConfirmedMap;
+	@SerializedName("confirmed")
+	private Map<String, Object> confirmedMap;
 
 	public Map<String, Object> getIdentityMap() {
 		return identityMap;
@@ -35,20 +35,20 @@ public class GetEventDataBalancesVO  {
 		this.fromMap = fromMap;
 	}
 
-	public Map<String, Object> getBalancePendingMap() {
-		return balancePendingMap;
+	public Map<String, Object> getPendingMap() {
+		return pendingMap;
 	}
 
-	public void setBalancePendingMap(Map<String, Object> balancePendingMap) {
-		this.balancePendingMap = balancePendingMap;
+	public void setPendingMap(Map<String, Object> pendingMap) {
+		this.pendingMap = pendingMap;
 	}
 
-	public Map<String, Object> getBalanceConfirmedMap() {
-		return balanceConfirmedMap;
+	public Map<String, Object> getConfirmedMap() {
+		return confirmedMap;
 	}
 
-	public void setBalanceConfirmedMap(Map<String, Object> balanceConfirmedMap) {
-		this.balanceConfirmedMap = balanceConfirmedMap;
+	public void setConfirmedMap(Map<String, Object> confirmedMap) {
+		this.confirmedMap = confirmedMap;
 	}	
 	
 	
