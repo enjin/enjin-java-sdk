@@ -2,11 +2,11 @@ package com.enjin.coin.sdk.vo.identity;
 
 import java.util.Map;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 public class UpdateIdentityRequestVO extends BaseIdentityRequestVO{
 	
-	@JsonProperty("update")
+	@SerializedName("update")
 	private Map<String, Object> update;
 
 	public Map<String, Object> getUpdate() {

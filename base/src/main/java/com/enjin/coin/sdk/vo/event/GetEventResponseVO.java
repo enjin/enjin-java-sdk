@@ -1,23 +1,23 @@
 package com.enjin.coin.sdk.vo.event;
 
 import com.enjin.coin.sdk.vo.BaseResponseVO;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 public class GetEventResponseVO extends BaseResponseVO {
 
-	@JsonProperty("event_id")
+	@SerializedName("event_id")
 	private String eventId;
 	
-	@JsonProperty("event_type")
+	@SerializedName("event_type")
 	private String eventType;
 	
-	@JsonProperty("timestamp")
+	@SerializedName("timestamp")
 	private String timestamp;
 	
-	@JsonProperty("app_id")
+	@SerializedName("app_id")
 	private String appId;
 
-	@JsonProperty("data")
+	@SerializedName("data")
 	private GetEventDataVO data;
 	
 	

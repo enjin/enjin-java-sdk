@@ -1,16 +1,16 @@
 package com.enjin.coin.sdk.vo.token;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 public class ListTokensRequestVO {
 
-	@JsonProperty("app_id")
+	@SerializedName("app_id")
 	private String appId;
 	
-	@JsonProperty("after_token_id")
+	@SerializedName("after_token_id")
 	private String afterTokenId;
 	
-	@JsonProperty("limit")
+	@SerializedName("limit")
 	private String limit;
 
 	public String getAppId() {

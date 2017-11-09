@@ -1,41 +1,41 @@
 package com.enjin.coin.sdk.vo.token;
 
 import com.enjin.coin.sdk.vo.BaseResponseVO;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 public class GetTokenResponseVO extends BaseResponseVO {
 
-	@JsonProperty("token_id")
+	@SerializedName("token_id")
 	private String tokenId;
 	
-	@JsonProperty("creator")
+	@SerializedName("creator")
 	private String creator;
 	
-	@JsonProperty("adapter")
+	@SerializedName("adapter")
 	private String adapter;
 	
-	@JsonProperty("name")
+	@SerializedName("name")
 	private String name;
 	
-	@JsonProperty("icon")
+	@SerializedName("icon")
 	private String icon;
 	
-	@JsonProperty("totalSupply")
+	@SerializedName("totalSupply")
 	private String totalSupply;
 	
-	@JsonProperty("exchangeRate")
+	@SerializedName("exchangeRate")
 	private String exchangeRate;
 	
-	@JsonProperty("decimals")
+	@SerializedName("decimals")
 	private String decimals;
 	
-	@JsonProperty("maxMeltFee")
+	@SerializedName("maxMeltFee")
 	private String maxMeltFee;
 	
-	@JsonProperty("meltFee")
+	@SerializedName("meltFee")
 	private String meltFee;
 	
-	@JsonProperty("transferable")
+	@SerializedName("transferable")
 	private String transferable;
 
 	public String getTokenId() {

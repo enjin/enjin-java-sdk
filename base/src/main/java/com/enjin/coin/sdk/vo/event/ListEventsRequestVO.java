@@ -1,19 +1,19 @@
 package com.enjin.coin.sdk.vo.event;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 public class ListEventsRequestVO {
 
-	@JsonProperty("auth")
+	@SerializedName("auth")
 	private String auth;
 	
-	@JsonProperty("app_id")
+	@SerializedName("app_id")
 	private String appId;
 	
-	@JsonProperty("after_event_id")
+	@SerializedName("after_event_id")
 	private String afterEventId;
 	
-	@JsonProperty("limit")
+	@SerializedName("limit")
 	private String limit;
 
 	public String getAuth() {

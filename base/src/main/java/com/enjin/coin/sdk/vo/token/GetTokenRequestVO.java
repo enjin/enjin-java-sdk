@@ -1,10 +1,10 @@
 package com.enjin.coin.sdk.vo.token;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 public class GetTokenRequestVO{
 
-	@JsonProperty("token_id")
+	@SerializedName("token_id")
 	private String tokenId;
 
 	public String getTokenId() {

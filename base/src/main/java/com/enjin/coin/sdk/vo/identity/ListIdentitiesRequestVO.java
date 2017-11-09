@@ -1,17 +1,17 @@
 package com.enjin.coin.sdk.vo.identity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 public class ListIdentitiesRequestVO extends BaseIdentityRequestVO{
 
 
-	@JsonProperty("linked")
+	@SerializedName("linked")
 	private Boolean linked;
 	
-	@JsonProperty("after_identity_id")
+	@SerializedName("after_identity_id")
 	private String afterIdentityId;
 	
-	@JsonProperty("limit")
+	@SerializedName("limit")
 	private String limit;
 
 	public Boolean getLinked() {

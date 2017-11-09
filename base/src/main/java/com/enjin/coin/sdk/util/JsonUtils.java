@@ -1,10 +1,9 @@
 package com.enjin.coin.sdk.util;
 
-import java.io.IOException;
 import java.util.logging.Logger;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 
 public class JsonUtils {
 
@@ -24,14 +23,14 @@ public class JsonUtils {
 			return responseObject;
 		}		
 		
-		ObjectMapper mapper = new ObjectMapper();
+		Gson gson = new Gson();
 
 		//JSON from file to Object
 		try {
 			LOGGER.fine(String.format("jsonString:%s", jsonString));
-			responseObject = mapper.readValue(jsonString, responseClass);
-		} catch (IOException e) {
-			LOGGER.warning(String.format("An IOException has occured. Exception: %s", StringUtils.exceptionToString(e)));
+			responseObject = gson.fromJson(jsonString, responseClass);
+		} catch (JsonSyntaxException e) {
+			LOGGER.warning(String.format("A JsonSyntaxException has occured. Exception: %s", StringUtils.exceptionToString(e)));
 		}
 
 		return responseObject;
@@ -51,14 +50,9 @@ public class JsonUtils {
 			return jsonString;
 		}		
 		
-		ObjectMapper mapper = new ObjectMapper();
-		try {
-			jsonString = mapper.writeValueAsString(jsonObject);
-			LOGGER.fine(String.format("jsonString:%s", jsonString));
-		} catch (JsonProcessingException e) {
-			LOGGER.warning(String.format("A JsonProcessingException has occured. Exception: %e", StringUtils.exceptionToString(e)));
-		}
-
+		Gson gson = new Gson();
+		jsonString = gson.toJson(jsonObject);
+		LOGGER.fine(String.format("jsonString:%s", jsonString));	
 		return jsonString;
 	}
 }

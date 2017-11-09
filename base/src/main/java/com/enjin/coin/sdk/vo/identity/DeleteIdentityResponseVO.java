@@ -1,11 +1,11 @@
 package com.enjin.coin.sdk.vo.identity;
 
 import com.enjin.coin.sdk.vo.BaseResponseVO;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 public class DeleteIdentityResponseVO extends BaseResponseVO{
 
-	@JsonProperty("result")
+	@SerializedName("result")
 	private Boolean result;
 
 	public Boolean getResult() {

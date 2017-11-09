@@ -3,8 +3,8 @@ package com.enjin.coin.sdk.vo;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
+import wiremock.com.fasterxml.jackson.annotation.JsonAnyGetter;
+import wiremock.com.fasterxml.jackson.annotation.JsonAnySetter;
 
 public class BaseResponseVO {
 

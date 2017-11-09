@@ -18,8 +18,6 @@ dependencies {
     compile group: 'com.thetransactioncompany', name: 'jsonrpc2-client', version: jsonrpc2client
     compile group: 'com.google.code.gson', name: 'gson', version: gson
     compile group: 'com.pusher', name: 'pusher-java-client', version: pusher
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jackson
-	compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: jackson
 
     // testCompile dependencies
 	testCompile group: 'com.github.tomakehurst', name: 'wiremock-standalone', version: wiremock

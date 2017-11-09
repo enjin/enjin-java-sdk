@@ -3,11 +3,11 @@ package com.enjin.coin.sdk.vo.token;
 import java.util.Arrays;
 
 import com.enjin.coin.sdk.vo.BaseResponseVO;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 public class ListTokensResponseVO extends BaseResponseVO{
 
-	@JsonProperty("getTokenResponseVOArray")
+	@SerializedName("getTokenResponseVOArray")
 	private GetTokenResponseVO[] getTokensResponseVOArray;
 
 	public GetTokenResponseVO[] getGetTokensResponseVOArray() {

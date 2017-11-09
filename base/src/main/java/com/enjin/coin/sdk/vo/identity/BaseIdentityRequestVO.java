@@ -2,14 +2,14 @@ package com.enjin.coin.sdk.vo.identity;
 
 import java.util.Map;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 public class BaseIdentityRequestVO {
 
-	@JsonProperty("auth")
+	@SerializedName("auth")
 	private String auth;
 
-	@JsonProperty("identity")
+	@SerializedName("identity")
 	private Map<String, Object> identity;
 	public Map<String, Object> getIdentity() {
 		return identity;
