@@ -1,0 +1,11 @@
+{
+  "jsonrpc": "2.0",
+  "method": "get",
+  "params": {
+	"auth": "xxxxxxxx",
+	"identity": {
+	  "identity_id": "123456"
+	}
+  },
+  "id": "1"
+}

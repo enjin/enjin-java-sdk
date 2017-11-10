@@ -1,0 +1,45 @@
+{
+  "jsonrpc": "2.0",
+  "result": [
+	{
+	  "token_id": "234567",
+	  "creator": "0x0000000000000000000000000000000000000000",
+	  "adapter": "0x0000000000000000000000000000000000000000",
+	  "name": "Sword of Glory",
+	  "icon": "https://enjincoin.io/images/bubble.png",
+	  "totalSupply": "100000",
+	  "exchangeRate": "1000000000000000000",
+	  "decimals": "0",
+	  "maxMeltFee": "0",
+	  "meltFee": "0",
+	  "transferable": "0"
+	},
+	{
+	  "token_id": "234568",
+	  "creator": "0x0000000000000000000000000000000000000000",
+	  "adapter": "0x0000000000000000000000000000000000000000",
+	  "name": "Axe of Doom",
+	  "icon": "https://enjincoin.io/images/bubble.png",
+	  "totalSupply": "2000",
+	  "exchangeRate": "150000000000000000",
+	  "decimals": "0",
+	  "maxMeltFee": "25",
+	  "meltFee": "20",
+	  "transferable": "1"
+	},
+	{
+	  "token_id": "234569",
+	  "creator": "0x0000000000000000000000000000000000000000",
+	  "adapter": "0x0000000000000000000000000000000000000000",
+	  "name": "Shillings",
+	  "icon": "https://enjincoin.io/images/bubble.png",
+	  "totalSupply": "1000000000000",
+	  "exchangeRate": "1000000000000",
+	  "decimals": "2",
+	  "maxMeltFee": "5",
+	  "meltFee": "5",
+	  "transferable": "2"
+	}
+  ],
+  "id": "1"
+}
