@@ -43,6 +43,10 @@ public class BaseMockServer {
 	private static final String TRANSACTION_REQUESTS_URL = String.format("/%s", Constants.TRANSACTION_REQUESTS_URL);
 	/** Base url for the events **/
 	private static final String EVENTS_URL = String.format("/%s", Constants.EVENTS_URL);
+
+
+	private static final String JSON_FILE_EXTENSION   = ".response.json";
+	private static final String JSON_FILE_BASE_FOLDER = "src/test/resources/examples/API/";
 	
 
 	@Before
@@ -118,7 +122,7 @@ public class BaseMockServer {
 	 * @param methodToCall
 	 */
 	private static void setUpStub(String baseURL, String methodToCall) {
-		String fileToLoad = methodToCall + ".response.json";
+		String fileToLoad = methodToCall + JSON_FILE_EXTENSION;
 		
 		setUpStub(baseURL, methodToCall, fileToLoad);
 	}
@@ -128,9 +132,10 @@ public class BaseMockServer {
 	 * 
 	 * @param baseURL
 	 * @param methodToCall
+	 * @param fileToLoad
 	 */
 	private static void setUpStub(String baseURL, String methodToCall, String fileToLoad) {
-		String filePath = "src/test/resources/examples/API/" + fileToLoad;
+		String filePath = JSON_FILE_BASE_FOLDER + fileToLoad;
 		String fileContents = FileUtils.getFileContents(filePath);
 		
 		// See http://wiremock.org/docs/request-matching/ for request matching
