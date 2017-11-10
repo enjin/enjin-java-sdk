@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import com.enjin.coin.sdk.config.EnjinConfig;
 import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.ValidationUtils;
 import com.enjin.coin.sdk.vo.identity.CreateIdentityRequestVO;
@@ -23,37 +24,12 @@ public class IdentitiesService extends BaseService{
 	
 	/**
 	 * Class constructor
+	 * @param enjinConfig
 	 */
-	public IdentitiesService() {
-		
+	public IdentitiesService(EnjinConfig enjinConfig) {
+		super(enjinConfig);
 	}
 
-	/**
-	 * Class constructor
-	 * @param trustedPlatformUrl
-	 */
-	public IdentitiesService(String trustedPlatformUrl) {
-		super(trustedPlatformUrl);
-	}
-	
-	/**
-	 * Class constructor
-	 * @param inTestMode
-	 */
-	public IdentitiesService(boolean inTestMode) {
-		super(inTestMode);
-	}
-	
-	/**
-	 * Class constructor
-	 * @param trustedPlatformUrl
-	 * @param inTestMode
-	 */
-	public IdentitiesService(String trustedPlatformUrl, boolean inTestMode) {
-		super(trustedPlatformUrl, inTestMode);
-	}
-	
-	
 	/**
 	 * Method to get an identity
 	 * @param getIdentityRequestVO

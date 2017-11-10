@@ -15,15 +15,15 @@ public class JsonRpcUtils {
 
 	private static final Logger LOGGER = Logger.getLogger(JsonRpcUtils.class.getName());
 	
-	private boolean inTestMode = false;
+	private boolean isInTestMode = false;
 	
 	
-	public boolean getInTestMode() {
-		return inTestMode;
+	public boolean getIsInTestMode() {
+		return isInTestMode;
 	}
 
-	public void setInTestMode(boolean inTestMode) {
-		this.inTestMode = inTestMode;
+	public void setIsInTestMode(boolean isInTestMode) {
+		this.isInTestMode = isInTestMode;
 	}
 
 
@@ -68,7 +68,7 @@ public class JsonRpcUtils {
 			jsonRPC2SessionOptions.setAllowedResponseContentTypes(new String[]{ ContentType.TEXT_JSON, ContentType.APPLICATION_JSON, ContentType.APPLICATION_JSON_RPC });
 			jsonRpcSession.setOptions(jsonRPC2SessionOptions);
 			
-			String requestId = Utils.generateRandomId(inTestMode);
+			String requestId = Utils.generateRandomId(isInTestMode);
 			
 			JSONRPC2Request jsonRpcRequest;
 			if (ValidationUtils.isNotEmpty(params)) {

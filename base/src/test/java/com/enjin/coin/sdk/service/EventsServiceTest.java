@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNull;
 
 import java.util.Map;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -12,7 +13,7 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.enjin.coin.sdk.service.EventsService;
+import com.enjin.coin.sdk.config.EnjinConfig;
 import com.enjin.coin.sdk.util.JsonRpcUtils;
 import com.enjin.coin.sdk.vo.event.GetEventRequestVO;
 import com.enjin.coin.sdk.vo.event.GetEventResponseVO;
@@ -24,37 +25,25 @@ import com.enjin.coin.sdk.vo.event.ListEventsResponseVO;
 public class EventsServiceTest {
 
 	EventsService eventService;
-
+	EnjinConfig enjinConfig;
+	
+	@Before
+	public void setUp() {
+		enjinConfig = new EnjinConfig();
+	}
 	@Test
-	public void testContructor1() {
-		eventService = new EventsService();
+	public void testContructor() {
+		eventService = new EventsService(enjinConfig);
 		assertNotNull(eventService);
 		assertNotNull(eventService.toString());
 	}
 	
-	@Test
-	public void testContructor2() {
-		eventService = new EventsService("http://localhost:8080");
-		assertNotNull(eventService);
-		assertNotNull(eventService.toString());
-	}
-	@Test
-	public void testContructor3() {
-		eventService = new EventsService("http://localhost:8080", false);
-		assertNotNull(eventService);
-		assertNotNull(eventService.toString());
-	}
-	@Test
-	public void testContructor4() {
-		eventService = new EventsService(false);
-		assertNotNull(eventService);
-		assertNotNull(eventService.toString());
-	}
+	
 	@Test
 	public void testGetEvent_GetEventRequestVOIsNull() {
 		GetEventRequestVO getEventRequestVO = null;
 		
-		eventService = new EventsService();
+		eventService = new EventsService(enjinConfig);
 		GetEventResponseVO getEventResponseVO = eventService.getEvent(getEventRequestVO);
 		assertNull(getEventResponseVO);
 	}
@@ -64,7 +53,7 @@ public class EventsServiceTest {
 		getEventRequestVO.setEventId(null);
 		getEventRequestVO.setAuth("auth");
 		
-		eventService = new EventsService();
+		eventService = new EventsService(enjinConfig);
 		GetEventResponseVO getEventResponseVO = eventService.getEvent(getEventRequestVO);
 		assertNull(getEventResponseVO);
 	}
@@ -74,7 +63,7 @@ public class EventsServiceTest {
 		getEventRequestVO.setEventId("");
 		getEventRequestVO.setAuth("auth");
 		
-		eventService = new EventsService();
+		eventService = new EventsService(enjinConfig);
 		GetEventResponseVO getEventResponseVO = eventService.getEvent(getEventRequestVO);
 		assertNull(getEventResponseVO);
 	}
@@ -84,7 +73,7 @@ public class EventsServiceTest {
 		getEventRequestVO.setEventId("eventId");
 		getEventRequestVO.setAuth("");
 		
-		eventService = new EventsService();
+		eventService = new EventsService(enjinConfig);
 		GetEventResponseVO getEventResponseVO = eventService.getEvent(getEventRequestVO);
 		assertNull(getEventResponseVO);
 	}
@@ -94,7 +83,7 @@ public class EventsServiceTest {
 		getEventRequestVO.setEventId("eventId");
 		getEventRequestVO.setAuth(null);
 		
-		eventService = new EventsService();
+		eventService = new EventsService(enjinConfig);
 		GetEventResponseVO getEventResponseVO = eventService.getEvent(getEventRequestVO);
 		assertNull(getEventResponseVO);
 	}
@@ -113,7 +102,7 @@ public class EventsServiceTest {
 		PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
 		Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(),  Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetEventResponseVO);
 		
-		eventService = new EventsService();
+		eventService = new EventsService(enjinConfig);
 		GetEventResponseVO getEventResponseVO = eventService.getEvent(getEventRequestVO);
 		assertNull(getEventResponseVO);
 		
@@ -134,7 +123,7 @@ public class EventsServiceTest {
 		PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
 		Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(),  Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetEventResponseVO);
 		
-		eventService = new EventsService();
+		eventService = new EventsService(enjinConfig);
 		GetEventResponseVO getEventResponseVO = eventService.getEvent(getEventRequestVO);
 		assertNotNull(getEventResponseVO);
 		
@@ -146,7 +135,7 @@ public class EventsServiceTest {
 	public void testListEvents_ListEventsRequestVOIsNull() {
 		ListEventsRequestVO listEventsRequestVO = null;
 		
-		eventService = new EventsService();
+		eventService = new EventsService(enjinConfig);
 		ListEventsResponseVO listEventsResponseVO = eventService.listEvents(listEventsRequestVO);
 		assertNull(listEventsResponseVO);
 	}
@@ -158,7 +147,7 @@ public class EventsServiceTest {
 		listEventsRequestVO.setLimit("limit");
 		listEventsRequestVO.setAuth("auth");
 		
-		eventService = new EventsService();
+		eventService = new EventsService(enjinConfig);
 		ListEventsResponseVO listEventsResponseVO = eventService.listEvents(listEventsRequestVO);
 		assertNull(listEventsResponseVO);
 	}
@@ -170,7 +159,7 @@ public class EventsServiceTest {
 		listEventsRequestVO.setLimit("limit");
 		listEventsRequestVO.setAuth("auth");
 		
-		eventService = new EventsService();
+		eventService = new EventsService(enjinConfig);
 		ListEventsResponseVO listEventsResponseVO = eventService.listEvents(listEventsRequestVO);
 		assertNull(listEventsResponseVO);
 	}
@@ -181,7 +170,7 @@ public class EventsServiceTest {
 		listEventsRequestVO.setAppId(null);
 		listEventsRequestVO.setLimit("limit");
 		listEventsRequestVO.setAuth("auth");
-		eventService = new EventsService();
+		eventService = new EventsService(enjinConfig);
 		ListEventsResponseVO listEventsResponseVO = eventService.listEvents(listEventsRequestVO);
 		assertNull(listEventsResponseVO);
 	}
@@ -192,7 +181,7 @@ public class EventsServiceTest {
 		listEventsRequestVO.setAppId("appId");
 		listEventsRequestVO.setLimit("");
 		listEventsRequestVO.setAuth("auth");
-		eventService = new EventsService();
+		eventService = new EventsService(enjinConfig);
 		ListEventsResponseVO listEventsResponseVO = eventService.listEvents(listEventsRequestVO);
 		assertNull(listEventsResponseVO);
 	}
@@ -203,7 +192,7 @@ public class EventsServiceTest {
 		listEventsRequestVO.setAppId("appId");
 		listEventsRequestVO.setLimit(null);
 		listEventsRequestVO.setAuth("auth");
-		eventService = new EventsService();
+		eventService = new EventsService(enjinConfig);
 		ListEventsResponseVO listEventsResponseVO = eventService.listEvents(listEventsRequestVO);
 		assertNull(listEventsResponseVO);
 	}
@@ -214,7 +203,7 @@ public class EventsServiceTest {
 		listEventsRequestVO.setAppId("appId");
 		listEventsRequestVO.setLimit("limit");
 		listEventsRequestVO.setAuth("");
-		eventService = new EventsService();
+		eventService = new EventsService(enjinConfig);
 		ListEventsResponseVO listEventsResponseVO = eventService.listEvents(listEventsRequestVO);
 		assertNull(listEventsResponseVO);
 	}
@@ -225,7 +214,7 @@ public class EventsServiceTest {
 		listEventsRequestVO.setAppId("appId");
 		listEventsRequestVO.setLimit("limit");
 		listEventsRequestVO.setAuth(null);
-		eventService = new EventsService();
+		eventService = new EventsService(enjinConfig);
 		ListEventsResponseVO listEventsResponseVO = eventService.listEvents(listEventsRequestVO);
 		assertNull(listEventsResponseVO);
 	}
@@ -244,7 +233,7 @@ public class EventsServiceTest {
 		PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
 		Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(),  Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedListEventsResponseVO);
 		
-		eventService = new EventsService();
+		eventService = new EventsService(enjinConfig);
 		ListEventsResponseVO listEventsResponseVO = eventService.listEvents(listEventsRequestVO);
 		assertNull(listEventsResponseVO);
 		
@@ -266,7 +255,7 @@ public class EventsServiceTest {
 		PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
 		Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(),  Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedListEventsResponseVO);
 		
-		eventService = new EventsService();
+		eventService = new EventsService(enjinConfig);
 		ListEventsResponseVO listEventsResponseVO = eventService.listEvents(listEventsRequestVO);
 		assertNull(listEventsResponseVO);
 
@@ -288,7 +277,7 @@ public class EventsServiceTest {
 		PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
 		Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(),  Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedListEventsResponseVO);
 		
-		eventService = new EventsService();
+		eventService = new EventsService(enjinConfig);
 		ListEventsResponseVO listEventsResponseVO = eventService.listEvents(listEventsRequestVO);
 		assertNotNull(listEventsResponseVO);
 		assertNotNull(listEventsResponseVO.getGetEventsResponseVOArray());
@@ -312,7 +301,7 @@ public class EventsServiceTest {
 		PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
 		Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(),  Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedListEventsResponseVO);
 		
-		eventService = new EventsService();
+		eventService = new EventsService(enjinConfig);
 		ListEventsResponseVO listEventsResponseVO = eventService.listEvents(listEventsRequestVO);
 		assertNotNull(listEventsResponseVO);
 		assertNotNull(listEventsResponseVO.getGetEventsResponseVOArray());

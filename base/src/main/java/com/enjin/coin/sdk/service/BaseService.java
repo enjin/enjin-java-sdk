@@ -1,34 +1,33 @@
 package com.enjin.coin.sdk.service;
 
+import java.util.logging.Logger;
+
+import com.enjin.coin.sdk.config.EnjinConfig;
 import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.JsonRpcUtils;
 import com.enjin.coin.sdk.util.ValidationUtils;
 
 public abstract class BaseService {
 
+	private static final Logger LOGGER = Logger.getLogger(BaseService.class.getName());
+
+	
 	private String trustedPlatformUrl;
+	private boolean isInTestMode;
 	protected JsonRpcUtils jsonRpcUtils;
-	public BaseService() {
+
+	public BaseService(EnjinConfig enjinConfig) {
+		if (enjinConfig == null) {
+			LOGGER.warning("The enjinConfig passed in is null");
+		}
+
+		trustedPlatformUrl = enjinConfig.getTrustedPlatformUrl();
+		isInTestMode       = enjinConfig.isInTestMode();
+		
 		jsonRpcUtils = new JsonRpcUtils();
+		jsonRpcUtils.setIsInTestMode(isInTestMode);
 	}
-	
-	public BaseService(String trustedPlatformUrl) {
-		super();
-		this.trustedPlatformUrl = trustedPlatformUrl;
-		jsonRpcUtils = new JsonRpcUtils();
-	}
-	
-	public BaseService(String trustedPlatformUrl, boolean inTestMode) {
-		super();
-		this.trustedPlatformUrl = trustedPlatformUrl;
-		jsonRpcUtils = new JsonRpcUtils();
-		jsonRpcUtils.setInTestMode(inTestMode);
-	}
-	public BaseService(boolean inTestMode) {
-		super();
-		jsonRpcUtils = new JsonRpcUtils();
-		jsonRpcUtils.setInTestMode(inTestMode);
-	}
+
 	/**
 	 * Method to get the identities url
 	 * @return

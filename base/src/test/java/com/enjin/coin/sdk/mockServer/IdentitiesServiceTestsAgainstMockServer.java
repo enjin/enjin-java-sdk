@@ -8,6 +8,7 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.enjin.coin.sdk.config.EnjinConfig;
 import com.enjin.coin.sdk.service.IdentitiesService;
 import com.enjin.coin.sdk.vo.identity.CreateIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.CreateIdentityResponseVO;
@@ -26,7 +27,10 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer{
 
 	@Before
 	public void init() {
-		identities = new IdentitiesService(getURL(), true);
+		EnjinConfig enjinConfig = new EnjinConfig();
+		enjinConfig.setTrustedPlatformUrl(getURL());
+		enjinConfig.setInTestMode(true);
+		identities = new IdentitiesService(enjinConfig);
 	}
 	
 	@Test

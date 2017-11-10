@@ -8,6 +8,7 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.enjin.coin.sdk.config.EnjinConfig;
 import com.enjin.coin.sdk.service.TransactionRequestsService;
 import com.enjin.coin.sdk.vo.transactionrequest.CancelTransactionRequestRequestVO;
 import com.enjin.coin.sdk.vo.transactionrequest.CancelTransactionRequestResponseVO;
@@ -24,7 +25,10 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer{
 
 	@Before
 	public void init() {
-		transactionRequests = new TransactionRequestsService(getURL(), true);
+		EnjinConfig enjinConfig = new EnjinConfig();
+		enjinConfig.setTrustedPlatformUrl(getURL());
+		enjinConfig.setInTestMode(true);
+		transactionRequests = new TransactionRequestsService(enjinConfig);
 	}
 	
 	@Test

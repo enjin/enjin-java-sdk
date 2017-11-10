@@ -7,6 +7,7 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.enjin.coin.sdk.config.EnjinConfig;
 import com.enjin.coin.sdk.service.EventsService;
 import com.enjin.coin.sdk.vo.event.GetEventDataBalancesVO;
 import com.enjin.coin.sdk.vo.event.GetEventRequestVO;
@@ -20,7 +21,10 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer{
 
 	@Before
 	public void init() {
-		events = new EventsService(getURL(), true);
+		EnjinConfig enjinConfig = new EnjinConfig();
+		enjinConfig.setTrustedPlatformUrl(getURL());
+		enjinConfig.setInTestMode(true);
+		events = new EventsService(enjinConfig);
 	}
 	
 	@Test

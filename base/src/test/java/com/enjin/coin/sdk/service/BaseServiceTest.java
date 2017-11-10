@@ -6,27 +6,32 @@ import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.enjin.coin.sdk.config.EnjinConfig;
 import com.enjin.coin.sdk.service.IdentitiesService;
 
 public class BaseServiceTest {
 
 	BaseService baseAction;
+	EnjinConfig enjinConfig;
 	
 	@Before
 	public void setUp() {
-		baseAction = new IdentitiesService();
+		enjinConfig = new EnjinConfig();
+		baseAction = new IdentitiesService(enjinConfig);
 	}
 	
 	@Test
 	public void testContructor1() {
-		baseAction = new IdentitiesService();
+		baseAction = new IdentitiesService(enjinConfig);
 		assertNotNull(baseAction);
 		assertNotNull(baseAction.toString());
 	}
 	
 	@Test
 	public void testContructor2() {
-		baseAction = new IdentitiesService("http://localhost:8080");
+		enjinConfig.setInTestMode(true);
+		enjinConfig.setTrustedPlatformUrl("http://localhost:8080");
+		baseAction = new IdentitiesService(enjinConfig);
 		assertNotNull(baseAction);
 		assertNotNull(baseAction.toString());
 	}

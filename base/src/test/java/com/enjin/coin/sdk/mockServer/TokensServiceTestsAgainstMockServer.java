@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.enjin.coin.sdk.config.EnjinConfig;
 import com.enjin.coin.sdk.service.TokensService;
 import com.enjin.coin.sdk.vo.token.GetTokenRequestVO;
 import com.enjin.coin.sdk.vo.token.GetTokenResponseVO;
@@ -18,7 +19,10 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer{
 	
 	@Before
 	public void init() {
-		tokens = new TokensService(getURL(), true);
+		EnjinConfig enjinConfig = new EnjinConfig();
+		enjinConfig.setTrustedPlatformUrl(getURL());
+		enjinConfig.setInTestMode(true);
+		tokens = new TokensService(enjinConfig);
 	}
 	
 	@Test
