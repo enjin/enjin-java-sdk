@@ -1,4 +1,4 @@
-package com.enjin.coin.sdk;
+package com.enjin.coin.sdk.service;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +11,7 @@ import com.enjin.coin.sdk.vo.event.GetEventResponseVO;
 import com.enjin.coin.sdk.vo.event.ListEventsRequestVO;
 import com.enjin.coin.sdk.vo.event.ListEventsResponseVO;
 
-public class EventsService extends BaseAction{
+public class EventsService extends BaseService{
 
 	private static final Logger LOGGER = Logger.getLogger(EventsService.class.getName());
 	

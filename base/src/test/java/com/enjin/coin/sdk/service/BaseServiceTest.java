@@ -1,4 +1,4 @@
-package com.enjin.coin.sdk;
+package com.enjin.coin.sdk.service;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -6,9 +6,11 @@ import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.Test;
 
-public class BaseActionTest {
+import com.enjin.coin.sdk.service.IdentitiesService;
 
-	BaseAction baseAction;
+public class BaseServiceTest {
+
+	BaseService baseAction;
 	
 	@Before
 	public void setUp() {

@@ -1,4 +1,4 @@
-package com.enjin.coin.sdk;
+package com.enjin.coin.sdk.service;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +17,7 @@ import com.enjin.coin.sdk.vo.identity.ListIdentitiesResponseVO;
 import com.enjin.coin.sdk.vo.identity.UpdateIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.UpdateIdentityResponseVO;
 
-public class IdentitiesService extends BaseAction{
+public class IdentitiesService extends BaseService{
 
 	private static final Logger LOGGER = Logger.getLogger(IdentitiesService.class.getName());
 	

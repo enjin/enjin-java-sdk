@@ -7,7 +7,7 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.enjin.coin.sdk.EventsService;
+import com.enjin.coin.sdk.service.EventsService;
 import com.enjin.coin.sdk.vo.event.GetEventDataBalancesVO;
 import com.enjin.coin.sdk.vo.event.GetEventRequestVO;
 import com.enjin.coin.sdk.vo.event.GetEventResponseVO;

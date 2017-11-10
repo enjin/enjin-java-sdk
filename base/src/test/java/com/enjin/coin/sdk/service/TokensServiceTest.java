@@ -1,4 +1,4 @@
-package com.enjin.coin.sdk;
+package com.enjin.coin.sdk.service;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -12,6 +12,7 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import com.enjin.coin.sdk.service.TokensService;
 import com.enjin.coin.sdk.util.JsonRpcUtils;
 import com.enjin.coin.sdk.vo.token.GetTokenRequestVO;
 import com.enjin.coin.sdk.vo.token.GetTokenResponseVO;

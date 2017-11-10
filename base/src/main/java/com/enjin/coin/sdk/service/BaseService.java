@@ -1,30 +1,30 @@
-package com.enjin.coin.sdk;
+package com.enjin.coin.sdk.service;
 
 import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.JsonRpcUtils;
 import com.enjin.coin.sdk.util.ValidationUtils;
 
-public class BaseAction {
+public abstract class BaseService {
 
 	private String trustedPlatformUrl;
 	protected JsonRpcUtils jsonRpcUtils;
-	public BaseAction() {
+	public BaseService() {
 		jsonRpcUtils = new JsonRpcUtils();
 	}
 	
-	public BaseAction(String trustedPlatformUrl) {
+	public BaseService(String trustedPlatformUrl) {
 		super();
 		this.trustedPlatformUrl = trustedPlatformUrl;
 		jsonRpcUtils = new JsonRpcUtils();
 	}
 	
-	public BaseAction(String trustedPlatformUrl, boolean inTestMode) {
+	public BaseService(String trustedPlatformUrl, boolean inTestMode) {
 		super();
 		this.trustedPlatformUrl = trustedPlatformUrl;
 		jsonRpcUtils = new JsonRpcUtils();
 		jsonRpcUtils.setInTestMode(inTestMode);
 	}
-	public BaseAction(boolean inTestMode) {
+	public BaseService(boolean inTestMode) {
 		super();
 		jsonRpcUtils = new JsonRpcUtils();
 		jsonRpcUtils.setInTestMode(inTestMode);

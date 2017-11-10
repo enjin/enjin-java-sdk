@@ -8,7 +8,7 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.enjin.coin.sdk.TransactionRequestsService;
+import com.enjin.coin.sdk.service.TransactionRequestsService;
 import com.enjin.coin.sdk.vo.transactionrequest.CancelTransactionRequestRequestVO;
 import com.enjin.coin.sdk.vo.transactionrequest.CancelTransactionRequestResponseVO;
 import com.enjin.coin.sdk.vo.transactionrequest.CreateTransactionRequestRequestVO;

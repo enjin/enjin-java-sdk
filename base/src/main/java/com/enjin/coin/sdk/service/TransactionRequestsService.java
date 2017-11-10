@@ -1,4 +1,4 @@
-package com.enjin.coin.sdk;
+package com.enjin.coin.sdk.service;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +15,7 @@ import com.enjin.coin.sdk.vo.transactionrequest.GetTransactionRequestResponseVO;
 import com.enjin.coin.sdk.vo.transactionrequest.ListTransactionRequestsRequestVO;
 import com.enjin.coin.sdk.vo.transactionrequest.ListTransactionRequestsResponseVO;
 
-public class TransactionRequestsService extends BaseAction{
+public class TransactionRequestsService extends BaseService{
 
 	private static final Logger LOGGER = Logger.getLogger(TransactionRequestsService.class.getName());
 	

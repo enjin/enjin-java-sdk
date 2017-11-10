@@ -1,4 +1,4 @@
-package com.enjin.coin.sdk;
+package com.enjin.coin.sdk.service;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -15,6 +15,7 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import com.enjin.coin.sdk.service.TransactionRequestsService;
 import com.enjin.coin.sdk.util.JsonRpcUtils;
 import com.enjin.coin.sdk.vo.transactionrequest.CancelTransactionRequestRequestVO;
 import com.enjin.coin.sdk.vo.transactionrequest.CancelTransactionRequestResponseVO;

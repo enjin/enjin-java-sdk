@@ -1,4 +1,4 @@
-package com.enjin.coin.sdk;
+package com.enjin.coin.sdk.service;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +11,7 @@ import com.enjin.coin.sdk.vo.token.GetTokenResponseVO;
 import com.enjin.coin.sdk.vo.token.ListTokensRequestVO;
 import com.enjin.coin.sdk.vo.token.ListTokensResponseVO;
 
-public class TokensService extends BaseAction{
+public class TokensService extends BaseService{
 
 	private static final Logger LOGGER = Logger.getLogger(TokensService.class.getName());
 	

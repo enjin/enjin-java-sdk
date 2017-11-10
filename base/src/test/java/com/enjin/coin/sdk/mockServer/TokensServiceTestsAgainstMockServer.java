@@ -5,7 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.enjin.coin.sdk.TokensService;
+import com.enjin.coin.sdk.service.TokensService;
 import com.enjin.coin.sdk.vo.token.GetTokenRequestVO;
 import com.enjin.coin.sdk.vo.token.GetTokenResponseVO;
 import com.enjin.coin.sdk.vo.token.ListTokensRequestVO;
