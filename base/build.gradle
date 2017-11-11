@@ -7,7 +7,6 @@ configureJavaCompilers(8)
 
 ext {
     jsonrpc2client = '1.16.4'
-    jackson = '2.9.2'
     wiremock = '2.10.1'
     gson = '2.8.2'
     pusher = '1.5.0'
