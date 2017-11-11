@@ -1,13 +1,13 @@
 package com.enjin.coin.sdk.evan;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Map;
-
 import com.enjin.coin.sdk.util.ContentType;
 import com.thetransactioncompany.jsonrpc2.JSONRPC2Request;
 import com.thetransactioncompany.jsonrpc2.client.JSONRPC2Session;
 import com.thetransactioncompany.jsonrpc2.client.JSONRPC2SessionOptions;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Map;
 
 public class JsonRpcBase extends WireMockBase {
 
@@ -21,7 +21,7 @@ public class JsonRpcBase extends WireMockBase {
         options.ignoreVersion(true);
         options.trustAllCerts(true);
         options.setRequestContentType(ContentType.TEXT_JSON);
-        options.setAllowedResponseContentTypes(new String[]{ ContentType.TEXT_JSON, ContentType.APPLICATION_JSON, ContentType.APPLICATION_JSON_RPC });
+        options.setAllowedResponseContentTypes(new String[]{ContentType.TEXT_JSON, ContentType.APPLICATION_JSON, ContentType.APPLICATION_JSON_RPC});
         return options;
     }
 

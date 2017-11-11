@@ -2,7 +2,7 @@
   "jsonrpc": "2.0",
   "method": "get",
   "params": {
-	"token_id":"12345"
+    "token_id": "12345"
   },
   "id": "1"
 }

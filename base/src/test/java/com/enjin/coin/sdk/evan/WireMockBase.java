@@ -1,12 +1,11 @@
 package com.enjin.coin.sdk.evan;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Rule;
-
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Rule;
 
 public class WireMockBase {
 

@@ -1,192 +1,192 @@
 package com.enjin.coin.sdk.vo.event;
 
-import java.util.Map;
-
 import com.google.gson.annotations.SerializedName;
 
-public class GetEventDataVO  {
+import java.util.Map;
 
-	@SerializedName("token_id")
-	private String tokenId;
-	
-	@SerializedName("creator")
-	private String creator;
-	
-	@SerializedName("adapter")
-	private String adapter;
-	
-	@SerializedName("name")
-	private String name;
-	
-	@SerializedName("icon")
-	private String icon;
-	
-	@SerializedName("totalSupply")
-	private String totalSupply;
-	
-	@SerializedName("exchangeRate")
-	private String exchangeRate;
-	
-	@SerializedName("decimals")
-	private String decimals;
-	
-	@SerializedName("maxMeltFee")
-	private String maxMeltFee;
-	
-	@SerializedName("meltFee")
-	private String meltFee;
-	
-	@SerializedName("transferable")
-	private String transferable;
-	
-	
-	@SerializedName("recipient")
-	private Map<String, Object> recipientMap;
-	
-	
-	@SerializedName("balances")
-	private GetEventDataBalancesVO[] getEventDataBalancesVOArray;
+public class GetEventDataVO {
 
-	@SerializedName("identity")
-	private Map<String, Object> identityMap;	
-	
-	public Map<String, Object> getIdentityMap() {
-		return identityMap;
-	}
+    @SerializedName("token_id")
+    private String tokenId;
 
-	public void setIdentityMap(Map<String, Object> identityMap) {
-		this.identityMap = identityMap;
-	}
-	
-	
-	public String getTokenId() {
-		return tokenId;
-	}
+    @SerializedName("creator")
+    private String creator;
+
+    @SerializedName("adapter")
+    private String adapter;
+
+    @SerializedName("name")
+    private String name;
+
+    @SerializedName("icon")
+    private String icon;
+
+    @SerializedName("totalSupply")
+    private String totalSupply;
+
+    @SerializedName("exchangeRate")
+    private String exchangeRate;
+
+    @SerializedName("decimals")
+    private String decimals;
+
+    @SerializedName("maxMeltFee")
+    private String maxMeltFee;
+
+    @SerializedName("meltFee")
+    private String meltFee;
+
+    @SerializedName("transferable")
+    private String transferable;
 
 
-	public void setTokenId(String tokenId) {
-		this.tokenId = tokenId;
-	}
+    @SerializedName("recipient")
+    private Map<String, Object> recipientMap;
 
 
-	public String getCreator() {
-		return creator;
-	}
+    @SerializedName("balances")
+    private GetEventDataBalancesVO[] getEventDataBalancesVOArray;
+
+    @SerializedName("identity")
+    private Map<String, Object> identityMap;
+
+    public Map<String, Object> getIdentityMap() {
+        return identityMap;
+    }
+
+    public void setIdentityMap(Map<String, Object> identityMap) {
+        this.identityMap = identityMap;
+    }
 
 
-	public void setCreator(String creator) {
-		this.creator = creator;
-	}
+    public String getTokenId() {
+        return tokenId;
+    }
 
 
-	public String getAdapter() {
-		return adapter;
-	}
+    public void setTokenId(String tokenId) {
+        this.tokenId = tokenId;
+    }
 
 
-	public void setAdapter(String adapter) {
-		this.adapter = adapter;
-	}
+    public String getCreator() {
+        return creator;
+    }
 
 
-	public String getName() {
-		return name;
-	}
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
 
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getAdapter() {
+        return adapter;
+    }
 
 
-	public String getIcon() {
-		return icon;
-	}
+    public void setAdapter(String adapter) {
+        this.adapter = adapter;
+    }
 
 
-	public void setIcon(String icon) {
-		this.icon = icon;
-	}
+    public String getName() {
+        return name;
+    }
 
 
-	public String getTotalSupply() {
-		return totalSupply;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
 
-	public void setTotalSupply(String totalSupply) {
-		this.totalSupply = totalSupply;
-	}
+    public String getIcon() {
+        return icon;
+    }
 
 
-	public String getExchangeRate() {
-		return exchangeRate;
-	}
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
 
 
-	public void setExchangeRate(String exchangeRate) {
-		this.exchangeRate = exchangeRate;
-	}
+    public String getTotalSupply() {
+        return totalSupply;
+    }
 
 
-	public String getDecimals() {
-		return decimals;
-	}
+    public void setTotalSupply(String totalSupply) {
+        this.totalSupply = totalSupply;
+    }
 
 
-	public void setDecimals(String decimals) {
-		this.decimals = decimals;
-	}
+    public String getExchangeRate() {
+        return exchangeRate;
+    }
 
 
-	public String getMaxMeltFee() {
-		return maxMeltFee;
-	}
+    public void setExchangeRate(String exchangeRate) {
+        this.exchangeRate = exchangeRate;
+    }
 
 
-	public void setMaxMeltFee(String maxMeltFee) {
-		this.maxMeltFee = maxMeltFee;
-	}
+    public String getDecimals() {
+        return decimals;
+    }
 
 
-	public String getMeltFee() {
-		return meltFee;
-	}
+    public void setDecimals(String decimals) {
+        this.decimals = decimals;
+    }
 
 
-	public void setMeltFee(String meltFee) {
-		this.meltFee = meltFee;
-	}
+    public String getMaxMeltFee() {
+        return maxMeltFee;
+    }
 
 
-	public String getTransferable() {
-		return transferable;
-	}
+    public void setMaxMeltFee(String maxMeltFee) {
+        this.maxMeltFee = maxMeltFee;
+    }
 
 
-	public void setTransferable(String transferable) {
-		this.transferable = transferable;
-	}
+    public String getMeltFee() {
+        return meltFee;
+    }
 
 
-	public Map<String, Object> getRecipientMap() {
-		return recipientMap;
-	}
+    public void setMeltFee(String meltFee) {
+        this.meltFee = meltFee;
+    }
 
 
-	public void setRecipientMap(Map<String, Object> recipientMap) {
-		this.recipientMap = recipientMap;
-	}
+    public String getTransferable() {
+        return transferable;
+    }
 
 
-	public GetEventDataBalancesVO[] getGetEventDataBalancesVO() {
-		return getEventDataBalancesVOArray;
-	}
+    public void setTransferable(String transferable) {
+        this.transferable = transferable;
+    }
 
 
-	public void setGetEventDataValancesVO(GetEventDataBalancesVO[] getEventDataBalancesVOArray) {
-		this.getEventDataBalancesVOArray = getEventDataBalancesVOArray;
-	}
+    public Map<String, Object> getRecipientMap() {
+        return recipientMap;
+    }
 
-	
+
+    public void setRecipientMap(Map<String, Object> recipientMap) {
+        this.recipientMap = recipientMap;
+    }
+
+
+    public GetEventDataBalancesVO[] getGetEventDataBalancesVO() {
+        return getEventDataBalancesVOArray;
+    }
+
+
+    public void setGetEventDataValancesVO(GetEventDataBalancesVO[] getEventDataBalancesVOArray) {
+        this.getEventDataBalancesVOArray = getEventDataBalancesVOArray;
+    }
+
+
 }

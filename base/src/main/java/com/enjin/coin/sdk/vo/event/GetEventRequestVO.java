@@ -2,36 +2,35 @@ package com.enjin.coin.sdk.vo.event;
 
 import com.google.gson.annotations.SerializedName;
 
-public class GetEventRequestVO{
+public class GetEventRequestVO {
 
-	@SerializedName("auth")
-	private String auth;
-	
-	@SerializedName("event_id")
-	private String eventId;
+    @SerializedName("auth")
+    private String auth;
 
-	
-	public String getAuth() {
-		return auth;
-	}
+    @SerializedName("event_id")
+    private String eventId;
 
-	public void setAuth(String auth) {
-		this.auth = auth;
-	}
 
-	public String getEventId() {
-		return eventId;
-	}
+    public String getAuth() {
+        return auth;
+    }
 
-	public void setEventId(String eventId) {
-		this.eventId = eventId;
-	}
+    public void setAuth(String auth) {
+        this.auth = auth;
+    }
 
-	@Override
-	public String toString() {
-		return "GetEventRequestVO [auth=" + auth + ", eventId=" + eventId + "]";
-	}
+    public String getEventId() {
+        return eventId;
+    }
 
+    public void setEventId(String eventId) {
+        this.eventId = eventId;
+    }
+
+    @Override
+    public String toString() {
+        return "GetEventRequestVO [auth=" + auth + ", eventId=" + eventId + "]";
+    }
 
 
 }

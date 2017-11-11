@@ -11,6 +11,7 @@ public final class StringUtils {
 
     /**
      * Method to convert an exception to string
+     *
      * @param e
      * @return
      */

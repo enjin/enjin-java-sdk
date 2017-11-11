@@ -1,9 +1,5 @@
 package com.enjin.coin.sdk.service;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Logger;
-
 import com.enjin.coin.sdk.config.EnjinConfig;
 import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.ValidationUtils;
@@ -12,74 +8,81 @@ import com.enjin.coin.sdk.vo.event.GetEventResponseVO;
 import com.enjin.coin.sdk.vo.event.ListEventsRequestVO;
 import com.enjin.coin.sdk.vo.event.ListEventsResponseVO;
 
-public class EventsService extends BaseService{
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Logger;
 
-	private static final Logger LOGGER = Logger.getLogger(EventsService.class.getName());
+public class EventsService extends BaseService {
 
-	/**
-	 * Class constructor
-	 * @param enjinConfig
-	 */
-	public EventsService(EnjinConfig enjinConfig) {
-		super(enjinConfig);
-	}
+    private static final Logger LOGGER = Logger.getLogger(EventsService.class.getName());
 
-	/**
-	 * Method to get an event
-	 * @param getEventRequestVO
-	 * @return
-	 */
-	public GetEventResponseVO getEvent(GetEventRequestVO getEventRequestVO) {
-		GetEventResponseVO getEventResponseVO = null;
+    /**
+     * Class constructor
+     *
+     * @param enjinConfig
+     */
+    public EventsService(EnjinConfig enjinConfig) {
+        super(enjinConfig);
+    }
 
-		if (getEventRequestVO == null || ValidationUtils.isEmpty(getEventRequestVO.getAuth()) || ValidationUtils.isEmpty(getEventRequestVO.getEventId())) {
-			LOGGER.warning("getEventRequestVO is null, auth or eventId passed in are null or empty");
-			return getEventResponseVO;
-		}		
+    /**
+     * Method to get an event
+     *
+     * @param getEventRequestVO
+     * @return
+     */
+    public GetEventResponseVO getEvent(GetEventRequestVO getEventRequestVO) {
+        GetEventResponseVO getEventResponseVO = null;
 
-		Map<String,Object> params = new HashMap<String,Object>();
-		params.put("auth",  getEventRequestVO.getAuth());
-		params.put("event_id",  getEventRequestVO.getEventId());
+        if (getEventRequestVO == null || ValidationUtils.isEmpty(getEventRequestVO.getAuth()) || ValidationUtils.isEmpty(getEventRequestVO.getEventId())) {
+            LOGGER.warning("getEventRequestVO is null, auth or eventId passed in are null or empty");
+            return getEventResponseVO;
+        }
 
-		// Construct new request
-		String method = Constants.METHOD_EVENTS_GET;
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("auth", getEventRequestVO.getAuth());
+        params.put("event_id", getEventRequestVO.getEventId());
 
-		getEventResponseVO = (GetEventResponseVO) jsonRpcUtils.sendJsonRpcRequest(getEventsUrl(), GetEventResponseVO.class, method, params);
+        // Construct new request
+        String method = Constants.METHOD_EVENTS_GET;
 
-		return getEventResponseVO;
-	}
-	
-	/**
-	 * Method to list the events
-	 * @param listEventsRequestVO
-	 * @return
-	 */
-	public ListEventsResponseVO listEvents(ListEventsRequestVO listEventsRequestVO) {
-		ListEventsResponseVO listEventsResponseVO = null;
+        getEventResponseVO = (GetEventResponseVO) jsonRpcUtils.sendJsonRpcRequest(getEventsUrl(), GetEventResponseVO.class, method, params);
 
-		if (listEventsRequestVO == null || ValidationUtils.isEmpty(listEventsRequestVO.getAuth()) || ValidationUtils.isEmpty(listEventsRequestVO.getAppId()) || ValidationUtils.isEmpty(listEventsRequestVO.getAfterEventId()) || ValidationUtils.isEmpty(listEventsRequestVO.getLimit())) {
-			LOGGER.warning("listEventsRequestVO is null, auth, appId, afterEventId or limit passed in are null or empty");
-			return listEventsResponseVO;
-		}
-		
-		
-		Map<String,Object> params = new HashMap<String,Object>();
-		params.put("auth",  listEventsRequestVO.getAuth());
-		params.put("app_id",  listEventsRequestVO.getAppId());
-		params.put("after_Event_id", listEventsRequestVO.getAfterEventId());
-		params.put("limit", listEventsRequestVO.getLimit());
+        return getEventResponseVO;
+    }
 
-		// Construct new request
-		String method = Constants.METHOD_EVENTS_LIST;
+    /**
+     * Method to list the events
+     *
+     * @param listEventsRequestVO
+     * @return
+     */
+    public ListEventsResponseVO listEvents(ListEventsRequestVO listEventsRequestVO) {
+        ListEventsResponseVO listEventsResponseVO = null;
 
-		GetEventResponseVO[] getEventResponseVOArray = (GetEventResponseVO[]) jsonRpcUtils.sendJsonRpcRequest(getEventsUrl(), GetEventResponseVO[].class, method, params);
-		if (ValidationUtils.isEmpty(getEventResponseVOArray)) {
-			LOGGER.warning("No Events returned");
-			return listEventsResponseVO;
-		}
-		listEventsResponseVO = new ListEventsResponseVO();
-		listEventsResponseVO.setGetEventsResponseVOArray(getEventResponseVOArray);
-		
-		return listEventsResponseVO;
-	}
+        if (listEventsRequestVO == null || ValidationUtils.isEmpty(listEventsRequestVO.getAuth()) || ValidationUtils.isEmpty(listEventsRequestVO.getAppId()) || ValidationUtils.isEmpty(listEventsRequestVO.getAfterEventId()) || ValidationUtils.isEmpty(listEventsRequestVO.getLimit())) {
+            LOGGER.warning("listEventsRequestVO is null, auth, appId, afterEventId or limit passed in are null or empty");
+            return listEventsResponseVO;
+        }
+
+
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("auth", listEventsRequestVO.getAuth());
+        params.put("app_id", listEventsRequestVO.getAppId());
+        params.put("after_Event_id", listEventsRequestVO.getAfterEventId());
+        params.put("limit", listEventsRequestVO.getLimit());
+
+        // Construct new request
+        String method = Constants.METHOD_EVENTS_LIST;
+
+        GetEventResponseVO[] getEventResponseVOArray = (GetEventResponseVO[]) jsonRpcUtils.sendJsonRpcRequest(getEventsUrl(), GetEventResponseVO[].class, method, params);
+        if (ValidationUtils.isEmpty(getEventResponseVOArray)) {
+            LOGGER.warning("No Events returned");
+            return listEventsResponseVO;
+        }
+        listEventsResponseVO = new ListEventsResponseVO();
+        listEventsResponseVO.setGetEventsResponseVOArray(getEventResponseVOArray);
+
+        return listEventsResponseVO;
+    }
 }

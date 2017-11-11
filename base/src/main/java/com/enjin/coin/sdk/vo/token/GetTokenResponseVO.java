@@ -2,136 +2,136 @@ package com.enjin.coin.sdk.vo.token;
 
 import com.google.gson.annotations.SerializedName;
 
-public class GetTokenResponseVO  {
+public class GetTokenResponseVO {
 
-	@SerializedName("token_id")
-	private String tokenId;
-	
-	@SerializedName("creator")
-	private String creator;
-	
-	@SerializedName("adapter")
-	private String adapter;
-	
-	@SerializedName("name")
-	private String name;
-	
-	@SerializedName("icon")
-	private String icon;
-	
-	@SerializedName("totalSupply")
-	private String totalSupply;
-	
-	@SerializedName("exchangeRate")
-	private String exchangeRate;
-	
-	@SerializedName("decimals")
-	private String decimals;
-	
-	@SerializedName("maxMeltFee")
-	private String maxMeltFee;
-	
-	@SerializedName("meltFee")
-	private String meltFee;
-	
-	@SerializedName("transferable")
-	private String transferable;
+    @SerializedName("token_id")
+    private String tokenId;
 
-	public String getTokenId() {
-		return tokenId;
-	}
+    @SerializedName("creator")
+    private String creator;
 
-	public void setTokenId(String tokenId) {
-		this.tokenId = tokenId;
-	}
+    @SerializedName("adapter")
+    private String adapter;
 
-	public String getCreator() {
-		return creator;
-	}
+    @SerializedName("name")
+    private String name;
 
-	public void setCreator(String creator) {
-		this.creator = creator;
-	}
+    @SerializedName("icon")
+    private String icon;
 
-	public String getAdapter() {
-		return adapter;
-	}
+    @SerializedName("totalSupply")
+    private String totalSupply;
 
-	public void setAdapter(String adapter) {
-		this.adapter = adapter;
-	}
+    @SerializedName("exchangeRate")
+    private String exchangeRate;
 
-	public String getName() {
-		return name;
-	}
+    @SerializedName("decimals")
+    private String decimals;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    @SerializedName("maxMeltFee")
+    private String maxMeltFee;
 
-	public String getIcon() {
-		return icon;
-	}
+    @SerializedName("meltFee")
+    private String meltFee;
 
-	public void setIcon(String icon) {
-		this.icon = icon;
-	}
+    @SerializedName("transferable")
+    private String transferable;
 
-	public String getTotalSupply() {
-		return totalSupply;
-	}
+    public String getTokenId() {
+        return tokenId;
+    }
 
-	public void setTotalSupply(String totalSupply) {
-		this.totalSupply = totalSupply;
-	}
+    public void setTokenId(String tokenId) {
+        this.tokenId = tokenId;
+    }
 
-	public String getExchangeRate() {
-		return exchangeRate;
-	}
+    public String getCreator() {
+        return creator;
+    }
 
-	public void setExchangeRate(String exchangeRate) {
-		this.exchangeRate = exchangeRate;
-	}
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
 
-	public String getDecimals() {
-		return decimals;
-	}
+    public String getAdapter() {
+        return adapter;
+    }
 
-	public void setDecimals(String decimals) {
-		this.decimals = decimals;
-	}
+    public void setAdapter(String adapter) {
+        this.adapter = adapter;
+    }
 
-	public String getMaxMeltFee() {
-		return maxMeltFee;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setMaxMeltFee(String maxMeltFee) {
-		this.maxMeltFee = maxMeltFee;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getMeltFee() {
-		return meltFee;
-	}
+    public String getIcon() {
+        return icon;
+    }
 
-	public void setMeltFee(String meltFee) {
-		this.meltFee = meltFee;
-	}
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
 
-	public String getTransferable() {
-		return transferable;
-	}
+    public String getTotalSupply() {
+        return totalSupply;
+    }
 
-	public void setTransferable(String transferable) {
-		this.transferable = transferable;
-	}
+    public void setTotalSupply(String totalSupply) {
+        this.totalSupply = totalSupply;
+    }
 
-	@Override
-	public String toString() {
-		return "GetTokenResponseVO [tokenId=" + tokenId + ", creator=" + creator + ", adapter=" + adapter + ", name="
-				+ name + ", icon=" + icon + ", totalSupply=" + totalSupply + ", exchangeRate=" + exchangeRate
-				+ ", decimals=" + decimals + ", maxMeltFee=" + maxMeltFee + ", meltFee=" + meltFee + ", transferable="
-				+ transferable + "]";
-	}
+    public String getExchangeRate() {
+        return exchangeRate;
+    }
 
-	
+    public void setExchangeRate(String exchangeRate) {
+        this.exchangeRate = exchangeRate;
+    }
+
+    public String getDecimals() {
+        return decimals;
+    }
+
+    public void setDecimals(String decimals) {
+        this.decimals = decimals;
+    }
+
+    public String getMaxMeltFee() {
+        return maxMeltFee;
+    }
+
+    public void setMaxMeltFee(String maxMeltFee) {
+        this.maxMeltFee = maxMeltFee;
+    }
+
+    public String getMeltFee() {
+        return meltFee;
+    }
+
+    public void setMeltFee(String meltFee) {
+        this.meltFee = meltFee;
+    }
+
+    public String getTransferable() {
+        return transferable;
+    }
+
+    public void setTransferable(String transferable) {
+        this.transferable = transferable;
+    }
+
+    @Override
+    public String toString() {
+        return "GetTokenResponseVO [tokenId=" + tokenId + ", creator=" + creator + ", adapter=" + adapter + ", name="
+                + name + ", icon=" + icon + ", totalSupply=" + totalSupply + ", exchangeRate=" + exchangeRate
+                + ", decimals=" + decimals + ", maxMeltFee=" + maxMeltFee + ", meltFee=" + meltFee + ", transferable="
+                + transferable + "]";
+    }
+
+
 }

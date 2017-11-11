@@ -4,44 +4,44 @@ import com.google.gson.annotations.SerializedName;
 
 public class ListIdentitiesResponseVO {
 
-	@SerializedName("identity_id")
-	private String identityId;	
+    @SerializedName("identity_id")
+    private String identityId;
 
-	@SerializedName("ethereum_address")
-	private String ethereumAddress;
-	
-	@SerializedName("player_name")
-	private String playerName;
+    @SerializedName("ethereum_address")
+    private String ethereumAddress;
 
-	public String getIdentityId() {
-		return identityId;
-	}
+    @SerializedName("player_name")
+    private String playerName;
 
-	public void setIdentityId(String identityId) {
-		this.identityId = identityId;
-	}
+    public String getIdentityId() {
+        return identityId;
+    }
 
-	public String getEthereumAddress() {
-		return ethereumAddress;
-	}
+    public void setIdentityId(String identityId) {
+        this.identityId = identityId;
+    }
 
-	public void setEthereumAddress(String ethereumAddress) {
-		this.ethereumAddress = ethereumAddress;
-	}
+    public String getEthereumAddress() {
+        return ethereumAddress;
+    }
 
-	public String getPlayerName() {
-		return playerName;
-	}
+    public void setEthereumAddress(String ethereumAddress) {
+        this.ethereumAddress = ethereumAddress;
+    }
 
-	public void setPlayerName(String playerName) {
-		this.playerName = playerName;
-	}
+    public String getPlayerName() {
+        return playerName;
+    }
 
-	@Override
-	public String toString() {
-		return "ListIdentitiesResponseVO [identityId=" + identityId + ", ethereumAddress=" + ethereumAddress
-				+ ", playerName=" + playerName + "]";
-	}
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
 
-	
+    @Override
+    public String toString() {
+        return "ListIdentitiesResponseVO [identityId=" + identityId + ", ethereumAddress=" + ethereumAddress
+                + ", playerName=" + playerName + "]";
+    }
+
+
 }

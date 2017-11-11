@@ -4,56 +4,55 @@ import com.google.gson.annotations.SerializedName;
 
 public class ListEventsRequestVO {
 
-	@SerializedName("auth")
-	private String auth;
-	
-	@SerializedName("app_id")
-	private String appId;
-	
-	@SerializedName("after_event_id")
-	private String afterEventId;
-	
-	@SerializedName("limit")
-	private String limit;
+    @SerializedName("auth")
+    private String auth;
 
-	public String getAuth() {
-		return auth;
-	}
+    @SerializedName("app_id")
+    private String appId;
 
-	public void setAuth(String auth) {
-		this.auth = auth;
-	}
+    @SerializedName("after_event_id")
+    private String afterEventId;
 
-	public String getAppId() {
-		return appId;
-	}
+    @SerializedName("limit")
+    private String limit;
 
-	public void setAppId(String appId) {
-		this.appId = appId;
-	}
+    public String getAuth() {
+        return auth;
+    }
 
-	public String getAfterEventId() {
-		return afterEventId;
-	}
+    public void setAuth(String auth) {
+        this.auth = auth;
+    }
 
-	public void setAfterEventId(String afterEventId) {
-		this.afterEventId = afterEventId;
-	}
+    public String getAppId() {
+        return appId;
+    }
 
-	public String getLimit() {
-		return limit;
-	}
+    public void setAppId(String appId) {
+        this.appId = appId;
+    }
 
-	public void setLimit(String limit) {
-		this.limit = limit;
-	}
+    public String getAfterEventId() {
+        return afterEventId;
+    }
 
-	@Override
-	public String toString() {
-		return "ListEventsRequestVO [auth=" + auth + ", appId=" + appId + ", afterEventId=" + afterEventId + ", limit="
-				+ limit + "]";
-	}
-	
-	
+    public void setAfterEventId(String afterEventId) {
+        this.afterEventId = afterEventId;
+    }
+
+    public String getLimit() {
+        return limit;
+    }
+
+    public void setLimit(String limit) {
+        this.limit = limit;
+    }
+
+    @Override
+    public String toString() {
+        return "ListEventsRequestVO [auth=" + auth + ", appId=" + appId + ", afterEventId=" + afterEventId + ", limit="
+                + limit + "]";
+    }
+
 
 }

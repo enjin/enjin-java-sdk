@@ -2,57 +2,57 @@ package com.enjin.coin.sdk.vo.identity;
 
 import com.google.gson.annotations.SerializedName;
 
-public class GetIdentityResponseVO{
+public class GetIdentityResponseVO {
 
-	@SerializedName("identity_id")
-	private String identityId;	
+    @SerializedName("identity_id")
+    private String identityId;
 
-	@SerializedName("ethereum_address")
-	private String ethereumAddress;
-	
-	@SerializedName("player_name")
-	private String playerName;	
-	
-	@SerializedName("uuid")
-	private String uuid;
+    @SerializedName("ethereum_address")
+    private String ethereumAddress;
 
-	public String getIdentityId() {
-		return identityId;
-	}
+    @SerializedName("player_name")
+    private String playerName;
 
-	public void setIdentityId(String identityId) {
-		this.identityId = identityId;
-	}
+    @SerializedName("uuid")
+    private String uuid;
 
-	public String getEthereumAddress() {
-		return ethereumAddress;
-	}
+    public String getIdentityId() {
+        return identityId;
+    }
 
-	public void setEthereumAddress(String ethereumAddress) {
-		this.ethereumAddress = ethereumAddress;
-	}
+    public void setIdentityId(String identityId) {
+        this.identityId = identityId;
+    }
 
-	public String getPlayerName() {
-		return playerName;
-	}
+    public String getEthereumAddress() {
+        return ethereumAddress;
+    }
 
-	public void setPlayerName(String playerName) {
-		this.playerName = playerName;
-	}
+    public void setEthereumAddress(String ethereumAddress) {
+        this.ethereumAddress = ethereumAddress;
+    }
 
-	public String getUuid() {
-		return uuid;
-	}
+    public String getPlayerName() {
+        return playerName;
+    }
 
-	public void setUuid(String uuid) {
-		this.uuid = uuid;
-	}
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
 
-	@Override
-	public String toString() {
-		return "GetIdentityResponseVO [identityId=" + identityId + ", ethereumAddress=" + ethereumAddress
-				+ ", playerName=" + playerName + ", uuid=" + uuid + "]";
-	}
-	
-	
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    @Override
+    public String toString() {
+        return "GetIdentityResponseVO [identityId=" + identityId + ", ethereumAddress=" + ethereumAddress
+                + ", playerName=" + playerName + ", uuid=" + uuid + "]";
+    }
+
+
 }

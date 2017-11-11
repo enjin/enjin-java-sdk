@@ -1,7 +1,6 @@
 package com.enjin.coin.sdk.vo.identity;
 
-public class GetIdentityRequestVO extends BaseIdentityRequestVO{
+public class GetIdentityRequestVO extends BaseIdentityRequestVO {
 
-	
 
 }

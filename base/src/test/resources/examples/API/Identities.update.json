@@ -2,14 +2,14 @@
   "jsonrpc": "2.0",
   "method": "update",
   "params": {
-	"auth": "xxxxxxxx",
-	"identity": {
-	  "identity_id": "123456"
-	},
-	"update": {
-	  "player_name": null,
-	  "ethereum_address": "0x1111111111111111111111111111111111111111"
-	}
+    "auth": "xxxxxxxx",
+    "identity": {
+      "identity_id": "123456"
+    },
+    "update": {
+      "player_name": null,
+      "ethereum_address": "0x1111111111111111111111111111111111111111"
+    }
   },
   "id": "1"
 }

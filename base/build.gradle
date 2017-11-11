@@ -20,6 +20,6 @@ dependencies {
     compile group: 'com.pusher', name: 'pusher-java-client', version: pusher
 
     // testCompile dependencies
-	testCompile group: 'com.github.tomakehurst', name: 'wiremock-standalone', version: wiremock
-  
+    testCompile group: 'com.github.tomakehurst', name: 'wiremock-standalone', version: wiremock
+
 }
