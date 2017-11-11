@@ -1,14 +1,20 @@
 package com.enjin.coin.sdk.mockServer;
 
-import com.enjin.coin.sdk.config.EnjinConfig;
-import com.enjin.coin.sdk.service.EventsService;
-import com.enjin.coin.sdk.vo.event.*;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.Map;
 
-import static org.junit.Assert.assertNotNull;
+import org.junit.Before;
+import org.junit.Test;
+
+import com.enjin.coin.sdk.config.EnjinConfig;
+import com.enjin.coin.sdk.service.EnjinService;
+import com.enjin.coin.sdk.service.EventsService;
+import com.enjin.coin.sdk.vo.event.GetEventDataBalancesVO;
+import com.enjin.coin.sdk.vo.event.GetEventRequestVO;
+import com.enjin.coin.sdk.vo.event.GetEventResponseVO;
+import com.enjin.coin.sdk.vo.event.ListEventsRequestVO;
+import com.enjin.coin.sdk.vo.event.ListEventsResponseVO;
 
 public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
 
@@ -19,7 +25,8 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
         EnjinConfig enjinConfig = new EnjinConfig();
         enjinConfig.setTrustedPlatformUrl(getURL());
         enjinConfig.setInTestMode(true);
-        events = new EventsService(enjinConfig);
+        EnjinService enjinService = new EnjinService(enjinConfig);
+        events = enjinService.getEventsService();
     }
 
     @Test

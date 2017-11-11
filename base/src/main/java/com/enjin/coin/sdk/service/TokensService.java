@@ -21,7 +21,7 @@ public class TokensService extends BaseService {
      *
      * @param enjinConfig
      */
-    public TokensService(EnjinConfig enjinConfig) {
+    protected TokensService(EnjinConfig enjinConfig) {
         super(enjinConfig);
     }
 

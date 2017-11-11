@@ -1,6 +1,7 @@
 package com.enjin.coin.sdk.mockServer;
 
 import com.enjin.coin.sdk.config.EnjinConfig;
+import com.enjin.coin.sdk.service.EnjinService;
 import com.enjin.coin.sdk.service.IdentitiesService;
 import com.enjin.coin.sdk.vo.identity.*;
 import org.junit.Before;
@@ -20,7 +21,8 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
         EnjinConfig enjinConfig = new EnjinConfig();
         enjinConfig.setTrustedPlatformUrl(getURL());
         enjinConfig.setInTestMode(true);
-        identities = new IdentitiesService(enjinConfig);
+        EnjinService enjinService = new EnjinService(enjinConfig);
+        identities = enjinService.getIdentitiesService();
     }
 
     @Test

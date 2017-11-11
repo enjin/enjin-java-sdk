@@ -18,7 +18,7 @@ public class IdentitiesService extends BaseService {
      *
      * @param enjinConfig
      */
-    public IdentitiesService(EnjinConfig enjinConfig) {
+    protected IdentitiesService(EnjinConfig enjinConfig) {
         super(enjinConfig);
     }
 

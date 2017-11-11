@@ -21,7 +21,7 @@ public class EventsService extends BaseService {
      *
      * @param enjinConfig
      */
-    public EventsService(EnjinConfig enjinConfig) {
+    protected EventsService(EnjinConfig enjinConfig) {
         super(enjinConfig);
     }
 

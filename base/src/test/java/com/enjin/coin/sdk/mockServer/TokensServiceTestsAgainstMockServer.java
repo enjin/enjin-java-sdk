@@ -1,6 +1,7 @@
 package com.enjin.coin.sdk.mockServer;
 
 import com.enjin.coin.sdk.config.EnjinConfig;
+import com.enjin.coin.sdk.service.EnjinService;
 import com.enjin.coin.sdk.service.TokensService;
 import com.enjin.coin.sdk.vo.token.GetTokenRequestVO;
 import com.enjin.coin.sdk.vo.token.GetTokenResponseVO;
@@ -21,7 +22,8 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer {
         EnjinConfig enjinConfig = new EnjinConfig();
         enjinConfig.setTrustedPlatformUrl(getURL());
         enjinConfig.setInTestMode(true);
-        tokens = new TokensService(enjinConfig);
+        EnjinService enjinService = new EnjinService(enjinConfig);
+        tokens = enjinService.getTokensService();
     }
 
     @Test

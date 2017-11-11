@@ -1,10 +1,6 @@
-package com.enjin.coin.sdk;
+package com.enjin.coin.sdk.service;
 
 import com.enjin.coin.sdk.config.EnjinConfig;
-import com.enjin.coin.sdk.service.EventsService;
-import com.enjin.coin.sdk.service.IdentitiesService;
-import com.enjin.coin.sdk.service.TokensService;
-import com.enjin.coin.sdk.service.TransactionRequestsService;
 
 import java.util.logging.Logger;
 
