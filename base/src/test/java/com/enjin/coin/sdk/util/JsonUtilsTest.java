@@ -53,17 +53,12 @@ public class JsonUtilsTest {
         String jsonString = "{}";
         Class<?> responseClass = GetEventResponseVO.class;
 
-        GsonBuilder mockGsonBuilder = PowerMockito.mock(GsonBuilder.class);
         Gson mockGson = PowerMockito.mock(Gson.class);
-        PowerMockito.whenNew(GsonBuilder.class).withNoArguments().thenReturn(mockGsonBuilder);
-        Mockito.when(mockGsonBuilder.create()).thenReturn(mockGson);
 
         Mockito.when(mockGson.fromJson(Mockito.anyString(), Mockito.isA(Class.class))).thenThrow(new JsonSyntaxException("exception"));
-        Object responseObject = JsonUtils.convertJsonToObject(jsonString, responseClass);
+        Object responseObject = JsonUtils.convertJsonToObject(mockGson, jsonString, responseClass);
         assertNull(responseObject);
 
-        PowerMockito.verifyNew(GsonBuilder.class, Mockito.times(1)).withNoArguments();
-        Mockito.verify(mockGsonBuilder, Mockito.times(1)).create();
         Mockito.verify(mockGson, Mockito.times(1)).fromJson(Mockito.anyString(), Mockito.isA(Class.class));
     }
 
@@ -73,17 +68,12 @@ public class JsonUtilsTest {
         String jsonString = "{}";
         Class<?> responseClass = GetEventResponseVO.class;
 
-        GsonBuilder mockGsonBuilder = PowerMockito.mock(GsonBuilder.class);
         Gson mockGson = PowerMockito.mock(Gson.class);
-        PowerMockito.whenNew(GsonBuilder.class).withNoArguments().thenReturn(mockGsonBuilder);
-        Mockito.when(mockGsonBuilder.create()).thenReturn(mockGson);
 
         Mockito.when(mockGson.fromJson(Mockito.anyString(), Mockito.isA(Class.class))).thenReturn(new GetEventResponseVO());
-        Object responseObject = JsonUtils.convertJsonToObject(jsonString, responseClass);
+        Object responseObject = JsonUtils.convertJsonToObject(mockGson, jsonString, responseClass);
         assertNotNull(responseObject);
 
-        PowerMockito.verifyNew(GsonBuilder.class, Mockito.times(1)).withNoArguments();
-        Mockito.verify(mockGsonBuilder, Mockito.times(1)).create();
         Mockito.verify(mockGson, Mockito.times(1)).fromJson(Mockito.anyString(), Mockito.isA(Class.class));
     }
 
@@ -100,19 +90,14 @@ public class JsonUtilsTest {
         String jsonStrResponse = "";
         GetEventResponseVO jsonObject = new GetEventResponseVO();
 
-        GsonBuilder mockGsonBuilder = PowerMockito.mock(GsonBuilder.class);
         Gson mockGson = PowerMockito.mock(Gson.class);
-        PowerMockito.whenNew(GsonBuilder.class).withNoArguments().thenReturn(mockGsonBuilder);
-        Mockito.when(mockGsonBuilder.create()).thenReturn(mockGson);
 
         PowerMockito.when(mockGson.toJson(Mockito.isA(GetEventResponseVO.class))).thenReturn(jsonStrResponse);
 
-        String jsonResponse = JsonUtils.convertObjectToJson(jsonObject);
+        String jsonResponse = JsonUtils.convertObjectToJson(mockGson, jsonObject);
         assertNotNull(jsonResponse);
         assertTrue(jsonResponse.length() == 0);
 
-        PowerMockito.verifyNew(GsonBuilder.class, Mockito.times(1)).withNoArguments();
-        Mockito.verify(mockGsonBuilder, Mockito.times(1)).create();
         Mockito.verify(mockGson, Mockito.times(1)).toJson(Mockito.isA(GetEventResponseVO.class));
     }
 
@@ -121,19 +106,14 @@ public class JsonUtilsTest {
         String jsonStrResponse = "{\"event_id\":\"1\"}";
         GetEventResponseVO jsonObject = new GetEventResponseVO();
 
-        GsonBuilder mockGsonBuilder = PowerMockito.mock(GsonBuilder.class);
         Gson mockGson = PowerMockito.mock(Gson.class);
-        PowerMockito.whenNew(GsonBuilder.class).withNoArguments().thenReturn(mockGsonBuilder);
-        Mockito.when(mockGsonBuilder.create()).thenReturn(mockGson);
 
         PowerMockito.when(mockGson.toJson(Mockito.isA(GetEventResponseVO.class))).thenReturn(jsonStrResponse);
 
-        String jsonResponse = JsonUtils.convertObjectToJson(jsonObject);
+        String jsonResponse = JsonUtils.convertObjectToJson(mockGson, jsonObject);
         assertNotNull(jsonResponse);
         assertTrue(jsonResponse.length() > 0);
 
-        PowerMockito.verifyNew(GsonBuilder.class, Mockito.times(1)).withNoArguments();
-        Mockito.verify(mockGsonBuilder, Mockito.times(1)).create();
         Mockito.verify(mockGson, Mockito.times(1)).toJson(Mockito.isA(GetEventResponseVO.class));
     }
 }
