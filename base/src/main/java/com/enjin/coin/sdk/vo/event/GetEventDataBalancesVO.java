@@ -1,36 +1,24 @@
 package com.enjin.coin.sdk.vo.event;
 
 import com.google.gson.annotations.SerializedName;
+import org.immutables.gson.Gson;
+import org.immutables.value.Value;
 
 import java.util.Map;
 
-public class GetEventDataBalancesVO {
+@Value.Immutable
+@Gson.TypeAdapters
+public abstract class GetEventDataBalancesVO {
 
     @SerializedName("identity")
-    private Map<String, Object> identityMap;
+    public abstract Map<String, Object> getIdentityMap();
 
     @SerializedName("from")
-    private Map<String, Object> fromMap;
+    public abstract Map<String, Object> getFromMap();
 
     @SerializedName("pending")
-    private Map<String, Object> pendingMap;
+    public abstract Map<String, Object> getPendingMap();
 
     @SerializedName("confirmed")
-    private Map<String, Object> confirmedMap;
-
-    public Map<String, Object> getIdentityMap() {
-        return identityMap;
-    }
-
-    public Map<String, Object> getFromMap() {
-        return fromMap;
-    }
-
-    public Map<String, Object> getPendingMap() {
-        return pendingMap;
-    }
-
-    public Map<String, Object> getConfirmedMap() {
-        return confirmedMap;
-    }
+    public abstract Map<String, Object> getConfirmedMap();
 }

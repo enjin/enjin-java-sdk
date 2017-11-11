@@ -10,13 +10,18 @@ ext {
     wiremock = '2.10.1'
     gson = '2.8.2'
     pusher = '1.5.0'
+    immutables = '2.5.5'
 }
 
 dependencies {
+    // compileOnly dependencies
+    compileOnly group: 'org.immutables', name: 'value', version: immutables
+
     // compile dependencies
     compile group: 'com.thetransactioncompany', name: 'jsonrpc2-client', version: jsonrpc2client
     compile group: 'com.google.code.gson', name: 'gson', version: gson
     compile group: 'com.pusher', name: 'pusher-java-client', version: pusher
+    compile group: 'org.immutables', name: 'gson', version: immutables
 
     // testCompile dependencies
     testCompile group: 'com.github.tomakehurst', name: 'wiremock-standalone', version: wiremock
