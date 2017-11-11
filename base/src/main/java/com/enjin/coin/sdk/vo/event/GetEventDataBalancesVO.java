@@ -25,6 +25,7 @@ public class GetEventDataBalancesVO {
     public Map<String, Object> getFromMap() {
         return fromMap;
     }
+
     public Map<String, Object> getPendingMap() {
         return pendingMap;
     }

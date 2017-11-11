@@ -57,39 +57,51 @@ public class GetEventDataVO {
     public String getTokenId() {
         return tokenId;
     }
+
     public String getCreator() {
         return creator;
     }
+
     public String getAdapter() {
         return adapter;
     }
+
     public String getName() {
         return name;
     }
+
     public String getIcon() {
         return icon;
     }
+
     public String getTotalSupply() {
         return totalSupply;
     }
+
     public String getExchangeRate() {
         return exchangeRate;
     }
+
     public String getDecimals() {
         return decimals;
     }
+
     public String getMaxMeltFee() {
         return maxMeltFee;
     }
+
     public String getMeltFee() {
         return meltFee;
     }
+
     public String getTransferable() {
         return transferable;
     }
+
     public Map<String, Object> getRecipientMap() {
         return recipientMap;
     }
+
     public GetEventDataBalancesVO[] getGetEventDataBalancesVO() {
         return getEventDataBalancesVOArray;
     }

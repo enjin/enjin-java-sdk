@@ -28,6 +28,7 @@ public class CreateTransactionRequestResponseVO {
     public String getTxrId() {
         return txrId;
     }
+
     public Map<String, Object> getIdentityMap() {
         return identityMap;
     }
@@ -52,6 +53,7 @@ public class CreateTransactionRequestResponseVO {
     public Map<String, Object> getValueMap() {
         return valueMap;
     }
+
     @Override
     public String toString() {
         return "CreateTransactionRequestResponseVO [txrId=" + txrId + ", identityMap=" + identityMap + ", recipientMap="

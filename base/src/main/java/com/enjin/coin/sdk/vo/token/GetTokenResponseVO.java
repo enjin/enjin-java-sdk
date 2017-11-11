@@ -40,6 +40,7 @@ public class GetTokenResponseVO {
     public String getTokenId() {
         return tokenId;
     }
+
     public String getCreator() {
         return creator;
     }

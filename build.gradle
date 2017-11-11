@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
         maven { url 'https://plugins.gradle.org/m2/' }
         jcenter()
-    }    
+    }
 }
 
 plugins {
@@ -20,7 +20,7 @@ subprojects {
     apply plugin: 'maven'
     apply plugin: 'com.github.johnrengelman.shadow'
     apply plugin: 'com.bmuschko.clover'
-    
+
     group = 'com.enjin'
     version = '0.0.1-SNAPSHOT'
 
@@ -55,7 +55,7 @@ subprojects {
         testCompile group: 'junit', name: 'junit', version: junit
         testCompile group: 'org.powermock', name: 'powermock-api-mockito2', version: powermock
         testCompile group: 'org.powermock', name: 'powermock-module-junit4', version: powermock
-        clover      group: 'org.openclover', name: 'clover', version: clover
+        clover group: 'org.openclover', name: 'clover', version: clover
     }
 
     jar {
@@ -71,12 +71,12 @@ subprojects {
             pom.artifactId = "sdk-${project.name}"
         }
     }
-    
+
     //Documentation https://github.com/bmuschko/gradle-clover-plugin
     clover {
-    	report {
-        	html = true
-	        pdf = true
-    	}
+        report {
+            html = true
+            pdf = true
+        }
     }
 }

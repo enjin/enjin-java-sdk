@@ -14,10 +14,10 @@ public class ListTokensResponseVO {
     }
 
     public void setGetTokensResponseVOArray(GetTokenResponseVO[] getTokensResponseVOArray) {
-		this.getTokensResponseVOArray = getTokensResponseVOArray;
-	}
+        this.getTokensResponseVOArray = getTokensResponseVOArray;
+    }
 
-	@Override
+    @Override
     public String toString() {
         return "ListTokensResponseVO [getTokensResponseVOArray=" + Arrays.toString(getTokensResponseVOArray) + "]";
     }

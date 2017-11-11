@@ -12,12 +12,12 @@ public class ListEventsResponseVO {
     public GetEventResponseVO[] getGetEventsResponseVOArray() {
         return getEventsResponseVOArray;
     }
-    
-    public void setGetEventsResponseVOArray(GetEventResponseVO[] getEventsResponseVOArray) {
-		this.getEventsResponseVOArray = getEventsResponseVOArray;
-	}
 
-	@Override
+    public void setGetEventsResponseVOArray(GetEventResponseVO[] getEventsResponseVOArray) {
+        this.getEventsResponseVOArray = getEventsResponseVOArray;
+    }
+
+    @Override
     public String toString() {
         return "ListEventsResponseVO [getEventsResponseVOArray=" + Arrays.toString(getEventsResponseVOArray) + "]";
     }

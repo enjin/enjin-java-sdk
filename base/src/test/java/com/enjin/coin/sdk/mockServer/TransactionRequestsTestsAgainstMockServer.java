@@ -31,7 +31,7 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
         getTransactionRequestRequestVO.setAuth("xxxxxxxx");
         getTransactionRequestRequestVO.setTxrId("123456");
         assertNotNull(getTransactionRequestRequestVO.toString());
-        
+
         GetTransactionRequestResponseVO getTransactionRequestResponseVO = transactionRequests.getTransactionRequest(getTransactionRequestRequestVO);
         assertNotNull(getTransactionRequestResponseVO);
         assertNotNull(getTransactionRequestResponseVO.toString());
@@ -69,7 +69,7 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
         listTransactionRequestsRequestVO.setLimit("50");
         listTransactionRequestsRequestVO.setCurrency("23456");
         assertNotNull(listTransactionRequestsRequestVO.toString());
-        
+
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequests.listTransactionRequests(listTransactionRequestsRequestVO);
 
         for (ListTransactionRequestsResponseVO listTransactionRequestsResponseVO : listTransactionRequestsResponseVOArray) {
@@ -111,7 +111,7 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
         createTransactionRequestRequestVO.setTitle("Mineplex: /transfer alice 3 ENJ");
         createTransactionRequestRequestVO.setValueMap(createValueMap);
         assertNotNull(createTransactionRequestRequestVO.toString());
-        
+
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequests.createTransactionRequest(createTransactionRequestRequestVO);
         assertNotNull(createTransactionRequestResponseVO);
         assertNotNull(createTransactionRequestResponseVO.toString());
@@ -137,7 +137,7 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
         cancelTransactionRequestRequestVO.setAuth("xxxxxxxx");
         cancelTransactionRequestRequestVO.setTxrId("123456");
         assertNotNull(cancelTransactionRequestRequestVO.toString());
-        
+
         CancelTransactionRequestResponseVO cancelTransactionRequestResponseVO = transactionRequests.cancelTransactionRequest(cancelTransactionRequestRequestVO);
         assertNotNull(cancelTransactionRequestResponseVO);
         assertNotNull(cancelTransactionRequestResponseVO.toString());

@@ -21,9 +21,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(JsonRpcUtils.class)
@@ -38,9 +36,9 @@ public class JsonRpcUtilsTest {
 
     @Test
     public void testConstructor() {
-    	JsonRpcUtils jsonRpcUtils = new JsonRpcUtils();
+        JsonRpcUtils jsonRpcUtils = new JsonRpcUtils();
         assertNotNull(jsonRpcUtils);
-        
+
         jsonRpcUtils.setIsInTestMode(true);
         assertTrue(jsonRpcUtils.getIsInTestMode());
     }

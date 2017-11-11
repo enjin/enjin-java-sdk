@@ -13,11 +13,10 @@ public class UpdateIdentityResponseVO {
         return identityMap;
     }
 
-	@Override
-	public String toString() {
-		return "UpdateIdentityResponseVO [identityMap=" + identityMap + "]";
-	}
+    @Override
+    public String toString() {
+        return "UpdateIdentityResponseVO [identityMap=" + identityMap + "]";
+    }
 
 
-    
 }

@@ -28,6 +28,7 @@ public class ListTransactionRequestsResponseVO {
     public String getTxrId() {
         return txrId;
     }
+
     public Map<String, Object> getIdentityMap() {
         return identityMap;
     }
@@ -35,6 +36,7 @@ public class ListTransactionRequestsResponseVO {
     public Map<String, Object> getRecipientMap() {
         return recipientMap;
     }
+
     public String getType() {
         return type;
     }

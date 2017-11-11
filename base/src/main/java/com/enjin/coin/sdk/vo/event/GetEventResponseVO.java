@@ -40,6 +40,7 @@ public class GetEventResponseVO {
     public String getAppId() {
         return appId;
     }
+
     @Override
     public String toString() {
         return "GetEventResponseVO [eventId=" + eventId + ", eventType=" + eventType + ", timestamp=" + timestamp

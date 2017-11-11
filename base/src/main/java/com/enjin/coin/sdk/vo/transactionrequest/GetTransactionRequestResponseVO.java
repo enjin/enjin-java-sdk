@@ -30,12 +30,15 @@ public class GetTransactionRequestResponseVO {
     public String getTxrId() {
         return txrId;
     }
+
     public Map<String, Object> getIdentityMap() {
         return identityMap;
     }
+
     public Map<String, Object> getRecipientMap() {
         return recipientMap;
     }
+
     public String getType() {
         return type;
     }

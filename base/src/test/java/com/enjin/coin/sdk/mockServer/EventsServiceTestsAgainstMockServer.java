@@ -1,20 +1,15 @@
 package com.enjin.coin.sdk.mockServer;
 
-import static org.junit.Assert.assertNotNull;
-
-import java.util.Map;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import com.enjin.coin.sdk.config.EnjinConfig;
 import com.enjin.coin.sdk.service.EnjinService;
 import com.enjin.coin.sdk.service.EventsService;
-import com.enjin.coin.sdk.vo.event.GetEventDataBalancesVO;
-import com.enjin.coin.sdk.vo.event.GetEventRequestVO;
-import com.enjin.coin.sdk.vo.event.GetEventResponseVO;
-import com.enjin.coin.sdk.vo.event.ListEventsRequestVO;
-import com.enjin.coin.sdk.vo.event.ListEventsResponseVO;
+import com.enjin.coin.sdk.vo.event.*;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.Map;
+
+import static org.junit.Assert.assertNotNull;
 
 public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
 
@@ -35,7 +30,7 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
         getEventRequestVO.setEventId("12345");
         getEventRequestVO.setAuth("auth");
         assertNotNull(getEventRequestVO.toString());
-        
+
         GetEventResponseVO getEventResponseVO = events.getEvent(getEventRequestVO);
         assertNotNull(getEventResponseVO);
         assertNotNull(getEventResponseVO.toString());
@@ -60,10 +55,10 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
         listEventsRequestVO.setAuth("auth");
         listEventsRequestVO.setLimit("limit1");
         assertNotNull(listEventsRequestVO.toString());
-        
+
         ListEventsResponseVO listEventsResponseVOArray = events.listEvents(listEventsRequestVO);
         assertNotNull(listEventsResponseVOArray.toString());
-        
+
         for (GetEventResponseVO getEventResponseVO : listEventsResponseVOArray.getGetEventsResponseVOArray()) {
             assertNotNull(getEventResponseVO);
             assertNotNull(getEventResponseVO.toString());

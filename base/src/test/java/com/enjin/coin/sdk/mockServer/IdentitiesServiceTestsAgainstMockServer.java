@@ -37,7 +37,7 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
         getIdentityRequestVO.setAuth("xxzcxcxz");
         getIdentityRequestVO.setIdentity(identityMap);
         assertNotNull(getIdentityRequestVO.toString());
-        
+
         GetIdentityResponseVO getIdentityResponseVO = identities.getIdentity(getIdentityRequestVO);
         assertNotNull(getIdentityResponseVO);
         assertNotNull(getIdentityResponseVO.toString());
@@ -65,7 +65,7 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
         listIdentitiesRequestVO.setLinked(linked);
         listIdentitiesRequestVO.setIdentity(identityMap);
         assertNotNull(listIdentitiesRequestVO.toString());
-        
+
         ListIdentitiesResponseVO[] listIdentitiesResponseVOArray = identities.listIdentities(listIdentitiesRequestVO);
 
         for (ListIdentitiesResponseVO listIdentitiesResponseVO : listIdentitiesResponseVOArray) {
@@ -89,7 +89,7 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
         createIdentityRequestVO.setAuth("xxzcxcxz");
         createIdentityRequestVO.setIdentity(identityMap);
         assertNotNull(createIdentityRequestVO.toString());
-        
+
         CreateIdentityResponseVO createIdentityResponseVO = identities.createIdentity(createIdentityRequestVO);
         assertNotNull(createIdentityResponseVO);
         assertNotNull(createIdentityResponseVO.toString());
@@ -113,7 +113,7 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
         updateIdentityRequestVO.setIdentity(identityMap);
         updateIdentityRequestVO.setUpdate(updateMap);
         assertNotNull(updateIdentityRequestVO.toString());
-        
+
         UpdateIdentityResponseVO updateIdentityResponseVO = identities.updateIdentity(updateIdentityRequestVO);
         assertNotNull(updateIdentityResponseVO);
         assertNotNull(updateIdentityResponseVO.toString());
@@ -135,7 +135,7 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
         deleteIdentityRequestVO.setAuth("xxzcxcxz");
         deleteIdentityRequestVO.setIdentity(identityMap);
         assertNotNull(deleteIdentityRequestVO.toString());
-        
+
         DeleteIdentityResponseVO deleteIdentityResponseVO = identities.deleteIdentity(deleteIdentityRequestVO);
         assertNotNull(deleteIdentityResponseVO);
         assertNotNull(deleteIdentityResponseVO.toString());
