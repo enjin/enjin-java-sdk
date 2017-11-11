@@ -13,7 +13,11 @@ public class UpdateIdentityResponseVO {
         return identityMap;
     }
 
-    public void setIdentityMap(Map<String, Object> identityMap) {
-        this.identityMap = identityMap;
-    }
+	@Override
+	public String toString() {
+		return "UpdateIdentityResponseVO [identityMap=" + identityMap + "]";
+	}
+
+
+    
 }

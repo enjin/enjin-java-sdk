@@ -62,7 +62,8 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
         assertNotNull(listEventsRequestVO.toString());
         
         ListEventsResponseVO listEventsResponseVOArray = events.listEvents(listEventsRequestVO);
-
+        assertNotNull(listEventsResponseVOArray.toString());
+        
         for (GetEventResponseVO getEventResponseVO : listEventsResponseVOArray.getGetEventsResponseVOArray()) {
             assertNotNull(getEventResponseVO);
             assertNotNull(getEventResponseVO.toString());

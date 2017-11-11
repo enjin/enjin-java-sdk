@@ -14,16 +14,8 @@ public class CreateIdentityResponseVO {
         return identityId;
     }
 
-    public void setIdentityId(String identityId) {
-        this.identityId = identityId;
-    }
-
     public String getIdentityCode() {
         return identityCode;
-    }
-
-    public void setIdentityCode(String identityCode) {
-        this.identityCode = identityCode;
     }
 
     @Override

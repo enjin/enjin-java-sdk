@@ -22,34 +22,14 @@ public class GetEventDataBalancesVO {
         return identityMap;
     }
 
-    public void setIdentityMap(Map<String, Object> identityMap) {
-        this.identityMap = identityMap;
-    }
-
-
     public Map<String, Object> getFromMap() {
         return fromMap;
     }
-
-    public void setFromMap(Map<String, Object> fromMap) {
-        this.fromMap = fromMap;
-    }
-
     public Map<String, Object> getPendingMap() {
         return pendingMap;
-    }
-
-    public void setPendingMap(Map<String, Object> pendingMap) {
-        this.pendingMap = pendingMap;
     }
 
     public Map<String, Object> getConfirmedMap() {
         return confirmedMap;
     }
-
-    public void setConfirmedMap(Map<String, Object> confirmedMap) {
-        this.confirmedMap = confirmedMap;
-    }
-
-
 }

@@ -57,7 +57,8 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer {
         assertNotNull(listTokensRequestVO.toString());
         
         ListTokensResponseVO listTokensResponseVOArray = tokens.listTokens(listTokensRequestVO);
-
+        assertNotNull(listTokensResponseVOArray.toString());
+        
         for (GetTokenResponseVO getTokenResponseVO : listTokensResponseVOArray.getGetTokensResponseVOArray()) {
             assertNotNull(getTokenResponseVO);
             assertNotNull(getTokenResponseVO.toString());

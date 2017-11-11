@@ -10,16 +10,13 @@ public class DeleteIdentityResponseVO {
     public Boolean getResult() {
         return result;
     }
-
     public void setResult(Boolean result) {
-        this.result = result;
-    }
+		this.result = result;
+	}
 
-    @Override
+	@Override
     public String toString() {
         return "DeleteIdentityResponseVO [result=" + result + "]";
     }
-
-
 }
 

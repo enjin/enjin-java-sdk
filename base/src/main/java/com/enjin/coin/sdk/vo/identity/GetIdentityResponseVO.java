@@ -20,32 +20,16 @@ public class GetIdentityResponseVO {
         return identityId;
     }
 
-    public void setIdentityId(String identityId) {
-        this.identityId = identityId;
-    }
-
     public String getEthereumAddress() {
         return ethereumAddress;
-    }
-
-    public void setEthereumAddress(String ethereumAddress) {
-        this.ethereumAddress = ethereumAddress;
     }
 
     public String getPlayerName() {
         return playerName;
     }
 
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
-    }
-
     public String getUuid() {
         return uuid;
-    }
-
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
     }
 
     @Override
