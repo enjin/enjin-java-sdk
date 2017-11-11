@@ -15,7 +15,7 @@ import java.nio.file.Paths;
 import static org.junit.Assert.*;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({FileUtils.class, Path.class, Files.class})
+@PrepareForTest({FileUtils.class, Paths.class, Files.class})
 public class FileUtilsTest {
 
     @Test
@@ -88,8 +88,8 @@ public class FileUtilsTest {
         PowerMockito.mockStatic(Paths.class);
         PowerMockito.mockStatic(Files.class);
 
-        Mockito.when(Paths.get(Mockito.anyString())).thenReturn(mockPath);
-        Mockito.when(Files.readAllBytes(Mockito.isA(Path.class))).thenReturn(null);
+        PowerMockito.when(Paths.get(Mockito.anyString())).thenReturn(mockPath);
+        PowerMockito.when(Files.readAllBytes(Mockito.isA(Path.class))).thenReturn(null);
 
         String fileContents = FileUtils.getFileContents(filePath);
         assertNull(fileContents);

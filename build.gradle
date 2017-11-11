@@ -35,9 +35,11 @@ subprojects {
     }
 
     ext {
-        mockito = '2.12.0'
+        mockito = '2.9.0'
+        //mockito = '2.12.0'
         junit = '4.12'
         powermock = '1.7.3'
+        //powermock = '2.0.0-beta.5'
     }
 
     repositories {
