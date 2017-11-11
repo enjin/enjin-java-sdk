@@ -34,8 +34,11 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
         GetEventRequestVO getEventRequestVO = new GetEventRequestVO();
         getEventRequestVO.setEventId("12345");
         getEventRequestVO.setAuth("auth");
+        assertNotNull(getEventRequestVO.toString());
+        
         GetEventResponseVO getEventResponseVO = events.getEvent(getEventRequestVO);
         assertNotNull(getEventResponseVO);
+        assertNotNull(getEventResponseVO.toString());
         assertNotNull(getEventResponseVO.getAppId());
         assertNotNull(getEventResponseVO.getEventId());
         assertNotNull(getEventResponseVO.getEventType());
@@ -56,11 +59,13 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
         listEventsRequestVO.setAppId("12345");
         listEventsRequestVO.setAuth("auth");
         listEventsRequestVO.setLimit("limit1");
-
+        assertNotNull(listEventsRequestVO.toString());
+        
         ListEventsResponseVO listEventsResponseVOArray = events.listEvents(listEventsRequestVO);
 
         for (GetEventResponseVO getEventResponseVO : listEventsResponseVOArray.getGetEventsResponseVOArray()) {
             assertNotNull(getEventResponseVO);
+            assertNotNull(getEventResponseVO.toString());
             assertNotNull(getEventResponseVO.getAppId());
             assertNotNull(getEventResponseVO.getEventId());
             assertNotNull(getEventResponseVO.getEventType());

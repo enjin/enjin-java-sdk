@@ -20,6 +20,7 @@ public class EnjinService {
     public EnjinService(EnjinConfig enjinConfig) {
         if (enjinConfig == null) {
             LOGGER.warning("The enjinConfig passed in is null");
+            return;
         }
 
         this.enjinConfig = enjinConfig;

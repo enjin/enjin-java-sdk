@@ -17,7 +17,13 @@ public class BaseServiceTest {
         enjinConfig = new EnjinConfig();
         baseAction = new IdentitiesService(enjinConfig);
     }
-
+    @Test
+    public void testContructor_EnjinConfigIsNull() {
+    	enjinConfig = null;
+        baseAction = new IdentitiesService(enjinConfig);
+        assertNotNull(baseAction);
+        assertNotNull(baseAction.toString());
+    }
     @Test
     public void testContructor1() {
         baseAction = new IdentitiesService(enjinConfig);

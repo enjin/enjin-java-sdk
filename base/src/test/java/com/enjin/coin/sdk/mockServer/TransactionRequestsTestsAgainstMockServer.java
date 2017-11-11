@@ -30,9 +30,11 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
         GetTransactionRequestRequestVO getTransactionRequestRequestVO = new GetTransactionRequestRequestVO();
         getTransactionRequestRequestVO.setAuth("xxxxxxxx");
         getTransactionRequestRequestVO.setTxrId("123456");
-
+        assertNotNull(getTransactionRequestRequestVO.toString());
+        
         GetTransactionRequestResponseVO getTransactionRequestResponseVO = transactionRequests.getTransactionRequest(getTransactionRequestRequestVO);
         assertNotNull(getTransactionRequestResponseVO);
+        assertNotNull(getTransactionRequestResponseVO.toString());
         assertNotNull(getTransactionRequestResponseVO.getTxrId());
         assertNotNull(getTransactionRequestResponseVO.getIdentityMap());
         assertNotNull(getTransactionRequestResponseVO.getIdentityMap().get("identity_id"));
@@ -66,11 +68,13 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
         listTransactionRequestsRequestVO.setAfterTxrId("1234567");
         listTransactionRequestsRequestVO.setLimit("50");
         listTransactionRequestsRequestVO.setCurrency("23456");
-
+        assertNotNull(listTransactionRequestsRequestVO.toString());
+        
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequests.listTransactionRequests(listTransactionRequestsRequestVO);
 
         for (ListTransactionRequestsResponseVO listTransactionRequestsResponseVO : listTransactionRequestsResponseVOArray) {
             assertNotNull(listTransactionRequestsResponseVO);
+            assertNotNull(listTransactionRequestsResponseVO.toString());
             assertNotNull(listTransactionRequestsResponseVO.getTxrId());
             assertNotNull(listTransactionRequestsResponseVO.getIdentityMap());
             assertNotNull(listTransactionRequestsResponseVO.getIdentityMap().get("identity_id"));
@@ -106,9 +110,11 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
         createTransactionRequestRequestVO.setIcon("https://enjincoin.io/images/bubble.png");
         createTransactionRequestRequestVO.setTitle("Mineplex: /transfer alice 3 ENJ");
         createTransactionRequestRequestVO.setValueMap(createValueMap);
-
+        assertNotNull(createTransactionRequestRequestVO.toString());
+        
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequests.createTransactionRequest(createTransactionRequestRequestVO);
         assertNotNull(createTransactionRequestResponseVO);
+        assertNotNull(createTransactionRequestResponseVO.toString());
         assertNotNull(createTransactionRequestResponseVO.getTxrId());
         assertNotNull(createTransactionRequestResponseVO.getIdentityMap());
         assertNotNull(createTransactionRequestResponseVO.getIdentityMap().get("identity_id"));
@@ -130,9 +136,11 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
         CancelTransactionRequestRequestVO cancelTransactionRequestRequestVO = new CancelTransactionRequestRequestVO();
         cancelTransactionRequestRequestVO.setAuth("xxxxxxxx");
         cancelTransactionRequestRequestVO.setTxrId("123456");
-
+        assertNotNull(cancelTransactionRequestRequestVO.toString());
+        
         CancelTransactionRequestResponseVO cancelTransactionRequestResponseVO = transactionRequests.cancelTransactionRequest(cancelTransactionRequestRequestVO);
         assertNotNull(cancelTransactionRequestResponseVO);
+        assertNotNull(cancelTransactionRequestResponseVO.toString());
         assertNotNull(cancelTransactionRequestResponseVO.getResult());
     }
 

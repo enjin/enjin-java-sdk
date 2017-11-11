@@ -36,9 +36,11 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
         GetIdentityRequestVO getIdentityRequestVO = new GetIdentityRequestVO();
         getIdentityRequestVO.setAuth("xxzcxcxz");
         getIdentityRequestVO.setIdentity(identityMap);
-
+        assertNotNull(getIdentityRequestVO.toString());
+        
         GetIdentityResponseVO getIdentityResponseVO = identities.getIdentity(getIdentityRequestVO);
         assertNotNull(getIdentityResponseVO);
+        assertNotNull(getIdentityResponseVO.toString());
         assertNotNull(getIdentityResponseVO.getIdentityId());
         assertNotNull(getIdentityResponseVO.getPlayerName());
         assertNotNull(getIdentityResponseVO.getEthereumAddress());
@@ -62,11 +64,13 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
         listIdentitiesRequestVO.setLimit(limit);
         listIdentitiesRequestVO.setLinked(linked);
         listIdentitiesRequestVO.setIdentity(identityMap);
-
+        assertNotNull(listIdentitiesRequestVO.toString());
+        
         ListIdentitiesResponseVO[] listIdentitiesResponseVOArray = identities.listIdentities(listIdentitiesRequestVO);
 
         for (ListIdentitiesResponseVO listIdentitiesResponseVO : listIdentitiesResponseVOArray) {
             assertNotNull(listIdentitiesResponseVO);
+            assertNotNull(listIdentitiesResponseVO.toString());
             assertNotNull(listIdentitiesResponseVO.getIdentityId());
             assertNotNull(listIdentitiesResponseVO.getPlayerName());
             assertNotNull(listIdentitiesResponseVO.getEthereumAddress());
@@ -84,9 +88,11 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
         CreateIdentityRequestVO createIdentityRequestVO = new CreateIdentityRequestVO();
         createIdentityRequestVO.setAuth("xxzcxcxz");
         createIdentityRequestVO.setIdentity(identityMap);
-
+        assertNotNull(createIdentityRequestVO.toString());
+        
         CreateIdentityResponseVO createIdentityResponseVO = identities.createIdentity(createIdentityRequestVO);
         assertNotNull(createIdentityResponseVO);
+        assertNotNull(createIdentityResponseVO.toString());
         assertNotNull(createIdentityResponseVO.getIdentityId());
         assertNotNull(createIdentityResponseVO.getIdentityCode());
     }
@@ -106,9 +112,11 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
         updateIdentityRequestVO.setAuth("xxzcxcxz");
         updateIdentityRequestVO.setIdentity(identityMap);
         updateIdentityRequestVO.setUpdate(updateMap);
-
+        assertNotNull(updateIdentityRequestVO.toString());
+        
         UpdateIdentityResponseVO updateIdentityResponseVO = identities.updateIdentity(updateIdentityRequestVO);
         assertNotNull(updateIdentityResponseVO);
+        assertNotNull(updateIdentityResponseVO.toString());
         assertNotNull(updateIdentityResponseVO.getIdentityMap());
         assertNotNull(updateIdentityResponseVO.getIdentityMap().get("identity_id"));
         assertNotNull(updateIdentityResponseVO.getIdentityMap().get("ethereum_address"));
@@ -126,9 +134,11 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
         DeleteIdentityRequestVO deleteIdentityRequestVO = new DeleteIdentityRequestVO();
         deleteIdentityRequestVO.setAuth("xxzcxcxz");
         deleteIdentityRequestVO.setIdentity(identityMap);
-
+        assertNotNull(deleteIdentityRequestVO.toString());
+        
         DeleteIdentityResponseVO deleteIdentityResponseVO = identities.deleteIdentity(deleteIdentityRequestVO);
         assertNotNull(deleteIdentityResponseVO);
+        assertNotNull(deleteIdentityResponseVO.toString());
         assertNotNull(deleteIdentityResponseVO.getResult());
 
     }

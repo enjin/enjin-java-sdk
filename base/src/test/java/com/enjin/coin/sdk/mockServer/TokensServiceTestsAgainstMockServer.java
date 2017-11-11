@@ -30,8 +30,11 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer {
     public void testGetToken() {
         GetTokenRequestVO getTokenRequestVO = new GetTokenRequestVO();
         getTokenRequestVO.setTokenId("12345");
+        assertNotNull(getTokenRequestVO.toString());
+        
         GetTokenResponseVO getTokenResponseVO = tokens.getToken(getTokenRequestVO);
         assertNotNull(getTokenResponseVO);
+        assertNotNull(getTokenResponseVO.toString());
         assertNotNull(getTokenResponseVO.getAdapter());
         assertNotNull(getTokenResponseVO.getCreator());
         assertNotNull(getTokenResponseVO.getDecimals());
@@ -51,11 +54,13 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer {
         listTokensRequestVO.setAfterTokenId("123456");
         listTokensRequestVO.setAppId("352");
         listTokensRequestVO.setLimit("limit1");
-
+        assertNotNull(listTokensRequestVO.toString());
+        
         ListTokensResponseVO listTokensResponseVOArray = tokens.listTokens(listTokensRequestVO);
 
         for (GetTokenResponseVO getTokenResponseVO : listTokensResponseVOArray.getGetTokensResponseVOArray()) {
             assertNotNull(getTokenResponseVO);
+            assertNotNull(getTokenResponseVO.toString());
             assertNotNull(getTokenResponseVO.getAdapter());
             assertNotNull(getTokenResponseVO.getCreator());
             assertNotNull(getTokenResponseVO.getDecimals());

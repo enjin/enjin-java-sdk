@@ -19,6 +19,7 @@ public abstract class BaseService {
     public BaseService(EnjinConfig enjinConfig) {
         if (enjinConfig == null) {
             LOGGER.warning("The enjinConfig passed in is null");
+            return;
         }
 
         trustedPlatformUrl = enjinConfig.getTrustedPlatformUrl();

@@ -23,6 +23,7 @@ import java.util.Map;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(JsonRpcUtils.class)
@@ -37,8 +38,11 @@ public class JsonRpcUtilsTest {
 
     @Test
     public void testConstructor() {
-        JsonUtils jsonUtils = new JsonUtils();
-        assertNotNull(jsonUtils);
+    	JsonRpcUtils jsonRpcUtils = new JsonRpcUtils();
+        assertNotNull(jsonRpcUtils);
+        
+        jsonRpcUtils.setIsInTestMode(true);
+        assertTrue(jsonRpcUtils.getIsInTestMode());
     }
 
 

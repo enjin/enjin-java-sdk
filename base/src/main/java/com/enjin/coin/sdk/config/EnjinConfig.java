@@ -20,11 +20,4 @@ public class EnjinConfig {
     public void setInTestMode(boolean inTestMode) {
         this.inTestMode = inTestMode;
     }
-
-    @Override
-    public String toString() {
-        return "EnjinConfig [trustedPlatformUrl=" + trustedPlatformUrl + ", inTestMode=" + inTestMode + "]";
-    }
-
-
 }
