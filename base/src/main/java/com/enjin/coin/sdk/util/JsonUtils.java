@@ -1,26 +1,13 @@
 package com.enjin.coin.sdk.util;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
-import com.google.gson.TypeAdapterFactory;
 
-import java.util.ServiceLoader;
 import java.util.logging.Logger;
 
-public class JsonUtils {
+public final class JsonUtils {
 
     private static final Logger LOGGER = Logger.getLogger(JsonUtils.class.getName());
-
-    private static final Gson GSON;
-
-    static {
-        GsonBuilder builder = new GsonBuilder();
-        for (TypeAdapterFactory factory : ServiceLoader.load(TypeAdapterFactory.class)) {
-            builder.registerTypeAdapterFactory(factory);
-        }
-        GSON = builder.create();
-    }
 
     /**
      * Method to convert a json string to an object
@@ -30,6 +17,10 @@ public class JsonUtils {
      * @return
      */
     public static Object convertJsonToObject(String jsonString, Class<?> responseClass) {
+        return convertJsonToObject(GsonUtils.GSON, jsonString, responseClass);
+    }
+
+    public static Object convertJsonToObject(Gson gson, String jsonString, Class<?> responseClass) {
         Object responseObject = null;
 
         if (ValidationUtils.isEmpty(jsonString) || responseClass == null) {
@@ -40,7 +31,7 @@ public class JsonUtils {
         //JSON from file to Object
         try {
             LOGGER.fine(String.format("jsonString:%s", jsonString));
-            responseObject = GSON.fromJson(jsonString, responseClass);
+            responseObject = gson.fromJson(jsonString, responseClass);
         } catch (JsonSyntaxException e) {
             LOGGER.warning(String.format("A JsonSyntaxException has occured. Exception: %s", StringUtils.exceptionToString(e)));
         }
@@ -56,6 +47,10 @@ public class JsonUtils {
      * @return
      */
     public static String convertObjectToJson(Object jsonObject) {
+        return convertObjectToJson(GsonUtils.GSON, jsonObject);
+    }
+
+    public static String convertObjectToJson(Gson gson, Object jsonObject) {
         String jsonString = null;
 
         if (jsonObject == null) {
@@ -63,8 +58,6 @@ public class JsonUtils {
             return jsonString;
         }
 
-        GsonBuilder builder = new GsonBuilder();
-        Gson gson = builder.create();
         jsonString = gson.toJson(jsonObject);
         LOGGER.fine(String.format("jsonString:%s", jsonString));
         return jsonString;
