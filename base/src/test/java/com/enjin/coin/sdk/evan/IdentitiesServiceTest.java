@@ -1,6 +1,16 @@
 package com.enjin.coin.sdk.evan;
 
 
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
+import static com.github.tomakehurst.wiremock.client.WireMock.post;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
+
+import java.util.HashMap;
+
+import org.junit.Assert;
+import org.junit.Test;
+
 import com.enjin.coin.sdk.util.ContentType;
 import com.enjin.coin.sdk.util.Header;
 import com.github.tomakehurst.wiremock.common.Json;
@@ -8,13 +18,8 @@ import com.thetransactioncompany.jsonrpc2.JSONRPC2Request;
 import com.thetransactioncompany.jsonrpc2.JSONRPC2Response;
 import com.thetransactioncompany.jsonrpc2.client.JSONRPC2Session;
 import com.thetransactioncompany.jsonrpc2.client.JSONRPC2SessionException;
-import org.junit.Assert;
-import org.junit.Test;
+
 import wiremock.com.fasterxml.jackson.databind.JsonNode;
-
-import java.util.HashMap;
-
-import static com.github.tomakehurst.wiremock.client.WireMock.*;
 
 
 public class IdentitiesServiceTest extends JsonRpcBase {
@@ -23,7 +28,9 @@ public class IdentitiesServiceTest extends JsonRpcBase {
     private static final String RESOLVED_API_URL = "%s://localhost:%d/api.php";
 
     private static final String IDENTITIES_CREATE_METHOD = "Identities.create";
-    private static final HashMap<String, Object> IDENTITIES_CREATE_REQUETS_PARAMS = new HashMap<String, Object>() {{
+    @SuppressWarnings("serial")
+	private static final HashMap<String, Object> IDENTITIES_CREATE_REQUETS_PARAMS = new HashMap<String, Object>() {
+	{
         put("auth", "xxxxxxxx");
         put("identity", new HashMap<String, Object>() {{
             put("uuid", "069a79f4-44e9-4726-a5be-fca90e38aaf5");
