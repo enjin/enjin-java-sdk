@@ -2,6 +2,7 @@ package com.enjin.coin.sdk.util;
 
 import com.enjin.coin.sdk.vo.event.GetEventDataVO;
 import com.enjin.coin.sdk.vo.identity.CreateIdentityRequestVO;
+import com.enjin.coin.sdk.vo.identity.ImmutableCreateIdentityRequestVO;
 import com.thetransactioncompany.jsonrpc2.JSONRPC2Error;
 import com.thetransactioncompany.jsonrpc2.JSONRPC2Request;
 import com.thetransactioncompany.jsonrpc2.JSONRPC2Response;
@@ -51,8 +52,9 @@ public class JsonRpcUtilsTest {
         String method = "method1";
         Map<String, Object> params = new HashMap<>();
         params.put("param1", "value1");
-        CreateIdentityRequestVO createIdentityRequestVO = new CreateIdentityRequestVO();
-        createIdentityRequestVO.setAuth("auth");
+        CreateIdentityRequestVO createIdentityRequestVO = ImmutableCreateIdentityRequestVO.builder()
+                .setAuth("auth")
+                .build();
         String responseJson = JsonUtils.convertObjectToJson(createIdentityRequestVO);
 
         URL mockUrl = PowerMockito.mock(URL.class);
@@ -183,8 +185,9 @@ public class JsonRpcUtilsTest {
         String method = "method1";
         Map<String, Object> params = new HashMap<>();
         params.put("param1", "value1");
-        CreateIdentityRequestVO createIdentityRequestVO = new CreateIdentityRequestVO();
-        createIdentityRequestVO.setAuth("auth");
+        CreateIdentityRequestVO createIdentityRequestVO = ImmutableCreateIdentityRequestVO.builder()
+                .setAuth("auth")
+                .build();
         String responseJson = JsonUtils.convertObjectToJson(createIdentityRequestVO);
 
         URL mockUrl = PowerMockito.mock(URL.class);
@@ -219,8 +222,9 @@ public class JsonRpcUtilsTest {
         Class<?> responseClass = GetEventDataVO.class;
         String method = "method1";
         Map<String, Object> params = null;
-        CreateIdentityRequestVO createIdentityRequestVO = new CreateIdentityRequestVO();
-        createIdentityRequestVO.setAuth("auth");
+        CreateIdentityRequestVO createIdentityRequestVO = ImmutableCreateIdentityRequestVO.builder()
+                .setAuth("auth")
+                .build();
         String responseJson = JsonUtils.convertObjectToJson(createIdentityRequestVO);
 
         URL mockUrl = PowerMockito.mock(URL.class);

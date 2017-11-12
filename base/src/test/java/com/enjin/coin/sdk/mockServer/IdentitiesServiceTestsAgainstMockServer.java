@@ -33,9 +33,10 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
         identityMap.put("test_damien1", "test_damien1_value");
         identityMap.put("test_damien2", "test_damien2_value");
 
-        GetIdentityRequestVO getIdentityRequestVO = new GetIdentityRequestVO();
-        getIdentityRequestVO.setAuth("xxzcxcxz");
-        getIdentityRequestVO.setIdentity(identityMap);
+        GetIdentityRequestVO getIdentityRequestVO = ImmutableGetIdentityRequestVO.builder()
+                .setAuth("xxzcxcxz")
+                .setIdentity(identityMap)
+                .build();
         assertNotNull(getIdentityRequestVO.toString());
 
         GetIdentityResponseVO getIdentityResponseVO = identities.getIdentity(getIdentityRequestVO);
@@ -58,12 +59,13 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
         String afterIdentityId = "after-1";
         String limit = "limit1";
         boolean linked = false;
-        ListIdentitiesRequestVO listIdentitiesRequestVO = new ListIdentitiesRequestVO();
-        listIdentitiesRequestVO.setAfterIdentityId(afterIdentityId);
-        listIdentitiesRequestVO.setAuth("xxzcxcxz");
-        listIdentitiesRequestVO.setLimit(limit);
-        listIdentitiesRequestVO.setLinked(linked);
-        listIdentitiesRequestVO.setIdentity(identityMap);
+        ListIdentitiesRequestVO listIdentitiesRequestVO = ImmutableListIdentitiesRequestVO.builder()
+                .setAfterIdentityId(afterIdentityId)
+                .setAuth("xxzcxcxz")
+                .setLimit(limit)
+                .setLinked(linked)
+                .setIdentity(identityMap)
+                .build();
         assertNotNull(listIdentitiesRequestVO.toString());
 
         ListIdentitiesResponseVO[] listIdentitiesResponseVOArray = identities.listIdentities(listIdentitiesRequestVO);
@@ -85,9 +87,10 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
         identityMap.put("test_damien2", "test_damien2_value");
 
         //Test the create identity request
-        CreateIdentityRequestVO createIdentityRequestVO = new CreateIdentityRequestVO();
-        createIdentityRequestVO.setAuth("xxzcxcxz");
-        createIdentityRequestVO.setIdentity(identityMap);
+        CreateIdentityRequestVO createIdentityRequestVO = ImmutableCreateIdentityRequestVO.builder()
+                .setAuth("xxzcxcxz")
+                .setIdentity(identityMap)
+                .build();
         assertNotNull(createIdentityRequestVO.toString());
 
         CreateIdentityResponseVO createIdentityResponseVO = identities.createIdentity(createIdentityRequestVO);
@@ -108,10 +111,11 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
         updateMap.put("player_name", null);
         updateMap.put("ethereum_address", "0x1111111111111111111111111111111111111111");
 
-        UpdateIdentityRequestVO updateIdentityRequestVO = new UpdateIdentityRequestVO();
-        updateIdentityRequestVO.setAuth("xxzcxcxz");
-        updateIdentityRequestVO.setIdentity(identityMap);
-        updateIdentityRequestVO.setUpdate(updateMap);
+        UpdateIdentityRequestVO updateIdentityRequestVO = ImmutableUpdateIdentityRequestVO.builder()
+                .setAuth("xxzcxcxz")
+                .setIdentity(identityMap)
+                .setUpdate(updateMap)
+                .build();
         assertNotNull(updateIdentityRequestVO.toString());
 
         UpdateIdentityResponseVO updateIdentityResponseVO = identities.updateIdentity(updateIdentityRequestVO);
@@ -131,9 +135,10 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
         identityMap.put("test_damien2", "test_damien2_value");
 
         // Test the delete identity request
-        DeleteIdentityRequestVO deleteIdentityRequestVO = new DeleteIdentityRequestVO();
-        deleteIdentityRequestVO.setAuth("xxzcxcxz");
-        deleteIdentityRequestVO.setIdentity(identityMap);
+        DeleteIdentityRequestVO deleteIdentityRequestVO = ImmutableDeleteIdentityRequestVO.builder()
+                .setAuth("xxzcxcxz")
+                .setIdentity(identityMap)
+                .build();
         assertNotNull(deleteIdentityRequestVO.toString());
 
         DeleteIdentityResponseVO deleteIdentityResponseVO = identities.deleteIdentity(deleteIdentityRequestVO);

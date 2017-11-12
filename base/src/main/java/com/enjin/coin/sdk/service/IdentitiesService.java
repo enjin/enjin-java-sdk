@@ -150,9 +150,10 @@ public class IdentitiesService extends BaseService {
         // Construct new request
         String method = Constants.METHOD_IDENTITIES_DELETE;
 
-        deleteIdentityResponseVO = new DeleteIdentityResponseVO();
         Boolean result = (Boolean) jsonRpcUtils.sendJsonRpcRequest(getIdentitiesUrl(), Boolean.class, method, params);
-        deleteIdentityResponseVO.setResult(result);
+        deleteIdentityResponseVO = ImmutableDeleteIdentityResponseVO.builder()
+                .setResult(result)
+                .build();
         return deleteIdentityResponseVO;
     }
 

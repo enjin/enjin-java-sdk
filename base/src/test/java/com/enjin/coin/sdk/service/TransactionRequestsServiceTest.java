@@ -37,9 +37,10 @@ public class TransactionRequestsServiceTest {
 
     @Test
     public void testGetTransactionRequest_AuthIsNull() throws Exception {
-        GetTransactionRequestRequestVO getTransactionRequestRequestVO = new GetTransactionRequestRequestVO();
-        getTransactionRequestRequestVO.setAuth(null);
-        getTransactionRequestRequestVO.setTxrId("txrId");
+        GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
+                .setAuth(null)
+                .setTxrId("txrId")
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         GetTransactionRequestResponseVO getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
@@ -48,9 +49,10 @@ public class TransactionRequestsServiceTest {
 
     @Test
     public void testGetTransactionRequest_AuthIsEmpty() throws Exception {
-        GetTransactionRequestRequestVO getTransactionRequestRequestVO = new GetTransactionRequestRequestVO();
-        getTransactionRequestRequestVO.setAuth("");
-        getTransactionRequestRequestVO.setTxrId("txrId");
+        GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
+                .setAuth("")
+                .setTxrId("txrId")
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         GetTransactionRequestResponseVO getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
@@ -59,9 +61,10 @@ public class TransactionRequestsServiceTest {
 
     @Test
     public void testGetTransactionRequest_TxrIdIsNull() throws Exception {
-        GetTransactionRequestRequestVO getTransactionRequestRequestVO = new GetTransactionRequestRequestVO();
-        getTransactionRequestRequestVO.setAuth("xxxxxxxx");
-        getTransactionRequestRequestVO.setTxrId(null);
+        GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setTxrId(null)
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         GetTransactionRequestResponseVO getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
@@ -70,9 +73,10 @@ public class TransactionRequestsServiceTest {
 
     @Test
     public void testGetTransactionRequest_TxrIdIsEmpty() throws Exception {
-        GetTransactionRequestRequestVO getTransactionRequestRequestVO = new GetTransactionRequestRequestVO();
-        getTransactionRequestRequestVO.setAuth("xxxxxxxx");
-        getTransactionRequestRequestVO.setTxrId("");
+        GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setTxrId("txrId")
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         GetTransactionRequestResponseVO getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
@@ -82,9 +86,10 @@ public class TransactionRequestsServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testGetTransactionRequest_ResponseIsNull() throws Exception {
-        GetTransactionRequestRequestVO getTransactionRequestRequestVO = new GetTransactionRequestRequestVO();
-        getTransactionRequestRequestVO.setAuth("xxxxxxxx");
-        getTransactionRequestRequestVO.setTxrId("123456");
+        GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setTxrId("123456")
+                .build();
 
         GetTransactionRequestResponseVO returnedGetTransactionRequestResponseVO = null;
 
@@ -104,11 +109,12 @@ public class TransactionRequestsServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testGetTransactionRequest_Success() throws Exception {
-        GetTransactionRequestRequestVO getTransactionRequestRequestVO = new GetTransactionRequestRequestVO();
-        getTransactionRequestRequestVO.setAuth("xxxxxxxx");
-        getTransactionRequestRequestVO.setTxrId("123456");
+        GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setTxrId("123456")
+                .build();
 
-        GetTransactionRequestResponseVO returnedGetTransactionRequestResponseVO = new GetTransactionRequestResponseVO();
+        GetTransactionRequestResponseVO returnedGetTransactionRequestResponseVO = ImmutableGetTransactionRequestResponseVO.builder().build();
 
         JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
@@ -138,15 +144,16 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> listRecipientMap = new HashMap<>();
         listRecipientMap.put("identity_id", "54321");
 
-        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = new ListTransactionRequestsRequestVO();
-        listTransactionRequestsRequestVO.setAuth("");
-        listTransactionRequestsRequestVO.setIdentityMap(listIdentityMap);
-        listTransactionRequestsRequestVO.setAppId("appId");
-        listTransactionRequestsRequestVO.setRecipientMap(listRecipientMap);
-        listTransactionRequestsRequestVO.setType("buy");
-        listTransactionRequestsRequestVO.setAfterTxrId("after");
-        listTransactionRequestsRequestVO.setLimit("50");
-        listTransactionRequestsRequestVO.setCurrency("currency");
+        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = ImmutableListTransactionRequestsRequestVO.builder()
+                .setAuth("")
+                .setIdentityMap(listIdentityMap)
+                .setAppId("appId")
+                .setRecipientMap(listRecipientMap)
+                .setType("buy")
+                .setAfterTxrId("after")
+                .setLimit("50")
+                .setCurrency("currency")
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
@@ -160,15 +167,16 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> listRecipientMap = new HashMap<>();
         listRecipientMap.put("identity_id", "54321");
 
-        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = new ListTransactionRequestsRequestVO();
-        listTransactionRequestsRequestVO.setAuth(null);
-        listTransactionRequestsRequestVO.setIdentityMap(listIdentityMap);
-        listTransactionRequestsRequestVO.setAppId("appId");
-        listTransactionRequestsRequestVO.setRecipientMap(listRecipientMap);
-        listTransactionRequestsRequestVO.setType("buy");
-        listTransactionRequestsRequestVO.setAfterTxrId("after");
-        listTransactionRequestsRequestVO.setLimit("50");
-        listTransactionRequestsRequestVO.setCurrency("currency");
+        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = ImmutableListTransactionRequestsRequestVO.builder()
+                .setAuth(null)
+                .setIdentityMap(listIdentityMap)
+                .setAppId("appId")
+                .setRecipientMap(listRecipientMap)
+                .setType("buy")
+                .setAfterTxrId("after")
+                .setLimit("50")
+                .setCurrency("currency")
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
@@ -181,15 +189,16 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> listRecipientMap = new HashMap<>();
         listRecipientMap.put("identity_id", "54321");
 
-        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = new ListTransactionRequestsRequestVO();
-        listTransactionRequestsRequestVO.setAuth("xxxxxxxx");
-        listTransactionRequestsRequestVO.setIdentityMap(listIdentityMap);
-        listTransactionRequestsRequestVO.setAppId("1233");
-        listTransactionRequestsRequestVO.setRecipientMap(listRecipientMap);
-        listTransactionRequestsRequestVO.setType("buy");
-        listTransactionRequestsRequestVO.setAfterTxrId("after");
-        listTransactionRequestsRequestVO.setLimit("50");
-        listTransactionRequestsRequestVO.setCurrency("currency");
+        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = ImmutableListTransactionRequestsRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setAppId("1233")
+                .setRecipientMap(listRecipientMap)
+                .setType("buy")
+                .setAfterTxrId("after")
+                .setLimit("50")
+                .setCurrency("currency")
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
@@ -202,15 +211,16 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> listRecipientMap = new HashMap<>();
         listRecipientMap.put("identity_id", "54321");
 
-        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = new ListTransactionRequestsRequestVO();
-        listTransactionRequestsRequestVO.setAuth("xxxxxxxx");
-        listTransactionRequestsRequestVO.setIdentityMap(listIdentityMap);
-        listTransactionRequestsRequestVO.setAppId("1233");
-        listTransactionRequestsRequestVO.setRecipientMap(listRecipientMap);
-        listTransactionRequestsRequestVO.setType("buy");
-        listTransactionRequestsRequestVO.setAfterTxrId("after");
-        listTransactionRequestsRequestVO.setLimit("50");
-        listTransactionRequestsRequestVO.setCurrency("currency");
+        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = ImmutableListTransactionRequestsRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setAppId("1233")
+                .setRecipientMap(listRecipientMap)
+                .setType("buy")
+                .setAfterTxrId("after")
+                .setLimit("50")
+                .setCurrency("currency")
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
@@ -224,15 +234,16 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> listRecipientMap = new HashMap<>();
         listRecipientMap.put("identity_id", "54321");
 
-        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = new ListTransactionRequestsRequestVO();
-        listTransactionRequestsRequestVO.setAuth("xxxxxxxx");
-        listTransactionRequestsRequestVO.setIdentityMap(listIdentityMap);
-        listTransactionRequestsRequestVO.setAppId("");
-        listTransactionRequestsRequestVO.setRecipientMap(listRecipientMap);
-        listTransactionRequestsRequestVO.setType("buy");
-        listTransactionRequestsRequestVO.setAfterTxrId("after");
-        listTransactionRequestsRequestVO.setLimit("50");
-        listTransactionRequestsRequestVO.setCurrency("currency");
+        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = ImmutableListTransactionRequestsRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setAppId("")
+                .setRecipientMap(listRecipientMap)
+                .setType("buy")
+                .setAfterTxrId("after")
+                .setLimit("50")
+                .setCurrency("currency")
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
@@ -246,15 +257,16 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> listRecipientMap = new HashMap<>();
         listRecipientMap.put("identity_id", "54321");
 
-        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = new ListTransactionRequestsRequestVO();
-        listTransactionRequestsRequestVO.setAuth("xxxxxxxx");
-        listTransactionRequestsRequestVO.setIdentityMap(listIdentityMap);
-        listTransactionRequestsRequestVO.setAppId(null);
-        listTransactionRequestsRequestVO.setRecipientMap(listRecipientMap);
-        listTransactionRequestsRequestVO.setType("buy");
-        listTransactionRequestsRequestVO.setAfterTxrId("after");
-        listTransactionRequestsRequestVO.setLimit("50");
-        listTransactionRequestsRequestVO.setCurrency("currency");
+        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = ImmutableListTransactionRequestsRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setAppId(null)
+                .setRecipientMap(listRecipientMap)
+                .setType("buy")
+                .setAfterTxrId("after")
+                .setLimit("50")
+                .setCurrency("currency")
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
@@ -267,15 +279,16 @@ public class TransactionRequestsServiceTest {
         listIdentityMap.put("identity_id", "12345");
         Map<String, Object> listRecipientMap = new HashMap<>();
 
-        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = new ListTransactionRequestsRequestVO();
-        listTransactionRequestsRequestVO.setAuth("xxxxxxxx");
-        listTransactionRequestsRequestVO.setIdentityMap(listIdentityMap);
-        listTransactionRequestsRequestVO.setAppId("123");
-        listTransactionRequestsRequestVO.setRecipientMap(listRecipientMap);
-        listTransactionRequestsRequestVO.setType("buy");
-        listTransactionRequestsRequestVO.setAfterTxrId("after");
-        listTransactionRequestsRequestVO.setLimit("50");
-        listTransactionRequestsRequestVO.setCurrency("currency");
+        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = ImmutableListTransactionRequestsRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setAppId("123")
+                .setRecipientMap(listRecipientMap)
+                .setType("buy")
+                .setAfterTxrId("after")
+                .setLimit("50")
+                .setCurrency("currency")
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
@@ -288,15 +301,16 @@ public class TransactionRequestsServiceTest {
         listIdentityMap.put("identity_id", "12345");
         Map<String, Object> listRecipientMap = null;
 
-        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = new ListTransactionRequestsRequestVO();
-        listTransactionRequestsRequestVO.setAuth("xxxxxxxx");
-        listTransactionRequestsRequestVO.setIdentityMap(listIdentityMap);
-        listTransactionRequestsRequestVO.setAppId("123");
-        listTransactionRequestsRequestVO.setRecipientMap(listRecipientMap);
-        listTransactionRequestsRequestVO.setType("buy");
-        listTransactionRequestsRequestVO.setAfterTxrId("after");
-        listTransactionRequestsRequestVO.setLimit("50");
-        listTransactionRequestsRequestVO.setCurrency("currency");
+        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = ImmutableListTransactionRequestsRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setAppId("123")
+                .setRecipientMap(listRecipientMap)
+                .setType("buy")
+                .setAfterTxrId("after")
+                .setLimit("50")
+                .setCurrency("currency")
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
@@ -310,15 +324,16 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> listRecipientMap = new HashMap<>();
         listRecipientMap.put("identity_id", "54321");
 
-        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = new ListTransactionRequestsRequestVO();
-        listTransactionRequestsRequestVO.setAuth("xxxxxxxx");
-        listTransactionRequestsRequestVO.setIdentityMap(listIdentityMap);
-        listTransactionRequestsRequestVO.setAppId("123");
-        listTransactionRequestsRequestVO.setRecipientMap(listRecipientMap);
-        listTransactionRequestsRequestVO.setType("");
-        listTransactionRequestsRequestVO.setAfterTxrId("after");
-        listTransactionRequestsRequestVO.setLimit("50");
-        listTransactionRequestsRequestVO.setCurrency("currency");
+        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = ImmutableListTransactionRequestsRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setAppId("123")
+                .setRecipientMap(listRecipientMap)
+                .setType("")
+                .setAfterTxrId("after")
+                .setLimit("50")
+                .setCurrency("currency")
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
@@ -332,15 +347,16 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> listRecipientMap = new HashMap<>();
         listRecipientMap.put("identity_id", "54321");
 
-        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = new ListTransactionRequestsRequestVO();
-        listTransactionRequestsRequestVO.setAuth("xxxxxxxx");
-        listTransactionRequestsRequestVO.setIdentityMap(listIdentityMap);
-        listTransactionRequestsRequestVO.setAppId("123");
-        listTransactionRequestsRequestVO.setRecipientMap(listRecipientMap);
-        listTransactionRequestsRequestVO.setType(null);
-        listTransactionRequestsRequestVO.setAfterTxrId("after");
-        listTransactionRequestsRequestVO.setLimit("50");
-        listTransactionRequestsRequestVO.setCurrency("currency");
+        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = ImmutableListTransactionRequestsRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setAppId("123")
+                .setRecipientMap(listRecipientMap)
+                .setType(null)
+                .setAfterTxrId("after")
+                .setLimit("50")
+                .setCurrency("currency")
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
@@ -354,15 +370,16 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> listRecipientMap = new HashMap<>();
         listRecipientMap.put("identity_id", "54321");
 
-        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = new ListTransactionRequestsRequestVO();
-        listTransactionRequestsRequestVO.setAuth("xxxxxxxx");
-        listTransactionRequestsRequestVO.setIdentityMap(listIdentityMap);
-        listTransactionRequestsRequestVO.setAppId("123");
-        listTransactionRequestsRequestVO.setRecipientMap(listRecipientMap);
-        listTransactionRequestsRequestVO.setType("buy");
-        listTransactionRequestsRequestVO.setAfterTxrId("");
-        listTransactionRequestsRequestVO.setLimit("50");
-        listTransactionRequestsRequestVO.setCurrency("currency");
+        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = ImmutableListTransactionRequestsRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setAppId("123")
+                .setRecipientMap(listRecipientMap)
+                .setType("buy")
+                .setAfterTxrId("")
+                .setLimit("50")
+                .setCurrency("currency")
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
@@ -376,15 +393,16 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> listRecipientMap = new HashMap<>();
         listRecipientMap.put("identity_id", "54321");
 
-        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = new ListTransactionRequestsRequestVO();
-        listTransactionRequestsRequestVO.setAuth("xxxxxxxx");
-        listTransactionRequestsRequestVO.setIdentityMap(listIdentityMap);
-        listTransactionRequestsRequestVO.setAppId("123");
-        listTransactionRequestsRequestVO.setRecipientMap(listRecipientMap);
-        listTransactionRequestsRequestVO.setType("buy");
-        listTransactionRequestsRequestVO.setAfterTxrId(null);
-        listTransactionRequestsRequestVO.setLimit("50");
-        listTransactionRequestsRequestVO.setCurrency("currency");
+        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = ImmutableListTransactionRequestsRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setAppId("123")
+                .setRecipientMap(listRecipientMap)
+                .setType("buy")
+                .setAfterTxrId(null)
+                .setLimit("50")
+                .setCurrency("currency")
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
@@ -398,15 +416,16 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> listRecipientMap = new HashMap<>();
         listRecipientMap.put("identity_id", "54321");
 
-        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = new ListTransactionRequestsRequestVO();
-        listTransactionRequestsRequestVO.setAuth("xxxxxxxx");
-        listTransactionRequestsRequestVO.setIdentityMap(listIdentityMap);
-        listTransactionRequestsRequestVO.setAppId("123");
-        listTransactionRequestsRequestVO.setRecipientMap(listRecipientMap);
-        listTransactionRequestsRequestVO.setType("buy");
-        listTransactionRequestsRequestVO.setAfterTxrId("1234567");
-        listTransactionRequestsRequestVO.setLimit("");
-        listTransactionRequestsRequestVO.setCurrency("currency");
+        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = ImmutableListTransactionRequestsRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setAppId("123")
+                .setRecipientMap(listRecipientMap)
+                .setType("buy")
+                .setAfterTxrId("1234567")
+                .setLimit("")
+                .setCurrency("currency")
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
@@ -420,15 +439,16 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> listRecipientMap = new HashMap<>();
         listRecipientMap.put("identity_id", "54321");
 
-        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = new ListTransactionRequestsRequestVO();
-        listTransactionRequestsRequestVO.setAuth("xxxxxxxx");
-        listTransactionRequestsRequestVO.setIdentityMap(listIdentityMap);
-        listTransactionRequestsRequestVO.setAppId("123");
-        listTransactionRequestsRequestVO.setRecipientMap(listRecipientMap);
-        listTransactionRequestsRequestVO.setType("buy");
-        listTransactionRequestsRequestVO.setAfterTxrId("1234567");
-        listTransactionRequestsRequestVO.setLimit(null);
-        listTransactionRequestsRequestVO.setCurrency("currency");
+        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = ImmutableListTransactionRequestsRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setAppId("123")
+                .setRecipientMap(listRecipientMap)
+                .setType("buy")
+                .setAfterTxrId("1234567")
+                .setLimit(null)
+                .setCurrency("currency")
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
@@ -442,15 +462,16 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> listRecipientMap = new HashMap<>();
         listRecipientMap.put("identity_id", "54321");
 
-        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = new ListTransactionRequestsRequestVO();
-        listTransactionRequestsRequestVO.setAuth("xxxxxxxx");
-        listTransactionRequestsRequestVO.setIdentityMap(listIdentityMap);
-        listTransactionRequestsRequestVO.setAppId("123");
-        listTransactionRequestsRequestVO.setRecipientMap(listRecipientMap);
-        listTransactionRequestsRequestVO.setType("buy");
-        listTransactionRequestsRequestVO.setAfterTxrId("1234567");
-        listTransactionRequestsRequestVO.setLimit("50");
-        listTransactionRequestsRequestVO.setCurrency("");
+        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = ImmutableListTransactionRequestsRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setAppId("123")
+                .setRecipientMap(listRecipientMap)
+                .setType("buy")
+                .setAfterTxrId("1234567")
+                .setLimit("50")
+                .setCurrency("")
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
@@ -464,15 +485,16 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> listRecipientMap = new HashMap<>();
         listRecipientMap.put("identity_id", "54321");
 
-        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = new ListTransactionRequestsRequestVO();
-        listTransactionRequestsRequestVO.setAuth("xxxxxxxx");
-        listTransactionRequestsRequestVO.setIdentityMap(listIdentityMap);
-        listTransactionRequestsRequestVO.setAppId("123");
-        listTransactionRequestsRequestVO.setRecipientMap(listRecipientMap);
-        listTransactionRequestsRequestVO.setType("buy");
-        listTransactionRequestsRequestVO.setAfterTxrId("1234567");
-        listTransactionRequestsRequestVO.setLimit("50");
-        listTransactionRequestsRequestVO.setCurrency(null);
+        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = ImmutableListTransactionRequestsRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setAppId("123")
+                .setRecipientMap(listRecipientMap)
+                .setType("buy")
+                .setAfterTxrId("1234567")
+                .setLimit("50")
+                .setCurrency(null)
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
@@ -487,15 +509,16 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> listRecipientMap = new HashMap<>();
         listRecipientMap.put("identity_id", "54321");
 
-        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = new ListTransactionRequestsRequestVO();
-        listTransactionRequestsRequestVO.setAuth("xxxxxxxx");
-        listTransactionRequestsRequestVO.setIdentityMap(listIdentityMap);
-        listTransactionRequestsRequestVO.setAppId("123");
-        listTransactionRequestsRequestVO.setRecipientMap(listRecipientMap);
-        listTransactionRequestsRequestVO.setType("buy");
-        listTransactionRequestsRequestVO.setAfterTxrId("1234567");
-        listTransactionRequestsRequestVO.setLimit("50");
-        listTransactionRequestsRequestVO.setCurrency("23456");
+        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = ImmutableListTransactionRequestsRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setAppId("123")
+                .setRecipientMap(listRecipientMap)
+                .setType("buy")
+                .setAfterTxrId("1234567")
+                .setLimit("50")
+                .setCurrency("23456")
+                .build();
 
         ListTransactionRequestsResponseVO[] returnedListTransactionRequestsResponseVOArray = null;
 
@@ -519,15 +542,16 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> listRecipientMap = new HashMap<>();
         listRecipientMap.put("identity_id", "54321");
 
-        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = new ListTransactionRequestsRequestVO();
-        listTransactionRequestsRequestVO.setAuth("xxxxxxxx");
-        listTransactionRequestsRequestVO.setIdentityMap(listIdentityMap);
-        listTransactionRequestsRequestVO.setAppId("123");
-        listTransactionRequestsRequestVO.setRecipientMap(listRecipientMap);
-        listTransactionRequestsRequestVO.setType("buy");
-        listTransactionRequestsRequestVO.setAfterTxrId("1234567");
-        listTransactionRequestsRequestVO.setLimit("50");
-        listTransactionRequestsRequestVO.setCurrency("23456");
+        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = ImmutableListTransactionRequestsRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setAppId("123")
+                .setRecipientMap(listRecipientMap)
+                .setType("buy")
+                .setAfterTxrId("1234567")
+                .setLimit("50")
+                .setCurrency("23456")
+                .build();
 
         ListTransactionRequestsResponseVO[] returnedListTransactionRequestsResponseVOArray = new ListTransactionRequestsResponseVO[]{};
 
@@ -552,17 +576,20 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> listRecipientMap = new HashMap<>();
         listRecipientMap.put("identity_id", "54321");
 
-        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = new ListTransactionRequestsRequestVO();
-        listTransactionRequestsRequestVO.setAuth("xxxxxxxx");
-        listTransactionRequestsRequestVO.setIdentityMap(listIdentityMap);
-        listTransactionRequestsRequestVO.setAppId("123");
-        listTransactionRequestsRequestVO.setRecipientMap(listRecipientMap);
-        listTransactionRequestsRequestVO.setType("buy");
-        listTransactionRequestsRequestVO.setAfterTxrId("1234567");
-        listTransactionRequestsRequestVO.setLimit("50");
-        listTransactionRequestsRequestVO.setCurrency("23456");
+        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = ImmutableListTransactionRequestsRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setAppId("123")
+                .setRecipientMap(listRecipientMap)
+                .setType("buy")
+                .setAfterTxrId("1234567")
+                .setLimit("50")
+                .setCurrency("23456")
+                .build();
 
-        ListTransactionRequestsResponseVO[] returnedListTransactionRequestsResponseVOArray = new ListTransactionRequestsResponseVO[]{new ListTransactionRequestsResponseVO()};
+        ListTransactionRequestsResponseVO[] returnedListTransactionRequestsResponseVOArray = new ListTransactionRequestsResponseVO[]{
+                ImmutableListTransactionRequestsResponseVO.builder().build()
+        };
 
         JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
@@ -595,14 +622,15 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> createValueMap = new HashMap<>();
         createValueMap.put("ENJ", "3000000000000000000");
 
-        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = new CreateTransactionRequestRequestVO();
-        createTransactionRequestRequestVO.setAuth(null);
-        createTransactionRequestRequestVO.setIdentityMap(listIdentityMap);
-        createTransactionRequestRequestVO.setRecipientMap(listRecipientMap);
-        createTransactionRequestRequestVO.setType("type");
-        createTransactionRequestRequestVO.setIcon("icon");
-        createTransactionRequestRequestVO.setTitle("title");
-        createTransactionRequestRequestVO.setValueMap(createValueMap);
+        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = ImmutableCreateTransactionRequestRequestVO.builder()
+                .setAuth(null)
+                .setIdentityMap(listIdentityMap)
+                .setRecipientMap(listRecipientMap)
+                .setType("type")
+                .setIcon("icon")
+                .setTitle("title")
+                .setValueMap(createValueMap)
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
@@ -618,14 +646,15 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> createValueMap = new HashMap<>();
         createValueMap.put("ENJ", "3000000000000000000");
 
-        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = new CreateTransactionRequestRequestVO();
-        createTransactionRequestRequestVO.setAuth("");
-        createTransactionRequestRequestVO.setIdentityMap(listIdentityMap);
-        createTransactionRequestRequestVO.setRecipientMap(listRecipientMap);
-        createTransactionRequestRequestVO.setType("type");
-        createTransactionRequestRequestVO.setIcon("icon");
-        createTransactionRequestRequestVO.setTitle("title");
-        createTransactionRequestRequestVO.setValueMap(createValueMap);
+        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = ImmutableCreateTransactionRequestRequestVO.builder()
+                .setAuth("")
+                .setIdentityMap(listIdentityMap)
+                .setRecipientMap(listRecipientMap)
+                .setType("type")
+                .setIcon("icon")
+                .setTitle("title")
+                .setValueMap(createValueMap)
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
@@ -640,14 +669,15 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> createValueMap = new HashMap<>();
         createValueMap.put("ENJ", "3000000000000000000");
 
-        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = new CreateTransactionRequestRequestVO();
-        createTransactionRequestRequestVO.setAuth("xxxxxxxx");
-        createTransactionRequestRequestVO.setIdentityMap(listIdentityMap);
-        createTransactionRequestRequestVO.setRecipientMap(listRecipientMap);
-        createTransactionRequestRequestVO.setType("type");
-        createTransactionRequestRequestVO.setIcon("icon");
-        createTransactionRequestRequestVO.setTitle("title");
-        createTransactionRequestRequestVO.setValueMap(createValueMap);
+        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = ImmutableCreateTransactionRequestRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setRecipientMap(listRecipientMap)
+                .setType("type")
+                .setIcon("icon")
+                .setTitle("title")
+                .setValueMap(createValueMap)
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
@@ -662,14 +692,15 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> createValueMap = new HashMap<>();
         createValueMap.put("ENJ", "3000000000000000000");
 
-        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = new CreateTransactionRequestRequestVO();
-        createTransactionRequestRequestVO.setAuth("xxxxxxxx");
-        createTransactionRequestRequestVO.setIdentityMap(listIdentityMap);
-        createTransactionRequestRequestVO.setRecipientMap(listRecipientMap);
-        createTransactionRequestRequestVO.setType("type");
-        createTransactionRequestRequestVO.setIcon("icon");
-        createTransactionRequestRequestVO.setTitle("title");
-        createTransactionRequestRequestVO.setValueMap(createValueMap);
+        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = ImmutableCreateTransactionRequestRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setRecipientMap(listRecipientMap)
+                .setType("type")
+                .setIcon("icon")
+                .setTitle("title")
+                .setValueMap(createValueMap)
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
@@ -684,14 +715,15 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> createValueMap = new HashMap<>();
         createValueMap.put("ENJ", "3000000000000000000");
 
-        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = new CreateTransactionRequestRequestVO();
-        createTransactionRequestRequestVO.setAuth("xxxxxxxx");
-        createTransactionRequestRequestVO.setIdentityMap(listIdentityMap);
-        createTransactionRequestRequestVO.setRecipientMap(listRecipientMap);
-        createTransactionRequestRequestVO.setType("type");
-        createTransactionRequestRequestVO.setIcon("icon");
-        createTransactionRequestRequestVO.setTitle("title");
-        createTransactionRequestRequestVO.setValueMap(createValueMap);
+        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = ImmutableCreateTransactionRequestRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setRecipientMap(listRecipientMap)
+                .setType("type")
+                .setIcon("icon")
+                .setTitle("title")
+                .setValueMap(createValueMap)
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
@@ -707,14 +739,15 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> createValueMap = new HashMap<>();
         createValueMap.put("ENJ", "3000000000000000000");
 
-        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = new CreateTransactionRequestRequestVO();
-        createTransactionRequestRequestVO.setAuth("xxxxxxxx");
-        createTransactionRequestRequestVO.setIdentityMap(listIdentityMap);
-        createTransactionRequestRequestVO.setRecipientMap(listRecipientMap);
-        createTransactionRequestRequestVO.setType("type");
-        createTransactionRequestRequestVO.setIcon("icon");
-        createTransactionRequestRequestVO.setTitle("title");
-        createTransactionRequestRequestVO.setValueMap(createValueMap);
+        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = ImmutableCreateTransactionRequestRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setRecipientMap(listRecipientMap)
+                .setType("type")
+                .setIcon("icon")
+                .setTitle("title")
+                .setValueMap(createValueMap)
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
@@ -731,14 +764,15 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> createValueMap = new HashMap<>();
         createValueMap.put("ENJ", "3000000000000000000");
 
-        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = new CreateTransactionRequestRequestVO();
-        createTransactionRequestRequestVO.setAuth("xxxxxxxx");
-        createTransactionRequestRequestVO.setIdentityMap(listIdentityMap);
-        createTransactionRequestRequestVO.setRecipientMap(listRecipientMap);
-        createTransactionRequestRequestVO.setType(null);
-        createTransactionRequestRequestVO.setIcon("icon");
-        createTransactionRequestRequestVO.setTitle("title");
-        createTransactionRequestRequestVO.setValueMap(createValueMap);
+        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = ImmutableCreateTransactionRequestRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setRecipientMap(listRecipientMap)
+                .setType(null)
+                .setIcon("icon")
+                .setTitle("title")
+                .setValueMap(createValueMap)
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
@@ -754,14 +788,15 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> createValueMap = new HashMap<>();
         createValueMap.put("ENJ", "3000000000000000000");
 
-        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = new CreateTransactionRequestRequestVO();
-        createTransactionRequestRequestVO.setAuth("xxxxxxxx");
-        createTransactionRequestRequestVO.setIdentityMap(listIdentityMap);
-        createTransactionRequestRequestVO.setRecipientMap(listRecipientMap);
-        createTransactionRequestRequestVO.setType("");
-        createTransactionRequestRequestVO.setIcon("icon");
-        createTransactionRequestRequestVO.setTitle("title");
-        createTransactionRequestRequestVO.setValueMap(createValueMap);
+        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = ImmutableCreateTransactionRequestRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setRecipientMap(listRecipientMap)
+                .setType("")
+                .setIcon("icon")
+                .setTitle("title")
+                .setValueMap(createValueMap)
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
@@ -777,14 +812,15 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> createValueMap = new HashMap<>();
         createValueMap.put("ENJ", "3000000000000000000");
 
-        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = new CreateTransactionRequestRequestVO();
-        createTransactionRequestRequestVO.setAuth("xxxxxxxx");
-        createTransactionRequestRequestVO.setIdentityMap(listIdentityMap);
-        createTransactionRequestRequestVO.setRecipientMap(listRecipientMap);
-        createTransactionRequestRequestVO.setType("send");
-        createTransactionRequestRequestVO.setIcon(null);
-        createTransactionRequestRequestVO.setTitle("title");
-        createTransactionRequestRequestVO.setValueMap(createValueMap);
+        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = ImmutableCreateTransactionRequestRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setRecipientMap(listRecipientMap)
+                .setType("send")
+                .setIcon(null)
+                .setTitle("title")
+                .setValueMap(createValueMap)
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
@@ -800,14 +836,15 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> createValueMap = new HashMap<>();
         createValueMap.put("ENJ", "3000000000000000000");
 
-        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = new CreateTransactionRequestRequestVO();
-        createTransactionRequestRequestVO.setAuth("xxxxxxxx");
-        createTransactionRequestRequestVO.setIdentityMap(listIdentityMap);
-        createTransactionRequestRequestVO.setRecipientMap(listRecipientMap);
-        createTransactionRequestRequestVO.setType("send");
-        createTransactionRequestRequestVO.setIcon("");
-        createTransactionRequestRequestVO.setTitle("title");
-        createTransactionRequestRequestVO.setValueMap(createValueMap);
+        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = ImmutableCreateTransactionRequestRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setRecipientMap(listRecipientMap)
+                .setType("send")
+                .setIcon("")
+                .setTitle("title")
+                .setValueMap(createValueMap)
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
@@ -823,14 +860,15 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> createValueMap = new HashMap<>();
         createValueMap.put("ENJ", "3000000000000000000");
 
-        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = new CreateTransactionRequestRequestVO();
-        createTransactionRequestRequestVO.setAuth("xxxxxxxx");
-        createTransactionRequestRequestVO.setIdentityMap(listIdentityMap);
-        createTransactionRequestRequestVO.setRecipientMap(listRecipientMap);
-        createTransactionRequestRequestVO.setType("send");
-        createTransactionRequestRequestVO.setIcon("https://enjincoin.io/images/bubble.png");
-        createTransactionRequestRequestVO.setTitle(null);
-        createTransactionRequestRequestVO.setValueMap(createValueMap);
+        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = ImmutableCreateTransactionRequestRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setRecipientMap(listRecipientMap)
+                .setType("send")
+                .setIcon("https://enjincoin.io/images/bubble.png")
+                .setTitle(null)
+                .setValueMap(createValueMap)
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
@@ -846,14 +884,15 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> createValueMap = new HashMap<>();
         createValueMap.put("ENJ", "3000000000000000000");
 
-        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = new CreateTransactionRequestRequestVO();
-        createTransactionRequestRequestVO.setAuth("xxxxxxxx");
-        createTransactionRequestRequestVO.setIdentityMap(listIdentityMap);
-        createTransactionRequestRequestVO.setRecipientMap(listRecipientMap);
-        createTransactionRequestRequestVO.setType("send");
-        createTransactionRequestRequestVO.setIcon("https://enjincoin.io/images/bubble.png");
-        createTransactionRequestRequestVO.setTitle(null);
-        createTransactionRequestRequestVO.setValueMap(createValueMap);
+        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = ImmutableCreateTransactionRequestRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setRecipientMap(listRecipientMap)
+                .setType("send")
+                .setIcon("https://enjincoin.io/images/bubble.png")
+                .setTitle(null)
+                .setValueMap(createValueMap)
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
@@ -868,14 +907,15 @@ public class TransactionRequestsServiceTest {
         listRecipientMap.put("player_name", "Alice");
         Map<String, Object> createValueMap = null;
 
-        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = new CreateTransactionRequestRequestVO();
-        createTransactionRequestRequestVO.setAuth("xxxxxxxx");
-        createTransactionRequestRequestVO.setIdentityMap(listIdentityMap);
-        createTransactionRequestRequestVO.setRecipientMap(listRecipientMap);
-        createTransactionRequestRequestVO.setType("send");
-        createTransactionRequestRequestVO.setIcon("https://enjincoin.io/images/bubble.png");
-        createTransactionRequestRequestVO.setTitle("Mineplex: /transfer alice 3 ENJ");
-        createTransactionRequestRequestVO.setValueMap(createValueMap);
+        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = ImmutableCreateTransactionRequestRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setRecipientMap(listRecipientMap)
+                .setType("send")
+                .setIcon("https://enjincoin.io/images/bubble.png")
+                .setTitle("Mineplex: /transfer alice 3 ENJ")
+                .setValueMap(createValueMap)
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
@@ -890,14 +930,15 @@ public class TransactionRequestsServiceTest {
         listRecipientMap.put("player_name", "Alice");
         Map<String, Object> createValueMap = new HashMap<>();
 
-        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = new CreateTransactionRequestRequestVO();
-        createTransactionRequestRequestVO.setAuth("xxxxxxxx");
-        createTransactionRequestRequestVO.setIdentityMap(listIdentityMap);
-        createTransactionRequestRequestVO.setRecipientMap(listRecipientMap);
-        createTransactionRequestRequestVO.setType("send");
-        createTransactionRequestRequestVO.setIcon("https://enjincoin.io/images/bubble.png");
-        createTransactionRequestRequestVO.setTitle("Mineplex: /transfer alice 3 ENJ");
-        createTransactionRequestRequestVO.setValueMap(createValueMap);
+        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = ImmutableCreateTransactionRequestRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setRecipientMap(listRecipientMap)
+                .setType("send")
+                .setIcon("https://enjincoin.io/images/bubble.png")
+                .setTitle("Mineplex: /transfer alice 3 ENJ")
+                .setValueMap(createValueMap)
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
@@ -914,14 +955,15 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> createValueMap = new HashMap<>();
         createValueMap.put("ENJ", "3000000000000000000");
 
-        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = new CreateTransactionRequestRequestVO();
-        createTransactionRequestRequestVO.setAuth("xxxxxxxx");
-        createTransactionRequestRequestVO.setIdentityMap(listIdentityMap);
-        createTransactionRequestRequestVO.setRecipientMap(listRecipientMap);
-        createTransactionRequestRequestVO.setType("send");
-        createTransactionRequestRequestVO.setIcon("https://enjincoin.io/images/bubble.png");
-        createTransactionRequestRequestVO.setTitle("Mineplex: /transfer alice 3 ENJ");
-        createTransactionRequestRequestVO.setValueMap(createValueMap);
+        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = ImmutableCreateTransactionRequestRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setRecipientMap(listRecipientMap)
+                .setType("send")
+                .setIcon("https://enjincoin.io/images/bubble.png")
+                .setTitle("Mineplex: /transfer alice 3 ENJ")
+                .setValueMap(createValueMap)
+                .build();
 
         CreateTransactionRequestResponseVO returnedCreateTransactionRequestResponseVO = null;
 
@@ -947,16 +989,17 @@ public class TransactionRequestsServiceTest {
         Map<String, Object> createValueMap = new HashMap<>();
         createValueMap.put("ENJ", "3000000000000000000");
 
-        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = new CreateTransactionRequestRequestVO();
-        createTransactionRequestRequestVO.setAuth("xxxxxxxx");
-        createTransactionRequestRequestVO.setIdentityMap(listIdentityMap);
-        createTransactionRequestRequestVO.setRecipientMap(listRecipientMap);
-        createTransactionRequestRequestVO.setType("send");
-        createTransactionRequestRequestVO.setIcon("https://enjincoin.io/images/bubble.png");
-        createTransactionRequestRequestVO.setTitle("Mineplex: /transfer alice 3 ENJ");
-        createTransactionRequestRequestVO.setValueMap(createValueMap);
+        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = ImmutableCreateTransactionRequestRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setRecipientMap(listRecipientMap)
+                .setType("send")
+                .setIcon("https://enjincoin.io/images/bubble.png")
+                .setTitle("Mineplex: /transfer alice 3 ENJ")
+                .setValueMap(createValueMap)
+                .build();
 
-        CreateTransactionRequestResponseVO returnedCreateTransactionRequestResponseVO = new CreateTransactionRequestResponseVO();
+        CreateTransactionRequestResponseVO returnedCreateTransactionRequestResponseVO = ImmutableCreateTransactionRequestResponseVO.builder().build();
 
         JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
@@ -981,9 +1024,10 @@ public class TransactionRequestsServiceTest {
 
     @Test
     public void testCancelTransactionRequest_AuthIsNull() throws Exception {
-        CancelTransactionRequestRequestVO cancelTransactionRequestRequestVO = new CancelTransactionRequestRequestVO();
-        cancelTransactionRequestRequestVO.setAuth(null);
-        cancelTransactionRequestRequestVO.setTxrId("1234");
+        CancelTransactionRequestRequestVO cancelTransactionRequestRequestVO = ImmutableCancelTransactionRequestRequestVO.builder()
+                .setAuth(null)
+                .setTxrId("1234")
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         CancelTransactionRequestResponseVO cancelTransactionRequestResponseVO = transactionRequestsService.cancelTransactionRequest(cancelTransactionRequestRequestVO);
@@ -992,9 +1036,10 @@ public class TransactionRequestsServiceTest {
 
     @Test
     public void testCancelTransactionRequest_AuthIsEmpty() throws Exception {
-        CancelTransactionRequestRequestVO cancelTransactionRequestRequestVO = new CancelTransactionRequestRequestVO();
-        cancelTransactionRequestRequestVO.setAuth("");
-        cancelTransactionRequestRequestVO.setTxrId("1234");
+        CancelTransactionRequestRequestVO cancelTransactionRequestRequestVO = ImmutableCancelTransactionRequestRequestVO.builder()
+                .setAuth("")
+                .setTxrId("1234")
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         CancelTransactionRequestResponseVO cancelTransactionRequestResponseVO = transactionRequestsService.cancelTransactionRequest(cancelTransactionRequestRequestVO);
@@ -1003,9 +1048,10 @@ public class TransactionRequestsServiceTest {
 
     @Test
     public void testCancelTransactionRequest_TxrIdIsNull() throws Exception {
-        CancelTransactionRequestRequestVO cancelTransactionRequestRequestVO = new CancelTransactionRequestRequestVO();
-        cancelTransactionRequestRequestVO.setAuth("xxxxxxxx");
-        cancelTransactionRequestRequestVO.setTxrId(null);
+        CancelTransactionRequestRequestVO cancelTransactionRequestRequestVO = ImmutableCancelTransactionRequestRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setTxrId(null)
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         CancelTransactionRequestResponseVO cancelTransactionRequestResponseVO = transactionRequestsService.cancelTransactionRequest(cancelTransactionRequestRequestVO);
@@ -1014,9 +1060,10 @@ public class TransactionRequestsServiceTest {
 
     @Test
     public void testCancelTransactionRequest_TxrIdIsEmpty() throws Exception {
-        CancelTransactionRequestRequestVO cancelTransactionRequestRequestVO = new CancelTransactionRequestRequestVO();
-        cancelTransactionRequestRequestVO.setAuth("xxxxxxxx");
-        cancelTransactionRequestRequestVO.setTxrId("");
+        CancelTransactionRequestRequestVO cancelTransactionRequestRequestVO = ImmutableCancelTransactionRequestRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setTxrId("")
+                .build();
 
         transactionRequestsService = new TransactionRequestsService(enjinConfig);
         CancelTransactionRequestResponseVO cancelTransactionRequestResponseVO = transactionRequestsService.cancelTransactionRequest(cancelTransactionRequestRequestVO);
@@ -1026,9 +1073,10 @@ public class TransactionRequestsServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testCancelTransactionRequest_NullResponse() throws Exception {
-        CancelTransactionRequestRequestVO cancelTransactionRequestRequestVO = new CancelTransactionRequestRequestVO();
-        cancelTransactionRequestRequestVO.setAuth("xxxxxxxx");
-        cancelTransactionRequestRequestVO.setTxrId("123456");
+        CancelTransactionRequestRequestVO cancelTransactionRequestRequestVO = ImmutableCancelTransactionRequestRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setTxrId("123456")
+                .build();
 
         Boolean response = null;
 
@@ -1048,9 +1096,10 @@ public class TransactionRequestsServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testCancelTransactionRequest_FalseResponse() throws Exception {
-        CancelTransactionRequestRequestVO cancelTransactionRequestRequestVO = new CancelTransactionRequestRequestVO();
-        cancelTransactionRequestRequestVO.setAuth("xxxxxxxx");
-        cancelTransactionRequestRequestVO.setTxrId("123456");
+        CancelTransactionRequestRequestVO cancelTransactionRequestRequestVO = ImmutableCancelTransactionRequestRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setTxrId("123456")
+                .build();
 
         Boolean response = false;
 
@@ -1070,9 +1119,10 @@ public class TransactionRequestsServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testCancelTransactionRequest_Success() throws Exception {
-        CancelTransactionRequestRequestVO cancelTransactionRequestRequestVO = new CancelTransactionRequestRequestVO();
-        cancelTransactionRequestRequestVO.setAuth("xxxxxxxx");
-        cancelTransactionRequestRequestVO.setTxrId("123456");
+        CancelTransactionRequestRequestVO cancelTransactionRequestRequestVO = ImmutableCancelTransactionRequestRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setTxrId("123456")
+                .build();
 
         Boolean response = true;
 

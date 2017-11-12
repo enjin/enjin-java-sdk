@@ -1,22 +1,21 @@
 package com.enjin.coin.sdk.vo.transactionrequest;
 
+import com.enjin.coin.sdk.annotations.immutables.Nullable;
 import com.google.gson.annotations.SerializedName;
+import org.immutables.gson.Gson;
+import org.immutables.value.Value;
 
-public class CancelTransactionRequestResponseVO {
+@Value.Immutable
+@Gson.TypeAdapters
+public abstract class CancelTransactionRequestResponseVO {
 
+    @Nullable
     @SerializedName("result")
-    private Boolean result;
-
-    public Boolean getResult() {
-        return result;
-    }
-
-    public void setResult(Boolean result) {
-        this.result = result;
-    }
+    public abstract Boolean getResult();
 
     @Override
     public String toString() {
-        return "CancelTransactionRequestResponseVO [result=" + result + "]";
+        return "CancelTransactionRequestResponseVO [result=" + getResult() + "]";
     }
+
 }

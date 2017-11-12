@@ -1,45 +1,29 @@
 package com.enjin.coin.sdk.vo.token;
 
+import com.enjin.coin.sdk.annotations.immutables.Nullable;
 import com.google.gson.annotations.SerializedName;
+import org.immutables.gson.Gson;
+import org.immutables.value.Value;
 
-public class ListTokensRequestVO {
+@Value.Immutable
+@Gson.TypeAdapters
+public abstract class ListTokensRequestVO {
 
+    @Nullable
     @SerializedName("app_id")
-    private String appId;
+    public abstract String getAppId();
 
+    @Nullable
     @SerializedName("after_token_id")
-    private String afterTokenId;
+    public abstract String getAfterTokenId();
 
+    @Nullable
     @SerializedName("limit")
-    private String limit;
-
-    public String getAppId() {
-        return appId;
-    }
-
-    public void setAppId(String appId) {
-        this.appId = appId;
-    }
-
-    public String getAfterTokenId() {
-        return afterTokenId;
-    }
-
-    public void setAfterTokenId(String afterTokenId) {
-        this.afterTokenId = afterTokenId;
-    }
-
-    public String getLimit() {
-        return limit;
-    }
-
-    public void setLimit(String limit) {
-        this.limit = limit;
-    }
+    public abstract String getLimit();
 
     @Override
     public String toString() {
-        return "ListTokensRequestVO [appId=" + appId + ", afterTokenId=" + afterTokenId + ", limit=" + limit + "]";
+        return "ListTokensRequestVO [appId=" + getAppId() + ", afterTokenId=" + getAfterTokenId() + ", limit=" + getLimit() + "]";
     }
 
 }

@@ -3,10 +3,7 @@ package com.enjin.coin.sdk.service;
 import com.enjin.coin.sdk.config.EnjinConfig;
 import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.ValidationUtils;
-import com.enjin.coin.sdk.vo.token.GetTokenRequestVO;
-import com.enjin.coin.sdk.vo.token.GetTokenResponseVO;
-import com.enjin.coin.sdk.vo.token.ListTokensRequestVO;
-import com.enjin.coin.sdk.vo.token.ListTokensResponseVO;
+import com.enjin.coin.sdk.vo.token.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -77,8 +74,9 @@ public class TokensService extends BaseService {
             LOGGER.warning("No tokens returned");
             return listTokensResponseVO;
         }
-        listTokensResponseVO = new ListTokensResponseVO();
-        listTokensResponseVO.setGetTokensResponseVOArray(getTokenResponseVOArray);
+        listTokensResponseVO = ImmutableListTokensResponseVO.builder()
+                .setGetTokensResponseVOArray(getTokenResponseVOArray)
+                .build();
 
         return listTokensResponseVO;
     }

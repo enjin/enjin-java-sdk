@@ -1,98 +1,46 @@
 package com.enjin.coin.sdk.vo.transactionrequest;
 
+import com.enjin.coin.sdk.annotations.immutables.Nullable;
 import com.google.gson.annotations.SerializedName;
+import org.immutables.gson.Gson;
+import org.immutables.value.Value;
 
 import java.util.Map;
 
-public class ListTransactionRequestsRequestVO {
+@Value.Immutable
+@Gson.TypeAdapters
+public abstract class ListTransactionRequestsRequestVO {
 
+    @Nullable
     @SerializedName("auth")
-    private String auth;
+    public abstract String getAuth();
 
+    @Nullable
     @SerializedName("identity")
-    private Map<String, Object> identityMap;
+    public abstract Map<String, Object> getIdentityMap();
 
+    @Nullable
     @SerializedName("app_id")
-    private String appId;
+    public abstract String getAppId();
 
+    @Nullable
     @SerializedName("recipient")
-    private Map<String, Object> recipientMap;
+    public abstract Map<String, Object> getRecipientMap();
 
+    @Nullable
     @SerializedName("type")
-    private String type;
+    public abstract String getType();
 
+    @Nullable
     @SerializedName("after_txr_id")
-    private String afterTxrId;
+    public abstract String getAfterTxrId();
 
+    @Nullable
     @SerializedName("limit")
-    private String limit;
+    public abstract String getLimit();
 
+    @Nullable
     @SerializedName("currency")
-    private String currency;
-
-    public String getAuth() {
-        return auth;
-    }
-
-    public void setAuth(String auth) {
-        this.auth = auth;
-    }
-
-    public Map<String, Object> getIdentityMap() {
-        return identityMap;
-    }
-
-    public void setIdentityMap(Map<String, Object> identityMap) {
-        this.identityMap = identityMap;
-    }
-
-    public String getAppId() {
-        return appId;
-    }
-
-    public void setAppId(String appId) {
-        this.appId = appId;
-    }
-
-    public Map<String, Object> getRecipientMap() {
-        return recipientMap;
-    }
-
-    public void setRecipientMap(Map<String, Object> recipientMap) {
-        this.recipientMap = recipientMap;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getAfterTxrId() {
-        return afterTxrId;
-    }
-
-    public void setAfterTxrId(String afterTxrId) {
-        this.afterTxrId = afterTxrId;
-    }
-
-    public String getLimit() {
-        return limit;
-    }
-
-    public void setLimit(String limit) {
-        this.limit = limit;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
-
+    public abstract String getCurrency();
 
 }

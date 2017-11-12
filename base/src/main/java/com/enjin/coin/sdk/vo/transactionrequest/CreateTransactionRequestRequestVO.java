@@ -1,92 +1,49 @@
 package com.enjin.coin.sdk.vo.transactionrequest;
 
+import com.enjin.coin.sdk.annotations.immutables.Nullable;
 import com.google.gson.annotations.SerializedName;
+import org.immutables.gson.Gson;
+import org.immutables.value.Value;
 
 import java.util.Map;
 
-public class CreateTransactionRequestRequestVO {
+@Value.Immutable
+@Gson.TypeAdapters
+public abstract class CreateTransactionRequestRequestVO {
 
+    @Nullable
     @SerializedName("auth")
-    private String auth;
+    public abstract String getAuth();
 
+    @Nullable
     @SerializedName("identity")
-    private Map<String, Object> identityMap;
+    public abstract Map<String, Object> getIdentityMap();
 
+    @Nullable
     @SerializedName("recipient")
-    private Map<String, Object> recipientMap;
+    public abstract Map<String, Object> getRecipientMap();
 
+    @Nullable
     @SerializedName("type")
-    private String type;
+    public abstract String getType();
+
+    @Nullable
     @SerializedName("icon")
-    private String icon;
+    public abstract String getIcon();
+
+    @Nullable
     @SerializedName("title")
-    private String title;
+    public abstract String getTitle();
 
+    @Nullable
     @SerializedName("value")
-    private Map<String, Object> valueMap;
-
-    public String getAuth() {
-        return auth;
-    }
-
-    public void setAuth(String auth) {
-        this.auth = auth;
-    }
-
-    public Map<String, Object> getIdentityMap() {
-        return identityMap;
-    }
-
-    public void setIdentityMap(Map<String, Object> identityMap) {
-        this.identityMap = identityMap;
-    }
-
-    public Map<String, Object> getRecipientMap() {
-        return recipientMap;
-    }
-
-    public void setRecipientMap(Map<String, Object> recipientMap) {
-        this.recipientMap = recipientMap;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Map<String, Object> getValueMap() {
-        return valueMap;
-    }
-
-    public void setValueMap(Map<String, Object> valueMap) {
-        this.valueMap = valueMap;
-    }
+    public abstract Map<String, Object> getValueMap();
 
     @Override
     public String toString() {
-        return "CreateTransactionRequestRequestVO [auth=" + auth + ", identityMap=" + identityMap + ", recipientMap="
-                + recipientMap + ", type=" + type + ", icon=" + icon + ", title=" + title + ", valueMap=" + valueMap
+        return "CreateTransactionRequestRequestVO [auth=" + getAuth() + ", identityMap=" + getIdentityMap() + ", recipientMap="
+                + getRecipientMap() + ", type=" + getType() + ", icon=" + getIcon() + ", title=" + getTitle() + ", valueMap=" + getValueMap()
                 + "]";
     }
-
 
 }

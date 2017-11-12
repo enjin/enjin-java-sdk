@@ -3,10 +3,7 @@ package com.enjin.coin.sdk.mockServer;
 import com.enjin.coin.sdk.config.EnjinConfig;
 import com.enjin.coin.sdk.service.EnjinService;
 import com.enjin.coin.sdk.service.TokensService;
-import com.enjin.coin.sdk.vo.token.GetTokenRequestVO;
-import com.enjin.coin.sdk.vo.token.GetTokenResponseVO;
-import com.enjin.coin.sdk.vo.token.ListTokensRequestVO;
-import com.enjin.coin.sdk.vo.token.ListTokensResponseVO;
+import com.enjin.coin.sdk.vo.token.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -28,8 +25,9 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer {
 
     @Test
     public void testGetToken() {
-        GetTokenRequestVO getTokenRequestVO = new GetTokenRequestVO();
-        getTokenRequestVO.setTokenId("12345");
+        GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
+                .setTokenId("12345")
+                .build();
         assertNotNull(getTokenRequestVO.toString());
 
         GetTokenResponseVO getTokenResponseVO = tokens.getToken(getTokenRequestVO);
@@ -50,10 +48,11 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer {
 
     @Test
     public void testListIdentities() {
-        ListTokensRequestVO listTokensRequestVO = new ListTokensRequestVO();
-        listTokensRequestVO.setAfterTokenId("123456");
-        listTokensRequestVO.setAppId("352");
-        listTokensRequestVO.setLimit("limit1");
+        ListTokensRequestVO listTokensRequestVO = ImmutableListTokensRequestVO.builder()
+                .setAppId("123456")
+                .setAfterTokenId("352")
+                .setLimit("limit1")
+                .build();
         assertNotNull(listTokensRequestVO.toString());
 
         ListTokensResponseVO listTokensResponseVOArray = tokens.listTokens(listTokensRequestVO);

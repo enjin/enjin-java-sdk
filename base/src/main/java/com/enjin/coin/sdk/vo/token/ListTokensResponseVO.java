@@ -1,26 +1,23 @@
 package com.enjin.coin.sdk.vo.token;
 
+import com.enjin.coin.sdk.annotations.immutables.Nullable;
 import com.google.gson.annotations.SerializedName;
+import org.immutables.gson.Gson;
+import org.immutables.value.Value;
 
 import java.util.Arrays;
 
-public class ListTokensResponseVO {
+@Value.Immutable
+@Gson.TypeAdapters
+public abstract class ListTokensResponseVO {
 
+    @Nullable
     @SerializedName("getTokenResponseVOArray")
-    private GetTokenResponseVO[] getTokensResponseVOArray;
-
-    public GetTokenResponseVO[] getGetTokensResponseVOArray() {
-        return getTokensResponseVOArray;
-    }
-
-    public void setGetTokensResponseVOArray(GetTokenResponseVO[] getTokensResponseVOArray) {
-        this.getTokensResponseVOArray = getTokensResponseVOArray;
-    }
+    public abstract GetTokenResponseVO[] getGetTokensResponseVOArray();
 
     @Override
     public String toString() {
-        return "ListTokensResponseVO [getTokensResponseVOArray=" + Arrays.toString(getTokensResponseVOArray) + "]";
+        return "ListTokensResponseVO [getTokensResponseVOArray=" + Arrays.toString(getGetTokensResponseVOArray()) + "]";
     }
-
 
 }

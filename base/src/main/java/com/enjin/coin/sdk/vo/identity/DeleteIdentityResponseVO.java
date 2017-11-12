@@ -1,23 +1,22 @@
 package com.enjin.coin.sdk.vo.identity;
 
+import com.enjin.coin.sdk.annotations.immutables.Nullable;
 import com.google.gson.annotations.SerializedName;
+import org.immutables.gson.Gson;
+import org.immutables.value.Value;
 
-public class DeleteIdentityResponseVO {
+@Value.Immutable
+@Gson.TypeAdapters
+public abstract class DeleteIdentityResponseVO {
 
+    @Nullable
     @SerializedName("result")
-    private Boolean result;
-
-    public Boolean getResult() {
-        return result;
-    }
-
-    public void setResult(Boolean result) {
-        this.result = result;
-    }
+    public abstract Boolean getResult();
 
     @Override
     public String toString() {
-        return "DeleteIdentityResponseVO [result=" + result + "]";
+        return "DeleteIdentityResponseVO [result=" + getResult() + "]";
     }
+
 }
 

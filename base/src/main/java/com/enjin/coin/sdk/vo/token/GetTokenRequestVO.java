@@ -1,24 +1,21 @@
 package com.enjin.coin.sdk.vo.token;
 
+import com.enjin.coin.sdk.annotations.immutables.Nullable;
 import com.google.gson.annotations.SerializedName;
+import org.immutables.gson.Gson;
+import org.immutables.value.Value;
 
-public class GetTokenRequestVO {
+@Value.Immutable
+@Gson.TypeAdapters
+public abstract class GetTokenRequestVO {
 
+    @Nullable
     @SerializedName("token_id")
-    private String tokenId;
-
-    public String getTokenId() {
-        return tokenId;
-    }
-
-    public void setTokenId(String tokenId) {
-        this.tokenId = tokenId;
-    }
+    public abstract String getTokenId();
 
     @Override
     public String toString() {
-        return "GetTokenRequestVO [tokenId=" + tokenId + "]";
+        return "GetTokenRequestVO [tokenId=" + getTokenId() + "]";
     }
-
 
 }

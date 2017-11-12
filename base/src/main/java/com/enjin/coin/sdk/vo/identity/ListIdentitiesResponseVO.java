@@ -1,35 +1,30 @@
 package com.enjin.coin.sdk.vo.identity;
 
+import com.enjin.coin.sdk.annotations.immutables.Nullable;
 import com.google.gson.annotations.SerializedName;
+import org.immutables.gson.Gson;
+import org.immutables.value.Value;
 
-public class ListIdentitiesResponseVO {
+@Value.Immutable
+@Gson.TypeAdapters
+public abstract class ListIdentitiesResponseVO {
 
+    @Nullable
     @SerializedName("identity_id")
-    private String identityId;
+    public abstract String getIdentityId();
 
+    @Nullable
     @SerializedName("ethereum_address")
-    private String ethereumAddress;
+    public abstract String getEthereumAddress();
 
+    @Nullable
     @SerializedName("player_name")
-    private String playerName;
-
-    public String getIdentityId() {
-        return identityId;
-    }
-
-    public String getEthereumAddress() {
-        return ethereumAddress;
-    }
-
-    public String getPlayerName() {
-        return playerName;
-    }
+    public abstract String getPlayerName();
 
     @Override
     public String toString() {
-        return "ListIdentitiesResponseVO [identityId=" + identityId + ", ethereumAddress=" + ethereumAddress
-                + ", playerName=" + playerName + "]";
+        return "ListIdentitiesResponseVO [identityId=" + getIdentityId() + ", ethereumAddress=" + getEthereumAddress()
+                + ", playerName=" + getPlayerName() + "]";
     }
-
 
 }

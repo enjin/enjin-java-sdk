@@ -1,48 +1,30 @@
 package com.enjin.coin.sdk.vo.identity;
 
+import com.enjin.coin.sdk.annotations.immutables.Nullable;
 import com.google.gson.annotations.SerializedName;
+import org.immutables.gson.Gson;
+import org.immutables.value.Value;
 
-public class ListIdentitiesRequestVO extends BaseIdentityRequestVO {
+@Value.Immutable
+@Gson.TypeAdapters
+public abstract class ListIdentitiesRequestVO extends BaseIdentityRequestVO {
 
-
+    @Nullable
     @SerializedName("linked")
-    private Boolean linked;
+    public abstract Boolean getLinked();
 
+    @Nullable
     @SerializedName("after_identity_id")
-    private String afterIdentityId;
+    public abstract String getAfterIdentityId();
 
+    @Nullable
     @SerializedName("limit")
-    private String limit;
-
-    public Boolean getLinked() {
-        return linked;
-    }
-
-    public void setLinked(Boolean linked) {
-        this.linked = linked;
-    }
-
-    public String getAfterIdentityId() {
-        return afterIdentityId;
-    }
-
-    public void setAfterIdentityId(String afterIdentityId) {
-        this.afterIdentityId = afterIdentityId;
-    }
-
-    public String getLimit() {
-        return limit;
-    }
-
-    public void setLimit(String limit) {
-        this.limit = limit;
-    }
+    public abstract String getLimit();
 
     @Override
     public String toString() {
-        return "ListIdentitiesRequestVO [linked=" + linked + ", afterIdentityId=" + afterIdentityId
-                + ", limit=" + limit + "]";
+        return "ListIdentitiesRequestVO [linked=" + getLinked() + ", afterIdentityId=" + getAfterIdentityId()
+                + ", limit=" + getLimit() + "]";
     }
-
 
 }

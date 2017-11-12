@@ -143,9 +143,10 @@ public class TransactionRequestsService extends BaseService {
         // Construct new request
         String method = Constants.METHOD_TRANSACTION_REQUESTS_CANCEL;
 
-        cancelTransactionRequestResponseVO = new CancelTransactionRequestResponseVO();
         Boolean result = (Boolean) jsonRpcUtils.sendJsonRpcRequest(getTransactionRequestsUrl(), Boolean.class, method, params);
-        cancelTransactionRequestResponseVO.setResult(result);
+        cancelTransactionRequestResponseVO = ImmutableCancelTransactionRequestResponseVO.builder()
+                .setResult(result)
+                .build();
 
         return cancelTransactionRequestResponseVO;
     }

@@ -1,94 +1,64 @@
 package com.enjin.coin.sdk.vo.token;
 
+import com.enjin.coin.sdk.annotations.immutables.Nullable;
 import com.google.gson.annotations.SerializedName;
+import org.immutables.gson.Gson;
+import org.immutables.value.Value;
 
-public class GetTokenResponseVO {
+@Value.Immutable
+@Gson.TypeAdapters
+public abstract class GetTokenResponseVO {
 
+    @Nullable
     @SerializedName("token_id")
-    private String tokenId;
+    public abstract String getTokenId();
 
+    @Nullable
     @SerializedName("creator")
-    private String creator;
+    public abstract String getCreator();
 
+    @Nullable
     @SerializedName("adapter")
-    private String adapter;
+    public abstract String getAdapter();
 
+    @Nullable
     @SerializedName("name")
-    private String name;
+    public abstract String getName();
 
+    @Nullable
     @SerializedName("icon")
-    private String icon;
+    public abstract String getIcon();
 
+    @Nullable
     @SerializedName("totalSupply")
-    private String totalSupply;
+    public abstract String getTotalSupply();
 
+    @Nullable
     @SerializedName("exchangeRate")
-    private String exchangeRate;
+    public abstract String getExchangeRate();
 
+    @Nullable
     @SerializedName("decimals")
-    private String decimals;
+    public abstract String getDecimals();
 
+    @Nullable
     @SerializedName("maxMeltFee")
-    private String maxMeltFee;
+    public abstract String getMaxMeltFee();
 
+    @Nullable
     @SerializedName("meltFee")
-    private String meltFee;
+    public abstract String getMeltFee();
 
+    @Nullable
     @SerializedName("transferable")
-    private String transferable;
-
-    public String getTokenId() {
-        return tokenId;
-    }
-
-    public String getCreator() {
-        return creator;
-    }
-
-    public String getAdapter() {
-        return adapter;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public String getTotalSupply() {
-        return totalSupply;
-    }
-
-    public String getExchangeRate() {
-        return exchangeRate;
-    }
-
-    public String getDecimals() {
-        return decimals;
-    }
-
-    public String getMaxMeltFee() {
-        return maxMeltFee;
-    }
-
-    public String getMeltFee() {
-        return meltFee;
-    }
-
-    public String getTransferable() {
-        return transferable;
-    }
+    public abstract String getTransferable();
 
     @Override
     public String toString() {
-        return "GetTokenResponseVO [tokenId=" + tokenId + ", creator=" + creator + ", adapter=" + adapter + ", name="
-                + name + ", icon=" + icon + ", totalSupply=" + totalSupply + ", exchangeRate=" + exchangeRate
-                + ", decimals=" + decimals + ", maxMeltFee=" + maxMeltFee + ", meltFee=" + meltFee + ", transferable="
-                + transferable + "]";
+        return "GetTokenResponseVO [tokenId=" + getTokenId() + ", creator=" + getCreator() + ", adapter=" + getAdapter() + ", name="
+                + getName() + ", icon=" + getIcon() + ", totalSupply=" + getTotalSupply() + ", exchangeRate=" + getExchangeRate()
+                + ", decimals=" + getDecimals() + ", maxMeltFee=" + getMaxMeltFee() + ", meltFee=" + getMeltFee() + ", transferable="
+                + getTransferable() + "]";
     }
-
 
 }

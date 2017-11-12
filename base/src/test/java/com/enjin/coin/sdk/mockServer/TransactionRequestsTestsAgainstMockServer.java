@@ -27,9 +27,10 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
 
     @Test
     public void testGetTransactionRequest() {
-        GetTransactionRequestRequestVO getTransactionRequestRequestVO = new GetTransactionRequestRequestVO();
-        getTransactionRequestRequestVO.setAuth("xxxxxxxx");
-        getTransactionRequestRequestVO.setTxrId("123456");
+        GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setTxrId("123456")
+                .build();
         assertNotNull(getTransactionRequestRequestVO.toString());
 
         GetTransactionRequestResponseVO getTransactionRequestResponseVO = transactionRequests.getTransactionRequest(getTransactionRequestRequestVO);
@@ -59,15 +60,16 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
         Map<String, Object> listRecipientMap = new HashMap<>();
         listRecipientMap.put("identity_id", "54321");
 
-        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = new ListTransactionRequestsRequestVO();
-        listTransactionRequestsRequestVO.setAuth("xxxxxxxx");
-        listTransactionRequestsRequestVO.setIdentityMap(listIdentityMap);
-        listTransactionRequestsRequestVO.setAppId("123");
-        listTransactionRequestsRequestVO.setRecipientMap(listRecipientMap);
-        listTransactionRequestsRequestVO.setType("buy");
-        listTransactionRequestsRequestVO.setAfterTxrId("1234567");
-        listTransactionRequestsRequestVO.setLimit("50");
-        listTransactionRequestsRequestVO.setCurrency("23456");
+        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = ImmutableListTransactionRequestsRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setAppId("123")
+                .setRecipientMap(listRecipientMap)
+                .setType("buy")
+                .setAfterTxrId("1234567")
+                .setLimit("50")
+                .setCurrency("23456")
+                .build();
         assertNotNull(listTransactionRequestsRequestVO.toString());
 
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequests.listTransactionRequests(listTransactionRequestsRequestVO);
@@ -102,14 +104,15 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
         Map<String, Object> createValueMap = new HashMap<>();
         createValueMap.put("ENJ", "3000000000000000000");
 
-        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = new CreateTransactionRequestRequestVO();
-        createTransactionRequestRequestVO.setAuth("xxxxxxxx");
-        createTransactionRequestRequestVO.setIdentityMap(listIdentityMap);
-        createTransactionRequestRequestVO.setRecipientMap(listRecipientMap);
-        createTransactionRequestRequestVO.setType("send");
-        createTransactionRequestRequestVO.setIcon("https://enjincoin.io/images/bubble.png");
-        createTransactionRequestRequestVO.setTitle("Mineplex: /transfer alice 3 ENJ");
-        createTransactionRequestRequestVO.setValueMap(createValueMap);
+        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = ImmutableCreateTransactionRequestRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setRecipientMap(listRecipientMap)
+                .setType("send")
+                .setIcon("https://enjincoin.io/images/bubble.png")
+                .setTitle("Mineplex: /transfer alice 3 ENJ")
+                .setValueMap(createValueMap)
+                .build();
         assertNotNull(createTransactionRequestRequestVO.toString());
 
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequests.createTransactionRequest(createTransactionRequestRequestVO);
@@ -133,9 +136,10 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
 
     @Test
     public void testCancelTransactionRequest() {
-        CancelTransactionRequestRequestVO cancelTransactionRequestRequestVO = new CancelTransactionRequestRequestVO();
-        cancelTransactionRequestRequestVO.setAuth("xxxxxxxx");
-        cancelTransactionRequestRequestVO.setTxrId("123456");
+        CancelTransactionRequestRequestVO cancelTransactionRequestRequestVO = ImmutableCancelTransactionRequestRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setTxrId("123456")
+                .build();
         assertNotNull(cancelTransactionRequestRequestVO.toString());
 
         CancelTransactionRequestResponseVO cancelTransactionRequestResponseVO = transactionRequests.cancelTransactionRequest(cancelTransactionRequestRequestVO);

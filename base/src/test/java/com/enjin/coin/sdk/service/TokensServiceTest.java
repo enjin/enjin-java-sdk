@@ -2,10 +2,7 @@ package com.enjin.coin.sdk.service;
 
 import com.enjin.coin.sdk.config.EnjinConfig;
 import com.enjin.coin.sdk.util.JsonRpcUtils;
-import com.enjin.coin.sdk.vo.token.GetTokenRequestVO;
-import com.enjin.coin.sdk.vo.token.GetTokenResponseVO;
-import com.enjin.coin.sdk.vo.token.ListTokensRequestVO;
-import com.enjin.coin.sdk.vo.token.ListTokensResponseVO;
+import com.enjin.coin.sdk.vo.token.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -49,8 +46,9 @@ public class TokensServiceTest {
 
     @Test
     public void testGetToken_TokenIsNull() {
-        GetTokenRequestVO getTokenRequestVO = new GetTokenRequestVO();
-        getTokenRequestVO.setTokenId(null);
+        GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
+                .setTokenId(null)
+                .build();
 
         tokenService = new TokensService(enjinConfig);
         GetTokenResponseVO getTokenResponseVO = tokenService.getToken(getTokenRequestVO);
@@ -59,8 +57,9 @@ public class TokensServiceTest {
 
     @Test
     public void testGetToken_TokenIdIsEmpty() {
-        GetTokenRequestVO getTokenRequestVO = new GetTokenRequestVO();
-        getTokenRequestVO.setTokenId("");
+        GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
+        .setTokenId("")
+                .build();
 
         tokenService = new TokensService(enjinConfig);
         GetTokenResponseVO getTokenResponseVO = tokenService.getToken(getTokenRequestVO);
@@ -71,8 +70,9 @@ public class TokensServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testGetToken_ResponseIsNull() throws Exception {
-        GetTokenRequestVO getTokenRequestVO = new GetTokenRequestVO();
-        getTokenRequestVO.setTokenId("tokenId");
+        GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
+        .setTokenId("tokenId")
+                .build();
 
         GetTokenResponseVO returnedGetTokenResponseVO = null;
 
@@ -91,10 +91,11 @@ public class TokensServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testGetToken_Success() throws Exception {
-        GetTokenRequestVO getTokenRequestVO = new GetTokenRequestVO();
-        getTokenRequestVO.setTokenId("tokenId");
+        GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
+        .setTokenId("tokenId")
+                .build();
 
-        GetTokenResponseVO returnedGetTokenResponseVO = new GetTokenResponseVO();
+        GetTokenResponseVO returnedGetTokenResponseVO = ImmutableGetTokenResponseVO.builder().build();
 
         JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
@@ -119,10 +120,11 @@ public class TokensServiceTest {
 
     @Test
     public void testListTokens_AfterTokenIdIsNull() {
-        ListTokensRequestVO listTokensRequestVO = new ListTokensRequestVO();
-        listTokensRequestVO.setAfterTokenId(null);
-        listTokensRequestVO.setAppId("appId");
-        listTokensRequestVO.setLimit("limit");
+        ListTokensRequestVO listTokensRequestVO = ImmutableListTokensRequestVO.builder()
+        .setAfterTokenId(null)
+        .setAppId("appId")
+        .setLimit("limit")
+                .build();
         tokenService = new TokensService(enjinConfig);
         ListTokensResponseVO listTokensResponseVO = tokenService.listTokens(listTokensRequestVO);
         assertNull(listTokensResponseVO);
@@ -130,10 +132,11 @@ public class TokensServiceTest {
 
     @Test
     public void testListTokens_AfterTokenIdIsEmpty() {
-        ListTokensRequestVO listTokensRequestVO = new ListTokensRequestVO();
-        listTokensRequestVO.setAfterTokenId("");
-        listTokensRequestVO.setAppId("appId");
-        listTokensRequestVO.setLimit("limit");
+        ListTokensRequestVO listTokensRequestVO = ImmutableListTokensRequestVO.builder()
+        .setAfterTokenId("")
+        .setAppId("appId")
+        .setLimit("limit")
+                .build();
 
         tokenService = new TokensService(enjinConfig);
         ListTokensResponseVO listTokensResponseVO = tokenService.listTokens(listTokensRequestVO);
@@ -142,10 +145,11 @@ public class TokensServiceTest {
 
     @Test
     public void testListTokens_AppIdIsNull() {
-        ListTokensRequestVO listTokensRequestVO = new ListTokensRequestVO();
-        listTokensRequestVO.setAfterTokenId("afterTokenId");
-        listTokensRequestVO.setAppId(null);
-        listTokensRequestVO.setLimit("limit");
+        ListTokensRequestVO listTokensRequestVO = ImmutableListTokensRequestVO.builder()
+        .setAfterTokenId("afterTokenId")
+        .setAppId(null)
+        .setLimit("limit")
+                .build();
         tokenService = new TokensService(enjinConfig);
         ListTokensResponseVO listTokensResponseVO = tokenService.listTokens(listTokensRequestVO);
         assertNull(listTokensResponseVO);
@@ -153,10 +157,11 @@ public class TokensServiceTest {
 
     @Test
     public void testListTokens_LimitIsEmpty() {
-        ListTokensRequestVO listTokensRequestVO = new ListTokensRequestVO();
-        listTokensRequestVO.setAfterTokenId("afterTokenId");
-        listTokensRequestVO.setAppId("appId");
-        listTokensRequestVO.setLimit("");
+        ListTokensRequestVO listTokensRequestVO = ImmutableListTokensRequestVO.builder()
+        .setAfterTokenId("afterTokenId")
+        .setAppId("appId")
+        .setLimit("")
+                .build();
         tokenService = new TokensService(enjinConfig);
         ListTokensResponseVO listTokensResponseVO = tokenService.listTokens(listTokensRequestVO);
         assertNull(listTokensResponseVO);
@@ -164,10 +169,11 @@ public class TokensServiceTest {
 
     @Test
     public void testListTokens_LimitIsNull() {
-        ListTokensRequestVO listTokensRequestVO = new ListTokensRequestVO();
-        listTokensRequestVO.setAfterTokenId("afterTokenId");
-        listTokensRequestVO.setAppId("appId");
-        listTokensRequestVO.setLimit(null);
+        ListTokensRequestVO listTokensRequestVO = ImmutableListTokensRequestVO.builder()
+        .setAfterTokenId("afterTokenId")
+        .setAppId("appId")
+        .setLimit(null)
+                .build();
         tokenService = new TokensService(enjinConfig);
         ListTokensResponseVO listTokensResponseVO = tokenService.listTokens(listTokensRequestVO);
         assertNull(listTokensResponseVO);
@@ -176,10 +182,11 @@ public class TokensServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testListTokens_ResponseIsNull() throws Exception {
-        ListTokensRequestVO listTokensRequestVO = new ListTokensRequestVO();
-        listTokensRequestVO.setAfterTokenId("afterTokenId");
-        listTokensRequestVO.setAppId("appId");
-        listTokensRequestVO.setLimit("limit");
+        ListTokensRequestVO listTokensRequestVO = ImmutableListTokensRequestVO.builder()
+        .setAfterTokenId("afterTokenId")
+        .setAppId("appId")
+        .setLimit("limit")
+                .build();
 
         ListTokensResponseVO[] returnedListTokensResponseVO = null;
 
@@ -198,10 +205,11 @@ public class TokensServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testListTokens_ResponseIsEmpty() throws Exception {
-        ListTokensRequestVO listTokensRequestVO = new ListTokensRequestVO();
-        listTokensRequestVO.setAfterTokenId("afterTokenId");
-        listTokensRequestVO.setAppId("appId");
-        listTokensRequestVO.setLimit("limit");
+        ListTokensRequestVO listTokensRequestVO = ImmutableListTokensRequestVO.builder()
+        .setAfterTokenId("afterTokenId")
+        .setAppId("appId")
+        .setLimit("limit")
+                .build();
 
         GetTokenResponseVO[] returnedListTokensResponseVO = new GetTokenResponseVO[]{};
 
@@ -220,12 +228,15 @@ public class TokensServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testListTokens_Success1() throws Exception {
-        ListTokensRequestVO listTokensRequestVO = new ListTokensRequestVO();
-        listTokensRequestVO.setAfterTokenId("afterTokenId");
-        listTokensRequestVO.setAppId("appId");
-        listTokensRequestVO.setLimit("limit");
+        ListTokensRequestVO listTokensRequestVO = ImmutableListTokensRequestVO.builder()
+        .setAfterTokenId("afterTokenId")
+        .setAppId("appId")
+        .setLimit("limit")
+                .build();
 
-        GetTokenResponseVO[] returnedListTokensResponseVO = new GetTokenResponseVO[]{new GetTokenResponseVO()};
+        GetTokenResponseVO[] returnedListTokensResponseVO = new GetTokenResponseVO[]{
+                ImmutableGetTokenResponseVO.builder().build()
+        };
 
         JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
@@ -244,12 +255,16 @@ public class TokensServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testListTokens_Success2() throws Exception {
-        ListTokensRequestVO listTokensRequestVO = new ListTokensRequestVO();
-        listTokensRequestVO.setAfterTokenId("afterTokenId");
-        listTokensRequestVO.setAppId("appId");
-        listTokensRequestVO.setLimit("limit");
+        ListTokensRequestVO listTokensRequestVO = ImmutableListTokensRequestVO.builder()
+        .setAfterTokenId("afterTokenId")
+        .setAppId("appId")
+        .setLimit("limit")
+                .build();
 
-        GetTokenResponseVO[] returnedListTokensResponseVO = new GetTokenResponseVO[]{new GetTokenResponseVO(), new GetTokenResponseVO()};
+        GetTokenResponseVO[] returnedListTokensResponseVO = new GetTokenResponseVO[]{
+                ImmutableGetTokenResponseVO.builder().build(),
+                ImmutableGetTokenResponseVO.builder().build()
+        };
 
         JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);

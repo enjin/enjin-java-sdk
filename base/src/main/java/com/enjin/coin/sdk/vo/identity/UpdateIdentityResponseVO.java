@@ -1,22 +1,23 @@
 package com.enjin.coin.sdk.vo.identity;
 
+import com.enjin.coin.sdk.annotations.immutables.Nullable;
 import com.google.gson.annotations.SerializedName;
+import org.immutables.gson.Gson;
+import org.immutables.value.Value;
 
 import java.util.Map;
 
-public class UpdateIdentityResponseVO {
+@Value.Immutable
+@Gson.TypeAdapters
+public abstract class UpdateIdentityResponseVO {
 
+    @Nullable
     @SerializedName("identity")
-    private Map<String, Object> identityMap;
-
-    public Map<String, Object> getIdentityMap() {
-        return identityMap;
-    }
+    public abstract Map<String, Object> getIdentityMap();
 
     @Override
     public String toString() {
-        return "UpdateIdentityResponseVO [identityMap=" + identityMap + "]";
+        return "UpdateIdentityResponseVO [identityMap=" + getIdentityMap() + "]";
     }
-
 
 }

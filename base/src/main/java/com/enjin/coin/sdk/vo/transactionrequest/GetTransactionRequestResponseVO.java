@@ -1,64 +1,49 @@
 package com.enjin.coin.sdk.vo.transactionrequest;
 
+import com.enjin.coin.sdk.annotations.immutables.Nullable;
 import com.google.gson.annotations.SerializedName;
+import org.immutables.gson.Gson;
+import org.immutables.value.Value;
 
 import java.util.Map;
 
-public class GetTransactionRequestResponseVO {
+@Value.Immutable
+@Gson.TypeAdapters
+public abstract class GetTransactionRequestResponseVO {
 
+    @Nullable
     @SerializedName("txr_id")
-    private String txrId;
+    public abstract String getTxrId();
 
+    @Nullable
     @SerializedName("identity")
-    private Map<String, Object> identityMap;
+    public abstract Map<String, Object> getIdentityMap();
 
+    @Nullable
     @SerializedName("recipient")
-    private Map<String, Object> recipientMap;
+    public abstract Map<String, Object> getRecipientMap();
 
+    @Nullable
     @SerializedName("type")
-    private String type;
+    public abstract String getType();
+
+    @Nullable
     @SerializedName("icon")
-    private String icon;
+    public abstract String getIcon();
+
+    @Nullable
     @SerializedName("title")
-    private String title;
+    public abstract String getTitle();
 
-
+    @Nullable
     @SerializedName("value")
-    private Map<String, Object> valueMap;
-
-
-    public String getTxrId() {
-        return txrId;
-    }
-
-    public Map<String, Object> getIdentityMap() {
-        return identityMap;
-    }
-
-    public Map<String, Object> getRecipientMap() {
-        return recipientMap;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public Map<String, Object> getValueMap() {
-        return valueMap;
-    }
+    public abstract Map<String, Object> getValueMap();
 
     @Override
     public String toString() {
-        return "GetTransactionRequestResponseVO [txrId=" + txrId + ", identityMap=" + identityMap + ", recipientMap="
-                + recipientMap + ", type=" + type + ", icon=" + icon + ", title=" + title + ", valueMap=" + valueMap
+        return "GetTransactionRequestResponseVO [txrId=" + getTxrId() + ", identityMap=" + getIdentityMap() + ", recipientMap="
+                + getRecipientMap() + ", type=" + getType() + ", icon=" + getIcon() + ", title=" + getTitle() + ", valueMap=" + getValueMap()
                 + "]";
     }
+
 }

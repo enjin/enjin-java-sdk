@@ -47,8 +47,9 @@ public class IdentitiesServiceTest {
 
     @Test
     public void testGetIdentity_AuthIsNull() {
-        GetIdentityRequestVO getIdentityRequestVO = new GetIdentityRequestVO();
-        getIdentityRequestVO.setAuth(null);
+        GetIdentityRequestVO getIdentityRequestVO = ImmutableGetIdentityRequestVO.builder()
+                .setAuth(null)
+                .build();
 
         identitiesService = new IdentitiesService(enjinConfig);
         GetIdentityResponseVO getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
@@ -57,8 +58,9 @@ public class IdentitiesServiceTest {
 
     @Test
     public void testGetIdentity_AuthIsEmpty() {
-        GetIdentityRequestVO getIdentityRequestVO = new GetIdentityRequestVO();
-        getIdentityRequestVO.setAuth("");
+        GetIdentityRequestVO getIdentityRequestVO = ImmutableGetIdentityRequestVO.builder()
+                .setAuth("")
+                .build();
 
         identitiesService = new IdentitiesService(enjinConfig);
         GetIdentityResponseVO getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
@@ -67,10 +69,10 @@ public class IdentitiesServiceTest {
 
     @Test
     public void testGetIdentity_IdentityMapIsNull() {
-        GetIdentityRequestVO getIdentityRequestVO = new GetIdentityRequestVO();
-        getIdentityRequestVO.setAuth("auth");
-        Map<String, Object> identityMap = null;
-        getIdentityRequestVO.setIdentity(identityMap);
+        GetIdentityRequestVO getIdentityRequestVO = ImmutableGetIdentityRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(null)
+                .build();
 
         identitiesService = new IdentitiesService(enjinConfig);
         GetIdentityResponseVO getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
@@ -79,10 +81,10 @@ public class IdentitiesServiceTest {
 
     @Test
     public void testGetIdentity_IdentityMapIsEmpty() {
-        GetIdentityRequestVO getIdentityRequestVO = new GetIdentityRequestVO();
-        getIdentityRequestVO.setAuth("auth");
-        Map<String, Object> identityMap = new HashMap<>();
-        getIdentityRequestVO.setIdentity(identityMap);
+        GetIdentityRequestVO getIdentityRequestVO = ImmutableGetIdentityRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<>())
+                .build();
 
         identitiesService = new IdentitiesService(enjinConfig);
         GetIdentityResponseVO getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
@@ -92,11 +94,12 @@ public class IdentitiesServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testGetIdentity_ResponseIsNull() throws Exception {
-        GetIdentityRequestVO getIdentityRequestVO = new GetIdentityRequestVO();
-        getIdentityRequestVO.setAuth("auth");
-        Map<String, Object> identityMap = new HashMap<>();
-        identityMap.put("key", "value");
-        getIdentityRequestVO.setIdentity(identityMap);
+        GetIdentityRequestVO getIdentityRequestVO = ImmutableGetIdentityRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<String, Object>(){{
+                    put("key","value");
+                }})
+                .build();
 
         GetIdentityResponseVO returnedGetIdentityResponseVO = null;
 
@@ -115,13 +118,14 @@ public class IdentitiesServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testGetIdentity_Success() throws Exception {
-        GetIdentityRequestVO getIdentityRequestVO = new GetIdentityRequestVO();
-        getIdentityRequestVO.setAuth("auth");
-        Map<String, Object> identityMap = new HashMap<>();
-        identityMap.put("key", "value");
-        getIdentityRequestVO.setIdentity(identityMap);
+        GetIdentityRequestVO getIdentityRequestVO = ImmutableGetIdentityRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<String, Object>(){{
+                    put("key","value");
+                }})
+                .build();
 
-        GetIdentityResponseVO returnedGetIdentityResponseVO = new GetIdentityResponseVO();
+        GetIdentityResponseVO returnedGetIdentityResponseVO = ImmutableGetIdentityResponseVO.builder().build();
 
         JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
@@ -146,8 +150,9 @@ public class IdentitiesServiceTest {
 
     @Test
     public void testListIdentities_AuthIsNull() {
-        ListIdentitiesRequestVO listIdentitiesRequestVO = new ListIdentitiesRequestVO();
-        listIdentitiesRequestVO.setAuth(null);
+        ListIdentitiesRequestVO listIdentitiesRequestVO = ImmutableListIdentitiesRequestVO.builder()
+                .setAuth(null)
+                .build();
 
         identitiesService = new IdentitiesService(enjinConfig);
         ListIdentitiesResponseVO[] listIdentitiesResponseVO = identitiesService.listIdentities(listIdentitiesRequestVO);
@@ -156,8 +161,9 @@ public class IdentitiesServiceTest {
 
     @Test
     public void testListIdentities_AuthIsEmpty() {
-        ListIdentitiesRequestVO listIdentitiesRequestVO = new ListIdentitiesRequestVO();
-        listIdentitiesRequestVO.setAuth("");
+        ListIdentitiesRequestVO listIdentitiesRequestVO = ImmutableListIdentitiesRequestVO.builder()
+                .setAuth("")
+                .build();
 
         identitiesService = new IdentitiesService(enjinConfig);
         ListIdentitiesResponseVO[] listIdentitiesResponseVO = identitiesService.listIdentities(listIdentitiesRequestVO);
@@ -166,10 +172,10 @@ public class IdentitiesServiceTest {
 
     @Test
     public void testListIdentities_IdentityMapIsNull() {
-        ListIdentitiesRequestVO listIdentitiesRequestVO = new ListIdentitiesRequestVO();
-        listIdentitiesRequestVO.setAuth("auth");
-        Map<String, Object> identityMap = null;
-        listIdentitiesRequestVO.setIdentity(identityMap);
+        ListIdentitiesRequestVO listIdentitiesRequestVO = ImmutableListIdentitiesRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(null)
+                .build();
 
         identitiesService = new IdentitiesService(enjinConfig);
         ListIdentitiesResponseVO[] listIdentitiesResponseVO = identitiesService.listIdentities(listIdentitiesRequestVO);
@@ -178,10 +184,10 @@ public class IdentitiesServiceTest {
 
     @Test
     public void testListIdentities_IdentityMapIsEmpty() {
-        ListIdentitiesRequestVO listIdentitiesRequestVO = new ListIdentitiesRequestVO();
-        listIdentitiesRequestVO.setAuth("auth");
-        Map<String, Object> identityMap = new HashMap<>();
-        listIdentitiesRequestVO.setIdentity(identityMap);
+        ListIdentitiesRequestVO listIdentitiesRequestVO = ImmutableListIdentitiesRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<>())
+                .build();
 
         identitiesService = new IdentitiesService(enjinConfig);
         ListIdentitiesResponseVO[] listIdentitiesResponseVO = identitiesService.listIdentities(listIdentitiesRequestVO);
@@ -191,11 +197,12 @@ public class IdentitiesServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testListIdentities_ResponseIsNull() throws Exception {
-        ListIdentitiesRequestVO listIdentitiesRequestVO = new ListIdentitiesRequestVO();
-        listIdentitiesRequestVO.setAuth("auth");
-        Map<String, Object> identityMap = new HashMap<>();
-        identityMap.put("key", "value");
-        listIdentitiesRequestVO.setIdentity(identityMap);
+        ListIdentitiesRequestVO listIdentitiesRequestVO = ImmutableListIdentitiesRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<String, Object>(){{
+                    put("key", "value");
+                }})
+                .build();
 
         ListIdentitiesResponseVO[] returnedListIdentitiesResponseVO = null;
 
@@ -214,11 +221,12 @@ public class IdentitiesServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testListIdentities_ResponseIsEmpty() throws Exception {
-        ListIdentitiesRequestVO listIdentitiesRequestVO = new ListIdentitiesRequestVO();
-        listIdentitiesRequestVO.setAuth("auth");
-        Map<String, Object> identityMap = new HashMap<>();
-        identityMap.put("key", "value");
-        listIdentitiesRequestVO.setIdentity(identityMap);
+        ListIdentitiesRequestVO listIdentitiesRequestVO =ImmutableListIdentitiesRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<String, Object>(){{
+                    put("key", "value");
+                }})
+                .build();
 
         ListIdentitiesResponseVO[] returnedListIdentitiesResponseVO = new ListIdentitiesResponseVO[]{};
 
@@ -238,13 +246,16 @@ public class IdentitiesServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testListIdentities_Success1() throws Exception {
-        ListIdentitiesRequestVO listIdentitiesRequestVO = new ListIdentitiesRequestVO();
-        listIdentitiesRequestVO.setAuth("auth");
-        Map<String, Object> identityMap = new HashMap<>();
-        identityMap.put("key", "value");
-        listIdentitiesRequestVO.setIdentity(identityMap);
+        ListIdentitiesRequestVO listIdentitiesRequestVO = ImmutableListIdentitiesRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<String, Object>(){{
+                    put("key", "value");
+                }})
+                .build();
 
-        ListIdentitiesResponseVO[] returnedListIdentitiesResponseVO = new ListIdentitiesResponseVO[]{new ListIdentitiesResponseVO()};
+        ListIdentitiesResponseVO[] returnedListIdentitiesResponseVO = new ListIdentitiesResponseVO[]{
+                ImmutableListIdentitiesResponseVO.builder().build()
+        };
 
         JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
@@ -262,13 +273,17 @@ public class IdentitiesServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testListIdentities_Success2() throws Exception {
-        ListIdentitiesRequestVO listIdentitiesRequestVO = new ListIdentitiesRequestVO();
-        listIdentitiesRequestVO.setAuth("auth");
-        Map<String, Object> identityMap = new HashMap<>();
-        identityMap.put("key", "value");
-        listIdentitiesRequestVO.setIdentity(identityMap);
+        ListIdentitiesRequestVO listIdentitiesRequestVO = ImmutableListIdentitiesRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<String, Object>(){{
+                    put("key", "value");
+                }})
+                .build();
 
-        ListIdentitiesResponseVO[] returnedListIdentitiesResponseVO = new ListIdentitiesResponseVO[]{new ListIdentitiesResponseVO(), new ListIdentitiesResponseVO()};
+        ListIdentitiesResponseVO[] returnedListIdentitiesResponseVO = new ListIdentitiesResponseVO[]{
+                ImmutableListIdentitiesResponseVO.builder().build(),
+                ImmutableListIdentitiesResponseVO.builder().build()
+        };
 
         JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
@@ -294,8 +309,9 @@ public class IdentitiesServiceTest {
 
     @Test
     public void testCreateIdentity_AuthIsNull() {
-        CreateIdentityRequestVO createIdentityRequestVO = new CreateIdentityRequestVO();
-        createIdentityRequestVO.setAuth(null);
+        CreateIdentityRequestVO createIdentityRequestVO = ImmutableCreateIdentityRequestVO.builder()
+                .setAuth(null)
+                .build();
 
         identitiesService = new IdentitiesService(enjinConfig);
         CreateIdentityResponseVO createIdentityResponseVO = identitiesService.createIdentity(createIdentityRequestVO);
@@ -304,8 +320,9 @@ public class IdentitiesServiceTest {
 
     @Test
     public void testCreateIdentity_AuthIsEmpty() {
-        CreateIdentityRequestVO createIdentityRequestVO = new CreateIdentityRequestVO();
-        createIdentityRequestVO.setAuth("");
+        CreateIdentityRequestVO createIdentityRequestVO = ImmutableCreateIdentityRequestVO.builder()
+                .setAuth("")
+                .build();
 
         identitiesService = new IdentitiesService(enjinConfig);
         CreateIdentityResponseVO createIdentityResponseVO = identitiesService.createIdentity(createIdentityRequestVO);
@@ -314,10 +331,10 @@ public class IdentitiesServiceTest {
 
     @Test
     public void testCreateIdentity_IdentityMapIsNull() {
-        CreateIdentityRequestVO createIdentityRequestVO = new CreateIdentityRequestVO();
-        createIdentityRequestVO.setAuth("auth");
-        Map<String, Object> identityMap = null;
-        createIdentityRequestVO.setIdentity(identityMap);
+        CreateIdentityRequestVO createIdentityRequestVO = ImmutableCreateIdentityRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(null)
+                .build();
 
         identitiesService = new IdentitiesService(enjinConfig);
         CreateIdentityResponseVO createIdentityResponseVO = identitiesService.createIdentity(createIdentityRequestVO);
@@ -326,10 +343,10 @@ public class IdentitiesServiceTest {
 
     @Test
     public void testCreateIdentity_IdentityMapIsEmpty() {
-        CreateIdentityRequestVO createIdentityRequestVO = new CreateIdentityRequestVO();
-        createIdentityRequestVO.setAuth("auth");
-        Map<String, Object> identityMap = new HashMap<>();
-        createIdentityRequestVO.setIdentity(identityMap);
+        CreateIdentityRequestVO createIdentityRequestVO = ImmutableCreateIdentityRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<>())
+                .build();
 
         identitiesService = new IdentitiesService(enjinConfig);
         CreateIdentityResponseVO createIdentityResponseVO = identitiesService.createIdentity(createIdentityRequestVO);
@@ -339,11 +356,12 @@ public class IdentitiesServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testCreateIdentity_ResponseIsNull() throws Exception {
-        CreateIdentityRequestVO createIdentityRequestVO = new CreateIdentityRequestVO();
-        createIdentityRequestVO.setAuth("auth");
-        Map<String, Object> identityMap = new HashMap<>();
-        identityMap.put("key", "value");
-        createIdentityRequestVO.setIdentity(identityMap);
+        CreateIdentityRequestVO createIdentityRequestVO = ImmutableCreateIdentityRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<String, Object>(){{
+                    put("key", "value");
+                }})
+                .build();
 
         CreateIdentityResponseVO returnedCreateIdentityResponseVO = null;
 
@@ -362,13 +380,14 @@ public class IdentitiesServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testCreateIdentity_Success() throws Exception {
-        CreateIdentityRequestVO createIdentityRequestVO = new CreateIdentityRequestVO();
-        createIdentityRequestVO.setAuth("auth");
-        Map<String, Object> identityMap = new HashMap<>();
-        identityMap.put("key", "value");
-        createIdentityRequestVO.setIdentity(identityMap);
+        CreateIdentityRequestVO createIdentityRequestVO = ImmutableCreateIdentityRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<String, Object>(){{
+                    put("key", "value");
+                }})
+                .build();
 
-        CreateIdentityResponseVO returnedCreateIdentityResponseVO = new CreateIdentityResponseVO();
+        CreateIdentityResponseVO returnedCreateIdentityResponseVO = ImmutableCreateIdentityResponseVO.builder().build();
 
         JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
@@ -393,8 +412,9 @@ public class IdentitiesServiceTest {
 
     @Test
     public void testUpdateIdentity_AuthIsNull() {
-        UpdateIdentityRequestVO updateIdentityRequestVO = new UpdateIdentityRequestVO();
-        updateIdentityRequestVO.setAuth(null);
+        UpdateIdentityRequestVO updateIdentityRequestVO = ImmutableUpdateIdentityRequestVO.builder()
+                .setAuth(null)
+                .build();
 
         identitiesService = new IdentitiesService(enjinConfig);
         UpdateIdentityResponseVO updateIdentityResponseVO = identitiesService.updateIdentity(updateIdentityRequestVO);
@@ -403,8 +423,9 @@ public class IdentitiesServiceTest {
 
     @Test
     public void testUpdateIdentity_AuthIsEmpty() {
-        UpdateIdentityRequestVO updateIdentityRequestVO = new UpdateIdentityRequestVO();
-        updateIdentityRequestVO.setAuth("");
+        UpdateIdentityRequestVO updateIdentityRequestVO = ImmutableUpdateIdentityRequestVO.builder()
+                .setAuth("")
+                .build();
 
         identitiesService = new IdentitiesService(enjinConfig);
         UpdateIdentityResponseVO updateIdentityResponseVO = identitiesService.updateIdentity(updateIdentityRequestVO);
@@ -413,10 +434,10 @@ public class IdentitiesServiceTest {
 
     @Test
     public void testUpdateIdentity_IdentityMapIsNull() {
-        UpdateIdentityRequestVO updateIdentityRequestVO = new UpdateIdentityRequestVO();
-        updateIdentityRequestVO.setAuth("auth");
-        Map<String, Object> identityMap = null;
-        updateIdentityRequestVO.setIdentity(identityMap);
+        UpdateIdentityRequestVO updateIdentityRequestVO = ImmutableUpdateIdentityRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(null)
+                .build();
 
         identitiesService = new IdentitiesService(enjinConfig);
         UpdateIdentityResponseVO updateIdentityResponseVO = identitiesService.updateIdentity(updateIdentityRequestVO);
@@ -425,11 +446,10 @@ public class IdentitiesServiceTest {
 
     @Test
     public void testUpdateIdentity_IdentityMapIsEmpty() {
-        UpdateIdentityRequestVO updateIdentityRequestVO = new UpdateIdentityRequestVO();
-        updateIdentityRequestVO.setAuth("auth");
-        Map<String, Object> identityMap = new HashMap<>();
-        updateIdentityRequestVO.setIdentity(identityMap);
-
+        UpdateIdentityRequestVO updateIdentityRequestVO = ImmutableUpdateIdentityRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<>())
+                .build();
         identitiesService = new IdentitiesService(enjinConfig);
         UpdateIdentityResponseVO updateIdentityResponseVO = identitiesService.updateIdentity(updateIdentityRequestVO);
         assertNull(updateIdentityResponseVO);
@@ -437,14 +457,13 @@ public class IdentitiesServiceTest {
 
     @Test
     public void testUpdateIdentity_UpdateMapIsNull() {
-        UpdateIdentityRequestVO updateIdentityRequestVO = new UpdateIdentityRequestVO();
-        updateIdentityRequestVO.setAuth("auth");
-        Map<String, Object> identityMap = new HashMap<>();
-        identityMap.put("key", "value");
-        updateIdentityRequestVO.setIdentity(identityMap);
-
-        Map<String, Object> updateMap = null;
-        updateIdentityRequestVO.setUpdate(updateMap);
+        UpdateIdentityRequestVO updateIdentityRequestVO = ImmutableUpdateIdentityRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<String, Object>(){{
+                    put("key", "value");
+                }})
+                .setUpdate(null)
+                .build();
 
         identitiesService = new IdentitiesService(enjinConfig);
         UpdateIdentityResponseVO updateIdentityResponseVO = identitiesService.updateIdentity(updateIdentityRequestVO);
@@ -453,14 +472,13 @@ public class IdentitiesServiceTest {
 
     @Test
     public void testUpdateIdentity_UpdateMapIsEmpty() {
-        UpdateIdentityRequestVO updateIdentityRequestVO = new UpdateIdentityRequestVO();
-        updateIdentityRequestVO.setAuth("auth");
-        Map<String, Object> identityMap = new HashMap<>();
-        identityMap.put("key", "value");
-        updateIdentityRequestVO.setIdentity(identityMap);
-
-        Map<String, Object> updateMap = new HashMap<>();
-        updateIdentityRequestVO.setUpdate(updateMap);
+        UpdateIdentityRequestVO updateIdentityRequestVO = ImmutableUpdateIdentityRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<String, Object>(){{
+                    put("key", "value");
+                }})
+                .setUpdate(new HashMap<>())
+                .build();
 
         identitiesService = new IdentitiesService(enjinConfig);
         UpdateIdentityResponseVO updateIdentityResponseVO = identitiesService.updateIdentity(updateIdentityRequestVO);
@@ -470,15 +488,15 @@ public class IdentitiesServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testUpdateIdentity_ResponseIsNull() throws Exception {
-        UpdateIdentityRequestVO updateIdentityRequestVO = new UpdateIdentityRequestVO();
-        updateIdentityRequestVO.setAuth("auth");
-        Map<String, Object> identityMap = new HashMap<>();
-        identityMap.put("key", "value");
-        updateIdentityRequestVO.setIdentity(identityMap);
-
-        Map<String, Object> updateMap = new HashMap<>();
-        updateMap.put("key", "value");
-        updateIdentityRequestVO.setUpdate(updateMap);
+        UpdateIdentityRequestVO updateIdentityRequestVO = ImmutableUpdateIdentityRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<String, Object>(){{
+                    put("key", "value");
+                }})
+                .setUpdate(new HashMap<String, Object>(){{
+                    put("key", "value");
+                }})
+                .build();
 
         UpdateIdentityResponseVO returnedUpdateIdentityResponseVO = null;
 
@@ -497,17 +515,17 @@ public class IdentitiesServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testUpdateIdentity_Success() throws Exception {
-        UpdateIdentityRequestVO updateIdentityRequestVO = new UpdateIdentityRequestVO();
-        updateIdentityRequestVO.setAuth("auth");
-        Map<String, Object> identityMap = new HashMap<>();
-        identityMap.put("key", "value");
-        updateIdentityRequestVO.setIdentity(identityMap);
+        UpdateIdentityRequestVO updateIdentityRequestVO = ImmutableUpdateIdentityRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<String, Object>(){{
+                    put("key", "value");
+                }})
+                .setUpdate(new HashMap<String, Object>(){{
+                    put("key", "value");
+                }})
+                .build();
 
-        Map<String, Object> updateMap = new HashMap<>();
-        updateMap.put("key", "value");
-        updateIdentityRequestVO.setUpdate(updateMap);
-
-        UpdateIdentityResponseVO returnedUpdateIdentityResponseVO = new UpdateIdentityResponseVO();
+        UpdateIdentityResponseVO returnedUpdateIdentityResponseVO = ImmutableUpdateIdentityResponseVO.builder().build();
 
         JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
@@ -532,8 +550,9 @@ public class IdentitiesServiceTest {
 
     @Test
     public void testDeleteIdentity_AuthIsNull() {
-        DeleteIdentityRequestVO deleteIdentityRequestVO = new DeleteIdentityRequestVO();
-        deleteIdentityRequestVO.setAuth(null);
+        DeleteIdentityRequestVO deleteIdentityRequestVO = ImmutableDeleteIdentityRequestVO.builder()
+                .setAuth(null)
+                .build();
 
         identitiesService = new IdentitiesService(enjinConfig);
         DeleteIdentityResponseVO deleteIdentityResponseVO = identitiesService.deleteIdentity(deleteIdentityRequestVO);
@@ -542,8 +561,9 @@ public class IdentitiesServiceTest {
 
     @Test
     public void testDeleteIdentity_AuthIsEmpty() {
-        DeleteIdentityRequestVO deleteIdentityRequestVO = new DeleteIdentityRequestVO();
-        deleteIdentityRequestVO.setAuth("");
+        DeleteIdentityRequestVO deleteIdentityRequestVO = ImmutableDeleteIdentityRequestVO.builder()
+                .setAuth("")
+                .build();
 
         identitiesService = new IdentitiesService(enjinConfig);
         DeleteIdentityResponseVO deleteIdentityResponseVO = identitiesService.deleteIdentity(deleteIdentityRequestVO);
@@ -552,10 +572,10 @@ public class IdentitiesServiceTest {
 
     @Test
     public void testDeleteIdentity_IdentityMapIsNull() {
-        DeleteIdentityRequestVO deleteIdentityRequestVO = new DeleteIdentityRequestVO();
-        deleteIdentityRequestVO.setAuth("auth");
-        Map<String, Object> identityMap = null;
-        deleteIdentityRequestVO.setIdentity(identityMap);
+        DeleteIdentityRequestVO deleteIdentityRequestVO = ImmutableDeleteIdentityRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(null)
+                .build();
 
         identitiesService = new IdentitiesService(enjinConfig);
         DeleteIdentityResponseVO deleteIdentityResponseVO = identitiesService.deleteIdentity(deleteIdentityRequestVO);
@@ -564,10 +584,10 @@ public class IdentitiesServiceTest {
 
     @Test
     public void testDeleteIdentity_IdentityMapIsEmpty() {
-        DeleteIdentityRequestVO deleteIdentityRequestVO = new DeleteIdentityRequestVO();
-        deleteIdentityRequestVO.setAuth("auth");
-        Map<String, Object> identityMap = new HashMap<>();
-        deleteIdentityRequestVO.setIdentity(identityMap);
+        DeleteIdentityRequestVO deleteIdentityRequestVO = ImmutableDeleteIdentityRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<>())
+                .build();
 
         identitiesService = new IdentitiesService(enjinConfig);
         DeleteIdentityResponseVO deleteIdentityResponseVO = identitiesService.deleteIdentity(deleteIdentityRequestVO);
@@ -577,11 +597,12 @@ public class IdentitiesServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testDeleteIdentity_ResultIsNull() throws Exception {
-        DeleteIdentityRequestVO deleteIdentityRequestVO = new DeleteIdentityRequestVO();
-        deleteIdentityRequestVO.setAuth("auth");
-        Map<String, Object> identityMap = new HashMap<>();
-        identityMap.put("key", "value");
-        deleteIdentityRequestVO.setIdentity(identityMap);
+        DeleteIdentityRequestVO deleteIdentityRequestVO = ImmutableDeleteIdentityRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<String, Object>(){{
+                    put("key", "value");
+                }})
+                .build();
 
         Boolean result = null;
 
@@ -601,11 +622,12 @@ public class IdentitiesServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testDeleteIdentity_ResultIsFalse() throws Exception {
-        DeleteIdentityRequestVO deleteIdentityRequestVO = new DeleteIdentityRequestVO();
-        deleteIdentityRequestVO.setAuth("auth");
-        Map<String, Object> identityMap = new HashMap<>();
-        identityMap.put("key", "value");
-        deleteIdentityRequestVO.setIdentity(identityMap);
+        DeleteIdentityRequestVO deleteIdentityRequestVO = ImmutableDeleteIdentityRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<String, Object>(){{
+                    put("key", "value");
+                }})
+                .build();
 
         Boolean result = false;
 
@@ -625,11 +647,12 @@ public class IdentitiesServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testDeleteIdentity_Success() throws Exception {
-        DeleteIdentityRequestVO deleteIdentityRequestVO = new DeleteIdentityRequestVO();
-        deleteIdentityRequestVO.setAuth("auth");
-        Map<String, Object> identityMap = new HashMap<>();
-        identityMap.put("key", "value");
-        deleteIdentityRequestVO.setIdentity(identityMap);
+        DeleteIdentityRequestVO deleteIdentityRequestVO = ImmutableDeleteIdentityRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<String, Object>(){{
+                    put("key", "value");
+                }})
+                .build();
 
         Boolean result = true;
 

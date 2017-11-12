@@ -1,36 +1,25 @@
 package com.enjin.coin.sdk.vo.identity;
 
+import com.enjin.coin.sdk.annotations.immutables.Nullable;
 import com.google.gson.annotations.SerializedName;
+import org.immutables.gson.Gson;
 
 import java.util.Map;
 
-public class BaseIdentityRequestVO {
+@Gson.TypeAdapters
+public abstract class BaseIdentityRequestVO {
 
+    @Nullable
     @SerializedName("auth")
-    private String auth;
+    public abstract String getAuth();
 
+    @Nullable
     @SerializedName("identity")
-    private Map<String, Object> identity;
-
-    public Map<String, Object> getIdentity() {
-        return identity;
-    }
-
-    public void setIdentity(Map<String, Object> identity) {
-        this.identity = identity;
-    }
-
-    public String getAuth() {
-        return auth;
-    }
-
-    public void setAuth(String auth) {
-        this.auth = auth;
-    }
+    public abstract Map<String, Object> getIdentity();
 
     @Override
     public String toString() {
-        return "BaseIdentityRequestVO [auth=" + auth + ", identity=" + identity + "]";
+        return "BaseIdentityRequestVO [auth=" + getAuth() + ", identity=" + getIdentity() + "]";
     }
 
 }

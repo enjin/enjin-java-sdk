@@ -1,34 +1,25 @@
 package com.enjin.coin.sdk.vo.transactionrequest;
 
+import com.enjin.coin.sdk.annotations.immutables.Nullable;
 import com.google.gson.annotations.SerializedName;
+import org.immutables.gson.Gson;
+import org.immutables.value.Value;
 
-public class CancelTransactionRequestRequestVO {
+@Value.Immutable
+@Gson.TypeAdapters
+public abstract class CancelTransactionRequestRequestVO {
 
+    @Nullable
     @SerializedName("auth")
-    private String auth;
+    public abstract String getAuth();
 
+    @Nullable
     @SerializedName("txr_id")
-    private String txrId;
-
-    public String getAuth() {
-        return auth;
-    }
-
-    public void setAuth(String auth) {
-        this.auth = auth;
-    }
-
-    public String getTxrId() {
-        return txrId;
-    }
-
-    public void setTxrId(String txrId) {
-        this.txrId = txrId;
-    }
+    public abstract String getTxrId();
 
     @Override
     public String toString() {
-        return "CancelTransactionRequestRequestVO [auth=" + auth + ", txrId=" + txrId + "]";
+        return "CancelTransactionRequestRequestVO [auth=" + getAuth() + ", txrId=" + getTxrId() + "]";
     }
 
 }
