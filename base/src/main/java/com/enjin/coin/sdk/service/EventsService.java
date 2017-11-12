@@ -1,13 +1,17 @@
 package com.enjin.coin.sdk.service;
 
-import com.enjin.coin.sdk.config.EnjinConfig;
-import com.enjin.coin.sdk.util.Constants;
-import com.enjin.coin.sdk.util.ValidationUtils;
-import com.enjin.coin.sdk.vo.event.*;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
+
+import com.enjin.coin.sdk.config.EnjinConfig;
+import com.enjin.coin.sdk.util.Constants;
+import com.enjin.coin.sdk.util.ValidationUtils;
+import com.enjin.coin.sdk.vo.event.GetEventRequestVO;
+import com.enjin.coin.sdk.vo.event.GetEventResponseVO;
+import com.enjin.coin.sdk.vo.event.ImmutableListEventsResponseVO;
+import com.enjin.coin.sdk.vo.event.ListEventsRequestVO;
+import com.enjin.coin.sdk.vo.event.ListEventsResponseVO;
 
 public class EventsService extends BaseService {
 
