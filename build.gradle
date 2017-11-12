@@ -75,8 +75,7 @@ subprojects {
 
     //Documentation https://github.com/bmuschko/gradle-clover-plugin
     clover {
-    
-    	excludes = ['**/GsonAdapters*.java', '**/Immutable*.java']
+        excludes = ['**/GsonAdapters*.java', '**/Immutable*.java']
 
         report {
             html = true

@@ -96,8 +96,8 @@ public class IdentitiesServiceTest {
     public void testGetIdentity_ResponseIsNull() throws Exception {
         GetIdentityRequestVO getIdentityRequestVO = ImmutableGetIdentityRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>(){{
-                    put("key","value");
+                .setIdentity(new HashMap<String, Object>() {{
+                    put("key", "value");
                 }})
                 .build();
 
@@ -120,8 +120,8 @@ public class IdentitiesServiceTest {
     public void testGetIdentity_Success() throws Exception {
         GetIdentityRequestVO getIdentityRequestVO = ImmutableGetIdentityRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>(){{
-                    put("key","value");
+                .setIdentity(new HashMap<String, Object>() {{
+                    put("key", "value");
                 }})
                 .build();
 
@@ -199,7 +199,7 @@ public class IdentitiesServiceTest {
     public void testListIdentities_ResponseIsNull() throws Exception {
         ListIdentitiesRequestVO listIdentitiesRequestVO = ImmutableListIdentitiesRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>(){{
+                .setIdentity(new HashMap<String, Object>() {{
                     put("key", "value");
                 }})
                 .build();
@@ -221,9 +221,9 @@ public class IdentitiesServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testListIdentities_ResponseIsEmpty() throws Exception {
-        ListIdentitiesRequestVO listIdentitiesRequestVO =ImmutableListIdentitiesRequestVO.builder()
+        ListIdentitiesRequestVO listIdentitiesRequestVO = ImmutableListIdentitiesRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>(){{
+                .setIdentity(new HashMap<String, Object>() {{
                     put("key", "value");
                 }})
                 .build();
@@ -248,7 +248,7 @@ public class IdentitiesServiceTest {
     public void testListIdentities_Success1() throws Exception {
         ListIdentitiesRequestVO listIdentitiesRequestVO = ImmutableListIdentitiesRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>(){{
+                .setIdentity(new HashMap<String, Object>() {{
                     put("key", "value");
                 }})
                 .build();
@@ -275,7 +275,7 @@ public class IdentitiesServiceTest {
     public void testListIdentities_Success2() throws Exception {
         ListIdentitiesRequestVO listIdentitiesRequestVO = ImmutableListIdentitiesRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>(){{
+                .setIdentity(new HashMap<String, Object>() {{
                     put("key", "value");
                 }})
                 .build();
@@ -358,7 +358,7 @@ public class IdentitiesServiceTest {
     public void testCreateIdentity_ResponseIsNull() throws Exception {
         CreateIdentityRequestVO createIdentityRequestVO = ImmutableCreateIdentityRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>(){{
+                .setIdentity(new HashMap<String, Object>() {{
                     put("key", "value");
                 }})
                 .build();
@@ -382,7 +382,7 @@ public class IdentitiesServiceTest {
     public void testCreateIdentity_Success() throws Exception {
         CreateIdentityRequestVO createIdentityRequestVO = ImmutableCreateIdentityRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>(){{
+                .setIdentity(new HashMap<String, Object>() {{
                     put("key", "value");
                 }})
                 .build();
@@ -459,7 +459,7 @@ public class IdentitiesServiceTest {
     public void testUpdateIdentity_UpdateMapIsNull() {
         UpdateIdentityRequestVO updateIdentityRequestVO = ImmutableUpdateIdentityRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>(){{
+                .setIdentity(new HashMap<String, Object>() {{
                     put("key", "value");
                 }})
                 .setUpdate(null)
@@ -474,7 +474,7 @@ public class IdentitiesServiceTest {
     public void testUpdateIdentity_UpdateMapIsEmpty() {
         UpdateIdentityRequestVO updateIdentityRequestVO = ImmutableUpdateIdentityRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>(){{
+                .setIdentity(new HashMap<String, Object>() {{
                     put("key", "value");
                 }})
                 .setUpdate(new HashMap<>())
@@ -490,10 +490,10 @@ public class IdentitiesServiceTest {
     public void testUpdateIdentity_ResponseIsNull() throws Exception {
         UpdateIdentityRequestVO updateIdentityRequestVO = ImmutableUpdateIdentityRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>(){{
+                .setIdentity(new HashMap<String, Object>() {{
                     put("key", "value");
                 }})
-                .setUpdate(new HashMap<String, Object>(){{
+                .setUpdate(new HashMap<String, Object>() {{
                     put("key", "value");
                 }})
                 .build();
@@ -517,10 +517,10 @@ public class IdentitiesServiceTest {
     public void testUpdateIdentity_Success() throws Exception {
         UpdateIdentityRequestVO updateIdentityRequestVO = ImmutableUpdateIdentityRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>(){{
+                .setIdentity(new HashMap<String, Object>() {{
                     put("key", "value");
                 }})
-                .setUpdate(new HashMap<String, Object>(){{
+                .setUpdate(new HashMap<String, Object>() {{
                     put("key", "value");
                 }})
                 .build();
@@ -599,7 +599,7 @@ public class IdentitiesServiceTest {
     public void testDeleteIdentity_ResultIsNull() throws Exception {
         DeleteIdentityRequestVO deleteIdentityRequestVO = ImmutableDeleteIdentityRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>(){{
+                .setIdentity(new HashMap<String, Object>() {{
                     put("key", "value");
                 }})
                 .build();
@@ -624,7 +624,7 @@ public class IdentitiesServiceTest {
     public void testDeleteIdentity_ResultIsFalse() throws Exception {
         DeleteIdentityRequestVO deleteIdentityRequestVO = ImmutableDeleteIdentityRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>(){{
+                .setIdentity(new HashMap<String, Object>() {{
                     put("key", "value");
                 }})
                 .build();
@@ -649,7 +649,7 @@ public class IdentitiesServiceTest {
     public void testDeleteIdentity_Success() throws Exception {
         DeleteIdentityRequestVO deleteIdentityRequestVO = ImmutableDeleteIdentityRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>(){{
+                .setIdentity(new HashMap<String, Object>() {{
                     put("key", "value");
                 }})
                 .build();

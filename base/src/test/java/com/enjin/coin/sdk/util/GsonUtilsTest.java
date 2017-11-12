@@ -13,12 +13,11 @@ public class GsonUtilsTest {
         GsonUtils gsonUtils = new GsonUtils();
         assertNotNull(gsonUtils);
     }
-    
+
     @Test
     public void testRegisterAllTypeAdapterFactories() {
-    	GsonBuilder builder = new GsonBuilder();
-    	GsonUtils.registerAllTypeAdapterFactories(builder);
+        GsonBuilder builder = new GsonBuilder();
+        GsonUtils.registerAllTypeAdapterFactories(builder);
     }
 
-   
 }

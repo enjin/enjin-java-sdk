@@ -58,7 +58,7 @@ public class TokensServiceTest {
     @Test
     public void testGetToken_TokenIdIsEmpty() {
         GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
-        .setTokenId("")
+                .setTokenId("")
                 .build();
 
         tokenService = new TokensService(enjinConfig);
@@ -71,7 +71,7 @@ public class TokensServiceTest {
     @Test
     public void testGetToken_ResponseIsNull() throws Exception {
         GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
-        .setTokenId("tokenId")
+                .setTokenId("tokenId")
                 .build();
 
         GetTokenResponseVO returnedGetTokenResponseVO = null;
@@ -92,7 +92,7 @@ public class TokensServiceTest {
     @Test
     public void testGetToken_Success() throws Exception {
         GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
-        .setTokenId("tokenId")
+                .setTokenId("tokenId")
                 .build();
 
         GetTokenResponseVO returnedGetTokenResponseVO = ImmutableGetTokenResponseVO.builder().build();
@@ -121,9 +121,9 @@ public class TokensServiceTest {
     @Test
     public void testListTokens_AfterTokenIdIsNull() {
         ListTokensRequestVO listTokensRequestVO = ImmutableListTokensRequestVO.builder()
-        .setAfterTokenId(null)
-        .setAppId("appId")
-        .setLimit("limit")
+                .setAfterTokenId(null)
+                .setAppId("appId")
+                .setLimit("limit")
                 .build();
         tokenService = new TokensService(enjinConfig);
         ListTokensResponseVO listTokensResponseVO = tokenService.listTokens(listTokensRequestVO);
@@ -133,9 +133,9 @@ public class TokensServiceTest {
     @Test
     public void testListTokens_AfterTokenIdIsEmpty() {
         ListTokensRequestVO listTokensRequestVO = ImmutableListTokensRequestVO.builder()
-        .setAfterTokenId("")
-        .setAppId("appId")
-        .setLimit("limit")
+                .setAfterTokenId("")
+                .setAppId("appId")
+                .setLimit("limit")
                 .build();
 
         tokenService = new TokensService(enjinConfig);
@@ -146,9 +146,9 @@ public class TokensServiceTest {
     @Test
     public void testListTokens_AppIdIsNull() {
         ListTokensRequestVO listTokensRequestVO = ImmutableListTokensRequestVO.builder()
-        .setAfterTokenId("afterTokenId")
-        .setAppId(null)
-        .setLimit("limit")
+                .setAfterTokenId("afterTokenId")
+                .setAppId(null)
+                .setLimit("limit")
                 .build();
         tokenService = new TokensService(enjinConfig);
         ListTokensResponseVO listTokensResponseVO = tokenService.listTokens(listTokensRequestVO);
@@ -158,9 +158,9 @@ public class TokensServiceTest {
     @Test
     public void testListTokens_LimitIsEmpty() {
         ListTokensRequestVO listTokensRequestVO = ImmutableListTokensRequestVO.builder()
-        .setAfterTokenId("afterTokenId")
-        .setAppId("appId")
-        .setLimit("")
+                .setAfterTokenId("afterTokenId")
+                .setAppId("appId")
+                .setLimit("")
                 .build();
         tokenService = new TokensService(enjinConfig);
         ListTokensResponseVO listTokensResponseVO = tokenService.listTokens(listTokensRequestVO);
@@ -170,9 +170,9 @@ public class TokensServiceTest {
     @Test
     public void testListTokens_LimitIsNull() {
         ListTokensRequestVO listTokensRequestVO = ImmutableListTokensRequestVO.builder()
-        .setAfterTokenId("afterTokenId")
-        .setAppId("appId")
-        .setLimit(null)
+                .setAfterTokenId("afterTokenId")
+                .setAppId("appId")
+                .setLimit(null)
                 .build();
         tokenService = new TokensService(enjinConfig);
         ListTokensResponseVO listTokensResponseVO = tokenService.listTokens(listTokensRequestVO);
@@ -183,9 +183,9 @@ public class TokensServiceTest {
     @Test
     public void testListTokens_ResponseIsNull() throws Exception {
         ListTokensRequestVO listTokensRequestVO = ImmutableListTokensRequestVO.builder()
-        .setAfterTokenId("afterTokenId")
-        .setAppId("appId")
-        .setLimit("limit")
+                .setAfterTokenId("afterTokenId")
+                .setAppId("appId")
+                .setLimit("limit")
                 .build();
 
         ListTokensResponseVO[] returnedListTokensResponseVO = null;
@@ -206,9 +206,9 @@ public class TokensServiceTest {
     @Test
     public void testListTokens_ResponseIsEmpty() throws Exception {
         ListTokensRequestVO listTokensRequestVO = ImmutableListTokensRequestVO.builder()
-        .setAfterTokenId("afterTokenId")
-        .setAppId("appId")
-        .setLimit("limit")
+                .setAfterTokenId("afterTokenId")
+                .setAppId("appId")
+                .setLimit("limit")
                 .build();
 
         GetTokenResponseVO[] returnedListTokensResponseVO = new GetTokenResponseVO[]{};
@@ -229,9 +229,9 @@ public class TokensServiceTest {
     @Test
     public void testListTokens_Success1() throws Exception {
         ListTokensRequestVO listTokensRequestVO = ImmutableListTokensRequestVO.builder()
-        .setAfterTokenId("afterTokenId")
-        .setAppId("appId")
-        .setLimit("limit")
+                .setAfterTokenId("afterTokenId")
+                .setAppId("appId")
+                .setLimit("limit")
                 .build();
 
         GetTokenResponseVO[] returnedListTokensResponseVO = new GetTokenResponseVO[]{
@@ -256,9 +256,9 @@ public class TokensServiceTest {
     @Test
     public void testListTokens_Success2() throws Exception {
         ListTokensRequestVO listTokensRequestVO = ImmutableListTokensRequestVO.builder()
-        .setAfterTokenId("afterTokenId")
-        .setAppId("appId")
-        .setLimit("limit")
+                .setAfterTokenId("afterTokenId")
+                .setAppId("appId")
+                .setLimit("limit")
                 .build();
 
         GetTokenResponseVO[] returnedListTokensResponseVO = new GetTokenResponseVO[]{
