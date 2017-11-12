@@ -2,10 +2,7 @@ package com.enjin.coin.sdk.service;
 
 import com.enjin.coin.sdk.config.EnjinConfig;
 import com.enjin.coin.sdk.util.JsonRpcUtils;
-import com.enjin.coin.sdk.vo.event.GetEventRequestVO;
-import com.enjin.coin.sdk.vo.event.GetEventResponseVO;
-import com.enjin.coin.sdk.vo.event.ListEventsRequestVO;
-import com.enjin.coin.sdk.vo.event.ListEventsResponseVO;
+import com.enjin.coin.sdk.vo.event.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -50,9 +47,10 @@ public class EventsServiceTest {
 
     @Test
     public void testGetEvent_EventIsNull() {
-        GetEventRequestVO getEventRequestVO = new GetEventRequestVO();
-        getEventRequestVO.setEventId(null);
-        getEventRequestVO.setAuth("auth");
+        GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
+                .setEventId(null)
+                .setAuth("auth")
+                .build();
 
         eventService = new EventsService(enjinConfig);
         GetEventResponseVO getEventResponseVO = eventService.getEvent(getEventRequestVO);
@@ -61,9 +59,10 @@ public class EventsServiceTest {
 
     @Test
     public void testGetEvent_EventIdIsEmpty() {
-        GetEventRequestVO getEventRequestVO = new GetEventRequestVO();
-        getEventRequestVO.setEventId("");
-        getEventRequestVO.setAuth("auth");
+        GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
+                .setEventId("")
+                .setAuth("auth")
+                .build();
 
         eventService = new EventsService(enjinConfig);
         GetEventResponseVO getEventResponseVO = eventService.getEvent(getEventRequestVO);
@@ -72,9 +71,10 @@ public class EventsServiceTest {
 
     @Test
     public void testGetEvent_AuthIdIsEmpty() {
-        GetEventRequestVO getEventRequestVO = new GetEventRequestVO();
-        getEventRequestVO.setEventId("eventId");
-        getEventRequestVO.setAuth("");
+        GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
+                .setEventId("eventId")
+                .setAuth("")
+                .build();
 
         eventService = new EventsService(enjinConfig);
         GetEventResponseVO getEventResponseVO = eventService.getEvent(getEventRequestVO);
@@ -83,9 +83,10 @@ public class EventsServiceTest {
 
     @Test
     public void testGetEvent_AuthIsNull() {
-        GetEventRequestVO getEventRequestVO = new GetEventRequestVO();
-        getEventRequestVO.setEventId("eventId");
-        getEventRequestVO.setAuth(null);
+        GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
+                .setEventId("eventId")
+                .setAuth(null)
+                .build();
 
         eventService = new EventsService(enjinConfig);
         GetEventResponseVO getEventResponseVO = eventService.getEvent(getEventRequestVO);
@@ -96,9 +97,10 @@ public class EventsServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testGetEvent_ResponseIsNull() throws Exception {
-        GetEventRequestVO getEventRequestVO = new GetEventRequestVO();
-        getEventRequestVO.setEventId("eventId");
-        getEventRequestVO.setAuth("auth");
+        GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
+                .setEventId("eventId")
+                .setAuth("auth")
+                .build();
 
         GetEventResponseVO returnedGetEventResponseVO = null;
 
@@ -117,11 +119,12 @@ public class EventsServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testGetEvent_Success() throws Exception {
-        GetEventRequestVO getEventRequestVO = new GetEventRequestVO();
-        getEventRequestVO.setEventId("eventId");
-        getEventRequestVO.setAuth("auth");
+        GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
+                .setEventId("eventId")
+                .setAuth("auth")
+                .build();
 
-        GetEventResponseVO returnedGetEventResponseVO = new GetEventResponseVO();
+        GetEventResponseVO returnedGetEventResponseVO = ImmutableGetEventResponseVO.builder().build();
 
         JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
@@ -146,11 +149,12 @@ public class EventsServiceTest {
 
     @Test
     public void testListEvents_AfterEventIdIsNull() {
-        ListEventsRequestVO listEventsRequestVO = new ListEventsRequestVO();
-        listEventsRequestVO.setAfterEventId(null);
-        listEventsRequestVO.setAppId("appId");
-        listEventsRequestVO.setLimit("limit");
-        listEventsRequestVO.setAuth("auth");
+        ListEventsRequestVO listEventsRequestVO = ImmutableListEventsRequestVO.builder()
+                .setAfterEventId(null)
+                .setAppId("appId")
+                .setLimit("limit")
+                .setAuth("auth")
+                .build();
 
         eventService = new EventsService(enjinConfig);
         ListEventsResponseVO listEventsResponseVO = eventService.listEvents(listEventsRequestVO);
@@ -159,11 +163,12 @@ public class EventsServiceTest {
 
     @Test
     public void testListEvents_AfterEventIdIsEmpty() {
-        ListEventsRequestVO listEventsRequestVO = new ListEventsRequestVO();
-        listEventsRequestVO.setAfterEventId("");
-        listEventsRequestVO.setAppId("appId");
-        listEventsRequestVO.setLimit("limit");
-        listEventsRequestVO.setAuth("auth");
+        ListEventsRequestVO listEventsRequestVO = ImmutableListEventsRequestVO.builder()
+                .setAfterEventId("")
+                .setAppId("appId")
+                .setLimit("limit")
+                .setAuth("auth")
+                .build();
 
         eventService = new EventsService(enjinConfig);
         ListEventsResponseVO listEventsResponseVO = eventService.listEvents(listEventsRequestVO);
@@ -172,11 +177,12 @@ public class EventsServiceTest {
 
     @Test
     public void testListEvents_AppIdIsNull() {
-        ListEventsRequestVO listEventsRequestVO = new ListEventsRequestVO();
-        listEventsRequestVO.setAfterEventId("afterEventId");
-        listEventsRequestVO.setAppId(null);
-        listEventsRequestVO.setLimit("limit");
-        listEventsRequestVO.setAuth("auth");
+        ListEventsRequestVO listEventsRequestVO = ImmutableListEventsRequestVO.builder()
+                .setAfterEventId("afterEventId")
+                .setAppId(null)
+                .setLimit("limit")
+                .setAuth("auth")
+                .build();
         eventService = new EventsService(enjinConfig);
         ListEventsResponseVO listEventsResponseVO = eventService.listEvents(listEventsRequestVO);
         assertNull(listEventsResponseVO);
@@ -184,11 +190,12 @@ public class EventsServiceTest {
 
     @Test
     public void testListEvents_LimitIsEmpty() {
-        ListEventsRequestVO listEventsRequestVO = new ListEventsRequestVO();
-        listEventsRequestVO.setAfterEventId("afterEventId");
-        listEventsRequestVO.setAppId("appId");
-        listEventsRequestVO.setLimit("");
-        listEventsRequestVO.setAuth("auth");
+        ListEventsRequestVO listEventsRequestVO = ImmutableListEventsRequestVO.builder()
+                .setAfterEventId("afterEventId")
+                .setAppId("appId")
+                .setLimit("")
+                .setAuth("auth")
+                .build();
         eventService = new EventsService(enjinConfig);
         ListEventsResponseVO listEventsResponseVO = eventService.listEvents(listEventsRequestVO);
         assertNull(listEventsResponseVO);
@@ -196,11 +203,12 @@ public class EventsServiceTest {
 
     @Test
     public void testListEvents_LimitIsNull() {
-        ListEventsRequestVO listEventsRequestVO = new ListEventsRequestVO();
-        listEventsRequestVO.setAfterEventId("afterEventId");
-        listEventsRequestVO.setAppId("appId");
-        listEventsRequestVO.setLimit(null);
-        listEventsRequestVO.setAuth("auth");
+        ListEventsRequestVO listEventsRequestVO = ImmutableListEventsRequestVO.builder()
+                .setAfterEventId("afterEventId")
+                .setAppId("appId")
+                .setLimit(null)
+                .setAuth("auth")
+                .build();
         eventService = new EventsService(enjinConfig);
         ListEventsResponseVO listEventsResponseVO = eventService.listEvents(listEventsRequestVO);
         assertNull(listEventsResponseVO);
@@ -208,11 +216,12 @@ public class EventsServiceTest {
 
     @Test
     public void testListEvents_AurgIsEmpty() {
-        ListEventsRequestVO listEventsRequestVO = new ListEventsRequestVO();
-        listEventsRequestVO.setAfterEventId("afterEventId");
-        listEventsRequestVO.setAppId("appId");
-        listEventsRequestVO.setLimit("limit");
-        listEventsRequestVO.setAuth("");
+        ListEventsRequestVO listEventsRequestVO = ImmutableListEventsRequestVO.builder()
+                .setAfterEventId("afterEventId")
+                .setAppId("appId")
+                .setLimit("limit")
+                .setAuth("")
+                .build();
         eventService = new EventsService(enjinConfig);
         ListEventsResponseVO listEventsResponseVO = eventService.listEvents(listEventsRequestVO);
         assertNull(listEventsResponseVO);
@@ -220,11 +229,12 @@ public class EventsServiceTest {
 
     @Test
     public void testListEvents_AuthIsNull() {
-        ListEventsRequestVO listEventsRequestVO = new ListEventsRequestVO();
-        listEventsRequestVO.setAfterEventId("afterEventId");
-        listEventsRequestVO.setAppId("appId");
-        listEventsRequestVO.setLimit("limit");
-        listEventsRequestVO.setAuth(null);
+        ListEventsRequestVO listEventsRequestVO = ImmutableListEventsRequestVO.builder()
+                .setAfterEventId("afterEventId")
+                .setAppId("appId")
+                .setLimit("limit")
+                .setAuth(null)
+                .build();
         eventService = new EventsService(enjinConfig);
         ListEventsResponseVO listEventsResponseVO = eventService.listEvents(listEventsRequestVO);
         assertNull(listEventsResponseVO);
@@ -233,11 +243,12 @@ public class EventsServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testListEvents_ResponseIsNull() throws Exception {
-        ListEventsRequestVO listEventsRequestVO = new ListEventsRequestVO();
-        listEventsRequestVO.setAfterEventId("afterEventId");
-        listEventsRequestVO.setAppId("appId");
-        listEventsRequestVO.setLimit("limit");
-        listEventsRequestVO.setAuth("auth");
+        ListEventsRequestVO listEventsRequestVO = ImmutableListEventsRequestVO.builder()
+                .setAfterEventId("afterEventId")
+                .setAppId("appId")
+                .setLimit("limit")
+                .setAuth("auth")
+                .build();
 
         ListEventsResponseVO[] returnedListEventsResponseVO = null;
 
@@ -256,11 +267,12 @@ public class EventsServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testListEvents_ResponseIsEmpty() throws Exception {
-        ListEventsRequestVO listEventsRequestVO = new ListEventsRequestVO();
-        listEventsRequestVO.setAfterEventId("afterEventId");
-        listEventsRequestVO.setAppId("appId");
-        listEventsRequestVO.setLimit("limit");
-        listEventsRequestVO.setAuth("auth");
+        ListEventsRequestVO listEventsRequestVO = ImmutableListEventsRequestVO.builder()
+                .setAfterEventId("afterEventId")
+                .setAppId("appId")
+                .setLimit("limit")
+                .setAuth("auth")
+                .build();
 
         GetEventResponseVO[] returnedListEventsResponseVO = new GetEventResponseVO[]{};
 
@@ -279,13 +291,16 @@ public class EventsServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testListEvents_Success1() throws Exception {
-        ListEventsRequestVO listEventsRequestVO = new ListEventsRequestVO();
-        listEventsRequestVO.setAfterEventId("afterEventId");
-        listEventsRequestVO.setAppId("appId");
-        listEventsRequestVO.setLimit("limit");
-        listEventsRequestVO.setAuth("auth");
+        ListEventsRequestVO listEventsRequestVO = ImmutableListEventsRequestVO.builder()
+                .setAfterEventId("afterEventId")
+                .setAppId("appId")
+                .setLimit("limit")
+                .setAuth("auth")
+                .build();
 
-        GetEventResponseVO[] returnedListEventsResponseVO = new GetEventResponseVO[]{new GetEventResponseVO()};
+        GetEventResponseVO[] returnedListEventsResponseVO = new GetEventResponseVO[]{
+                ImmutableGetEventResponseVO.builder().build()
+        };
 
         JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
@@ -304,13 +319,17 @@ public class EventsServiceTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testListEvents_Success2() throws Exception {
-        ListEventsRequestVO listEventsRequestVO = new ListEventsRequestVO();
-        listEventsRequestVO.setAfterEventId("afterEventId");
-        listEventsRequestVO.setAppId("appId");
-        listEventsRequestVO.setLimit("limit");
-        listEventsRequestVO.setAuth("auth");
+        ListEventsRequestVO listEventsRequestVO = ImmutableListEventsRequestVO.builder()
+                .setAfterEventId("afterEventId")
+                .setAppId("appId")
+                .setLimit("limit")
+                .setAuth("auth")
+                .build();
 
-        GetEventResponseVO[] returnedListEventsResponseVO = new GetEventResponseVO[]{new GetEventResponseVO(), new GetEventResponseVO()};
+        GetEventResponseVO[] returnedListEventsResponseVO = new GetEventResponseVO[]{
+                ImmutableGetEventResponseVO.builder().build(),
+                ImmutableGetEventResponseVO.builder().build()
+        };
 
         JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);

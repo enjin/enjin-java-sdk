@@ -3,10 +3,7 @@ package com.enjin.coin.sdk.service;
 import com.enjin.coin.sdk.config.EnjinConfig;
 import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.ValidationUtils;
-import com.enjin.coin.sdk.vo.event.GetEventRequestVO;
-import com.enjin.coin.sdk.vo.event.GetEventResponseVO;
-import com.enjin.coin.sdk.vo.event.ListEventsRequestVO;
-import com.enjin.coin.sdk.vo.event.ListEventsResponseVO;
+import com.enjin.coin.sdk.vo.event.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -80,8 +77,9 @@ public class EventsService extends BaseService {
             LOGGER.warning("No Events returned");
             return listEventsResponseVO;
         }
-        listEventsResponseVO = new ListEventsResponseVO();
-        listEventsResponseVO.setGetEventsResponseVOArray(getEventResponseVOArray);
+        listEventsResponseVO = ImmutableListEventsResponseVO.builder()
+                .setGetEventsResponseVOArray(getEventResponseVOArray)
+                .build();
 
         return listEventsResponseVO;
     }

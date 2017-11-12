@@ -1,51 +1,38 @@
 package com.enjin.coin.sdk.vo.event;
 
+import com.enjin.coin.sdk.annotations.immutables.Nullable;
 import com.google.gson.annotations.SerializedName;
+import org.immutables.gson.Gson;
+import org.immutables.value.Value;
 
-public class GetEventResponseVO {
+@Value.Immutable
+@Gson.TypeAdapters(emptyAsNulls = true)
+public abstract class GetEventResponseVO {
 
-    @SerializedName("event_id")
-    private String eventId;
-
-    @SerializedName("event_type")
-    private String eventType;
-
-    @SerializedName("timestamp")
-    private String timestamp;
-
-    @SerializedName("app_id")
-    private String appId;
-
+    @Nullable
     @SerializedName("data")
-    private GetEventDataVO data;
+    public abstract GetEventDataVO getData();
 
+    @Nullable
+    @SerializedName("event_id")
+    public abstract String getEventId();
 
-    public GetEventDataVO getData() {
-        return data;
-    }
+    @Nullable
+    @SerializedName("event_type")
+    public abstract String getEventType();
 
-    public String getEventId() {
-        return eventId;
-    }
+    @Nullable
+    @SerializedName("timestamp")
+    public abstract String getTimestamp();
 
-
-    public String getEventType() {
-        return eventType;
-    }
-
-    public String getTimestamp() {
-        return timestamp;
-    }
-
-    public String getAppId() {
-        return appId;
-    }
+    @Nullable
+    @SerializedName("app_id")
+    public abstract String getAppId();
 
     @Override
     public String toString() {
-        return "GetEventResponseVO [eventId=" + eventId + ", eventType=" + eventType + ", timestamp=" + timestamp
-                + ", appId=" + appId + "]";
+        return "GetEventResponseVO [eventId=" + getEventId() + ", eventType=" + getEventType() + ", timestamp=" + getTimestamp()
+                + ", appId=" + getAppId() + "]";
     }
-
 
 }

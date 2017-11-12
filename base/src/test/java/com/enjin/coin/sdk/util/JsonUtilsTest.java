@@ -1,6 +1,7 @@
 package com.enjin.coin.sdk.util;
 
 import com.enjin.coin.sdk.vo.event.GetEventResponseVO;
+import com.enjin.coin.sdk.vo.event.ImmutableGetEventResponseVO;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
@@ -70,7 +71,7 @@ public class JsonUtilsTest {
 
         Gson mockGson = PowerMockito.mock(Gson.class);
 
-        Mockito.when(mockGson.fromJson(Mockito.anyString(), Mockito.isA(Class.class))).thenReturn(new GetEventResponseVO());
+        Mockito.when(mockGson.fromJson(Mockito.anyString(), Mockito.isA(Class.class))).thenReturn(ImmutableGetEventResponseVO.builder().build());
         Object responseObject = JsonUtils.convertJsonToObject(mockGson, jsonString, responseClass);
         assertNotNull(responseObject);
 
@@ -88,7 +89,7 @@ public class JsonUtilsTest {
     @Test
     public void testConvertObjectToJson_SuccessButJsonIsEmpty() throws Exception {
         String jsonStrResponse = "";
-        GetEventResponseVO jsonObject = new GetEventResponseVO();
+        GetEventResponseVO jsonObject = ImmutableGetEventResponseVO.builder().build();
 
         Gson mockGson = PowerMockito.mock(Gson.class);
 
@@ -104,7 +105,7 @@ public class JsonUtilsTest {
     @Test
     public void testConvertObjectToJson_Success() throws Exception {
         String jsonStrResponse = "{\"event_id\":\"1\"}";
-        GetEventResponseVO jsonObject = new GetEventResponseVO();
+        GetEventResponseVO jsonObject = ImmutableGetEventResponseVO.builder().build();
 
         Gson mockGson = PowerMockito.mock(Gson.class);
 

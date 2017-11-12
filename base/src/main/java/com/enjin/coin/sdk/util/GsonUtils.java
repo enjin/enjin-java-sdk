@@ -13,7 +13,8 @@ public final class GsonUtils {
     public static final Gson GSON;
 
     static {
-        GsonBuilder builder = new GsonBuilder();
+        GsonBuilder builder = new GsonBuilder()
+                .serializeNulls();
         GsonUtils.registerAllTypeAdapterFactories(builder);
         GSON = builder.create();
     }

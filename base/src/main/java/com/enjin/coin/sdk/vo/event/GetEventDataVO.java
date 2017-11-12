@@ -1,109 +1,70 @@
 package com.enjin.coin.sdk.vo.event;
 
+import com.enjin.coin.sdk.annotations.immutables.Nullable;
 import com.google.gson.annotations.SerializedName;
+import org.immutables.gson.Gson;
+import org.immutables.value.Value;
 
 import java.util.Map;
 
-public class GetEventDataVO {
+@Value.Immutable
+@Gson.TypeAdapters
+public abstract class GetEventDataVO {
 
-    @SerializedName("token_id")
-    private String tokenId;
-
-    @SerializedName("creator")
-    private String creator;
-
-    @SerializedName("adapter")
-    private String adapter;
-
-    @SerializedName("name")
-    private String name;
-
-    @SerializedName("icon")
-    private String icon;
-
-    @SerializedName("totalSupply")
-    private String totalSupply;
-
-    @SerializedName("exchangeRate")
-    private String exchangeRate;
-
-    @SerializedName("decimals")
-    private String decimals;
-
-    @SerializedName("maxMeltFee")
-    private String maxMeltFee;
-
-    @SerializedName("meltFee")
-    private String meltFee;
-
-    @SerializedName("transferable")
-    private String transferable;
-
-
-    @SerializedName("recipient")
-    private Map<String, Object> recipientMap;
-
-
-    @SerializedName("balances")
-    private GetEventDataBalancesVO[] getEventDataBalancesVOArray;
-
+    @Nullable
     @SerializedName("identity")
-    private Map<String, Object> identityMap;
+    public abstract Map<String, Object> getIdentityMap();
 
-    public Map<String, Object> getIdentityMap() {
-        return identityMap;
-    }
+    @Nullable
+    @SerializedName("token_id")
+    public abstract String getTokenId();
 
-    public String getTokenId() {
-        return tokenId;
-    }
+    @Nullable
+    @SerializedName("creator")
+    public abstract String getCreator();
 
-    public String getCreator() {
-        return creator;
-    }
+    @Nullable
+    @SerializedName("adapter")
+    public abstract String getAdapter();
 
-    public String getAdapter() {
-        return adapter;
-    }
+    @Nullable
+    @SerializedName("name")
+    public abstract String getName();
 
-    public String getName() {
-        return name;
-    }
+    @Nullable
+    @SerializedName("icon")
+    public abstract String getIcon();
 
-    public String getIcon() {
-        return icon;
-    }
+    @Nullable
+    @SerializedName("totalSupply")
+    public abstract String getTotalSupply();
 
-    public String getTotalSupply() {
-        return totalSupply;
-    }
+    @Nullable
+    @SerializedName("exchangeRate")
+    public abstract String getExchangeRate();
 
-    public String getExchangeRate() {
-        return exchangeRate;
-    }
+    @Nullable
+    @SerializedName("decimals")
+    public abstract String getDecimals();
 
-    public String getDecimals() {
-        return decimals;
-    }
+    @Nullable
+    @SerializedName("maxMeltFee")
+    public abstract String getMaxMeltFee();
 
-    public String getMaxMeltFee() {
-        return maxMeltFee;
-    }
+    @Nullable
+    @SerializedName("meltFee")
+    public abstract String getMeltFee();
 
-    public String getMeltFee() {
-        return meltFee;
-    }
+    @Nullable
+    @SerializedName("transferable")
+    public abstract String getTransferable();
 
-    public String getTransferable() {
-        return transferable;
-    }
+    @Nullable
+    @SerializedName("recipient")
+    public abstract Map<String, Object> getRecipientMap();
 
-    public Map<String, Object> getRecipientMap() {
-        return recipientMap;
-    }
-
-    public GetEventDataBalancesVO[] getGetEventDataBalancesVO() {
-        return getEventDataBalancesVOArray;
-    }
+    @Nullable
+    @SerializedName("balances")
+    public abstract GetEventDataBalancesVO[] getGetEventDataBalancesVO();
 
 }

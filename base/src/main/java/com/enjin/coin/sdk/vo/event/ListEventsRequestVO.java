@@ -1,58 +1,34 @@
 package com.enjin.coin.sdk.vo.event;
 
+import com.enjin.coin.sdk.annotations.immutables.Nullable;
 import com.google.gson.annotations.SerializedName;
+import org.immutables.gson.Gson;
+import org.immutables.value.Value;
 
-public class ListEventsRequestVO {
+@Value.Immutable
+@Gson.TypeAdapters
+public abstract class ListEventsRequestVO {
 
+    @Nullable
     @SerializedName("auth")
-    private String auth;
+    public abstract String getAuth();
 
+    @Nullable
     @SerializedName("app_id")
-    private String appId;
+    public abstract String getAppId();
 
+    @Nullable
     @SerializedName("after_event_id")
-    private String afterEventId;
+    public abstract String getAfterEventId();
 
+    @Nullable
     @SerializedName("limit")
-    private String limit;
-
-    public String getAuth() {
-        return auth;
-    }
-
-    public void setAuth(String auth) {
-        this.auth = auth;
-    }
-
-    public String getAppId() {
-        return appId;
-    }
-
-    public void setAppId(String appId) {
-        this.appId = appId;
-    }
-
-    public String getAfterEventId() {
-        return afterEventId;
-    }
-
-    public void setAfterEventId(String afterEventId) {
-        this.afterEventId = afterEventId;
-    }
-
-    public String getLimit() {
-        return limit;
-    }
-
-    public void setLimit(String limit) {
-        this.limit = limit;
-    }
+    public abstract String getLimit();
 
     @Override
     public String toString() {
-        return "ListEventsRequestVO [auth=" + auth + ", appId=" + appId + ", afterEventId=" + afterEventId + ", limit="
-                + limit + "]";
+        return "ListEventsRequestVO [auth=" + getAuth() + ", appId=" + getAppId() + ", afterEventId=" + getAfterEventId() + ", limit="
+                + getLimit() + "]";
     }
-
 
 }

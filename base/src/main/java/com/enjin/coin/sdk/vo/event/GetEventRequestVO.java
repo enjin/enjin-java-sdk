@@ -1,36 +1,25 @@
 package com.enjin.coin.sdk.vo.event;
 
+import com.enjin.coin.sdk.annotations.immutables.Nullable;
 import com.google.gson.annotations.SerializedName;
+import org.immutables.gson.Gson;
+import org.immutables.value.Value;
 
-public class GetEventRequestVO {
+@Value.Immutable
+@Gson.TypeAdapters(emptyAsNulls = true)
+public abstract class GetEventRequestVO {
 
+    @Nullable
     @SerializedName("auth")
-    private String auth;
+    public abstract String getAuth();
 
+    @Nullable
     @SerializedName("event_id")
-    private String eventId;
-
-
-    public String getAuth() {
-        return auth;
-    }
-
-    public void setAuth(String auth) {
-        this.auth = auth;
-    }
-
-    public String getEventId() {
-        return eventId;
-    }
-
-    public void setEventId(String eventId) {
-        this.eventId = eventId;
-    }
+    public abstract String getEventId();
 
     @Override
     public String toString() {
-        return "GetEventRequestVO [auth=" + auth + ", eventId=" + eventId + "]";
+        return "GetEventRequestVO [auth=" + getAuth() + ", eventId=" + getEventId() + "]";
     }
-
 
 }

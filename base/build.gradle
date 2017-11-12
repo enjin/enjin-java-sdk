@@ -5,6 +5,16 @@ For example, projects that build with Java 7 should have environment variable JA
 apply from: scriptFile('env.gradle')
 configureJavaCompilers(8)
 
+apply plugin: 'net.ltgt.apt'
+
+sourceSets {
+    main {
+        java {
+            srcDir "${buildDir.absolutePath}/generated/source/apt/main"
+        }
+    }
+}
+
 ext {
     jsonrpc2client = '1.16.4'
     wiremock = '2.10.1'
@@ -14,8 +24,11 @@ ext {
 }
 
 dependencies {
+    // apt dependencies
+    apt group: 'org.immutables', name: 'value', version: immutables
+
     // compileOnly dependencies
-    compileOnly group: 'org.immutables', name: 'value', version: immutables
+    compileOnly group: 'org.immutables', name: 'value', version: immutables, classifier: 'annotations'
 
     // compile dependencies
     compile group: 'com.thetransactioncompany', name: 'jsonrpc2-client', version: jsonrpc2client
