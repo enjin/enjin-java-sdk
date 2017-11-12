@@ -13,13 +13,12 @@ public final class GsonUtils {
     public static final Gson GSON;
 
     static {
-        GsonBuilder builder = new GsonBuilder()
-                .serializeNulls();
+        GsonBuilder builder = new GsonBuilder().serializeNulls();
         GsonUtils.registerAllTypeAdapterFactories(builder);
         GSON = builder.create();
     }
 
-    private GsonUtils() {
+    protected GsonUtils() {
     }
 
     public static void registerAllTypeAdapterFactories(GsonBuilder builder) {

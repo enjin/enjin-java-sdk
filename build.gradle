@@ -75,6 +75,10 @@ subprojects {
 
     //Documentation https://github.com/bmuschko/gradle-clover-plugin
     clover {
+    
+    	excludes = ['**/GsonAdapters*.java', '**/Immutable*.java']
+    	//excludes = ['build/generated/source/apt/main/*']
+    
         report {
             html = true
             pdf = true
