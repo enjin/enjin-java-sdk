@@ -1,70 +1,56 @@
 package com.enjin.coin.sdk.vo.event;
 
-import com.enjin.coin.sdk.annotations.immutables.Nullable;
 import com.google.gson.annotations.SerializedName;
 import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 
 import java.util.Map;
+import java.util.Optional;
 
 @Value.Immutable
 @Gson.TypeAdapters
 public abstract class GetEventDataVO {
 
-    @Nullable
     @SerializedName("identity")
-    public abstract Map<String, Object> getIdentityMap();
+    public abstract Optional<Map<String, Object>> getIdentityMap();
 
-    @Nullable
     @SerializedName("token_id")
-    public abstract String getTokenId();
+    public abstract Optional<String> getTokenId();
 
-    @Nullable
     @SerializedName("creator")
-    public abstract String getCreator();
+    public abstract Optional<String> getCreator();
 
-    @Nullable
     @SerializedName("adapter")
-    public abstract String getAdapter();
+    public abstract Optional<String> getAdapter();
 
-    @Nullable
     @SerializedName("name")
-    public abstract String getName();
+    public abstract Optional<String> getName();
 
-    @Nullable
     @SerializedName("icon")
-    public abstract String getIcon();
+    public abstract Optional<String> getIcon();
 
-    @Nullable
     @SerializedName("totalSupply")
-    public abstract String getTotalSupply();
+    public abstract Optional<String> getTotalSupply();
 
-    @Nullable
     @SerializedName("exchangeRate")
-    public abstract String getExchangeRate();
+    public abstract Optional<String> getExchangeRate();
 
-    @Nullable
     @SerializedName("decimals")
-    public abstract String getDecimals();
+    public abstract Optional<String> getDecimals();
 
-    @Nullable
     @SerializedName("maxMeltFee")
-    public abstract String getMaxMeltFee();
+    public abstract Optional<String> getMaxMeltFee();
 
-    @Nullable
     @SerializedName("meltFee")
-    public abstract String getMeltFee();
+    public abstract Optional<String> getMeltFee();
 
-    @Nullable
     @SerializedName("transferable")
-    public abstract String getTransferable();
+    public abstract Optional<String> getTransferable();
 
-    @Nullable
     @SerializedName("recipient")
-    public abstract Map<String, Object> getRecipientMap();
+    public abstract Optional<Map<String, Object>> getRecipientMap();
 
-    @Nullable
     @SerializedName("balances")
-    public abstract GetEventDataBalancesVO[] getGetEventDataBalancesVO();
+    public abstract Optional<GetEventDataBalancesVO[]> getGetEventDataBalancesVO();
 
 }

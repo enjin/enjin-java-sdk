@@ -43,6 +43,7 @@ subprojects {
         junit = '4.12'
         powermock = '1.7.3'
         clover = '4.2.0'
+        assertj = '3.8.0'
     }
 
     repositories {
@@ -56,6 +57,9 @@ subprojects {
         testCompile group: 'junit', name: 'junit', version: junit
         testCompile group: 'org.powermock', name: 'powermock-api-mockito2', version: powermock
         testCompile group: 'org.powermock', name: 'powermock-module-junit4', version: powermock
+        testCompile group: 'org.assertj', name: 'assertj-core', version: assertj
+
+        // clover dependencies
         clover group: 'org.openclover', name: 'clover', version: clover
     }
 

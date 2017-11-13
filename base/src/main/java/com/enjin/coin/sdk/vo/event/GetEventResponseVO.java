@@ -1,38 +1,34 @@
 package com.enjin.coin.sdk.vo.event;
 
-import com.enjin.coin.sdk.annotations.immutables.Nullable;
 import com.google.gson.annotations.SerializedName;
 import org.immutables.gson.Gson;
 import org.immutables.value.Value;
+
+import java.util.Optional;
 
 @Value.Immutable
 @Gson.TypeAdapters(emptyAsNulls = true)
 public abstract class GetEventResponseVO {
 
-    @Nullable
     @SerializedName("data")
-    public abstract GetEventDataVO getData();
+    public abstract Optional<GetEventDataVO> getData();
 
-    @Nullable
     @SerializedName("event_id")
-    public abstract String getEventId();
+    public abstract Optional<String> getEventId();
 
-    @Nullable
     @SerializedName("event_type")
-    public abstract String getEventType();
+    public abstract Optional<String> getEventType();
 
-    @Nullable
     @SerializedName("timestamp")
-    public abstract String getTimestamp();
+    public abstract Optional<String> getTimestamp();
 
-    @Nullable
     @SerializedName("app_id")
-    public abstract String getAppId();
+    public abstract Optional<String> getAppId();
 
     @Override
     public String toString() {
-        return "GetEventResponseVO [eventId=" + getEventId() + ", eventType=" + getEventType() + ", timestamp=" + getTimestamp()
-                + ", appId=" + getAppId() + "]";
+        return "GetEventResponseVO [eventId=" + getEventId().orElse(null) + ", eventType=" + getEventType().orElse(null)
+                + ", timestamp=" + getTimestamp().orElse(null) + ", appId=" + getAppId().orElse(null) + "]";
     }
 
 }

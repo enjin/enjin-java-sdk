@@ -7,11 +7,19 @@ import com.enjin.coin.sdk.vo.event.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.assertNotNull;
+import static org.assertj.core.api.Assertions.*;
 
 public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
+
+    private static final String IDENTITY_ID_KEY = "identity_id";
+    private static final String ETHEREUM_ADDRESS_KEY = "ethereum_address";
+    private static final String UUID_KEY = "uuid";
+    private static final String PLAYER_NAME_KEY = "player_name";
+
+    private static final String[] KEYS_ARRAY = {IDENTITY_ID_KEY, ETHEREUM_ADDRESS_KEY, UUID_KEY, PLAYER_NAME_KEY};
 
     private EventsService events;
 
@@ -30,23 +38,20 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
                 .setEventId("12345")
                 .setAuth("auth")
                 .build();
-
-        assertNotNull(getEventRequestVO.toString());
+        assertThat(getEventRequestVO).isNotNull()
+                .satisfies(o -> assertThat(o.toString()).isNotEmpty());
 
         GetEventResponseVO getEventResponseVO = events.getEvent(getEventRequestVO);
-        assertNotNull(getEventResponseVO);
-        assertNotNull(getEventResponseVO.toString());
-        assertNotNull(getEventResponseVO.getAppId());
-        assertNotNull(getEventResponseVO.getEventId());
-        assertNotNull(getEventResponseVO.getEventType());
-        assertNotNull(getEventResponseVO.getTimestamp());
-        assertNotNull(getEventResponseVO.getData());
-        assertNotNull(getEventResponseVO.getData().getIdentityMap());
-        Map<String, Object> identityMap = getEventResponseVO.getData().getIdentityMap();
-        assertNotNull(identityMap.get("identity_id"));
-        assertNotNull(identityMap.get("ethereum_address"));
-        assertNotNull(identityMap.get("uuid"));
-        assertNotNull(identityMap.get("player_name"));
+        assertThat(getEventResponseVO).isNotNull()
+                .satisfies(o -> assertThat(o.toString()).isNotEmpty())
+                .satisfies(o -> assertThat(o.getAppId()).isNotEmpty())
+                .satisfies(o -> assertThat(o.getEventId()).isNotEmpty())
+                .satisfies(o -> assertThat(o.getEventType()).isNotEmpty())
+                .satisfies(o -> assertThat(o.getTimestamp()).isNotEmpty())
+                .satisfies(o -> assertThat(o.getData()).isNotEmpty()
+                        .hasValueSatisfying(v -> assertThat(v.getIdentityMap()).isNotEmpty()
+                                .hasValueSatisfying(v2 -> assertThat(v2).extracting(KEYS_ARRAY)
+                                        .doesNotContainNull())));
     }
 
     @Test
@@ -57,100 +62,88 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
                 .setLimit("limit1")
                 .setAuth("auth")
                 .build();
-        assertNotNull(listEventsRequestVO.toString());
+        assertThat(listEventsRequestVO).isNotNull()
+                .satisfies(o -> assertThat(o.toString()).isNotEmpty());
 
         ListEventsResponseVO listEventsResponseVOArray = events.listEvents(listEventsRequestVO);
-        assertNotNull(listEventsResponseVOArray.toString());
+        assertThat(listEventsResponseVOArray).isNotNull()
+                .satisfies(o -> assertThat(o.toString()).isNotEmpty())
+                .satisfies(o -> assertThat(o.getGetEventsResponseVOArray()).isPresent()
+                        .hasValueSatisfying(v -> assertThat(v).doesNotContainNull()));
 
-        for (GetEventResponseVO getEventResponseVO : listEventsResponseVOArray.getGetEventsResponseVOArray()) {
-            assertNotNull(getEventResponseVO);
-            assertNotNull(getEventResponseVO.toString());
-            assertNotNull(getEventResponseVO.getAppId());
-            assertNotNull(getEventResponseVO.getEventId());
-            assertNotNull(getEventResponseVO.getEventType());
-            assertNotNull(getEventResponseVO.getTimestamp());
-            assertNotNull(getEventResponseVO.getData());
-            Map<String, Object> identityMap = (Map<String, Object>) getEventResponseVO.getData().getIdentityMap();
+        for (GetEventResponseVO getEventResponseVO : listEventsResponseVOArray.getGetEventsResponseVOArray().orElse(new GetEventResponseVO[]{})) {
+            assertThat(getEventResponseVO).isNotNull()
+                    .satisfies(o -> assertThat(o.toString()).isNotEmpty())
+                    .satisfies(o -> assertThat(o.getAppId()).isNotEmpty())
+                    .satisfies(o -> assertThat(o.getEventId()).isNotEmpty())
+                    .satisfies(o -> assertThat(o.getEventType()).isNotEmpty())
+                    .satisfies(o -> assertThat(o.getTimestamp()).isNotEmpty())
+                    .satisfies(o -> assertThat(o.getData()).isNotEmpty());
 
-            switch (getEventResponseVO.getEventType()) {
+            final String eventType = getEventResponseVO.getEventType().get();
+            final GetEventDataVO data = getEventResponseVO.getData().get();
+            final Map<String, Object> identityMap = data.getIdentityMap().orElse(new HashMap<>());
+
+            switch (eventType) {
                 case "identity_created":
-                    assertNotNull(identityMap.get("identity_id"));
-                    assertNotNull(identityMap.get("uuid"));
-                    assertNotNull(identityMap.get("player_name"));
-                    break;
-                case "identity_linked":
-                    assertNotNull(identityMap.get("identity_id"));
-                    assertNotNull(identityMap.get("ethereum_address"));
-                    assertNotNull(identityMap.get("uuid"));
-                    assertNotNull(identityMap.get("player_name"));
-                    break;
-                case "identity_updated":
-                    assertNotNull(identityMap.get("identity_id"));
-                    assertNotNull(identityMap.get("ethereum_address"));
-                    assertNotNull(identityMap.get("uuid"));
-                    assertNotNull(identityMap.get("player_name"));
+                    String[] ic_map_keys = {IDENTITY_ID_KEY, UUID_KEY, PLAYER_NAME_KEY};
+                    assertThat(identityMap).containsKeys(ic_map_keys)
+                            .extracting(ic_map_keys).doesNotContainNull();
                     break;
                 case "transaction_request":
-                    assertNotNull(identityMap.get("identity_id"));
-                    assertNotNull(identityMap.get("ethereum_address"));
-                    assertNotNull(identityMap.get("player_name"));
-                    Map<String, Object> recipientMap = (Map<String, Object>) getEventResponseVO.getData().getRecipientMap();
-                    assertNotNull(recipientMap.get("identity_id"));
-                    assertNotNull(recipientMap.get("ethereum_address"));
-                    assertNotNull(recipientMap.get("player_name"));
+                    String[] tr_map_keys = {IDENTITY_ID_KEY, ETHEREUM_ADDRESS_KEY, PLAYER_NAME_KEY};
+                    assertThat(identityMap).containsKeys(tr_map_keys).extracting(tr_map_keys)
+                            .doesNotContainNull();
+                    assertThat(data.getRecipientMap()).isNotEmpty()
+                            .hasValueSatisfying(v -> assertThat(v).containsKeys(tr_map_keys)
+                                    .extracting(tr_map_keys).doesNotContainNull());
                     break;
                 case "balance_updated":
-                    GetEventDataBalancesVO getEventDataBalancesVO = getEventResponseVO.getData().getGetEventDataBalancesVO()[0];
-                    assertNotNull(getEventDataBalancesVO);
-                    assertNotNull(getEventDataBalancesVO.getIdentityMap());
-                    assertNotNull(getEventDataBalancesVO.getIdentityMap().get("identity_id"));
-                    assertNotNull(getEventDataBalancesVO.getIdentityMap().get("ethereum_address"));
-                    assertNotNull(getEventDataBalancesVO.getIdentityMap().get("player_name"));
-                    assertNotNull(getEventDataBalancesVO.getFromMap());
-                    assertNotNull(getEventDataBalancesVO.getFromMap().get("ethereum_address"));
-                    assertNotNull(getEventDataBalancesVO.getPendingMap());
-                    assertNotNull(getEventDataBalancesVO.getPendingMap().get("ENJ"));
-                    assertNotNull(getEventDataBalancesVO.getPendingMap().get("123456"));
-                    assertNotNull(getEventDataBalancesVO.getConfirmedMap());
-                    assertNotNull(getEventDataBalancesVO.getConfirmedMap().get("234567"));
-                    assertNotNull(getEventDataBalancesVO.getConfirmedMap().get("345678"));
+                    String[] bu_identity_map_keys = {IDENTITY_ID_KEY, ETHEREUM_ADDRESS_KEY, PLAYER_NAME_KEY};
+                    String[] bu_from_map_keys = {ETHEREUM_ADDRESS_KEY};
+                    String[] bu_pending_map_keys = {"ENJ", "123456"};
+                    String[] bu_confirmed_map_keys = {"234567", "345678"};
+                    assertThat(data.getGetEventDataBalancesVO()).isNotEmpty()
+                            .hasValueSatisfying(v -> {
+                                assertThat(v).isNotEmpty().doesNotContainNull();
+                                assertThat(v[0]).satisfies(i -> assertThat(i.getIdentityMap()).isNotEmpty()
+                                        .hasValueSatisfying(v2 -> assertThat(v2).containsKeys(bu_identity_map_keys)
+                                                .extracting(bu_identity_map_keys).doesNotContainNull()))
+                                        .satisfies(i -> assertThat(i.getFromMap()).isNotEmpty()
+                                                .hasValueSatisfying(v2 -> assertThat(v2).containsKeys(bu_from_map_keys)
+                                                        .extracting(bu_from_map_keys).doesNotContainNull()))
+                                        .satisfies(i -> assertThat(i.getPendingMap()).isNotEmpty()
+                                                .hasValueSatisfying(v2 -> assertThat(v2).containsKeys(bu_pending_map_keys)
+                                                        .extracting(bu_pending_map_keys).doesNotContainNull()))
+                                        .satisfies(i -> assertThat(i.getConfirmedMap()).isNotEmpty()
+                                                .hasValueSatisfying(v2 -> assertThat(v2).containsKeys(bu_confirmed_map_keys)
+                                                        .extracting(bu_confirmed_map_keys).doesNotContainNull()));
+                            });
                     break;
                 case "balance_melted":
-                    assertNotNull(identityMap.get("identity_id"));
-                    assertNotNull(identityMap.get("ethereum_address"));
-                    assertNotNull(identityMap.get("player_name"));
+                    String[] bm_identity_map_keys = {IDENTITY_ID_KEY, ETHEREUM_ADDRESS_KEY, PLAYER_NAME_KEY};
+                    assertThat(identityMap).containsKeys(bm_identity_map_keys)
+                            .extracting(bm_identity_map_keys).doesNotContainNull();
                     break;
                 case "token_updated":
-                    assertNotNull(getEventResponseVO.getData().getTokenId());
-                    assertNotNull(getEventResponseVO.getData().getCreator());
-                    assertNotNull(getEventResponseVO.getData().getAdapter());
-                    assertNotNull(getEventResponseVO.getData().getName());
-                    assertNotNull(getEventResponseVO.getData().getIcon());
-                    assertNotNull(getEventResponseVO.getData().getTotalSupply());
-                    assertNotNull(getEventResponseVO.getData().getExchangeRate());
-                    assertNotNull(getEventResponseVO.getData().getDecimals());
-                    assertNotNull(getEventResponseVO.getData().getMaxMeltFee());
-                    assertNotNull(getEventResponseVO.getData().getMeltFee());
-                    assertNotNull(getEventResponseVO.getData().getTransferable());
-                    break;
                 case "token_created":
-                    assertNotNull(getEventResponseVO.getData().getTokenId());
-                    assertNotNull(getEventResponseVO.getData().getCreator());
-                    assertNotNull(getEventResponseVO.getData().getAdapter());
-                    assertNotNull(getEventResponseVO.getData().getName());
-                    assertNotNull(getEventResponseVO.getData().getIcon());
-                    assertNotNull(getEventResponseVO.getData().getTotalSupply());
-                    assertNotNull(getEventResponseVO.getData().getExchangeRate());
-                    assertNotNull(getEventResponseVO.getData().getDecimals());
-                    assertNotNull(getEventResponseVO.getData().getMaxMeltFee());
-                    assertNotNull(getEventResponseVO.getData().getMeltFee());
-                    assertNotNull(getEventResponseVO.getData().getTransferable());
+                    assertThat(data).satisfies(o -> assertThat(o.getTokenId()).isNotEmpty())
+                            .satisfies(o -> assertThat(o.getCreator()).isNotEmpty())
+                            .satisfies(o -> assertThat(o.getAdapter()).isNotEmpty())
+                            .satisfies(o -> assertThat(o.getName()).isNotEmpty())
+                            .satisfies(o -> assertThat(o.getIcon()).isNotEmpty())
+                            .satisfies(o -> assertThat(o.getTotalSupply()).isNotEmpty())
+                            .satisfies(o -> assertThat(o.getExchangeRate()).isNotEmpty())
+                            .satisfies(o -> assertThat(o.getDecimals()).isNotEmpty())
+                            .satisfies(o -> assertThat(o.getMaxMeltFee()).isNotEmpty())
+                            .satisfies(o -> assertThat(o.getMeltFee()).isNotEmpty())
+                            .satisfies(o -> assertThat(o.getTransferable()).isNotEmpty());
                     break;
+                case "identity_linked":
+                case "identity_updated":
                 default:
-                    assertNotNull(identityMap.get("identity_id"));
-                    assertNotNull(identityMap.get("ethereum_address"));
-                    assertNotNull(identityMap.get("uuid"));
-                    assertNotNull(identityMap.get("player_name"));
+                    assertThat(identityMap).containsKeys(KEYS_ARRAY)
+                            .extracting(KEYS_ARRAY).doesNotContainNull();
                     break;
             }
 

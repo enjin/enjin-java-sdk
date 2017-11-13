@@ -1,6 +1,7 @@
 package com.enjin.coin.sdk.util;
 
 import java.util.Map;
+import java.util.Optional;
 
 public class ValidationUtils {
 
@@ -32,6 +33,26 @@ public class ValidationUtils {
         }
 
         return isNotEmpty;
+    }
+
+    /**
+     * Method to check if an optional string is empty.
+     *
+     * @param optional
+     * @return
+     */
+    public static boolean isEmpty(Optional<String> optional) {
+        return isNotPresent(optional) || isEmpty(optional.get());
+    }
+
+    /**
+     * Method to check if an optional string is not empty.
+     *
+     * @param optional
+     * @return
+     */
+    public static boolean isNotEmpty(Optional<String> optional) {
+        return isPresent(optional) && isNotEmpty(optional.get());
     }
 
     /**
@@ -95,4 +116,25 @@ public class ValidationUtils {
 
         return isNotEmpty;
     }
+
+    /**
+     * Method to check if an optional's value is present.
+     *
+     * @param optional
+     * @return
+     */
+    public static boolean isPresent(Optional<?> optional) {
+        return optional != null && optional.isPresent();
+    }
+
+    /**
+     * Method to check if an optional's value is absent.
+     *
+     * @param optional
+     * @return
+     */
+    public static boolean isNotPresent(Optional<?> optional) {
+        return !isPresent(optional);
+    }
+
 }
