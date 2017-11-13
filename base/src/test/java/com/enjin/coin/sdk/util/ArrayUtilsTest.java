@@ -53,4 +53,22 @@ public class ArrayUtilsTest {
         assertThat(ArrayUtils.isNotEmpty(arr)).isTrue();
     }
 
+    @Test
+    public void testGetLength_Array_NullEqualsZero() {
+        Object[] arr = null;
+        assertThat(ArrayUtils.getLength(arr)).isEqualTo(0);
+    }
+
+    @Test
+    public void testGetLength_Array_EmptyEqualsZero() {
+        Object[] arr = new Object[]{};
+        assertThat(ArrayUtils.getLength(arr)).isEqualTo(0);
+    }
+
+    @Test
+    public void testGetLength_Array_GreaterThanZero() {
+        Object[] arr = new Object[]{new Object()};
+        assertThat(ArrayUtils.getLength(arr)).isGreaterThan(0);
+    }
+
 }

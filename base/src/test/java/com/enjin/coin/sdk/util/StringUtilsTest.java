@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -96,6 +97,54 @@ public class StringUtilsTest {
     public void testIsNotEmpty_String_True() {
         String str = "str";
         assertThat(StringUtils.isNotEmpty(str)).isTrue();
+    }
+
+    @Test
+    public void testIsEmpty_OptionalString_False() {
+        Optional<String> str = Optional.of("str");
+        assertThat(StringUtils.isEmpty(str)).isFalse();
+    }
+
+    @Test
+    public void testIsEmpty_OptionalString_TrueNull() {
+        Optional<String> str = null;
+        assertThat(StringUtils.isEmpty(str)).isTrue();
+    }
+
+    @Test
+    public void testIsEmpty_OptionalString_TrueEmpty() {
+        Optional<String> str = Optional.ofNullable(null);
+        assertThat(StringUtils.isEmpty(str)).isTrue();
+    }
+
+    @Test
+    public void testIsEmpty_OptionalString_TrueEmptyEmpty() {
+        Optional<String> str = Optional.of("");
+        assertThat(StringUtils.isEmpty(str)).isTrue();
+    }
+
+    @Test
+    public void testIsNotEmpty_OptionalString_True() {
+        Optional<String> str = Optional.of("str");
+        assertThat(StringUtils.isNotEmpty(str)).isTrue();
+    }
+
+    @Test
+    public void testIsNotEmpty_OptionalString_FalseNull() {
+        Optional<String> str = null;
+        assertThat(StringUtils.isNotEmpty(str)).isFalse();
+    }
+
+    @Test
+    public void testIsNotEmpty_OptionalString_FalseEmpty() {
+        Optional<String> str = Optional.ofNullable(null);
+        assertThat(StringUtils.isNotEmpty(str)).isFalse();
+    }
+
+    @Test
+    public void testIsNotEmpty_OptionalString_FalseEmptyEmpty() {
+        Optional<String> str = Optional.of("");
+        assertThat(StringUtils.isNotEmpty(str)).isFalse();
     }
 
 }
