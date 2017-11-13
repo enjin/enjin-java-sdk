@@ -1,5 +1,6 @@
 package com.enjin.coin.sdk.util;
 
+import com.enjin.coin.sdk.util.http.ContentType;
 import com.thetransactioncompany.jsonrpc2.JSONRPC2Request;
 import com.thetransactioncompany.jsonrpc2.JSONRPC2Response;
 import com.thetransactioncompany.jsonrpc2.client.JSONRPC2Session;
@@ -53,7 +54,7 @@ public class JsonRpcUtils {
     public Object sendJsonRpcRequest(String url, Class<?> responseClass, String method, Map<String, Object> params) {
         Object responseObject = null;
 
-        if (ValidationUtils.isEmpty(url) || responseClass == null || ValidationUtils.isEmpty(method)) {
+        if (StringUtils.isEmpty(url) || responseClass == null || StringUtils.isEmpty(method)) {
             LOGGER.warning("url or method passed in are null or empty or the responseClass is null");
             return responseObject;
         }
@@ -73,7 +74,7 @@ public class JsonRpcUtils {
             String requestId = Utils.generateRandomId(isInTestMode);
 
             JSONRPC2Request jsonRpcRequest;
-            if (ValidationUtils.isNotEmpty(params)) {
+            if (MapUtils.isNotEmpty(params)) {
                 jsonRpcRequest = new JSONRPC2Request(method, params, requestId);
             } else {
                 jsonRpcRequest = new JSONRPC2Request(method, requestId);

@@ -1,8 +1,10 @@
 package com.enjin.coin.sdk.service;
 
 import com.enjin.coin.sdk.config.EnjinConfig;
+import com.enjin.coin.sdk.util.ArrayUtils;
 import com.enjin.coin.sdk.util.Constants;
-import com.enjin.coin.sdk.util.ValidationUtils;
+import com.enjin.coin.sdk.util.ObjectUtils;
+import com.enjin.coin.sdk.util.StringUtils;
 import com.enjin.coin.sdk.vo.token.*;
 
 import java.util.HashMap;
@@ -31,7 +33,7 @@ public class TokensService extends BaseService {
     public GetTokenResponseVO getToken(GetTokenRequestVO getTokenRequestVO) {
         GetTokenResponseVO getTokenResponseVO = null;
 
-        if (getTokenRequestVO == null || ValidationUtils.isEmpty(getTokenRequestVO.getTokenId())) {
+        if (ObjectUtils.isNull(getTokenRequestVO) || StringUtils.isEmpty(getTokenRequestVO.getTokenId())) {
             LOGGER.warning("getTokenRequestVO is null or tokenId passed in are null or empty");
             return getTokenResponseVO;
         }
@@ -56,7 +58,9 @@ public class TokensService extends BaseService {
     public ListTokensResponseVO listTokens(ListTokensRequestVO listTokensRequestVO) {
         ListTokensResponseVO listTokensResponseVO = null;
 
-        if (listTokensRequestVO == null || ValidationUtils.isEmpty(listTokensRequestVO.getAppId()) || ValidationUtils.isEmpty(listTokensRequestVO.getAfterTokenId()) || ValidationUtils.isEmpty(listTokensRequestVO.getLimit())) {
+        if (ObjectUtils.isNull(listTokensRequestVO) || StringUtils.isEmpty(listTokensRequestVO.getAppId())
+                || StringUtils.isEmpty(listTokensRequestVO.getAfterTokenId())
+                || StringUtils.isEmpty(listTokensRequestVO.getLimit())) {
             LOGGER.warning("listTokensRequestVO is null, appId, afterTokenId or limit passed in are null or empty");
             return listTokensResponseVO;
         }
@@ -70,7 +74,7 @@ public class TokensService extends BaseService {
         String method = Constants.METHOD_TOKENS_LIST;
 
         GetTokenResponseVO[] getTokenResponseVOArray = (GetTokenResponseVO[]) jsonRpcUtils.sendJsonRpcRequest(getTokensUrl(), GetTokenResponseVO[].class, method, params);
-        if (ValidationUtils.isEmpty(getTokenResponseVOArray)) {
+        if (ArrayUtils.isEmpty(getTokenResponseVOArray)) {
             LOGGER.warning("No tokens returned");
             return listTokensResponseVO;
         }

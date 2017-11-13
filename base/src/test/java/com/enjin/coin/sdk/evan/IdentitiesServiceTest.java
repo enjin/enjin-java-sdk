@@ -1,8 +1,8 @@
 package com.enjin.coin.sdk.evan;
 
 
-import com.enjin.coin.sdk.util.ContentType;
-import com.enjin.coin.sdk.util.Header;
+import com.enjin.coin.sdk.util.http.ContentType;
+import com.enjin.coin.sdk.util.http.Header;
 import com.github.tomakehurst.wiremock.common.Json;
 import com.thetransactioncompany.jsonrpc2.JSONRPC2Request;
 import com.thetransactioncompany.jsonrpc2.JSONRPC2Response;

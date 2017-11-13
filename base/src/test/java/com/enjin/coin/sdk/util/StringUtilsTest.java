@@ -12,13 +12,13 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(StringUtils.class)
 public class StringUtilsTest {
-
 
     @Test
     public void testConstructor() {
@@ -64,5 +64,46 @@ public class StringUtilsTest {
         PowerMockito.verifyNew(PrintWriter.class, Mockito.times(1)).withArguments(Mockito.isA(StringWriter.class));
     }
 
+    @Test
+    public void testIsEmpty_String_False() {
+        String str = "str";
+        boolean isEmpty = StringUtils.isEmpty(str);
+        assertFalse(isEmpty);
+    }
+
+    @Test
+    public void testIsEmpty_String_TrueNull() {
+        String str = null;
+        boolean isEmpty = StringUtils.isEmpty(str);
+        assertTrue(isEmpty);
+    }
+
+    @Test
+    public void testIsEmpty_String_TrueEmpty() {
+        String str = "";
+        boolean isEmpty = StringUtils.isEmpty(str);
+        assertTrue(isEmpty);
+    }
+
+    @Test
+    public void testIsNotEmpty_String_FalseEmpty() {
+        String str = "";
+        boolean isEmpty = StringUtils.isNotEmpty(str);
+        assertFalse(isEmpty);
+    }
+
+    @Test
+    public void testIsNotEmpty_String_FalseNull() {
+        String str = null;
+        boolean isEmpty = StringUtils.isNotEmpty(str);
+        assertFalse(isEmpty);
+    }
+
+    @Test
+    public void testIsNotEmpty_String_True() {
+        String str = "str";
+        boolean isEmpty = StringUtils.isNotEmpty(str);
+        assertTrue(isEmpty);
+    }
 
 }

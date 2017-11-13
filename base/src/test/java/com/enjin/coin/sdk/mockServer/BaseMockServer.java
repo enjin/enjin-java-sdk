@@ -1,9 +1,9 @@
 package com.enjin.coin.sdk.mockServer;
 
 import com.enjin.coin.sdk.util.Constants;
-import com.enjin.coin.sdk.util.ContentType;
+import com.enjin.coin.sdk.util.http.ContentType;
 import com.enjin.coin.sdk.util.FileUtils;
-import com.enjin.coin.sdk.util.Header;
+import com.enjin.coin.sdk.util.http.Header;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;

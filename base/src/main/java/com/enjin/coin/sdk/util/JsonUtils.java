@@ -23,7 +23,7 @@ public final class JsonUtils {
     public static Object convertJsonToObject(Gson gson, String jsonString, Class<?> responseClass) {
         Object responseObject = null;
 
-        if (ValidationUtils.isEmpty(jsonString) || responseClass == null) {
+        if (StringUtils.isEmpty(jsonString) || ObjectUtils.isNull(responseClass)) {
             LOGGER.warning("jsonString passed in is null or empty or the responseClass is null");
             return responseObject;
         }
@@ -53,7 +53,7 @@ public final class JsonUtils {
     public static String convertObjectToJson(Gson gson, Object jsonObject) {
         String jsonString = null;
 
-        if (jsonObject == null) {
+        if (ObjectUtils.isNull(jsonObject)) {
             LOGGER.warning("jsonObject passed in is null");
             return jsonString;
         }

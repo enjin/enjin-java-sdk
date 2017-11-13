@@ -1,6 +1,6 @@
 package com.enjin.coin.sdk.evan;
 
-import com.enjin.coin.sdk.util.ContentType;
+import com.enjin.coin.sdk.util.http.ContentType;
 import com.thetransactioncompany.jsonrpc2.JSONRPC2Request;
 import com.thetransactioncompany.jsonrpc2.client.JSONRPC2Session;
 import com.thetransactioncompany.jsonrpc2.client.JSONRPC2SessionOptions;

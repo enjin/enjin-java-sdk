@@ -48,7 +48,7 @@ public class IdentitiesServiceTest {
     @Test
     public void testGetIdentity_AuthIsNull() {
         GetIdentityRequestVO getIdentityRequestVO = ImmutableGetIdentityRequestVO.builder()
-                .setAuth(null)
+                .setAuth((String) null)
                 .build();
 
         identitiesService = new IdentitiesService(enjinConfig);
@@ -71,7 +71,7 @@ public class IdentitiesServiceTest {
     public void testGetIdentity_IdentityMapIsNull() {
         GetIdentityRequestVO getIdentityRequestVO = ImmutableGetIdentityRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(null)
+                .setIdentity((Map) null)
                 .build();
 
         identitiesService = new IdentitiesService(enjinConfig);
@@ -151,7 +151,7 @@ public class IdentitiesServiceTest {
     @Test
     public void testListIdentities_AuthIsNull() {
         ListIdentitiesRequestVO listIdentitiesRequestVO = ImmutableListIdentitiesRequestVO.builder()
-                .setAuth(null)
+                .setAuth((String) null)
                 .build();
 
         identitiesService = new IdentitiesService(enjinConfig);
@@ -174,7 +174,7 @@ public class IdentitiesServiceTest {
     public void testListIdentities_IdentityMapIsNull() {
         ListIdentitiesRequestVO listIdentitiesRequestVO = ImmutableListIdentitiesRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(null)
+                .setIdentity((Map) null)
                 .build();
 
         identitiesService = new IdentitiesService(enjinConfig);
@@ -310,7 +310,7 @@ public class IdentitiesServiceTest {
     @Test
     public void testCreateIdentity_AuthIsNull() {
         CreateIdentityRequestVO createIdentityRequestVO = ImmutableCreateIdentityRequestVO.builder()
-                .setAuth(null)
+                .setAuth((String) null)
                 .build();
 
         identitiesService = new IdentitiesService(enjinConfig);
@@ -333,7 +333,7 @@ public class IdentitiesServiceTest {
     public void testCreateIdentity_IdentityMapIsNull() {
         CreateIdentityRequestVO createIdentityRequestVO = ImmutableCreateIdentityRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(null)
+                .setIdentity((Map) null)
                 .build();
 
         identitiesService = new IdentitiesService(enjinConfig);
@@ -413,7 +413,7 @@ public class IdentitiesServiceTest {
     @Test
     public void testUpdateIdentity_AuthIsNull() {
         UpdateIdentityRequestVO updateIdentityRequestVO = ImmutableUpdateIdentityRequestVO.builder()
-                .setAuth(null)
+                .setAuth((String) null)
                 .build();
 
         identitiesService = new IdentitiesService(enjinConfig);
@@ -436,7 +436,7 @@ public class IdentitiesServiceTest {
     public void testUpdateIdentity_IdentityMapIsNull() {
         UpdateIdentityRequestVO updateIdentityRequestVO = ImmutableUpdateIdentityRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(null)
+                .setIdentity((Map) null)
                 .build();
 
         identitiesService = new IdentitiesService(enjinConfig);
@@ -551,7 +551,7 @@ public class IdentitiesServiceTest {
     @Test
     public void testDeleteIdentity_AuthIsNull() {
         DeleteIdentityRequestVO deleteIdentityRequestVO = ImmutableDeleteIdentityRequestVO.builder()
-                .setAuth(null)
+                .setAuth((String) null)
                 .build();
 
         identitiesService = new IdentitiesService(enjinConfig);
@@ -574,7 +574,7 @@ public class IdentitiesServiceTest {
     public void testDeleteIdentity_IdentityMapIsNull() {
         DeleteIdentityRequestVO deleteIdentityRequestVO = ImmutableDeleteIdentityRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(null)
+                .setIdentity((Map) null)
                 .build();
 
         identitiesService = new IdentitiesService(enjinConfig);

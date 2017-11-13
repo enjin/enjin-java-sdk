@@ -3,7 +3,8 @@ package com.enjin.coin.sdk.service;
 import com.enjin.coin.sdk.config.EnjinConfig;
 import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.JsonRpcUtils;
-import com.enjin.coin.sdk.util.ValidationUtils;
+import com.enjin.coin.sdk.util.ObjectUtils;
+import com.enjin.coin.sdk.util.StringUtils;
 
 import java.util.logging.Logger;
 
@@ -73,7 +74,7 @@ public abstract class BaseService {
      */
     private String getJsonRpcURL(String endpoint) {
         String baseURL = Constants.TRUSTED_PLATFORM_BASE_URL;
-        if (ValidationUtils.isNotEmpty(trustedPlatformUrl)) {
+        if (StringUtils.isNotEmpty(trustedPlatformUrl)) {
             baseURL = trustedPlatformUrl;
         }
 

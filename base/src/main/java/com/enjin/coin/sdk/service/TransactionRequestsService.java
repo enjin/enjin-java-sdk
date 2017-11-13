@@ -2,7 +2,9 @@ package com.enjin.coin.sdk.service;
 
 import com.enjin.coin.sdk.config.EnjinConfig;
 import com.enjin.coin.sdk.util.Constants;
-import com.enjin.coin.sdk.util.ValidationUtils;
+import com.enjin.coin.sdk.util.MapUtils;
+import com.enjin.coin.sdk.util.ObjectUtils;
+import com.enjin.coin.sdk.util.StringUtils;
 import com.enjin.coin.sdk.vo.transactionrequest.*;
 
 import java.util.HashMap;
@@ -31,7 +33,8 @@ public class TransactionRequestsService extends BaseService {
     public GetTransactionRequestResponseVO getTransactionRequest(GetTransactionRequestRequestVO getTransactionRequestRequestVO) {
         GetTransactionRequestResponseVO getTransactionRequestResponseVO = null;
 
-        if (getTransactionRequestRequestVO == null || ValidationUtils.isEmpty(getTransactionRequestRequestVO.getAuth()) || ValidationUtils.isEmpty(getTransactionRequestRequestVO.getTxrId())) {
+        if (ObjectUtils.isNull(getTransactionRequestRequestVO) || StringUtils.isEmpty(getTransactionRequestRequestVO.getAuth())
+                || StringUtils.isEmpty(getTransactionRequestRequestVO.getTxrId())) {
             LOGGER.warning("getTransactionRequestRequestVO is null, auth or identidyId passed in are null or empty");
             return getTransactionRequestResponseVO;
         }
@@ -57,15 +60,19 @@ public class TransactionRequestsService extends BaseService {
     public ListTransactionRequestsResponseVO[] listTransactionRequests(ListTransactionRequestsRequestVO listTransactionRequestsRequestVO) {
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVO = null;
 
-        if (listTransactionRequestsRequestVO == null || ValidationUtils.isEmpty(listTransactionRequestsRequestVO.getAuth()) || ValidationUtils.isEmpty(listTransactionRequestsRequestVO.getIdentityMap()) || ValidationUtils.isEmpty(listTransactionRequestsRequestVO.getAppId())) {
+        if (ObjectUtils.isNull(listTransactionRequestsRequestVO) || StringUtils.isEmpty(listTransactionRequestsRequestVO.getAuth())
+                || MapUtils.isEmpty(listTransactionRequestsRequestVO.getIdentityMap())
+                || StringUtils.isEmpty(listTransactionRequestsRequestVO.getAppId())) {
             LOGGER.warning("listTransactionRequestsRequestVO is null, auth, identityMap or appId passed in are null or empty");
             return listTransactionRequestsResponseVO;
         }
-        if (ValidationUtils.isEmpty(listTransactionRequestsRequestVO.getRecipientMap()) || ValidationUtils.isEmpty(listTransactionRequestsRequestVO.getType()) || ValidationUtils.isEmpty(listTransactionRequestsRequestVO.getAfterTxrId()) || ValidationUtils.isEmpty(listTransactionRequestsRequestVO.getLimit())) {
+        if (MapUtils.isEmpty(listTransactionRequestsRequestVO.getRecipientMap()) || StringUtils.isEmpty(listTransactionRequestsRequestVO.getType())
+                || StringUtils.isEmpty(listTransactionRequestsRequestVO.getAfterTxrId())
+                || StringUtils.isEmpty(listTransactionRequestsRequestVO.getLimit())) {
             LOGGER.warning("recipientMap, type, afterTxrId or limit passed in are null or empty");
             return listTransactionRequestsResponseVO;
         }
-        if (ValidationUtils.isEmpty(listTransactionRequestsRequestVO.getCurrency())) {
+        if (StringUtils.isEmpty(listTransactionRequestsRequestVO.getCurrency())) {
             LOGGER.warning("currency passed in are null or empty");
             return listTransactionRequestsResponseVO;
         }
@@ -96,11 +103,17 @@ public class TransactionRequestsService extends BaseService {
     public CreateTransactionRequestResponseVO createTransactionRequest(CreateTransactionRequestRequestVO createTransactionRequestRequestVO) {
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = null;
 
-        if (createTransactionRequestRequestVO == null || ValidationUtils.isEmpty(createTransactionRequestRequestVO.getAuth()) || ValidationUtils.isEmpty(createTransactionRequestRequestVO.getIdentityMap()) || ValidationUtils.isEmpty(createTransactionRequestRequestVO.getRecipientMap())) {
+        if (ObjectUtils.isNull(createTransactionRequestRequestVO) || StringUtils.isEmpty(createTransactionRequestRequestVO.getAuth())
+                || MapUtils.isEmpty(createTransactionRequestRequestVO.getIdentityMap())
+                || MapUtils.isEmpty(createTransactionRequestRequestVO.getRecipientMap())) {
             LOGGER.warning("createTransactionRequestRequestVO is null, auth, identityMap or recipientMap passed in are null or empty");
             return createTransactionRequestResponseVO;
         }
-        if (ValidationUtils.isEmpty(createTransactionRequestRequestVO.getType()) || ValidationUtils.isEmpty(createTransactionRequestRequestVO.getIcon()) || ValidationUtils.isEmpty(createTransactionRequestRequestVO.getTitle()) || ValidationUtils.isEmpty(createTransactionRequestRequestVO.getValueMap())) {
+
+        if (StringUtils.isEmpty(createTransactionRequestRequestVO.getType())
+                || StringUtils.isEmpty(createTransactionRequestRequestVO.getIcon())
+                || StringUtils.isEmpty(createTransactionRequestRequestVO.getTitle())
+                || MapUtils.isEmpty(createTransactionRequestRequestVO.getValueMap())) {
             LOGGER.warning("type, icon, title or valueMap passed in are null or empty");
             return createTransactionRequestResponseVO;
         }
@@ -131,7 +144,8 @@ public class TransactionRequestsService extends BaseService {
     public CancelTransactionRequestResponseVO cancelTransactionRequest(CancelTransactionRequestRequestVO cancelTransactionRequestRequestVO) {
         CancelTransactionRequestResponseVO cancelTransactionRequestResponseVO = null;
 
-        if (cancelTransactionRequestRequestVO == null || ValidationUtils.isEmpty(cancelTransactionRequestRequestVO.getAuth()) || ValidationUtils.isEmpty(cancelTransactionRequestRequestVO.getTxrId())) {
+        if (ObjectUtils.isNull(cancelTransactionRequestRequestVO) || StringUtils.isEmpty(cancelTransactionRequestRequestVO.getAuth())
+                || StringUtils.isEmpty(cancelTransactionRequestRequestVO.getTxrId())) {
             LOGGER.warning("cancelTransactionRequestRequestVO is null or auth, txrId passed in are null or empty");
             return cancelTransactionRequestResponseVO;
         }

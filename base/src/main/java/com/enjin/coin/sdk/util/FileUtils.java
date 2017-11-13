@@ -21,7 +21,7 @@ public final class FileUtils {
      */
     public static String getFileContents(String filePath) {
         String fileContents = null;
-        if (ValidationUtils.isEmpty(filePath)) {
+        if (StringUtils.isEmpty(filePath)) {
             LOGGER.warning("filePath passed in is null or empty");
             return fileContents;
         }
@@ -29,7 +29,7 @@ public final class FileUtils {
         try {
             Path path = Paths.get(filePath);
             byte[] fileBytes = Files.readAllBytes(path);
-            if (fileBytes == null || fileBytes.length == 0) {
+            if (ObjectUtils.isNull(fileBytes) || ArrayUtils.getLength(fileBytes) == 0) {
                 LOGGER.warning(String.format("No content returned for the file: %s", filePath));
                 return fileContents;
             }

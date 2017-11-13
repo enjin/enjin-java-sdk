@@ -2,7 +2,9 @@ package com.enjin.coin.sdk.service;
 
 import com.enjin.coin.sdk.config.EnjinConfig;
 import com.enjin.coin.sdk.util.Constants;
-import com.enjin.coin.sdk.util.ValidationUtils;
+import com.enjin.coin.sdk.util.MapUtils;
+import com.enjin.coin.sdk.util.ObjectUtils;
+import com.enjin.coin.sdk.util.StringUtils;
 import com.enjin.coin.sdk.vo.identity.*;
 
 import java.util.HashMap;
@@ -31,7 +33,8 @@ public class IdentitiesService extends BaseService {
     public GetIdentityResponseVO getIdentity(GetIdentityRequestVO getIdentityRequestVO) {
         GetIdentityResponseVO getIdentityResponseVO = null;
 
-        if (getIdentityRequestVO == null || ValidationUtils.isEmpty(getIdentityRequestVO.getAuth()) || ValidationUtils.isEmpty(getIdentityRequestVO.getIdentity())) {
+        if (getIdentityRequestVO == null || StringUtils.isEmpty(getIdentityRequestVO.getAuth())
+                || MapUtils.isEmpty(getIdentityRequestVO.getIdentity())) {
             LOGGER.warning("getIdentityRequestVO is null, auth or identidyId passed in are null or empty");
             return getIdentityResponseVO;
         }
@@ -57,7 +60,8 @@ public class IdentitiesService extends BaseService {
     public ListIdentitiesResponseVO[] listIdentities(ListIdentitiesRequestVO listIdentitiesRequestVO) {
         ListIdentitiesResponseVO[] listIdentitiesResponseVO = null;
 
-        if (listIdentitiesRequestVO == null || ValidationUtils.isEmpty(listIdentitiesRequestVO.getAuth()) || ValidationUtils.isEmpty(listIdentitiesRequestVO.getIdentity())) {
+        if (listIdentitiesRequestVO == null || StringUtils.isEmpty(listIdentitiesRequestVO.getAuth())
+                || MapUtils.isEmpty(listIdentitiesRequestVO.getIdentity())) {
             LOGGER.warning("listIdentitiesRequestVO is null, auth or identity passed in are null or empty");
             return listIdentitiesResponseVO;
         }
@@ -85,7 +89,8 @@ public class IdentitiesService extends BaseService {
     public CreateIdentityResponseVO createIdentity(CreateIdentityRequestVO createIdentityRequestVO) {
         CreateIdentityResponseVO createIdentityResponseVO = null;
 
-        if (createIdentityRequestVO == null || ValidationUtils.isEmpty(createIdentityRequestVO.getAuth()) || ValidationUtils.isEmpty(createIdentityRequestVO.getIdentity())) {
+        if (createIdentityRequestVO == null || StringUtils.isEmpty(createIdentityRequestVO.getAuth())
+                || MapUtils.isEmpty(createIdentityRequestVO.getIdentity())) {
             LOGGER.warning("createIdentityRequestVO is null, auth or identity passed in are null or empty");
             return createIdentityResponseVO;
         }
@@ -111,7 +116,9 @@ public class IdentitiesService extends BaseService {
     public UpdateIdentityResponseVO updateIdentity(UpdateIdentityRequestVO updateIdentityRequestVO) {
         UpdateIdentityResponseVO updateIdentityResponseVO = null;
 
-        if (updateIdentityRequestVO == null || ValidationUtils.isEmpty(updateIdentityRequestVO.getAuth()) || ValidationUtils.isEmpty(updateIdentityRequestVO.getIdentity()) || ValidationUtils.isEmpty(updateIdentityRequestVO.getUpdate())) {
+        if (updateIdentityRequestVO == null || StringUtils.isEmpty(updateIdentityRequestVO.getAuth())
+                || MapUtils.isEmpty(updateIdentityRequestVO.getIdentity())
+                || MapUtils.isEmpty(updateIdentityRequestVO.getUpdate())) {
             LOGGER.warning("updateIdentityRequestVO is null or auth, identidy or update passed in are null or empty");
             return updateIdentityResponseVO;
         }
@@ -138,7 +145,8 @@ public class IdentitiesService extends BaseService {
     public DeleteIdentityResponseVO deleteIdentity(DeleteIdentityRequestVO deleteIdentityRequestVO) {
         DeleteIdentityResponseVO deleteIdentityResponseVO = null;
 
-        if (deleteIdentityRequestVO == null || ValidationUtils.isEmpty(deleteIdentityRequestVO.getAuth()) || ValidationUtils.isEmpty(deleteIdentityRequestVO.getIdentity())) {
+        if (deleteIdentityRequestVO == null || StringUtils.isEmpty(deleteIdentityRequestVO.getAuth())
+                || MapUtils.isEmpty(deleteIdentityRequestVO.getIdentity())) {
             LOGGER.warning("deleteIdentityRequestVO is null, auth or identity passed in are null or empty");
             return deleteIdentityResponseVO;
         }
