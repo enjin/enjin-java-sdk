@@ -8,4 +8,5 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.CLASS)
 public @interface SkipNulls {
+
 }

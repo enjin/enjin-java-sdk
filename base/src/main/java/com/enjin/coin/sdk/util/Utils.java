@@ -24,7 +24,6 @@ public class Utils {
         return randomId;
     }
 
-
     /**
      * Returns a psuedo-random number between min and max, inclusive.
      * The difference between min and max can be at most

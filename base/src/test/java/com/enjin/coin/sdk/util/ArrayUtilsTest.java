@@ -5,9 +5,7 @@ import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.assertj.core.api.Assertions.*;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(ArrayUtils.class)
@@ -16,49 +14,43 @@ public class ArrayUtilsTest {
     @Test
     public void testConstructor() {
         ArrayUtils arrayUtils = new ArrayUtils();
-        assertNotNull(arrayUtils);
+        assertThat(arrayUtils).isNotNull();
     }
 
     @Test
     public void testIsEmpty_Array_False() {
         Object[] arr = new Object[]{new Object()};
-        boolean isEmpty = ArrayUtils.isEmpty(arr);
-        assertFalse(isEmpty);
+        assertThat(ArrayUtils.isEmpty(arr)).isFalse();
     }
 
     @Test
     public void testIsEmpty_Array_TrueNull() {
         Object[] arr = null;
-        boolean isEmpty = ArrayUtils.isEmpty(arr);
-        assertTrue(isEmpty);
+        assertThat(ArrayUtils.isEmpty(arr)).isTrue();
     }
 
     @Test
     public void testIsEmpty_Array_TrueEmpty() {
         Object[] arr = new Object[]{};
-        boolean isEmpty = ArrayUtils.isEmpty(arr);
-        assertTrue(isEmpty);
+        assertThat(ArrayUtils.isEmpty(arr)).isTrue();
     }
 
     @Test
     public void testIsNotEmpty_Array_FalseEmpty() {
         Object[] arr = new Object[]{};
-        boolean isEmpty = ArrayUtils.isNotEmpty(arr);
-        assertFalse(isEmpty);
+        assertThat(ArrayUtils.isNotEmpty(arr)).isFalse();
     }
 
     @Test
     public void testIsNotEmpty_Array_FalseNull() {
         Object[] arr = null;
-        boolean isEmpty = ArrayUtils.isNotEmpty(arr);
-        assertFalse(isEmpty);
+        assertThat(ArrayUtils.isNotEmpty(arr)).isFalse();
     }
 
     @Test
     public void testIsNotEmpty_Array_True() {
         Object[] arr = new Object[]{new Object()};
-        boolean isEmpty = ArrayUtils.isNotEmpty(arr);
-        assertTrue(isEmpty);
+        assertThat(ArrayUtils.isNotEmpty(arr)).isTrue();
     }
 
 }

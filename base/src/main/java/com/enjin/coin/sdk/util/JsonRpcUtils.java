@@ -18,7 +18,6 @@ public class JsonRpcUtils {
 
     private boolean isInTestMode = false;
 
-
     public boolean getIsInTestMode() {
         return isInTestMode;
     }
@@ -26,7 +25,6 @@ public class JsonRpcUtils {
     public void setIsInTestMode(boolean isInTestMode) {
         this.isInTestMode = isInTestMode;
     }
-
 
     /**
      * Method to send a json rpc request
@@ -40,7 +38,6 @@ public class JsonRpcUtils {
         Object responseObject = sendJsonRpcRequest(url, responseClass, method, null);
         return responseObject;
     }
-
 
     /**
      * Method to send a json rpc request

@@ -147,9 +147,7 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
                     break;
             }
 
-
         }
     }
-
 
 }

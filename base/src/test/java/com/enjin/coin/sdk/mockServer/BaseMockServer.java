@@ -22,7 +22,6 @@ public class BaseMockServer {
             .dynamicPort()
             .dynamicHttpsPort());
 
-
     /**
      * Constant for the json method label
      **/
@@ -50,10 +49,8 @@ public class BaseMockServer {
      **/
     private static final String EVENTS_URL = String.format("/%s", Constants.EVENTS_URL);
 
-
     private static final String JSON_FILE_EXTENSION = ".response.json";
     private static final String JSON_FILE_BASE_FOLDER = "src/test/resources/examples/API/";
-
 
     @Before
     public void setUp() {
@@ -64,7 +61,6 @@ public class BaseMockServer {
     public void tearDown() {
         wireMockRule.stop();
     }
-
 
     /**
      * Method to start the wiremock server
@@ -106,7 +102,6 @@ public class BaseMockServer {
         setUpStub(TRANSACTION_REQUESTS_URL, transactionRequestsListMethod);
         setUpStub(TRANSACTION_REQUESTS_URL, transactionRequestsCreateMethod);
         setUpStub(TRANSACTION_REQUESTS_URL, transactionRequestsCancelMethod);
-
 
         //Setup the events stubs
         String eventsGetMethod = "Events.get";

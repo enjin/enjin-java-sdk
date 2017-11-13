@@ -12,7 +12,7 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.*;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({JsonUtils.class, Gson.class, GsonBuilder.class})
@@ -21,7 +21,7 @@ public class JsonUtilsTest {
     @Test
     public void testConstructor() {
         JsonUtils jsonUtils = new JsonUtils();
-        assertNotNull(jsonUtils);
+        assertThat(jsonUtils).isNotNull();
     }
 
     @Test
@@ -29,7 +29,7 @@ public class JsonUtilsTest {
         String jsonString = "";
         Class<?> responseClass = GetEventResponseVO.class;
         Object responseObject = JsonUtils.convertJsonToObject(jsonString, responseClass);
-        assertNull(responseObject);
+        assertThat(responseObject).isNull();
     }
 
     @Test
@@ -37,7 +37,7 @@ public class JsonUtilsTest {
         String jsonString = null;
         Class<?> responseClass = GetEventResponseVO.class;
         Object responseObject = JsonUtils.convertJsonToObject(jsonString, responseClass);
-        assertNull(responseObject);
+        assertThat(responseObject).isNull();
     }
 
     @Test
@@ -45,7 +45,7 @@ public class JsonUtilsTest {
         String jsonString = "{}";
         Class<?> responseClass = null;
         Object responseObject = JsonUtils.convertJsonToObject(jsonString, responseClass);
-        assertNull(responseObject);
+        assertThat(responseObject).isNull();
     }
 
     @SuppressWarnings("unchecked")
@@ -58,7 +58,7 @@ public class JsonUtilsTest {
 
         Mockito.when(mockGson.fromJson(Mockito.anyString(), Mockito.isA(Class.class))).thenThrow(new JsonSyntaxException("exception"));
         Object responseObject = JsonUtils.convertJsonToObject(mockGson, jsonString, responseClass);
-        assertNull(responseObject);
+        assertThat(responseObject).isNull();
 
         Mockito.verify(mockGson, Mockito.times(1)).fromJson(Mockito.anyString(), Mockito.isA(Class.class));
     }
@@ -73,7 +73,7 @@ public class JsonUtilsTest {
 
         Mockito.when(mockGson.fromJson(Mockito.anyString(), Mockito.isA(Class.class))).thenReturn(ImmutableGetEventResponseVO.builder().build());
         Object responseObject = JsonUtils.convertJsonToObject(mockGson, jsonString, responseClass);
-        assertNotNull(responseObject);
+        assertThat(responseObject).isNotNull();
 
         Mockito.verify(mockGson, Mockito.times(1)).fromJson(Mockito.anyString(), Mockito.isA(Class.class));
     }
@@ -82,9 +82,8 @@ public class JsonUtilsTest {
     public void testConvertObjectToJson_JsonObjectIsNull() {
         Object jsonObject = null;
         String jsonResponse = JsonUtils.convertObjectToJson(jsonObject);
-        assertNull(jsonResponse);
+        assertThat(jsonResponse).isNull();
     }
-
 
     @Test
     public void testConvertObjectToJson_SuccessButJsonIsEmpty() throws Exception {
@@ -96,8 +95,8 @@ public class JsonUtilsTest {
         PowerMockito.when(mockGson.toJson(Mockito.isA(GetEventResponseVO.class))).thenReturn(jsonStrResponse);
 
         String jsonResponse = JsonUtils.convertObjectToJson(mockGson, jsonObject);
-        assertNotNull(jsonResponse);
-        assertTrue(jsonResponse.length() == 0);
+        assertThat(jsonResponse).isNotNull()
+                .satisfies(o -> assertThat(o.length()).isEqualTo(0));
 
         Mockito.verify(mockGson, Mockito.times(1)).toJson(Mockito.isA(GetEventResponseVO.class));
     }
@@ -112,9 +111,10 @@ public class JsonUtilsTest {
         PowerMockito.when(mockGson.toJson(Mockito.isA(GetEventResponseVO.class))).thenReturn(jsonStrResponse);
 
         String jsonResponse = JsonUtils.convertObjectToJson(mockGson, jsonObject);
-        assertNotNull(jsonResponse);
-        assertTrue(jsonResponse.length() > 0);
+        assertThat(jsonResponse).isNotNull()
+                .satisfies(o -> assertThat(o.length()).isGreaterThan(0));
 
         Mockito.verify(mockGson, Mockito.times(1)).toJson(Mockito.isA(GetEventResponseVO.class));
     }
+
 }

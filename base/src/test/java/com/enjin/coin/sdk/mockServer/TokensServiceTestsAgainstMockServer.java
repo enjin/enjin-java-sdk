@@ -13,7 +13,6 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer {
 
     private TokensService tokens;
 
-
     @Before
     public void init() {
         EnjinConfig enjinConfig = new EnjinConfig();
@@ -74,6 +73,5 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer {
             assertNotNull(getTokenResponseVO.getTransferable());
         }
     }
-
 
 }

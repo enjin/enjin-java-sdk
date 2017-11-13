@@ -148,5 +148,4 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
         assertNotNull(cancelTransactionRequestResponseVO.getResult());
     }
 
-
 }

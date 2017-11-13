@@ -34,7 +34,6 @@ public class EventsServiceTest {
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty());
     }
 
-
     @Test
     public void testGetEvent_GetEventRequestVOIsNull() {
         GetEventRequestVO getEventRequestVO = null;
@@ -91,7 +90,6 @@ public class EventsServiceTest {
         GetEventResponseVO getEventResponseVO = eventService.getEvent(getEventRequestVO);
         assertThat(getEventResponseVO).isNull();
     }
-
 
     @SuppressWarnings("unchecked")
     @Test

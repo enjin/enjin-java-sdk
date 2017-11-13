@@ -1,6 +1,5 @@
 package com.enjin.coin.sdk.evan;
 
-
 import com.enjin.coin.sdk.util.http.ContentType;
 import com.enjin.coin.sdk.util.http.Header;
 import com.github.tomakehurst.wiremock.common.Json;
@@ -15,7 +14,6 @@ import wiremock.com.fasterxml.jackson.databind.JsonNode;
 import java.util.HashMap;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
-
 
 public class IdentitiesServiceTest extends JsonRpcBase {
 

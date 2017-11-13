@@ -38,7 +38,6 @@ public final class FileUtils {
             LOGGER.warning(String.format("An IOException has occured. Exception: %s", StringUtils.exceptionToString(e)));
         }
 
-
         return fileContents;
     }
 

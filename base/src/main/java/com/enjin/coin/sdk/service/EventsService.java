@@ -72,7 +72,6 @@ public class EventsService extends BaseService {
             return listEventsResponseVO;
         }
 
-
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("auth", listEventsRequestVO.getAuth());
         params.put("app_id", listEventsRequestVO.getAppId());

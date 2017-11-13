@@ -55,7 +55,6 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
         identityMap.put("test_damien1", "test_damien1_value");
         identityMap.put("test_damien2", "test_damien2_value");
 
-
         String afterIdentityId = "after-1";
         String limit = "limit1";
         boolean linked = false;

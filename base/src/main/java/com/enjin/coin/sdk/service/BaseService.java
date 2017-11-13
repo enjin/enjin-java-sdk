@@ -12,7 +12,6 @@ public abstract class BaseService {
 
     private static final Logger LOGGER = Logger.getLogger(BaseService.class.getName());
 
-
     private String trustedPlatformUrl;
     private boolean isInTestMode;
     protected JsonRpcUtils jsonRpcUtils;

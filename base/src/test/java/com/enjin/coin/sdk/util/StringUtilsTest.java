@@ -12,9 +12,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.assertj.core.api.Assertions.*;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(StringUtils.class)
@@ -23,14 +21,14 @@ public class StringUtilsTest {
     @Test
     public void testConstructor() {
         StringUtils stringUtils = new StringUtils();
-        assertNotNull(stringUtils);
+        assertThat(stringUtils).isNotNull();
     }
 
     @Test
     public void testExceptionToString_ExceptionIsNull() {
         Exception e = null;
         String stacktrace = StringUtils.exceptionToString(e);
-        assertNull(stacktrace);
+        assertThat(stacktrace).isNull();
     }
 
     @Test
@@ -42,7 +40,7 @@ public class StringUtilsTest {
 
         Exception e = new NullPointerException();
         String stacktrace = StringUtils.exceptionToString(e);
-        assertNull(stacktrace);
+        assertThat(stacktrace).isNull();
 
         PowerMockito.verifyNew(StringWriter.class, Mockito.times(1)).withNoArguments();
         PowerMockito.verifyNew(PrintWriter.class, Mockito.times(1)).withArguments(Mockito.isA(StringWriter.class));
@@ -58,7 +56,7 @@ public class StringUtilsTest {
 
         Exception e = new NullPointerException();
         String stacktrace = StringUtils.exceptionToString(e);
-        assertNotNull(stacktrace);
+        assertThat(stacktrace).isNotNull();
 
         PowerMockito.verifyNew(StringWriter.class, Mockito.times(1)).withNoArguments();
         PowerMockito.verifyNew(PrintWriter.class, Mockito.times(1)).withArguments(Mockito.isA(StringWriter.class));
@@ -67,43 +65,37 @@ public class StringUtilsTest {
     @Test
     public void testIsEmpty_String_False() {
         String str = "str";
-        boolean isEmpty = StringUtils.isEmpty(str);
-        assertFalse(isEmpty);
+        assertThat(StringUtils.isEmpty(str)).isFalse();
     }
 
     @Test
     public void testIsEmpty_String_TrueNull() {
         String str = null;
-        boolean isEmpty = StringUtils.isEmpty(str);
-        assertTrue(isEmpty);
+        assertThat(StringUtils.isEmpty(str)).isTrue();
     }
 
     @Test
     public void testIsEmpty_String_TrueEmpty() {
         String str = "";
-        boolean isEmpty = StringUtils.isEmpty(str);
-        assertTrue(isEmpty);
+        assertThat(StringUtils.isEmpty(str)).isTrue();
     }
 
     @Test
     public void testIsNotEmpty_String_FalseEmpty() {
         String str = "";
-        boolean isEmpty = StringUtils.isNotEmpty(str);
-        assertFalse(isEmpty);
+        assertThat(StringUtils.isNotEmpty(str)).isFalse();
     }
 
     @Test
     public void testIsNotEmpty_String_FalseNull() {
         String str = null;
-        boolean isEmpty = StringUtils.isNotEmpty(str);
-        assertFalse(isEmpty);
+        assertThat(StringUtils.isNotEmpty(str)).isFalse();
     }
 
     @Test
     public void testIsNotEmpty_String_True() {
         String str = "str";
-        boolean isEmpty = StringUtils.isNotEmpty(str);
-        assertTrue(isEmpty);
+        assertThat(StringUtils.isNotEmpty(str)).isTrue();
     }
 
 }

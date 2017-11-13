@@ -66,7 +66,6 @@ public class TokensServiceTest {
         assertNull(getTokenResponseVO);
     }
 
-
     @SuppressWarnings("unchecked")
     @Test
     public void testGetToken_ResponseIsNull() throws Exception {

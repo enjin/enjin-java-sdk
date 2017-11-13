@@ -105,7 +105,6 @@ public class TransactionRequestsServiceTest {
         Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
     }
 
-
     @SuppressWarnings("unchecked")
     @Test
     public void testGetTransactionRequest_Success() throws Exception {
@@ -730,7 +729,6 @@ public class TransactionRequestsServiceTest {
         assertNull(createTransactionRequestResponseVO);
     }
 
-
     @Test
     public void testCreateTransactionRequest_RecipientMapIsEmpty() throws Exception {
         Map<String, Object> listIdentityMap = new HashMap<>();
@@ -753,7 +751,6 @@ public class TransactionRequestsServiceTest {
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
         assertNull(createTransactionRequestResponseVO);
     }
-
 
     @Test
     public void testCreateTransactionRequest_TypeIsNull() throws Exception {

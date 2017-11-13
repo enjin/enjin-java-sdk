@@ -12,7 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.*;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({FileUtils.class, Paths.class, Files.class})
@@ -21,23 +21,21 @@ public class FileUtilsTest {
     @Test
     public void testConstructor() {
         FileUtils fileUtils = new FileUtils();
-        assertNotNull(fileUtils);
+        assertThat(fileUtils).isNotNull();
     }
 
     @Test
     public void testGetFileContents_FilePathIsEmpty() throws Exception {
         String filePath = "";
-
         String fileContents = FileUtils.getFileContents(filePath);
-        assertNull(fileContents);
+        assertThat(fileContents).isNull();
     }
 
     @Test
     public void testGetFileContents_FilePathIsNull() throws Exception {
         String filePath = null;
-
         String fileContents = FileUtils.getFileContents(filePath);
-        assertNull(fileContents);
+        assertThat(fileContents).isNull();
     }
 
     @Test
@@ -52,7 +50,7 @@ public class FileUtilsTest {
         Mockito.when(Files.readAllBytes(Mockito.isA(Path.class))).thenThrow(new IOException());
 
         String fileContents = FileUtils.getFileContents(filePath);
-        assertNull(fileContents);
+        assertThat(fileContents).isNull();
 
         PowerMockito.verifyStatic(Paths.class);
         Paths.get(Mockito.anyString());
@@ -72,7 +70,7 @@ public class FileUtilsTest {
         Mockito.when(Files.readAllBytes(Mockito.isA(Path.class))).thenReturn("".getBytes());
 
         String fileContents = FileUtils.getFileContents(filePath);
-        assertNull(fileContents);
+        assertThat(fileContents).isNull();
 
         PowerMockito.verifyStatic(Paths.class);
         Paths.get(Mockito.anyString());
@@ -92,7 +90,7 @@ public class FileUtilsTest {
         PowerMockito.when(Files.readAllBytes(Mockito.isA(Path.class))).thenReturn(null);
 
         String fileContents = FileUtils.getFileContents(filePath);
-        assertNull(fileContents);
+        assertThat(fileContents).isNull();
 
         PowerMockito.verifyStatic(Paths.class);
         Paths.get(Mockito.anyString());
@@ -112,8 +110,8 @@ public class FileUtilsTest {
         Mockito.when(Files.readAllBytes(Mockito.isA(Path.class))).thenReturn("hello".getBytes());
 
         String fileContents = FileUtils.getFileContents(filePath);
-        assertNotNull(fileContents);
-        assertTrue(fileContents.length() > 0);
+        assertThat(fileContents).isNotNull()
+                .satisfies(o -> assertThat(o.length()).isGreaterThan(0));
 
         PowerMockito.verifyStatic(Paths.class);
         Paths.get(Mockito.anyString());

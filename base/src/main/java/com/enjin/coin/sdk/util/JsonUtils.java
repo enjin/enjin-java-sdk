@@ -39,7 +39,6 @@ public final class JsonUtils {
         return responseObject;
     }
 
-
     /**
      * Method to convert an object to a json string
      *

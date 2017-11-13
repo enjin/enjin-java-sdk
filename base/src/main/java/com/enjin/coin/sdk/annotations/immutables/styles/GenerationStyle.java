@@ -18,4 +18,5 @@ import java.lang.annotation.Target;
         jdkOnly = true
 )
 public @interface GenerationStyle {
+
 }
