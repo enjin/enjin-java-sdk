@@ -17,6 +17,13 @@ public class JsonConfig {
     private static final Logger LOGGER = Logger.getLogger(JsonConfig.class.getName());
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
+    /**
+     * Class constructor
+     */
+    protected JsonConfig() {
+    	
+    }
+    
     public static <T extends JsonConfig> T load(File file, Class<T> clazz) throws Exception {
         JsonConfig config = null;
 
