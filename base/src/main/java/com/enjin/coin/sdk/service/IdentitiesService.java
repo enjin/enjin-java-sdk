@@ -49,8 +49,8 @@ public class IdentitiesService extends BaseService {
         }
 
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("auth", getIdentityRequestVO.getAuth());
-        params.put("identity", getIdentityRequestVO.getIdentity());
+        params.put("auth", getIdentityRequestVO.getAuth().get());
+        params.put("identity", getIdentityRequestVO.getIdentity().get());
 
         // Construct new request
         String method = Constants.METHOD_IDENTITIES_GET;
@@ -76,11 +76,11 @@ public class IdentitiesService extends BaseService {
         }
 
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("auth", listIdentitiesRequestVO.getAuth());
-        params.put("identity", listIdentitiesRequestVO.getIdentity());
-        params.put("linked", listIdentitiesRequestVO.getLinked());
-        params.put("after_identity_id", listIdentitiesRequestVO.getAfterIdentityId());
-        params.put("limit", listIdentitiesRequestVO.getLimit());
+        params.put("auth", listIdentitiesRequestVO.getAuth().get());
+        params.put("identity", listIdentitiesRequestVO.getIdentity().get());
+        params.put("linked", listIdentitiesRequestVO.getLinked().get());
+        params.put("after_identity_id", listIdentitiesRequestVO.getAfterIdentityId().get());
+        params.put("limit", listIdentitiesRequestVO.getLimit().get());
 
         // Construct new request
         String method = Constants.METHOD_IDENTITIES_LIST;
@@ -105,8 +105,8 @@ public class IdentitiesService extends BaseService {
         }
 
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("auth", createIdentityRequestVO.getAuth());
-        params.put("identity", createIdentityRequestVO.getIdentity());
+        params.put("auth", createIdentityRequestVO.getAuth().get());
+        params.put("identity", createIdentityRequestVO.getIdentity().get());
 
         // Construct new request
         String method = Constants.METHOD_IDENTITIES_CREATE;
@@ -133,9 +133,9 @@ public class IdentitiesService extends BaseService {
         }
 
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("auth", updateIdentityRequestVO.getAuth());
-        params.put("identity", updateIdentityRequestVO.getIdentity());
-        params.put("update", updateIdentityRequestVO.getUpdate());
+        params.put("auth", updateIdentityRequestVO.getAuth().get());
+        params.put("identity", updateIdentityRequestVO.getIdentity().get());
+        params.put("update", updateIdentityRequestVO.getUpdate().get());
 
         // Construct new request
         String method = Constants.METHOD_IDENTITIES_UPDATE;
@@ -161,8 +161,8 @@ public class IdentitiesService extends BaseService {
         }
 
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("auth", deleteIdentityRequestVO.getAuth());
-        params.put("identity", deleteIdentityRequestVO.getIdentity());
+        params.put("auth", deleteIdentityRequestVO.getAuth().get());
+        params.put("identity", deleteIdentityRequestVO.getIdentity().get());
 
         // Construct new request
         String method = Constants.METHOD_IDENTITIES_DELETE;
