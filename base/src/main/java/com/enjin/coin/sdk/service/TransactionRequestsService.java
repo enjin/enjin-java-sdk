@@ -39,9 +39,9 @@ public class TransactionRequestsService extends BaseService {
             return getTransactionRequestResponseVO;
         }
 
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("auth", getTransactionRequestRequestVO.getAuth());
-        params.put("txr_id", getTransactionRequestRequestVO.getTxrId());
+        Map<String, Object> params = new HashMap<>();
+        params.put("auth", getTransactionRequestRequestVO.getAuth().get());
+        params.put("txr_id", getTransactionRequestRequestVO.getTxrId().get());
 
         // Construct new request
         String method = Constants.METHOD_TRANSACTION_REQUESTS_GET;
@@ -77,15 +77,15 @@ public class TransactionRequestsService extends BaseService {
             return listTransactionRequestsResponseVO;
         }
 
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("auth", listTransactionRequestsRequestVO.getAuth());
-        params.put("identity", listTransactionRequestsRequestVO.getIdentityMap());
-        params.put("app_id", listTransactionRequestsRequestVO.getAppId());
-        params.put("recipient", listTransactionRequestsRequestVO.getRecipientMap());
-        params.put("type", listTransactionRequestsRequestVO.getType());
-        params.put("after_txr_id", listTransactionRequestsRequestVO.getAfterTxrId());
-        params.put("limit", listTransactionRequestsRequestVO.getLimit());
-        params.put("currency", listTransactionRequestsRequestVO.getCurrency());
+        Map<String, Object> params = new HashMap<>();
+        params.put("auth", listTransactionRequestsRequestVO.getAuth().get());
+        params.put("identity", listTransactionRequestsRequestVO.getIdentityMap().get());
+        params.put("app_id", listTransactionRequestsRequestVO.getAppId().get());
+        params.put("recipient", listTransactionRequestsRequestVO.getRecipientMap().get());
+        params.put("type", listTransactionRequestsRequestVO.getType().get());
+        params.put("after_txr_id", listTransactionRequestsRequestVO.getAfterTxrId().get());
+        params.put("limit", listTransactionRequestsRequestVO.getLimit().get());
+        params.put("currency", listTransactionRequestsRequestVO.getCurrency().get());
 
         // Construct new request
         String method = Constants.METHOD_TRANSACTION_REQUESTS_LIST;
@@ -118,14 +118,14 @@ public class TransactionRequestsService extends BaseService {
             return createTransactionRequestResponseVO;
         }
 
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("auth", createTransactionRequestRequestVO.getAuth());
-        params.put("identity", createTransactionRequestRequestVO.getIdentityMap());
-        params.put("recipient", createTransactionRequestRequestVO.getRecipientMap());
-        params.put("type", createTransactionRequestRequestVO.getType());
-        params.put("icon", createTransactionRequestRequestVO.getIcon());
-        params.put("title", createTransactionRequestRequestVO.getTitle());
-        params.put("value", createTransactionRequestRequestVO.getValueMap());
+        Map<String, Object> params = new HashMap<>();
+        params.put("auth", createTransactionRequestRequestVO.getAuth().get());
+        params.put("identity", createTransactionRequestRequestVO.getIdentityMap().get());
+        params.put("recipient", createTransactionRequestRequestVO.getRecipientMap().get());
+        params.put("type", createTransactionRequestRequestVO.getType().get());
+        params.put("icon", createTransactionRequestRequestVO.getIcon().get());
+        params.put("title", createTransactionRequestRequestVO.getTitle().get());
+        params.put("value", createTransactionRequestRequestVO.getValueMap().get());
 
         // Construct new request
         String method = Constants.METHOD_TRANSACTION_REQUESTS_CREATE;
@@ -150,9 +150,9 @@ public class TransactionRequestsService extends BaseService {
             return cancelTransactionRequestResponseVO;
         }
 
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("auth", cancelTransactionRequestRequestVO.getAuth());
-        params.put("txr_id", cancelTransactionRequestRequestVO.getTxrId());
+        Map<String, Object> params = new HashMap<>();
+        params.put("auth", cancelTransactionRequestRequestVO.getAuth().get());
+        params.put("txr_id", cancelTransactionRequestRequestVO.getTxrId().get());
 
         // Construct new request
         String method = Constants.METHOD_TRANSACTION_REQUESTS_CANCEL;

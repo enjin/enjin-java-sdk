@@ -10,9 +10,16 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.assertNotNull;
+import static org.assertj.core.api.Assertions.*;
 
 public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
+
+    private static final String IDENTITY_ID_KEY = "identity_id";
+    private static final String ETHEREUM_ADDRESS_KEY = "ethereum_address";
+    private static final String UUID_KEY = "uuid";
+    private static final String PLAYER_NAME_KEY = "player_name";
+
+    private static final String[] KEYS_ARRAY = {IDENTITY_ID_KEY, ETHEREUM_ADDRESS_KEY, UUID_KEY, PLAYER_NAME_KEY};
 
     private TransactionRequestsService transactionRequests;
 
@@ -31,26 +38,25 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
                 .setAuth("xxxxxxxx")
                 .setTxrId("123456")
                 .build();
-        assertNotNull(getTransactionRequestRequestVO.toString());
-
-        GetTransactionRequestResponseVO getTransactionRequestResponseVO = transactionRequests.getTransactionRequest(getTransactionRequestRequestVO);
-        assertNotNull(getTransactionRequestResponseVO);
-        assertNotNull(getTransactionRequestResponseVO.toString());
-        assertNotNull(getTransactionRequestResponseVO.getTxrId());
-        assertNotNull(getTransactionRequestResponseVO.getIdentityMap());
-        assertNotNull(getTransactionRequestResponseVO.getIdentityMap().get("identity_id"));
-        assertNotNull(getTransactionRequestResponseVO.getIdentityMap().get("player_name"));
-        assertNotNull(getTransactionRequestResponseVO.getIdentityMap().get("ethereum_address"));
-        assertNotNull(getTransactionRequestResponseVO.getRecipientMap());
-        assertNotNull(getTransactionRequestResponseVO.getRecipientMap());
-        assertNotNull(getTransactionRequestResponseVO.getRecipientMap().get("identity_id"));
-        assertNotNull(getTransactionRequestResponseVO.getRecipientMap().get("player_name"));
-        assertNotNull(getTransactionRequestResponseVO.getRecipientMap().get("ethereum_address"));
-        assertNotNull(getTransactionRequestResponseVO.getType());
-        assertNotNull(getTransactionRequestResponseVO.getIcon());
-        assertNotNull(getTransactionRequestResponseVO.getTitle());
-        assertNotNull(getTransactionRequestResponseVO.getValueMap());
-        assertNotNull(getTransactionRequestResponseVO.getValueMap().get("ENJ"));
+        String[] keys = {IDENTITY_ID_KEY, ETHEREUM_ADDRESS_KEY, PLAYER_NAME_KEY};
+        String[] value_map_keys = {"ENJ"};
+        assertThat(getTransactionRequestRequestVO).isNotNull()
+                .satisfies(o -> assertThat(o.toString()).isNotEmpty())
+                .satisfies(o -> assertThat(transactionRequests.getTransactionRequest(o)).isNotNull()
+                        .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getTxrId()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getIdentityMap()).isNotEmpty()
+                                .hasValueSatisfying(v -> assertThat(v).containsKeys(keys)
+                                        .extracting(keys).doesNotContainNull()))
+                        .satisfies(o2 -> assertThat(o2.getRecipientMap()).isNotEmpty()
+                                .hasValueSatisfying(v -> assertThat(v).containsKeys(keys)
+                                        .extracting(keys).doesNotContainNull()))
+                        .satisfies(o2 -> assertThat(o2.getType()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getIcon()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getTitle()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getValueMap()).isNotEmpty()
+                                .hasValueSatisfying(v -> assertThat(v).containsKeys(value_map_keys)
+                                        .extracting(value_map_keys).doesNotContainNull())));
     }
 
     @Test
@@ -70,27 +76,23 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
                 .setLimit("50")
                 .setCurrency("23456")
                 .build();
-        assertNotNull(listTransactionRequestsRequestVO.toString());
-
-        ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequests.listTransactionRequests(listTransactionRequestsRequestVO);
-
-        for (ListTransactionRequestsResponseVO listTransactionRequestsResponseVO : listTransactionRequestsResponseVOArray) {
-            assertNotNull(listTransactionRequestsResponseVO);
-            assertNotNull(listTransactionRequestsResponseVO.toString());
-            assertNotNull(listTransactionRequestsResponseVO.getTxrId());
-            assertNotNull(listTransactionRequestsResponseVO.getIdentityMap());
-            assertNotNull(listTransactionRequestsResponseVO.getIdentityMap().get("identity_id"));
-            assertNotNull(listTransactionRequestsResponseVO.getIdentityMap().get("player_name"));
-            assertNotNull(listTransactionRequestsResponseVO.getIdentityMap().get("ethereum_address"));
-            assertNotNull(listTransactionRequestsResponseVO.getRecipientMap());
-            assertNotNull(listTransactionRequestsResponseVO.getRecipientMap().get("identity_id"));
-            assertNotNull(listTransactionRequestsResponseVO.getRecipientMap().get("player_name"));
-            assertNotNull(listTransactionRequestsResponseVO.getRecipientMap().get("ethereum_address"));
-            assertNotNull(listTransactionRequestsResponseVO.getType());
-            assertNotNull(listTransactionRequestsResponseVO.getIcon());
-            assertNotNull(listTransactionRequestsResponseVO.getTitle());
-            assertNotNull(listTransactionRequestsResponseVO.getValueMap());
-        }
+        String[] keys = {IDENTITY_ID_KEY, ETHEREUM_ADDRESS_KEY, PLAYER_NAME_KEY};
+        assertThat(listTransactionRequestsRequestVO).isNotNull()
+                .satisfies(o -> assertThat(o.toString()).isNotEmpty())
+                .satisfies(o -> assertThat(transactionRequests.listTransactionRequests(o)).isNotNull()
+                        .allSatisfy(i -> assertThat(i).isNotNull()
+                                .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
+                                .satisfies(o2 -> assertThat(o2.getTxrId()).isNotEmpty())
+                                .satisfies(o2 -> assertThat(o2.getIdentityMap()).isNotEmpty()
+                                        .hasValueSatisfying(v -> assertThat(v).containsKeys(keys)
+                                                .extracting(keys).doesNotContainNull()))
+                                .satisfies(o2 -> assertThat(o2.getRecipientMap()).isNotEmpty()
+                                        .hasValueSatisfying(v -> assertThat(v).containsKeys(keys)
+                                                .extracting(keys).doesNotContainNull()))
+                                .satisfies(o2 -> assertThat(o2.getType()).isNotEmpty())
+                                .satisfies(o2 -> assertThat(o2.getIcon()).isNotEmpty())
+                                .satisfies(o2 -> assertThat(o2.getTitle()).isNotEmpty())
+                                .satisfies(o2 -> assertThat(o2.getValueMap()).isNotEmpty())));
     }
 
     @Test
@@ -113,25 +115,25 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
                 .setTitle("Mineplex: /transfer alice 3 ENJ")
                 .setValueMap(createValueMap)
                 .build();
-        assertNotNull(createTransactionRequestRequestVO.toString());
-
-        CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequests.createTransactionRequest(createTransactionRequestRequestVO);
-        assertNotNull(createTransactionRequestResponseVO);
-        assertNotNull(createTransactionRequestResponseVO.toString());
-        assertNotNull(createTransactionRequestResponseVO.getTxrId());
-        assertNotNull(createTransactionRequestResponseVO.getIdentityMap());
-        assertNotNull(createTransactionRequestResponseVO.getIdentityMap().get("identity_id"));
-        assertNotNull(createTransactionRequestResponseVO.getIdentityMap().get("player_name"));
-        assertNotNull(createTransactionRequestResponseVO.getIdentityMap().get("ethereum_address"));
-        assertNotNull(createTransactionRequestResponseVO.getRecipientMap());
-        assertNotNull(createTransactionRequestResponseVO.getRecipientMap().get("identity_id"));
-        assertNotNull(createTransactionRequestResponseVO.getRecipientMap().get("player_name"));
-        assertNotNull(createTransactionRequestResponseVO.getRecipientMap().get("ethereum_address"));
-        assertNotNull(createTransactionRequestResponseVO.getType());
-        assertNotNull(createTransactionRequestResponseVO.getIcon());
-        assertNotNull(createTransactionRequestResponseVO.getTitle());
-        assertNotNull(createTransactionRequestResponseVO.getValueMap());
-        assertNotNull(createTransactionRequestResponseVO.getValueMap().get("ENJ"));
+        String[] keys = {IDENTITY_ID_KEY, ETHEREUM_ADDRESS_KEY, PLAYER_NAME_KEY};
+        String[] value_map_keys = {"ENJ"};
+        assertThat(createTransactionRequestRequestVO).isNotNull()
+                .satisfies(o -> assertThat(o.toString()).isNotEmpty())
+                .satisfies(o -> assertThat(transactionRequests.createTransactionRequest(o)).isNotNull()
+                        .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getTxrId()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getIdentityMap()).isNotEmpty()
+                                .hasValueSatisfying(v -> assertThat(v).containsKeys(keys)
+                                        .extracting(keys).doesNotContainNull()))
+                        .satisfies(o2 -> assertThat(o2.getRecipientMap()).isNotEmpty()
+                                .hasValueSatisfying(v -> assertThat(v).containsKeys(keys)
+                                        .extracting(keys).doesNotContainNull()))
+                        .satisfies(o2 -> assertThat(o2.getType()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getIcon()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getTitle()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getValueMap()).isNotEmpty()
+                                .hasValueSatisfying(v -> assertThat(v).containsKeys(value_map_keys)
+                                        .extracting(value_map_keys).doesNotContainNull())));
     }
 
     @Test
@@ -140,12 +142,11 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
                 .setAuth("xxxxxxxx")
                 .setTxrId("123456")
                 .build();
-        assertNotNull(cancelTransactionRequestRequestVO.toString());
-
-        CancelTransactionRequestResponseVO cancelTransactionRequestResponseVO = transactionRequests.cancelTransactionRequest(cancelTransactionRequestRequestVO);
-        assertNotNull(cancelTransactionRequestResponseVO);
-        assertNotNull(cancelTransactionRequestResponseVO.toString());
-        assertNotNull(cancelTransactionRequestResponseVO.getResult());
+        assertThat(cancelTransactionRequestRequestVO).isNotNull()
+                .satisfies(o -> assertThat(o.toString()).isNotEmpty())
+                .satisfies(o -> assertThat(transactionRequests.cancelTransactionRequest(o)).isNotNull()
+                        .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getResult()).isPresent()));
     }
 
 }
