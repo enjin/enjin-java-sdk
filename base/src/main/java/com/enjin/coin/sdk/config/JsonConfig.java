@@ -43,7 +43,8 @@ public class JsonConfig {
     }
 
     public boolean save(File file) {
-        try {
+        boolean success = true;
+        try (FileWriter fw = new FileWriter(file)) {
             if (file.getParentFile() != null) {
                 file.getParentFile().mkdirs();
             }
@@ -52,41 +53,38 @@ public class JsonConfig {
                 file.createNewFile();
             }
 
-            FileWriter fw = new FileWriter(file);
             fw.write(GSON.toJson(this));
             fw.close();
         } catch (IOException e) {
             LOGGER.warning(String.format("Could not save the config to %s.", file.getName()));
-            return false;
+            success = false;
         }
-
-        return true;
+        return success;
     }
 
     public boolean update(File file, Object data) {
         JsonElement old = GSON.toJsonTree(this);
         JsonElement updates = GSON.toJsonTree(data);
 
+        boolean success = true;
         if (!old.isJsonObject() && !updates.isJsonObject()) {
             LOGGER.warning(String.format("Could not update the config at %s as it or the updated data is not an object.", file.getName()));
-            return false;
+            success = false;
+        } else {
+            JsonObject oldObj = old.getAsJsonObject();
+            JsonObject updatesObj = updates.getAsJsonObject();
+
+            update(oldObj, updatesObj);
+
+            try (FileWriter fw = new FileWriter(file)) {
+                fw.write(GSON.toJson(oldObj));
+                fw.close();
+            } catch (IOException e) {
+                LOGGER.warning(String.format("Could not save the updated config to %s.", file.getName()));
+                success = false;
+            }
         }
-
-        JsonObject oldObj = old.getAsJsonObject();
-        JsonObject updatesObj = updates.getAsJsonObject();
-
-        update(oldObj, updatesObj);
-
-        try {
-            FileWriter fw = new FileWriter(file);
-            fw.write(GSON.toJson(oldObj));
-            fw.close();
-        } catch (IOException e) {
-            LOGGER.warning(String.format("Could not save the updated config to %s.", file.getName()));
-            return false;
-        }
-
-        return true;
+        return success;
     }
 
     private void update(JsonObject oldObj, JsonObject update) {
