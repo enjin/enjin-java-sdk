@@ -10,9 +10,16 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.assertNotNull;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
+
+    private static final String IDENTITY_ID_KEY = "identity_id";
+    private static final String ETHEREUM_ADDRESS_KEY = "ethereum_address";
+    private static final String UUID_KEY = "uuid";
+    private static final String PLAYER_NAME_KEY = "player_name";
+
+    private static final String[] KEYS_ARRAY = {IDENTITY_ID_KEY, ETHEREUM_ADDRESS_KEY, UUID_KEY, PLAYER_NAME_KEY};
 
     private IdentitiesService identities;
 
@@ -37,15 +44,13 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
                 .setAuth("xxzcxcxz")
                 .setIdentity(identityMap)
                 .build();
-        assertNotNull(getIdentityRequestVO.toString());
-
-        GetIdentityResponseVO getIdentityResponseVO = identities.getIdentity(getIdentityRequestVO);
-        assertNotNull(getIdentityResponseVO);
-        assertNotNull(getIdentityResponseVO.toString());
-        assertNotNull(getIdentityResponseVO.getIdentityId());
-        assertNotNull(getIdentityResponseVO.getPlayerName());
-        assertNotNull(getIdentityResponseVO.getEthereumAddress());
-        assertNotNull(getIdentityResponseVO.getUuid());
+        assertThat(getIdentityRequestVO).isNotNull()
+                .satisfies(o -> assertThat(identities.getIdentity(o)).isNotNull()
+                        .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getIdentityId()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getEthereumAddress()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getUuid()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getPlayerName()).isNotEmpty()));
     }
 
     @Test
@@ -65,17 +70,15 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
                 .setLinked(linked)
                 .setIdentity(identityMap)
                 .build();
-        assertNotNull(listIdentitiesRequestVO.toString());
-
-        ListIdentitiesResponseVO[] listIdentitiesResponseVOArray = identities.listIdentities(listIdentitiesRequestVO);
-
-        for (ListIdentitiesResponseVO listIdentitiesResponseVO : listIdentitiesResponseVOArray) {
-            assertNotNull(listIdentitiesResponseVO);
-            assertNotNull(listIdentitiesResponseVO.toString());
-            assertNotNull(listIdentitiesResponseVO.getIdentityId());
-            assertNotNull(listIdentitiesResponseVO.getPlayerName());
-            assertNotNull(listIdentitiesResponseVO.getEthereumAddress());
-        }
+        assertThat(listIdentitiesRequestVO).isNotNull()
+                .satisfies(o -> assertThat(o.toString()).isNotNull())
+                .satisfies(o -> assertThat(identities.listIdentities(o)).isNotEmpty()
+                        .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
+                        .allSatisfy(i -> assertThat(i).isNotNull()
+                                .satisfies(o3 -> assertThat(o3.toString()).isNotEmpty())
+                                .satisfies(o3 -> assertThat(o3.getIdentityId()).isNotEmpty())
+                                .satisfies(o3 -> assertThat(o3.getEthereumAddress()).isNotEmpty())
+                                .satisfies(o3 -> assertThat(o3.getPlayerName()).isNotEmpty())));
     }
 
     @Test
@@ -90,13 +93,12 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
                 .setAuth("xxzcxcxz")
                 .setIdentity(identityMap)
                 .build();
-        assertNotNull(createIdentityRequestVO.toString());
-
-        CreateIdentityResponseVO createIdentityResponseVO = identities.createIdentity(createIdentityRequestVO);
-        assertNotNull(createIdentityResponseVO);
-        assertNotNull(createIdentityResponseVO.toString());
-        assertNotNull(createIdentityResponseVO.getIdentityId());
-        assertNotNull(createIdentityResponseVO.getIdentityCode());
+        assertThat(createIdentityRequestVO).isNotNull()
+                .satisfies(o -> assertThat(o.toString()).isNotEmpty())
+                .satisfies(o -> assertThat(identities.createIdentity(o)).isNotNull()
+                        .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getIdentityId()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getIdentityCode()).isNotEmpty()));
     }
 
     @Test
@@ -115,15 +117,14 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
                 .setIdentity(identityMap)
                 .setUpdate(updateMap)
                 .build();
-        assertNotNull(updateIdentityRequestVO.toString());
-
-        UpdateIdentityResponseVO updateIdentityResponseVO = identities.updateIdentity(updateIdentityRequestVO);
-        assertNotNull(updateIdentityResponseVO);
-        assertNotNull(updateIdentityResponseVO.toString());
-        assertNotNull(updateIdentityResponseVO.getIdentityMap());
-        assertNotNull(updateIdentityResponseVO.getIdentityMap().get("identity_id"));
-        assertNotNull(updateIdentityResponseVO.getIdentityMap().get("ethereum_address"));
-        assertNotNull(updateIdentityResponseVO.getIdentityMap().get("uuid"));
+        String[] keys = {IDENTITY_ID_KEY, ETHEREUM_ADDRESS_KEY, UUID_KEY};
+        assertThat(updateIdentityRequestVO).isNotNull()
+                .satisfies(o -> assertThat(o.toString()).isNotEmpty())
+                .satisfies(o -> assertThat(identities.updateIdentity(o)).isNotNull()
+                        .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getIdentityMap()).isPresent()
+                                .hasValueSatisfying(v -> assertThat(v).containsKeys(keys)
+                                        .extracting(keys).doesNotContainNull())));
     }
 
     @Test
@@ -138,12 +139,12 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
                 .setAuth("xxzcxcxz")
                 .setIdentity(identityMap)
                 .build();
-        assertNotNull(deleteIdentityRequestVO.toString());
-
-        DeleteIdentityResponseVO deleteIdentityResponseVO = identities.deleteIdentity(deleteIdentityRequestVO);
-        assertNotNull(deleteIdentityResponseVO);
-        assertNotNull(deleteIdentityResponseVO.toString());
-        assertNotNull(deleteIdentityResponseVO.getResult());
-
+        assertThat(deleteIdentityRequestVO).isNotNull()
+                .satisfies(o -> assertThat(o.toString()).isNotEmpty())
+                .satisfies(o -> assertThat(identities.deleteIdentity(o)).isNotNull()
+                        .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getResult()).isPresent()
+                                .hasValueSatisfying(v -> assertThat(v).isTrue())));
     }
+
 }

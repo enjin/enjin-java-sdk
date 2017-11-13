@@ -1,34 +1,31 @@
 package com.enjin.coin.sdk.vo.identity;
 
-import com.enjin.coin.sdk.annotations.immutables.Nullable;
 import com.google.gson.annotations.SerializedName;
 import org.immutables.gson.Gson;
 import org.immutables.value.Value;
+
+import java.util.Optional;
 
 @Value.Immutable
 @Gson.TypeAdapters
 public abstract class GetIdentityResponseVO {
 
-    @Nullable
     @SerializedName("identity_id")
-    public abstract String getIdentityId();
+    public abstract Optional<String> getIdentityId();
 
-    @Nullable
     @SerializedName("ethereum_address")
-    public abstract String getEthereumAddress();
+    public abstract Optional<String> getEthereumAddress();
 
-    @Nullable
     @SerializedName("player_name")
-    public abstract String getPlayerName();
+    public abstract Optional<String> getPlayerName();
 
-    @Nullable
     @SerializedName("uuid")
-    public abstract String getUuid();
+    public abstract Optional<String> getUuid();
 
     @Override
     public String toString() {
-        return "GetIdentityResponseVO [identityId=" + getIdentityId() + ", ethereumAddress=" + getEthereumAddress()
-                + ", playerName=" + getPlayerName() + ", uuid=" + getUuid() + "]";
+        return "GetIdentityResponseVO [identityId=" + getIdentityId().orElse(null) + ", ethereumAddress="+ getEthereumAddress().orElse(null)
+                + ", playerName=" + getPlayerName().orElse(null) + ", uuid=" + getUuid().orElse(null) + "]";
     }
 
 }
