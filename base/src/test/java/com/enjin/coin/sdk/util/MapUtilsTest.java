@@ -21,7 +21,7 @@ public class MapUtilsTest {
         assertThat(mapUtils).isNotNull();
     }
 
-    @SuppressWarnings({"rawtypes", "unchecked"})
+    @SuppressWarnings({"rawtypes", "unchecked", "serial"})
     @Test
     public void testIsEmpty_Map_False() {
         Map map = new HashMap() {{
@@ -66,7 +66,7 @@ public class MapUtilsTest {
         assertThat(MapUtils.isNotEmpty(map)).isTrue();
     }
 
-    @SuppressWarnings({"rawtypes", "unchecked"})
+    @SuppressWarnings({"rawtypes", "unchecked", "serial"})
     @Test
     public void testIsEmpty_OptionalMap_False() {
         Optional<Map> map = Optional.of(new HashMap() {{
@@ -75,28 +75,28 @@ public class MapUtilsTest {
         assertThat(MapUtils.isEmpty(map)).isFalse();
     }
 
-    @SuppressWarnings({"rawtypes", "unchecked"})
+    @SuppressWarnings({"rawtypes"})
     @Test
     public void testIsEmpty_OptionalMap_TrueNull() {
         Optional<Map> map = null;
         assertThat(MapUtils.isEmpty(map)).isTrue();
     }
 
-    @SuppressWarnings({"rawtypes", "unchecked"})
+    @SuppressWarnings({"rawtypes"})
     @Test
     public void testIsEmpty_OptionalMap_TrueEmptyEmpty() {
         Optional<Map> map = Optional.of(new HashMap());
         assertThat(MapUtils.isEmpty(map)).isTrue();
     }
 
-    @SuppressWarnings({"rawtypes", "unchecked"})
+    @SuppressWarnings({"rawtypes"})
     @Test
     public void testIsEmpty_OptionalMap_TrueEmpty() {
         Optional<Map> map = Optional.ofNullable(null);
         assertThat(MapUtils.isEmpty(map)).isTrue();
     }
 
-    @SuppressWarnings({"rawtypes", "unchecked"})
+    @SuppressWarnings({"rawtypes", "unchecked", "serial"})
     @Test
     public void testIsNotEmpty_OptionalMap_True() {
         Optional<Map> map = Optional.of(new HashMap() {{
@@ -105,21 +105,21 @@ public class MapUtilsTest {
         assertThat(MapUtils.isNotEmpty(map)).isTrue();
     }
 
-    @SuppressWarnings({"rawtypes", "unchecked"})
+    @SuppressWarnings({"rawtypes"})
     @Test
     public void testIsNotEmpty_OptionalMap_FalseNull() {
         Optional<Map> map = null;
         assertThat(MapUtils.isNotEmpty(map)).isFalse();
     }
 
-    @SuppressWarnings({"rawtypes", "unchecked"})
+    @SuppressWarnings({"rawtypes"})
     @Test
     public void testIsNotEmpty_OptionalMap_FalseEmptyEmpty() {
         Optional<Map> map = Optional.of(new HashMap());
         assertThat(MapUtils.isNotEmpty(map)).isFalse();
     }
 
-    @SuppressWarnings({"rawtypes", "unchecked"})
+    @SuppressWarnings({"rawtypes"})
     @Test
     public void testIsNotEmpty_OptionalMap_FalseEmpty() {
         Optional<Map> map = Optional.ofNullable(null);

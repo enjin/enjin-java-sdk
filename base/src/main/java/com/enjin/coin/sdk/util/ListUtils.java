@@ -18,7 +18,8 @@ public final class ListUtils {
      * @param list
      * @return
      */
-    public static boolean isEmpty(List list) {
+    @SuppressWarnings("rawtypes")
+	public static boolean isEmpty(List list) {
         return ObjectUtils.isNull(list) || list.size() == 0;
     }
 
@@ -28,6 +29,7 @@ public final class ListUtils {
      * @param list
      * @return
      */
+    @SuppressWarnings("rawtypes")
     public static boolean isNotEmpty(List list) {
         return !isEmpty(list);
     }
@@ -38,6 +40,7 @@ public final class ListUtils {
      * @param optional
      * @return
      */
+    @SuppressWarnings("rawtypes")
     public static boolean isEmpty(Optional<? extends List> optional) {
         return ObjectUtils.isNull(optional) || OptionalUtils.isNotPresent(optional) || isEmpty(optional.get());
     }
@@ -48,6 +51,7 @@ public final class ListUtils {
      * @param optional
      * @return
      */
+    @SuppressWarnings("rawtypes")
     public static boolean isNotEmpty(Optional<? extends List> optional) {
         return !isEmpty(optional);
     }

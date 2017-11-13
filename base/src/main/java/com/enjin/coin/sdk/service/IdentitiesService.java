@@ -1,15 +1,24 @@
 package com.enjin.coin.sdk.service;
 
-import com.enjin.coin.sdk.config.EnjinConfig;
-import com.enjin.coin.sdk.util.Constants;
-import com.enjin.coin.sdk.util.MapUtils;
-import com.enjin.coin.sdk.util.ObjectUtils;
-import com.enjin.coin.sdk.util.StringUtils;
-import com.enjin.coin.sdk.vo.identity.*;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
+
+import com.enjin.coin.sdk.config.EnjinConfig;
+import com.enjin.coin.sdk.util.Constants;
+import com.enjin.coin.sdk.util.MapUtils;
+import com.enjin.coin.sdk.util.StringUtils;
+import com.enjin.coin.sdk.vo.identity.CreateIdentityRequestVO;
+import com.enjin.coin.sdk.vo.identity.CreateIdentityResponseVO;
+import com.enjin.coin.sdk.vo.identity.DeleteIdentityRequestVO;
+import com.enjin.coin.sdk.vo.identity.DeleteIdentityResponseVO;
+import com.enjin.coin.sdk.vo.identity.GetIdentityRequestVO;
+import com.enjin.coin.sdk.vo.identity.GetIdentityResponseVO;
+import com.enjin.coin.sdk.vo.identity.ImmutableDeleteIdentityResponseVO;
+import com.enjin.coin.sdk.vo.identity.ListIdentitiesRequestVO;
+import com.enjin.coin.sdk.vo.identity.ListIdentitiesResponseVO;
+import com.enjin.coin.sdk.vo.identity.UpdateIdentityRequestVO;
+import com.enjin.coin.sdk.vo.identity.UpdateIdentityResponseVO;
 
 public class IdentitiesService extends BaseService {
 

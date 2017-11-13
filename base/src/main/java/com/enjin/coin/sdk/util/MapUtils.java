@@ -15,6 +15,7 @@ public final class MapUtils {
      * @param map
      * @return
      */
+    @SuppressWarnings("rawtypes")
     public static boolean isEmpty(Map map) {
         return ObjectUtils.isNull(map) || map.size() == 0;
     }
@@ -25,6 +26,7 @@ public final class MapUtils {
      * @param map
      * @return
      */
+    @SuppressWarnings("rawtypes")
     public static boolean isNotEmpty(Map map) {
         return !isEmpty(map);
     }
@@ -35,6 +37,7 @@ public final class MapUtils {
      * @param optional
      * @return
      */
+    @SuppressWarnings("rawtypes")
     public static boolean isEmpty(Optional<? extends Map> optional) {
         return ObjectUtils.isNull(optional) || OptionalUtils.isNotPresent(optional) || isEmpty(optional.get());
     }
@@ -45,6 +48,7 @@ public final class MapUtils {
      * @param optional
      * @return
      */
+    @SuppressWarnings("rawtypes")
     public static boolean isNotEmpty(Optional<? extends Map> optional) {
         return !isEmpty(optional);
     }
