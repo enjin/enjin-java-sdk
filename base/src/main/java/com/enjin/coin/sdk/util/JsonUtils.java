@@ -1,9 +1,12 @@
 package com.enjin.coin.sdk.util;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.logging.Logger;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-
-import java.util.logging.Logger;
+import com.google.gson.stream.JsonReader;
 
 public final class JsonUtils {
 
@@ -20,11 +23,18 @@ public final class JsonUtils {
         return convertJsonToObject(GsonUtils.GSON, jsonString, responseClass);
     }
 
+    /**
+     * Method to convert a json string to an object
+     * @param gson
+     * @param jsonString
+     * @param responseClass
+     * @return
+     */
     public static Object convertJsonToObject(Gson gson, String jsonString, Class<?> responseClass) {
         Object responseObject = null;
 
-        if (StringUtils.isEmpty(jsonString) || ObjectUtils.isNull(responseClass)) {
-            LOGGER.warning("jsonString passed in is null or empty or the responseClass is null");
+        if (gson == null || StringUtils.isEmpty(jsonString) || ObjectUtils.isNull(responseClass)) {
+            LOGGER.warning("gson passed in is null or jsonString passed in is null or empty or the responseClass is null");
             return responseObject;
         }
 
@@ -39,6 +49,50 @@ public final class JsonUtils {
         return responseObject;
     }
 
+    
+    /**
+     * Method to convert a json string from a file to an object
+     *
+     * @param filePath
+     * @param responseClass
+     * @return
+     */
+    public static Object convertJsonFromFileToObject(String filePath, Class<?> responseClass) {
+        return convertJsonToObject(GsonUtils.GSON, filePath, responseClass);
+    }
+
+    /**
+     * Method to convert a json string from a file to an object
+     * @param gson
+     * @param filePath
+     * @param responseClass
+     * @return
+     */
+    public static Object convertJsonFromFileToObject(Gson gson, String filePath, Class<?> responseClass) {
+        Object responseObject = null;
+
+        if (gson == null || StringUtils.isEmpty(filePath) || ObjectUtils.isNull(responseClass)) {
+            LOGGER.warning("gson passed in is null or filePath passed in is null or empty or the responseClass is null");
+            return responseObject;
+        }
+
+        //JSON from file to Object
+        try {
+            LOGGER.fine(String.format("filePath:%s", filePath));
+            FileReader fileReader = new FileReader("jsonFile.json");
+            JsonReader jsonReader = new JsonReader(fileReader);
+			responseObject = gson.fromJson(jsonReader, responseClass);
+        } catch (JsonSyntaxException e) {
+            LOGGER.warning(String.format("A JsonSyntaxException has occured. Exception: %s", StringUtils.exceptionToString(e)));
+        } catch (FileNotFoundException e) {
+        	LOGGER.warning(String.format("A FileNotFoundException has occured. Exception: %s", StringUtils.exceptionToString(e)));
+		}
+
+        return responseObject;
+    }
+
+    
+    
     /**
      * Method to convert an object to a json string
      *
@@ -49,11 +103,17 @@ public final class JsonUtils {
         return convertObjectToJson(GsonUtils.GSON, jsonObject);
     }
 
+    /**
+     *  Method to convert an object to a json string
+     * @param gson
+     * @param jsonObject
+     * @return
+     */
     public static String convertObjectToJson(Gson gson, Object jsonObject) {
         String jsonString = null;
 
-        if (ObjectUtils.isNull(jsonObject)) {
-            LOGGER.warning("jsonObject passed in is null");
+        if (gson == null || ObjectUtils.isNull(jsonObject)) {
+            LOGGER.warning("gson or jsonObject passed in is null");
             return jsonString;
         }
 
