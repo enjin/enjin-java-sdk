@@ -78,9 +78,15 @@ public class IdentitiesService extends BaseService {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("auth", listIdentitiesRequestVO.getAuth().get());
         params.put("identity", listIdentitiesRequestVO.getIdentity().get());
-        params.put("linked", listIdentitiesRequestVO.getLinked().get());
-        params.put("after_identity_id", listIdentitiesRequestVO.getAfterIdentityId().get());
-        params.put("limit", listIdentitiesRequestVO.getLimit().get());
+        if (listIdentitiesRequestVO.getLinked().isPresent()) {
+            params.put("linked", listIdentitiesRequestVO.getLinked().get());
+        }
+        if (listIdentitiesRequestVO.getAfterIdentityId().isPresent()) {
+            params.put("after_identity_id", listIdentitiesRequestVO.getAfterIdentityId().get());
+        }
+        if (listIdentitiesRequestVO.getLimit().isPresent()) {
+            params.put("limit", listIdentitiesRequestVO.getLimit().get());
+        }
 
         // Construct new request
         String method = Constants.METHOD_IDENTITIES_LIST;

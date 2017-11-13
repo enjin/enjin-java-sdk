@@ -3,11 +3,14 @@ package com.enjin.coin.sdk.mockServer;
 import com.enjin.coin.sdk.config.EnjinConfig;
 import com.enjin.coin.sdk.service.EnjinService;
 import com.enjin.coin.sdk.service.TokensService;
-import com.enjin.coin.sdk.vo.token.*;
+import com.enjin.coin.sdk.vo.token.GetTokenRequestVO;
+import com.enjin.coin.sdk.vo.token.ImmutableGetTokenRequestVO;
+import com.enjin.coin.sdk.vo.token.ImmutableListTokensRequestVO;
+import com.enjin.coin.sdk.vo.token.ListTokensRequestVO;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertNotNull;
+import static org.assertj.core.api.Assertions.*;
 
 public class TokensServiceTestsAgainstMockServer extends BaseMockServer {
 
@@ -27,22 +30,22 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer {
         GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
                 .setTokenId("12345")
                 .build();
-        assertNotNull(getTokenRequestVO.toString());
-
-        GetTokenResponseVO getTokenResponseVO = tokens.getToken(getTokenRequestVO);
-        assertNotNull(getTokenResponseVO);
-        assertNotNull(getTokenResponseVO.toString());
-        assertNotNull(getTokenResponseVO.getAdapter());
-        assertNotNull(getTokenResponseVO.getCreator());
-        assertNotNull(getTokenResponseVO.getDecimals());
-        assertNotNull(getTokenResponseVO.getExchangeRate());
-        assertNotNull(getTokenResponseVO.getIcon());
-        assertNotNull(getTokenResponseVO.getMaxMeltFee());
-        assertNotNull(getTokenResponseVO.getMeltFee());
-        assertNotNull(getTokenResponseVO.getName());
-        assertNotNull(getTokenResponseVO.getTokenId());
-        assertNotNull(getTokenResponseVO.getTotalSupply());
-        assertNotNull(getTokenResponseVO.getTransferable());
+        assertThat(getTokenRequestVO).isNotNull()
+                .satisfies(o -> assertThat(o.toString()).isNotEmpty())
+                .satisfies(o -> assertThat(tokens.getToken(o)).isNotNull()
+                        .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getAdapter()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getCreator()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getDecimals()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getExchangeRate()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getIcon()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getMaxMeltFee()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getMeltFee()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getName()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getTokenId()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getTotalSupply()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getTransferable()).isNotEmpty())
+                );
     }
 
     @Test
@@ -52,26 +55,24 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer {
                 .setAfterTokenId("352")
                 .setLimit("limit1")
                 .build();
-        assertNotNull(listTokensRequestVO.toString());
-
-        ListTokensResponseVO listTokensResponseVOArray = tokens.listTokens(listTokensRequestVO);
-        assertNotNull(listTokensResponseVOArray.toString());
-
-        for (GetTokenResponseVO getTokenResponseVO : listTokensResponseVOArray.getGetTokensResponseVOArray()) {
-            assertNotNull(getTokenResponseVO);
-            assertNotNull(getTokenResponseVO.toString());
-            assertNotNull(getTokenResponseVO.getAdapter());
-            assertNotNull(getTokenResponseVO.getCreator());
-            assertNotNull(getTokenResponseVO.getDecimals());
-            assertNotNull(getTokenResponseVO.getExchangeRate());
-            assertNotNull(getTokenResponseVO.getIcon());
-            assertNotNull(getTokenResponseVO.getMaxMeltFee());
-            assertNotNull(getTokenResponseVO.getMeltFee());
-            assertNotNull(getTokenResponseVO.getName());
-            assertNotNull(getTokenResponseVO.getTokenId());
-            assertNotNull(getTokenResponseVO.getTotalSupply());
-            assertNotNull(getTokenResponseVO.getTransferable());
-        }
+        assertThat(listTokensRequestVO).isNotNull()
+                .satisfies(o -> assertThat(o.toString()).isNotEmpty())
+                .satisfies(o -> assertThat(tokens.listTokens(o)).isNotNull()
+                        .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
+                        .satisfies(o2 -> assertThat(o2.getGetTokensResponseVOArray()).isPresent()
+                                .hasValueSatisfying(o3 -> assertThat(o3).allSatisfy(i -> assertThat(i).isNotNull()
+                                        .satisfies(o4 -> assertThat(o4.toString()).isNotEmpty())
+                                        .satisfies(o4 -> assertThat(o4.getAdapter()).isNotEmpty())
+                                        .satisfies(o4 -> assertThat(o4.getCreator()).isNotEmpty())
+                                        .satisfies(o4 -> assertThat(o4.getDecimals()).isNotEmpty())
+                                        .satisfies(o4 -> assertThat(o4.getExchangeRate()).isNotEmpty())
+                                        .satisfies(o4 -> assertThat(o4.getIcon()).isNotEmpty())
+                                        .satisfies(o4 -> assertThat(o4.getMaxMeltFee()).isNotEmpty())
+                                        .satisfies(o4 -> assertThat(o4.getMeltFee()).isNotEmpty())
+                                        .satisfies(o4 -> assertThat(o4.getName()).isNotEmpty())
+                                        .satisfies(o4 -> assertThat(o4.getTokenId()).isNotEmpty())
+                                        .satisfies(o4 -> assertThat(o4.getTotalSupply()).isNotEmpty())
+                                        .satisfies(o4 -> assertThat(o4.getTransferable()).isNotEmpty())))));
     }
 
 }

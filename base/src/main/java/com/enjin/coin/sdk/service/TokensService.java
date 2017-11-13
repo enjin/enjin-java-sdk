@@ -39,7 +39,7 @@ public class TokensService extends BaseService {
         }
 
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("token_id", getTokenRequestVO.getTokenId());
+        params.put("token_id", getTokenRequestVO.getTokenId().get());
 
         // Construct new request
         String method = Constants.METHOD_TOKENS_GET;
@@ -66,9 +66,9 @@ public class TokensService extends BaseService {
         }
 
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("app_id", listTokensRequestVO.getAppId());
-        params.put("after_token_id", listTokensRequestVO.getAfterTokenId());
-        params.put("limit", listTokensRequestVO.getLimit());
+        params.put("app_id", listTokensRequestVO.getAppId().get());
+        params.put("after_token_id", listTokensRequestVO.getAfterTokenId().get());
+        params.put("limit", listTokensRequestVO.getLimit().get());
 
         // Construct new request
         String method = Constants.METHOD_TOKENS_LIST;
