@@ -6,44 +6,39 @@ import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 
 import java.util.Map;
+import java.util.Optional;
 
 @Value.Immutable
 @Gson.TypeAdapters
 public abstract class CreateTransactionRequestRequestVO {
 
-    @Nullable
     @SerializedName("auth")
-    public abstract String getAuth();
+    public abstract Optional<String> getAuth();
 
-    @Nullable
     @SerializedName("identity")
-    public abstract Map<String, Object> getIdentityMap();
+    public abstract Optional<Map<String, Object>> getIdentityMap();
 
-    @Nullable
     @SerializedName("recipient")
-    public abstract Map<String, Object> getRecipientMap();
+    public abstract Optional<Map<String, Object>> getRecipientMap();
 
-    @Nullable
     @SerializedName("type")
-    public abstract String getType();
+    public abstract Optional<String> getType();
 
-    @Nullable
     @SerializedName("icon")
-    public abstract String getIcon();
+    public abstract Optional<String> getIcon();
 
-    @Nullable
     @SerializedName("title")
-    public abstract String getTitle();
+    public abstract Optional<String> getTitle();
 
-    @Nullable
     @SerializedName("value")
-    public abstract Map<String, Object> getValueMap();
+    public abstract Optional<Map<String, Object>> getValueMap();
 
     @Override
     public String toString() {
-        return "CreateTransactionRequestRequestVO [auth=" + getAuth() + ", identityMap=" + getIdentityMap() + ", recipientMap="
-                + getRecipientMap() + ", type=" + getType() + ", icon=" + getIcon() + ", title=" + getTitle() + ", valueMap=" + getValueMap()
-                + "]";
+        return "CreateTransactionRequestRequestVO [auth=" + getAuth().orElse(null) + ", identityMap=" + getIdentityMap().orElse(null)
+                + ", recipientMap=" + getRecipientMap().orElse(null) + ", type=" + getType().orElse(null)
+                + ", icon=" + getIcon().orElse(null) + ", title=" + getTitle().orElse(null)
+                + ", valueMap=" + getValueMap().orElse(null) + "]";
     }
 
 }

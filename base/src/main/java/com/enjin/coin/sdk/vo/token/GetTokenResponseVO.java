@@ -1,64 +1,56 @@
 package com.enjin.coin.sdk.vo.token;
 
-import com.enjin.coin.sdk.annotations.immutables.Nullable;
 import com.google.gson.annotations.SerializedName;
 import org.immutables.gson.Gson;
 import org.immutables.value.Value;
+
+import java.util.Optional;
 
 @Value.Immutable
 @Gson.TypeAdapters
 public abstract class GetTokenResponseVO {
 
-    @Nullable
     @SerializedName("token_id")
-    public abstract String getTokenId();
+    public abstract Optional<String> getTokenId();
 
-    @Nullable
     @SerializedName("creator")
-    public abstract String getCreator();
+    public abstract Optional<String> getCreator();
 
-    @Nullable
     @SerializedName("adapter")
-    public abstract String getAdapter();
+    public abstract Optional<String> getAdapter();
 
-    @Nullable
     @SerializedName("name")
-    public abstract String getName();
+    public abstract Optional<String> getName();
 
-    @Nullable
     @SerializedName("icon")
-    public abstract String getIcon();
+    public abstract Optional<String> getIcon();
 
-    @Nullable
     @SerializedName("totalSupply")
-    public abstract String getTotalSupply();
+    public abstract Optional<String> getTotalSupply();
 
-    @Nullable
     @SerializedName("exchangeRate")
-    public abstract String getExchangeRate();
+    public abstract Optional<String> getExchangeRate();
 
-    @Nullable
     @SerializedName("decimals")
-    public abstract String getDecimals();
+    public abstract Optional<String> getDecimals();
 
-    @Nullable
     @SerializedName("maxMeltFee")
-    public abstract String getMaxMeltFee();
+    public abstract Optional<String> getMaxMeltFee();
 
-    @Nullable
     @SerializedName("meltFee")
-    public abstract String getMeltFee();
+    public abstract Optional<String> getMeltFee();
 
-    @Nullable
     @SerializedName("transferable")
-    public abstract String getTransferable();
+    public abstract Optional<String> getTransferable();
 
     @Override
     public String toString() {
-        return "GetTokenResponseVO [tokenId=" + getTokenId() + ", creator=" + getCreator() + ", adapter=" + getAdapter() + ", name="
-                + getName() + ", icon=" + getIcon() + ", totalSupply=" + getTotalSupply() + ", exchangeRate=" + getExchangeRate()
-                + ", decimals=" + getDecimals() + ", maxMeltFee=" + getMaxMeltFee() + ", meltFee=" + getMeltFee() + ", transferable="
-                + getTransferable() + "]";
+        return "GetTokenResponseVO [tokenId=" + getTokenId().orElse(null) + ", creator=" + getCreator().orElse(null)
+                + ", adapter=" + getAdapter().orElse(null) + ", name=" + getName().orElse(null)
+                + ", icon=" + getIcon().orElse(null) + ", totalSupply=" + getTotalSupply().orElse(null)
+                + ", exchangeRate=" + getExchangeRate().orElse(null) + ", decimals=" + getDecimals().orElse(null)
+                + ", maxMeltFee=" + getMaxMeltFee().orElse(null) + ", meltFee=" + getMeltFee().orElse(null)
+                + ", transferable=" + getTransferable().orElse(null) + "]";
     }
 
 }

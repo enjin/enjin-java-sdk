@@ -4,7 +4,7 @@ import com.enjin.coin.sdk.config.EnjinConfig;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertNotNull;
+import static org.assertj.core.api.Assertions.*;
 
 public class EnjinServiceTest {
 
@@ -21,52 +21,52 @@ public class EnjinServiceTest {
     public void testContructor_EnjinConfigIsNull() {
         enjinConfig = null;
         enjinService = new EnjinService(enjinConfig);
-        assertNotNull(enjinService);
+        assertThat(enjinService).isNotNull();
     }
 
     @Test
     public void testContructor() {
         enjinService = new EnjinService(enjinConfig);
-        assertNotNull(enjinService);
+        assertThat(enjinService).isNotNull();
     }
 
     @Test
     public void testGetEventsService() {
         EventsService eventsService = enjinService.getEventsService();
-        assertNotNull(eventsService);
+        assertThat(eventsService).isNotNull();
 
         //Second time around - the existin service should be returned
-        eventsService = enjinService.getEventsService();
-        assertNotNull(eventsService);
+        EventsService eventsService2 = enjinService.getEventsService();
+        assertThat(eventsService2).isNotNull().isSameAs(eventsService);
     }
 
     @Test
     public void testGetIdentitiesService() {
         IdentitiesService identitiesService = enjinService.getIdentitiesService();
-        assertNotNull(identitiesService);
+        assertThat(identitiesService).isNotNull();
 
         //Second time around - the existin service should be returned
-        identitiesService = enjinService.getIdentitiesService();
-        assertNotNull(identitiesService);
+        IdentitiesService identitiesService2 = enjinService.getIdentitiesService();
+        assertThat(identitiesService2).isNotNull().isSameAs(identitiesService);
     }
 
     @Test
     public void testGetTokensService() {
         TokensService tokensService = enjinService.getTokensService();
-        assertNotNull(tokensService);
+        assertThat(tokensService).isNotNull();
 
         //Second time around - the existin service should be returned
-        tokensService = enjinService.getTokensService();
-        assertNotNull(tokensService);
+        TokensService tokensService2 = enjinService.getTokensService();
+        assertThat(tokensService2).isNotNull().isSameAs(tokensService);
     }
 
     @Test
     public void testGetTransactionRequestsService() {
         TransactionRequestsService transactionRequestsService = enjinService.getTransactionRequestsService();
-        assertNotNull(transactionRequestsService);
+        assertThat(transactionRequestsService).isNotNull();
 
         //Second time around - the existin service should be returned
-        transactionRequestsService = enjinService.getTransactionRequestsService();
-        assertNotNull(transactionRequestsService);
+        TransactionRequestsService transactionRequestsService2 = enjinService.getTransactionRequestsService();
+        assertThat(transactionRequestsService2).isNotNull().isSameAs(transactionRequestsService);
     }
 }

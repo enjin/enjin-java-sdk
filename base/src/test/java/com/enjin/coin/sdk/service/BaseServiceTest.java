@@ -4,8 +4,7 @@ import com.enjin.coin.sdk.config.EnjinConfig;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.assertj.core.api.Assertions.*;
 
 public class BaseServiceTest {
 
@@ -22,15 +21,15 @@ public class BaseServiceTest {
     public void testContructor_EnjinConfigIsNull() {
         enjinConfig = null;
         baseAction = new IdentitiesService(enjinConfig);
-        assertNotNull(baseAction);
-        assertNotNull(baseAction.toString());
+        assertThat(baseAction).isNotNull()
+                .satisfies(o -> assertThat(o.toString()).isNotEmpty());
     }
 
     @Test
     public void testContructor1() {
         baseAction = new IdentitiesService(enjinConfig);
-        assertNotNull(baseAction);
-        assertNotNull(baseAction.toString());
+        assertThat(baseAction).isNotNull()
+                .satisfies(o -> assertThat(o.toString()).isNotEmpty());
     }
 
     @Test
@@ -38,81 +37,81 @@ public class BaseServiceTest {
         enjinConfig.setInTestMode(true);
         enjinConfig.setTrustedPlatformUrl("http://localhost:8080");
         baseAction = new IdentitiesService(enjinConfig);
-        assertNotNull(baseAction);
-        assertNotNull(baseAction.toString());
+        assertThat(baseAction).isNotNull()
+                .satisfies(o -> assertThat(o.toString()).isNotEmpty());
     }
 
     @Test
     public void testGetIdentitiesUrl1() {
         String identitiesURL = baseAction.getIdentitiesUrl();
-        assertNotNull(identitiesURL);
+        assertThat(identitiesURL).isNotEmpty();
     }
 
     @Test
     public void testGetIdentitiesUrl2() {
         baseAction.setTrustedPlatformUrl("http://localhost:8081");
         String identitiesURL = baseAction.getIdentitiesUrl();
-        assertNotNull(identitiesURL);
+        assertThat(identitiesURL).isNotEmpty();
     }
 
     @Test
     public void testGetIdentitiesUrl3() {
         baseAction.setTrustedPlatformUrl("http://localhost:8081/");
         String identitiesURL = baseAction.getIdentitiesUrl();
-        assertNotNull(identitiesURL);
+        assertThat(identitiesURL).isNotEmpty();
     }
 
     @Test
     public void testGetTokensUrl1() {
         String tokensURL = baseAction.getTokensUrl();
-        assertNotNull(tokensURL);
+        assertThat(tokensURL).isNotEmpty();
     }
 
     @Test
     public void testGetTokensUrl2() {
         baseAction.setTrustedPlatformUrl("http://localhost:8081");
         String tokensURL = baseAction.getTokensUrl();
-        assertNotNull(tokensURL);
+        assertThat(tokensURL).isNotEmpty();
     }
 
     @Test
     public void testGetTokensUrl3() {
         baseAction.setTrustedPlatformUrl("http://localhost:8081/");
         String tokensURL = baseAction.getTokensUrl();
-        assertNotNull(tokensURL);
+        assertThat(tokensURL).isNotEmpty();
     }
 
     @Test
     public void testGetTransactionRequestsUrl1() {
         String transactionRequestsURL = baseAction.getTransactionRequestsUrl();
-        assertNotNull(transactionRequestsURL);
+        assertThat(transactionRequestsURL).isNotEmpty();
     }
 
     @Test
     public void testGetTransactionRequestsUrl2() {
         baseAction.setTrustedPlatformUrl("http://localhost:8081");
         String transactionRequestsURL = baseAction.getTransactionRequestsUrl();
-        assertNotNull(transactionRequestsURL);
+        assertThat(transactionRequestsURL).isNotEmpty();
     }
 
     @Test
     public void testGetTransactionRequestsUrl3() {
         baseAction.setTrustedPlatformUrl("http://localhost:8081/");
         String transactionRequestsURL = baseAction.getTransactionRequestsUrl();
-        assertNotNull(transactionRequestsURL);
+        assertThat(transactionRequestsURL).isNotEmpty();
     }
 
     @Test
     public void testGetTrustedPlatformUrl_Null() {
         String trustedPlatformURL = baseAction.getTrustedPlatformUrl();
-        assertNull(trustedPlatformURL);
+        assertThat(trustedPlatformURL).isNull();
     }
 
     @Test
     public void testGetTrustedPlatformUrl_Success() {
         baseAction.setTrustedPlatformUrl("http://localhost:8081/");
         String trustedPlatformURL = baseAction.getTrustedPlatformUrl();
-        assertNotNull(trustedPlatformURL);
+        assertThat(trustedPlatformURL).isNotEmpty();
     }
 
 }

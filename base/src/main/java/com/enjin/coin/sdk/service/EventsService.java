@@ -44,8 +44,8 @@ public class EventsService extends BaseService {
         }
 
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("auth", getEventRequestVO.getAuth());
-        params.put("event_id", getEventRequestVO.getEventId());
+        params.put("auth", getEventRequestVO.getAuth().get());
+        params.put("event_id", getEventRequestVO.getEventId().get());
 
         // Construct new request
         String method = Constants.METHOD_EVENTS_GET;
@@ -73,10 +73,10 @@ public class EventsService extends BaseService {
         }
 
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("auth", listEventsRequestVO.getAuth());
-        params.put("app_id", listEventsRequestVO.getAppId());
-        params.put("after_Event_id", listEventsRequestVO.getAfterEventId());
-        params.put("limit", listEventsRequestVO.getLimit());
+        params.put("auth", listEventsRequestVO.getAuth().get());
+        params.put("app_id", listEventsRequestVO.getAppId().get());
+        params.put("after_Event_id", listEventsRequestVO.getAfterEventId().get());
+        params.put("limit", listEventsRequestVO.getLimit().get());
 
         // Construct new request
         String method = Constants.METHOD_EVENTS_LIST;
@@ -92,4 +92,5 @@ public class EventsService extends BaseService {
 
         return listEventsResponseVO;
     }
+
 }

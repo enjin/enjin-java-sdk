@@ -13,8 +13,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.util.Map;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.assertj.core.api.Assertions.*;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(TokensService.class)
@@ -31,8 +30,8 @@ public class TokensServiceTest {
     @Test
     public void testContructor() {
         tokenService = new TokensService(enjinConfig);
-        assertNotNull(tokenService);
-        assertNotNull(tokenService.toString());
+        assertThat(tokenService).isNotNull()
+                .satisfies(o -> assertThat(o.toString()).isNotEmpty());
     }
 
     @Test
@@ -41,18 +40,18 @@ public class TokensServiceTest {
 
         tokenService = new TokensService(enjinConfig);
         GetTokenResponseVO getTokenResponseVO = tokenService.getToken(getTokenRequestVO);
-        assertNull(getTokenResponseVO);
+        assertThat(getTokenResponseVO).isNull();
     }
 
     @Test
     public void testGetToken_TokenIsNull() {
         GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
-                .setTokenId(null)
+                .setTokenId((String) null)
                 .build();
 
         tokenService = new TokensService(enjinConfig);
         GetTokenResponseVO getTokenResponseVO = tokenService.getToken(getTokenRequestVO);
-        assertNull(getTokenResponseVO);
+        assertThat(getTokenResponseVO).isNull();
     }
 
     @Test
@@ -63,7 +62,7 @@ public class TokensServiceTest {
 
         tokenService = new TokensService(enjinConfig);
         GetTokenResponseVO getTokenResponseVO = tokenService.getToken(getTokenRequestVO);
-        assertNull(getTokenResponseVO);
+        assertThat(getTokenResponseVO).isNull();
     }
 
     @SuppressWarnings("unchecked")
@@ -81,7 +80,7 @@ public class TokensServiceTest {
 
         tokenService = new TokensService(enjinConfig);
         GetTokenResponseVO getTokenResponseVO = tokenService.getToken(getTokenRequestVO);
-        assertNull(getTokenResponseVO);
+        assertThat(getTokenResponseVO).isNull();
 
         PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
         Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
@@ -102,7 +101,7 @@ public class TokensServiceTest {
 
         tokenService = new TokensService(enjinConfig);
         GetTokenResponseVO getTokenResponseVO = tokenService.getToken(getTokenRequestVO);
-        assertNotNull(getTokenResponseVO);
+        assertThat(getTokenResponseVO).isNotNull();
 
         PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
         Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
@@ -114,19 +113,19 @@ public class TokensServiceTest {
 
         tokenService = new TokensService(enjinConfig);
         ListTokensResponseVO listTokensResponseVO = tokenService.listTokens(listTokensRequestVO);
-        assertNull(listTokensResponseVO);
+        assertThat(listTokensResponseVO).isNull();
     }
 
     @Test
     public void testListTokens_AfterTokenIdIsNull() {
         ListTokensRequestVO listTokensRequestVO = ImmutableListTokensRequestVO.builder()
-                .setAfterTokenId(null)
+                .setAfterTokenId((String) null)
                 .setAppId("appId")
                 .setLimit("limit")
                 .build();
         tokenService = new TokensService(enjinConfig);
         ListTokensResponseVO listTokensResponseVO = tokenService.listTokens(listTokensRequestVO);
-        assertNull(listTokensResponseVO);
+        assertThat(listTokensResponseVO).isNull();
     }
 
     @Test
@@ -139,19 +138,19 @@ public class TokensServiceTest {
 
         tokenService = new TokensService(enjinConfig);
         ListTokensResponseVO listTokensResponseVO = tokenService.listTokens(listTokensRequestVO);
-        assertNull(listTokensResponseVO);
+        assertThat(listTokensResponseVO).isNull();
     }
 
     @Test
     public void testListTokens_AppIdIsNull() {
         ListTokensRequestVO listTokensRequestVO = ImmutableListTokensRequestVO.builder()
                 .setAfterTokenId("afterTokenId")
-                .setAppId(null)
+                .setAppId((String) null)
                 .setLimit("limit")
                 .build();
         tokenService = new TokensService(enjinConfig);
         ListTokensResponseVO listTokensResponseVO = tokenService.listTokens(listTokensRequestVO);
-        assertNull(listTokensResponseVO);
+        assertThat(listTokensResponseVO).isNull();
     }
 
     @Test
@@ -163,7 +162,7 @@ public class TokensServiceTest {
                 .build();
         tokenService = new TokensService(enjinConfig);
         ListTokensResponseVO listTokensResponseVO = tokenService.listTokens(listTokensRequestVO);
-        assertNull(listTokensResponseVO);
+        assertThat(listTokensResponseVO).isNull();
     }
 
     @Test
@@ -171,11 +170,11 @@ public class TokensServiceTest {
         ListTokensRequestVO listTokensRequestVO = ImmutableListTokensRequestVO.builder()
                 .setAfterTokenId("afterTokenId")
                 .setAppId("appId")
-                .setLimit(null)
+                .setLimit((String) null)
                 .build();
         tokenService = new TokensService(enjinConfig);
         ListTokensResponseVO listTokensResponseVO = tokenService.listTokens(listTokensRequestVO);
-        assertNull(listTokensResponseVO);
+        assertThat(listTokensResponseVO).isNull();
     }
 
     @SuppressWarnings("unchecked")
@@ -195,7 +194,7 @@ public class TokensServiceTest {
 
         tokenService = new TokensService(enjinConfig);
         ListTokensResponseVO listTokensResponseVO = tokenService.listTokens(listTokensRequestVO);
-        assertNull(listTokensResponseVO);
+        assertThat(listTokensResponseVO).isNull();
 
         PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
         Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
@@ -218,7 +217,7 @@ public class TokensServiceTest {
 
         tokenService = new TokensService(enjinConfig);
         ListTokensResponseVO listTokensResponseVO = tokenService.listTokens(listTokensRequestVO);
-        assertNull(listTokensResponseVO);
+        assertThat(listTokensResponseVO).isNull();
 
         PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
         Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
@@ -243,9 +242,10 @@ public class TokensServiceTest {
 
         tokenService = new TokensService(enjinConfig);
         ListTokensResponseVO listTokensResponseVO = tokenService.listTokens(listTokensRequestVO);
-        assertNotNull(listTokensResponseVO);
-        assertNotNull(listTokensResponseVO.getGetTokensResponseVOArray());
-        assertNotNull(listTokensResponseVO.getGetTokensResponseVOArray().length == 1);
+        assertThat(listTokensResponseVO).isNotNull()
+                .satisfies(o -> assertThat(o.toString()).isNotEmpty())
+                .satisfies(o -> assertThat(o.getGetTokensResponseVOArray()).isPresent()
+                        .hasValueSatisfying(v -> assertThat(v).hasSize(1)));
 
         PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
         Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
@@ -271,9 +271,10 @@ public class TokensServiceTest {
 
         tokenService = new TokensService(enjinConfig);
         ListTokensResponseVO listTokensResponseVO = tokenService.listTokens(listTokensRequestVO);
-        assertNotNull(listTokensResponseVO);
-        assertNotNull(listTokensResponseVO.getGetTokensResponseVOArray());
-        assertNotNull(listTokensResponseVO.getGetTokensResponseVOArray().length == 2);
+        assertThat(listTokensResponseVO).isNotNull()
+                .satisfies(o -> assertThat(o.toString()).isNotEmpty())
+                .satisfies(o -> assertThat(o.getGetTokensResponseVOArray()).isPresent()
+                        .hasValueSatisfying(v -> assertThat(v).hasSize(2)));
 
         PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
         Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
