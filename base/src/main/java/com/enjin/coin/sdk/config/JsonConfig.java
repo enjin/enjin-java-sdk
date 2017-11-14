@@ -109,6 +109,7 @@ public class JsonConfig {
             }
 
             JsonElement element = oldObj.get(entry.getKey());
+
             if (entry.getValue().isJsonObject()) {
                 LOGGER.fine(String.format("%s is an object, processing object fields.", entry.getKey()));
                 update(element.getAsJsonObject(), element.getAsJsonObject());

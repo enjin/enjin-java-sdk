@@ -194,6 +194,74 @@ public class JsonUtilsTest {
 	}
 
 	@Test
+	public void testConvertJsonFromFileReaderToObject_FileReaderIsNull() {
+		FileReader mockFileReader = null;
+		Class<?> responseClass = GetEventResponseVO.class;
+		Gson mockGson = PowerMockito.mock(Gson.class);
+
+		Object responseObject = JsonUtils.convertJsonFromFileReaderToObject(mockGson, mockFileReader, responseClass);
+		assertThat(responseObject).isNull();
+	}
+
+	@Test
+	public void testConvertJsonFromFileReaderToObject_ResponseObjectIsNull() {
+		FileReader mockFileReader = Mockito.mock(FileReader.class);
+		Class<?> responseClass = null;
+		Gson mockGson = PowerMockito.mock(Gson.class);
+
+		Object responseObject = JsonUtils.convertJsonFromFileReaderToObject(mockGson, mockFileReader, responseClass);
+		assertThat(responseObject).isNull();
+	}
+
+	@Test
+	public void testConvertJsonFromFileReaderToObject_GsonIsNull() throws Exception {
+		FileReader mockFileReader = Mockito.mock(FileReader.class);
+		Class<?> responseClass = GetEventResponseVO.class;
+
+		Gson mockGson = null;
+
+		Object responseObject = JsonUtils.convertJsonFromFileReaderToObject(mockGson, mockFileReader, responseClass);
+		assertThat(responseObject).isNull();
+	}
+
+
+	@Test
+	public void testConvertJsonFromFileReaderToObject_JsonSyntaxException() throws Exception {
+		FileReader mockFileReader = Mockito.mock(FileReader.class);
+		Class<?> responseClass = GetEventResponseVO.class;
+
+		Gson mockGson = PowerMockito.mock(Gson.class);
+		JsonReader mockJsonReader = Mockito.mock(JsonReader.class);
+
+		PowerMockito.whenNew(JsonReader.class).withArguments(Mockito.isA(FileReader.class)).thenReturn(mockJsonReader);
+		Mockito.when(mockGson.fromJson(Mockito.isA(JsonReader.class), Mockito.isA(Class.class))).thenThrow(new JsonSyntaxException("exception"));
+		Object responseObject = JsonUtils.convertJsonFromFileReaderToObject(mockGson, mockFileReader, responseClass);
+		assertThat(responseObject).isNull();
+
+		PowerMockito.verifyNew(JsonReader.class, Mockito.times(1)).withArguments(Mockito.isA(FileReader.class));
+		Mockito.verify(mockGson, Mockito.times(1)).fromJson(Mockito.isA(JsonReader.class), Mockito.isA(Class.class));
+	}
+
+	@Test
+	public void testConvertJsonFromFileReaderToObject_Success() throws Exception {
+		FileReader mockFileReader = Mockito.mock(FileReader.class);
+		Class<?> responseClass = GetEventResponseVO.class;
+
+		Gson mockGson = PowerMockito.mock(Gson.class);
+		JsonReader mockJsonReader = Mockito.mock(JsonReader.class);
+
+		PowerMockito.whenNew(JsonReader.class).withArguments(Mockito.isA(FileReader.class)).thenReturn(mockJsonReader);
+		Mockito.when(mockGson.fromJson(Mockito.isA(JsonReader.class), Mockito.isA(Class.class))).thenReturn(ImmutableGetEventResponseVO.builder().build());
+		Object responseObject = JsonUtils.convertJsonFromFileReaderToObject(mockGson, mockFileReader, responseClass);
+		assertThat(responseObject).isNotNull();
+
+		PowerMockito.verifyNew(JsonReader.class, Mockito.times(1)).withArguments(Mockito.isA(FileReader.class));
+		Mockito.verify(mockGson, Mockito.times(1)).fromJson(Mockito.isA(JsonReader.class), Mockito.isA(Class.class));
+	}
+	
+	
+	
+	@Test
 	public void testConvertObjectToJson_JsonObjectIsNull() {
 		Object jsonObject = null;
 		Gson mockGson = PowerMockito.mock(Gson.class);

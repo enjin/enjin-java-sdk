@@ -240,7 +240,6 @@ public class JsonConfigTest {
 		Mockito.verify(mockFile, Mockito.times(1)).exists();
 		Mockito.verify(mockFile, Mockito.times(1)).length();
 	    PowerMockito.verifyNew(FileReader.class, Mockito.times(1)).withArguments(Mockito.isA(File.class));
-	    PowerMockito.verifyStatic(JsonUtils.class);
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -268,7 +267,6 @@ public class JsonConfigTest {
 		Mockito.verify(mockFile, Mockito.times(1)).exists();
 		Mockito.verify(mockFile, Mockito.times(1)).length();
 	    PowerMockito.verifyNew(FileReader.class, Mockito.times(1)).withArguments(Mockito.isA(File.class));
-	    PowerMockito.verifyStatic(JsonUtils.class);
 	}
 
 	@Test
@@ -286,7 +284,6 @@ public class JsonConfigTest {
 		boolean result = jsonConfig.update(mockFile, data);
 		assertThat(result).isFalse();
 
-	    //PowerMockito.verifyStatic(JsonUtils.class);
 	    Mockito.verify(mockJsonElement, Mockito.times(2)).isJsonObject();
 	}
 	
@@ -312,7 +309,6 @@ public class JsonConfigTest {
 		boolean result = jsonConfig.update(mockFile, data);
 		assertThat(result).isFalse();
 
-	    //PowerMockito.verifyStatic(JsonUtils.class);
 	    Mockito.verify(mockJsonElement, Mockito.times(1)).isJsonObject();
 	    Mockito.verify(mockJsonElement, Mockito.times(2)).getAsJsonObject();
 	    PowerMockito.verifyNew(FileWriter.class, Mockito.times(1)).withArguments(Mockito.isA(File.class));
@@ -346,10 +342,86 @@ public class JsonConfigTest {
 		boolean result = jsonConfig.update(mockFile, data);
 		assertThat(result).isTrue();
 
-	    //PowerMockito.verifyStatic(JsonUtils.class);
 	    Mockito.verify(mockJsonElement, Mockito.times(1)).isJsonObject();
 	    Mockito.verify(mockJsonElement, Mockito.times(2)).getAsJsonObject();
 	    PowerMockito.verifyNew(FileWriter.class, Mockito.times(1)).withArguments(Mockito.isA(File.class));
+	}
+	
+	@Test
+	public void testUpdate_SuccessOldAndNewDontHaveSameKeys() throws Exception {
+		Object data = new Object();
+		File mockFile = PowerMockito.mock(File.class);
+		JsonObject oldJsonObject = new JsonObject();
+        oldJsonObject.addProperty("id", "1");
+		
+		JsonObject updatedJsonObject = new JsonObject();
+		updatedJsonObject.addProperty("2id", "id2");
+
+        FileWriter mockFileWriter = PowerMockito.mock(FileWriter.class);
+    	FileWriter spyFileWriter = Mockito.spy(mockFileWriter);
+    	
+        PowerMockito.mockStatic(JsonUtils.class);
+		PowerMockito.when(JsonUtils.convertObjectToJsonTree(Mockito.isA(Gson.class), Mockito.any())).thenReturn(oldJsonObject, updatedJsonObject);
+		PowerMockito.whenNew(FileWriter.class).withParameterTypes(File.class).withArguments(mockFile).thenReturn(mockFileWriter);
+		PowerMockito.when(JsonUtils.convertObjectToJson(Mockito.isA(Gson.class), Mockito.any())).thenReturn("{}");
+		Mockito.doNothing().when(spyFileWriter).write(Mockito.anyString());
+		Mockito.doNothing().when(spyFileWriter).close();
+		
+		JsonConfig jsonConfig = new JsonConfig();
+		boolean result = jsonConfig.update(mockFile, data);
+		assertThat(result).isTrue();
+
+	    PowerMockito.verifyNew(FileWriter.class, Mockito.times(1)).withArguments(Mockito.isA(File.class));
+	}
+	
+	@Test
+	public void testUpdate_SuccessOldAndNewHaveSameKeys() throws Exception {
+		Object data = new Object();
+		File mockFile = PowerMockito.mock(File.class);
+		JsonObject oldJsonObject = new JsonObject();
+        oldJsonObject.addProperty("id", "1");
+
+        FileWriter mockFileWriter = PowerMockito.mock(FileWriter.class);
+    	FileWriter spyFileWriter = Mockito.spy(mockFileWriter);
+    	
+        PowerMockito.mockStatic(JsonUtils.class);
+		PowerMockito.when(JsonUtils.convertObjectToJsonTree(Mockito.isA(Gson.class), Mockito.any())).thenReturn(oldJsonObject, oldJsonObject);
+		PowerMockito.whenNew(FileWriter.class).withParameterTypes(File.class).withArguments(mockFile).thenReturn(mockFileWriter);
+		PowerMockito.when(JsonUtils.convertObjectToJson(Mockito.isA(Gson.class), Mockito.any())).thenReturn("{}");
+		Mockito.doNothing().when(spyFileWriter).write(Mockito.anyString());
+		Mockito.doNothing().when(spyFileWriter).close();
+		
+		JsonConfig jsonConfig = new JsonConfig();
+		boolean result = jsonConfig.update(mockFile, data);
+		assertThat(result).isTrue();
+
+	    PowerMockito.verifyNew(FileWriter.class, Mockito.times(1)).withArguments(Mockito.isA(File.class));
+	}
+	
+	@Test
+	public void testUpdate_SuccessOldAndNewHaveSameKeysAndOneIsJsonObject() throws Exception {
+		Object data = new Object();
+		File mockFile = PowerMockito.mock(File.class);
+		JsonObject oldJsonObject = new JsonObject();
+        oldJsonObject.add("id", new JsonObject());
+
+        FileWriter mockFileWriter = PowerMockito.mock(FileWriter.class);
+    	FileWriter spyFileWriter = Mockito.spy(mockFileWriter);
+    	
+        PowerMockito.mockStatic(JsonUtils.class);
+		PowerMockito.when(JsonUtils.convertObjectToJsonTree(Mockito.isA(Gson.class), Mockito.any())).thenReturn(oldJsonObject, oldJsonObject);
+		PowerMockito.whenNew(FileWriter.class).withParameterTypes(File.class).withArguments(mockFile).thenReturn(mockFileWriter);
+		PowerMockito.when(JsonUtils.convertObjectToJson(Mockito.isA(Gson.class), Mockito.any())).thenReturn("{}");
+		Mockito.doNothing().when(spyFileWriter).write(Mockito.anyString());
+		Mockito.doNothing().when(spyFileWriter).close();
+		
+		JsonConfig jsonConfig = new JsonConfig();
+		boolean result = jsonConfig.update(mockFile, data);
+		assertThat(result).isTrue();
+
+	    PowerMockito.verifyNew(FileWriter.class, Mockito.times(1)).withArguments(Mockito.isA(File.class));
+	    Mockito.verify(mockFileWriter, Mockito.times(1)).write(Mockito.anyString());
+	    Mockito.verify(mockFileWriter, Mockito.times(2)).close();
 	}
 }
 
