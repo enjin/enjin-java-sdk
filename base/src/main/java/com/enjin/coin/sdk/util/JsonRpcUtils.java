@@ -86,7 +86,7 @@ public class JsonRpcUtils {
             if (jsonRpcResponse != null && jsonRpcResponse.indicatesSuccess()) {
                 String responseString = jsonRpcResponse.getResult().toString();
                 LOGGER.info(String.format("responseString:%s", responseString));
-                responseObject = JsonUtils.convertJsonToObject(responseString, responseClass);
+                responseObject = JsonUtils.convertJsonToObject(GsonUtils.GSON, responseString, responseClass);
             } else if (jsonRpcResponse != null) {
                 LOGGER.warning(String.format("Error Message:%s", jsonRpcResponse.getError().getMessage()));
             } else {

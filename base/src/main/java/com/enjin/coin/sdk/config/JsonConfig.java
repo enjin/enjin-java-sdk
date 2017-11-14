@@ -1,10 +1,5 @@
 package com.enjin.coin.sdk.config;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -12,11 +7,19 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import com.enjin.coin.sdk.util.GsonUtils;
+import com.enjin.coin.sdk.util.JsonUtils;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
 public class JsonConfig {
-
+	
+	//Local log variable
     private static final Logger LOGGER = Logger.getLogger(JsonConfig.class.getName());
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-
+    
+    //Gson variable to use
+    private static final Gson GSON = GsonUtils.GSON_PRETTY_PRINT;
     /**
      * Class constructor
      */
@@ -45,8 +48,10 @@ public class JsonConfig {
         return clazz.newInstance();
     }
 
-    private static <T extends JsonConfig> T loadExisting(File file, Class<T> clazz) throws Exception {
-        return GSON.fromJson(new FileReader(file), clazz);
+    @SuppressWarnings("unchecked")
+	private static <T extends JsonConfig> T loadExisting(File file, Class<T> clazz) throws Exception {
+    	FileReader fileReader = new FileReader(file);
+    	return (T) JsonUtils.convertJsonFromFileReaderToObject(GSON, fileReader, clazz);
     }
 
     public boolean save(File file) {
@@ -55,12 +60,12 @@ public class JsonConfig {
             if (file.getParentFile() != null) {
                 file.getParentFile().mkdirs();
             }
-
             if (!file.exists()) {
                 file.createNewFile();
             }
-
-            fw.write(GSON.toJson(this));
+      
+            String jsonStr = JsonUtils.convertObjectToJson(GSON, this);
+            fw.write(jsonStr);
             fw.close();
         } catch (IOException e) {
             LOGGER.warning(String.format("Could not save the config to %s.", file.getName()));
@@ -70,8 +75,8 @@ public class JsonConfig {
     }
 
     public boolean update(File file, Object data) {
-        JsonElement old = GSON.toJsonTree(this);
-        JsonElement updates = GSON.toJsonTree(data);
+        JsonElement old     = JsonUtils.convertObjectToJsonTree(GSON, this);
+        JsonElement updates = JsonUtils.convertObjectToJsonTree(GSON, data);
 
         boolean success = true;
         if (!old.isJsonObject() && !updates.isJsonObject()) {
@@ -84,7 +89,7 @@ public class JsonConfig {
             update(oldObj, updatesObj);
 
             try (FileWriter fw = new FileWriter(file)) {
-                fw.write(GSON.toJson(oldObj));
+                fw.write(JsonUtils.convertObjectToJson(GSON, oldObj));
                 fw.close();
             } catch (IOException e) {
                 LOGGER.warning(String.format("Could not save the updated config to %s.", file.getName()));

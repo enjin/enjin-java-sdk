@@ -21,8 +21,6 @@ public final class StringUtils {
         if (e != null) {
             try (StringWriter sw = new StringWriter()) {
                 try (PrintWriter pw = new PrintWriter(sw)) {
-                    System.out.println("e:" + e);
-                    System.out.println("e:" + pw);
                     e.printStackTrace(pw);
                     stacktrace = sw.toString();
                 }

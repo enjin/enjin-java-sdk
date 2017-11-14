@@ -11,11 +11,16 @@ import java.util.ServiceLoader;
 public final class GsonUtils {
 
     public static final Gson GSON;
-
+    public static final Gson GSON_PRETTY_PRINT;
     static {
         GsonBuilder builder = new GsonBuilder();
         GsonUtils.registerAllTypeAdapterFactories(builder);
         GSON = builder.create();
+        
+        GsonBuilder builderPrettyPrint = new GsonBuilder();
+        GsonUtils.registerAllTypeAdapterFactories(builderPrettyPrint);
+        builderPrettyPrint.setPrettyPrinting();
+        GSON_PRETTY_PRINT = builderPrettyPrint.create();
     }
 
     protected GsonUtils() {
