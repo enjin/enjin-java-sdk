@@ -89,7 +89,8 @@ public class JsonConfig {
             update(oldObj, updatesObj);
 
             try (FileWriter fw = new FileWriter(file)) {
-                fw.write(JsonUtils.convertObjectToJson(GSON, oldObj));
+                String jsonStr = JsonUtils.convertObjectToJson(GSON, oldObj);
+				fw.write(jsonStr);
                 fw.close();
             } catch (IOException e) {
                 LOGGER.warning(String.format("Could not save the updated config to %s.", file.getName()));

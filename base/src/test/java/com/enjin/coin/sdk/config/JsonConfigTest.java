@@ -16,9 +16,11 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.enjin.coin.sdk.util.JsonUtils;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({JsonConfig.class, Class.class, File.class, FileWriter.class , Gson.class, JsonUtils.class})
+@PrepareForTest({JsonConfig.class, Class.class, File.class, FileWriter.class , Gson.class, JsonUtils.class, JsonElement.class, JsonObject.class})
 public class JsonConfigTest {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -269,5 +271,85 @@ public class JsonConfigTest {
 	    PowerMockito.verifyStatic(JsonUtils.class);
 	}
 
+	@Test
+	public void testUpdate_NotJsonObjects() {
+		Object data = new Object();
+		File mockFile = PowerMockito.mock(File.class);
+		JsonElement mockJsonElement = PowerMockito.mock(JsonElement.class);
+		
+        PowerMockito.mockStatic(JsonUtils.class);
+		PowerMockito.when(JsonUtils.convertObjectToJsonTree(Mockito.isA(Gson.class), Mockito.any())).thenReturn(mockJsonElement);
+		Mockito.when(mockJsonElement.isJsonObject()).thenReturn(false);
+		Mockito.when(mockJsonElement.isJsonObject()).thenReturn(false);
+		
+		JsonConfig jsonConfig = new JsonConfig();
+		boolean result = jsonConfig.update(mockFile, data);
+		assertThat(result).isFalse();
+
+	    //PowerMockito.verifyStatic(JsonUtils.class);
+	    Mockito.verify(mockJsonElement, Mockito.times(2)).isJsonObject();
+	}
+	
+	@Test
+	public void testUpdate_IOExceptionCreatingFileWriter() throws Exception {
+		Object data = new Object();
+		File mockFile = PowerMockito.mock(File.class);
+		JsonElement mockJsonElement = PowerMockito.mock(JsonElement.class);
+		JsonObject jsonObject = new JsonObject();
+		jsonObject.addProperty("keyInt", 2);
+        jsonObject.addProperty("keyString", "val1");
+        jsonObject.addProperty("id", "0123456");
+
+        PowerMockito.mockStatic(JsonUtils.class);
+		PowerMockito.when(JsonUtils.convertObjectToJsonTree(Mockito.isA(Gson.class), Mockito.any())).thenReturn(mockJsonElement);
+		Mockito.when(mockJsonElement.isJsonObject()).thenReturn(true);
+		Mockito.when(mockJsonElement.isJsonObject()).thenReturn(true);
+		Mockito.when(mockJsonElement.getAsJsonObject()).thenReturn(jsonObject);
+		Mockito.when(mockJsonElement.getAsJsonObject()).thenReturn(jsonObject);
+		PowerMockito.whenNew(FileWriter.class).withParameterTypes(File.class).withArguments(mockFile).thenThrow(new IOException());
+		
+		JsonConfig jsonConfig = new JsonConfig();
+		boolean result = jsonConfig.update(mockFile, data);
+		assertThat(result).isFalse();
+
+	    //PowerMockito.verifyStatic(JsonUtils.class);
+	    Mockito.verify(mockJsonElement, Mockito.times(1)).isJsonObject();
+	    Mockito.verify(mockJsonElement, Mockito.times(2)).getAsJsonObject();
+	    PowerMockito.verifyNew(FileWriter.class, Mockito.times(1)).withArguments(Mockito.isA(File.class));
+	}
+	
+	@Test
+	public void testUpdate_Success() throws Exception {
+		Object data = new Object();
+		File mockFile = PowerMockito.mock(File.class);
+		JsonElement mockJsonElement = PowerMockito.mock(JsonElement.class);
+		JsonObject jsonObject = new JsonObject();
+		jsonObject.addProperty("keyInt", 2);
+        jsonObject.addProperty("keyString", "val1");
+        jsonObject.addProperty("id", "0123456");
+		
+        FileWriter mockFileWriter = PowerMockito.mock(FileWriter.class);
+    	FileWriter spyFileWriter = Mockito.spy(mockFileWriter);
+    	
+        PowerMockito.mockStatic(JsonUtils.class);
+		PowerMockito.when(JsonUtils.convertObjectToJsonTree(Mockito.isA(Gson.class), Mockito.any())).thenReturn(mockJsonElement);
+		Mockito.when(mockJsonElement.isJsonObject()).thenReturn(true);
+		Mockito.when(mockJsonElement.isJsonObject()).thenReturn(true);
+		Mockito.when(mockJsonElement.getAsJsonObject()).thenReturn(jsonObject);
+		Mockito.when(mockJsonElement.getAsJsonObject()).thenReturn(jsonObject);
+		PowerMockito.whenNew(FileWriter.class).withParameterTypes(File.class).withArguments(mockFile).thenReturn(mockFileWriter);
+		PowerMockito.when(JsonUtils.convertObjectToJson(Mockito.isA(Gson.class), Mockito.any())).thenReturn("{}");
+		Mockito.doNothing().when(spyFileWriter).write(Mockito.anyString());
+		Mockito.doNothing().when(spyFileWriter).close();
+		
+		JsonConfig jsonConfig = new JsonConfig();
+		boolean result = jsonConfig.update(mockFile, data);
+		assertThat(result).isTrue();
+
+	    //PowerMockito.verifyStatic(JsonUtils.class);
+	    Mockito.verify(mockJsonElement, Mockito.times(1)).isJsonObject();
+	    Mockito.verify(mockJsonElement, Mockito.times(2)).getAsJsonObject();
+	    PowerMockito.verifyNew(FileWriter.class, Mockito.times(1)).withArguments(Mockito.isA(File.class));
+	}
 }
 
