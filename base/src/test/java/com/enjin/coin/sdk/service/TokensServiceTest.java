@@ -1,6 +1,6 @@
 package com.enjin.coin.sdk.service;
 
-import com.enjin.coin.sdk.config.EnjinConfig;
+import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.util.JsonRpcUtils;
 import com.enjin.coin.sdk.vo.token.*;
 import org.junit.Before;
@@ -20,11 +20,11 @@ import static org.assertj.core.api.Assertions.*;
 public class TokensServiceTest {
 
     TokensService tokenService;
-    EnjinConfig enjinConfig;
+    Config enjinConfig;
 
     @Before
     public void setUp() {
-        enjinConfig = new EnjinConfig();
+        enjinConfig = new Config();
     }
 
     @Test

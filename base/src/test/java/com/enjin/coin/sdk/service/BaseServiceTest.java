@@ -1,6 +1,10 @@
 package com.enjin.coin.sdk.service;
 
-import com.enjin.coin.sdk.config.EnjinConfig;
+import com.enjin.coin.sdk.config.Config;
+import com.enjin.coin.sdk.config.ImmutableConfig;
+import com.enjin.coin.sdk.config.ImmutablePlatform;
+import com.enjin.coin.sdk.config.Platform;
+import com.enjin.coin.sdk.util.http.Protocol;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,11 +13,11 @@ import static org.assertj.core.api.Assertions.*;
 public class BaseServiceTest {
 
     BaseService baseAction;
-    EnjinConfig enjinConfig;
+    Config enjinConfig;
 
     @Before
     public void setUp() {
-        enjinConfig = new EnjinConfig();
+        enjinConfig = new Config();
         baseAction = new IdentitiesService(enjinConfig);
     }
 
@@ -34,8 +38,14 @@ public class BaseServiceTest {
 
     @Test
     public void testContructor2() {
-        enjinConfig.setInTestMode(true);
-        enjinConfig.setTrustedPlatformUrl("http://localhost:8080");
+        enjinConfig = ImmutableConfig.builder()
+                .setTrustedPlatform(ImmutablePlatform.builder()
+                        .setHost("localhost")
+                        .setPort(8080)
+                        .setProtocol(Protocol.HTTP)
+                        .build())
+                .setInTestMode(true)
+                .build();
         baseAction = new IdentitiesService(enjinConfig);
         assertThat(baseAction).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty());
@@ -49,14 +59,22 @@ public class BaseServiceTest {
 
     @Test
     public void testGetIdentitiesUrl2() {
-        baseAction.setTrustedPlatformUrl("http://localhost:8081");
+        baseAction.setTrustedPlatform(ImmutablePlatform.builder()
+                .setHost("localhost")
+                .setPort(8081)
+                .setProtocol(Protocol.HTTP)
+                .build());
         String identitiesURL = baseAction.getIdentitiesUrl();
         assertThat(identitiesURL).isNotEmpty();
     }
 
     @Test
     public void testGetIdentitiesUrl3() {
-        baseAction.setTrustedPlatformUrl("http://localhost:8081/");
+        baseAction.setTrustedPlatform(ImmutablePlatform.builder()
+                .setHost("localhost")
+                .setPort(8081)
+                .setProtocol(Protocol.HTTP)
+                .build());
         String identitiesURL = baseAction.getIdentitiesUrl();
         assertThat(identitiesURL).isNotEmpty();
     }
@@ -69,14 +87,22 @@ public class BaseServiceTest {
 
     @Test
     public void testGetTokensUrl2() {
-        baseAction.setTrustedPlatformUrl("http://localhost:8081");
+        baseAction.setTrustedPlatform(ImmutablePlatform.builder()
+                .setHost("localhost")
+                .setPort(8081)
+                .setProtocol(Protocol.HTTP)
+                .build());
         String tokensURL = baseAction.getTokensUrl();
         assertThat(tokensURL).isNotEmpty();
     }
 
     @Test
     public void testGetTokensUrl3() {
-        baseAction.setTrustedPlatformUrl("http://localhost:8081/");
+        baseAction.setTrustedPlatform(ImmutablePlatform.builder()
+                .setHost("localhost")
+                .setPort(8081)
+                .setProtocol(Protocol.HTTP)
+                .build());
         String tokensURL = baseAction.getTokensUrl();
         assertThat(tokensURL).isNotEmpty();
     }
@@ -89,29 +115,41 @@ public class BaseServiceTest {
 
     @Test
     public void testGetTransactionRequestsUrl2() {
-        baseAction.setTrustedPlatformUrl("http://localhost:8081");
+        baseAction.setTrustedPlatform(ImmutablePlatform.builder()
+                .setHost("localhost")
+                .setPort(8081)
+                .setProtocol(Protocol.HTTP)
+                .build());
         String transactionRequestsURL = baseAction.getTransactionRequestsUrl();
         assertThat(transactionRequestsURL).isNotEmpty();
     }
 
     @Test
     public void testGetTransactionRequestsUrl3() {
-        baseAction.setTrustedPlatformUrl("http://localhost:8081/");
+        baseAction.setTrustedPlatform(ImmutablePlatform.builder()
+                .setHost("localhost")
+                .setPort(8081)
+                .setProtocol(Protocol.HTTP)
+                .build());
         String transactionRequestsURL = baseAction.getTransactionRequestsUrl();
         assertThat(transactionRequestsURL).isNotEmpty();
     }
 
     @Test
-    public void testGetTrustedPlatformUrl_Null() {
-        String trustedPlatformURL = baseAction.getTrustedPlatformUrl();
-        assertThat(trustedPlatformURL).isNull();
+    public void testGetTrustedPlatformUrl_Default() {
+        Platform trustedPlatform = baseAction.getTrustedPlatform();
+        assertThat(trustedPlatform).isEqualToComparingFieldByField(ImmutablePlatform.builder().build());
     }
 
     @Test
     public void testGetTrustedPlatformUrl_Success() {
-        baseAction.setTrustedPlatformUrl("http://localhost:8081/");
-        String trustedPlatformURL = baseAction.getTrustedPlatformUrl();
-        assertThat(trustedPlatformURL).isNotEmpty();
+        baseAction.setTrustedPlatform(ImmutablePlatform.builder()
+                .setHost("localhost")
+                .setPort(8081)
+                .setProtocol(Protocol.HTTP)
+                .build());
+        Platform trustedPlatform = baseAction.getTrustedPlatform();
+        assertThat(trustedPlatform).isNotNull();
     }
 
 }

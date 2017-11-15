@@ -15,23 +15,24 @@ import com.google.gson.JsonObject;
 
 /**
  * <p>Json Config that is used in the sdk</p>
- * @author damien
  *
+ * @author damien
  */
 public class JsonConfig {
-	
-	//Local log variable
+
+    //Local log variable
     private static final Logger LOGGER = Logger.getLogger(JsonConfig.class.getName());
-    
+
     //Gson variable to use
     private static final Gson GSON = GsonUtils.GSON_PRETTY_PRINT;
+
     /**
      * Class constructor
      */
     protected JsonConfig() {
-    	
+
     }
-    
+
     public static <T extends JsonConfig> T load(File file, Class<T> clazz) throws Exception {
         JsonConfig config = null;
 
@@ -54,9 +55,9 @@ public class JsonConfig {
     }
 
     @SuppressWarnings("unchecked")
-	private static <T extends JsonConfig> T loadExisting(File file, Class<T> clazz) throws Exception {
-    	FileReader fileReader = new FileReader(file);
-    	return (T) JsonUtils.convertJsonFromFileReaderToObject(GSON, fileReader, clazz);
+    private static <T extends JsonConfig> T loadExisting(File file, Class<T> clazz) throws Exception {
+        FileReader fileReader = new FileReader(file);
+        return (T) JsonUtils.convertJsonFromFileReaderToObject(GSON, fileReader, clazz);
     }
 
     public boolean save(File file) {
@@ -68,7 +69,7 @@ public class JsonConfig {
             if (!file.exists()) {
                 file.createNewFile();
             }
-      
+
             String jsonStr = JsonUtils.convertObjectToJson(GSON, this);
             fw.write(jsonStr);
             fw.close();
@@ -80,7 +81,7 @@ public class JsonConfig {
     }
 
     public boolean update(File file, Object data) {
-        JsonElement old     = JsonUtils.convertObjectToJsonTree(GSON, this);
+        JsonElement old = JsonUtils.convertObjectToJsonTree(GSON, this);
         JsonElement updates = JsonUtils.convertObjectToJsonTree(GSON, data);
 
         boolean success = true;
@@ -95,7 +96,7 @@ public class JsonConfig {
 
             try (FileWriter fw = new FileWriter(file)) {
                 String jsonStr = JsonUtils.convertObjectToJson(GSON, oldObj);
-				fw.write(jsonStr);
+                fw.write(jsonStr);
                 fw.close();
             } catch (IOException e) {
                 LOGGER.warning(String.format("Could not save the updated config to %s.", file.getName()));

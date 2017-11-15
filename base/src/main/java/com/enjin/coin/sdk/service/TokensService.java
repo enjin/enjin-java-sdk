@@ -1,6 +1,6 @@
 package com.enjin.coin.sdk.service;
 
-import com.enjin.coin.sdk.config.EnjinConfig;
+import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.util.ArrayUtils;
 import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.ObjectUtils;
@@ -25,7 +25,7 @@ public class TokensService extends BaseService {
      *
      * @param enjinConfig - the enjinConfig to use
      */
-    protected TokensService(EnjinConfig enjinConfig) {
+    protected TokensService(Config enjinConfig) {
         super(enjinConfig);
     }
 

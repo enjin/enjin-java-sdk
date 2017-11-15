@@ -1,9 +1,12 @@
 package com.enjin.coin.sdk.mockServer;
 
+import com.enjin.coin.sdk.config.ImmutablePlatform;
+import com.enjin.coin.sdk.config.Platform;
 import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.http.ContentType;
 import com.enjin.coin.sdk.util.FileUtils;
 import com.enjin.coin.sdk.util.http.Header;
+import com.enjin.coin.sdk.util.http.Protocol;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
@@ -112,8 +115,20 @@ public class BaseMockServer {
 
     }
 
-    protected String getURL() {
-        return String.format("http://%s:%d/", HOSTNAME, wireMockRule.port());
+    protected String getUrlFromPlatform(Platform platform) {
+        return getURL(platform.getProtocol(), platform.getHost(), platform.getPort());
+    }
+
+    protected String getURL(String protocol, String hostname, int port) {
+        return String.format("%s://%s:%d/", protocol, hostname, port);
+    }
+
+    protected Platform getPlatform() {
+        return ImmutablePlatform.builder()
+                .setHost(HOSTNAME)
+                .setPort(wireMockRule.port())
+                .setProtocol(Protocol.HTTP)
+                .build();
     }
 
     /**

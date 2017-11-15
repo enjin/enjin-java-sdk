@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import com.enjin.coin.sdk.config.EnjinConfig;
+import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.util.ArrayUtils;
 import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.ObjectUtils;
@@ -29,7 +29,7 @@ public class EventsService extends BaseService {
      *
      * @param enjinConfig - the enjinConfig to use
      */
-    protected EventsService(EnjinConfig enjinConfig) {
+    protected EventsService(Config enjinConfig) {
         super(enjinConfig);
     }
 

@@ -1,6 +1,8 @@
 package com.enjin.coin.sdk.mockServer;
 
-import com.enjin.coin.sdk.config.EnjinConfig;
+import com.enjin.coin.sdk.config.Config;
+import com.enjin.coin.sdk.config.ImmutableConfig;
+import com.enjin.coin.sdk.config.ImmutablePlatform;
 import com.enjin.coin.sdk.service.EnjinService;
 import com.enjin.coin.sdk.service.EventsService;
 import com.enjin.coin.sdk.vo.event.*;
@@ -25,9 +27,10 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
 
     @Before
     public void init() {
-        EnjinConfig enjinConfig = new EnjinConfig();
-        enjinConfig.setTrustedPlatformUrl(getURL());
-        enjinConfig.setInTestMode(true);
+        Config enjinConfig = ImmutableConfig.builder()
+                .setTrustedPlatform(getPlatform())
+                .setInTestMode(true)
+                .build();
         EnjinService enjinService = new EnjinService(enjinConfig);
         events = enjinService.getEventsService();
     }

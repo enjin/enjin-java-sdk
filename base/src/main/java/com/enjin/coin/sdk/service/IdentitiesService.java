@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import com.enjin.coin.sdk.config.EnjinConfig;
+import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.MapUtils;
 import com.enjin.coin.sdk.util.StringUtils;
@@ -34,7 +34,7 @@ public class IdentitiesService extends BaseService {
      *
      * @param enjinConfig - the enjinConfig to use
      */
-    protected IdentitiesService(EnjinConfig enjinConfig) {
+    protected IdentitiesService(Config enjinConfig) {
         super(enjinConfig);
     }
 

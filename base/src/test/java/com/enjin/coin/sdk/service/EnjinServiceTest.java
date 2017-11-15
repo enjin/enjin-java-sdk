@@ -1,6 +1,6 @@
 package com.enjin.coin.sdk.service;
 
-import com.enjin.coin.sdk.config.EnjinConfig;
+import com.enjin.coin.sdk.config.Config;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,11 +9,11 @@ import static org.assertj.core.api.Assertions.*;
 public class EnjinServiceTest {
 
     EnjinService enjinService;
-    EnjinConfig enjinConfig;
+    Config enjinConfig;
 
     @Before
     public void setUp() {
-        enjinConfig = new EnjinConfig();
+        enjinConfig = new Config();
         enjinService = new EnjinService(enjinConfig);
     }
 

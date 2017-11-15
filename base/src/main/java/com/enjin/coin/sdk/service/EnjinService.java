@@ -1,6 +1,6 @@
 package com.enjin.coin.sdk.service;
 
-import com.enjin.coin.sdk.config.EnjinConfig;
+import com.enjin.coin.sdk.config.Config;
 
 import java.util.logging.Logger;
 
@@ -14,7 +14,7 @@ public class EnjinService {
 
     private static final Logger LOGGER = Logger.getLogger(EnjinService.class.getName());
 
-    private EnjinConfig enjinConfig;
+    private Config enjinConfig;
     private EventsService eventsService;
     private IdentitiesService identitiesService;
     private TokensService tokensService;
@@ -24,7 +24,7 @@ public class EnjinService {
      * Class constructor
      * @param enjinConfig - enjinConfig to use
      */
-    public EnjinService(EnjinConfig enjinConfig) {
+    public EnjinService(Config enjinConfig) {
         if (enjinConfig == null) {
             LOGGER.warning("The enjinConfig passed in is null");
             return;

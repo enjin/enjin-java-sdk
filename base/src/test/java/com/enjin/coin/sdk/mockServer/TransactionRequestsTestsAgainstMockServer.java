@@ -1,6 +1,7 @@
 package com.enjin.coin.sdk.mockServer;
 
-import com.enjin.coin.sdk.config.EnjinConfig;
+import com.enjin.coin.sdk.config.Config;
+import com.enjin.coin.sdk.config.ImmutableConfig;
 import com.enjin.coin.sdk.service.EnjinService;
 import com.enjin.coin.sdk.service.TransactionRequestsService;
 import com.enjin.coin.sdk.vo.transactionrequest.*;
@@ -22,9 +23,10 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
 
     @Before
     public void init() {
-        EnjinConfig enjinConfig = new EnjinConfig();
-        enjinConfig.setTrustedPlatformUrl(getURL());
-        enjinConfig.setInTestMode(true);
+        Config enjinConfig = ImmutableConfig.builder()
+                .setTrustedPlatform(getPlatform())
+                .setInTestMode(true)
+                .build();
         EnjinService enjinService = new EnjinService(enjinConfig);
         transactionRequests = enjinService.getTransactionRequestsService();
     }
