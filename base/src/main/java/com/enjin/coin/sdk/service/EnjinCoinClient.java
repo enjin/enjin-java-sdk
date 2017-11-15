@@ -5,14 +5,14 @@ import com.enjin.coin.sdk.config.Config;
 import java.util.logging.Logger;
 
 /**
- * <p>Main Service class</p>
- * <p>All services will be instantiated from this class</p>
+ * <p>Enjin Coin Client - Syncs</p>
+ * <p>All services will be instantiated from this class that will be called in a synchronous fashion</p>
  * @author damien
  *
  */
-public class EnjinService {
+public class EnjinCoinClient {
 
-    private static final Logger LOGGER = Logger.getLogger(EnjinService.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(EnjinCoinClient.class.getName());
 
     private Config enjinConfig;
     private EventsService eventsService;
@@ -24,7 +24,7 @@ public class EnjinService {
      * Class constructor
      * @param enjinConfig - enjinConfig to use
      */
-    public EnjinService(Config enjinConfig) {
+    public EnjinCoinClient(Config enjinConfig) {
         if (enjinConfig == null) {
             LOGGER.warning("The enjinConfig passed in is null");
             return;

@@ -2,7 +2,7 @@ package com.enjin.coin.sdk.mockServer;
 
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.config.ImmutableConfig;
-import com.enjin.coin.sdk.service.EnjinService;
+import com.enjin.coin.sdk.service.EnjinCoinClient;
 import com.enjin.coin.sdk.service.TokensService;
 import com.enjin.coin.sdk.vo.token.GetTokenRequestVO;
 import com.enjin.coin.sdk.vo.token.ImmutableGetTokenRequestVO;
@@ -23,7 +23,7 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer {
                 .setTrustedPlatform(getPlatform())
                 .setInTestMode(true)
                 .build();
-        EnjinService enjinService = new EnjinService(enjinConfig);
+        EnjinCoinClient enjinService = new EnjinCoinClient(enjinConfig);
         tokens = enjinService.getTokensService();
     }
 

@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.config.ImmutableConfig;
-import com.enjin.coin.sdk.service.EnjinService;
+import com.enjin.coin.sdk.service.EnjinCoinClient;
 import com.enjin.coin.sdk.service.EventsService;
 import com.enjin.coin.sdk.vo.event.GetEventDataVO;
 import com.enjin.coin.sdk.vo.event.GetEventRequestVO;
@@ -37,7 +37,7 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
                 .setTrustedPlatform(getPlatform())
                 .setInTestMode(true)
                 .build();
-        EnjinService enjinService = new EnjinService(enjinConfig);
+        EnjinCoinClient enjinService = new EnjinCoinClient(enjinConfig);
         events = enjinService.getEventsService();
     }
 
