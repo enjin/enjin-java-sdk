@@ -11,7 +11,7 @@ import org.junit.Test;
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.config.ImmutableConfig;
 import com.enjin.coin.sdk.service.EnjinCoinClient;
-import com.enjin.coin.sdk.service.EventsService;
+import com.enjin.coin.sdk.service.events.EventsService;
 import com.enjin.coin.sdk.vo.event.GetEventDataVO;
 import com.enjin.coin.sdk.vo.event.GetEventRequestVO;
 import com.enjin.coin.sdk.vo.event.GetEventResponseVO;

@@ -1,10 +1,11 @@
-package com.enjin.coin.sdk.service;
+package com.enjin.coin.sdk.service.events;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
 import com.enjin.coin.sdk.config.Config;
+import com.enjin.coin.sdk.service.BaseService;
 import com.enjin.coin.sdk.util.ArrayUtils;
 import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.ObjectUtils;
@@ -20,7 +21,7 @@ import com.enjin.coin.sdk.vo.event.ListEventsResponseVO;
  * @author damien
  *
  */
-public class EventsService extends BaseService {
+public class EventsService extends BaseService implements EventService{
 
     private static final Logger LOGGER = Logger.getLogger(EventsService.class.getName());
 
@@ -29,7 +30,7 @@ public class EventsService extends BaseService {
      *
      * @param enjinConfig - the enjinConfig to use
      */
-    protected EventsService(Config enjinConfig) {
+    public EventsService(Config enjinConfig) {
         super(enjinConfig);
     }
 

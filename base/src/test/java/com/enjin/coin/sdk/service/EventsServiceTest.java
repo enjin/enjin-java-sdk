@@ -1,6 +1,7 @@
 package com.enjin.coin.sdk.service;
 
 import com.enjin.coin.sdk.config.Config;
+import com.enjin.coin.sdk.service.events.EventsService;
 import com.enjin.coin.sdk.util.JsonRpcUtils;
 import com.enjin.coin.sdk.vo.event.*;
 import org.junit.Before;

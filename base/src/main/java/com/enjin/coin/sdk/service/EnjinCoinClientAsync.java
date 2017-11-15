@@ -3,7 +3,7 @@ package com.enjin.coin.sdk.service;
 import java.util.logging.Logger;
 
 import com.enjin.coin.sdk.config.Config;
-import com.enjin.coin.sdk.service.events.EventsService;
+import com.enjin.coin.sdk.service.events.EventsServiceAsync;
 
 /**
  * <p>Enjin Coin Client - Syncs</p>
@@ -11,12 +11,12 @@ import com.enjin.coin.sdk.service.events.EventsService;
  * @author damien
  *
  */
-public class EnjinCoinClient implements EnjinCoin{
+public class EnjinCoinClientAsync implements EnjinCoin{
 
-    private static final Logger LOGGER = Logger.getLogger(EnjinCoinClient.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(EnjinCoinClientAsync.class.getName());
 
     private Config enjinConfig;
-    private EventsService eventsService;
+    private EventsServiceAsync eventsServiceAsync;
     private IdentitiesService identitiesService;
     private TokensService tokensService;
     private TransactionRequestsService transactionRequestsService;
@@ -25,7 +25,7 @@ public class EnjinCoinClient implements EnjinCoin{
      * Class constructor
      * @param enjinConfig - enjinConfig to use
      */
-    public EnjinCoinClient(Config enjinConfig) {
+    public EnjinCoinClientAsync(Config enjinConfig) {
         if (enjinConfig == null) {
             LOGGER.warning("The enjinConfig passed in is null");
             return;
@@ -35,17 +35,16 @@ public class EnjinCoinClient implements EnjinCoin{
     }
 
     /**
-     * Method to get the eventsService
+     * Method to get the eventsServiceASync
      *
-     * @return - EventsService
+     * @return - EventsServiceAsync
      */
-    public EventsService getEventsService() {
-        if (eventsService == null) {
-            eventsService = new EventsService(enjinConfig);
+    public EventsServiceAsync getEventsService() {
+        if (eventsServiceAsync == null) {
+        	eventsServiceAsync = new EventsServiceAsync(enjinConfig);
         }
-        return eventsService;
+        return eventsServiceAsync;
     }
-
     /**
      * Method to get the identitiesService
      *
