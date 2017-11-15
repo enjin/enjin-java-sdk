@@ -4,6 +4,12 @@ import com.enjin.coin.sdk.config.EnjinConfig;
 
 import java.util.logging.Logger;
 
+/**
+ * <p>Main Service class</p>
+ * <p>All services will be instantiated from this class</p>
+ * @author damien
+ *
+ */
 public class EnjinService {
 
     private static final Logger LOGGER = Logger.getLogger(EnjinService.class.getName());

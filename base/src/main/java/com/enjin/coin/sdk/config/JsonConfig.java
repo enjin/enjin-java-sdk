@@ -13,6 +13,11 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+/**
+ * <p>Json Config that is used in the sdk</p>
+ * @author damien
+ *
+ */
 public class JsonConfig {
 	
 	//Local log variable

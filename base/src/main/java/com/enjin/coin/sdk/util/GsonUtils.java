@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ServiceLoader;
 
+/**
+ * <p>Sets up the Gson object</p>
+ * @author damien
+ *
+ */
 public final class GsonUtils {
 
     public static final Gson GSON;

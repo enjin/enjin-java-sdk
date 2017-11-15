@@ -7,6 +7,11 @@ import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.JsonRpcUtils;
 import com.enjin.coin.sdk.util.StringUtils;
 
+/**
+ * <p>Provides Services used by the main service classes</p>
+ * @author damien
+ *
+ */
 public abstract class BaseService {
 
     private static final Logger LOGGER = Logger.getLogger(BaseService.class.getName());

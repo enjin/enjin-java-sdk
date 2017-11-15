@@ -1,5 +1,10 @@
 package com.enjin.coin.sdk.config;
 
+/**
+ * <p>Config used throughout the sdk</p>
+ * @author damien
+ *
+ */
 public class EnjinConfig {
 
     private String trustedPlatformUrl;

@@ -15,6 +15,11 @@ import com.enjin.coin.sdk.vo.event.ImmutableListEventsResponseVO;
 import com.enjin.coin.sdk.vo.event.ListEventsRequestVO;
 import com.enjin.coin.sdk.vo.event.ListEventsResponseVO;
 
+/**
+ * <p>Contains services related to events</p>
+ * @author damien
+ *
+ */
 public class EventsService extends BaseService {
 
     private static final Logger LOGGER = Logger.getLogger(EventsService.class.getName());

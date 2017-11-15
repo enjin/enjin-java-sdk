@@ -1,7 +1,11 @@
 package com.enjin.coin.sdk.util;
 
 import java.util.Random;
-
+/**
+ * <p>Any utility Functionality required for the sdk</p>
+ * @author damien
+ *
+ */
 public class Utils {
 
     /**

@@ -12,6 +12,11 @@ import java.net.URL;
 import java.util.Map;
 import java.util.logging.Logger;
 
+/**
+ * <p>Contains all logic for performing json rpc calls</p>
+ * @author damien
+ *
+ */
 public class JsonRpcUtils {
 
     private static final Logger LOGGER = Logger.getLogger(JsonRpcUtils.class.getName());

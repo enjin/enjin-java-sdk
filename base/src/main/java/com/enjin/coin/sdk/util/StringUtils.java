@@ -4,7 +4,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Optional;
-
+/**
+ * <p>Functionality for working with strings</p>
+ * @author damien
+ *
+ */
 public final class StringUtils {
 
     protected StringUtils() {

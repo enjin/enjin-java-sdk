@@ -20,6 +20,11 @@ import com.enjin.coin.sdk.vo.identity.ListIdentitiesResponseVO;
 import com.enjin.coin.sdk.vo.identity.UpdateIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.UpdateIdentityResponseVO;
 
+/**
+ * <p>Contains services related to identities</p>
+ * @author damien
+ *
+ */
 public class IdentitiesService extends BaseService {
 
     private static final Logger LOGGER = Logger.getLogger(IdentitiesService.class.getName());

@@ -11,6 +11,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
+/**
+ * <p>Contains services related to tokens</p>
+ * @author damien
+ *
+ */
 public class TokensService extends BaseService {
 
     private static final Logger LOGGER = Logger.getLogger(TokensService.class.getName());

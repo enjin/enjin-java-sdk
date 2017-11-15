@@ -9,6 +9,11 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.stream.JsonReader;
 
+/**
+ * <p>All utility methods for working with json</p>
+ * @author damien
+ *
+ */
 public final class JsonUtils {
 
     private static final Logger LOGGER = Logger.getLogger(JsonUtils.class.getName());

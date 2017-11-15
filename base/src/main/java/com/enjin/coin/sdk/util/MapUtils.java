@@ -2,7 +2,11 @@ package com.enjin.coin.sdk.util;
 
 import java.util.Map;
 import java.util.Optional;
-
+/**
+ * <p>Functionality for working with maps</p>
+ * @author damien
+ *
+ */
 public final class MapUtils {
 
     protected MapUtils() {

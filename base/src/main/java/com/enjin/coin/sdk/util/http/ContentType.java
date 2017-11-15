@@ -1,5 +1,10 @@
 package com.enjin.coin.sdk.util.http;
 
+/**
+ * <p>Http Constants</p>
+ * @author damien
+ *
+ */
 public class ContentType {
 
     public static final String ANY = "text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2";

@@ -16,10 +16,7 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
 
     private static final String IDENTITY_ID_KEY = "identity_id";
     private static final String ETHEREUM_ADDRESS_KEY = "ethereum_address";
-    private static final String UUID_KEY = "uuid";
     private static final String PLAYER_NAME_KEY = "player_name";
-
-    private static final String[] KEYS_ARRAY = {IDENTITY_ID_KEY, ETHEREUM_ADDRESS_KEY, UUID_KEY, PLAYER_NAME_KEY};
 
     private TransactionRequestsService transactionRequests;
 

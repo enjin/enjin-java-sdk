@@ -1,5 +1,10 @@
 package com.enjin.coin.sdk.util;
 
+/**
+ * <p>Constants used throughout the SDK</p>
+ * @author damien
+ *
+ */
 public class Constants {
 
     protected Constants() {
