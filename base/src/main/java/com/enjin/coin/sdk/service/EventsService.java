@@ -22,7 +22,7 @@ public class EventsService extends BaseService {
     /**
      * Class constructor
      *
-     * @param enjinConfig
+     * @param enjinConfig - the enjinConfig to use
      */
     protected EventsService(EnjinConfig enjinConfig) {
         super(enjinConfig);
@@ -31,8 +31,8 @@ public class EventsService extends BaseService {
     /**
      * Method to get an event
      *
-     * @param getEventRequestVO
-     * @return
+     * @param getEventRequestVO - get event request vo
+     * @return - GetEventResponseVO
      */
     public GetEventResponseVO getEvent(GetEventRequestVO getEventRequestVO) {
         GetEventResponseVO getEventResponseVO = null;
@@ -58,8 +58,8 @@ public class EventsService extends BaseService {
     /**
      * Method to list the events
      *
-     * @param listEventsRequestVO
-     * @return
+     * @param listEventsRequestVO - list events request vo
+     * @return - ListEventsResponseVO
      */
     public ListEventsResponseVO listEvents(ListEventsRequestVO listEventsRequestVO) {
         ListEventsResponseVO listEventsResponseVO = null;

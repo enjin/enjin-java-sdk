@@ -16,6 +16,7 @@ public class EnjinService {
 
     /**
      * Class constructor
+     * @param enjinConfig - enjinConfig to use
      */
     public EnjinService(EnjinConfig enjinConfig) {
         if (enjinConfig == null) {
@@ -29,7 +30,7 @@ public class EnjinService {
     /**
      * Method to get the eventsService
      *
-     * @return
+     * @return - EventsService
      */
     public EventsService getEventsService() {
         if (eventsService == null) {
@@ -41,7 +42,7 @@ public class EnjinService {
     /**
      * Method to get the identitiesService
      *
-     * @return
+     * @return - IdentitiesService
      */
     public IdentitiesService getIdentitiesService() {
         if (identitiesService == null) {
@@ -53,7 +54,7 @@ public class EnjinService {
     /**
      * Method to get the tokensService
      *
-     * @return
+     * @return - TokensService
      */
     public TokensService getTokensService() {
         if (tokensService == null) {
@@ -65,7 +66,7 @@ public class EnjinService {
     /**
      * Method to get the transactionRequestsService
      *
-     * @return
+     * @return - TransactionRequestsService
      */
     public TransactionRequestsService getTransactionRequestsService() {
         if (transactionRequestsService == null) {

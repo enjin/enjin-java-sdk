@@ -27,7 +27,7 @@ public class IdentitiesService extends BaseService {
     /**
      * Class constructor
      *
-     * @param enjinConfig
+     * @param enjinConfig - the enjinConfig to use
      */
     protected IdentitiesService(EnjinConfig enjinConfig) {
         super(enjinConfig);
@@ -36,8 +36,8 @@ public class IdentitiesService extends BaseService {
     /**
      * Method to get an identity
      *
-     * @param getIdentityRequestVO
-     * @return
+     * @param getIdentityRequestVO - get identity request vo
+     * @return - GetIdentityResponseVO
      */
     public GetIdentityResponseVO getIdentity(GetIdentityRequestVO getIdentityRequestVO) {
         GetIdentityResponseVO getIdentityResponseVO = null;
@@ -63,8 +63,8 @@ public class IdentitiesService extends BaseService {
     /**
      * Method to list the identities
      *
-     * @param listIdentitiesRequestVO
-     * @return
+     * @param listIdentitiesRequestVO - list identities request vo
+     * @return - ListIdentitiesResponseVO array
      */
     public ListIdentitiesResponseVO[] listIdentities(ListIdentitiesRequestVO listIdentitiesRequestVO) {
         ListIdentitiesResponseVO[] listIdentitiesResponseVO = null;
@@ -98,8 +98,8 @@ public class IdentitiesService extends BaseService {
     /**
      * Method to create an identity
      *
-     * @param createIdentityRequestVO
-     * @return
+     * @param createIdentityRequestVO - create identity request vo
+     * @return - CreateIdentityResponseVO
      */
     public CreateIdentityResponseVO createIdentity(CreateIdentityRequestVO createIdentityRequestVO) {
         CreateIdentityResponseVO createIdentityResponseVO = null;
@@ -125,8 +125,8 @@ public class IdentitiesService extends BaseService {
     /**
      * Method to update an identity
      *
-     * @param updateIdentityRequestVO
-     * @return
+     * @param updateIdentityRequestVO - update identity request vo
+     * @return - UpdateIdentityResponseVO
      */
     public UpdateIdentityResponseVO updateIdentity(UpdateIdentityRequestVO updateIdentityRequestVO) {
         UpdateIdentityResponseVO updateIdentityResponseVO = null;
@@ -154,8 +154,8 @@ public class IdentitiesService extends BaseService {
     /**
      * Method to delete an identity
      *
-     * @param deleteIdentityRequestVO
-     * @return
+     * @param deleteIdentityRequestVO - delete identity request vo
+     * @return - DeleteIdentityResponseVO
      */
     public DeleteIdentityResponseVO deleteIdentity(DeleteIdentityRequestVO deleteIdentityRequestVO) {
         DeleteIdentityResponseVO deleteIdentityResponseVO = null;

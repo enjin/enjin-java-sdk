@@ -7,8 +7,8 @@ public class OptionalUtils {
     /**
      * Method to check if an optional's value is present.
      *
-     * @param optional
-     * @return
+     * @param optional - optional to check
+     * @return - boolean result
      */
     public static boolean isPresent(Optional<?> optional) {
         return optional != null && optional.isPresent();
@@ -17,8 +17,8 @@ public class OptionalUtils {
     /**
      * Method to check if an optional's value is absent.
      *
-     * @param optional
-     * @return
+     * @param optional - optional to check
+     * @return - boolean result
      */
     public static boolean isNotPresent(Optional<?> optional) {
         return !isPresent(optional);

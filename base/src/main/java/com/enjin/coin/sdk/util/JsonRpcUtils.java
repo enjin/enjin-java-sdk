@@ -29,24 +29,23 @@ public class JsonRpcUtils {
     /**
      * Method to send a json rpc request
      *
-     * @param url
-     * @param responseClass
-     * @param method
-     * @return
+     * @param url - url to send request to
+     * @param responseClass - class type to convert to
+     * @param method - method to call
+     * @return an object returned from the json rpc call
      */
     public Object sendJsonRpcRequest(String url, Class<?> responseClass, String method) {
-        Object responseObject = sendJsonRpcRequest(url, responseClass, method, null);
-        return responseObject;
+        return sendJsonRpcRequest(url, responseClass, method, null);
     }
 
     /**
      * Method to send a json rpc request
      *
-     * @param url
-     * @param responseClass
-     * @param method
-     * @param params
-     * @return
+     * @param url - url to send request to
+     * @param responseClass - class type to convert to
+     * @param method - method to call
+     * @param params - map with the params to use
+     * @return an object returned from the json rpc call
      */
     public Object sendJsonRpcRequest(String url, Class<?> responseClass, String method, Map<String, Object> params) {
         Object responseObject = null;

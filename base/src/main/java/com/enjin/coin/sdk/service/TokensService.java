@@ -18,7 +18,7 @@ public class TokensService extends BaseService {
     /**
      * Class constructor
      *
-     * @param enjinConfig
+     * @param enjinConfig - the enjinConfig to use
      */
     protected TokensService(EnjinConfig enjinConfig) {
         super(enjinConfig);
@@ -27,8 +27,8 @@ public class TokensService extends BaseService {
     /**
      * Method to get a token
      *
-     * @param getTokenRequestVO
-     * @return
+     * @param getTokenRequestVO - token request object
+     * @return - GetTokenResponseVO
      */
     public GetTokenResponseVO getToken(GetTokenRequestVO getTokenRequestVO) {
         GetTokenResponseVO getTokenResponseVO = null;
@@ -52,8 +52,8 @@ public class TokensService extends BaseService {
     /**
      * Method to list the tokens
      *
-     * @param listTokensRequestVO
-     * @return
+     * @param listTokensRequestVO - list tokens request object
+     * @return - ListTokensResponseVO
      */
     public ListTokensResponseVO listTokens(ListTokensRequestVO listTokensRequestVO) {
         ListTokensResponseVO listTokensResponseVO = null;

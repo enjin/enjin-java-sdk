@@ -15,6 +15,10 @@ public abstract class BaseService {
     private boolean isInTestMode;
     protected JsonRpcUtils jsonRpcUtils;
 
+    /**
+     * Class contructor
+     * @param enjinConfig - enjinConfig to use
+     */
     public BaseService(EnjinConfig enjinConfig) {
         if (enjinConfig == null) {
             LOGGER.warning("The enjinConfig passed in is null");
@@ -31,7 +35,7 @@ public abstract class BaseService {
     /**
      * Method to get the identities url
      *
-     * @return
+     * @return - the identities url
      */
     protected String getIdentitiesUrl() {
         return getJsonRpcURL(Constants.IDENTITIES_URL);
@@ -40,7 +44,7 @@ public abstract class BaseService {
     /**
      * Method to get the tokens url
      *
-     * @return
+     * @return - the tokens url
      */
     protected String getTokensUrl() {
         return getJsonRpcURL(Constants.TOKENS_URL);
@@ -49,7 +53,7 @@ public abstract class BaseService {
     /**
      * Method to get the Transaction Requests url
      *
-     * @return
+     * @return - the transaction requests url
      */
     protected String getTransactionRequestsUrl() {
         return getJsonRpcURL(Constants.TRANSACTION_REQUESTS_URL);
@@ -58,7 +62,7 @@ public abstract class BaseService {
     /**
      * Method to get the Events url
      *
-     * @return
+     * @return - the events url
      */
     protected String getEventsUrl() {
         return getJsonRpcURL(Constants.EVENTS_URL);
@@ -67,8 +71,8 @@ public abstract class BaseService {
     /**
      * Method to get the rpc url to use
      *
-     * @param endpoint
-     * @return
+     * @param endpoint - the base endpoint
+     * @return - the final base endpoint to use
      */
     private String getJsonRpcURL(String endpoint) {
         String baseURL = Constants.TRUSTED_PLATFORM_BASE_URL;

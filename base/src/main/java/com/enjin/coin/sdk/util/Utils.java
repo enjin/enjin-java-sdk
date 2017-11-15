@@ -7,8 +7,8 @@ public class Utils {
     /**
      * Method to generate a randomId
      *
-     * @param inTestMode
-     * @return
+     * @param inTestMode - whether we are in testmode or not
+     * @return - a randomId
      */
     public static String generateRandomId(boolean inTestMode) {
         //If in test mode - send the test mode id - otherwise create an id
@@ -29,8 +29,8 @@ public class Utils {
      * The difference between min and max can be at most
      * <code>Integer.MAX_VALUE - 1</code>.
      *
-     * @param min Minimim value
-     * @param max Maximim value.  Must be greater than min.
+     * @param min Minimum value
+     * @param max Maximum value.  Must be greater than min.
      * @return Integer between min and max, inclusive.
      * @see java.util.Random#nextInt(int)
      */

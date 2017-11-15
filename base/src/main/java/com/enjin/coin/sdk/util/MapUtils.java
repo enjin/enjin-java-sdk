@@ -12,8 +12,8 @@ public final class MapUtils {
     /**
      * Method to check if a map is empty.
      *
-     * @param map
-     * @return
+     * @param map - map to check
+     * @return - boolean result
      */
     @SuppressWarnings("rawtypes")
     public static boolean isEmpty(Map map) {
@@ -23,8 +23,8 @@ public final class MapUtils {
     /**
      * Method to check if a map is not empty.
      *
-     * @param map
-     * @return
+     * @param map - map to check
+     * @return - boolean result
      */
     @SuppressWarnings("rawtypes")
     public static boolean isNotEmpty(Map map) {
@@ -34,8 +34,8 @@ public final class MapUtils {
     /**
      * Method to check if an optional map is empty.
      *
-     * @param optional
-     * @return
+     * @param optional - optional map to check
+     * @return - boolean result
      */
     @SuppressWarnings("rawtypes")
     public static boolean isEmpty(Optional<? extends Map> optional) {
@@ -45,8 +45,8 @@ public final class MapUtils {
     /**
      * Method to check if an optional map is not empty.
      *
-     * @param optional
-     * @return
+     * @param optional - optional map to check
+     * @return - boolean result
      */
     @SuppressWarnings("rawtypes")
     public static boolean isNotEmpty(Optional<? extends Map> optional) {

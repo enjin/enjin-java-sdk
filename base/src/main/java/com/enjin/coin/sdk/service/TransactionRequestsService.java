@@ -18,7 +18,7 @@ public class TransactionRequestsService extends BaseService {
     /**
      * Class constructor
      *
-     * @param enjinConfig
+     * @param enjinConfig - the enjinConfig to use
      */
     protected TransactionRequestsService(EnjinConfig enjinConfig) {
         super(enjinConfig);
@@ -27,8 +27,8 @@ public class TransactionRequestsService extends BaseService {
     /**
      * Method to get an transactionRequest
      *
-     * @param getTransactionRequestRequestVO
-     * @return
+     * @param getTransactionRequestRequestVO - get the transactionRequest request vo
+     * @return - GetTransactionRequestResponseVO
      */
     public GetTransactionRequestResponseVO getTransactionRequest(GetTransactionRequestRequestVO getTransactionRequestRequestVO) {
         GetTransactionRequestResponseVO getTransactionRequestResponseVO = null;
@@ -54,8 +54,8 @@ public class TransactionRequestsService extends BaseService {
     /**
      * Method to list the transactionRequests
      *
-     * @param listTransactionRequestsRequestVO
-     * @return
+     * @param listTransactionRequestsRequestVO - list the transactionRequest request vo's
+     * @return - ListTransactionRequestsResponseVO array
      */
     public ListTransactionRequestsResponseVO[] listTransactionRequests(ListTransactionRequestsRequestVO listTransactionRequestsRequestVO) {
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVO = null;
@@ -97,8 +97,8 @@ public class TransactionRequestsService extends BaseService {
     /**
      * Method to create an transactionRequest
      *
-     * @param createTransactionRequestRequestVO
-     * @return
+     * @param createTransactionRequestRequestVO - create the transactionRequest request vo
+     * @return - CreateTransactionRequestResponseVO
      */
     public CreateTransactionRequestResponseVO createTransactionRequest(CreateTransactionRequestRequestVO createTransactionRequestRequestVO) {
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = null;
@@ -138,8 +138,8 @@ public class TransactionRequestsService extends BaseService {
     /**
      * Method to cancel an transactionRequest
      *
-     * @param cancelTransactionRequestRequestVO
-     * @return
+     * @param cancelTransactionRequestRequestVO - cancel the transactionRequest request vo
+     * @return - CancelTransactionRequestResponseVO
      */
     public CancelTransactionRequestResponseVO cancelTransactionRequest(CancelTransactionRequestRequestVO cancelTransactionRequestRequestVO) {
         CancelTransactionRequestResponseVO cancelTransactionRequestResponseVO = null;

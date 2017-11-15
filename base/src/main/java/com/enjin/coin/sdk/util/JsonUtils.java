@@ -15,10 +15,10 @@ public final class JsonUtils {
 
     /**
      * Method to convert a json string to an object
-     * @param gson
-     * @param jsonString
-     * @param responseClass
-     * @return
+     * @param gson - gson object
+     * @param jsonString - json to convert to an object
+     * @param responseClass - class type to convert to
+     * @return An object representing the json in the fileReader
      */
     public static Object convertJsonToObject(Gson gson, String jsonString, Class<?> responseClass) {
         Object responseObject = null;
@@ -41,10 +41,10 @@ public final class JsonUtils {
 
     /**
      * Method to convert a json string from a file to an object
-     * @param gson
-     * @param filePath
-     * @param responseClass
-     * @return
+     * @param gson - gson object
+     * @param filePath - filePath to read json from
+     * @param responseClass - class type to convert to
+     * @return An object representing the json at the filePath
      */
     public static Object convertJsonFromFileToObject(Gson gson, String filePath, Class<?> responseClass) {
         Object responseObject = null;
@@ -71,8 +71,10 @@ public final class JsonUtils {
 
     /**
      * Method to convert json from a fileReader to an object
-     * @param file
-     * @param clazz
+     * @param gson - gson object
+     * @param fileReader - fileReader with the required content
+     * @param responseClass - class type to convert to
+     * @return An object representing the json in the fileReader
      */
 	public static Object convertJsonFromFileReaderToObject(Gson gson, FileReader fileReader, Class<?> responseClass) {
         Object responseObject = null;
@@ -95,9 +97,9 @@ public final class JsonUtils {
 
     /**
      *  Method to convert an object to a json string
-     * @param gson
-     * @param jsonObject
-     * @return
+     * @param gson - gson object
+     * @param jsonObject - jsonObject tp cpmvert
+     * @return - A string with the object in json format
      */
     public static String convertObjectToJson(Gson gson, Object jsonObject) {
         String jsonString = null;
@@ -115,9 +117,9 @@ public final class JsonUtils {
 	/**
 	 * Method to convert an object to a json tree
 	 * 
-	 * @param gson
-	 * @param data
-	 * @return
+	 * @param gson - gson object
+	 * @param jsonObject - jsonObject to convert
+	 * @return a JsonElement
 	 */
 	public static JsonElement convertObjectToJsonTree(Gson gson, Object jsonObject) {
 		JsonElement jsonElement = null;
