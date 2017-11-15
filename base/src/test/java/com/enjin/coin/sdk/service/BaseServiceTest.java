@@ -78,7 +78,13 @@ public class BaseServiceTest {
         String identitiesURL = baseAction.getIdentitiesUrl();
         assertThat(identitiesURL).isNotEmpty();
     }
-
+    @Test
+    public void testGetIdentitiesUrl_TrustedPlatformIsNull() {
+        baseAction.setTrustedPlatform(null);
+        String identitiesURL = baseAction.getIdentitiesUrl();
+        assertThat(identitiesURL).isNotEmpty();
+    }
+    
     @Test
     public void testGetTokensUrl1() {
         String tokensURL = baseAction.getTokensUrl();
@@ -106,7 +112,12 @@ public class BaseServiceTest {
         String tokensURL = baseAction.getTokensUrl();
         assertThat(tokensURL).isNotEmpty();
     }
-
+    @Test
+    public void testGetTokensUrl_TrustedPlatformIsNull() {
+        baseAction.setTrustedPlatform(null);
+        String tokensURL = baseAction.getTokensUrl();
+        assertThat(tokensURL).isNotEmpty();
+    }
     @Test
     public void testGetTransactionRequestsUrl1() {
         String transactionRequestsURL = baseAction.getTransactionRequestsUrl();
@@ -134,7 +145,45 @@ public class BaseServiceTest {
         String transactionRequestsURL = baseAction.getTransactionRequestsUrl();
         assertThat(transactionRequestsURL).isNotEmpty();
     }
+    @Test
+    public void testGetTransactionRequestsUrl_TrustedPlatformIsNull() {
+        baseAction.setTrustedPlatform(null);
+        String transactionRequestsURL = baseAction.getTransactionRequestsUrl();
+        assertThat(transactionRequestsURL).isNotEmpty();
+    }
+    @Test
+    public void testGetEventsUrl1() {
+        String identitiesURL = baseAction.getEventsUrl();
+        assertThat(identitiesURL).isNotEmpty();
+    }
 
+    @Test
+    public void testGetEventsUrl2() {
+        baseAction.setTrustedPlatform(ImmutablePlatform.builder()
+                .setHost("localhost")
+                .setPort(8081)
+                .setProtocol(Protocol.HTTP)
+                .build());
+        String identitiesURL = baseAction.getEventsUrl();
+        assertThat(identitiesURL).isNotEmpty();
+    }
+
+    @Test
+    public void testGetEventsUrl3() {
+        baseAction.setTrustedPlatform(ImmutablePlatform.builder()
+                .setHost("localhost")
+                .setPort(8081)
+                .setProtocol(Protocol.HTTP)
+                .build());
+        String identitiesURL = baseAction.getEventsUrl();
+        assertThat(identitiesURL).isNotEmpty();
+    }
+    @Test
+    public void testGetEventsUrl_TrustedPlatformIsNull() {
+        baseAction.setTrustedPlatform(null);
+        String identitiesURL = baseAction.getEventsUrl();
+        assertThat(identitiesURL).isNotEmpty();
+    }
     @Test
     public void testGetTrustedPlatform_Default() {
         Platform trustedPlatform = baseAction.getTrustedPlatform();
