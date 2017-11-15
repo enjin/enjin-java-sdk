@@ -136,13 +136,13 @@ public class BaseServiceTest {
     }
 
     @Test
-    public void testGetTrustedPlatformUrl_Default() {
+    public void testGetTrustedPlatform_Default() {
         Platform trustedPlatform = baseAction.getTrustedPlatform();
         assertThat(trustedPlatform).isEqualToComparingFieldByField(ImmutablePlatform.builder().build());
     }
 
     @Test
-    public void testGetTrustedPlatformUrl_Success() {
+    public void testGetTrustedPlatform_Success() {
         baseAction.setTrustedPlatform(ImmutablePlatform.builder()
                 .setHost("localhost")
                 .setPort(8081)
