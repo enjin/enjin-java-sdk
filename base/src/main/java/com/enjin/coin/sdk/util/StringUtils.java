@@ -7,8 +7,6 @@ import java.util.Optional;
 
 /**
  * <p>Functionality for working with strings</p>
- *
- * @author damien
  */
 public final class StringUtils {
 

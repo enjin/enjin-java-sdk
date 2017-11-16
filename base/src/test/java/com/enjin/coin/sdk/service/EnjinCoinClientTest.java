@@ -1,7 +1,8 @@
 package com.enjin.coin.sdk.service;
 
 import com.enjin.coin.sdk.config.Config;
-import com.enjin.coin.sdk.service.events.impl.EventsServiceImpl;
+import com.enjin.coin.sdk.service.events.EventsService;
+import com.enjin.coin.sdk.service.identities.IdentitiesService;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -33,11 +34,11 @@ public class EnjinCoinClientTest {
 
     @Test
     public void testGetEventsService() {
-        EventsServiceImpl eventsService = enjinCoinClient.getEventsService();
+        EventsService eventsService = enjinCoinClient.getEventsService();
         assertThat(eventsService).isNotNull();
 
         //Second time around - the existin service should be returned
-        EventsServiceImpl eventsService2 = enjinCoinClient.getEventsService();
+        EventsService eventsService2 = enjinCoinClient.getEventsService();
         assertThat(eventsService2).isNotNull().isSameAs(eventsService);
     }
 

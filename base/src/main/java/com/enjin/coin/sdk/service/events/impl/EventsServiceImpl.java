@@ -14,9 +14,7 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 /**
- * <p>Contains services related to events</p>
- *
- * @author damien
+ * <p>Synchronous implementation of EventsService</p>
  */
 public class EventsServiceImpl extends BaseService implements EventsService {
 
@@ -31,12 +29,7 @@ public class EventsServiceImpl extends BaseService implements EventsService {
         super(enjinConfig);
     }
 
-    /**
-     * Method to get an event
-     *
-     * @param getEventRequestVO - get event request vo
-     * @return - GetEventResponseVO
-     */
+    @Override
     public GetEventResponseVO getEvent(GetEventRequestVO getEventRequestVO) {
         GetEventResponseVO getEventResponseVO = null;
 
@@ -46,7 +39,7 @@ public class EventsServiceImpl extends BaseService implements EventsService {
             return getEventResponseVO;
         }
 
-        Map<String, Object> params = new HashMap<String, Object>();
+        Map<String, Object> params = new HashMap<>();
         params.put("auth", getEventRequestVO.getAuth().get());
         params.put("event_id", getEventRequestVO.getEventId().get());
 
@@ -58,12 +51,7 @@ public class EventsServiceImpl extends BaseService implements EventsService {
         return getEventResponseVO;
     }
 
-    /**
-     * Method to list the events
-     *
-     * @param listEventsRequestVO - list events request vo
-     * @return - ListEventsResponseVO
-     */
+    @Override
     public ListEventsResponseVO listEvents(ListEventsRequestVO listEventsRequestVO) {
         ListEventsResponseVO listEventsResponseVO = null;
 
@@ -75,7 +63,7 @@ public class EventsServiceImpl extends BaseService implements EventsService {
             return listEventsResponseVO;
         }
 
-        Map<String, Object> params = new HashMap<String, Object>();
+        Map<String, Object> params = new HashMap<>();
         params.put("auth", listEventsRequestVO.getAuth().get());
         params.put("app_id", listEventsRequestVO.getAppId().get());
         params.put("after_Event_id", listEventsRequestVO.getAfterEventId().get());

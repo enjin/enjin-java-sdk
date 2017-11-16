@@ -13,8 +13,6 @@ import java.util.logging.Logger;
 
 /**
  * <p>Contains services related to transaction requests</p>
- *
- * @author damien
  */
 public class TransactionRequestsService extends BaseService {
 

@@ -13,8 +13,6 @@ import java.util.logging.Logger;
 
 /**
  * <p>Contains services related to tokens</p>
- *
- * @author damien
  */
 public class TokensService extends BaseService {
 

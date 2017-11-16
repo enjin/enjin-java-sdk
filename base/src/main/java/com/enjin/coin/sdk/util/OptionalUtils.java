@@ -4,8 +4,6 @@ import java.util.Optional;
 
 /**
  * <p>Functionality for working with optionals</p>
- *
- * @author damien
  */
 public class OptionalUtils {
 

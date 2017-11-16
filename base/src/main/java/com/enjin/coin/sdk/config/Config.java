@@ -1,16 +1,13 @@
 package com.enjin.coin.sdk.config;
 
-import org.immutables.gson.Gson;
-import org.immutables.value.Value;
-
 import com.enjin.coin.sdk.annotations.immutables.Nullable;
 import com.enjin.coin.sdk.util.Constants;
 import com.google.gson.annotations.SerializedName;
+import org.immutables.gson.Gson;
+import org.immutables.value.Value;
 
 /**
  * <p>Config used throughout the sdk</p>
- *
- * @author damien
  */
 @Value.Immutable
 @Gson.TypeAdapters
@@ -27,8 +24,7 @@ public class Config extends JsonConfig {
     public Integer getTotalExecutors() {
         return Constants.ONE;
     }
-    
-    
+
     @Nullable
     @Value.Default
     @SerializedName("test-mode")

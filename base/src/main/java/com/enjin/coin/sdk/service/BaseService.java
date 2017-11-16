@@ -1,21 +1,17 @@
 package com.enjin.coin.sdk.service;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.config.Platform;
 import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.JsonRpcUtils;
 import com.enjin.coin.sdk.util.ObjectUtils;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.Logger;
 
 /**
  * <p>Provides Services used by the main service classes</p>
- *
- * @author damien
  */
 public abstract class BaseService {
 
@@ -25,7 +21,7 @@ public abstract class BaseService {
     private boolean isInTestMode;
     protected JsonRpcUtils jsonRpcUtils;
     protected ExecutorService executorService;
-    
+
     /**
      * Class contructor
      *
@@ -41,7 +37,7 @@ public abstract class BaseService {
         isInTestMode = enjinConfig.isInTestMode() == null ? false : enjinConfig.isInTestMode();
         Integer totalExecutors = enjinConfig.getTotalExecutors();
         executorService = Executors.newFixedThreadPool(totalExecutors);
-        
+
         jsonRpcUtils = new JsonRpcUtils();
         jsonRpcUtils.setIsInTestMode(isInTestMode);
     }

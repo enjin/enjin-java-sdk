@@ -14,8 +14,6 @@ import java.util.logging.Logger;
 
 /**
  * <p>Contains all logic for performing json rpc calls</p>
- *
- * @author damien
  */
 public class JsonRpcUtils {
 

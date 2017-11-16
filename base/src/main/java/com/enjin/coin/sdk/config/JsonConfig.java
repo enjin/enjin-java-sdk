@@ -15,8 +15,6 @@ import java.util.logging.Logger;
 
 /**
  * <p>Json Config that is used in the sdk</p>
- *
- * @author damien
  */
 public class JsonConfig {
 

@@ -8,8 +8,6 @@ import java.util.logging.Logger;
 
 /**
  * <p>Contains all utility methods for working with files</p>
- *
- * @author damien
  */
 public final class FileUtils {
 

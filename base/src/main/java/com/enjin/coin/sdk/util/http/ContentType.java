@@ -2,8 +2,6 @@ package com.enjin.coin.sdk.util.http;
 
 /**
  * <p>Http Constants</p>
- *
- * @author damien
  */
 public class ContentType {
 

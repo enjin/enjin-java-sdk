@@ -4,8 +4,6 @@ import java.lang.reflect.Array;
 
 /**
  * <p>Functionality for working with arrays</p>
- *
- * @author damien
  */
 public class ArrayUtils {
 

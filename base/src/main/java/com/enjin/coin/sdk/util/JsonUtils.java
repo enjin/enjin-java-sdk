@@ -11,8 +11,6 @@ import java.util.logging.Logger;
 
 /**
  * <p>All utility methods for working with json</p>
- *
- * @author damien
  */
 public final class JsonUtils {
 

@@ -4,6 +4,7 @@ import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.config.ImmutableConfig;
 import com.enjin.coin.sdk.config.ImmutablePlatform;
 import com.enjin.coin.sdk.config.Platform;
+import com.enjin.coin.sdk.service.identities.impl.IdentitiesServiceImpl;
 import com.enjin.coin.sdk.util.http.Protocol;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,20 +19,20 @@ public class BaseServiceTest {
     @Before
     public void setUp() {
         enjinConfig = new Config();
-        baseAction = new IdentitiesService(enjinConfig);
+        baseAction = new IdentitiesServiceImpl(enjinConfig);
     }
 
     @Test
     public void testContructor_EnjinConfigIsNull() {
         enjinConfig = null;
-        baseAction = new IdentitiesService(enjinConfig);
+        baseAction = new IdentitiesServiceImpl(enjinConfig);
         assertThat(baseAction).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty());
     }
 
     @Test
     public void testContructor1() {
-        baseAction = new IdentitiesService(enjinConfig);
+        baseAction = new IdentitiesServiceImpl(enjinConfig);
         assertThat(baseAction).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty());
     }
@@ -46,7 +47,7 @@ public class BaseServiceTest {
                         .build())
                 .setInTestMode(true)
                 .build();
-        baseAction = new IdentitiesService(enjinConfig);
+        baseAction = new IdentitiesServiceImpl(enjinConfig);
         assertThat(baseAction).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty());
     }

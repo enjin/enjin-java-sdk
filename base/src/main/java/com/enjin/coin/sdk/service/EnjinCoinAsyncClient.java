@@ -1,23 +1,24 @@
 package com.enjin.coin.sdk.service;
 
 import com.enjin.coin.sdk.config.Config;
+import com.enjin.coin.sdk.service.events.EventsAsyncService;
 import com.enjin.coin.sdk.service.events.impl.EventsAsyncServiceImpl;
+import com.enjin.coin.sdk.service.identities.IdentitiesAsyncService;
+import com.enjin.coin.sdk.service.identities.impl.IdentitiesAsyncServiceImpl;
 
 import java.util.logging.Logger;
 
 /**
- * <p>Enjin Coin Client - Syncs</p>
- * <p>All services will be instantiated from this class that will be called in a synchronous fashion</p>
- *
- * @author damien
+ * <p>Enjin Coin Client - Asynchronous</p>
+ * <p>All services will be instantiated from this class that will be called in an asynchronous fashion</p>
  */
 public class EnjinCoinAsyncClient implements EnjinCoin {
 
     private static final Logger LOGGER = Logger.getLogger(EnjinCoinAsyncClient.class.getName());
 
     private Config enjinConfig;
-    private EventsAsyncServiceImpl eventsServiceAsync;
-    private IdentitiesService identitiesService;
+    private EventsAsyncService eventsServiceAsync;
+    private IdentitiesAsyncService identitiesService;
     private TokensService tokensService;
     private TransactionRequestsService transactionRequestsService;
 
@@ -40,7 +41,7 @@ public class EnjinCoinAsyncClient implements EnjinCoin {
      *
      * @return - EventsServiceAsync
      */
-    public EventsAsyncServiceImpl getEventsService() {
+    public EventsAsyncService getEventsService() {
         if (eventsServiceAsync == null) {
             eventsServiceAsync = new EventsAsyncServiceImpl(enjinConfig);
         }
@@ -52,9 +53,9 @@ public class EnjinCoinAsyncClient implements EnjinCoin {
      *
      * @return - IdentitiesService
      */
-    public IdentitiesService getIdentitiesService() {
+    public IdentitiesAsyncService getIdentitiesService() {
         if (identitiesService == null) {
-            identitiesService = new IdentitiesService(enjinConfig);
+            identitiesService = new IdentitiesAsyncServiceImpl(enjinConfig);
         }
         return identitiesService;
     }

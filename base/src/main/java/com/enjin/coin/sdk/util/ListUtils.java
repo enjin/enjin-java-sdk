@@ -5,8 +5,6 @@ import java.util.Optional;
 
 /**
  * <p>Functionality for working with lists</p>
- *
- * @author damien
  */
 public final class ListUtils {
 

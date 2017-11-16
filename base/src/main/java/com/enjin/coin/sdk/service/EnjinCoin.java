@@ -1,11 +1,10 @@
 package com.enjin.coin.sdk.service;
 
-import com.enjin.coin.sdk.service.events.impl.EventsServiceImpl;
+import com.enjin.coin.sdk.service.events.EventsService;
+import com.enjin.coin.sdk.service.identities.IdentitiesService;
 
 /**
  * <p>Interface for the EnjinCoin sync client </p>
- *
- * @author damien
  */
 public interface EnjinCoin {
 
@@ -14,7 +13,7 @@ public interface EnjinCoin {
      *
      * @return - EventsService
      */
-    public EventsServiceImpl getEventsService();
+    public EventsService getEventsService();
 
     /**
      * Method to get the identitiesService

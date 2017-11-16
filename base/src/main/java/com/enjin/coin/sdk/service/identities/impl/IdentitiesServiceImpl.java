@@ -1,6 +1,8 @@
-package com.enjin.coin.sdk.service;
+package com.enjin.coin.sdk.service.identities.impl;
 
 import com.enjin.coin.sdk.config.Config;
+import com.enjin.coin.sdk.service.BaseService;
+import com.enjin.coin.sdk.service.identities.IdentitiesService;
 import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.MapUtils;
 import com.enjin.coin.sdk.util.StringUtils;
@@ -11,29 +13,22 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 /**
- * <p>Contains services related to identities</p>
- *
- * @author damien
+ * <p>Synchronous implementation of IdentitiesService</p>
  */
-public class IdentitiesService extends BaseService {
+public class IdentitiesServiceImpl extends BaseService implements IdentitiesService {
 
-    private static final Logger LOGGER = Logger.getLogger(IdentitiesService.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(IdentitiesServiceImpl.class.getName());
 
     /**
      * Class constructor
      *
      * @param enjinConfig - the enjinConfig to use
      */
-    protected IdentitiesService(Config enjinConfig) {
+    public IdentitiesServiceImpl(Config enjinConfig) {
         super(enjinConfig);
     }
 
-    /**
-     * Method to get an identity
-     *
-     * @param getIdentityRequestVO - get identity request vo
-     * @return - GetIdentityResponseVO
-     */
+    @Override
     public GetIdentityResponseVO getIdentity(GetIdentityRequestVO getIdentityRequestVO) {
         GetIdentityResponseVO getIdentityResponseVO = null;
 
@@ -43,7 +38,7 @@ public class IdentitiesService extends BaseService {
             return getIdentityResponseVO;
         }
 
-        Map<String, Object> params = new HashMap<String, Object>();
+        Map<String, Object> params = new HashMap<>();
         params.put("auth", getIdentityRequestVO.getAuth().get());
         params.put("identity", getIdentityRequestVO.getIdentity().get());
 
@@ -55,12 +50,7 @@ public class IdentitiesService extends BaseService {
         return getIdentityResponseVO;
     }
 
-    /**
-     * Method to list the identities
-     *
-     * @param listIdentitiesRequestVO - list identities request vo
-     * @return - ListIdentitiesResponseVO array
-     */
+    @Override
     public ListIdentitiesResponseVO[] listIdentities(ListIdentitiesRequestVO listIdentitiesRequestVO) {
         ListIdentitiesResponseVO[] listIdentitiesResponseVO = null;
 
@@ -70,7 +60,7 @@ public class IdentitiesService extends BaseService {
             return listIdentitiesResponseVO;
         }
 
-        Map<String, Object> params = new HashMap<String, Object>();
+        Map<String, Object> params = new HashMap<>();
         params.put("auth", listIdentitiesRequestVO.getAuth().get());
         params.put("identity", listIdentitiesRequestVO.getIdentity().get());
         if (listIdentitiesRequestVO.getLinked().isPresent()) {
@@ -90,12 +80,7 @@ public class IdentitiesService extends BaseService {
         return listIdentitiesResponseVO;
     }
 
-    /**
-     * Method to create an identity
-     *
-     * @param createIdentityRequestVO - create identity request vo
-     * @return - CreateIdentityResponseVO
-     */
+    @Override
     public CreateIdentityResponseVO createIdentity(CreateIdentityRequestVO createIdentityRequestVO) {
         CreateIdentityResponseVO createIdentityResponseVO = null;
 
@@ -105,7 +90,7 @@ public class IdentitiesService extends BaseService {
             return createIdentityResponseVO;
         }
 
-        Map<String, Object> params = new HashMap<String, Object>();
+        Map<String, Object> params = new HashMap<>();
         params.put("auth", createIdentityRequestVO.getAuth().get());
         params.put("identity", createIdentityRequestVO.getIdentity().get());
 
@@ -117,12 +102,7 @@ public class IdentitiesService extends BaseService {
         return createIdentityResponseVO;
     }
 
-    /**
-     * Method to update an identity
-     *
-     * @param updateIdentityRequestVO - update identity request vo
-     * @return - UpdateIdentityResponseVO
-     */
+    @Override
     public UpdateIdentityResponseVO updateIdentity(UpdateIdentityRequestVO updateIdentityRequestVO) {
         UpdateIdentityResponseVO updateIdentityResponseVO = null;
 
@@ -133,7 +113,7 @@ public class IdentitiesService extends BaseService {
             return updateIdentityResponseVO;
         }
 
-        Map<String, Object> params = new HashMap<String, Object>();
+        Map<String, Object> params = new HashMap<>();
         params.put("auth", updateIdentityRequestVO.getAuth().get());
         params.put("identity", updateIdentityRequestVO.getIdentity().get());
         params.put("update", updateIdentityRequestVO.getUpdate().get());
@@ -146,12 +126,7 @@ public class IdentitiesService extends BaseService {
         return updateIdentityResponseVO;
     }
 
-    /**
-     * Method to delete an identity
-     *
-     * @param deleteIdentityRequestVO - delete identity request vo
-     * @return - DeleteIdentityResponseVO
-     */
+    @Override
     public DeleteIdentityResponseVO deleteIdentity(DeleteIdentityRequestVO deleteIdentityRequestVO) {
         DeleteIdentityResponseVO deleteIdentityResponseVO = null;
 
@@ -161,7 +136,7 @@ public class IdentitiesService extends BaseService {
             return deleteIdentityResponseVO;
         }
 
-        Map<String, Object> params = new HashMap<String, Object>();
+        Map<String, Object> params = new HashMap<>();
         params.put("auth", deleteIdentityRequestVO.getAuth().get());
         params.put("identity", deleteIdentityRequestVO.getIdentity().get());
 

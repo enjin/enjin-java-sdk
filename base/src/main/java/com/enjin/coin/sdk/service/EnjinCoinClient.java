@@ -1,15 +1,16 @@
 package com.enjin.coin.sdk.service;
 
 import com.enjin.coin.sdk.config.Config;
+import com.enjin.coin.sdk.service.events.EventsService;
 import com.enjin.coin.sdk.service.events.impl.EventsServiceImpl;
+import com.enjin.coin.sdk.service.identities.IdentitiesService;
+import com.enjin.coin.sdk.service.identities.impl.IdentitiesServiceImpl;
 
 import java.util.logging.Logger;
 
 /**
- * <p>Enjin Coin Client - Syncs</p>
+ * <p>Enjin Coin Client - Synchronous</p>
  * <p>All services will be instantiated from this class that will be called in a synchronous fashion</p>
- *
- * @author damien
  */
 public class EnjinCoinClient implements EnjinCoin {
 
@@ -17,7 +18,7 @@ public class EnjinCoinClient implements EnjinCoin {
 
     private Config enjinConfig;
     private EventsServiceImpl eventsService;
-    private IdentitiesService identitiesService;
+    private IdentitiesServiceImpl identitiesService;
     private TokensService tokensService;
     private TransactionRequestsService transactionRequestsService;
 
@@ -40,7 +41,7 @@ public class EnjinCoinClient implements EnjinCoin {
      *
      * @return - EventsService
      */
-    public EventsServiceImpl getEventsService() {
+    public EventsService getEventsService() {
         if (eventsService == null) {
             eventsService = new EventsServiceImpl(enjinConfig);
         }
@@ -54,7 +55,7 @@ public class EnjinCoinClient implements EnjinCoin {
      */
     public IdentitiesService getIdentitiesService() {
         if (identitiesService == null) {
-            identitiesService = new IdentitiesService(enjinConfig);
+            identitiesService = new IdentitiesServiceImpl(enjinConfig);
         }
         return identitiesService;
     }
