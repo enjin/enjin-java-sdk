@@ -14,7 +14,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(IdentitiesService.class)
@@ -66,8 +66,8 @@ public class IdentitiesServiceTest {
         assertThat(getIdentityResponseVO).isNull();
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-	@Test
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    @Test
     public void testGetIdentity_IdentityMapIsNull() {
         GetIdentityRequestVO getIdentityRequestVO = ImmutableGetIdentityRequestVO.builder()
                 .setAuth("auth")
@@ -91,7 +91,7 @@ public class IdentitiesServiceTest {
         assertThat(getIdentityResponseVO).isNull();
     }
 
-    @SuppressWarnings({ "unchecked", "serial" })
+    @SuppressWarnings({"unchecked", "serial"})
     @Test
     public void testGetIdentity_ResponseIsNull() throws Exception {
         GetIdentityRequestVO getIdentityRequestVO = ImmutableGetIdentityRequestVO.builder()
@@ -115,7 +115,7 @@ public class IdentitiesServiceTest {
         Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
     }
 
-    @SuppressWarnings({ "unchecked", "serial" })
+    @SuppressWarnings({"unchecked", "serial"})
     @Test
     public void testGetIdentity_Success() throws Exception {
         GetIdentityRequestVO getIdentityRequestVO = ImmutableGetIdentityRequestVO.builder()
@@ -170,7 +170,7 @@ public class IdentitiesServiceTest {
         assertThat(listIdentitiesResponseVO).isNull();
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings({"unchecked", "rawtypes"})
     @Test
     public void testListIdentities_IdentityMapIsNull() {
         ListIdentitiesRequestVO listIdentitiesRequestVO = ImmutableListIdentitiesRequestVO.builder()
@@ -195,7 +195,7 @@ public class IdentitiesServiceTest {
         assertThat(listIdentitiesResponseVO).isNull();
     }
 
-    @SuppressWarnings({ "unchecked", "serial" })
+    @SuppressWarnings({"unchecked", "serial"})
     @Test
     public void testListIdentities_ResponseIsNull() throws Exception {
         ListIdentitiesRequestVO listIdentitiesRequestVO = ImmutableListIdentitiesRequestVO.builder()
@@ -219,7 +219,7 @@ public class IdentitiesServiceTest {
         Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
     }
 
-    @SuppressWarnings({ "unchecked", "serial" })
+    @SuppressWarnings({"unchecked", "serial"})
     @Test
     public void testListIdentities_ResponseIsEmpty() throws Exception {
         ListIdentitiesRequestVO listIdentitiesRequestVO = ImmutableListIdentitiesRequestVO.builder()
@@ -244,7 +244,7 @@ public class IdentitiesServiceTest {
         Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
     }
 
-    @SuppressWarnings({ "unchecked", "serial" })
+    @SuppressWarnings({"unchecked", "serial"})
     @Test
     public void testListIdentities_Success1() throws Exception {
         ListIdentitiesRequestVO listIdentitiesRequestVO = ImmutableListIdentitiesRequestVO.builder()
@@ -271,7 +271,7 @@ public class IdentitiesServiceTest {
         Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
     }
 
-    @SuppressWarnings({ "unchecked", "serial" })
+    @SuppressWarnings({"unchecked", "serial"})
     @Test
     public void testListIdentities_Success2() throws Exception {
         ListIdentitiesRequestVO listIdentitiesRequestVO = ImmutableListIdentitiesRequestVO.builder()
@@ -330,8 +330,8 @@ public class IdentitiesServiceTest {
         assertThat(createIdentityResponseVO).isNull();
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-	@Test
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    @Test
     public void testCreateIdentity_IdentityMapIsNull() {
         CreateIdentityRequestVO createIdentityRequestVO = ImmutableCreateIdentityRequestVO.builder()
                 .setAuth("auth")
@@ -355,7 +355,7 @@ public class IdentitiesServiceTest {
         assertThat(createIdentityResponseVO).isNull();
     }
 
-    @SuppressWarnings({ "unchecked", "serial" })
+    @SuppressWarnings({"unchecked", "serial"})
     @Test
     public void testCreateIdentity_ResponseIsNull() throws Exception {
         CreateIdentityRequestVO createIdentityRequestVO = ImmutableCreateIdentityRequestVO.builder()
@@ -379,7 +379,7 @@ public class IdentitiesServiceTest {
         Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
     }
 
-    @SuppressWarnings({ "unchecked", "serial" })
+    @SuppressWarnings({"unchecked", "serial"})
     @Test
     public void testCreateIdentity_Success() throws Exception {
         CreateIdentityRequestVO createIdentityRequestVO = ImmutableCreateIdentityRequestVO.builder()
@@ -433,8 +433,8 @@ public class IdentitiesServiceTest {
         UpdateIdentityResponseVO updateIdentityResponseVO = identitiesService.updateIdentity(updateIdentityRequestVO);
         assertThat(updateIdentityResponseVO).isNull();
     }
-    
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+
+    @SuppressWarnings({"unchecked", "rawtypes"})
     @Test
     public void testUpdateIdentity_IdentityMapIsNull() {
         UpdateIdentityRequestVO updateIdentityRequestVO = ImmutableUpdateIdentityRequestVO.builder()
@@ -458,7 +458,7 @@ public class IdentitiesServiceTest {
         assertThat(updateIdentityResponseVO).isNull();
     }
 
-    @SuppressWarnings({ "unchecked", "serial", "rawtypes" })
+    @SuppressWarnings({"unchecked", "serial", "rawtypes"})
     @Test
     public void testUpdateIdentity_UpdateMapIsNull() {
         UpdateIdentityRequestVO updateIdentityRequestVO = ImmutableUpdateIdentityRequestVO.builder()
@@ -474,7 +474,7 @@ public class IdentitiesServiceTest {
         assertThat(updateIdentityResponseVO).isNull();
     }
 
-    @SuppressWarnings({ "serial" })
+    @SuppressWarnings({"serial"})
     @Test
     public void testUpdateIdentity_UpdateMapIsEmpty() {
         UpdateIdentityRequestVO updateIdentityRequestVO = ImmutableUpdateIdentityRequestVO.builder()
@@ -490,7 +490,7 @@ public class IdentitiesServiceTest {
         assertThat(updateIdentityResponseVO).isNull();
     }
 
-    @SuppressWarnings({ "unchecked", "serial" })
+    @SuppressWarnings({"unchecked", "serial"})
     @Test
     public void testUpdateIdentity_ResponseIsNull() throws Exception {
         UpdateIdentityRequestVO updateIdentityRequestVO = ImmutableUpdateIdentityRequestVO.builder()
@@ -517,7 +517,7 @@ public class IdentitiesServiceTest {
         Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
     }
 
-    @SuppressWarnings({ "unchecked", "serial" })
+    @SuppressWarnings({"unchecked", "serial"})
     @Test
     public void testUpdateIdentity_Success() throws Exception {
         UpdateIdentityRequestVO updateIdentityRequestVO = ImmutableUpdateIdentityRequestVO.builder()
@@ -575,7 +575,7 @@ public class IdentitiesServiceTest {
         assertThat(deleteIdentityResponseVO).isNull();
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings({"unchecked", "rawtypes"})
     @Test
     public void testDeleteIdentity_IdentityMapIsNull() {
         DeleteIdentityRequestVO deleteIdentityRequestVO = ImmutableDeleteIdentityRequestVO.builder()
@@ -600,7 +600,7 @@ public class IdentitiesServiceTest {
         assertThat(deleteIdentityResponseVO).isNull();
     }
 
-    @SuppressWarnings({ "unchecked", "serial" })
+    @SuppressWarnings({"unchecked", "serial"})
     @Test
     public void testDeleteIdentity_ResultIsNull() throws Exception {
         DeleteIdentityRequestVO deleteIdentityRequestVO = ImmutableDeleteIdentityRequestVO.builder()
@@ -625,7 +625,7 @@ public class IdentitiesServiceTest {
         Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
     }
 
-    @SuppressWarnings({ "unchecked", "serial" })
+    @SuppressWarnings({"unchecked", "serial"})
     @Test
     public void testDeleteIdentity_ResultIsFalse() throws Exception {
         DeleteIdentityRequestVO deleteIdentityRequestVO = ImmutableDeleteIdentityRequestVO.builder()
@@ -651,7 +651,7 @@ public class IdentitiesServiceTest {
         Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
     }
 
-    @SuppressWarnings({ "unchecked", "serial" })
+    @SuppressWarnings({"unchecked", "serial"})
     @Test
     public void testDeleteIdentity_Success() throws Exception {
         DeleteIdentityRequestVO deleteIdentityRequestVO = ImmutableDeleteIdentityRequestVO.builder()

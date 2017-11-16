@@ -5,10 +5,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.logging.Logger;
+
 /**
  * <p>Contains all utility methods for working with files</p>
- * @author damien
  *
+ * @author damien
  */
 public final class FileUtils {
 

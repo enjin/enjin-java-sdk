@@ -2,8 +2,8 @@ package com.enjin.coin.sdk.util.http;
 
 /**
  * <p>Header related constants</p>
- * @author damien
  *
+ * @author damien
  */
 public class Header {
 

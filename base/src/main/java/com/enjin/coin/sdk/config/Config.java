@@ -9,8 +9,8 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * <p>Config used throughout the sdk</p>
- * @author damien
  *
+ * @author damien
  */
 @Value.Immutable
 @Gson.TypeAdapters

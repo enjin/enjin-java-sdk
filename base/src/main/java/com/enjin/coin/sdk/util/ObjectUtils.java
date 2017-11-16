@@ -1,8 +1,9 @@
 package com.enjin.coin.sdk.util;
+
 /**
  * <p>Functionality for working with objects</p>
- * @author damien
  *
+ * @author damien
  */
 public class ObjectUtils {
 

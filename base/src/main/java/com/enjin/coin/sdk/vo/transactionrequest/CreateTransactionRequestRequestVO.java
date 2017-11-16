@@ -1,12 +1,11 @@
 package com.enjin.coin.sdk.vo.transactionrequest;
 
-import java.util.Map;
-import java.util.Optional;
-
+import com.google.gson.annotations.SerializedName;
 import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 
-import com.google.gson.annotations.SerializedName;
+import java.util.Map;
+import java.util.Optional;
 
 @Value.Immutable
 @Gson.TypeAdapters

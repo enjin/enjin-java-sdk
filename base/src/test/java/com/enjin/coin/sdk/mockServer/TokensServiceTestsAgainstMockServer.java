@@ -11,7 +11,7 @@ import com.enjin.coin.sdk.vo.token.ListTokensRequestVO;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class TokensServiceTestsAgainstMockServer extends BaseMockServer {
 

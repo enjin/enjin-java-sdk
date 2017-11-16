@@ -24,7 +24,7 @@ public abstract class GetIdentityResponseVO {
 
     @Override
     public String toString() {
-        return "GetIdentityResponseVO [identityId=" + getIdentityId().orElse(null) + ", ethereumAddress="+ getEthereumAddress().orElse(null)
+        return "GetIdentityResponseVO [identityId=" + getIdentityId().orElse(null) + ", ethereumAddress=" + getEthereumAddress().orElse(null)
                 + ", playerName=" + getPlayerName().orElse(null) + ", uuid=" + getUuid().orElse(null) + "]";
     }
 

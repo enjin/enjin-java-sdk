@@ -13,7 +13,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(StringUtils.class)

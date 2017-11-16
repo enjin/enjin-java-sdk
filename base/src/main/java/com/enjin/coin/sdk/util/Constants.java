@@ -2,8 +2,8 @@ package com.enjin.coin.sdk.util;
 
 /**
  * <p>Constants used throughout the SDK</p>
- * @author damien
  *
+ * @author damien
  */
 public class Constants {
 
