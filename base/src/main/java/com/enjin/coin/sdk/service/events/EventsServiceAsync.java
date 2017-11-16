@@ -1,6 +1,5 @@
 package com.enjin.coin.sdk.service.events;
 
-import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.logging.Logger;
 
@@ -19,7 +18,7 @@ import com.enjin.coin.sdk.vo.event.ListEventsResponseVO;
 public class EventsServiceAsync extends EventsService implements EventServiceAsync{
 
     private static final Logger LOGGER = Logger.getLogger(EventsServiceAsync.class.getName());
-    private final java.util.concurrent.ExecutorService executorService = Executors.newFixedThreadPool(0);
+
     /**
      * Class constructor
      *

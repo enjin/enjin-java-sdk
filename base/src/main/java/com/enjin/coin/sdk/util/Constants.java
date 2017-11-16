@@ -54,6 +54,7 @@ public class Constants {
     /**
      * Numeric constants
      **/
+    public static final int ONE          = 1;
     public static final int ONE_THOUSAND = 1000;
     public static final int TEN_THOUSAND = 10000;
     public static final int ONE_HUNDRED_THOUSAND = 100000;

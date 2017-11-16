@@ -1,9 +1,11 @@
 package com.enjin.coin.sdk.config;
 
-import com.enjin.coin.sdk.annotations.immutables.Nullable;
-import com.google.gson.annotations.SerializedName;
 import org.immutables.gson.Gson;
 import org.immutables.value.Value;
+
+import com.enjin.coin.sdk.annotations.immutables.Nullable;
+import com.enjin.coin.sdk.util.Constants;
+import com.google.gson.annotations.SerializedName;
 
 /**
  * <p>Config used throughout the sdk</p>
@@ -20,6 +22,13 @@ public class Config extends JsonConfig {
         return ImmutablePlatform.builder().build();
     }
 
+    @Value.Default
+    @SerializedName("totalExecutors")
+    public Integer getTotalExecutors() {
+        return Constants.ONE;
+    }
+    
+    
     @Nullable
     @Value.Default
     @SerializedName("test-mode")
