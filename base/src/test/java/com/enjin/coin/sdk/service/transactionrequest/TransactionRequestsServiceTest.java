@@ -1,10 +1,9 @@
-package com.enjin.coin.sdk.service.transactionrequest;
+package com.enjin.coin.sdk.service;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.util.HashMap;
-import java.util.Map;
-
+import com.enjin.coin.sdk.config.Config;
+import com.enjin.coin.sdk.service.transactionrequests.impl.TransactionRequestsServiceImpl;
+import com.enjin.coin.sdk.util.JsonRpcUtils;
+import com.enjin.coin.sdk.vo.transactionrequest.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,30 +12,16 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.enjin.coin.sdk.config.Config;
-import com.enjin.coin.sdk.service.TransactionRequestsService;
-import com.enjin.coin.sdk.util.JsonRpcUtils;
-import com.enjin.coin.sdk.vo.transactionrequest.CancelTransactionRequestRequestVO;
-import com.enjin.coin.sdk.vo.transactionrequest.CancelTransactionRequestResponseVO;
-import com.enjin.coin.sdk.vo.transactionrequest.CreateTransactionRequestRequestVO;
-import com.enjin.coin.sdk.vo.transactionrequest.CreateTransactionRequestResponseVO;
-import com.enjin.coin.sdk.vo.transactionrequest.GetTransactionRequestRequestVO;
-import com.enjin.coin.sdk.vo.transactionrequest.GetTransactionRequestResponseVO;
-import com.enjin.coin.sdk.vo.transactionrequest.ImmutableCancelTransactionRequestRequestVO;
-import com.enjin.coin.sdk.vo.transactionrequest.ImmutableCreateTransactionRequestRequestVO;
-import com.enjin.coin.sdk.vo.transactionrequest.ImmutableCreateTransactionRequestResponseVO;
-import com.enjin.coin.sdk.vo.transactionrequest.ImmutableGetTransactionRequestRequestVO;
-import com.enjin.coin.sdk.vo.transactionrequest.ImmutableGetTransactionRequestResponseVO;
-import com.enjin.coin.sdk.vo.transactionrequest.ImmutableListTransactionRequestsRequestVO;
-import com.enjin.coin.sdk.vo.transactionrequest.ImmutableListTransactionRequestsResponseVO;
-import com.enjin.coin.sdk.vo.transactionrequest.ListTransactionRequestsRequestVO;
-import com.enjin.coin.sdk.vo.transactionrequest.ListTransactionRequestsResponseVO;
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest(TransactionRequestsService.class)
+@PrepareForTest(TransactionRequestsServiceImpl.class)
 public class TransactionRequestsServiceTest {
 
-    TransactionRequestsService transactionRequestsService;
+    TransactionRequestsServiceImpl transactionRequestsService;
     Config enjinConfig;
 
     @Before
@@ -46,7 +31,7 @@ public class TransactionRequestsServiceTest {
 
     @Test
     public void testContructor() {
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         assertThat(transactionRequestsService).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty());
     }
@@ -58,7 +43,7 @@ public class TransactionRequestsServiceTest {
                 .setTxrId("txrId")
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         GetTransactionRequestResponseVO getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
         assertThat(getTransactionRequestResponseVO).isNull();
     }
@@ -70,7 +55,7 @@ public class TransactionRequestsServiceTest {
                 .setTxrId("txrId")
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         GetTransactionRequestResponseVO getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
         assertThat(getTransactionRequestResponseVO).isNull();
     }
@@ -82,7 +67,7 @@ public class TransactionRequestsServiceTest {
                 .setTxrId((String) null)
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         GetTransactionRequestResponseVO getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
         assertThat(getTransactionRequestResponseVO).isNull();
     }
@@ -94,7 +79,7 @@ public class TransactionRequestsServiceTest {
                 .setTxrId("txrId")
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         GetTransactionRequestResponseVO getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
         assertThat(getTransactionRequestResponseVO).isNull();
     }
@@ -113,7 +98,7 @@ public class TransactionRequestsServiceTest {
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
         Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetTransactionRequestResponseVO);
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         GetTransactionRequestResponseVO getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
         assertThat(getTransactionRequestResponseVO).isNull();
 
@@ -135,7 +120,7 @@ public class TransactionRequestsServiceTest {
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
         Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetTransactionRequestResponseVO);
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         GetTransactionRequestResponseVO getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
         assertThat(getTransactionRequestResponseVO).isNotNull();
 
@@ -147,7 +132,7 @@ public class TransactionRequestsServiceTest {
     public void testListTransactionRequests_ListTransactionRequestsRequestVOIsNull() throws Exception {
         ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = null;
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
         assertThat(listTransactionRequestsResponseVOArray).isNull();
     }
@@ -170,7 +155,7 @@ public class TransactionRequestsServiceTest {
                 .setCurrency("currency")
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
         assertThat(listTransactionRequestsResponseVOArray).isNull();
     }
@@ -193,7 +178,7 @@ public class TransactionRequestsServiceTest {
                 .setCurrency("currency")
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
         assertThat(listTransactionRequestsResponseVOArray).isNull();
     }
@@ -215,7 +200,7 @@ public class TransactionRequestsServiceTest {
                 .setCurrency("currency")
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
         assertThat(listTransactionRequestsResponseVOArray).isNull();
     }
@@ -237,7 +222,7 @@ public class TransactionRequestsServiceTest {
                 .setCurrency("currency")
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
         assertThat(listTransactionRequestsResponseVOArray).isNull();
     }
@@ -260,7 +245,7 @@ public class TransactionRequestsServiceTest {
                 .setCurrency("currency")
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
         assertThat(listTransactionRequestsResponseVOArray).isNull();
     }
@@ -283,7 +268,7 @@ public class TransactionRequestsServiceTest {
                 .setCurrency("currency")
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
         assertThat(listTransactionRequestsResponseVOArray).isNull();
     }
@@ -305,7 +290,7 @@ public class TransactionRequestsServiceTest {
                 .setCurrency("currency")
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
         assertThat(listTransactionRequestsResponseVOArray).isNull();
     }
@@ -327,7 +312,7 @@ public class TransactionRequestsServiceTest {
                 .setCurrency("currency")
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
         assertThat(listTransactionRequestsResponseVOArray).isNull();
     }
@@ -350,7 +335,7 @@ public class TransactionRequestsServiceTest {
                 .setCurrency("currency")
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
         assertThat(listTransactionRequestsResponseVOArray).isNull();
     }
@@ -373,7 +358,7 @@ public class TransactionRequestsServiceTest {
                 .setCurrency("currency")
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
         assertThat(listTransactionRequestsResponseVOArray).isNull();
     }
@@ -396,7 +381,7 @@ public class TransactionRequestsServiceTest {
                 .setCurrency("currency")
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
         assertThat(listTransactionRequestsResponseVOArray).isNull();
     }
@@ -419,7 +404,7 @@ public class TransactionRequestsServiceTest {
                 .setCurrency("currency")
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
         assertThat(listTransactionRequestsResponseVOArray).isNull();
     }
@@ -442,7 +427,7 @@ public class TransactionRequestsServiceTest {
                 .setCurrency("currency")
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
         assertThat(listTransactionRequestsResponseVOArray).isNull();
     }
@@ -465,7 +450,7 @@ public class TransactionRequestsServiceTest {
                 .setCurrency("currency")
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
         assertThat(listTransactionRequestsResponseVOArray).isNull();
     }
@@ -488,7 +473,7 @@ public class TransactionRequestsServiceTest {
                 .setCurrency("")
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
         assertThat(listTransactionRequestsResponseVOArray).isNull();
     }
@@ -511,7 +496,7 @@ public class TransactionRequestsServiceTest {
                 .setCurrency((String) null)
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
         assertThat(listTransactionRequestsResponseVOArray).isNull();
     }
@@ -541,7 +526,7 @@ public class TransactionRequestsServiceTest {
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
         Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedListTransactionRequestsResponseVOArray);
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
         assertThat(listTransactionRequestsResponseVOArray).isNull();
 
@@ -574,7 +559,7 @@ public class TransactionRequestsServiceTest {
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
         Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedListTransactionRequestsResponseVOArray);
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
         assertThat(listTransactionRequestsResponseVOArray).isNotNull().hasSize(0);
 
@@ -609,7 +594,7 @@ public class TransactionRequestsServiceTest {
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
         Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedListTransactionRequestsResponseVOArray);
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = transactionRequestsService.listTransactionRequests(listTransactionRequestsRequestVO);
         assertThat(listTransactionRequestsResponseVOArray).isNotNull().hasSize(1);
 
@@ -621,7 +606,7 @@ public class TransactionRequestsServiceTest {
     public void testCreateTransactionRequest_CreateTransactionRequestRequestVOIsNull() throws Exception {
         CreateTransactionRequestRequestVO createTransactionRequestRequestVO = null;
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
         assertThat(createTransactionRequestResponseVO).isNull();
     }
@@ -645,7 +630,7 @@ public class TransactionRequestsServiceTest {
                 .setValueMap(createValueMap)
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
         assertThat(createTransactionRequestResponseVO).isNull();
     }
@@ -669,7 +654,7 @@ public class TransactionRequestsServiceTest {
                 .setValueMap(createValueMap)
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
         assertThat(createTransactionRequestResponseVO).isNull();
     }
@@ -692,7 +677,7 @@ public class TransactionRequestsServiceTest {
                 .setValueMap(createValueMap)
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
         assertThat(createTransactionRequestResponseVO).isNull();
     }
@@ -715,7 +700,7 @@ public class TransactionRequestsServiceTest {
                 .setValueMap(createValueMap)
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
         assertThat(createTransactionRequestResponseVO).isNull();
     }
@@ -738,7 +723,7 @@ public class TransactionRequestsServiceTest {
                 .setValueMap(createValueMap)
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
         assertThat(createTransactionRequestResponseVO).isNull();
     }
@@ -761,7 +746,7 @@ public class TransactionRequestsServiceTest {
                 .setValueMap(createValueMap)
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
         assertThat(createTransactionRequestResponseVO).isNull();
     }
@@ -785,7 +770,7 @@ public class TransactionRequestsServiceTest {
                 .setValueMap(createValueMap)
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
         assertThat(createTransactionRequestResponseVO).isNull();
     }
@@ -809,7 +794,7 @@ public class TransactionRequestsServiceTest {
                 .setValueMap(createValueMap)
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
         assertThat(createTransactionRequestResponseVO).isNull();
     }
@@ -833,7 +818,7 @@ public class TransactionRequestsServiceTest {
                 .setValueMap(createValueMap)
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
         assertThat(createTransactionRequestResponseVO).isNull();
     }
@@ -857,7 +842,7 @@ public class TransactionRequestsServiceTest {
                 .setValueMap(createValueMap)
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
         assertThat(createTransactionRequestResponseVO).isNull();
     }
@@ -881,7 +866,7 @@ public class TransactionRequestsServiceTest {
                 .setValueMap(createValueMap)
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
         assertThat(createTransactionRequestResponseVO).isNull();
     }
@@ -905,7 +890,7 @@ public class TransactionRequestsServiceTest {
                 .setValueMap(createValueMap)
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
         assertThat(createTransactionRequestResponseVO).isNull();
     }
@@ -928,7 +913,7 @@ public class TransactionRequestsServiceTest {
                 .setValueMap(createValueMap)
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
         assertThat(createTransactionRequestResponseVO).isNull();
     }
@@ -951,7 +936,7 @@ public class TransactionRequestsServiceTest {
                 .setValueMap(createValueMap)
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
         assertThat(createTransactionRequestResponseVO).isNull();
     }
@@ -982,7 +967,7 @@ public class TransactionRequestsServiceTest {
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
         Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedCreateTransactionRequestResponseVO);
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
         assertThat(createTransactionRequestResponseVO).isNull();
 
@@ -1016,7 +1001,7 @@ public class TransactionRequestsServiceTest {
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
         Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedCreateTransactionRequestResponseVO);
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         CreateTransactionRequestResponseVO createTransactionRequestResponseVO = transactionRequestsService.createTransactionRequest(createTransactionRequestRequestVO);
         assertThat(createTransactionRequestResponseVO).isNotNull();
 
@@ -1028,7 +1013,7 @@ public class TransactionRequestsServiceTest {
     public void testCancelTransactionRequest_CancelTransactionRequestRequestVOIsNull() throws Exception {
         CancelTransactionRequestRequestVO cancelTransactionRequestRequestVO = null;
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         CancelTransactionRequestResponseVO cancelTransactionRequestResponseVO = transactionRequestsService.cancelTransactionRequest(cancelTransactionRequestRequestVO);
         assertThat(cancelTransactionRequestResponseVO).isNull();
     }
@@ -1040,7 +1025,7 @@ public class TransactionRequestsServiceTest {
                 .setTxrId("1234")
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         CancelTransactionRequestResponseVO cancelTransactionRequestResponseVO = transactionRequestsService.cancelTransactionRequest(cancelTransactionRequestRequestVO);
         assertThat(cancelTransactionRequestResponseVO).isNull();
     }
@@ -1052,7 +1037,7 @@ public class TransactionRequestsServiceTest {
                 .setTxrId("1234")
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         CancelTransactionRequestResponseVO cancelTransactionRequestResponseVO = transactionRequestsService.cancelTransactionRequest(cancelTransactionRequestRequestVO);
         assertThat(cancelTransactionRequestResponseVO).isNull();
     }
@@ -1064,7 +1049,7 @@ public class TransactionRequestsServiceTest {
                 .setTxrId((String) null)
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         CancelTransactionRequestResponseVO cancelTransactionRequestResponseVO = transactionRequestsService.cancelTransactionRequest(cancelTransactionRequestRequestVO);
         assertThat(cancelTransactionRequestResponseVO).isNull();
     }
@@ -1076,7 +1061,7 @@ public class TransactionRequestsServiceTest {
                 .setTxrId("")
                 .build();
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         CancelTransactionRequestResponseVO cancelTransactionRequestResponseVO = transactionRequestsService.cancelTransactionRequest(cancelTransactionRequestRequestVO);
         assertThat(cancelTransactionRequestResponseVO).isNull();
     }
@@ -1095,7 +1080,7 @@ public class TransactionRequestsServiceTest {
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
         Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(response);
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         CancelTransactionRequestResponseVO cancelTransactionRequestResponseVO = transactionRequestsService.cancelTransactionRequest(cancelTransactionRequestRequestVO);
         assertThat(cancelTransactionRequestResponseVO).isNotNull()
                 .satisfies(o -> assertThat(o.getResult()).isNotPresent());
@@ -1118,7 +1103,7 @@ public class TransactionRequestsServiceTest {
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
         Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(response);
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         CancelTransactionRequestResponseVO cancelTransactionRequestResponseVO = transactionRequestsService.cancelTransactionRequest(cancelTransactionRequestRequestVO);
         assertThat(cancelTransactionRequestResponseVO).isNotNull()
                 .satisfies(o -> assertThat(o.getResult()).isPresent()
@@ -1142,7 +1127,7 @@ public class TransactionRequestsServiceTest {
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
         Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(response);
 
-        transactionRequestsService = new TransactionRequestsService(enjinConfig);
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         CancelTransactionRequestResponseVO cancelTransactionRequestResponseVO = transactionRequestsService.cancelTransactionRequest(cancelTransactionRequestRequestVO);
         assertThat(cancelTransactionRequestResponseVO).isNotNull()
                 .satisfies(o -> assertThat(o.getResult()).isPresent()

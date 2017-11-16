@@ -1,6 +1,8 @@
-package com.enjin.coin.sdk.service;
+package com.enjin.coin.sdk.service.transactionrequests.impl;
 
 import com.enjin.coin.sdk.config.Config;
+import com.enjin.coin.sdk.service.BaseService;
+import com.enjin.coin.sdk.service.transactionrequests.TransactionRequestsService;
 import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.MapUtils;
 import com.enjin.coin.sdk.util.ObjectUtils;
@@ -14,16 +16,16 @@ import java.util.logging.Logger;
 /**
  * <p>Contains services related to transaction requests</p>
  */
-public class TransactionRequestsService extends BaseService {
+public class TransactionRequestsServiceImpl extends BaseService implements TransactionRequestsService {
 
-    private static final Logger LOGGER = Logger.getLogger(TransactionRequestsService.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(TransactionRequestsServiceImpl.class.getName());
 
     /**
      * Class constructor
      *
      * @param enjinConfig - the enjinConfig to use
      */
-    public TransactionRequestsService(Config enjinConfig) {
+    public TransactionRequestsServiceImpl(Config enjinConfig) {
         super(enjinConfig);
     }
 
