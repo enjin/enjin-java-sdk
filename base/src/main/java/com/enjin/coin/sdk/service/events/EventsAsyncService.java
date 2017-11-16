@@ -17,9 +17,9 @@ import com.enjin.coin.sdk.vo.event.ListEventsResponseVO;
  *
  * @author damien
  */
-public class EventsServiceAsync extends EventsService implements EventServiceAsync {
+public class EventsAsyncService extends EventsService implements EventAsyncService {
 
-	private static final Logger LOGGER = Logger.getLogger(EventsServiceAsync.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(EventsAsyncService.class.getName());
 
 	/**
 	 * Class constructor
@@ -27,7 +27,7 @@ public class EventsServiceAsync extends EventsService implements EventServiceAsy
 	 * @param enjinConfig
 	 *            - the enjinConfig to use
 	 */
-	public EventsServiceAsync(Config enjinConfig) {
+	public EventsAsyncService(Config enjinConfig) {
 		super(enjinConfig);
 	}
 

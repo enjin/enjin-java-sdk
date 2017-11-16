@@ -7,7 +7,7 @@ import com.enjin.coin.sdk.vo.event.ListEventsResponseVO;
 
 import java.util.concurrent.Future;
 
-public interface EventServiceAsync extends EventService {
+public interface EventAsyncService extends EventService {
 
     /**
      * Method to get an event
