@@ -184,7 +184,7 @@ public class TransactionRequestsServiceTest {
     }
 
     @Test
-    public void testListTransactionRequests_IdentityMaoIsEmpty() throws Exception {
+    public void testListTransactionRequests_IdentityMapIsEmpty() throws Exception {
         Map<String, Object> listIdentityMap = new HashMap<>();
         Map<String, Object> listRecipientMap = new HashMap<>();
         listRecipientMap.put("identity_id", "54321");
@@ -206,7 +206,7 @@ public class TransactionRequestsServiceTest {
     }
 
     @Test
-    public void testListTransactionRequests_IdentityMaoIsNull() throws Exception {
+    public void testListTransactionRequests_IdentityMapIsNull() throws Exception {
         Map<String, Object> listIdentityMap = null;
         Map<String, Object> listRecipientMap = new HashMap<>();
         listRecipientMap.put("identity_id", "54321");
@@ -479,7 +479,7 @@ public class TransactionRequestsServiceTest {
     }
 
     @Test
-    public void testListTransactionRequests_CurrencyIsNully() throws Exception {
+    public void testListTransactionRequests_CurrencyIsNull() throws Exception {
         Map<String, Object> listIdentityMap = new HashMap<>();
         listIdentityMap.put("identity_id", "12345");
         Map<String, Object> listRecipientMap = new HashMap<>();
