@@ -1,10 +1,9 @@
 package com.enjin.coin.sdk.util;
 
+import com.google.gson.GsonBuilder;
 import org.junit.Test;
 
-import com.google.gson.GsonBuilder;
-
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class GsonUtilsTest {
 

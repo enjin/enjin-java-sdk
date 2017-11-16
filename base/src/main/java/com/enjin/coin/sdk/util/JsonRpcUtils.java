@@ -14,8 +14,8 @@ import java.util.logging.Logger;
 
 /**
  * <p>Contains all logic for performing json rpc calls</p>
- * @author damien
  *
+ * @author damien
  */
 public class JsonRpcUtils {
 
@@ -34,9 +34,9 @@ public class JsonRpcUtils {
     /**
      * Method to send a json rpc request
      *
-     * @param url - url to send request to
+     * @param url           - url to send request to
      * @param responseClass - class type to convert to
-     * @param method - method to call
+     * @param method        - method to call
      * @return an object returned from the json rpc call
      */
     public Object sendJsonRpcRequest(String url, Class<?> responseClass, String method) {
@@ -46,10 +46,10 @@ public class JsonRpcUtils {
     /**
      * Method to send a json rpc request
      *
-     * @param url - url to send request to
+     * @param url           - url to send request to
      * @param responseClass - class type to convert to
-     * @param method - method to call
-     * @param params - map with the params to use
+     * @param method        - method to call
+     * @param params        - map with the params to use
      * @return an object returned from the json rpc call
      */
     public Object sendJsonRpcRequest(String url, Class<?> responseClass, String method, Map<String, Object> params) {

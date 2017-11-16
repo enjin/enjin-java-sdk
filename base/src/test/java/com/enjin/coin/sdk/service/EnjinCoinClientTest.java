@@ -2,11 +2,10 @@ package com.enjin.coin.sdk.service;
 
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.service.events.EventsService;
-
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class EnjinCoinClientTest {
 

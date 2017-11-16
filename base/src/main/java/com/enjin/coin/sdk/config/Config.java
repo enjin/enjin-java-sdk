@@ -7,8 +7,8 @@ import org.immutables.value.Value;
 
 /**
  * <p>Config used throughout the sdk</p>
- * @author damien
  *
+ * @author damien
  */
 @Value.Immutable
 @Gson.TypeAdapters

@@ -1,10 +1,11 @@
 package com.enjin.coin.sdk.util;
 
 import java.util.Optional;
+
 /**
  * <p>Functionality for working with optionals</p>
- * @author damien
  *
+ * @author damien
  */
 public class OptionalUtils {
 

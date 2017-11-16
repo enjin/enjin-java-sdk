@@ -7,7 +7,7 @@ import com.enjin.coin.sdk.vo.event.ListEventsResponseVO;
 
 public interface EventService {
 
-	 /**
+    /**
      * Method to get an event
      *
      * @param getEventRequestVO - get event request vo
@@ -22,5 +22,5 @@ public interface EventService {
      * @return - ListEventsResponseVO
      */
     ListEventsResponseVO listEvents(ListEventsRequestVO listEventsRequestVO);
-	
+
 }

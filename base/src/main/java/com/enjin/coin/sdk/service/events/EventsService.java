@@ -1,27 +1,23 @@
 package com.enjin.coin.sdk.service.events;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Logger;
-
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.service.BaseService;
 import com.enjin.coin.sdk.util.ArrayUtils;
 import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.ObjectUtils;
 import com.enjin.coin.sdk.util.StringUtils;
-import com.enjin.coin.sdk.vo.event.GetEventRequestVO;
-import com.enjin.coin.sdk.vo.event.GetEventResponseVO;
-import com.enjin.coin.sdk.vo.event.ImmutableListEventsResponseVO;
-import com.enjin.coin.sdk.vo.event.ListEventsRequestVO;
-import com.enjin.coin.sdk.vo.event.ListEventsResponseVO;
+import com.enjin.coin.sdk.vo.event.*;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Logger;
 
 /**
  * <p>Contains services related to events</p>
- * @author damien
  *
+ * @author damien
  */
-public class EventsService extends BaseService implements EventService{
+public class EventsService extends BaseService implements EventService {
 
     private static final Logger LOGGER = Logger.getLogger(EventsService.class.getName());
 

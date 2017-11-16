@@ -1,24 +1,17 @@
 package com.enjin.coin.sdk.mockServer;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.config.ImmutableConfig;
 import com.enjin.coin.sdk.service.EnjinCoinClient;
 import com.enjin.coin.sdk.service.events.EventsService;
-import com.enjin.coin.sdk.vo.event.GetEventDataVO;
-import com.enjin.coin.sdk.vo.event.GetEventRequestVO;
-import com.enjin.coin.sdk.vo.event.GetEventResponseVO;
-import com.enjin.coin.sdk.vo.event.ImmutableGetEventRequestVO;
-import com.enjin.coin.sdk.vo.event.ImmutableListEventsRequestVO;
-import com.enjin.coin.sdk.vo.event.ListEventsRequestVO;
-import com.enjin.coin.sdk.vo.event.ListEventsResponseVO;
+import com.enjin.coin.sdk.vo.event.*;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
 

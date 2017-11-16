@@ -1,15 +1,12 @@
 package com.enjin.coin.sdk.util;
 
-import com.enjin.coin.sdk.util.OptionalUtils;
-import com.enjin.coin.sdk.util.ObjectUtils;
-
 import java.util.List;
 import java.util.Optional;
 
 /**
  * <p>Functionality for working with lists</p>
- * @author damien
  *
+ * @author damien
  */
 public final class ListUtils {
 
@@ -24,7 +21,7 @@ public final class ListUtils {
      * @return - boolean result
      */
     @SuppressWarnings("rawtypes")
-	public static boolean isEmpty(List list) {
+    public static boolean isEmpty(List list) {
         return ObjectUtils.isNull(list) || list.size() == 0;
     }
 

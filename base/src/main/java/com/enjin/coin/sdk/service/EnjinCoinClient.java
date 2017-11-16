@@ -1,17 +1,17 @@
 package com.enjin.coin.sdk.service;
 
-import java.util.logging.Logger;
-
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.service.events.EventsService;
+
+import java.util.logging.Logger;
 
 /**
  * <p>Enjin Coin Client - Syncs</p>
  * <p>All services will be instantiated from this class that will be called in a synchronous fashion</p>
- * @author damien
  *
+ * @author damien
  */
-public class EnjinCoinClient implements EnjinCoin{
+public class EnjinCoinClient implements EnjinCoin {
 
     private static final Logger LOGGER = Logger.getLogger(EnjinCoinClient.class.getName());
 
@@ -23,6 +23,7 @@ public class EnjinCoinClient implements EnjinCoin{
 
     /**
      * Class constructor
+     *
      * @param enjinConfig - enjinConfig to use
      */
     public EnjinCoinClient(Config enjinConfig) {

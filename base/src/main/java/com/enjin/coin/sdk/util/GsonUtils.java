@@ -10,18 +10,19 @@ import java.util.ServiceLoader;
 
 /**
  * <p>Sets up the Gson object</p>
- * @author damien
  *
+ * @author damien
  */
 public final class GsonUtils {
 
     public static final Gson GSON;
     public static final Gson GSON_PRETTY_PRINT;
+
     static {
         GsonBuilder builder = new GsonBuilder();
         GsonUtils.registerAllTypeAdapterFactories(builder);
         GSON = builder.create();
-        
+
         GsonBuilder builderPrettyPrint = new GsonBuilder();
         GsonUtils.registerAllTypeAdapterFactories(builderPrettyPrint);
         builderPrettyPrint.setPrettyPrinting();

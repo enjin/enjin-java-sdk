@@ -1,17 +1,17 @@
 package com.enjin.coin.sdk.service;
 
-import java.util.logging.Logger;
-
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.config.Platform;
 import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.JsonRpcUtils;
 import com.enjin.coin.sdk.util.ObjectUtils;
 
+import java.util.logging.Logger;
+
 /**
  * <p>Provides Services used by the main service classes</p>
- * @author damien
  *
+ * @author damien
  */
 public abstract class BaseService {
 
@@ -23,6 +23,7 @@ public abstract class BaseService {
 
     /**
      * Class contructor
+     *
      * @param enjinConfig - enjinConfig to use
      */
     public BaseService(Config enjinConfig) {

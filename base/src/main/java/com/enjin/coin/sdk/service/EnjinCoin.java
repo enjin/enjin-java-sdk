@@ -4,8 +4,8 @@ import com.enjin.coin.sdk.service.events.EventsService;
 
 /**
  * <p>Interface for the EnjinCoin sync client </p>
- * @author damien
  *
+ * @author damien
  */
 public interface EnjinCoin {
 
@@ -36,5 +36,5 @@ public interface EnjinCoin {
      * @return - TransactionRequestsService
      */
     public TransactionRequestsService getTransactionRequestsService();
-	
+
 }
