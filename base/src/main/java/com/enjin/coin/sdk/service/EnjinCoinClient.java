@@ -7,6 +7,8 @@ import com.enjin.coin.sdk.service.identities.IdentitiesService;
 import com.enjin.coin.sdk.service.identities.impl.IdentitiesServiceImpl;
 import com.enjin.coin.sdk.service.tokens.TokensService;
 import com.enjin.coin.sdk.service.tokens.impl.TokensServiceImpl;
+import com.enjin.coin.sdk.service.transactionrequests.TransactionRequestsService;
+import com.enjin.coin.sdk.service.transactionrequests.impl.TransactionRequestsServiceImpl;
 
 import java.util.logging.Logger;
 
@@ -81,7 +83,7 @@ public class EnjinCoinClient implements EnjinCoin {
      */
     public TransactionRequestsService getTransactionRequestsService() {
         if (transactionRequestsService == null) {
-            transactionRequestsService = new TransactionRequestsService(enjinConfig);
+            transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
         }
         return transactionRequestsService;
     }
