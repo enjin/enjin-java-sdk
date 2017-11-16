@@ -20,9 +20,13 @@ import com.enjin.coin.sdk.service.transactionrequests.impl.TransactionRequestsAs
 import com.enjin.coin.sdk.util.JsonRpcUtils;
 import com.enjin.coin.sdk.vo.transactionrequest.CancelTransactionRequestRequestVO;
 import com.enjin.coin.sdk.vo.transactionrequest.CancelTransactionRequestResponseVO;
+import com.enjin.coin.sdk.vo.transactionrequest.CreateTransactionRequestRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.CreateTransactionRequestResponseVO;
 import com.enjin.coin.sdk.vo.transactionrequest.GetTransactionRequestRequestVO;
 import com.enjin.coin.sdk.vo.transactionrequest.GetTransactionRequestResponseVO;
 import com.enjin.coin.sdk.vo.transactionrequest.ImmutableCancelTransactionRequestRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.ImmutableCreateTransactionRequestRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.ImmutableCreateTransactionRequestResponseVO;
 import com.enjin.coin.sdk.vo.transactionrequest.ImmutableGetTransactionRequestRequestVO;
 import com.enjin.coin.sdk.vo.transactionrequest.ImmutableGetTransactionRequestResponseVO;
 import com.enjin.coin.sdk.vo.transactionrequest.ImmutableListTransactionRequestsRequestVO;
@@ -113,7 +117,41 @@ public class TransactionRequestsAsyncServiceTest {
         Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
     }
 
-   
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testCreateTransactionRequest_Success() throws Exception {
+        Map<String, Object> listIdentityMap = new HashMap<>();
+        listIdentityMap.put("player_name", "Joe");
+        Map<String, Object> listRecipientMap = new HashMap<>();
+        listRecipientMap.put("player_name", "Alice");
+        Map<String, Object> createValueMap = new HashMap<>();
+        createValueMap.put("ENJ", "3000000000000000000");
+
+        CreateTransactionRequestRequestVO createTransactionRequestRequestVO = ImmutableCreateTransactionRequestRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setRecipientMap(listRecipientMap)
+                .setType("send")
+                .setIcon("https://enjincoin.io/images/bubble.png")
+                .setTitle("Mineplex: /transfer alice 3 ENJ")
+                .setValueMap(createValueMap)
+                .build();
+
+        CreateTransactionRequestResponseVO returnedCreateTransactionRequestResponseVO = ImmutableCreateTransactionRequestResponseVO.builder().build();
+
+        JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
+        PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
+        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedCreateTransactionRequestResponseVO);
+
+        transactionRequestsAsyncService = new TransactionRequestsAsyncServiceImpl(enjinConfig);
+        Future<CreateTransactionRequestResponseVO> createTransactionRequestResponseFutureVO = transactionRequestsAsyncService.createTransactionRequestAsync(createTransactionRequestRequestVO);
+        assertThat(createTransactionRequestResponseFutureVO).isNotNull();
+        CreateTransactionRequestResponseVO createTransactionRequestResponseVO = createTransactionRequestResponseFutureVO.get();
+        assertThat(createTransactionRequestResponseVO).isNotNull();
+
+        PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
+        Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
+    }
 
     @SuppressWarnings("unchecked")
     @Test

@@ -1,5 +1,7 @@
 package com.enjin.coin.sdk.service;
 
+import java.util.logging.Logger;
+
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.service.events.EventsAsyncService;
 import com.enjin.coin.sdk.service.events.impl.EventsAsyncServiceImpl;
@@ -9,8 +11,6 @@ import com.enjin.coin.sdk.service.tokens.TokensAsyncService;
 import com.enjin.coin.sdk.service.tokens.impl.TokensAsyncServiceImpl;
 import com.enjin.coin.sdk.service.transactionrequests.TransactionRequestsAsyncService;
 import com.enjin.coin.sdk.service.transactionrequests.impl.TransactionRequestsAsyncServiceImpl;
-
-import java.util.logging.Logger;
 
 /**
  * <p>Enjin Coin Client - Asynchronous</p>
