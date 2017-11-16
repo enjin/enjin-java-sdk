@@ -1,6 +1,7 @@
-package com.enjin.coin.sdk.service;
+package com.enjin.coin.sdk.service.transactionrequest;
 
 import com.enjin.coin.sdk.config.Config;
+import com.enjin.coin.sdk.service.TransactionRequestsService;
 import com.enjin.coin.sdk.util.JsonRpcUtils;
 import com.enjin.coin.sdk.vo.transactionrequest.*;
 import org.junit.Before;

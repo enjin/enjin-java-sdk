@@ -19,7 +19,7 @@ public class EnjinCoinAsyncClient implements EnjinCoin {
     private static final Logger LOGGER = Logger.getLogger(EnjinCoinAsyncClient.class.getName());
 
     private Config enjinConfig;
-    private EventsAsyncService eventsServiceAsync;
+	private EventsAsyncService eventsServiceAsync;
     private IdentitiesAsyncService identitiesService;
     private TokensAsyncService tokensService;
     private TransactionRequestsService transactionRequestsService;
