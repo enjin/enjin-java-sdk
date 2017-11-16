@@ -21,6 +21,11 @@ subprojects {
     apply plugin: 'maven'
     apply plugin: 'com.github.johnrengelman.shadow'
     apply plugin: 'com.bmuschko.clover'
+    apply plugin: 'checkstyle'
+
+	checkstyle {
+	    toolVersion "8.4"
+	}
 
     group = 'com.enjin'
     version = '0.0.1-SNAPSHOT'
@@ -86,4 +91,20 @@ subprojects {
             pdf = true
         }
     }
+    
+    //Documentation - https://docs.gradle.org/current/userguide/checkstyle_plugin.html
+    //See http://checkstyle.sourceforge.net/config_sizes.html#LineLength for configuring config/checkstyle/checkstyle.xml
+    //Config properties: https://docs.gradle.org/current/dsl/org.gradle.api.plugins.quality.Checkstyle.html
+    tasks.withType(Checkstyle) {
+    	//exclude '**/your/generated/package/goes/here**'
+    	exclude '**/Immutable**'
+    	exclude '**/GsonAdapters**'
+    	
+	    reports {
+	        xml.enabled true
+	        html.enabled true
+	        html.stylesheet resources.text.fromFile('../projectConfig/checkstyle/checkstyle-style.xsl')
+	    }
+	    configFile = rootProject.file('projectConfig/checkstyle/checkstyle.xml')
+	}
 }
