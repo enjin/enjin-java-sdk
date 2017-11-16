@@ -5,6 +5,8 @@ import com.enjin.coin.sdk.service.events.EventsAsyncService;
 import com.enjin.coin.sdk.service.events.impl.EventsAsyncServiceImpl;
 import com.enjin.coin.sdk.service.identities.IdentitiesAsyncService;
 import com.enjin.coin.sdk.service.identities.impl.IdentitiesAsyncServiceImpl;
+import com.enjin.coin.sdk.service.tokens.TokensAsyncService;
+import com.enjin.coin.sdk.service.tokens.impl.TokensAsyncServiceImpl;
 
 import java.util.logging.Logger;
 
@@ -19,7 +21,7 @@ public class EnjinCoinAsyncClient implements EnjinCoin {
     private Config enjinConfig;
     private EventsAsyncService eventsServiceAsync;
     private IdentitiesAsyncService identitiesService;
-    private TokensService tokensService;
+    private TokensAsyncService tokensService;
     private TransactionRequestsService transactionRequestsService;
 
     /**
@@ -65,9 +67,9 @@ public class EnjinCoinAsyncClient implements EnjinCoin {
      *
      * @return - TokensService
      */
-    public TokensService getTokensService() {
+    public TokensAsyncService getTokensService() {
         if (tokensService == null) {
-            tokensService = new TokensService(enjinConfig);
+            tokensService = new TokensAsyncServiceImpl(enjinConfig);
         }
         return tokensService;
     }

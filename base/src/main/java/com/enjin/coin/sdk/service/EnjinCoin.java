@@ -2,6 +2,7 @@ package com.enjin.coin.sdk.service;
 
 import com.enjin.coin.sdk.service.events.EventsService;
 import com.enjin.coin.sdk.service.identities.IdentitiesService;
+import com.enjin.coin.sdk.service.tokens.TokensService;
 
 /**
  * <p>Interface for the EnjinCoin sync client </p>

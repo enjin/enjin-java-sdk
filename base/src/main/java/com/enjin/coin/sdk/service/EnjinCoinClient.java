@@ -5,6 +5,8 @@ import com.enjin.coin.sdk.service.events.EventsService;
 import com.enjin.coin.sdk.service.events.impl.EventsServiceImpl;
 import com.enjin.coin.sdk.service.identities.IdentitiesService;
 import com.enjin.coin.sdk.service.identities.impl.IdentitiesServiceImpl;
+import com.enjin.coin.sdk.service.tokens.TokensService;
+import com.enjin.coin.sdk.service.tokens.impl.TokensServiceImpl;
 
 import java.util.logging.Logger;
 
@@ -17,8 +19,8 @@ public class EnjinCoinClient implements EnjinCoin {
     private static final Logger LOGGER = Logger.getLogger(EnjinCoinClient.class.getName());
 
     private Config enjinConfig;
-    private EventsServiceImpl eventsService;
-    private IdentitiesServiceImpl identitiesService;
+    private EventsService eventsService;
+    private IdentitiesService identitiesService;
     private TokensService tokensService;
     private TransactionRequestsService transactionRequestsService;
 
@@ -67,7 +69,7 @@ public class EnjinCoinClient implements EnjinCoin {
      */
     public TokensService getTokensService() {
         if (tokensService == null) {
-            tokensService = new TokensService(enjinConfig);
+            tokensService = new TokensServiceImpl(enjinConfig);
         }
         return tokensService;
     }

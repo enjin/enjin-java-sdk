@@ -1,6 +1,8 @@
-package com.enjin.coin.sdk.service;
+package com.enjin.coin.sdk.service.tokens.impl;
 
 import com.enjin.coin.sdk.config.Config;
+import com.enjin.coin.sdk.service.BaseService;
+import com.enjin.coin.sdk.service.tokens.TokensService;
 import com.enjin.coin.sdk.util.ArrayUtils;
 import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.ObjectUtils;
@@ -14,25 +16,19 @@ import java.util.logging.Logger;
 /**
  * <p>Contains services related to tokens</p>
  */
-public class TokensService extends BaseService {
+public class TokensServiceImpl extends BaseService implements TokensService {
 
-    private static final Logger LOGGER = Logger.getLogger(TokensService.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(TokensServiceImpl.class.getName());
 
     /**
      * Class constructor
      *
      * @param enjinConfig - the enjinConfig to use
      */
-    protected TokensService(Config enjinConfig) {
+    public TokensServiceImpl(Config enjinConfig) {
         super(enjinConfig);
     }
 
-    /**
-     * Method to get a token
-     *
-     * @param getTokenRequestVO - token request object
-     * @return - GetTokenResponseVO
-     */
     public GetTokenResponseVO getToken(GetTokenRequestVO getTokenRequestVO) {
         GetTokenResponseVO getTokenResponseVO = null;
 
@@ -52,12 +48,6 @@ public class TokensService extends BaseService {
         return getTokenResponseVO;
     }
 
-    /**
-     * Method to list the tokens
-     *
-     * @param listTokensRequestVO - list tokens request object
-     * @return - ListTokensResponseVO
-     */
     public ListTokensResponseVO listTokens(ListTokensRequestVO listTokensRequestVO) {
         ListTokensResponseVO listTokensResponseVO = null;
 
