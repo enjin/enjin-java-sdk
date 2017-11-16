@@ -1,8 +1,9 @@
-package com.enjin.coin.sdk.service.events;
+package com.enjin.coin.sdk.service.events.impl;
 
 import java.util.concurrent.Future;
 
 import com.enjin.coin.sdk.config.Config;
+import com.enjin.coin.sdk.service.events.EventAsyncService;
 import com.enjin.coin.sdk.vo.event.GetEventRequestVO;
 import com.enjin.coin.sdk.vo.event.GetEventResponseVO;
 import com.enjin.coin.sdk.vo.event.ListEventsRequestVO;
@@ -15,7 +16,7 @@ import com.enjin.coin.sdk.vo.event.ListEventsResponseVO;
  *
  * @author damien
  */
-public class EventsAsyncService extends EventsService implements EventAsyncService {
+public class EventAsyncServiceImpl extends EventServiceImpl implements EventAsyncService {
 
 	/**
 	 * Class constructor
@@ -23,7 +24,7 @@ public class EventsAsyncService extends EventsService implements EventAsyncServi
 	 * @param enjinConfig
 	 *            - the enjinConfig to use
 	 */
-	public EventsAsyncService(Config enjinConfig) {
+	public EventAsyncServiceImpl(Config enjinConfig) {
 		super(enjinConfig);
 	}
 

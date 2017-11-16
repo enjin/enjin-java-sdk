@@ -1,7 +1,8 @@
-package com.enjin.coin.sdk.service.events;
+package com.enjin.coin.sdk.service.events.impl;
 
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.service.BaseService;
+import com.enjin.coin.sdk.service.events.EventService;
 import com.enjin.coin.sdk.util.ArrayUtils;
 import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.ObjectUtils;
@@ -17,16 +18,16 @@ import java.util.logging.Logger;
  *
  * @author damien
  */
-public class EventsService extends BaseService implements EventService {
+public class EventServiceImpl extends BaseService implements EventService {
 
-    private static final Logger LOGGER = Logger.getLogger(EventsService.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(EventServiceImpl.class.getName());
 
     /**
      * Class constructor
      *
      * @param enjinConfig - the enjinConfig to use
      */
-    public EventsService(Config enjinConfig) {
+    public EventServiceImpl(Config enjinConfig) {
         super(enjinConfig);
     }
 

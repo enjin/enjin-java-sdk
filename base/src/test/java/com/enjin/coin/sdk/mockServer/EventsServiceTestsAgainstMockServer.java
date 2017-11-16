@@ -3,7 +3,7 @@ package com.enjin.coin.sdk.mockServer;
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.config.ImmutableConfig;
 import com.enjin.coin.sdk.service.EnjinCoinClient;
-import com.enjin.coin.sdk.service.events.EventsService;
+import com.enjin.coin.sdk.service.events.impl.EventServiceImpl;
 import com.enjin.coin.sdk.vo.event.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,7 +22,7 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
 
     private static final String[] KEYS_ARRAY = {IDENTITY_ID_KEY, ETHEREUM_ADDRESS_KEY, UUID_KEY, PLAYER_NAME_KEY};
 
-    private EventsService events;
+    private EventServiceImpl events;
 
     @Before
     public void init() {
