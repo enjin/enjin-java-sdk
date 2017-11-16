@@ -1,9 +1,10 @@
 package com.enjin.coin.sdk.service.transactionrequest;
 
-import com.enjin.coin.sdk.config.Config;
-import com.enjin.coin.sdk.service.TransactionRequestsService;
-import com.enjin.coin.sdk.util.JsonRpcUtils;
-import com.enjin.coin.sdk.vo.transactionrequest.*;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,10 +13,24 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import com.enjin.coin.sdk.config.Config;
+import com.enjin.coin.sdk.service.TransactionRequestsService;
+import com.enjin.coin.sdk.util.JsonRpcUtils;
+import com.enjin.coin.sdk.vo.transactionrequest.CancelTransactionRequestRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.CancelTransactionRequestResponseVO;
+import com.enjin.coin.sdk.vo.transactionrequest.CreateTransactionRequestRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.CreateTransactionRequestResponseVO;
+import com.enjin.coin.sdk.vo.transactionrequest.GetTransactionRequestRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.GetTransactionRequestResponseVO;
+import com.enjin.coin.sdk.vo.transactionrequest.ImmutableCancelTransactionRequestRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.ImmutableCreateTransactionRequestRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.ImmutableCreateTransactionRequestResponseVO;
+import com.enjin.coin.sdk.vo.transactionrequest.ImmutableGetTransactionRequestRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.ImmutableGetTransactionRequestResponseVO;
+import com.enjin.coin.sdk.vo.transactionrequest.ImmutableListTransactionRequestsRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.ImmutableListTransactionRequestsResponseVO;
+import com.enjin.coin.sdk.vo.transactionrequest.ListTransactionRequestsRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.ListTransactionRequestsResponseVO;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(TransactionRequestsService.class)

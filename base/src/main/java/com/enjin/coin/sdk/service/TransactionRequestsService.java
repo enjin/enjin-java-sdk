@@ -23,7 +23,7 @@ public class TransactionRequestsService extends BaseService {
      *
      * @param enjinConfig - the enjinConfig to use
      */
-    protected TransactionRequestsService(Config enjinConfig) {
+    public TransactionRequestsService(Config enjinConfig) {
         super(enjinConfig);
     }
 
