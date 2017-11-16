@@ -1,0 +1,144 @@
+package com.enjin.coin.sdk.service.transactionrequest;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.Future;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+
+import com.enjin.coin.sdk.config.Config;
+import com.enjin.coin.sdk.service.transactionrequests.TransactionRequestsAsyncService;
+import com.enjin.coin.sdk.service.transactionrequests.impl.TransactionRequestsAsyncServiceImpl;
+import com.enjin.coin.sdk.util.JsonRpcUtils;
+import com.enjin.coin.sdk.vo.transactionrequest.CancelTransactionRequestRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.CancelTransactionRequestResponseVO;
+import com.enjin.coin.sdk.vo.transactionrequest.GetTransactionRequestRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.GetTransactionRequestResponseVO;
+import com.enjin.coin.sdk.vo.transactionrequest.ImmutableCancelTransactionRequestRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.ImmutableGetTransactionRequestRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.ImmutableGetTransactionRequestResponseVO;
+import com.enjin.coin.sdk.vo.transactionrequest.ImmutableListTransactionRequestsRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.ImmutableListTransactionRequestsResponseVO;
+import com.enjin.coin.sdk.vo.transactionrequest.ListTransactionRequestsRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.ListTransactionRequestsResponseVO;
+
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(TransactionRequestsAsyncServiceImpl.class)
+public class TransactionRequestsAsyncServiceTest {
+
+    TransactionRequestsAsyncService transactionRequestsAsyncService;
+    Config enjinConfig;
+
+    @Before
+    public void setUp() {
+        enjinConfig = new Config();
+    }
+
+    @Test
+    public void testContructor() {
+        transactionRequestsAsyncService = new TransactionRequestsAsyncServiceImpl(enjinConfig);
+        assertThat(transactionRequestsAsyncService).isNotNull()
+                .satisfies(o -> assertThat(o.toString()).isNotEmpty());
+    }
+
+   
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testGetTransactionRequest_Success() throws Exception {
+        GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setTxrId("123456")
+                .build();
+
+        GetTransactionRequestResponseVO returnedGetTransactionRequestResponseVO = ImmutableGetTransactionRequestResponseVO.builder().build();
+
+        JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
+        PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
+        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetTransactionRequestResponseVO);
+
+        transactionRequestsAsyncService = new TransactionRequestsAsyncServiceImpl(enjinConfig);
+        Future<GetTransactionRequestResponseVO> getTransactionRequestResponseFutureVO = transactionRequestsAsyncService.getTransactionRequestAsync(getTransactionRequestRequestVO);
+        assertThat(getTransactionRequestResponseFutureVO).isNotNull();
+        GetTransactionRequestResponseVO getTransactionRequestResponseVO = getTransactionRequestResponseFutureVO.get();
+        assertThat(getTransactionRequestResponseVO).isNotNull();
+
+        PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
+        Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
+    }
+
+    
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testListTransactionRequests_Success() throws Exception {
+        Map<String, Object> listIdentityMap = new HashMap<>();
+        listIdentityMap.put("identity_id", "12345");
+        Map<String, Object> listRecipientMap = new HashMap<>();
+        listRecipientMap.put("identity_id", "54321");
+
+        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = ImmutableListTransactionRequestsRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setIdentityMap(listIdentityMap)
+                .setAppId("123")
+                .setRecipientMap(listRecipientMap)
+                .setType("buy")
+                .setAfterTxrId("1234567")
+                .setLimit("50")
+                .setCurrency("23456")
+                .build();
+
+        ListTransactionRequestsResponseVO[] returnedListTransactionRequestsResponseVOArray = new ListTransactionRequestsResponseVO[]{
+                ImmutableListTransactionRequestsResponseVO.builder().build()
+        };
+
+        JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
+        PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
+        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedListTransactionRequestsResponseVOArray);
+
+        transactionRequestsAsyncService = new TransactionRequestsAsyncServiceImpl(enjinConfig);
+        Future<ListTransactionRequestsResponseVO[]> listTransactionRequestsResponseFutureVOArray = transactionRequestsAsyncService.listTransactionRequestsAsync(listTransactionRequestsRequestVO);
+        assertThat(listTransactionRequestsResponseFutureVOArray).isNotNull();
+        ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVOArray = listTransactionRequestsResponseFutureVOArray.get();
+        assertThat(listTransactionRequestsResponseVOArray).isNotNull().hasSize(1);
+
+        PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
+        Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
+    }
+
+   
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testCancelTransactionRequest_Success() throws Exception {
+        CancelTransactionRequestRequestVO cancelTransactionRequestRequestVO = ImmutableCancelTransactionRequestRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .setTxrId("123456")
+                .build();
+
+        Boolean response = true;
+
+        JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
+        PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
+        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(response);
+
+        transactionRequestsAsyncService = new TransactionRequestsAsyncServiceImpl(enjinConfig);
+        Future<CancelTransactionRequestResponseVO> cancelTransactionRequestResponseFutureVO = transactionRequestsAsyncService.cancelTransactionRequestAsync(cancelTransactionRequestRequestVO);
+        assertThat(cancelTransactionRequestResponseFutureVO).isNotNull();
+        CancelTransactionRequestResponseVO cancelTransactionRequestResponseVO = cancelTransactionRequestResponseFutureVO.get();
+        assertThat(cancelTransactionRequestResponseVO).isNotNull()
+                .satisfies(o -> assertThat(o.getResult()).isPresent()
+                        .hasValueSatisfying(v -> assertThat(v).isTrue()));
+
+        PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
+        Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
+    }
+
+}
