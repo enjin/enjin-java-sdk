@@ -1,10 +1,8 @@
 package com.enjin.coin.sdk.service.events;
 
 import java.util.concurrent.Future;
-import java.util.logging.Logger;
 
 import com.enjin.coin.sdk.config.Config;
-import com.enjin.coin.sdk.util.StringUtils;
 import com.enjin.coin.sdk.vo.event.GetEventRequestVO;
 import com.enjin.coin.sdk.vo.event.GetEventResponseVO;
 import com.enjin.coin.sdk.vo.event.ListEventsRequestVO;
@@ -18,8 +16,6 @@ import com.enjin.coin.sdk.vo.event.ListEventsResponseVO;
  * @author damien
  */
 public class EventsAsyncService extends EventsService implements EventAsyncService {
-
-	private static final Logger LOGGER = Logger.getLogger(EventsAsyncService.class.getName());
 
 	/**
 	 * Class constructor
@@ -40,15 +36,7 @@ public class EventsAsyncService extends EventsService implements EventAsyncServi
 	 */
 	public Future<GetEventResponseVO> getEventAsync(GetEventRequestVO getEventRequestVO) {
 		return executorService.submit(() -> {
-			GetEventResponseVO getEventResponseVO = null;
-
-			try {
-				getEventResponseVO = getEvent(getEventRequestVO);
-			} catch (Exception ex) {
-				LOGGER.warning(String.format("An Exception has occured. Exception: %s", StringUtils.exceptionToString(ex)));
-			}
-
-			return getEventResponseVO;
+			return getEvent(getEventRequestVO);
 		});
 	}
 
@@ -61,15 +49,7 @@ public class EventsAsyncService extends EventsService implements EventAsyncServi
 	 */
 	public Future<ListEventsResponseVO> listEventsAsync(ListEventsRequestVO listEventsRequestVO) {
 		return executorService.submit(() -> {
-			ListEventsResponseVO listEventsResponseVO = null;
-
-			try {
-				listEventsResponseVO = listEvents(listEventsRequestVO);
-			} catch (Exception ex) {
-				LOGGER.warning(String.format("An Exception has occured. Exception: %s", StringUtils.exceptionToString(ex)));
-			}
-
-			return listEventsResponseVO;
+			return listEvents(listEventsRequestVO);
 		});
 	}
 
