@@ -1,4 +1,4 @@
-package com.enjin.coin.sdk.service;
+package com.enjin.coin.sdk.service.transactionrequest;
 
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.service.transactionrequests.impl.TransactionRequestsServiceImpl;

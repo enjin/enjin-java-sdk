@@ -9,6 +9,7 @@ import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.service.events.EventsService;
 import com.enjin.coin.sdk.service.identities.IdentitiesService;
 import com.enjin.coin.sdk.service.tokens.TokensService;
+import com.enjin.coin.sdk.service.transactionrequests.TransactionRequestsService;
 
 public class EnjinCoinAsyncClientTest {
 

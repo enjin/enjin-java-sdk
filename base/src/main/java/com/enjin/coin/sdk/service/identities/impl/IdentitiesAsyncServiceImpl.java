@@ -1,20 +1,26 @@
 package com.enjin.coin.sdk.service.identities.impl;
 
+import java.util.concurrent.Future;
+
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.service.identities.IdentitiesAsyncService;
-import com.enjin.coin.sdk.vo.identity.*;
-
-import java.util.concurrent.Future;
-import java.util.logging.Logger;
+import com.enjin.coin.sdk.vo.identity.CreateIdentityRequestVO;
+import com.enjin.coin.sdk.vo.identity.CreateIdentityResponseVO;
+import com.enjin.coin.sdk.vo.identity.DeleteIdentityRequestVO;
+import com.enjin.coin.sdk.vo.identity.DeleteIdentityResponseVO;
+import com.enjin.coin.sdk.vo.identity.GetIdentityRequestVO;
+import com.enjin.coin.sdk.vo.identity.GetIdentityResponseVO;
+import com.enjin.coin.sdk.vo.identity.ListIdentitiesRequestVO;
+import com.enjin.coin.sdk.vo.identity.ListIdentitiesResponseVO;
+import com.enjin.coin.sdk.vo.identity.UpdateIdentityRequestVO;
+import com.enjin.coin.sdk.vo.identity.UpdateIdentityResponseVO;
 
 /**
  * <p>Asynchronous implementation of IdentitiesService</p>
  */
 public class IdentitiesAsyncServiceImpl extends IdentitiesServiceImpl implements IdentitiesAsyncService {
 
-    private static final Logger LOGGER = Logger.getLogger(IdentitiesAsyncServiceImpl.class.getName());
-
-    /**
+	/**
      * Class constructor
      *
      * @param enjinConfig - the enjinConfig to use

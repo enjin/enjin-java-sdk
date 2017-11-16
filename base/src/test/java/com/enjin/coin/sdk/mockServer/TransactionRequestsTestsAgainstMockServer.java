@@ -1,18 +1,25 @@
 package com.enjin.coin.sdk.mockServer;
 
-import com.enjin.coin.sdk.config.Config;
-import com.enjin.coin.sdk.config.ImmutableConfig;
-import com.enjin.coin.sdk.service.EnjinCoinClient;
-import com.enjin.coin.sdk.service.transactionrequests.TransactionRequestsService;
-import com.enjin.coin.sdk.service.transactionrequests.impl.TransactionRequestsServiceImpl;
-import com.enjin.coin.sdk.vo.transactionrequest.*;
-import org.junit.Before;
-import org.junit.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.Before;
+import org.junit.Test;
+
+import com.enjin.coin.sdk.config.Config;
+import com.enjin.coin.sdk.config.ImmutableConfig;
+import com.enjin.coin.sdk.service.EnjinCoinClient;
+import com.enjin.coin.sdk.service.transactionrequests.TransactionRequestsService;
+import com.enjin.coin.sdk.vo.transactionrequest.CancelTransactionRequestRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.CreateTransactionRequestRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.GetTransactionRequestRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.ImmutableCancelTransactionRequestRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.ImmutableCreateTransactionRequestRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.ImmutableGetTransactionRequestRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.ImmutableListTransactionRequestsRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.ListTransactionRequestsRequestVO;
 
 public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
 

@@ -1,18 +1,22 @@
 package com.enjin.coin.sdk.service.transactionrequests.impl;
 
+import java.util.concurrent.Future;
+
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.service.transactionrequests.TransactionRequestsAsyncService;
-import com.enjin.coin.sdk.vo.transactionrequest.*;
-
-import java.util.concurrent.Future;
-import java.util.logging.Logger;
+import com.enjin.coin.sdk.vo.transactionrequest.CancelTransactionRequestRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.CancelTransactionRequestResponseVO;
+import com.enjin.coin.sdk.vo.transactionrequest.CreateTransactionRequestRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.CreateTransactionRequestResponseVO;
+import com.enjin.coin.sdk.vo.transactionrequest.GetTransactionRequestRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.GetTransactionRequestResponseVO;
+import com.enjin.coin.sdk.vo.transactionrequest.ListTransactionRequestsRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.ListTransactionRequestsResponseVO;
 
 /**
  * <p>Contains services related to transaction requests</p>
  */
 public class TransactionRequestsAsyncServiceImpl extends TransactionRequestsServiceImpl implements TransactionRequestsAsyncService {
-
-    private static final Logger LOGGER = Logger.getLogger(TransactionRequestsAsyncServiceImpl.class.getName());
 
     /**
      * Class constructor

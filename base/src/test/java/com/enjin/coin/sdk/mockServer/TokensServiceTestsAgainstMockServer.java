@@ -1,18 +1,18 @@
 package com.enjin.coin.sdk.mockServer;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.Before;
+import org.junit.Test;
+
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.config.ImmutableConfig;
 import com.enjin.coin.sdk.service.EnjinCoinClient;
 import com.enjin.coin.sdk.service.tokens.TokensService;
-import com.enjin.coin.sdk.service.tokens.impl.TokensServiceImpl;
 import com.enjin.coin.sdk.vo.token.GetTokenRequestVO;
 import com.enjin.coin.sdk.vo.token.ImmutableGetTokenRequestVO;
 import com.enjin.coin.sdk.vo.token.ImmutableListTokensRequestVO;
 import com.enjin.coin.sdk.vo.token.ListTokensRequestVO;
-import org.junit.Before;
-import org.junit.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class TokensServiceTestsAgainstMockServer extends BaseMockServer {
 
