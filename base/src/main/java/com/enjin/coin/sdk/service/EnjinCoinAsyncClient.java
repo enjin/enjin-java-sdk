@@ -11,9 +11,9 @@ import java.util.logging.Logger;
  *
  * @author damien
  */
-public class EnjinCoinClientAsync implements EnjinCoin {
+public class EnjinCoinAsyncClient implements EnjinCoin {
 
-    private static final Logger LOGGER = Logger.getLogger(EnjinCoinClientAsync.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(EnjinCoinAsyncClient.class.getName());
 
     private Config enjinConfig;
     private EventsServiceAsync eventsServiceAsync;
@@ -26,7 +26,7 @@ public class EnjinCoinClientAsync implements EnjinCoin {
      *
      * @param enjinConfig - enjinConfig to use
      */
-    public EnjinCoinClientAsync(Config enjinConfig) {
+    public EnjinCoinAsyncClient(Config enjinConfig) {
         if (enjinConfig == null) {
             LOGGER.warning("The enjinConfig passed in is null");
             return;
