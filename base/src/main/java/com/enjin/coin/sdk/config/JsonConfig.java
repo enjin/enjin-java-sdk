@@ -96,10 +96,12 @@ public class JsonConfig {
         boolean success = true;
         try (FileWriter fw = new FileWriter(file)) {
             if (file.getParentFile() != null) {
-                file.getParentFile().mkdirs();
+                boolean mkdirsResult = file.getParentFile().mkdirs();
+                LOGGER.fine(String.format("mkdirsResult is %s.", mkdirsResult));
             }
             if (!file.exists()) {
-                file.createNewFile();
+                boolean createNewFileResult = file.createNewFile();
+                LOGGER.fine(String.format("createNewFileResult is %s.", createNewFileResult));
             }
 
             String jsonStr = JsonUtils.convertObjectToJson(GSON, this);
