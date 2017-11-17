@@ -17,7 +17,6 @@ public class Config extends JsonConfig {
 
     /**
      * Get the trusted platform.
-     * 
      * @return Platform
      */
     @Value.Default
@@ -28,7 +27,6 @@ public class Config extends JsonConfig {
 
     /**
      * Get the total executors.
-     * 
      * @return Integer
      */
     @Value.Default
@@ -39,7 +37,6 @@ public class Config extends JsonConfig {
 
     /**
      * Get whether in test mode or not.
-     * 
      * @return Boolean
      */
     @Nullable

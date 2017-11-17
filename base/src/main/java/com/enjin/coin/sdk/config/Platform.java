@@ -17,7 +17,6 @@ public class Platform {
 
     /**
      * The host to use.
-     * 
      * @return String
      */
     @Value.Default
@@ -28,7 +27,6 @@ public class Platform {
 
     /**
      * The port to use.
-     * 
      * @return Integer
      */
     @Value.Default
@@ -39,7 +37,6 @@ public class Platform {
 
     /**
      * The protocol to use.
-     * 
      * @return String.
      */
     @Value.Default

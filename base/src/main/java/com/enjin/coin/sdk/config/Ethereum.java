@@ -15,7 +15,6 @@ public class Ethereum {
 
     /**
      * mode to use.
-     * 
      * @return String
      */
     @Value.Default
@@ -26,7 +25,6 @@ public class Ethereum {
 
     /**
      * geth path.
-     * 
      * @return String
      */
     @Value.Default

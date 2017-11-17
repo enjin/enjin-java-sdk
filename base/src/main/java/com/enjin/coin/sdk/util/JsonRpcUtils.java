@@ -44,7 +44,6 @@ public class JsonRpcUtils {
 
     /**
      * Set whether in test mode or not.
-     * 
      * @param isInTestMode - true if in test mode / false if not
      */
     public void setIsInTestMode(final boolean isInTestMode) {

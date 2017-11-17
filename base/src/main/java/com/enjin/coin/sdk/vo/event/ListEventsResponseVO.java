@@ -8,16 +8,18 @@ import java.util.Arrays;
 import java.util.Optional;
 
 /**
- * <p>List Events Response class.</p>
+ * <p>
+ * List Events Response class.
+ * </p>
  */
 @Value.Immutable
 @Gson.TypeAdapters
 public abstract class ListEventsResponseVO {
 
-	/**
-	 * Get the events response array.
-	 * @return Optional<GetEventResponseVO[]> 
-	 */
+    /**
+     * Get the events response array.
+     * @return Optional<GetEventResponseVO[]>
+     */
     @SerializedName("getEventResponseVOArray")
     public abstract Optional<GetEventResponseVO[]> getGetEventsResponseVOArray();
 

@@ -39,7 +39,6 @@ public class JsonConfig {
 
     /**
      * Method to load config.
-     * 
      * @param file file to load config from
      * @param clazz the class type of the config
      * @return JsonConfig
@@ -64,7 +63,6 @@ public class JsonConfig {
 
     /**
      * Method to load new config.
-     * 
      * @param clazz the class type of the config
      * @return JsonConfig
      * @throws Exception any exceptions that occur when loading the config
@@ -75,7 +73,6 @@ public class JsonConfig {
 
     /**
      * Method to load existing config.
-     * 
      * @param file file to load config from
      * @param clazz the class type of the config
      * @return JsonConfig
@@ -89,7 +86,6 @@ public class JsonConfig {
 
     /**
      * Method to save config.
-     * 
      * @param file file to save config to
      * @return boolean
      */
@@ -115,7 +111,6 @@ public class JsonConfig {
 
     /**
      * Method to update config.
-     * 
      * @param file file to store the updated config
      * @param data date to write to the config
      * @return boolean
@@ -148,7 +143,6 @@ public class JsonConfig {
 
     /**
      * Method to update config.
-     * 
      * @param oldObj the old object
      * @param updatedObj the updated object
      */
