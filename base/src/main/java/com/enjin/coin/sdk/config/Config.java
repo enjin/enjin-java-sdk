@@ -43,7 +43,7 @@ public class Config extends JsonConfig {
     @Value.Default
     @SerializedName("test-mode")
     public Boolean isInTestMode() {
-        return null;
+        return false;
     }
 
 }
