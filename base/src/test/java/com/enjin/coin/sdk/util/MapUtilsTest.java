@@ -1,18 +1,13 @@
 package com.enjin.coin.sdk.util;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.Test;
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest(MapUtils.class)
 public class MapUtilsTest {
 
     @Test

@@ -51,6 +51,15 @@ public class TransactionRequestsServiceTest {
     }
 
     @Test
+    public void testGetTransactionRequest_TransactionRequestVOIsNull() throws Exception {
+        GetTransactionRequestRequestVO getTransactionRequestRequestVO = null;
+
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
+        GetTransactionRequestResponseVO getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
+        assertThat(getTransactionRequestResponseVO).isNull();
+    }
+    
+    @Test
     public void testGetTransactionRequest_AuthIsNull() throws Exception {
         GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
                 .setAuth((String) null)

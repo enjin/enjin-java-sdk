@@ -1,4 +1,4 @@
-package com.enjin.coin.sdk.util;
+package com.enjin.coin.sdk.util.http;
 
 import com.enjin.coin.sdk.util.http.ContentType;
 import org.junit.Test;
