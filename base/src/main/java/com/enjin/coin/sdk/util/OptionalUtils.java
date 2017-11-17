@@ -10,6 +10,13 @@ import java.util.Optional;
 public class OptionalUtils {
 
     /**
+     * Class constructor.
+     */
+    protected OptionalUtils() {
+
+    }
+
+    /**
      * Method to check if an optional's value is present.
      *
      * @param optional - optional to check

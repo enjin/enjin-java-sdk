@@ -7,6 +7,13 @@ package com.enjin.coin.sdk.util.http;
  */
 public class Header {
 
+    /**
+     * Class constructor.
+     */
+    protected Header() {
+
+    }
+
     /** accept header. **/
     public static final String ACCEPT = "Accept";
 

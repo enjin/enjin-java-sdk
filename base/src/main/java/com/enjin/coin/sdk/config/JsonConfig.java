@@ -41,6 +41,7 @@ public class JsonConfig {
      * Method to load config.
      * @param file file to load config from
      * @param clazz the class type of the config
+     * @param <T> the class type of the config
      * @return <T> - jsonConfig
      * @throws Exception any exceptions that occur when loading the config
      */
@@ -64,6 +65,7 @@ public class JsonConfig {
     /**
      * Method to load new config.
      * @param clazz the class type of the config
+     * @param <T> the class type of the config
      * @return <T> - JsonConfig
      * @throws Exception any exceptions that occur when loading the config
      */
@@ -75,6 +77,7 @@ public class JsonConfig {
      * Method to load existing config.
      * @param file file to load config from
      * @param clazz the class type of the config
+     * @param <T> the class type of the config
      * @return <T> - JsonConfig
      * @throws Exception any exceptions that occur when loading the config
      */

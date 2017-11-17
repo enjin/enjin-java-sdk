@@ -10,6 +10,13 @@ import java.lang.reflect.Array;
 public class ArrayUtils {
 
     /**
+     * Class constructor.
+     */
+    protected ArrayUtils() {
+
+    }
+
+    /**
      * Method to check if an array is empty.
      *
      * @param array - array to check

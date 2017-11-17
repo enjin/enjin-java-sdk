@@ -7,6 +7,13 @@ package com.enjin.coin.sdk.util.http;
  */
 public class ContentType {
 
+    /**
+     * Class constructor.
+     */
+    protected ContentType() {
+
+    }
+
     /** Any content type. **/
     public static final String ANY = "text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2";
 

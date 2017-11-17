@@ -89,7 +89,7 @@ public class JsonRpcUtils {
             JSONRPC2SessionOptions jsonRPC2SessionOptions = jsonRpcSession.getOptions();
             jsonRPC2SessionOptions.setRequestContentType(ContentType.TEXT_JSON);
             jsonRPC2SessionOptions
-                    .setAllowedResponseContentTypes(new String[] { ContentType.TEXT_JSON, ContentType.APPLICATION_JSON, ContentType.APPLICATION_JSON_RPC });
+                    .setAllowedResponseContentTypes(new String[] {ContentType.TEXT_JSON, ContentType.APPLICATION_JSON, ContentType.APPLICATION_JSON_RPC });
             jsonRpcSession.setOptions(jsonRPC2SessionOptions);
 
             String requestId = Utils.generateRandomId(isInTestMode);
