@@ -22,9 +22,13 @@ subprojects {
     apply plugin: 'com.github.johnrengelman.shadow'
     apply plugin: 'com.bmuschko.clover'
     apply plugin: 'checkstyle'
-
+    apply plugin: 'findbugs'
+    
 	checkstyle {
 	    toolVersion "8.4"
+	}
+	findbugs {
+		toolVersion "3.0.1"
 	}
 
     group = 'com.enjin'
@@ -96,7 +100,6 @@ subprojects {
     //See http://checkstyle.sourceforge.net/config_sizes.html#LineLength for configuring config/checkstyle/checkstyle.xml
     //Config properties: https://docs.gradle.org/current/dsl/org.gradle.api.plugins.quality.Checkstyle.html
     tasks.withType(Checkstyle) {
-    	//exclude '**/your/generated/package/goes/here**'
     	exclude '**/Immutable**'
     	exclude '**/GsonAdapters**'
     	
@@ -107,4 +110,17 @@ subprojects {
 	    }
 	    configFile = rootProject.file('projectConfig/checkstyle/checkstyle.xml')
 	}
+	
+	//Documentation - https://docs.gradle.org/current/userguide/findbugs_plugin.html
+	tasks.withType(FindBugs) {
+	    exclude '**/Immutable**'
+    	exclude '**/GsonAdapters**'
+	    reports {
+	        xml.enabled false
+	        html.enabled true
+	        html.stylesheet resources.text.fromFile('../projectConfig/findbugs/findbugs-style.xsl')
+	    }
+	}
+	
+	
 }
