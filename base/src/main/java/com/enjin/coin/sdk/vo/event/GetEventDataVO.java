@@ -114,4 +114,13 @@ public abstract class GetEventDataVO {
     @SerializedName("balances")
     public abstract Optional<GetEventDataBalancesVO[]> getGetEventDataBalancesVO();
 
+    @Override
+    public String toString() {
+        return "GetEventDataVO [getTokenId()=" + getTokenId() + ", getCreator()=" + getCreator() + ", getAdapter()=" + getAdapter() + ", getName()=" + getName()
+                + ", getIcon()=" + getIcon() + ", getTotalSupply()=" + getTotalSupply() + ", getExchangeRate()=" + getExchangeRate() + ", getDecimals()="
+                + getDecimals() + ", getMaxMeltFee()=" + getMaxMeltFee() + ", getMeltFee()=" + getMeltFee() + ", getTransferable()=" + getTransferable()
+                + ", getGetEventDataBalancesVO()=" + getGetEventDataBalancesVO() + "]";
+    }
+
+    
 }
