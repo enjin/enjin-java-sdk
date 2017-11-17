@@ -70,4 +70,7 @@ public class Constants {
     /** Numeric constants - 100,000. **/
     public static final int ONE_HUNDRED_THOUSAND = 100000;
 
+    /** Charset UTF-8. **/
+    public static final String CHARSET_UTF_8 = "UTF-8";
+
 }

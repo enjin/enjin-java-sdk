@@ -44,7 +44,7 @@ public final class FileUtils {
                 LOGGER.warning(String.format("No content returned for the file: %s", filePath));
                 return fileContents;
             }
-            fileContents = new String(fileBytes);
+            fileContents = new String(fileBytes, Constants.CHARSET_UTF_8);
         } catch (IOException e) {
             LOGGER.warning(String.format("An IOException has occured. Exception: %s", StringUtils.exceptionToString(e)));
         }
