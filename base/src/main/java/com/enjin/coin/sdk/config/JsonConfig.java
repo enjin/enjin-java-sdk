@@ -18,19 +18,34 @@ import java.util.logging.Logger;
  */
 public class JsonConfig {
 
-    //Local log variable
+    /**
+	 * Logger used by this class.
+	 */
     private static final Logger LOGGER = Logger.getLogger(JsonConfig.class.getName());
 
-    //Gson variable to use
+    /**
+     * Gson variable to use
+     */
     private static final Gson GSON = GsonUtils.GSON_PRETTY_PRINT;
 
     /**
-     * Class constructor
+     * Class constructor.
      */
     protected JsonConfig() {
 
     }
 
+	/**
+	 * Method to load config.
+	 * 
+	 * @param file
+	 *            file to load config from
+	 * @param clazz
+	 *            the class type of the config
+	 * @return JsonConfig
+	 * @throws Exception
+	 *             any exceptions that occur when loading the config
+	 */
     public static <T extends JsonConfig> T load(File file, Class<T> clazz) throws Exception {
         JsonConfig config = null;
 
@@ -48,16 +63,43 @@ public class JsonConfig {
         return clazz.cast(config);
     }
 
+	/**
+	 * Method to load new config.
+	 * 
+	 * @param clazz
+	 *            the class type of the config
+	 * @return JsonConfig
+	 * @throws Exception
+	 *             any exceptions that occur when loading the config
+	 */
     private static <T extends JsonConfig> T loadNew(Class<T> clazz) throws Exception {
         return clazz.newInstance();
     }
 
+	/**
+	 * Method to load existing config.
+	 * 
+	 * @param file
+	 *            file to load config from
+	 * @param clazz
+	 *            the class type of the config
+	 * @return JsonConfig
+	 * @throws Exception
+	 *             any exceptions that occur when loading the config
+	 */
     @SuppressWarnings("unchecked")
     private static <T extends JsonConfig> T loadExisting(File file, Class<T> clazz) throws Exception {
         FileReader fileReader = new FileReader(file);
         return (T) JsonUtils.convertJsonFromFileReaderToObject(GSON, fileReader, clazz);
     }
 
+	/**
+	 * Method to save config.
+	 * 
+	 * @param file
+	 *            file to save config to
+	 * @return boolean
+	 */
     public boolean save(File file) {
         boolean success = true;
         try (FileWriter fw = new FileWriter(file)) {
@@ -78,6 +120,15 @@ public class JsonConfig {
         return success;
     }
 
+	/**
+	 * Method to update config.
+	 * 
+	 * @param file
+	 *            file to store the updated config
+	 * @param data
+	 *            date to write to the config
+	 * @return boolean
+	 */
     public boolean update(File file, Object data) {
         JsonElement old = JsonUtils.convertObjectToJsonTree(GSON, this);
         JsonElement updates = JsonUtils.convertObjectToJsonTree(GSON, data);
@@ -104,8 +155,16 @@ public class JsonConfig {
         return success;
     }
 
-    private void update(JsonObject oldObj, JsonObject update) {
-        for (Map.Entry<String, JsonElement> entry : update.getAsJsonObject().entrySet()) {
+	/**
+	 * Method to update config.
+	 * 
+	 * @param oldObj
+	 *            the old object
+	 * @param updatedObj
+	 *            the updated object
+	 */
+    private void update(JsonObject oldObj, JsonObject updatedObj) {
+        for (Map.Entry<String, JsonElement> entry : updatedObj.getAsJsonObject().entrySet()) {
             if (!oldObj.has(entry.getKey())) {
                 LOGGER.fine(String.format("%s does not exists, updating value.", entry.getKey()));
                 oldObj.add(entry.getKey(), entry.getValue());

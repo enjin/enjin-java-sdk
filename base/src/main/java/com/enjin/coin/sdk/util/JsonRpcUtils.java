@@ -17,8 +17,18 @@ import java.util.logging.Logger;
  */
 public class JsonRpcUtils {
 
+    /**
+	 * Logger used by this class.
+	 */
     private static final Logger LOGGER = Logger.getLogger(JsonRpcUtils.class.getName());
 
+    /**
+     * Class constructor.
+     */
+    public JsonRpcUtils() {
+    	
+    }
+    
     private boolean isInTestMode = false;
 
     public boolean getIsInTestMode() {

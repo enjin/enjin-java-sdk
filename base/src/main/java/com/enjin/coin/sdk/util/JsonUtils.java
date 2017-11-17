@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public final class JsonUtils {
 
     /**
-	 * Logger variable.
+	 * Logger used by this class.
 	 */
 	private static final Logger LOGGER = Logger.getLogger(JsonUtils.class.getName());
 
