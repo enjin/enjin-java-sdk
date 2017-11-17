@@ -19,7 +19,7 @@ ext {
     jsonrpc2client = '1.16.4'
     wiremock = '2.11.0'
     gson = '2.8.2'
-    pusher = '1.5.0'
+    pusher = '1.6.0'
     immutables = '2.5.5'
 }
 
