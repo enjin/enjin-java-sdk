@@ -17,28 +17,28 @@ public abstract class ListEventsRequestVO {
 
     /**
      * Method to get the auth.
-     * @return Optional<String>
+     * @return Optional
      */
     @SerializedName("auth")
     public abstract Optional<String> getAuth();
 
     /**
      * Method to get the appUd.
-     * @return Optional<String>
+     * @return Optional
      */
     @SerializedName("app_id")
     public abstract Optional<String> getAppId();
 
     /**
      * Method to get the afterEventId.
-     * @return Optional<String>
+     * @return Optional
      */
     @SerializedName("after_event_id")
     public abstract Optional<String> getAfterEventId();
 
     /**
      * Method to get the limit.
-     * @return Optional<String>
+     * @return Optional
      */
     @SerializedName("limit")
     public abstract Optional<String> getLimit();

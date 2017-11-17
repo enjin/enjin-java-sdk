@@ -17,7 +17,7 @@ public abstract class GetTokenRequestVO {
 
     /**
      * Method to get the tokenId.
-     * @return Optional<String>
+     * @return Optional
      */
     @SerializedName("token_id")
     public abstract Optional<String> getTokenId();

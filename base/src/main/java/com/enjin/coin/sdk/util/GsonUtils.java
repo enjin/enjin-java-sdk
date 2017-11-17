@@ -49,7 +49,7 @@ public final class GsonUtils {
 
     /**
      * Method to get all type adapter factories.
-     * @return List<TypeAdapterFactory>
+     * @return List
      */
     public static List<TypeAdapterFactory> getAllTypeAdapterFactories() {
         List<TypeAdapterFactory> factories = new ArrayList<>();
@@ -59,7 +59,7 @@ public final class GsonUtils {
 
     /**
      * Method to get the type adapter factory service loader.
-     * @return ServiceLoader<TypeAdapterFactory>
+     * @return ServiceLoader
      */
     public static ServiceLoader<TypeAdapterFactory> getTypeAdapterFactoryServiceLoader() {
         return ServiceLoader.load(TypeAdapterFactory.class);

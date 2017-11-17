@@ -17,35 +17,35 @@ public abstract class GetEventResponseVO {
 
     /**
      * Method to get the data.
-     * @return Optional<GetEventDataVO>
+     * @return Optional
      */
     @SerializedName("data")
     public abstract Optional<GetEventDataVO> getData();
 
     /**
      * Method to get the eventId.
-     * @return Optional<String>
+     * @return Optional
      */
     @SerializedName("event_id")
     public abstract Optional<String> getEventId();
 
     /**
      * Method to get the eventType.
-     * @return Optional<String>
+     * @return Optional
      */
     @SerializedName("event_type")
     public abstract Optional<String> getEventType();
 
     /**
      * Method to get the timestamp.
-     * @return Optional<String>
+     * @return Optional
      */
     @SerializedName("timestamp")
     public abstract Optional<String> getTimestamp();
 
     /**
      * Method to get the appId.
-     * @return Optional<String>
+     * @return Optional
      */
     @SerializedName("app_id")
     public abstract Optional<String> getAppId();

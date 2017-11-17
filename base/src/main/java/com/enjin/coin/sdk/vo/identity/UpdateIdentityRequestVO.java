@@ -18,7 +18,7 @@ public abstract class UpdateIdentityRequestVO extends BaseIdentityRequestVO {
 
     /**
      * Method to get the updateMap.
-     * @return Optional<Map<String, Object>>
+     * @return Optional
      */
     @SkipNulls
     @SerializedName("update")

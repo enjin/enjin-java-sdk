@@ -16,7 +16,7 @@ public abstract class DeleteIdentityResponseVO {
 
     /**
      * Method to get the result.
-     * @return Optional<Boolean>
+     * @return Optional
      */
     @SerializedName("result")
     public abstract Optional<Boolean> getResult();

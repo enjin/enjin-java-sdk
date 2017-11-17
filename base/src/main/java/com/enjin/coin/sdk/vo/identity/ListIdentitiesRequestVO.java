@@ -16,21 +16,21 @@ public abstract class ListIdentitiesRequestVO extends BaseIdentityRequestVO {
 
     /**
      * Method to get the linked value.
-     * @return Optional<Boolean>
+     * @return Optional
      */
     @SerializedName("linked")
     public abstract Optional<Boolean> getLinked();
 
     /**
      * Method to get the afterIdentityId.
-     * @return Optional<String>
+     * @return Optional
      */
     @SerializedName("after_identity_id")
     public abstract Optional<String> getAfterIdentityId();
 
     /**
      * Method to get the limit.
-     * @return Optional<String>
+     * @return Optional
      */
     @SerializedName("limit")
     public abstract Optional<String> getLimit();

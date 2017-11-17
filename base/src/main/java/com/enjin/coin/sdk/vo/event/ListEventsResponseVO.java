@@ -18,7 +18,7 @@ public abstract class ListEventsResponseVO {
 
     /**
      * Get the events response array.
-     * @return Optional<GetEventResponseVO[]>
+     * @return Optional
      */
     @SerializedName("getEventResponseVOArray")
     public abstract Optional<GetEventResponseVO[]> getGetEventsResponseVOArray();

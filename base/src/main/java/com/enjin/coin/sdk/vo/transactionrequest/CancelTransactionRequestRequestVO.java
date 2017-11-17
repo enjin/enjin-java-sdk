@@ -17,14 +17,14 @@ public abstract class CancelTransactionRequestRequestVO {
 
     /**
      * Method to get the auth.
-     * @return Optional<String>
+     * @return Optional
      */
     @SerializedName("auth")
     public abstract Optional<String> getAuth();
 
     /**
      * Method to get the txrId.
-     * @return Optional<String>
+     * @return Optional
      */
     @SerializedName("txr_id")
     public abstract Optional<String> getTxrId();

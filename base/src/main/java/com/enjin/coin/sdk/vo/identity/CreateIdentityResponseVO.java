@@ -17,14 +17,14 @@ public abstract class CreateIdentityResponseVO {
 
     /**
      * Method to get the identityId.
-     * @return Optional<String>
+     * @return Optional
      */
     @SerializedName("identity_id")
     public abstract Optional<String> getIdentityId();
 
     /**
      * Method to get the identityCode.
-     * @return Optional<String>
+     * @return Optional
      */
     @SerializedName("identity_code")
     public abstract Optional<String> getIdentityCode();

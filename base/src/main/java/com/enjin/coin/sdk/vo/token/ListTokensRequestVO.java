@@ -17,21 +17,21 @@ public abstract class ListTokensRequestVO {
 
     /**
      * Method to get the appId.
-     * @return Optional<String>
+     * @return Optional
      */
     @SerializedName("app_id")
     public abstract Optional<String> getAppId();
 
     /**
      * Method to get the afterTokenId.
-     * @return Optional<String>
+     * @return Optional
      */
     @SerializedName("after_token_id")
     public abstract Optional<String> getAfterTokenId();
 
     /**
      * Method to get the limit.
-     * @return Optional<String>
+     * @return Optional
      */
     @SerializedName("limit")
     public abstract Optional<String> getLimit();

@@ -18,28 +18,28 @@ public abstract class GetEventDataBalancesVO {
 
     /**
      * Method to get the identityMap.
-     * @return Optional<Map<String, Object>>
+     * @return Optional
      */
     @SerializedName("identity")
     public abstract Optional<Map<String, Object>> getIdentityMap();
 
     /**
      * Method to get the fromMap.
-     * @return Optional<Map<String, Object>>
+     * @return Optional
      */
     @SerializedName("from")
     public abstract Optional<Map<String, Object>> getFromMap();
 
     /**
      * Method to get the pendingMap.
-     * @return Optional<Map<String, Object>>
+     * @return Optional
      */
     @SerializedName("pending")
     public abstract Optional<Map<String, Object>> getPendingMap();
 
     /**
      * Method to get the confirmedMap.
-     * @return Optional<Map<String, Object>>
+     * @return Optional
      */
     @SerializedName("confirmed")
     public abstract Optional<Map<String, Object>> getConfirmedMap();

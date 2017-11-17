@@ -42,7 +42,7 @@ public class JsonConfig {
      * @param file file to load config from
      * @param clazz the class type of the config
      * @param <T> the class type of the config
-     * @return <T> - jsonConfig
+     * @return T - jsonConfig
      * @throws Exception any exceptions that occur when loading the config
      */
     public static <T extends JsonConfig> T load(final File file, final Class<T> clazz) throws Exception {

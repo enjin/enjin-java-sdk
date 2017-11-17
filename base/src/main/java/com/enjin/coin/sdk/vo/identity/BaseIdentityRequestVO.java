@@ -16,14 +16,14 @@ public abstract class BaseIdentityRequestVO {
 
     /**
      * Method to get the auth.
-     * @return Optional<String>
+     * @return Optional
      */
     @SerializedName("auth")
     public abstract Optional<String> getAuth();
 
     /**
      * Method to get the identityMap.
-     * @return Optional<Map<String, Object>>
+     * @return Optional
      */
     @SerializedName("identity")
     public abstract Optional<Map<String, Object>> getIdentity();

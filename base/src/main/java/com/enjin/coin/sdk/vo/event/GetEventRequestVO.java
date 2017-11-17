@@ -17,14 +17,14 @@ public abstract class GetEventRequestVO {
 
     /**
      * Method to get the auth.
-     * @return Optional<String>
+     * @return Optional
      */
     @SerializedName("auth")
     public abstract Optional<String> getAuth();
 
     /**
      * Method to get the eventId.
-     * @return Optional<String>
+     * @return Optional
      */
     @SerializedName("event_id")
     public abstract Optional<String> getEventId();

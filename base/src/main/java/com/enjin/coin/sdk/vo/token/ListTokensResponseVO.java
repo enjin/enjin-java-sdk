@@ -18,7 +18,7 @@ public abstract class ListTokensResponseVO {
 
     /**
      * Method to get the getTokenResponseVOArray.
-     * @return Optional<GetTokenResponseVO[]>
+     * @return Optional
      */
     @SerializedName("getTokenResponseVOArray")
     public abstract Optional<GetTokenResponseVO[]> getGetTokensResponseVOArray();

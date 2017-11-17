@@ -18,7 +18,7 @@ public abstract class UpdateIdentityResponseVO {
 
     /**
      * Method to get the identityMap.
-     * @return Optional<Map<String, Object>>
+     * @return Optional
      */
     @SkipNulls
     @SerializedName("identity")

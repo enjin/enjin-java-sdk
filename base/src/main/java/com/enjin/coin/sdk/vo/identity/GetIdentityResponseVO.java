@@ -16,28 +16,28 @@ public abstract class GetIdentityResponseVO {
 
     /**
      * Method to get the identityId.
-     * @return Optional<String>
+     * @return Optional
      */
     @SerializedName("identity_id")
     public abstract Optional<String> getIdentityId();
 
     /**
      * Method to get the ethereumAddress.
-     * @return Optional<String>
+     * @return Optional
      */
     @SerializedName("ethereum_address")
     public abstract Optional<String> getEthereumAddress();
 
     /**
      * Method to get the playerName.
-     * @return Optional<String>
+     * @return Optional
      */
     @SerializedName("player_name")
     public abstract Optional<String> getPlayerName();
 
     /**
      * Method to get the uuid.
-     * @return Optional<String>
+     * @return Optional
      */
     @SerializedName("uuid")
     public abstract Optional<String> getUuid();
