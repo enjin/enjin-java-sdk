@@ -7,10 +7,13 @@ import com.enjin.coin.sdk.vo.token.ListTokensResponseVO;
 
 import java.util.concurrent.Future;
 
+/**
+ * Asynchronous Tokens service interface.
+ */
 public interface TokensAsyncService extends TokensService {
 
     /**
-     * Method to get a token
+     * Method to get a token.
      *
      * @param request - token request object
      * @return - GetTokenResponseVO
@@ -18,7 +21,7 @@ public interface TokensAsyncService extends TokensService {
     Future<GetTokenResponseVO> getTokenAsync(GetTokenRequestVO request);
 
     /**
-     * Method to list the tokens
+     * Method to list the tokens.
      *
      * @param request - list tokens request object
      * @return - ListTokensResponseVO

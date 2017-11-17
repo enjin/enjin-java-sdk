@@ -34,7 +34,7 @@
     <!--
         If you set the basedir property below, then all reported file
         names will be relative to the specified directory. See
-        http://checkstyle.sourceforge.net/5.x/config.html#Checker
+        http://checkstyle.sourceforge.net/5.x/clientConfig.html#Checker
 
         <property name="basedir" value="${basedir}"/>
     -->
@@ -43,7 +43,7 @@
 
     <!-- Checks that a package-info.java file exists for each package.     -->
     <!-- See http://checkstyle.sf.net/config_javadoc.html#JavadocPackage -->
-    <module name="JavadocPackage"/>
+    <!--<module name="JavadocPackage"/>-->
 
     <!-- Checks whether files end with a new line.                        -->
     <!-- See http://checkstyle.sf.net/config_misc.html#NewlineAtEndOfFile -->
@@ -143,10 +143,10 @@
 
         <!-- Checks for common coding problems               -->
         <!-- See http://checkstyle.sf.net/config_coding.html -->
-        <module name="AvoidInlineConditionals"/>
+        <!--<module name="AvoidInlineConditionals"/>-->
         <module name="EmptyStatement"/>
         <module name="EqualsHashCode"/>
-        <module name="HiddenField"/>
+        <!--<module name="HiddenField"/>-->
         <module name="IllegalInstantiation"/>
         <module name="InnerAssignment"/>
         <module name="MagicNumber"/>
@@ -156,7 +156,7 @@
 
         <!-- Checks for class design                         -->
         <!-- See http://checkstyle.sf.net/config_design.html -->
-        <module name="DesignForExtension"/>
+        <!--<module name="DesignForExtension"/>-->
         <module name="FinalClass"/>
         <module name="HideUtilityClassConstructor"/>
         <module name="InterfaceIsType"/>

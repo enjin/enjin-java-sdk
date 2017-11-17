@@ -6,36 +6,36 @@ import com.enjin.coin.sdk.service.tokens.TokensService;
 import com.enjin.coin.sdk.service.transactionrequests.TransactionRequestsService;
 
 /**
- * <p>Interface for the EnjinCoin sync client </p>
+ * <p>Interface for the EnjinCoin sync client.</p>
  */
 public interface EnjinCoin {
 
     /**
-     * Method to get the eventsService
+     * Method to get the eventsService.
      *
      * @return - EventsService
      */
-    public EventsService getEventsService();
+    EventsService getEventsService();
 
     /**
-     * Method to get the identitiesService
+     * Method to get the identitiesService.
      *
      * @return - IdentitiesService
      */
-    public IdentitiesService getIdentitiesService();
+    IdentitiesService getIdentitiesService();
 
     /**
-     * Method to get the tokensService
+     * Method to get the tokensService.
      *
      * @return - TokensService
      */
-    public TokensService getTokensService();
+    TokensService getTokensService();
 
     /**
-     * Method to get the transactionRequestsService
+     * Method to get the transactionRequestsService.
      *
      * @return - TransactionRequestsService
      */
-    public TransactionRequestsService getTransactionRequestsService();
+    TransactionRequestsService getTransactionRequestsService();
 
 }

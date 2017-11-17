@@ -13,10 +13,13 @@ import com.enjin.coin.sdk.vo.identity.UpdateIdentityResponseVO;
 
 import java.util.concurrent.Future;
 
+/**
+ * Asynchronous Identities service interface.
+ */
 public interface IdentitiesAsyncService extends IdentitiesService {
 
     /**
-     * Method to get an identity
+     * Method to get an identity.
      *
      * @param request - get identity request vo
      * @return - GetIdentityResponseVO
@@ -24,7 +27,7 @@ public interface IdentitiesAsyncService extends IdentitiesService {
     Future<GetIdentityResponseVO> getIdentityAsync(GetIdentityRequestVO request);
 
     /**
-     * Method to list the identities
+     * Method to list the identities.
      *
      * @param request - list identities request vo
      * @return - ListIdentitiesResponseVO array
@@ -32,7 +35,7 @@ public interface IdentitiesAsyncService extends IdentitiesService {
     Future<ListIdentitiesResponseVO[]> listIdentitiesAsync(ListIdentitiesRequestVO request);
 
     /**
-     * Method to create an identity
+     * Method to create an identity.
      *
      * @param request - create identity request vo
      * @return - CreateIdentityResponseVO
@@ -40,7 +43,7 @@ public interface IdentitiesAsyncService extends IdentitiesService {
     Future<CreateIdentityResponseVO> createIdentityAsync(CreateIdentityRequestVO request);
 
     /**
-     * Method to update an identity
+     * Method to update an identity.
      *
      * @param request - update identity request vo
      * @return - UpdateIdentityResponseVO
@@ -48,7 +51,7 @@ public interface IdentitiesAsyncService extends IdentitiesService {
     Future<UpdateIdentityResponseVO> updateIdentityAsync(UpdateIdentityRequestVO request);
 
     /**
-     * Method to delete an identity
+     * Method to delete an identity.
      *
      * @param request - delete identity request vo
      * @return - DeleteIdentityResponseVO

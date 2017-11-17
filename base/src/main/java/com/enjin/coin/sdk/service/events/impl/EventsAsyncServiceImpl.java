@@ -10,27 +10,27 @@ import com.enjin.coin.sdk.vo.event.ListEventsResponseVO;
 import java.util.concurrent.Future;
 
 /**
- * <p>Asynchronous implementation of EventsService</p>
+ * <p>Asynchronous implementation of EventsService.</p>
  */
-public class EventsAsyncServiceImpl extends EventsServiceImpl implements EventsAsyncService {
+public final class EventsAsyncServiceImpl extends EventsServiceImpl implements EventsAsyncService {
 
     /**
-     * Class constructor
+     * Class constructor.
      *
      * @param config - the config to use
      */
-    public EventsAsyncServiceImpl(Config config) {
+    public EventsAsyncServiceImpl(final Config config) {
         super(config);
     }
 
     @Override
-    public Future<GetEventResponseVO> getEventAsync(GetEventRequestVO request) {
-        return executorService.submit(() -> getEvent(request));
+    public Future<GetEventResponseVO> getEventAsync(final GetEventRequestVO request) {
+        return getExecutorService().submit(() -> getEvent(request));
     }
 
     @Override
-    public Future<ListEventsResponseVO> listEventsAsync(ListEventsRequestVO request) {
-        return executorService.submit(() -> listEvents(request));
+    public Future<ListEventsResponseVO> listEventsAsync(final ListEventsRequestVO request) {
+        return getExecutorService().submit(() -> listEvents(request));
     }
 
 }

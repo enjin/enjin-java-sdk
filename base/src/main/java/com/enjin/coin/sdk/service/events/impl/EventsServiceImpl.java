@@ -18,29 +18,36 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 /**
- * <p>Synchronous implementation of EventsService</p>
+ * <p>Synchronous implementation of EventsService.</p>
  */
 public class EventsServiceImpl extends BaseService implements EventsService {
 
+    /**
+     * Logger used by this class.
+     */
     private static final Logger LOGGER = Logger.getLogger(EventsServiceImpl.class.getName());
 
     /**
-     * Class constructor
+     * Class constructor.
      *
      * @param config - the config to use
      */
-    public EventsServiceImpl(Config config) {
+    public EventsServiceImpl(final Config config) {
         super(config);
     }
 
     @Override
-    public GetEventResponseVO getEvent(GetEventRequestVO request) {
-        GetEventResponseVO getEventResponseVO = null;
+    public final GetEventResponseVO getEvent(final GetEventRequestVO request) {
+        GetEventResponseVO response = null;
 
-        if (ObjectUtils.isNull(request) || StringUtils.isEmpty(request.getAuth())
-                || StringUtils.isEmpty(request.getEventId())) {
-            LOGGER.warning("getEventRequestVO is null, auth or eventId passed in are null or empty");
-            return getEventResponseVO;
+        if (ObjectUtils.isNull(request)) {
+            LOGGER.warning("Events.get request is null.");
+            return response;
+        }
+
+        if (StringUtils.isEmpty(request.getAuth()) || StringUtils.isEmpty(request.getEventId())) {
+            LOGGER.warning("Events.get parameters may be empty or null.");
+            return response;
         }
 
         Map<String, Object> params = new HashMap<>();
@@ -50,21 +57,25 @@ public class EventsServiceImpl extends BaseService implements EventsService {
         // Construct new request
         String method = Constants.METHOD_EVENTS_GET;
 
-        getEventResponseVO = (GetEventResponseVO) jsonRpcUtils.sendJsonRpcRequest(getEventsUrl(), GetEventResponseVO.class, method, params);
+        response = (GetEventResponseVO) getJsonRpcUtils()
+                .sendJsonRpcRequest(getEventsUrl(), GetEventResponseVO.class, method, params);
 
-        return getEventResponseVO;
+        return response;
     }
 
     @Override
-    public ListEventsResponseVO listEvents(ListEventsRequestVO request) {
-        ListEventsResponseVO listEventsResponseVO = null;
+    public final ListEventsResponseVO listEvents(final ListEventsRequestVO request) {
+        ListEventsResponseVO response = null;
 
-        if (ObjectUtils.isNull(request) || StringUtils.isEmpty(request.getAuth())
-                || StringUtils.isEmpty(request.getAppId())
-                || StringUtils.isEmpty(request.getAfterEventId())
-                || StringUtils.isEmpty(request.getLimit())) {
-            LOGGER.warning("listEventsRequestVO is null, auth, appId, afterEventId or limit passed in are null or empty");
-            return listEventsResponseVO;
+        if (ObjectUtils.isNull(request)) {
+            LOGGER.warning("Events.get request is null.");
+            return response;
+        }
+
+        if (StringUtils.isEmpty(request.getAuth()) || StringUtils.isEmpty(request.getAppId())
+                || StringUtils.isEmpty(request.getAfterEventId()) || StringUtils.isEmpty(request.getLimit())) {
+            LOGGER.warning("Events.get parameters may be empty or null.");
+            return response;
         }
 
         Map<String, Object> params = new HashMap<>();
@@ -76,16 +87,19 @@ public class EventsServiceImpl extends BaseService implements EventsService {
         // Construct new request
         String method = Constants.METHOD_EVENTS_LIST;
 
-        GetEventResponseVO[] getEventResponseVOArray = (GetEventResponseVO[]) jsonRpcUtils.sendJsonRpcRequest(getEventsUrl(), GetEventResponseVO[].class, method, params);
-        if (ArrayUtils.isEmpty(getEventResponseVOArray)) {
-            LOGGER.warning("No Events returned");
-            return listEventsResponseVO;
+        GetEventResponseVO[] array = (GetEventResponseVO[]) getJsonRpcUtils()
+                .sendJsonRpcRequest(getEventsUrl(), GetEventResponseVO[].class, method, params);
+
+        if (ArrayUtils.isEmpty(array)) {
+            LOGGER.warning("No Events were retrieved.");
+            return response;
         }
-        listEventsResponseVO = ImmutableListEventsResponseVO.builder()
-                .setGetEventsResponseVOArray(getEventResponseVOArray)
+
+        response = ImmutableListEventsResponseVO.builder()
+                .setGetEventsResponseVOArray(array)
                 .build();
 
-        return listEventsResponseVO;
+        return response;
     }
 
 }

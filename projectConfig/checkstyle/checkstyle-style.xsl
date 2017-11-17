@@ -7,7 +7,7 @@
 <!-- Checkstyle XML Style Sheet by Stephane Bailliez <sbailliez@apache.org>         -->
 <!-- Part of the Checkstyle distribution found at http://checkstyle.sourceforge.net -->
 <!-- Usage (generates checkstyle_report.html):                                      -->
-<!--    <checkstyle failonviolation="false" config="${check.config}">               -->
+<!--    <checkstyle failonviolation="false" clientConfig="${check.clientConfig}">               -->
 <!--      <fileset dir="${src.dir}" includes="**/*.java"/>                          -->
 <!--      <formatter type="xml" toFile="${doc.dir}/checkstyle_report.xml"/>         -->
 <!--    </checkstyle>                                                               -->

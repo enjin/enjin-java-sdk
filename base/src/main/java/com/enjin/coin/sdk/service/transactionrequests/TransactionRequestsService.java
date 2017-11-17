@@ -9,10 +9,13 @@ import com.enjin.coin.sdk.vo.transactionrequest.GetTransactionRequestResponseVO;
 import com.enjin.coin.sdk.vo.transactionrequest.ListTransactionRequestsRequestVO;
 import com.enjin.coin.sdk.vo.transactionrequest.ListTransactionRequestsResponseVO;
 
+/**
+ * TransactionRequests service interface.
+ */
 public interface TransactionRequestsService {
 
     /**
-     * Method to get an transactionRequest
+     * Method to get an transactionRequest.
      *
      * @param request - get the transactionRequest request vo
      * @return - GetTransactionRequestResponseVO
@@ -20,7 +23,7 @@ public interface TransactionRequestsService {
     GetTransactionRequestResponseVO getTransactionRequest(GetTransactionRequestRequestVO request);
 
     /**
-     * Method to list the transactionRequests
+     * Method to list the transactionRequests.
      *
      * @param request - list the transactionRequest request vo's
      * @return - ListTransactionRequestsResponseVO array
@@ -28,7 +31,7 @@ public interface TransactionRequestsService {
     ListTransactionRequestsResponseVO[] listTransactionRequests(ListTransactionRequestsRequestVO request);
 
     /**
-     * Method to create an transactionRequest
+     * Method to create an transactionRequest.
      *
      * @param request - create the transactionRequest request vo
      * @return - CreateTransactionRequestResponseVO
@@ -36,7 +39,7 @@ public interface TransactionRequestsService {
     CreateTransactionRequestResponseVO createTransactionRequest(CreateTransactionRequestRequestVO request);
 
     /**
-     * Method to cancel an transactionRequest
+     * Method to cancel an transactionRequest.
      *
      * @param request - cancel the transactionRequest request vo
      * @return - CancelTransactionRequestResponseVO

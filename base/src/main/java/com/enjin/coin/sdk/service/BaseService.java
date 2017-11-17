@@ -11,23 +11,38 @@ import java.util.concurrent.Executors;
 import java.util.logging.Logger;
 
 /**
- * <p>Provides Services used by the main service classes</p>
+ * <p>Provides Services used by the main service classes.</p>
  */
 public abstract class BaseService {
 
+    /**
+     * Logger used by this class.
+     */
     private static final Logger LOGGER = Logger.getLogger(BaseService.class.getName());
 
+    /**
+     * Trusted Platform.
+     */
     private Platform trustedPlatform;
+    /**
+     * Test mode toggle.
+     */
     private boolean isInTestMode;
-    protected JsonRpcUtils jsonRpcUtils;
-    protected ExecutorService executorService;
+    /**
+     * Json RPC Helper.
+     */
+    private JsonRpcUtils jsonRpcUtils;
+    /**
+     * Executor service.
+     */
+    private ExecutorService executorService;
 
     /**
-     * Class contructor
+     * Class contructor.
      *
-     * @param config - enjinConfig to use
+     * @param config - config to use
      */
-    public BaseService(Config config) {
+    public BaseService(final Config config) {
         if (ObjectUtils.isNull(config)) {
             LOGGER.warning("The supplied config is null.");
             return;
@@ -43,7 +58,7 @@ public abstract class BaseService {
     }
 
     /**
-     * Method to get the identities url
+     * Method to get the identities url.
      *
      * @return - the identities url
      */
@@ -52,7 +67,7 @@ public abstract class BaseService {
     }
 
     /**
-     * Method to get the tokens url
+     * Method to get the tokens url.
      *
      * @return - the tokens url
      */
@@ -61,7 +76,7 @@ public abstract class BaseService {
     }
 
     /**
-     * Method to get the Transaction Requests url
+     * Method to get the Transaction Requests url.
      *
      * @return - the transaction requests url
      */
@@ -70,7 +85,7 @@ public abstract class BaseService {
     }
 
     /**
-     * Method to get the Events url
+     * Method to get the Events url.
      *
      * @return - the events url
      */
@@ -79,12 +94,12 @@ public abstract class BaseService {
     }
 
     /**
-     * Method to get the rpc url to use
+     * Method to get the rpc url to use.
      *
      * @param endpoint - the base endpoint
      * @return - the final base endpoint to use
      */
-    private String getJsonRpcURL(String endpoint) {
+    private String getJsonRpcURL(final String endpoint) {
         String baseURL = Constants.TRUSTED_PLATFORM_BASE_URL;
 
         if (ObjectUtils.isNotNull(trustedPlatform)) {
@@ -96,17 +111,45 @@ public abstract class BaseService {
         return jsonRpcURL;
     }
 
+    /**
+     * Method to get the trusted platform.
+     *
+     * @return - the trusted platform
+     */
     public Platform getTrustedPlatform() {
         return trustedPlatform;
     }
 
-    public void setTrustedPlatform(Platform trustedPlatformUrl) {
-        this.trustedPlatform = trustedPlatformUrl;
+    /**
+     * Method to set the trusted platform.
+     *
+     * @param platform the platform
+     */
+    public void setTrustedPlatform(final Platform platform) {
+        this.trustedPlatform = platform;
+    }
+
+    /**
+     * Method to get the JsonRpcUtils.
+     *
+     * @return - the JsonRpcUtils
+     */
+    public JsonRpcUtils getJsonRpcUtils() {
+        return jsonRpcUtils;
+    }
+
+    /**
+     * Method to get the ExecutorService.
+     *
+     * @return - the ExecutorService.
+     */
+    public ExecutorService getExecutorService() {
+        return executorService;
     }
 
     @Override
     public String toString() {
-        return "BaseAction [trustedPlatform=" + trustedPlatform + "]";
+        return "BaseService [trustedPlatform=" + trustedPlatform + "]";
     }
 
 }

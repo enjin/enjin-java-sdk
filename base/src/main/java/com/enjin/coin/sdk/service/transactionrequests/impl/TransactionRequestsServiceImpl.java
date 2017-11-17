@@ -40,7 +40,8 @@ public class TransactionRequestsServiceImpl extends BaseService implements Trans
         super(config);
     }
 
-    public GetTransactionRequestResponseVO getTransactionRequest(final GetTransactionRequestRequestVO request) {
+    @Override
+    public final GetTransactionRequestResponseVO getTransactionRequest(final GetTransactionRequestRequestVO request) {
         GetTransactionRequestResponseVO response = null;
 
         if (ObjectUtils.isNull(request)) {
@@ -60,13 +61,16 @@ public class TransactionRequestsServiceImpl extends BaseService implements Trans
         // Construct new request
         String method = Constants.METHOD_TRANSACTION_REQUESTS_GET;
 
-        response = (GetTransactionRequestResponseVO) jsonRpcUtils
+        response = (GetTransactionRequestResponseVO) getJsonRpcUtils()
                 .sendJsonRpcRequest(getTransactionRequestsUrl(), GetTransactionRequestResponseVO.class, method, params);
 
         return response;
     }
 
-    public ListTransactionRequestsResponseVO[] listTransactionRequests(final ListTransactionRequestsRequestVO request) {
+    @Override
+    public final ListTransactionRequestsResponseVO[] listTransactionRequests(
+            final ListTransactionRequestsRequestVO request
+    ) {
         ListTransactionRequestsResponseVO[] response = null;
 
         if (ObjectUtils.isNull(request)) {
@@ -95,14 +99,15 @@ public class TransactionRequestsServiceImpl extends BaseService implements Trans
         // Construct new request
         String method = Constants.METHOD_TRANSACTION_REQUESTS_LIST;
 
-        response = (ListTransactionRequestsResponseVO[]) jsonRpcUtils
+        response = (ListTransactionRequestsResponseVO[]) getJsonRpcUtils()
                 .sendJsonRpcRequest(getTransactionRequestsUrl(), ListTransactionRequestsResponseVO[].class,
                         method, params);
 
         return response;
     }
 
-    public CreateTransactionRequestResponseVO createTransactionRequest(
+    @Override
+    public final CreateTransactionRequestResponseVO createTransactionRequest(
             final CreateTransactionRequestRequestVO request
     ) {
         CreateTransactionRequestResponseVO response = null;
@@ -132,14 +137,15 @@ public class TransactionRequestsServiceImpl extends BaseService implements Trans
         // Construct new request
         String method = Constants.METHOD_TRANSACTION_REQUESTS_CREATE;
 
-        response = (CreateTransactionRequestResponseVO) jsonRpcUtils
+        response = (CreateTransactionRequestResponseVO) getJsonRpcUtils()
                 .sendJsonRpcRequest(getTransactionRequestsUrl(), CreateTransactionRequestResponseVO.class,
                         method, params);
 
         return response;
     }
 
-    public CancelTransactionRequestResponseVO cancelTransactionRequest(
+    @Override
+    public final CancelTransactionRequestResponseVO cancelTransactionRequest(
             final CancelTransactionRequestRequestVO request
     ) {
         CancelTransactionRequestResponseVO response = null;
@@ -161,7 +167,7 @@ public class TransactionRequestsServiceImpl extends BaseService implements Trans
         // Construct new request
         String method = Constants.METHOD_TRANSACTION_REQUESTS_CANCEL;
 
-        Boolean result = (Boolean) jsonRpcUtils
+        Boolean result = (Boolean) getJsonRpcUtils()
                 .sendJsonRpcRequest(getTransactionRequestsUrl(), Boolean.class, method, params);
 
         response = ImmutableCancelTransactionRequestResponseVO.builder()

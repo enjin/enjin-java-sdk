@@ -7,84 +7,88 @@ import com.enjin.coin.sdk.service.identities.IdentitiesAsyncService;
 import com.enjin.coin.sdk.service.identities.impl.IdentitiesAsyncServiceImpl;
 import com.enjin.coin.sdk.service.tokens.TokensAsyncService;
 import com.enjin.coin.sdk.service.tokens.impl.TokensAsyncServiceImpl;
+import com.enjin.coin.sdk.service.transactionrequests.EnjinCoinAsync;
 import com.enjin.coin.sdk.service.transactionrequests.TransactionRequestsAsyncService;
 import com.enjin.coin.sdk.service.transactionrequests.impl.TransactionRequestsAsyncServiceImpl;
+import com.enjin.coin.sdk.util.ObjectUtils;
 
 import java.util.logging.Logger;
 
 /**
- * <p>Enjin Coin Client - Asynchronous</p>
- * <p>All services will be instantiated from this class that will be called in an asynchronous fashion</p>
+ * <p>Enjin Coin Client - Asynchronous.</p>
+ * <p>All services will be instantiated from this class that will be called in an asynchronous fashion.</p>
  */
-public class EnjinCoinAsyncClient implements EnjinCoin {
-
-    private static final Logger LOGGER = Logger.getLogger(EnjinCoinAsyncClient.class.getName());
-
-    private Config enjinConfig;
-    private EventsAsyncService eventsServiceAsync;
-    private IdentitiesAsyncService identitiesService;
-    private TokensAsyncService tokensService;
-    private TransactionRequestsAsyncService transactionRequestsService;
+public final class EnjinCoinAsyncClient implements EnjinCoinAsync {
 
     /**
-     * Class constructor
-     *
-     * @param enjinConfig - enjinConfig to use
+     * Logger used by this class.
      */
-    public EnjinCoinAsyncClient(Config enjinConfig) {
-        if (enjinConfig == null) {
-            LOGGER.warning("The enjinConfig passed in is null");
+    private static final Logger LOGGER = Logger.getLogger(EnjinCoinAsyncClient.class.getName());
+
+    /**
+     * SDK configuration for this client.
+     */
+    private Config config;
+    /**
+     * Events service.
+     */
+    private EventsAsyncService eventsAsyncService;
+    /**
+     * Identities service.
+     */
+    private IdentitiesAsyncService identitiesAsyncService;
+    /**
+     * Tokens service.
+     */
+    private TokensAsyncService tokensAsyncService;
+    /**
+     * TransactionRequests service.
+     */
+    private TransactionRequestsAsyncService transactionRequestsAsyncService;
+
+    /**
+     * Class constructor.
+     *
+     * @param config - config to use
+     */
+    public EnjinCoinAsyncClient(final Config config) {
+        if (ObjectUtils.isNull(config)) {
+            LOGGER.warning("The supplied config is null.");
             return;
         }
 
-        this.enjinConfig = enjinConfig;
+        this.config = config;
     }
 
-    /**
-     * Method to get the eventsServiceASync
-     *
-     * @return - EventsServiceAsync
-     */
+    @Override
     public EventsAsyncService getEventsService() {
-        if (eventsServiceAsync == null) {
-            eventsServiceAsync = new EventsAsyncServiceImpl(enjinConfig);
+        if (eventsAsyncService == null) {
+            eventsAsyncService = new EventsAsyncServiceImpl(config);
         }
-        return eventsServiceAsync;
+        return eventsAsyncService;
     }
 
-    /**
-     * Method to get the identitiesService
-     *
-     * @return - IdentitiesService
-     */
+    @Override
     public IdentitiesAsyncService getIdentitiesService() {
-        if (identitiesService == null) {
-            identitiesService = new IdentitiesAsyncServiceImpl(enjinConfig);
+        if (identitiesAsyncService == null) {
+            identitiesAsyncService = new IdentitiesAsyncServiceImpl(config);
         }
-        return identitiesService;
+        return identitiesAsyncService;
     }
 
-    /**
-     * Method to get the tokensService
-     *
-     * @return - TokensService
-     */
+    @Override
     public TokensAsyncService getTokensService() {
-        if (tokensService == null) {
-            tokensService = new TokensAsyncServiceImpl(enjinConfig);
+        if (tokensAsyncService == null) {
+            tokensAsyncService = new TokensAsyncServiceImpl(config);
         }
-        return tokensService;
+        return tokensAsyncService;
     }
 
-    /**
-     * Method to get the transactionRequestsService
-     *
-     * @return - TransactionRequestsService
-     */
+    @Override
     public TransactionRequestsAsyncService getTransactionRequestsService() {
-        if (transactionRequestsService == null) {
-            transactionRequestsService = new TransactionRequestsAsyncServiceImpl(enjinConfig);
+        if (transactionRequestsAsyncService == null) {
+            transactionRequestsAsyncService = new TransactionRequestsAsyncServiceImpl(config);
         }
-        return transactionRequestsService;
+        return transactionRequestsAsyncService;
     }
 }

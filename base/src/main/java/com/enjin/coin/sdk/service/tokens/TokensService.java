@@ -5,10 +5,13 @@ import com.enjin.coin.sdk.vo.token.GetTokenResponseVO;
 import com.enjin.coin.sdk.vo.token.ListTokensRequestVO;
 import com.enjin.coin.sdk.vo.token.ListTokensResponseVO;
 
+/**
+ * Tokens service interface.
+ */
 public interface TokensService {
 
     /**
-     * Method to get a token
+     * Method to get a token.
      *
      * @param request - token request object
      * @return - GetTokenResponseVO
@@ -16,7 +19,7 @@ public interface TokensService {
     GetTokenResponseVO getToken(GetTokenRequestVO request);
 
     /**
-     * Method to list the tokens
+     * Method to list the tokens.
      *
      * @param request - list tokens request object
      * @return - ListTokensResponseVO

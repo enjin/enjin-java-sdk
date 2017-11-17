@@ -14,33 +14,46 @@ import com.enjin.coin.sdk.vo.transactionrequest.ListTransactionRequestsResponseV
 import java.util.concurrent.Future;
 
 /**
- * <p>Contains services related to transaction requests</p>
+ * <p>Contains services related to transaction requests.</p>
  */
-public class TransactionRequestsAsyncServiceImpl extends TransactionRequestsServiceImpl implements TransactionRequestsAsyncService {
+public final class TransactionRequestsAsyncServiceImpl extends TransactionRequestsServiceImpl
+        implements TransactionRequestsAsyncService {
 
     /**
-     * Class constructor
+     * Class constructor.
      *
      * @param config - the config to use
      */
-    public TransactionRequestsAsyncServiceImpl(Config config) {
+    public TransactionRequestsAsyncServiceImpl(final Config config) {
         super(config);
     }
 
-    public Future<GetTransactionRequestResponseVO> getTransactionRequestAsync(GetTransactionRequestRequestVO request) {
-        return executorService.submit(() -> getTransactionRequest(request));
+    @Override
+    public Future<GetTransactionRequestResponseVO> getTransactionRequestAsync(
+            final GetTransactionRequestRequestVO request
+    ) {
+        return getExecutorService().submit(() -> getTransactionRequest(request));
     }
 
-    public Future<ListTransactionRequestsResponseVO[]> listTransactionRequestsAsync(ListTransactionRequestsRequestVO request) {
-        return executorService.submit(() -> listTransactionRequests(request));
+    @Override
+    public Future<ListTransactionRequestsResponseVO[]> listTransactionRequestsAsync(
+            final ListTransactionRequestsRequestVO request
+    ) {
+        return getExecutorService().submit(() -> listTransactionRequests(request));
     }
 
-    public Future<CreateTransactionRequestResponseVO> createTransactionRequestAsync(CreateTransactionRequestRequestVO request) {
-        return executorService.submit(() -> createTransactionRequest(request));
+    @Override
+    public Future<CreateTransactionRequestResponseVO> createTransactionRequestAsync(
+            final CreateTransactionRequestRequestVO request
+    ) {
+        return getExecutorService().submit(() -> createTransactionRequest(request));
     }
 
-    public Future<CancelTransactionRequestResponseVO> cancelTransactionRequestAsync(CancelTransactionRequestRequestVO request) {
-        return executorService.submit(() -> cancelTransactionRequest(request));
+    @Override
+    public Future<CancelTransactionRequestResponseVO> cancelTransactionRequestAsync(
+            final CancelTransactionRequestRequestVO request
+    ) {
+        return getExecutorService().submit(() -> cancelTransactionRequest(request));
     }
 
 }

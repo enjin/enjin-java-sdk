@@ -18,51 +18,66 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 /**
- * <p>Contains services related to tokens</p>
+ * <p>Contains services related to tokens.</p>
  */
 public class TokensServiceImpl extends BaseService implements TokensService {
 
+    /**
+     * Logger used by this class.
+     */
     private static final Logger LOGGER = Logger.getLogger(TokensServiceImpl.class.getName());
 
     /**
-     * Class constructor
+     * Class constructor.
      *
      * @param config - the config to use
      */
-    public TokensServiceImpl(Config config) {
+    public TokensServiceImpl(final Config config) {
         super(config);
     }
 
-    public GetTokenResponseVO getToken(GetTokenRequestVO request) {
-        GetTokenResponseVO getTokenResponseVO = null;
+    @Override
+    public final GetTokenResponseVO getToken(final GetTokenRequestVO request) {
+        GetTokenResponseVO response = null;
 
-        if (ObjectUtils.isNull(request) || StringUtils.isEmpty(request.getTokenId())) {
-            LOGGER.warning("getTokenRequestVO is null or tokenId passed in are null or empty");
-            return getTokenResponseVO;
+        if (ObjectUtils.isNull(request)) {
+            LOGGER.warning("Tokens.get request is null.");
+            return response;
         }
 
-        Map<String, Object> params = new HashMap<String, Object>();
+        if (StringUtils.isEmpty(request.getTokenId())) {
+            LOGGER.warning("Tokens.get parameters may be empty or null.");
+            return response;
+        }
+
+        Map<String, Object> params = new HashMap<>();
         params.put("token_id", request.getTokenId().get());
 
         // Construct new request
         String method = Constants.METHOD_TOKENS_GET;
 
-        getTokenResponseVO = (GetTokenResponseVO) jsonRpcUtils.sendJsonRpcRequest(getTokensUrl(), GetTokenResponseVO.class, method, params);
+        response = (GetTokenResponseVO) getJsonRpcUtils()
+                .sendJsonRpcRequest(getTokensUrl(), GetTokenResponseVO.class, method, params);
 
-        return getTokenResponseVO;
+        return response;
     }
 
-    public ListTokensResponseVO listTokens(ListTokensRequestVO request) {
-        ListTokensResponseVO listTokensResponseVO = null;
+    @Override
+    public final ListTokensResponseVO listTokens(final ListTokensRequestVO request) {
+        ListTokensResponseVO response = null;
 
-        if (ObjectUtils.isNull(request) || StringUtils.isEmpty(request.getAppId())
-                || StringUtils.isEmpty(request.getAfterTokenId())
-                || StringUtils.isEmpty(request.getLimit())) {
-            LOGGER.warning("listTokensRequestVO is null, appId, afterTokenId or limit passed in are null or empty");
-            return listTokensResponseVO;
+        if (ObjectUtils.isNull(request)) {
+            LOGGER.warning("Tokens.list request is null.");
+            return response;
         }
 
-        Map<String, Object> params = new HashMap<String, Object>();
+        if (StringUtils.isEmpty(request.getAppId()) || StringUtils.isEmpty(request.getAfterTokenId())
+                || StringUtils.isEmpty(request.getLimit())) {
+            LOGGER.warning("Tokens.list parameters may be empty or null.");
+            return response;
+        }
+
+        Map<String, Object> params = new HashMap<>();
         params.put("app_id", request.getAppId().get());
         params.put("after_token_id", request.getAfterTokenId().get());
         params.put("limit", request.getLimit().get());
@@ -70,15 +85,18 @@ public class TokensServiceImpl extends BaseService implements TokensService {
         // Construct new request
         String method = Constants.METHOD_TOKENS_LIST;
 
-        GetTokenResponseVO[] getTokenResponseVOArray = (GetTokenResponseVO[]) jsonRpcUtils.sendJsonRpcRequest(getTokensUrl(), GetTokenResponseVO[].class, method, params);
-        if (ArrayUtils.isEmpty(getTokenResponseVOArray)) {
-            LOGGER.warning("No tokens returned");
-            return listTokensResponseVO;
+        GetTokenResponseVO[] array = (GetTokenResponseVO[]) getJsonRpcUtils()
+                .sendJsonRpcRequest(getTokensUrl(), GetTokenResponseVO[].class, method, params);
+
+        if (ArrayUtils.isEmpty(array)) {
+            LOGGER.warning("No tokens were retrieved.");
+            return response;
         }
-        listTokensResponseVO = ImmutableListTokensResponseVO.builder()
-                .setGetTokensResponseVOArray(getTokenResponseVOArray)
+
+        response = ImmutableListTokensResponseVO.builder()
+                .setGetTokensResponseVOArray(array)
                 .build();
 
-        return listTokensResponseVO;
+        return response;
     }
 }
