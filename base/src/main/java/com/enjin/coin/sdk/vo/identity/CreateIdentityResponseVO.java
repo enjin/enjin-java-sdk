@@ -6,16 +6,32 @@ import org.immutables.value.Value;
 
 import java.util.Optional;
 
+/**
+ * <b>Create Identity Response class.
+ * </p>
+ */
 @Value.Immutable
 @Gson.TypeAdapters
 public abstract class CreateIdentityResponseVO {
 
+    /**
+     * Method to get the identityId.
+     * @return Optional<String>
+     */
     @SerializedName("identity_id")
     public abstract Optional<String> getIdentityId();
 
+    /**
+     * Method to get the identityCode.
+     * @return Optional<String>
+     */
     @SerializedName("identity_code")
     public abstract Optional<String> getIdentityCode();
 
+    /**
+     * Class toString method
+     * @return String
+     */
     @Override
     public String toString() {
         return "CreateIdentityResponseVO [identityId=" + getIdentityId().orElse(null) + ", identityCode=" + getIdentityCode().orElse(null) + "]";

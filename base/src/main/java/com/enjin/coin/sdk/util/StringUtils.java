@@ -10,6 +10,9 @@ import java.util.Optional;
  */
 public final class StringUtils {
 
+	/**
+	 * Class constructor.
+	 */
     protected StringUtils() {
     }
 

@@ -8,14 +8,26 @@ import org.immutables.value.Value;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * <b>Update Identity Response class.
+ * </p>
+ */
 @Value.Immutable
 @Gson.TypeAdapters
 public abstract class UpdateIdentityResponseVO {
 
+    /**
+     * Method to get the identityMap.
+     * @return Optional<Map<String, Object>>
+     */
     @SkipNulls
     @SerializedName("identity")
     public abstract Optional<Map<String, Object>> getIdentityMap();
 
+    /**
+     * Class toString method
+     * @return String
+     */
     @Override
     public String toString() {
         return "UpdateIdentityResponseVO [identityMap=" + getIdentityMap().orElse(null) + "]";

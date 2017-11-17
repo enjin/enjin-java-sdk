@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * <p>Functionality for working with lists</p>
+ * <p>Functionality for working with lists.</p>
  */
 public final class ListUtils {
 
+	/**
+	 * Class constructor.
+	 */
     protected ListUtils() {
 
     }

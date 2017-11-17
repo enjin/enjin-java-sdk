@@ -6,16 +6,32 @@ import org.immutables.value.Value;
 
 import java.util.Optional;
 
+/**
+ * <p>
+ * Cancel Transaction Request class.
+ * </p>
+ */
 @Value.Immutable
 @Gson.TypeAdapters
 public abstract class CancelTransactionRequestRequestVO {
 
+    /**
+     * Method to get the auth.
+     * @return Optional<String>
+     */
     @SerializedName("auth")
     public abstract Optional<String> getAuth();
 
+    /**
+     * Method to get the txrId.
+     * @return Optional<String>
+     */
     @SerializedName("txr_id")
     public abstract Optional<String> getTxrId();
 
+    /**
+     * Class toString method.
+     */
     @Override
     public String toString() {
         return "CancelTransactionRequestRequestVO [auth=" + getAuth().orElse(null) + ", txrId=" + getTxrId().orElse(null) + "]";

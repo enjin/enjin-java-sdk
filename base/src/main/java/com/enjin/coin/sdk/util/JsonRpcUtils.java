@@ -29,30 +29,41 @@ public class JsonRpcUtils {
     	
     }
     
+    /** Whether we are in test mode or not. **/
     private boolean isInTestMode = false;
 
+    /**
+     * Get whether in test mode or not.
+     * @return boolean
+     */
     public boolean getIsInTestMode() {
         return isInTestMode;
     }
 
-    public void setIsInTestMode(boolean isInTestMode) {
+    /**
+	 * Set whether in test mode or not
+	 * 
+	 * @param isInTestMode
+	 *            true if in test mode / false if not
+	 */
+    public void setIsInTestMode(final boolean isInTestMode) {
         this.isInTestMode = isInTestMode;
     }
 
     /**
-     * Method to send a json rpc request
+     * Method to send a json rpc request.
      *
      * @param url           - url to send request to
      * @param responseClass - class type to convert to
      * @param method        - method to call
      * @return an object returned from the json rpc call
      */
-    public Object sendJsonRpcRequest(String url, Class<?> responseClass, String method) {
+    public Object sendJsonRpcRequest(final String url, final Class<?> responseClass, final String method) {
         return sendJsonRpcRequest(url, responseClass, method, null);
     }
 
     /**
-     * Method to send a json rpc request
+     * Method to send a json rpc request.
      *
      * @param url           - url to send request to
      * @param responseClass - class type to convert to
@@ -60,7 +71,7 @@ public class JsonRpcUtils {
      * @param params        - map with the params to use
      * @return an object returned from the json rpc call
      */
-    public Object sendJsonRpcRequest(String url, Class<?> responseClass, String method, Map<String, Object> params) {
+    public Object sendJsonRpcRequest(final String url, final Class<?> responseClass, final String method, final Map<String, Object> params) {
         Object responseObject = null;
 
         if (StringUtils.isEmpty(url) || responseClass == null || StringUtils.isEmpty(method)) {

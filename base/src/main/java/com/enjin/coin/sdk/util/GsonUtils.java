@@ -9,11 +9,13 @@ import java.util.List;
 import java.util.ServiceLoader;
 
 /**
- * <p>Sets up the Gson object</p>
+ * <p>Sets up the Gson object.</p>
  */
 public final class GsonUtils {
 
+	/** Standard gson element **/
     public static final Gson GSON;
+    /** Gson element with pretty print configured **/
     public static final Gson GSON_PRETTY_PRINT;
 
     static {
@@ -27,21 +29,38 @@ public final class GsonUtils {
         GSON_PRETTY_PRINT = builderPrettyPrint.create();
     }
 
+    /**
+     * Class constructor.
+     */
     protected GsonUtils() {
     }
 
-    public static void registerAllTypeAdapterFactories(GsonBuilder builder) {
+	/**
+	 * Method to register all type adapter factories.
+	 * 
+	 * @param gsonBuilder
+	 *            gson builder to configer
+	 */
+    public static void registerAllTypeAdapterFactories(GsonBuilder gsonBuilder) {
         for (TypeAdapterFactory factory : getAllTypeAdapterFactories()) {
-            builder.registerTypeAdapterFactory(factory);
+            gsonBuilder.registerTypeAdapterFactory(factory);
         }
     }
 
+    /**
+     * Method to get all type adapter factories.
+     * @return List<TypeAdapterFactory>
+     */
     public static List<TypeAdapterFactory> getAllTypeAdapterFactories() {
         List<TypeAdapterFactory> factories = new ArrayList<>();
         getTypeAdapterFactoryServiceLoader().forEach(factories::add);
         return factories;
     }
 
+    /**
+     * Method to get the type adapter factory service loader.
+     * @return ServiceLoader<TypeAdapterFactory>
+     */
     public static ServiceLoader<TypeAdapterFactory> getTypeAdapterFactoryServiceLoader() {
         return ServiceLoader.load(TypeAdapterFactory.class);
     }

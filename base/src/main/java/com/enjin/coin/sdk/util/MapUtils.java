@@ -4,10 +4,13 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * <p>Functionality for working with maps</p>
+ * <p>Functionality for working with maps.</p>
  */
 public final class MapUtils {
 
+	/**
+	 * Class constructor.
+	 */
     protected MapUtils() {
 
     }

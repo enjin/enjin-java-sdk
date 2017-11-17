@@ -8,14 +8,26 @@ import org.immutables.value.Value;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * <b>Update Identity Request class.
+ * </p>
+ */
 @Value.Immutable
 @Gson.TypeAdapters
 public abstract class UpdateIdentityRequestVO extends BaseIdentityRequestVO {
 
+    /**
+     * Method to get the updateMap.
+     * @return Optional<Map<String, Object>>
+     */
     @SkipNulls
     @SerializedName("update")
     public abstract Optional<Map<String, Object>> getUpdate();
 
+    /**
+     * Class toString method
+     * @return String
+     */
     @Override
     public String toString() {
         return "UpdateIdentityRequestVO [update=" + getUpdate().orElse(null) + "]";
