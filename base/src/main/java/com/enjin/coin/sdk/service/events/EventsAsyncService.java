@@ -12,17 +12,17 @@ public interface EventsAsyncService extends EventsService {
     /**
      * Method to get an event
      *
-     * @param getEventRequestVO - get event request vo
+     * @param request - get event request vo
      * @return - GetEventResponseVO
      */
-    Future<GetEventResponseVO> getEventAsync(GetEventRequestVO getEventRequestVO);
+    Future<GetEventResponseVO> getEventAsync(GetEventRequestVO request);
 
     /**
      * Method to list the events
      *
-     * @param listEventsRequestVO - list events request vo
+     * @param request - list events request vo
      * @return - ListEventsResponseVO
      */
-    Future<ListEventsResponseVO> listEventsAsync(ListEventsRequestVO listEventsRequestVO);
+    Future<ListEventsResponseVO> listEventsAsync(ListEventsRequestVO request);
 
 }

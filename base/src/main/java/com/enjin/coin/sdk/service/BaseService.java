@@ -25,17 +25,17 @@ public abstract class BaseService {
     /**
      * Class contructor
      *
-     * @param enjinConfig - enjinConfig to use
+     * @param config - enjinConfig to use
      */
-    public BaseService(Config enjinConfig) {
-        if (enjinConfig == null) {
-            LOGGER.warning("The enjinConfig passed in is null");
+    public BaseService(Config config) {
+        if (ObjectUtils.isNull(config)) {
+            LOGGER.warning("The supplied config is null.");
             return;
         }
 
-        trustedPlatform = enjinConfig.getTrustedPlatform();
-        isInTestMode = enjinConfig.isInTestMode() == null ? false : enjinConfig.isInTestMode();
-        Integer totalExecutors = enjinConfig.getTotalExecutors();
+        trustedPlatform = config.getTrustedPlatform();
+        isInTestMode = config.isInTestMode() == null ? false : config.isInTestMode();
+        Integer totalExecutors = config.getTotalExecutors();
         executorService = Executors.newFixedThreadPool(totalExecutors);
 
         jsonRpcUtils = new JsonRpcUtils();

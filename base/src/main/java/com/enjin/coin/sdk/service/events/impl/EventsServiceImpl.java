@@ -27,25 +27,25 @@ public class EventsServiceImpl extends BaseService implements EventsService {
     /**
      * Class constructor
      *
-     * @param enjinConfig - the enjinConfig to use
+     * @param config - the config to use
      */
-    public EventsServiceImpl(Config enjinConfig) {
-        super(enjinConfig);
+    public EventsServiceImpl(Config config) {
+        super(config);
     }
 
     @Override
-    public GetEventResponseVO getEvent(GetEventRequestVO getEventRequestVO) {
+    public GetEventResponseVO getEvent(GetEventRequestVO request) {
         GetEventResponseVO getEventResponseVO = null;
 
-        if (ObjectUtils.isNull(getEventRequestVO) || StringUtils.isEmpty(getEventRequestVO.getAuth())
-                || StringUtils.isEmpty(getEventRequestVO.getEventId())) {
+        if (ObjectUtils.isNull(request) || StringUtils.isEmpty(request.getAuth())
+                || StringUtils.isEmpty(request.getEventId())) {
             LOGGER.warning("getEventRequestVO is null, auth or eventId passed in are null or empty");
             return getEventResponseVO;
         }
 
         Map<String, Object> params = new HashMap<>();
-        params.put("auth", getEventRequestVO.getAuth().get());
-        params.put("event_id", getEventRequestVO.getEventId().get());
+        params.put("auth", request.getAuth().get());
+        params.put("event_id", request.getEventId().get());
 
         // Construct new request
         String method = Constants.METHOD_EVENTS_GET;
@@ -56,22 +56,22 @@ public class EventsServiceImpl extends BaseService implements EventsService {
     }
 
     @Override
-    public ListEventsResponseVO listEvents(ListEventsRequestVO listEventsRequestVO) {
+    public ListEventsResponseVO listEvents(ListEventsRequestVO request) {
         ListEventsResponseVO listEventsResponseVO = null;
 
-        if (ObjectUtils.isNull(listEventsRequestVO) || StringUtils.isEmpty(listEventsRequestVO.getAuth())
-                || StringUtils.isEmpty(listEventsRequestVO.getAppId())
-                || StringUtils.isEmpty(listEventsRequestVO.getAfterEventId())
-                || StringUtils.isEmpty(listEventsRequestVO.getLimit())) {
+        if (ObjectUtils.isNull(request) || StringUtils.isEmpty(request.getAuth())
+                || StringUtils.isEmpty(request.getAppId())
+                || StringUtils.isEmpty(request.getAfterEventId())
+                || StringUtils.isEmpty(request.getLimit())) {
             LOGGER.warning("listEventsRequestVO is null, auth, appId, afterEventId or limit passed in are null or empty");
             return listEventsResponseVO;
         }
 
         Map<String, Object> params = new HashMap<>();
-        params.put("auth", listEventsRequestVO.getAuth().get());
-        params.put("app_id", listEventsRequestVO.getAppId().get());
-        params.put("after_Event_id", listEventsRequestVO.getAfterEventId().get());
-        params.put("limit", listEventsRequestVO.getLimit().get());
+        params.put("auth", request.getAuth().get());
+        params.put("app_id", request.getAppId().get());
+        params.put("after_Event_id", request.getAfterEventId().get());
+        params.put("limit", request.getLimit().get());
 
         // Construct new request
         String method = Constants.METHOD_EVENTS_LIST;

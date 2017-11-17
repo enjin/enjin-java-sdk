@@ -27,22 +27,22 @@ public class TokensServiceImpl extends BaseService implements TokensService {
     /**
      * Class constructor
      *
-     * @param enjinConfig - the enjinConfig to use
+     * @param config - the config to use
      */
-    public TokensServiceImpl(Config enjinConfig) {
-        super(enjinConfig);
+    public TokensServiceImpl(Config config) {
+        super(config);
     }
 
-    public GetTokenResponseVO getToken(GetTokenRequestVO getTokenRequestVO) {
+    public GetTokenResponseVO getToken(GetTokenRequestVO request) {
         GetTokenResponseVO getTokenResponseVO = null;
 
-        if (ObjectUtils.isNull(getTokenRequestVO) || StringUtils.isEmpty(getTokenRequestVO.getTokenId())) {
+        if (ObjectUtils.isNull(request) || StringUtils.isEmpty(request.getTokenId())) {
             LOGGER.warning("getTokenRequestVO is null or tokenId passed in are null or empty");
             return getTokenResponseVO;
         }
 
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("token_id", getTokenRequestVO.getTokenId().get());
+        params.put("token_id", request.getTokenId().get());
 
         // Construct new request
         String method = Constants.METHOD_TOKENS_GET;
@@ -52,20 +52,20 @@ public class TokensServiceImpl extends BaseService implements TokensService {
         return getTokenResponseVO;
     }
 
-    public ListTokensResponseVO listTokens(ListTokensRequestVO listTokensRequestVO) {
+    public ListTokensResponseVO listTokens(ListTokensRequestVO request) {
         ListTokensResponseVO listTokensResponseVO = null;
 
-        if (ObjectUtils.isNull(listTokensRequestVO) || StringUtils.isEmpty(listTokensRequestVO.getAppId())
-                || StringUtils.isEmpty(listTokensRequestVO.getAfterTokenId())
-                || StringUtils.isEmpty(listTokensRequestVO.getLimit())) {
+        if (ObjectUtils.isNull(request) || StringUtils.isEmpty(request.getAppId())
+                || StringUtils.isEmpty(request.getAfterTokenId())
+                || StringUtils.isEmpty(request.getLimit())) {
             LOGGER.warning("listTokensRequestVO is null, appId, afterTokenId or limit passed in are null or empty");
             return listTokensResponseVO;
         }
 
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("app_id", listTokensRequestVO.getAppId().get());
-        params.put("after_token_id", listTokensRequestVO.getAfterTokenId().get());
-        params.put("limit", listTokensRequestVO.getLimit().get());
+        params.put("app_id", request.getAppId().get());
+        params.put("after_token_id", request.getAfterTokenId().get());
+        params.put("limit", request.getLimit().get());
 
         // Construct new request
         String method = Constants.METHOD_TOKENS_LIST;

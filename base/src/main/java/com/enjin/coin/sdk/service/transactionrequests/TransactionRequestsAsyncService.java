@@ -16,33 +16,33 @@ public interface TransactionRequestsAsyncService extends TransactionRequestsServ
     /**
      * Method to get an transactionRequest
      *
-     * @param getTransactionRequestRequestVO - get the transactionRequest request vo
+     * @param request - get the transactionRequest request vo
      * @return - GetTransactionRequestResponseVO
      */
-    Future<GetTransactionRequestResponseVO> getTransactionRequestAsync(GetTransactionRequestRequestVO getTransactionRequestRequestVO);
+    Future<GetTransactionRequestResponseVO> getTransactionRequestAsync(GetTransactionRequestRequestVO request);
 
     /**
      * Method to list the transactionRequests
      *
-     * @param listTransactionRequestsRequestVO - list the transactionRequest request vo's
+     * @param request - list the transactionRequest request vo's
      * @return - ListTransactionRequestsResponseVO array
      */
-    Future<ListTransactionRequestsResponseVO[]> listTransactionRequestsAsync(ListTransactionRequestsRequestVO listTransactionRequestsRequestVO);
+    Future<ListTransactionRequestsResponseVO[]> listTransactionRequestsAsync(ListTransactionRequestsRequestVO request);
 
     /**
      * Method to create an transactionRequest
      *
-     * @param createTransactionRequestRequestVO - create the transactionRequest request vo
+     * @param request - create the transactionRequest request vo
      * @return - CreateTransactionRequestResponseVO
      */
-    Future<CreateTransactionRequestResponseVO> createTransactionRequestAsync(CreateTransactionRequestRequestVO createTransactionRequestRequestVO);
+    Future<CreateTransactionRequestResponseVO> createTransactionRequestAsync(CreateTransactionRequestRequestVO request);
 
     /**
      * Method to cancel an transactionRequest
      *
-     * @param cancelTransactionRequestRequestVO - cancel the transactionRequest request vo
+     * @param request - cancel the transactionRequest request vo
      * @return - CancelTransactionRequestResponseVO
      */
-    Future<CancelTransactionRequestResponseVO> cancelTransactionRequestAsync(CancelTransactionRequestRequestVO cancelTransactionRequestRequestVO);
+    Future<CancelTransactionRequestResponseVO> cancelTransactionRequestAsync(CancelTransactionRequestRequestVO request);
 
 }

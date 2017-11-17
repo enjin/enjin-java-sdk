@@ -32,25 +32,25 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
     /**
      * Class constructor
      *
-     * @param enjinConfig - the enjinConfig to use
+     * @param config - the config to use
      */
-    public IdentitiesServiceImpl(Config enjinConfig) {
-        super(enjinConfig);
+    public IdentitiesServiceImpl(Config config) {
+        super(config);
     }
 
     @Override
-    public GetIdentityResponseVO getIdentity(GetIdentityRequestVO getIdentityRequestVO) {
+    public GetIdentityResponseVO getIdentity(GetIdentityRequestVO request) {
         GetIdentityResponseVO getIdentityResponseVO = null;
 
-        if (getIdentityRequestVO == null || StringUtils.isEmpty(getIdentityRequestVO.getAuth())
-                || MapUtils.isEmpty(getIdentityRequestVO.getIdentity())) {
+        if (request == null || StringUtils.isEmpty(request.getAuth())
+                || MapUtils.isEmpty(request.getIdentity())) {
             LOGGER.warning("getIdentityRequestVO is null, auth or identidyId passed in are null or empty");
             return getIdentityResponseVO;
         }
 
         Map<String, Object> params = new HashMap<>();
-        params.put("auth", getIdentityRequestVO.getAuth().get());
-        params.put("identity", getIdentityRequestVO.getIdentity().get());
+        params.put("auth", request.getAuth().get());
+        params.put("identity", request.getIdentity().get());
 
         // Construct new request
         String method = Constants.METHOD_IDENTITIES_GET;
@@ -61,26 +61,26 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
     }
 
     @Override
-    public ListIdentitiesResponseVO[] listIdentities(ListIdentitiesRequestVO listIdentitiesRequestVO) {
+    public ListIdentitiesResponseVO[] listIdentities(ListIdentitiesRequestVO request) {
         ListIdentitiesResponseVO[] listIdentitiesResponseVO = null;
 
-        if (listIdentitiesRequestVO == null || StringUtils.isEmpty(listIdentitiesRequestVO.getAuth())
-                || MapUtils.isEmpty(listIdentitiesRequestVO.getIdentity())) {
+        if (request == null || StringUtils.isEmpty(request.getAuth())
+                || MapUtils.isEmpty(request.getIdentity())) {
             LOGGER.warning("listIdentitiesRequestVO is null, auth or identity passed in are null or empty");
             return listIdentitiesResponseVO;
         }
 
         Map<String, Object> params = new HashMap<>();
-        params.put("auth", listIdentitiesRequestVO.getAuth().get());
-        params.put("identity", listIdentitiesRequestVO.getIdentity().get());
-        if (listIdentitiesRequestVO.getLinked().isPresent()) {
-            params.put("linked", listIdentitiesRequestVO.getLinked().get());
+        params.put("auth", request.getAuth().get());
+        params.put("identity", request.getIdentity().get());
+        if (request.getLinked().isPresent()) {
+            params.put("linked", request.getLinked().get());
         }
-        if (listIdentitiesRequestVO.getAfterIdentityId().isPresent()) {
-            params.put("after_identity_id", listIdentitiesRequestVO.getAfterIdentityId().get());
+        if (request.getAfterIdentityId().isPresent()) {
+            params.put("after_identity_id", request.getAfterIdentityId().get());
         }
-        if (listIdentitiesRequestVO.getLimit().isPresent()) {
-            params.put("limit", listIdentitiesRequestVO.getLimit().get());
+        if (request.getLimit().isPresent()) {
+            params.put("limit", request.getLimit().get());
         }
 
         // Construct new request
@@ -91,18 +91,18 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
     }
 
     @Override
-    public CreateIdentityResponseVO createIdentity(CreateIdentityRequestVO createIdentityRequestVO) {
+    public CreateIdentityResponseVO createIdentity(CreateIdentityRequestVO request) {
         CreateIdentityResponseVO createIdentityResponseVO = null;
 
-        if (createIdentityRequestVO == null || StringUtils.isEmpty(createIdentityRequestVO.getAuth())
-                || MapUtils.isEmpty(createIdentityRequestVO.getIdentity())) {
+        if (request == null || StringUtils.isEmpty(request.getAuth())
+                || MapUtils.isEmpty(request.getIdentity())) {
             LOGGER.warning("createIdentityRequestVO is null, auth or identity passed in are null or empty");
             return createIdentityResponseVO;
         }
 
         Map<String, Object> params = new HashMap<>();
-        params.put("auth", createIdentityRequestVO.getAuth().get());
-        params.put("identity", createIdentityRequestVO.getIdentity().get());
+        params.put("auth", request.getAuth().get());
+        params.put("identity", request.getIdentity().get());
 
         // Construct new request
         String method = Constants.METHOD_IDENTITIES_CREATE;
@@ -113,20 +113,20 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
     }
 
     @Override
-    public UpdateIdentityResponseVO updateIdentity(UpdateIdentityRequestVO updateIdentityRequestVO) {
+    public UpdateIdentityResponseVO updateIdentity(UpdateIdentityRequestVO request) {
         UpdateIdentityResponseVO updateIdentityResponseVO = null;
 
-        if (updateIdentityRequestVO == null || StringUtils.isEmpty(updateIdentityRequestVO.getAuth())
-                || MapUtils.isEmpty(updateIdentityRequestVO.getIdentity())
-                || MapUtils.isEmpty(updateIdentityRequestVO.getUpdate())) {
+        if (request == null || StringUtils.isEmpty(request.getAuth())
+                || MapUtils.isEmpty(request.getIdentity())
+                || MapUtils.isEmpty(request.getUpdate())) {
             LOGGER.warning("updateIdentityRequestVO is null or auth, identidy or update passed in are null or empty");
             return updateIdentityResponseVO;
         }
 
         Map<String, Object> params = new HashMap<>();
-        params.put("auth", updateIdentityRequestVO.getAuth().get());
-        params.put("identity", updateIdentityRequestVO.getIdentity().get());
-        params.put("update", updateIdentityRequestVO.getUpdate().get());
+        params.put("auth", request.getAuth().get());
+        params.put("identity", request.getIdentity().get());
+        params.put("update", request.getUpdate().get());
 
         // Construct new request
         String method = Constants.METHOD_IDENTITIES_UPDATE;
@@ -137,18 +137,18 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
     }
 
     @Override
-    public DeleteIdentityResponseVO deleteIdentity(DeleteIdentityRequestVO deleteIdentityRequestVO) {
+    public DeleteIdentityResponseVO deleteIdentity(DeleteIdentityRequestVO request) {
         DeleteIdentityResponseVO deleteIdentityResponseVO = null;
 
-        if (deleteIdentityRequestVO == null || StringUtils.isEmpty(deleteIdentityRequestVO.getAuth())
-                || MapUtils.isEmpty(deleteIdentityRequestVO.getIdentity())) {
+        if (request == null || StringUtils.isEmpty(request.getAuth())
+                || MapUtils.isEmpty(request.getIdentity())) {
             LOGGER.warning("deleteIdentityRequestVO is null, auth or identity passed in are null or empty");
             return deleteIdentityResponseVO;
         }
 
         Map<String, Object> params = new HashMap<>();
-        params.put("auth", deleteIdentityRequestVO.getAuth().get());
-        params.put("identity", deleteIdentityRequestVO.getIdentity().get());
+        params.put("auth", request.getAuth().get());
+        params.put("identity", request.getIdentity().get());
 
         // Construct new request
         String method = Constants.METHOD_IDENTITIES_DELETE;

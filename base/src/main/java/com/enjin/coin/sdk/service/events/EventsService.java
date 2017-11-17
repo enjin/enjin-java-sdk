@@ -10,17 +10,17 @@ public interface EventsService {
     /**
      * Method to get an event
      *
-     * @param getEventRequestVO - get event request vo
+     * @param request - get event request vo
      * @return - GetEventResponseVO
      */
-    GetEventResponseVO getEvent(GetEventRequestVO getEventRequestVO);
+    GetEventResponseVO getEvent(GetEventRequestVO request);
 
     /**
      * Method to list the events
      *
-     * @param listEventsRequestVO - list events request vo
+     * @param request - list events request vo
      * @return - ListEventsResponseVO
      */
-    ListEventsResponseVO listEvents(ListEventsRequestVO listEventsRequestVO);
+    ListEventsResponseVO listEvents(ListEventsRequestVO request);
 
 }

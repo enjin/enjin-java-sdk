@@ -34,18 +34,12 @@ public class TransactionRequestsServiceImpl extends BaseService implements Trans
     /**
      * Class constructor.
      *
-     * @param config - the enjinConfig to use
+     * @param config - the config to use
      */
     public TransactionRequestsServiceImpl(final Config config) {
         super(config);
     }
 
-    /**
-     * Method to get an transactionRequest.
-     *
-     * @param request - get the transactionRequest request vo
-     * @return - GetTransactionRequestResponseVO
-     */
     public GetTransactionRequestResponseVO getTransactionRequest(final GetTransactionRequestRequestVO request) {
         GetTransactionRequestResponseVO response = null;
 
@@ -72,12 +66,6 @@ public class TransactionRequestsServiceImpl extends BaseService implements Trans
         return response;
     }
 
-    /**
-     * Method to list the transactionRequests.
-     *
-     * @param request - list the transactionRequest request vo's
-     * @return - ListTransactionRequestsResponseVO array
-     */
     public ListTransactionRequestsResponseVO[] listTransactionRequests(final ListTransactionRequestsRequestVO request) {
         ListTransactionRequestsResponseVO[] response = null;
 
@@ -114,12 +102,6 @@ public class TransactionRequestsServiceImpl extends BaseService implements Trans
         return response;
     }
 
-    /**
-     * Method to create an transactionRequest.
-     *
-     * @param request - create the transactionRequest request vo
-     * @return - CreateTransactionRequestResponseVO
-     */
     public CreateTransactionRequestResponseVO createTransactionRequest(
             final CreateTransactionRequestRequestVO request
     ) {
@@ -157,12 +139,6 @@ public class TransactionRequestsServiceImpl extends BaseService implements Trans
         return response;
     }
 
-    /**
-     * Method to cancel an transactionRequest.
-     *
-     * @param request - cancel the transactionRequest request vo
-     * @return - CancelTransactionRequestResponseVO
-     */
     public CancelTransactionRequestResponseVO cancelTransactionRequest(
             final CancelTransactionRequestRequestVO request
     ) {

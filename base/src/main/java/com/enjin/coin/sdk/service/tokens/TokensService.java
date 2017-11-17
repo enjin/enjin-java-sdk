@@ -10,17 +10,17 @@ public interface TokensService {
     /**
      * Method to get a token
      *
-     * @param getTokenRequestVO - token request object
+     * @param request - token request object
      * @return - GetTokenResponseVO
      */
-    GetTokenResponseVO getToken(GetTokenRequestVO getTokenRequestVO);
+    GetTokenResponseVO getToken(GetTokenRequestVO request);
 
     /**
      * Method to list the tokens
      *
-     * @param listTokensRequestVO - list tokens request object
+     * @param request - list tokens request object
      * @return - ListTokensResponseVO
      */
-    ListTokensResponseVO listTokens(ListTokensRequestVO listTokensRequestVO);
+    ListTokensResponseVO listTokens(ListTokensRequestVO request);
 
 }

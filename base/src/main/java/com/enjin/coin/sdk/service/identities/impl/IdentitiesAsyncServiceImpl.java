@@ -23,35 +23,35 @@ public class IdentitiesAsyncServiceImpl extends IdentitiesServiceImpl implements
 	/**
      * Class constructor
      *
-     * @param enjinConfig - the enjinConfig to use
+     * @param config - the config to use
      */
-    public IdentitiesAsyncServiceImpl(Config enjinConfig) {
-        super(enjinConfig);
+    public IdentitiesAsyncServiceImpl(Config config) {
+        super(config);
     }
 
     @Override
-    public Future<GetIdentityResponseVO> getIdentityAsync(GetIdentityRequestVO getIdentityRequestVO) {
-        return executorService.submit(() -> getIdentity(getIdentityRequestVO));
+    public Future<GetIdentityResponseVO> getIdentityAsync(GetIdentityRequestVO request) {
+        return executorService.submit(() -> getIdentity(request));
     }
 
     @Override
-    public Future<ListIdentitiesResponseVO[]> listIdentitiesAsync(ListIdentitiesRequestVO listIdentitiesRequestVO) {
-        return executorService.submit(() -> listIdentities(listIdentitiesRequestVO));
+    public Future<ListIdentitiesResponseVO[]> listIdentitiesAsync(ListIdentitiesRequestVO request) {
+        return executorService.submit(() -> listIdentities(request));
     }
 
     @Override
-    public Future<CreateIdentityResponseVO> createIdentityAsync(CreateIdentityRequestVO createIdentityRequestVO) {
-        return executorService.submit(() -> createIdentity(createIdentityRequestVO));
+    public Future<CreateIdentityResponseVO> createIdentityAsync(CreateIdentityRequestVO request) {
+        return executorService.submit(() -> createIdentity(request));
     }
 
     @Override
-    public Future<UpdateIdentityResponseVO> updateIdentityAsync(UpdateIdentityRequestVO updateIdentityRequestVO) {
-        return executorService.submit(() -> updateIdentity(updateIdentityRequestVO));
+    public Future<UpdateIdentityResponseVO> updateIdentityAsync(UpdateIdentityRequestVO request) {
+        return executorService.submit(() -> updateIdentity(request));
     }
 
     @Override
-    public Future<DeleteIdentityResponseVO> deleteIdentityAsync(DeleteIdentityRequestVO deleteIdentityRequestVO) {
-        return executorService.submit(() -> deleteIdentity(deleteIdentityRequestVO));
+    public Future<DeleteIdentityResponseVO> deleteIdentityAsync(DeleteIdentityRequestVO request) {
+        return executorService.submit(() -> deleteIdentity(request));
     }
 
 }

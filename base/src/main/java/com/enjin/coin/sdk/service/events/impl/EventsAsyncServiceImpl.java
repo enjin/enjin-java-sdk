@@ -17,20 +17,20 @@ public class EventsAsyncServiceImpl extends EventsServiceImpl implements EventsA
     /**
      * Class constructor
      *
-     * @param enjinConfig - the enjinConfig to use
+     * @param config - the config to use
      */
-    public EventsAsyncServiceImpl(Config enjinConfig) {
-        super(enjinConfig);
+    public EventsAsyncServiceImpl(Config config) {
+        super(config);
     }
 
     @Override
-    public Future<GetEventResponseVO> getEventAsync(GetEventRequestVO getEventRequestVO) {
-        return executorService.submit(() -> getEvent(getEventRequestVO));
+    public Future<GetEventResponseVO> getEventAsync(GetEventRequestVO request) {
+        return executorService.submit(() -> getEvent(request));
     }
 
     @Override
-    public Future<ListEventsResponseVO> listEventsAsync(ListEventsRequestVO listEventsRequestVO) {
-        return executorService.submit(() -> listEvents(listEventsRequestVO));
+    public Future<ListEventsResponseVO> listEventsAsync(ListEventsRequestVO request) {
+        return executorService.submit(() -> listEvents(request));
     }
 
 }

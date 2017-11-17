@@ -12,17 +12,17 @@ public interface TokensAsyncService extends TokensService {
     /**
      * Method to get a token
      *
-     * @param getTokenRequestVO - token request object
+     * @param request - token request object
      * @return - GetTokenResponseVO
      */
-    Future<GetTokenResponseVO> getTokenAsync(GetTokenRequestVO getTokenRequestVO);
+    Future<GetTokenResponseVO> getTokenAsync(GetTokenRequestVO request);
 
     /**
      * Method to list the tokens
      *
-     * @param listTokensRequestVO - list tokens request object
+     * @param request - list tokens request object
      * @return - ListTokensResponseVO
      */
-    Future<ListTokensResponseVO> listTokensAsync(ListTokensRequestVO listTokensRequestVO);
+    Future<ListTokensResponseVO> listTokensAsync(ListTokensRequestVO request);
 
 }

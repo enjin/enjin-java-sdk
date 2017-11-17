@@ -21,26 +21,26 @@ public class TransactionRequestsAsyncServiceImpl extends TransactionRequestsServ
     /**
      * Class constructor
      *
-     * @param enjinConfig - the enjinConfig to use
+     * @param config - the config to use
      */
-    public TransactionRequestsAsyncServiceImpl(Config enjinConfig) {
-        super(enjinConfig);
+    public TransactionRequestsAsyncServiceImpl(Config config) {
+        super(config);
     }
 
-    public Future<GetTransactionRequestResponseVO> getTransactionRequestAsync(GetTransactionRequestRequestVO getTransactionRequestRequestVO) {
-        return executorService.submit(() -> getTransactionRequest(getTransactionRequestRequestVO));
+    public Future<GetTransactionRequestResponseVO> getTransactionRequestAsync(GetTransactionRequestRequestVO request) {
+        return executorService.submit(() -> getTransactionRequest(request));
     }
 
-    public Future<ListTransactionRequestsResponseVO[]> listTransactionRequestsAsync(ListTransactionRequestsRequestVO listTransactionRequestsRequestVO) {
-        return executorService.submit(() -> listTransactionRequests(listTransactionRequestsRequestVO));
+    public Future<ListTransactionRequestsResponseVO[]> listTransactionRequestsAsync(ListTransactionRequestsRequestVO request) {
+        return executorService.submit(() -> listTransactionRequests(request));
     }
 
-    public Future<CreateTransactionRequestResponseVO> createTransactionRequestAsync(CreateTransactionRequestRequestVO createTransactionRequestRequestVO) {
-        return executorService.submit(() -> createTransactionRequest(createTransactionRequestRequestVO));
+    public Future<CreateTransactionRequestResponseVO> createTransactionRequestAsync(CreateTransactionRequestRequestVO request) {
+        return executorService.submit(() -> createTransactionRequest(request));
     }
 
-    public Future<CancelTransactionRequestResponseVO> cancelTransactionRequestAsync(CancelTransactionRequestRequestVO cancelTransactionRequestRequestVO) {
-        return executorService.submit(() -> cancelTransactionRequest(cancelTransactionRequestRequestVO));
+    public Future<CancelTransactionRequestResponseVO> cancelTransactionRequestAsync(CancelTransactionRequestRequestVO request) {
+        return executorService.submit(() -> cancelTransactionRequest(request));
     }
 
 }

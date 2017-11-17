@@ -14,33 +14,33 @@ public interface TransactionRequestsService {
     /**
      * Method to get an transactionRequest
      *
-     * @param getTransactionRequestRequestVO - get the transactionRequest request vo
+     * @param request - get the transactionRequest request vo
      * @return - GetTransactionRequestResponseVO
      */
-    GetTransactionRequestResponseVO getTransactionRequest(GetTransactionRequestRequestVO getTransactionRequestRequestVO);
+    GetTransactionRequestResponseVO getTransactionRequest(GetTransactionRequestRequestVO request);
 
     /**
      * Method to list the transactionRequests
      *
-     * @param listTransactionRequestsRequestVO - list the transactionRequest request vo's
+     * @param request - list the transactionRequest request vo's
      * @return - ListTransactionRequestsResponseVO array
      */
-    ListTransactionRequestsResponseVO[] listTransactionRequests(ListTransactionRequestsRequestVO listTransactionRequestsRequestVO);
+    ListTransactionRequestsResponseVO[] listTransactionRequests(ListTransactionRequestsRequestVO request);
 
     /**
      * Method to create an transactionRequest
      *
-     * @param createTransactionRequestRequestVO - create the transactionRequest request vo
+     * @param request - create the transactionRequest request vo
      * @return - CreateTransactionRequestResponseVO
      */
-    CreateTransactionRequestResponseVO createTransactionRequest(CreateTransactionRequestRequestVO createTransactionRequestRequestVO);
+    CreateTransactionRequestResponseVO createTransactionRequest(CreateTransactionRequestRequestVO request);
 
     /**
      * Method to cancel an transactionRequest
      *
-     * @param cancelTransactionRequestRequestVO - cancel the transactionRequest request vo
+     * @param request - cancel the transactionRequest request vo
      * @return - CancelTransactionRequestResponseVO
      */
-    CancelTransactionRequestResponseVO cancelTransactionRequest(CancelTransactionRequestRequestVO cancelTransactionRequestRequestVO);
+    CancelTransactionRequestResponseVO cancelTransactionRequest(CancelTransactionRequestRequestVO request);
 
 }

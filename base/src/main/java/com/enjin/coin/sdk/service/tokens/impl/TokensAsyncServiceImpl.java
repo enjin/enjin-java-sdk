@@ -17,18 +17,18 @@ public class TokensAsyncServiceImpl extends TokensServiceImpl implements TokensA
     /**
      * Class constructor
      *
-     * @param enjinConfig - the enjinConfig to use
+     * @param config - the config to use
      */
-    public TokensAsyncServiceImpl(Config enjinConfig) {
-        super(enjinConfig);
+    public TokensAsyncServiceImpl(Config config) {
+        super(config);
     }
 
-    public Future<GetTokenResponseVO> getTokenAsync(GetTokenRequestVO getTokenRequestVO) {
-        return executorService.submit(() -> getToken(getTokenRequestVO));
+    public Future<GetTokenResponseVO> getTokenAsync(GetTokenRequestVO request) {
+        return executorService.submit(() -> getToken(request));
     }
 
-    public Future<ListTokensResponseVO> listTokensAsync(ListTokensRequestVO listTokensRequestVO) {
-        return executorService.submit(() -> listTokens(listTokensRequestVO));
+    public Future<ListTokensResponseVO> listTokensAsync(ListTokensRequestVO request) {
+        return executorService.submit(() -> listTokens(request));
     }
 
 }
