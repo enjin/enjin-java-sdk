@@ -4,13 +4,15 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * <p>Functionality for working with lists.</p>
+ * <p>
+ * Functionality for working with lists.
+ * </p>
  */
 public final class ListUtils {
 
-	/**
-	 * Class constructor.
-	 */
+    /**
+     * Class constructor.
+     */
     protected ListUtils() {
 
     }
@@ -22,7 +24,7 @@ public final class ListUtils {
      * @return - boolean result
      */
     @SuppressWarnings("rawtypes")
-    public static boolean isEmpty(List list) {
+    public static boolean isEmpty(final List list) {
         return ObjectUtils.isNull(list) || list.size() == 0;
     }
 
@@ -33,7 +35,7 @@ public final class ListUtils {
      * @return - boolean result
      */
     @SuppressWarnings("rawtypes")
-    public static boolean isNotEmpty(List list) {
+    public static boolean isNotEmpty(final List list) {
         return !isEmpty(list);
     }
 
@@ -44,7 +46,7 @@ public final class ListUtils {
      * @return - boolean result
      */
     @SuppressWarnings("rawtypes")
-    public static boolean isEmpty(Optional<? extends List> optional) {
+    public static boolean isEmpty(final Optional<? extends List> optional) {
         return ObjectUtils.isNull(optional) || OptionalUtils.isNotPresent(optional) || isEmpty(optional.get());
     }
 
@@ -55,7 +57,7 @@ public final class ListUtils {
      * @return - boolean result
      */
     @SuppressWarnings("rawtypes")
-    public static boolean isNotEmpty(Optional<? extends List> optional) {
+    public static boolean isNotEmpty(final Optional<? extends List> optional) {
         return !isEmpty(optional);
     }
 

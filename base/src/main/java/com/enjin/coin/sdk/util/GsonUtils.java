@@ -41,7 +41,7 @@ public final class GsonUtils {
      * Method to register all type adapter factories.
      * @param gsonBuilder gson builder to configer
      */
-    public static void registerAllTypeAdapterFactories(GsonBuilder gsonBuilder) {
+    public static void registerAllTypeAdapterFactories(final GsonBuilder gsonBuilder) {
         for (TypeAdapterFactory factory : getAllTypeAdapterFactories()) {
             gsonBuilder.registerTypeAdapterFactory(factory);
         }

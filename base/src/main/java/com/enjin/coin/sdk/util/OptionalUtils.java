@@ -3,7 +3,9 @@ package com.enjin.coin.sdk.util;
 import java.util.Optional;
 
 /**
- * <p>Functionality for working with optionals.</p>
+ * <p>
+ * Functionality for working with optionals.
+ * </p>
  */
 public class OptionalUtils {
 
@@ -13,7 +15,7 @@ public class OptionalUtils {
      * @param optional - optional to check
      * @return - boolean result
      */
-    public static boolean isPresent(Optional<?> optional) {
+    public static boolean isPresent(final Optional<?> optional) {
         return optional != null && optional.isPresent();
     }
 
@@ -23,7 +25,7 @@ public class OptionalUtils {
      * @param optional - optional to check
      * @return - boolean result
      */
-    public static boolean isNotPresent(Optional<?> optional) {
+    public static boolean isNotPresent(final Optional<?> optional) {
         return !isPresent(optional);
     }
 

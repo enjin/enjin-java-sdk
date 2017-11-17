@@ -20,7 +20,7 @@ public class ObjectUtils {
      * @param object - object to check
      * @return - boolean result
      */
-    public static boolean isNull(Object object) {
+    public static boolean isNull(final Object object) {
         return object == null;
     }
 
@@ -30,7 +30,7 @@ public class ObjectUtils {
      * @param object - object to check
      * @return - boolean result
      */
-    public static boolean isNotNull(Object object) {
+    public static boolean isNotNull(final Object object) {
         return !isNull(object);
     }
 

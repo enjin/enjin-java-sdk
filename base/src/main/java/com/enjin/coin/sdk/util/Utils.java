@@ -3,9 +3,18 @@ package com.enjin.coin.sdk.util;
 import java.util.Random;
 
 /**
- * <p>Any utility Functionality required for the sdk.</p>
+ * <p>
+ * Any utility Functionality required for the sdk.
+ * </p>
  */
 public class Utils {
+
+    /**
+     * Class constructor.
+     */
+    protected Utils() {
+
+    }
 
     /**
      * Method to generate a randomId.
@@ -13,8 +22,8 @@ public class Utils {
      * @param inTestMode - whether we are in testmode or not
      * @return - a randomId
      */
-    public static String generateRandomId(boolean inTestMode) {
-        //If in test mode - send the test mode id - otherwise create an id
+    public static String generateRandomId(final boolean inTestMode) {
+        // If in test mode - send the test mode id - otherwise create an id
         if (inTestMode) {
             return Constants.TEST_MODE_ID;
         }
@@ -28,16 +37,15 @@ public class Utils {
     }
 
     /**
-     * Returns a psuedo-random number between min and max, inclusive.
-     * The difference between min and max can be at most
-     * <code>Integer.MAX_VALUE - 1</code>.
+     * Returns a psuedo-random number between min and max, inclusive. The difference
+     * between min and max can be at most <code>Integer.MAX_VALUE - 1</code>.
      *
      * @param min Minimum value
-     * @param max Maximum value.  Must be greater than min.
+     * @param max Maximum value. Must be greater than min.
      * @return Integer between min and max, inclusive.
      * @see java.util.Random#nextInt(int)
      */
-    public static int generateRandomInt(int min, int max) {
+    public static int generateRandomInt(final int min, final int max) {
         // Usually this can be a field rather than a method variable
         Random rand = new Random();
 
@@ -49,4 +57,3 @@ public class Utils {
     }
 
 }
-

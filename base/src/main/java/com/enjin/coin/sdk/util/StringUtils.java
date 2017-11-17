@@ -24,7 +24,7 @@ public final class StringUtils {
      * @param e - exception to print
      * @return - exception in String format
      */
-    public static String exceptionToString(Exception e) {
+    public static String exceptionToString(final Exception e) {
         String stacktrace = null;
         if (e != null) {
             try (StringWriter sw = new StringWriter()) {
@@ -45,7 +45,7 @@ public final class StringUtils {
      * @param str - str to check
      * @return - boolean result
      */
-    public static boolean isEmpty(String str) {
+    public static boolean isEmpty(final String str) {
         return ObjectUtils.isNull(str) || str.isEmpty();
     }
 
@@ -55,7 +55,7 @@ public final class StringUtils {
      * @param str - str to check
      * @return - boolean result
      */
-    public static boolean isNotEmpty(String str) {
+    public static boolean isNotEmpty(final String str) {
         return !isEmpty(str);
     }
 
@@ -65,7 +65,7 @@ public final class StringUtils {
      * @param optional - optional str to check
      * @return - boolean result
      */
-    public static boolean isEmpty(Optional<String> optional) {
+    public static boolean isEmpty(final Optional<String> optional) {
         return OptionalUtils.isNotPresent(optional) || isEmpty(optional.get());
     }
 
@@ -75,7 +75,7 @@ public final class StringUtils {
      * @param optional - optional str to check
      * @return - boolean result
      */
-    public static boolean isNotEmpty(Optional<String> optional) {
+    public static boolean isNotEmpty(final Optional<String> optional) {
         return !isEmpty(optional);
     }
 

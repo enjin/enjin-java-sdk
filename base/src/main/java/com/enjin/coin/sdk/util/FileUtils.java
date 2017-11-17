@@ -30,7 +30,7 @@ public final class FileUtils {
      * @param filePath - path to get contents from
      * @return - A string with the contents of the file
      */
-    public static String getFileContents(String filePath) {
+    public static String getFileContents(final String filePath) {
         String fileContents = null;
         if (StringUtils.isEmpty(filePath)) {
             LOGGER.warning("filePath passed in is null or empty");

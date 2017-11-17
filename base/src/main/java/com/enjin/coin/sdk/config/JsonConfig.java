@@ -41,10 +41,10 @@ public class JsonConfig {
      * Method to load config.
      * @param file file to load config from
      * @param clazz the class type of the config
-     * @return JsonConfig
+     * @return <T> - jsonConfig
      * @throws Exception any exceptions that occur when loading the config
      */
-    public static <T extends JsonConfig> T load(File file, Class<T> clazz) throws Exception {
+    public static <T extends JsonConfig> T load(final File file, final Class<T> clazz) throws Exception {
         JsonConfig config = null;
 
         if (!file.exists() || file.length() == 0) {
@@ -64,10 +64,10 @@ public class JsonConfig {
     /**
      * Method to load new config.
      * @param clazz the class type of the config
-     * @return JsonConfig
+     * @return <T> - JsonConfig
      * @throws Exception any exceptions that occur when loading the config
      */
-    private static <T extends JsonConfig> T loadNew(Class<T> clazz) throws Exception {
+    private static <T extends JsonConfig> T loadNew(final Class<T> clazz) throws Exception {
         return clazz.newInstance();
     }
 
@@ -75,11 +75,11 @@ public class JsonConfig {
      * Method to load existing config.
      * @param file file to load config from
      * @param clazz the class type of the config
-     * @return JsonConfig
+     * @return <T> - JsonConfig
      * @throws Exception any exceptions that occur when loading the config
      */
     @SuppressWarnings("unchecked")
-    private static <T extends JsonConfig> T loadExisting(File file, Class<T> clazz) throws Exception {
+    private static <T extends JsonConfig> T loadExisting(final File file, final Class<T> clazz) throws Exception {
         FileReader fileReader = new FileReader(file);
         return (T) JsonUtils.convertJsonFromFileReaderToObject(GSON, fileReader, clazz);
     }
@@ -89,7 +89,7 @@ public class JsonConfig {
      * @param file file to save config to
      * @return boolean
      */
-    public boolean save(File file) {
+    public boolean save(final File file) {
         boolean success = true;
         try (FileWriter fw = new FileWriter(file)) {
             if (file.getParentFile() != null) {
@@ -115,7 +115,7 @@ public class JsonConfig {
      * @param data date to write to the config
      * @return boolean
      */
-    public boolean update(File file, Object data) {
+    public boolean update(final File file, final Object data) {
         JsonElement old = JsonUtils.convertObjectToJsonTree(GSON, this);
         JsonElement updates = JsonUtils.convertObjectToJsonTree(GSON, data);
 
@@ -146,7 +146,7 @@ public class JsonConfig {
      * @param oldObj the old object
      * @param updatedObj the updated object
      */
-    private void update(JsonObject oldObj, JsonObject updatedObj) {
+    private void update(final JsonObject oldObj, final JsonObject updatedObj) {
         for (Map.Entry<String, JsonElement> entry : updatedObj.getAsJsonObject().entrySet()) {
             if (!oldObj.has(entry.getKey())) {
                 LOGGER.fine(String.format("%s does not exists, updating value.", entry.getKey()));

@@ -4,13 +4,15 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * <p>Functionality for working with maps.</p>
+ * <p>
+ * Functionality for working with maps.
+ * </p>
  */
 public final class MapUtils {
 
-	/**
-	 * Class constructor.
-	 */
+    /**
+     * Class constructor.
+     */
     protected MapUtils() {
 
     }
@@ -22,7 +24,7 @@ public final class MapUtils {
      * @return - boolean result
      */
     @SuppressWarnings("rawtypes")
-    public static boolean isEmpty(Map map) {
+    public static boolean isEmpty(final Map map) {
         return ObjectUtils.isNull(map) || map.size() == 0;
     }
 
@@ -33,7 +35,7 @@ public final class MapUtils {
      * @return - boolean result
      */
     @SuppressWarnings("rawtypes")
-    public static boolean isNotEmpty(Map map) {
+    public static boolean isNotEmpty(final Map map) {
         return !isEmpty(map);
     }
 
@@ -44,7 +46,7 @@ public final class MapUtils {
      * @return - boolean result
      */
     @SuppressWarnings("rawtypes")
-    public static boolean isEmpty(Optional<? extends Map> optional) {
+    public static boolean isEmpty(final Optional<? extends Map> optional) {
         return ObjectUtils.isNull(optional) || OptionalUtils.isNotPresent(optional) || isEmpty(optional.get());
     }
 
@@ -55,7 +57,7 @@ public final class MapUtils {
      * @return - boolean result
      */
     @SuppressWarnings("rawtypes")
-    public static boolean isNotEmpty(Optional<? extends Map> optional) {
+    public static boolean isNotEmpty(final Optional<? extends Map> optional) {
         return !isEmpty(optional);
     }
 
