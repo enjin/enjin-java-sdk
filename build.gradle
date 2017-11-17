@@ -112,9 +112,20 @@ subprojects {
 	}
 	
 	//Documentation - https://docs.gradle.org/current/userguide/findbugs_plugin.html
+	//Config properties: https://docs.gradle.org/current/dsl/org.gradle.api.plugins.quality.FindBugs.html#org.gradle.api.plugins.quality.FindBugs
+	//Filter documentation http://findbugs.sourceforge.net/manual/filter.html 
+	def excludePattern1 = '*/Immutable*.java'
+	def excludePattern2 = '*/GsonAdapters*.java'
 	tasks.withType(FindBugs) {
-	    exclude '**/Immutable**'
-    	exclude '**/GsonAdapters**'
+	    //excludes '**/Immutable**.java'
+    	//excludes '**/GsonAdapters**.java'
+    	//excludes '**/TypeAdapterfactory.java'
+    	excludeFilter = rootProject.file('projectConfig/findbugs/excludeFilter.xml')
+    	//classes = classes.filter {
+	    //    !it.path.contains(excludePattern1)
+	    //    !it.path.contains(excludePattern2)
+    	//}
+    	    	
 	    reports {
 	        xml.enabled false
 	        html.enabled true
