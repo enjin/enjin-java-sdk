@@ -1,12 +1,15 @@
 package com.enjin.coin.sdk.util;
 
-import com.enjin.coin.sdk.vo.event.GetEventResponseVO;
-import com.enjin.coin.sdk.vo.event.ImmutableGetEventResponseVO;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonSyntaxException;
-import com.google.gson.stream.JsonReader;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -14,13 +17,16 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import com.enjin.coin.sdk.vo.event.GetEventResponseVO;
+import com.enjin.coin.sdk.vo.event.ImmutableGetEventResponseVO;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.stream.JsonReader;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({JsonUtils.class, Gson.class, GsonBuilder.class})
+@PrepareForTest({JsonUtils.class, Gson.class, GsonBuilder.class, FileInputStream.class, InputStreamReader.class})
 public class JsonUtilsTest {
 
     @Test
@@ -144,32 +150,28 @@ public class JsonUtilsTest {
         Class<?> responseClass = GetEventResponseVO.class;
 
         Gson mockGson = PowerMockito.mock(Gson.class);
-
-        PowerMockito.whenNew(FileReader.class).withArguments(Mockito.anyString()).thenThrow(new FileNotFoundException());
+        PowerMockito.whenNew(FileInputStream.class).withArguments(Mockito.anyString()).thenThrow(new FileNotFoundException());
         Object responseObject = JsonUtils.convertJsonFromFileToObject(mockGson, filePath, responseClass);
         assertThat(responseObject).isNull();
 
-        PowerMockito.verifyNew(FileReader.class, Mockito.times(1)).withArguments(Mockito.anyString());
+        PowerMockito.verifyNew(FileInputStream.class, Mockito.times(1)).withArguments(Mockito.anyString());
     }
 
     @Test
-    public void testConvertJsonFromFileToObject_JsonSyntaxException() throws Exception {
+    public void testConvertJsonFromFileToObject_UnsupportedEncodingException() throws Exception {
         String filePath = "{}";
         Class<?> responseClass = GetEventResponseVO.class;
 
         Gson mockGson = PowerMockito.mock(Gson.class);
-        FileReader mockFileReader = Mockito.mock(FileReader.class);
-        JsonReader mockJsonReader = Mockito.mock(JsonReader.class);
+        FileInputStream mockFileInputStream = Mockito.mock(FileInputStream.class);
 
-        PowerMockito.whenNew(FileReader.class).withArguments(Mockito.anyString()).thenReturn(mockFileReader);
-        PowerMockito.whenNew(JsonReader.class).withArguments(Mockito.isA(FileReader.class)).thenReturn(mockJsonReader);
-        Mockito.when(mockGson.fromJson(Mockito.isA(JsonReader.class), Mockito.isA(Class.class))).thenThrow(new JsonSyntaxException("exception"));
+        PowerMockito.whenNew(FileInputStream.class).withArguments(Mockito.anyString()).thenReturn(mockFileInputStream);
+        PowerMockito.whenNew(InputStreamReader.class).withArguments(Mockito.isA(InputStream.class), Mockito.anyString()).thenThrow(new UnsupportedEncodingException());
         Object responseObject = JsonUtils.convertJsonFromFileToObject(mockGson, filePath, responseClass);
         assertThat(responseObject).isNull();
 
-        PowerMockito.verifyNew(FileReader.class, Mockito.times(1)).withArguments(Mockito.anyString());
-        PowerMockito.verifyNew(JsonReader.class, Mockito.times(1)).withArguments(Mockito.isA(FileReader.class));
-        Mockito.verify(mockGson, Mockito.times(1)).fromJson(Mockito.isA(JsonReader.class), Mockito.isA(Class.class));
+        PowerMockito.verifyNew(FileInputStream.class, Mockito.times(1)).withArguments(Mockito.anyString());
+        PowerMockito.verifyNew(InputStreamReader.class, Mockito.times(1)).withArguments(Mockito.isA(InputStream.class), Mockito.anyString());
     }
 
     @Test
@@ -178,17 +180,20 @@ public class JsonUtilsTest {
         Class<?> responseClass = GetEventResponseVO.class;
 
         Gson mockGson = PowerMockito.mock(Gson.class);
-        FileReader mockFileReader = Mockito.mock(FileReader.class);
+        FileInputStream mockFileInputStream = Mockito.mock(FileInputStream.class);
+        InputStreamReader mockInputStreamReader = Mockito.mock(InputStreamReader.class);
         JsonReader mockJsonReader = Mockito.mock(JsonReader.class);
 
-        PowerMockito.whenNew(FileReader.class).withArguments(Mockito.anyString()).thenReturn(mockFileReader);
-        PowerMockito.whenNew(JsonReader.class).withArguments(Mockito.isA(FileReader.class)).thenReturn(mockJsonReader);
+        PowerMockito.whenNew(FileInputStream.class).withArguments(Mockito.anyString()).thenReturn(mockFileInputStream);
+        PowerMockito.whenNew(InputStreamReader.class).withArguments(Mockito.isA(InputStream.class), Mockito.anyString()).thenReturn(mockInputStreamReader);
+        PowerMockito.whenNew(JsonReader.class).withArguments(Mockito.isA(Reader.class)).thenReturn(mockJsonReader);
         Mockito.when(mockGson.fromJson(Mockito.isA(JsonReader.class), Mockito.isA(Class.class))).thenReturn(ImmutableGetEventResponseVO.builder().build());
         Object responseObject = JsonUtils.convertJsonFromFileToObject(mockGson, filePath, responseClass);
         assertThat(responseObject).isNotNull();
 
-        PowerMockito.verifyNew(FileReader.class, Mockito.times(1)).withArguments(Mockito.anyString());
-        PowerMockito.verifyNew(JsonReader.class, Mockito.times(1)).withArguments(Mockito.isA(FileReader.class));
+        PowerMockito.verifyNew(FileInputStream.class, Mockito.times(1)).withArguments(Mockito.anyString());
+        PowerMockito.verifyNew(InputStreamReader.class, Mockito.times(1)).withArguments(Mockito.isA(InputStream.class), Mockito.anyString());
+        PowerMockito.verifyNew(JsonReader.class, Mockito.times(1)).withArguments(Mockito.isA(Reader.class));
         Mockito.verify(mockGson, Mockito.times(1)).fromJson(Mockito.isA(JsonReader.class), Mockito.isA(Class.class));
     }
 

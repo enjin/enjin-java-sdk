@@ -1,13 +1,18 @@
 package com.enjin.coin.sdk.util;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
+import java.util.logging.Logger;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.stream.JsonReader;
-
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.logging.Logger;
 
 /**
  * <p>
@@ -74,13 +79,14 @@ public final class JsonUtils {
         // JSON from file to Object
         try {
             LOGGER.fine(String.format("filePath:%s", filePath));
-            FileReader fileReader = new FileReader("jsonFile.json");
+            InputStream inputStream = new FileInputStream(filePath); 
+            Reader fileReader = new InputStreamReader(inputStream, Constants.CHARSET_UTF_8);
             JsonReader jsonReader = new JsonReader(fileReader);
             responseObject = gson.fromJson(jsonReader, responseClass);
-        } catch (JsonSyntaxException e) {
-            LOGGER.warning(String.format("A JsonSyntaxException has occured. Exception: %s", StringUtils.exceptionToString(e)));
         } catch (FileNotFoundException e) {
             LOGGER.warning(String.format("A FileNotFoundException has occured. Exception: %s", StringUtils.exceptionToString(e)));
+        } catch (UnsupportedEncodingException e) {
+            LOGGER.warning(String.format("An UnsupportedEncodingException has occured. Exception: %s", StringUtils.exceptionToString(e)));
         }
 
         return responseObject;
