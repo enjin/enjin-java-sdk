@@ -1,13 +1,5 @@
 package com.enjin.coin.sdk.mockServer;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.config.ImmutableConfig;
 import com.enjin.coin.sdk.service.EnjinCoinClient;
@@ -20,6 +12,13 @@ import com.enjin.coin.sdk.vo.transactionrequest.ImmutableCreateTransactionReques
 import com.enjin.coin.sdk.vo.transactionrequest.ImmutableGetTransactionRequestRequestVO;
 import com.enjin.coin.sdk.vo.transactionrequest.ImmutableListTransactionRequestsRequestVO;
 import com.enjin.coin.sdk.vo.transactionrequest.ListTransactionRequestsRequestVO;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
 

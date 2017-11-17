@@ -1,6 +1,13 @@
 package com.enjin.coin.sdk.service.transactionrequests;
 
-import com.enjin.coin.sdk.vo.transactionrequest.*;
+import com.enjin.coin.sdk.vo.transactionrequest.CancelTransactionRequestRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.CancelTransactionRequestResponseVO;
+import com.enjin.coin.sdk.vo.transactionrequest.CreateTransactionRequestRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.CreateTransactionRequestResponseVO;
+import com.enjin.coin.sdk.vo.transactionrequest.GetTransactionRequestRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.GetTransactionRequestResponseVO;
+import com.enjin.coin.sdk.vo.transactionrequest.ListTransactionRequestsRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.ListTransactionRequestsResponseVO;
 
 public interface TransactionRequestsService {
 

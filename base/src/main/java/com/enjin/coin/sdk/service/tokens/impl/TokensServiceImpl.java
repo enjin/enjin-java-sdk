@@ -7,7 +7,11 @@ import com.enjin.coin.sdk.util.ArrayUtils;
 import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.ObjectUtils;
 import com.enjin.coin.sdk.util.StringUtils;
-import com.enjin.coin.sdk.vo.token.*;
+import com.enjin.coin.sdk.vo.token.GetTokenRequestVO;
+import com.enjin.coin.sdk.vo.token.GetTokenResponseVO;
+import com.enjin.coin.sdk.vo.token.ImmutableListTokensResponseVO;
+import com.enjin.coin.sdk.vo.token.ListTokensRequestVO;
+import com.enjin.coin.sdk.vo.token.ListTokensResponseVO;
 
 import java.util.HashMap;
 import java.util.Map;

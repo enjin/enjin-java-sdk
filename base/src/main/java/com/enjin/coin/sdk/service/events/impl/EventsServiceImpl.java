@@ -7,7 +7,11 @@ import com.enjin.coin.sdk.util.ArrayUtils;
 import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.ObjectUtils;
 import com.enjin.coin.sdk.util.StringUtils;
-import com.enjin.coin.sdk.vo.event.*;
+import com.enjin.coin.sdk.vo.event.GetEventRequestVO;
+import com.enjin.coin.sdk.vo.event.GetEventResponseVO;
+import com.enjin.coin.sdk.vo.event.ImmutableListEventsResponseVO;
+import com.enjin.coin.sdk.vo.event.ListEventsRequestVO;
+import com.enjin.coin.sdk.vo.event.ListEventsResponseVO;
 
 import java.util.HashMap;
 import java.util.Map;

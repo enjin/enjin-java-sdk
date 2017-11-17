@@ -1,15 +1,14 @@
 package com.enjin.coin.sdk.service;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.service.events.EventsService;
 import com.enjin.coin.sdk.service.identities.IdentitiesService;
 import com.enjin.coin.sdk.service.tokens.TokensService;
 import com.enjin.coin.sdk.service.transactionrequests.TransactionRequestsService;
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class EnjinCoinClientTest {
 

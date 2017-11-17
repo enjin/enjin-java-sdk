@@ -1,18 +1,5 @@
 package com.enjin.coin.sdk.service.tokens;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.util.Map;
-import java.util.concurrent.Future;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mockito;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
-
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.service.tokens.impl.TokensAsyncServiceImpl;
 import com.enjin.coin.sdk.util.JsonRpcUtils;
@@ -23,6 +10,18 @@ import com.enjin.coin.sdk.vo.token.ImmutableGetTokenResponseVO;
 import com.enjin.coin.sdk.vo.token.ImmutableListTokensRequestVO;
 import com.enjin.coin.sdk.vo.token.ListTokensRequestVO;
 import com.enjin.coin.sdk.vo.token.ListTokensResponseVO;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+
+import java.util.Map;
+import java.util.concurrent.Future;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(TokensAsyncServiceImpl.class)

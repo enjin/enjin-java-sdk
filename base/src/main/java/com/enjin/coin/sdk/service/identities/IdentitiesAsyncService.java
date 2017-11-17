@@ -1,6 +1,15 @@
 package com.enjin.coin.sdk.service.identities;
 
-import com.enjin.coin.sdk.vo.identity.*;
+import com.enjin.coin.sdk.vo.identity.CreateIdentityRequestVO;
+import com.enjin.coin.sdk.vo.identity.CreateIdentityResponseVO;
+import com.enjin.coin.sdk.vo.identity.DeleteIdentityRequestVO;
+import com.enjin.coin.sdk.vo.identity.DeleteIdentityResponseVO;
+import com.enjin.coin.sdk.vo.identity.GetIdentityRequestVO;
+import com.enjin.coin.sdk.vo.identity.GetIdentityResponseVO;
+import com.enjin.coin.sdk.vo.identity.ListIdentitiesRequestVO;
+import com.enjin.coin.sdk.vo.identity.ListIdentitiesResponseVO;
+import com.enjin.coin.sdk.vo.identity.UpdateIdentityRequestVO;
+import com.enjin.coin.sdk.vo.identity.UpdateIdentityResponseVO;
 
 import java.util.concurrent.Future;
 

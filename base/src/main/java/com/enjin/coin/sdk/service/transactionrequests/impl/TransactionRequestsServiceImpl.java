@@ -7,167 +7,192 @@ import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.MapUtils;
 import com.enjin.coin.sdk.util.ObjectUtils;
 import com.enjin.coin.sdk.util.StringUtils;
-import com.enjin.coin.sdk.vo.transactionrequest.*;
+import com.enjin.coin.sdk.vo.transactionrequest.CancelTransactionRequestRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.CancelTransactionRequestResponseVO;
+import com.enjin.coin.sdk.vo.transactionrequest.CreateTransactionRequestRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.CreateTransactionRequestResponseVO;
+import com.enjin.coin.sdk.vo.transactionrequest.GetTransactionRequestRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.GetTransactionRequestResponseVO;
+import com.enjin.coin.sdk.vo.transactionrequest.ImmutableCancelTransactionRequestResponseVO;
+import com.enjin.coin.sdk.vo.transactionrequest.ListTransactionRequestsRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.ListTransactionRequestsResponseVO;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
 /**
- * <p>Contains services related to transaction requests</p>
+ * <p>Contains services related to transaction requests.</p>
  */
 public class TransactionRequestsServiceImpl extends BaseService implements TransactionRequestsService {
 
+    /**
+     * Logger used by this class.
+     */
     private static final Logger LOGGER = Logger.getLogger(TransactionRequestsServiceImpl.class.getName());
 
     /**
-     * Class constructor
+     * Class constructor.
      *
-     * @param enjinConfig - the enjinConfig to use
+     * @param config - the enjinConfig to use
      */
-    public TransactionRequestsServiceImpl(Config enjinConfig) {
-        super(enjinConfig);
+    public TransactionRequestsServiceImpl(final Config config) {
+        super(config);
     }
 
     /**
-     * Method to get an transactionRequest
+     * Method to get an transactionRequest.
      *
-     * @param getTransactionRequestRequestVO - get the transactionRequest request vo
+     * @param request - get the transactionRequest request vo
      * @return - GetTransactionRequestResponseVO
      */
-    public GetTransactionRequestResponseVO getTransactionRequest(GetTransactionRequestRequestVO getTransactionRequestRequestVO) {
-        GetTransactionRequestResponseVO getTransactionRequestResponseVO = null;
+    public GetTransactionRequestResponseVO getTransactionRequest(final GetTransactionRequestRequestVO request) {
+        GetTransactionRequestResponseVO response = null;
 
-        if (ObjectUtils.isNull(getTransactionRequestRequestVO) || StringUtils.isEmpty(getTransactionRequestRequestVO.getAuth())
-                || StringUtils.isEmpty(getTransactionRequestRequestVO.getTxrId())) {
-            LOGGER.warning("getTransactionRequestRequestVO is null, auth or identidyId passed in are null or empty");
-            return getTransactionRequestResponseVO;
+        if (ObjectUtils.isNull(request)) {
+            LOGGER.warning("TransactionRequests.get request is null.");
+            return response;
+        }
+
+        if (StringUtils.isEmpty(request.getAuth()) || StringUtils.isEmpty(request.getTxrId())) {
+            LOGGER.warning("TransactionRequests.get parameters may be empty or null.");
+            return response;
         }
 
         Map<String, Object> params = new HashMap<>();
-        params.put("auth", getTransactionRequestRequestVO.getAuth().get());
-        params.put("txr_id", getTransactionRequestRequestVO.getTxrId().get());
+        params.put("auth", request.getAuth().get());
+        params.put("txr_id", request.getTxrId().get());
 
         // Construct new request
         String method = Constants.METHOD_TRANSACTION_REQUESTS_GET;
 
-        getTransactionRequestResponseVO = (GetTransactionRequestResponseVO) jsonRpcUtils.sendJsonRpcRequest(getTransactionRequestsUrl(), GetTransactionRequestResponseVO.class, method, params);
+        response = (GetTransactionRequestResponseVO) jsonRpcUtils
+                .sendJsonRpcRequest(getTransactionRequestsUrl(), GetTransactionRequestResponseVO.class, method, params);
 
-        return getTransactionRequestResponseVO;
+        return response;
     }
 
     /**
-     * Method to list the transactionRequests
+     * Method to list the transactionRequests.
      *
-     * @param listTransactionRequestsRequestVO - list the transactionRequest request vo's
+     * @param request - list the transactionRequest request vo's
      * @return - ListTransactionRequestsResponseVO array
      */
-    public ListTransactionRequestsResponseVO[] listTransactionRequests(ListTransactionRequestsRequestVO listTransactionRequestsRequestVO) {
-        ListTransactionRequestsResponseVO[] listTransactionRequestsResponseVO = null;
+    public ListTransactionRequestsResponseVO[] listTransactionRequests(final ListTransactionRequestsRequestVO request) {
+        ListTransactionRequestsResponseVO[] response = null;
 
-        if (ObjectUtils.isNull(listTransactionRequestsRequestVO) || StringUtils.isEmpty(listTransactionRequestsRequestVO.getAuth())
-                || MapUtils.isEmpty(listTransactionRequestsRequestVO.getIdentityMap())
-                || StringUtils.isEmpty(listTransactionRequestsRequestVO.getAppId())) {
-            LOGGER.warning("listTransactionRequestsRequestVO is null, auth, identityMap or appId passed in are null or empty");
-            return listTransactionRequestsResponseVO;
+        if (ObjectUtils.isNull(request)) {
+            LOGGER.warning("TransactionRequests.list request is null.");
+            return response;
         }
-        if (MapUtils.isEmpty(listTransactionRequestsRequestVO.getRecipientMap()) || StringUtils.isEmpty(listTransactionRequestsRequestVO.getType())
-                || StringUtils.isEmpty(listTransactionRequestsRequestVO.getAfterTxrId())
-                || StringUtils.isEmpty(listTransactionRequestsRequestVO.getLimit())) {
-            LOGGER.warning("recipientMap, type, afterTxrId or limit passed in are null or empty");
-            return listTransactionRequestsResponseVO;
-        }
-        if (StringUtils.isEmpty(listTransactionRequestsRequestVO.getCurrency())) {
-            LOGGER.warning("currency passed in are null or empty");
-            return listTransactionRequestsResponseVO;
+
+        if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentityMap())
+                || StringUtils.isEmpty(request.getAppId()) || MapUtils.isEmpty(request.getRecipientMap())
+                || StringUtils.isEmpty(request.getType()) || StringUtils.isEmpty(request.getAfterTxrId())
+                || StringUtils.isEmpty(request.getLimit()) || StringUtils.isEmpty(request.getCurrency())) {
+            LOGGER.warning("TransactionRequests.list parameters may be empty or null.");
+            return response;
         }
 
         Map<String, Object> params = new HashMap<>();
-        params.put("auth", listTransactionRequestsRequestVO.getAuth().get());
-        params.put("identity", listTransactionRequestsRequestVO.getIdentityMap().get());
-        params.put("app_id", listTransactionRequestsRequestVO.getAppId().get());
-        params.put("recipient", listTransactionRequestsRequestVO.getRecipientMap().get());
-        params.put("type", listTransactionRequestsRequestVO.getType().get());
-        params.put("after_txr_id", listTransactionRequestsRequestVO.getAfterTxrId().get());
-        params.put("limit", listTransactionRequestsRequestVO.getLimit().get());
-        params.put("currency", listTransactionRequestsRequestVO.getCurrency().get());
+        params.put("auth", request.getAuth().get());
+        params.put("identity", request.getIdentityMap().get());
+        params.put("app_id", request.getAppId().get());
+        params.put("recipient", request.getRecipientMap().get());
+        params.put("type", request.getType().get());
+        params.put("after_txr_id", request.getAfterTxrId().get());
+        params.put("limit", request.getLimit().get());
+        params.put("currency", request.getCurrency().get());
 
         // Construct new request
         String method = Constants.METHOD_TRANSACTION_REQUESTS_LIST;
 
-        listTransactionRequestsResponseVO = (ListTransactionRequestsResponseVO[]) jsonRpcUtils.sendJsonRpcRequest(getTransactionRequestsUrl(), ListTransactionRequestsResponseVO[].class, method, params);
-        return listTransactionRequestsResponseVO;
+        response = (ListTransactionRequestsResponseVO[]) jsonRpcUtils
+                .sendJsonRpcRequest(getTransactionRequestsUrl(), ListTransactionRequestsResponseVO[].class,
+                        method, params);
+
+        return response;
     }
 
     /**
-     * Method to create an transactionRequest
+     * Method to create an transactionRequest.
      *
-     * @param createTransactionRequestRequestVO - create the transactionRequest request vo
+     * @param request - create the transactionRequest request vo
      * @return - CreateTransactionRequestResponseVO
      */
-    public CreateTransactionRequestResponseVO createTransactionRequest(CreateTransactionRequestRequestVO createTransactionRequestRequestVO) {
-        CreateTransactionRequestResponseVO createTransactionRequestResponseVO = null;
+    public CreateTransactionRequestResponseVO createTransactionRequest(
+            final CreateTransactionRequestRequestVO request
+    ) {
+        CreateTransactionRequestResponseVO response = null;
 
-        if (ObjectUtils.isNull(createTransactionRequestRequestVO) || StringUtils.isEmpty(createTransactionRequestRequestVO.getAuth())
-                || MapUtils.isEmpty(createTransactionRequestRequestVO.getIdentityMap())
-                || MapUtils.isEmpty(createTransactionRequestRequestVO.getRecipientMap())) {
-            LOGGER.warning("createTransactionRequestRequestVO is null, auth, identityMap or recipientMap passed in are null or empty");
-            return createTransactionRequestResponseVO;
+        if (ObjectUtils.isNull(request)) {
+            LOGGER.warning("TransactionRequests.create request is null.");
+            return response;
         }
 
-        if (StringUtils.isEmpty(createTransactionRequestRequestVO.getType())
-                || StringUtils.isEmpty(createTransactionRequestRequestVO.getIcon())
-                || StringUtils.isEmpty(createTransactionRequestRequestVO.getTitle())
-                || MapUtils.isEmpty(createTransactionRequestRequestVO.getValueMap())) {
-            LOGGER.warning("type, icon, title or valueMap passed in are null or empty");
-            return createTransactionRequestResponseVO;
+        if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentityMap())
+                || MapUtils.isEmpty(request.getRecipientMap()) || StringUtils.isEmpty(request.getType())
+                || StringUtils.isEmpty(request.getIcon()) || StringUtils.isEmpty(request.getTitle())
+                || MapUtils.isEmpty(request.getValueMap())) {
+            LOGGER.warning("TransactionRequests.create parameters may be empty or null.");
+            return response;
         }
 
         Map<String, Object> params = new HashMap<>();
-        params.put("auth", createTransactionRequestRequestVO.getAuth().get());
-        params.put("identity", createTransactionRequestRequestVO.getIdentityMap().get());
-        params.put("recipient", createTransactionRequestRequestVO.getRecipientMap().get());
-        params.put("type", createTransactionRequestRequestVO.getType().get());
-        params.put("icon", createTransactionRequestRequestVO.getIcon().get());
-        params.put("title", createTransactionRequestRequestVO.getTitle().get());
-        params.put("value", createTransactionRequestRequestVO.getValueMap().get());
+        params.put("auth", request.getAuth().get());
+        params.put("identity", request.getIdentityMap().get());
+        params.put("recipient", request.getRecipientMap().get());
+        params.put("type", request.getType().get());
+        params.put("icon", request.getIcon().get());
+        params.put("title", request.getTitle().get());
+        params.put("value", request.getValueMap().get());
 
         // Construct new request
         String method = Constants.METHOD_TRANSACTION_REQUESTS_CREATE;
 
-        createTransactionRequestResponseVO = (CreateTransactionRequestResponseVO) jsonRpcUtils.sendJsonRpcRequest(getTransactionRequestsUrl(), CreateTransactionRequestResponseVO.class, method, params);
+        response = (CreateTransactionRequestResponseVO) jsonRpcUtils
+                .sendJsonRpcRequest(getTransactionRequestsUrl(), CreateTransactionRequestResponseVO.class,
+                        method, params);
 
-        return createTransactionRequestResponseVO;
+        return response;
     }
 
     /**
-     * Method to cancel an transactionRequest
+     * Method to cancel an transactionRequest.
      *
-     * @param cancelTransactionRequestRequestVO - cancel the transactionRequest request vo
+     * @param request - cancel the transactionRequest request vo
      * @return - CancelTransactionRequestResponseVO
      */
-    public CancelTransactionRequestResponseVO cancelTransactionRequest(CancelTransactionRequestRequestVO cancelTransactionRequestRequestVO) {
-        CancelTransactionRequestResponseVO cancelTransactionRequestResponseVO = null;
+    public CancelTransactionRequestResponseVO cancelTransactionRequest(
+            final CancelTransactionRequestRequestVO request
+    ) {
+        CancelTransactionRequestResponseVO response = null;
 
-        if (ObjectUtils.isNull(cancelTransactionRequestRequestVO) || StringUtils.isEmpty(cancelTransactionRequestRequestVO.getAuth())
-                || StringUtils.isEmpty(cancelTransactionRequestRequestVO.getTxrId())) {
-            LOGGER.warning("cancelTransactionRequestRequestVO is null or auth, txrId passed in are null or empty");
-            return cancelTransactionRequestResponseVO;
+        if (ObjectUtils.isNull(request)) {
+            LOGGER.warning("TransactionRequests.create request is null.");
+            return response;
+        }
+
+        if (StringUtils.isEmpty(request.getAuth()) || StringUtils.isEmpty(request.getTxrId())) {
+            LOGGER.warning("TransactionRequests.cancel parameters may be empty or null.");
+            return response;
         }
 
         Map<String, Object> params = new HashMap<>();
-        params.put("auth", cancelTransactionRequestRequestVO.getAuth().get());
-        params.put("txr_id", cancelTransactionRequestRequestVO.getTxrId().get());
+        params.put("auth", request.getAuth().get());
+        params.put("txr_id", request.getTxrId().get());
 
         // Construct new request
         String method = Constants.METHOD_TRANSACTION_REQUESTS_CANCEL;
 
-        Boolean result = (Boolean) jsonRpcUtils.sendJsonRpcRequest(getTransactionRequestsUrl(), Boolean.class, method, params);
-        cancelTransactionRequestResponseVO = ImmutableCancelTransactionRequestResponseVO.builder()
+        Boolean result = (Boolean) jsonRpcUtils
+                .sendJsonRpcRequest(getTransactionRequestsUrl(), Boolean.class, method, params);
+
+        response = ImmutableCancelTransactionRequestResponseVO.builder()
                 .setResult(result)
                 .build();
 
-        return cancelTransactionRequestResponseVO;
+        return response;
     }
 
 }

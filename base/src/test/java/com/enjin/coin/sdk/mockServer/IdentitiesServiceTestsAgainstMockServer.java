@@ -4,7 +4,16 @@ import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.config.ImmutableConfig;
 import com.enjin.coin.sdk.service.EnjinCoinClient;
 import com.enjin.coin.sdk.service.identities.IdentitiesService;
-import com.enjin.coin.sdk.vo.identity.*;
+import com.enjin.coin.sdk.vo.identity.CreateIdentityRequestVO;
+import com.enjin.coin.sdk.vo.identity.DeleteIdentityRequestVO;
+import com.enjin.coin.sdk.vo.identity.GetIdentityRequestVO;
+import com.enjin.coin.sdk.vo.identity.ImmutableCreateIdentityRequestVO;
+import com.enjin.coin.sdk.vo.identity.ImmutableDeleteIdentityRequestVO;
+import com.enjin.coin.sdk.vo.identity.ImmutableGetIdentityRequestVO;
+import com.enjin.coin.sdk.vo.identity.ImmutableListIdentitiesRequestVO;
+import com.enjin.coin.sdk.vo.identity.ImmutableUpdateIdentityRequestVO;
+import com.enjin.coin.sdk.vo.identity.ListIdentitiesRequestVO;
+import com.enjin.coin.sdk.vo.identity.UpdateIdentityRequestVO;
 import org.junit.Before;
 import org.junit.Test;
 
