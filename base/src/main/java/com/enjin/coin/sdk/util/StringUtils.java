@@ -6,18 +6,20 @@ import java.io.StringWriter;
 import java.util.Optional;
 
 /**
- * <p>Functionality for working with strings</p>
+ * <p>
+ * Functionality for working with strings.
+ * </p>
  */
 public final class StringUtils {
 
-	/**
-	 * Class constructor.
-	 */
+    /**
+     * Class constructor.
+     */
     protected StringUtils() {
     }
 
     /**
-     * Method to convert an exception to string
+     * Method to convert an exception to string.
      *
      * @param e - exception to print
      * @return - exception in String format
@@ -38,7 +40,7 @@ public final class StringUtils {
     }
 
     /**
-     * Method to check if a string is empty
+     * Method to check if a string is empty.
      *
      * @param str - str to check
      * @return - boolean result
@@ -48,7 +50,7 @@ public final class StringUtils {
     }
 
     /**
-     * Method to check if a string is not empty
+     * Method to check if a string is not empty.
      *
      * @param str - str to check
      * @return - boolean result

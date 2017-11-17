@@ -7,7 +7,7 @@ import org.immutables.value.Value;
 import java.util.Optional;
 
 /**
- * <b>List Identities Request class.
+ * <p>List Identities Request class.
  * </p>
  */
 @Value.Immutable
@@ -36,7 +36,7 @@ public abstract class ListIdentitiesRequestVO extends BaseIdentityRequestVO {
     public abstract Optional<String> getLimit();
 
     /**
-     * Class toString method
+     * Class toString method.
      * @return String
      */
     @Override

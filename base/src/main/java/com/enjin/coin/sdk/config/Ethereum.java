@@ -5,17 +5,19 @@ import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 
 /**
- * <p>Config used throughout the sdk.</p>
+ * <p>
+ * Config used throughout the sdk.
+ * </p>
  */
 @Value.Immutable
 @Gson.TypeAdapters
 public class Ethereum {
 
-	/**
-	 * mode to use
-	 * 
-	 * @return String
-	 */
+    /**
+     * mode to use.
+     * 
+     * @return String
+     */
     @Value.Default
     @SerializedName("mode")
     public String getMode() {
@@ -23,7 +25,7 @@ public class Ethereum {
     }
 
     /**
-     * geth path
+     * geth path.
      * 
      * @return String
      */

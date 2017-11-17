@@ -3,7 +3,9 @@ package com.enjin.coin.sdk.util;
 import java.lang.reflect.Array;
 
 /**
- * <p>Functionality for working with arrays</p>
+ * <p>
+ * Functionality for working with arrays.
+ * </p>
  */
 public class ArrayUtils {
 

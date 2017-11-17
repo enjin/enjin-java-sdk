@@ -7,39 +7,41 @@ import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 
 /**
- * <p>Config used throughout the sdk.</p>
+ * <p>
+ * Config used throughout the sdk.
+ * </p>
  */
 @Value.Immutable
 @Gson.TypeAdapters
 public class Platform {
 
-	/**
-	 * The host to use
-	 * 
-	 * @return String
-	 */
+    /**
+     * The host to use.
+     * 
+     * @return String
+     */
     @Value.Default
     @SerializedName("host")
     public String getHost() {
         return "localhost";
     }
 
-	/**
-	 * The port to use
-	 * 
-	 * @return Integer
-	 */
+    /**
+     * The port to use.
+     * 
+     * @return Integer
+     */
     @Value.Default
     @SerializedName("port")
     public Integer getPort() {
         return ProtocolPort.HTTPS;
     }
-    
-	/**
-	 * The protocol to use
-	 * 
-	 * @return String
-	 */
+
+    /**
+     * The protocol to use.
+     * 
+     * @return String.
+     */
     @Value.Default
     @SerializedName("protocol")
     public String getProtocol() {
@@ -47,7 +49,7 @@ public class Platform {
     }
 
     /**
-     * Class toString method
+     * Class toString method.
      */
     @Override
     public String toString() {

@@ -7,7 +7,7 @@ import org.immutables.value.Value;
 import java.util.Optional;
 
 /**
- * <b>List Identities Response class.
+ * <p>List Identities Response class.
  * </p>
  */
 @Value.Immutable
@@ -36,7 +36,7 @@ public abstract class ListIdentitiesResponseVO {
     public abstract Optional<String> getPlayerName();
 
     /**
-     * Class toString method
+     * Class toString method.
      * @return String
      */
     @Override

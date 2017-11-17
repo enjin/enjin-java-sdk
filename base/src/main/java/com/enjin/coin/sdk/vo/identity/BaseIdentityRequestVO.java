@@ -7,7 +7,8 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * <b>Base Identity request class.
+ * <p>
+ * Base Identity request class.
  * </p>
  */
 @Gson.TypeAdapters
@@ -28,7 +29,7 @@ public abstract class BaseIdentityRequestVO {
     public abstract Optional<Map<String, Object>> getIdentity();
 
     /**
-     * Class toString method
+     * Class toString method.
      * @return String
      */
     @Override

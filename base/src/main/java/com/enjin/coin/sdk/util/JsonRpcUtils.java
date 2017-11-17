@@ -13,22 +13,24 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 /**
- * <p>Contains all logic for performing json rpc calls</p>
+ * <p>
+ * Contains all logic for performing json rpc calls.
+ * </p>
  */
 public class JsonRpcUtils {
 
     /**
-	 * Logger used by this class.
-	 */
+     * Logger used by this class.
+     */
     private static final Logger LOGGER = Logger.getLogger(JsonRpcUtils.class.getName());
 
     /**
      * Class constructor.
      */
     public JsonRpcUtils() {
-    	
+
     }
-    
+
     /** Whether we are in test mode or not. **/
     private boolean isInTestMode = false;
 
@@ -41,11 +43,10 @@ public class JsonRpcUtils {
     }
 
     /**
-	 * Set whether in test mode or not
-	 * 
-	 * @param isInTestMode
-	 *            true if in test mode / false if not
-	 */
+     * Set whether in test mode or not.
+     * 
+     * @param isInTestMode - true if in test mode / false if not
+     */
     public void setIsInTestMode(final boolean isInTestMode) {
         this.isInTestMode = isInTestMode;
     }
@@ -53,9 +54,9 @@ public class JsonRpcUtils {
     /**
      * Method to send a json rpc request.
      *
-     * @param url           - url to send request to
+     * @param url - url to send request to
      * @param responseClass - class type to convert to
-     * @param method        - method to call
+     * @param method - method to call
      * @return an object returned from the json rpc call
      */
     public Object sendJsonRpcRequest(final String url, final Class<?> responseClass, final String method) {
@@ -65,10 +66,10 @@ public class JsonRpcUtils {
     /**
      * Method to send a json rpc request.
      *
-     * @param url           - url to send request to
+     * @param url - url to send request to
      * @param responseClass - class type to convert to
-     * @param method        - method to call
-     * @param params        - map with the params to use
+     * @param method - method to call
+     * @param params - map with the params to use
      * @return an object returned from the json rpc call
      */
     public Object sendJsonRpcRequest(final String url, final Class<?> responseClass, final String method, final Map<String, Object> params) {
@@ -88,7 +89,8 @@ public class JsonRpcUtils {
             JSONRPC2Session jsonRpcSession = new JSONRPC2Session(serverURL);
             JSONRPC2SessionOptions jsonRPC2SessionOptions = jsonRpcSession.getOptions();
             jsonRPC2SessionOptions.setRequestContentType(ContentType.TEXT_JSON);
-            jsonRPC2SessionOptions.setAllowedResponseContentTypes(new String[]{ContentType.TEXT_JSON, ContentType.APPLICATION_JSON, ContentType.APPLICATION_JSON_RPC});
+            jsonRPC2SessionOptions
+                    .setAllowedResponseContentTypes(new String[] { ContentType.TEXT_JSON, ContentType.APPLICATION_JSON, ContentType.APPLICATION_JSON_RPC });
             jsonRpcSession.setOptions(jsonRPC2SessionOptions);
 
             String requestId = Utils.generateRandomId(isInTestMode);

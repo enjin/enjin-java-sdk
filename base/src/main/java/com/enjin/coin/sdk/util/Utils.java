@@ -3,12 +3,12 @@ package com.enjin.coin.sdk.util;
 import java.util.Random;
 
 /**
- * <p>Any utility Functionality required for the sdk</p>
+ * <p>Any utility Functionality required for the sdk.</p>
  */
 public class Utils {
 
     /**
-     * Method to generate a randomId
+     * Method to generate a randomId.
      *
      * @param inTestMode - whether we are in testmode or not
      * @return - a randomId

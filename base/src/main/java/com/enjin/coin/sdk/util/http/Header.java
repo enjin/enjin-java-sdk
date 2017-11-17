@@ -1,11 +1,13 @@
 package com.enjin.coin.sdk.util.http;
 
 /**
- * <p>Header related constants</p>
+ * <p>
+ * Header related constants.
+ * </p>
  */
 public class Header {
 
-	/** accept header. **/
+    /** accept header. **/
     public static final String ACCEPT = "Accept";
 
     /** content-type header. **/

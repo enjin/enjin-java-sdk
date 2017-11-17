@@ -7,44 +7,46 @@ import org.immutables.value.Value;
 import java.util.Optional;
 
 /**
- * <p>Get Event Response class.</p>
+ * <p>
+ * Get Event Response class.
+ * </p>
  */
 @Value.Immutable
 @Gson.TypeAdapters(emptyAsNulls = true)
 public abstract class GetEventResponseVO {
 
-	/**
-	 * Method to get the data.
-	 * @return Optional<GetEventDataVO>
-	 */
+    /**
+     * Method to get the data.
+     * @return Optional<GetEventDataVO>
+     */
     @SerializedName("data")
     public abstract Optional<GetEventDataVO> getData();
 
-	/**
-	 * Method to get the eventId.
-	 * @return Optional<String>
-	 */
+    /**
+     * Method to get the eventId.
+     * @return Optional<String>
+     */
     @SerializedName("event_id")
     public abstract Optional<String> getEventId();
 
-	/**
-	 * Method to get the eventType.
-	 * @return Optional<String>
-	 */
+    /**
+     * Method to get the eventType.
+     * @return Optional<String>
+     */
     @SerializedName("event_type")
     public abstract Optional<String> getEventType();
 
-	/**
-	 * Method to get the timestamp.
-	 * @return Optional<String>
-	 */
+    /**
+     * Method to get the timestamp.
+     * @return Optional<String>
+     */
     @SerializedName("timestamp")
     public abstract Optional<String> getTimestamp();
 
-	/**
-	 * Method to get the appId.
-	 * @return Optional<String>
-	 */
+    /**
+     * Method to get the appId.
+     * @return Optional<String>
+     */
     @SerializedName("app_id")
     public abstract Optional<String> getAppId();
 
@@ -53,8 +55,8 @@ public abstract class GetEventResponseVO {
      */
     @Override
     public String toString() {
-        return "GetEventResponseVO [eventId=" + getEventId().orElse(null) + ", eventType=" + getEventType().orElse(null)
-                + ", timestamp=" + getTimestamp().orElse(null) + ", appId=" + getAppId().orElse(null) + "]";
+        return "GetEventResponseVO [eventId=" + getEventId().orElse(null) + ", eventType=" + getEventType().orElse(null) + ", timestamp="
+                + getTimestamp().orElse(null) + ", appId=" + getAppId().orElse(null) + "]";
     }
 
 }

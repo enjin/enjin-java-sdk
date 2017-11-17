@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * <b>Update Identity Response class.
+ * <p>Update Identity Response class.
  * </p>
  */
 @Value.Immutable
@@ -25,7 +25,7 @@ public abstract class UpdateIdentityResponseVO {
     public abstract Optional<Map<String, Object>> getIdentityMap();
 
     /**
-     * Class toString method
+     * Class toString method.
      * @return String
      */
     @Override

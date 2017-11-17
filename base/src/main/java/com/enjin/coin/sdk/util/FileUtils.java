@@ -7,13 +7,15 @@ import java.nio.file.Paths;
 import java.util.logging.Logger;
 
 /**
- * <p>Contains all utility methods for working with files</p>
+ * <p>
+ * Contains all utility methods for working with files.
+ * </p>
  */
 public final class FileUtils {
 
     /**
-	 * Logger used by this class.
-	 */
+     * Logger used by this class.
+     */
     private static final Logger LOGGER = Logger.getLogger(JsonUtils.class.getName());
 
     /**
@@ -23,7 +25,7 @@ public final class FileUtils {
     }
 
     /**
-     * Method to get file contents into a string
+     * Method to get file contents into a string.
      *
      * @param filePath - path to get contents from
      * @return - A string with the contents of the file

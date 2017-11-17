@@ -13,9 +13,9 @@ import java.util.ServiceLoader;
  */
 public final class GsonUtils {
 
-	/** Standard gson element **/
+	/** Standard gson element. **/
     public static final Gson GSON;
-    /** Gson element with pretty print configured **/
+    /** Gson element with pretty print configured. **/
     public static final Gson GSON_PRETTY_PRINT;
 
     static {

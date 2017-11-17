@@ -7,7 +7,8 @@ import org.immutables.value.Value;
 import java.util.Optional;
 
 /**
- * <b>Create Identity Response class.
+ * <p>
+ * Create Identity Response class.
  * </p>
  */
 @Value.Immutable
@@ -29,7 +30,7 @@ public abstract class CreateIdentityResponseVO {
     public abstract Optional<String> getIdentityCode();
 
     /**
-     * Class toString method
+     * Class toString method.
      * @return String
      */
     @Override

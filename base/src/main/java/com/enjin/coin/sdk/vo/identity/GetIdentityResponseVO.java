@@ -7,7 +7,7 @@ import org.immutables.value.Value;
 import java.util.Optional;
 
 /**
- * <b>Get Identity Response class.
+ * <p>Get Identity Response class.
  * </p>
  */
 @Value.Immutable
@@ -43,7 +43,7 @@ public abstract class GetIdentityResponseVO {
     public abstract Optional<String> getUuid();
 
     /**
-     * Class toString method
+     * Class toString method.
      * @return String
      */
     @Override

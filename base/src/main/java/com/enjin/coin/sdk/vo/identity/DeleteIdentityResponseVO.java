@@ -7,7 +7,7 @@ import org.immutables.value.Value;
 import java.util.Optional;
 
 /**
- * <b>Delete Identity Response class.
+ * <p>Delete Identity Response class.
  * </p>
  */
 @Value.Immutable
@@ -22,7 +22,7 @@ public abstract class DeleteIdentityResponseVO {
     public abstract Optional<Boolean> getResult();
 
     /**
-     * Class toString method
+     * Class toString method.
      * @return String
      */
     @Override

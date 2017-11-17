@@ -4,7 +4,7 @@ import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 
 /**
- * <b>Get Identity Request class.
+ * <p>Get Identity Request class.
  * </p>
  */
 @Value.Immutable
