@@ -79,7 +79,7 @@ public final class JsonUtils {
         // JSON from file to Object
         try {
             LOGGER.fine(String.format("filePath:%s", filePath));
-            InputStream inputStream = new FileInputStream(filePath); 
+            InputStream inputStream = new FileInputStream(filePath);
             Reader fileReader = new InputStreamReader(inputStream, Constants.CHARSET_UTF_8);
             JsonReader jsonReader = new JsonReader(fileReader);
             responseObject = gson.fromJson(jsonReader, responseClass);

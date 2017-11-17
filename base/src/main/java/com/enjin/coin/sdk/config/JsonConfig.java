@@ -84,6 +84,7 @@ public class JsonConfig {
     @SuppressWarnings("unchecked")
     private static <T extends JsonConfig> T loadExisting(final File file, final Class<T> clazz) throws Exception {
         FileReader fileReader = new FileReader(file);
+
         return (T) JsonUtils.convertJsonFromFileReaderToObject(GSON, fileReader, clazz);
     }
 
@@ -94,6 +95,7 @@ public class JsonConfig {
      */
     public boolean save(final File file) {
         boolean success = true;
+
         try (FileWriter fw = new FileWriter(file)) {
             if (file.getParentFile() != null) {
                 boolean mkdirsResult = file.getParentFile().mkdirs();

@@ -122,5 +122,4 @@ public abstract class GetEventDataVO {
                 + ", getGetEventDataBalancesVO()=" + getGetEventDataBalancesVO() + "]";
     }
 
-    
 }

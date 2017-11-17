@@ -90,6 +90,8 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
 
             final String eventType = getEventResponseVO.getEventType().get();
             final GetEventDataVO data = getEventResponseVO.getData().get();
+            assertThat(data).isNotNull();
+            assertThat(data.toString()).isNotNull();
             final Map<String, Object> identityMap = data.getIdentityMap().orElse(new HashMap<>());
 
             switch (eventType) {

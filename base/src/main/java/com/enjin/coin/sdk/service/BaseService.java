@@ -49,7 +49,7 @@ public abstract class BaseService {
         }
 
         trustedPlatform = config.getTrustedPlatform();
-        isInTestMode = config.isInTestMode() == null ? false : config.isInTestMode();
+        isInTestMode = config.isInTestMode();
         Integer totalExecutors = config.getTotalExecutors();
         executorService = Executors.newFixedThreadPool(totalExecutors);
 
