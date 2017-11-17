@@ -16,7 +16,7 @@ public class Utils {
     public static String generateRandomId(boolean inTestMode) {
         //If in test mode - send the test mode id - otherwise create an id
         if (inTestMode) {
-            return Constants.testModeId;
+            return Constants.TEST_MODE_ID;
         }
 
         int randomInt1 = generateRandomInt(Constants.ONE_THOUSAND, Constants.ONE_HUNDRED_THOUSAND);
