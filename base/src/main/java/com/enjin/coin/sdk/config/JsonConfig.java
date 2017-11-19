@@ -1,17 +1,17 @@
 package com.enjin.coin.sdk.config;
 
+import com.enjin.coin.sdk.util.GsonUtils;
+import com.enjin.coin.sdk.util.JsonUtils;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
 import java.util.logging.Logger;
-
-import com.enjin.coin.sdk.util.GsonUtils;
-import com.enjin.coin.sdk.util.JsonUtils;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 
 /**
  * <p>
