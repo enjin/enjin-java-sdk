@@ -1,0 +1,17 @@
+{
+  "event":"Event",
+  "data": {
+    "event_id": "123456790",
+    "event_type": "identity_linked",
+    "timestamp": "1510000001",
+    "app_id": "1234",
+    "data": {
+      "identity": {
+        "identity_id": "123456",
+        "ethereum_address": "0x0000000000000000000000000000000000000000",
+        "uuid": "069a79f4-44e9-4726-a5be-fca90e38aaf5",
+        "player_name": "notch"
+      }
+    }
+  }
+}

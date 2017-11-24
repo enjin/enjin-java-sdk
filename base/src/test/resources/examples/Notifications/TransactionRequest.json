@@ -1,0 +1,23 @@
+{
+  "event":"TransactionRequest.Created",
+  "data": {
+    "txr_id": 234,
+    "identity": {
+      "identity_id": "12345",
+      "player_name": "joe",
+      "ethereum_address": "0x0000000000000000000000000000000000000000"
+    },
+    "recipient": {
+      "identity_id": "54321",
+      "player_name": "alice",
+      "ethereum_address": "0x0000000000000000000000000000000000000000"
+    },
+    "type": "buy",
+    "icon": "https://enjincoin.io/images/loading.png",
+    "title": "Buy Golden Sword with Mineplex Coins",
+    "value": {
+      "45678": "100"
+    },
+    "state": "pending"
+  }
+}

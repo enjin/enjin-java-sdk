@@ -8,7 +8,9 @@ import com.enjin.coin.sdk.vo.token.GetTokenRequestVO;
 import com.enjin.coin.sdk.vo.token.GetTokenResponseVO;
 
 /**
- * <p>Contains services related to tokens.</p>
+ * <p>
+ * Contains services related to tokens.
+ * </p>
  */
 public final class TokensAsyncServiceImpl extends TokensServiceImpl implements TokensAsyncService {
 

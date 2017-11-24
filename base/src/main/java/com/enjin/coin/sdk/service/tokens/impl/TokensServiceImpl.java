@@ -20,46 +20,44 @@ import com.enjin.coin.sdk.vo.token.GetTokenResponseVO;
  */
 public class TokensServiceImpl extends BaseService implements TokensService {
 
-	/**
-	 * Logger used by this class.
-	 */
-	private static final Logger LOGGER = Logger.getLogger(TokensServiceImpl.class.getName());
+    /**
+     * Logger used by this class.
+     */
+    private static final Logger LOGGER = Logger.getLogger(TokensServiceImpl.class.getName());
 
-	/**
-	 * Class constructor.
-	 *
-	 * @param config
-	 *            - the config to use
-	 */
-	public TokensServiceImpl(final Config config) {
-		super(config);
-	}
+    /**
+     * Class constructor.
+     *
+     * @param config - the config to use
+     */
+    public TokensServiceImpl(final Config config) {
+        super(config);
+    }
 
-	@Override
-	public final GetTokenResponseVO[] getToken(final GetTokenRequestVO request) {
-		GetTokenResponseVO[] response = null;
+    @Override
+    public final GetTokenResponseVO[] getToken(final GetTokenRequestVO request) {
+        GetTokenResponseVO[] response = null;
 
-		if (ObjectUtils.isNull(request)) {
-			LOGGER.warning("Tokens.get request is null.");
-			return response;
-		}
+        if (ObjectUtils.isNull(request)) {
+            LOGGER.warning("Tokens.get request is null.");
+            return response;
+        }
 
-		if (StringUtils.isEmpty(request.getAppId()) || StringUtils.isEmpty(request.getAfterTokenId()) || StringUtils.isEmpty(request.getLimit())) {
-			LOGGER.warning("Tokens.get parameters may be empty or null.");
-			return response;
-		}
-		
-		Map<String, Object> params = new HashMap<>();
-		params.put("app_id", request.getAppId().get());
-		params.put("after_token_id", request.getAfterTokenId().get());
-		params.put("limit", request.getLimit().get());
+        if (StringUtils.isEmpty(request.getAppId()) || StringUtils.isEmpty(request.getAfterTokenId()) || StringUtils.isEmpty(request.getLimit())) {
+            LOGGER.warning("Tokens.get parameters may be empty or null.");
+            return response;
+        }
 
-		// Construct new request
-		String method = Constants.METHOD_TOKENS_GET;
+        Map<String, Object> params = new HashMap<>();
+        params.put("app_id", request.getAppId().get());
+        params.put("after_token_id", request.getAfterTokenId().get());
+        params.put("limit", request.getLimit().get());
 
-		response = (GetTokenResponseVO[]) getJsonRpcUtils().sendJsonRpcRequest(getTokensUrl(), GetTokenResponseVO[].class,
-				method, params);
+        // Construct new request
+        String method = Constants.METHOD_TOKENS_GET;
 
-		return response;
-	}
+        response = (GetTokenResponseVO[]) getJsonRpcUtils().sendJsonRpcRequest(getTokensUrl(), GetTokenResponseVO[].class, method, params);
+
+        return response;
+    }
 }

@@ -17,6 +17,7 @@ public abstract class GetTokenRequestVO {
 
     /**
      * Method to get the tokenId.
+     * 
      * @return Optional
      */
     @SerializedName("app_id")
@@ -24,12 +25,10 @@ public abstract class GetTokenRequestVO {
 
     @SerializedName("after_token_id")
     public abstract Optional<String> getAfterTokenId();
-    
+
     @SerializedName("limit")
     public abstract Optional<String> getLimit();
-    
-    
-    
+
     /**
      * Class toString method.
      */

@@ -8,7 +8,9 @@ import com.enjin.coin.sdk.vo.event.GetEventRequestVO;
 import com.enjin.coin.sdk.vo.event.GetEventResponseVO;
 
 /**
- * <p>Asynchronous implementation of EventsService.</p>
+ * <p>
+ * Asynchronous implementation of EventsService.
+ * </p>
  */
 public final class EventsAsyncServiceImpl extends EventsServiceImpl implements EventsAsyncService {
 

@@ -14,7 +14,9 @@ import com.enjin.coin.sdk.vo.identity.UpdateIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.UpdateIdentityResponseVO;
 
 /**
- * <p>Asynchronous implementation of IdentitiesService.</p>
+ * <p>
+ * Asynchronous implementation of IdentitiesService.
+ * </p>
  */
 public final class IdentitiesAsyncServiceImpl extends IdentitiesServiceImpl implements IdentitiesAsyncService {
 
@@ -31,7 +33,6 @@ public final class IdentitiesAsyncServiceImpl extends IdentitiesServiceImpl impl
     public Future<GetIdentityResponseVO[]> getIdentityAsync(final GetIdentityRequestVO request) {
         return getExecutorService().submit(() -> getIdentity(request));
     }
-
 
     @Override
     public Future<CreateIdentityResponseVO> createIdentityAsync(final CreateIdentityRequestVO request) {

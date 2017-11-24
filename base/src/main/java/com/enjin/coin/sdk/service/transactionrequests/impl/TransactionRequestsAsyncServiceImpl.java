@@ -12,10 +12,11 @@ import com.enjin.coin.sdk.vo.transactionrequest.GetTransactionRequestRequestVO;
 import com.enjin.coin.sdk.vo.transactionrequest.GetTransactionRequestResponseVO;
 
 /**
- * <p>Contains services related to transaction requests.</p>
+ * <p>
+ * Contains services related to transaction requests.
+ * </p>
  */
-public final class TransactionRequestsAsyncServiceImpl extends TransactionRequestsServiceImpl
-        implements TransactionRequestsAsyncService {
+public final class TransactionRequestsAsyncServiceImpl extends TransactionRequestsServiceImpl implements TransactionRequestsAsyncService {
 
     /**
      * Class constructor.
@@ -27,23 +28,17 @@ public final class TransactionRequestsAsyncServiceImpl extends TransactionReques
     }
 
     @Override
-    public Future<GetTransactionRequestResponseVO[]> getTransactionRequestAsync(
-            final GetTransactionRequestRequestVO request
-    ) {
+    public Future<GetTransactionRequestResponseVO[]> getTransactionRequestAsync(final GetTransactionRequestRequestVO request) {
         return getExecutorService().submit(() -> getTransactionRequest(request));
     }
 
     @Override
-    public Future<CreateTransactionRequestResponseVO> createTransactionRequestAsync(
-            final CreateTransactionRequestRequestVO request
-    ) {
+    public Future<CreateTransactionRequestResponseVO> createTransactionRequestAsync(final CreateTransactionRequestRequestVO request) {
         return getExecutorService().submit(() -> createTransactionRequest(request));
     }
 
     @Override
-    public Future<CancelTransactionRequestResponseVO> cancelTransactionRequestAsync(
-            final CancelTransactionRequestRequestVO request
-    ) {
+    public Future<CancelTransactionRequestResponseVO> cancelTransactionRequestAsync(final CancelTransactionRequestRequestVO request) {
         return getExecutorService().submit(() -> cancelTransactionRequest(request));
     }
 

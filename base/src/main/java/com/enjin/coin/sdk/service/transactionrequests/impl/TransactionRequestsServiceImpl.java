@@ -20,7 +20,9 @@ import com.enjin.coin.sdk.vo.transactionrequest.GetTransactionRequestResponseVO;
 import com.enjin.coin.sdk.vo.transactionrequest.ImmutableCancelTransactionRequestResponseVO;
 
 /**
- * <p>Contains services related to transaction requests.</p>
+ * <p>
+ * Contains services related to transaction requests.
+ * </p>
  */
 public class TransactionRequestsServiceImpl extends BaseService implements TransactionRequestsService {
 
@@ -55,13 +57,12 @@ public class TransactionRequestsServiceImpl extends BaseService implements Trans
             LOGGER.warning("2. TransactionRequests.get parameters may be empty or null.");
             return response;
         }
-        if (StringUtils.isEmpty(request.getType()) || StringUtils.isEmpty(request.getAfterTxrId()) 
-        	|| StringUtils.isEmpty(request.getLimit()) || StringUtils.isEmpty(request.getCurrency())) {
+        if (StringUtils.isEmpty(request.getType()) || StringUtils.isEmpty(request.getAfterTxrId()) || StringUtils.isEmpty(request.getLimit())
+                || StringUtils.isEmpty(request.getCurrency())) {
             LOGGER.warning("3. TransactionRequests.get parameters may be empty or null.");
             return response;
         }
 
-        
         Map<String, Object> params = new HashMap<>();
         params.put("auth", request.getAuth().get());
         params.put("identity", request.getIdentity().get());
@@ -75,17 +76,14 @@ public class TransactionRequestsServiceImpl extends BaseService implements Trans
         // Construct new request
         String method = Constants.METHOD_TRANSACTION_REQUESTS_GET;
 
-        response = (GetTransactionRequestResponseVO[]) getJsonRpcUtils()
-                .sendJsonRpcRequest(getTransactionRequestsUrl(), GetTransactionRequestResponseVO[].class, method, params);
+        response = (GetTransactionRequestResponseVO[]) getJsonRpcUtils().sendJsonRpcRequest(getTransactionRequestsUrl(),
+                GetTransactionRequestResponseVO[].class, method, params);
 
         return response;
     }
 
-   
     @Override
-    public final CreateTransactionRequestResponseVO createTransactionRequest(
-            final CreateTransactionRequestRequestVO request
-    ) {
+    public final CreateTransactionRequestResponseVO createTransactionRequest(final CreateTransactionRequestRequestVO request) {
         CreateTransactionRequestResponseVO response = null;
 
         if (ObjectUtils.isNull(request)) {
@@ -93,9 +91,8 @@ public class TransactionRequestsServiceImpl extends BaseService implements Trans
             return response;
         }
 
-        if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentityMap())
-                || MapUtils.isEmpty(request.getRecipientMap()) || StringUtils.isEmpty(request.getType())
-                || StringUtils.isEmpty(request.getIcon()) || StringUtils.isEmpty(request.getTitle())
+        if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentityMap()) || MapUtils.isEmpty(request.getRecipientMap())
+                || StringUtils.isEmpty(request.getType()) || StringUtils.isEmpty(request.getIcon()) || StringUtils.isEmpty(request.getTitle())
                 || MapUtils.isEmpty(request.getValueMap())) {
             LOGGER.warning("TransactionRequests.create parameters may be empty or null.");
             return response;
@@ -113,17 +110,14 @@ public class TransactionRequestsServiceImpl extends BaseService implements Trans
         // Construct new request
         String method = Constants.METHOD_TRANSACTION_REQUESTS_CREATE;
 
-        response = (CreateTransactionRequestResponseVO) getJsonRpcUtils()
-                .sendJsonRpcRequest(getTransactionRequestsUrl(), CreateTransactionRequestResponseVO.class,
-                        method, params);
+        response = (CreateTransactionRequestResponseVO) getJsonRpcUtils().sendJsonRpcRequest(getTransactionRequestsUrl(),
+                CreateTransactionRequestResponseVO.class, method, params);
 
         return response;
     }
 
     @Override
-    public final CancelTransactionRequestResponseVO cancelTransactionRequest(
-            final CancelTransactionRequestRequestVO request
-    ) {
+    public final CancelTransactionRequestResponseVO cancelTransactionRequest(final CancelTransactionRequestRequestVO request) {
         CancelTransactionRequestResponseVO response = null;
 
         if (ObjectUtils.isNull(request)) {
@@ -143,12 +137,9 @@ public class TransactionRequestsServiceImpl extends BaseService implements Trans
         // Construct new request
         String method = Constants.METHOD_TRANSACTION_REQUESTS_CANCEL;
 
-        Boolean result = (Boolean) getJsonRpcUtils()
-                .sendJsonRpcRequest(getTransactionRequestsUrl(), Boolean.class, method, params);
+        Boolean result = (Boolean) getJsonRpcUtils().sendJsonRpcRequest(getTransactionRequestsUrl(), Boolean.class, method, params);
 
-        response = ImmutableCancelTransactionRequestResponseVO.builder()
-                .setResult(result)
-                .build();
+        response = ImmutableCancelTransactionRequestResponseVO.builder().setResult(result).build();
 
         return response;
     }
