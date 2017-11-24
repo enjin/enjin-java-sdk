@@ -7,7 +7,6 @@ import com.enjin.coin.sdk.service.identities.IdentitiesAsyncService;
 import com.enjin.coin.sdk.service.identities.impl.IdentitiesAsyncServiceImpl;
 import com.enjin.coin.sdk.service.tokens.TokensAsyncService;
 import com.enjin.coin.sdk.service.tokens.impl.TokensAsyncServiceImpl;
-import com.enjin.coin.sdk.service.transactionrequests.EnjinCoinAsync;
 import com.enjin.coin.sdk.service.transactionrequests.TransactionRequestsAsyncService;
 import com.enjin.coin.sdk.service.transactionrequests.impl.TransactionRequestsAsyncServiceImpl;
 import com.enjin.coin.sdk.util.ObjectUtils;

@@ -1,5 +1,9 @@
 package com.enjin.coin.sdk.service.identities.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Logger;
+
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.service.BaseService;
 import com.enjin.coin.sdk.service.identities.IdentitiesService;
@@ -14,14 +18,8 @@ import com.enjin.coin.sdk.vo.identity.DeleteIdentityResponseVO;
 import com.enjin.coin.sdk.vo.identity.GetIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.GetIdentityResponseVO;
 import com.enjin.coin.sdk.vo.identity.ImmutableDeleteIdentityResponseVO;
-import com.enjin.coin.sdk.vo.identity.ListIdentitiesRequestVO;
-import com.enjin.coin.sdk.vo.identity.ListIdentitiesResponseVO;
 import com.enjin.coin.sdk.vo.identity.UpdateIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.UpdateIdentityResponseVO;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Logger;
 
 /**
  * <p>Synchronous implementation of IdentitiesService.</p>
@@ -69,36 +67,6 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
         return response;
     }
 
-    @Override
-    public final ListIdentitiesResponseVO[] listIdentities(final ListIdentitiesRequestVO request) {
-        ListIdentitiesResponseVO[] response = null;
-
-        if (ObjectUtils.isNull(request)) {
-            LOGGER.warning("Identities.list request is null.");
-            return response;
-        }
-
-        if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentity())) {
-            LOGGER.warning("Identities.list parameters may be empty or null.");
-            return response;
-        }
-
-        Map<String, Object> params = new HashMap<>();
-        params.put("auth", request.getAuth().get());
-        params.put("identity", request.getIdentity().get());
-
-        request.getLinked().ifPresent(v -> params.put("linked", v));
-        request.getAfterIdentityId().ifPresent(v -> params.put("after_identity_id", v));
-        request.getLimit().ifPresent(v -> params.put("limit", v));
-
-        // Construct new request
-        String method = Constants.METHOD_IDENTITIES_LIST;
-
-        response = (ListIdentitiesResponseVO[]) getJsonRpcUtils()
-                .sendJsonRpcRequest(getIdentitiesUrl(), ListIdentitiesResponseVO[].class, method, params);
-
-        return response;
-    }
 
     @Override
     public final CreateIdentityResponseVO createIdentity(final CreateIdentityRequestVO request) {

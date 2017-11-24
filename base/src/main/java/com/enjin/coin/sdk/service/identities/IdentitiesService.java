@@ -6,8 +6,6 @@ import com.enjin.coin.sdk.vo.identity.DeleteIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.DeleteIdentityResponseVO;
 import com.enjin.coin.sdk.vo.identity.GetIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.GetIdentityResponseVO;
-import com.enjin.coin.sdk.vo.identity.ListIdentitiesRequestVO;
-import com.enjin.coin.sdk.vo.identity.ListIdentitiesResponseVO;
 import com.enjin.coin.sdk.vo.identity.UpdateIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.UpdateIdentityResponseVO;
 
@@ -23,14 +21,6 @@ public interface IdentitiesService {
      * @return - GetIdentityResponseVO
      */
     GetIdentityResponseVO getIdentity(GetIdentityRequestVO request);
-
-    /**
-     * Method to list the identities.
-     *
-     * @param request - list identities request vo
-     * @return - ListIdentitiesResponseVO array
-     */
-    ListIdentitiesResponseVO[] listIdentities(ListIdentitiesRequestVO request);
 
     /**
      * Method to create an identity.

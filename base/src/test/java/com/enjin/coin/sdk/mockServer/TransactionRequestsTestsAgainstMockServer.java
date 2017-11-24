@@ -1,5 +1,13 @@
 package com.enjin.coin.sdk.mockServer;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.junit.Before;
+import org.junit.Test;
+
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.config.ImmutableConfig;
 import com.enjin.coin.sdk.service.EnjinCoinClient;
@@ -10,15 +18,6 @@ import com.enjin.coin.sdk.vo.transactionrequest.GetTransactionRequestRequestVO;
 import com.enjin.coin.sdk.vo.transactionrequest.ImmutableCancelTransactionRequestRequestVO;
 import com.enjin.coin.sdk.vo.transactionrequest.ImmutableCreateTransactionRequestRequestVO;
 import com.enjin.coin.sdk.vo.transactionrequest.ImmutableGetTransactionRequestRequestVO;
-import com.enjin.coin.sdk.vo.transactionrequest.ImmutableListTransactionRequestsRequestVO;
-import com.enjin.coin.sdk.vo.transactionrequest.ListTransactionRequestsRequestVO;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
 
@@ -63,42 +62,6 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
                         .satisfies(o2 -> assertThat(o2.getValueMap()).isNotEmpty()
                                 .hasValueSatisfying(v -> assertThat(v).containsKeys(value_map_keys)
                                         .extracting(value_map_keys).doesNotContainNull())));
-    }
-
-    @Test
-    public void testListTransactionRequests() {
-        Map<String, Object> listIdentityMap = new HashMap<>();
-        listIdentityMap.put("identity_id", "12345");
-        Map<String, Object> listRecipientMap = new HashMap<>();
-        listRecipientMap.put("identity_id", "54321");
-
-        ListTransactionRequestsRequestVO listTransactionRequestsRequestVO = ImmutableListTransactionRequestsRequestVO.builder()
-                .setAuth("xxxxxxxx")
-                .setIdentityMap(listIdentityMap)
-                .setAppId("123")
-                .setRecipientMap(listRecipientMap)
-                .setType("buy")
-                .setAfterTxrId("1234567")
-                .setLimit("50")
-                .setCurrency("23456")
-                .build();
-        String[] keys = {IDENTITY_ID_KEY, ETHEREUM_ADDRESS_KEY, PLAYER_NAME_KEY};
-        assertThat(listTransactionRequestsRequestVO).isNotNull()
-                .satisfies(o -> assertThat(o.toString()).isNotEmpty())
-                .satisfies(o -> assertThat(transactionRequestsService.listTransactionRequests(o)).isNotNull()
-                        .allSatisfy(i -> assertThat(i).isNotNull()
-                                .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
-                                .satisfies(o2 -> assertThat(o2.getTxrId()).isNotEmpty())
-                                .satisfies(o2 -> assertThat(o2.getIdentityMap()).isNotEmpty()
-                                        .hasValueSatisfying(v -> assertThat(v).containsKeys(keys)
-                                                .extracting(keys).doesNotContainNull()))
-                                .satisfies(o2 -> assertThat(o2.getRecipientMap()).isNotEmpty()
-                                        .hasValueSatisfying(v -> assertThat(v).containsKeys(keys)
-                                                .extracting(keys).doesNotContainNull()))
-                                .satisfies(o2 -> assertThat(o2.getType()).isNotEmpty())
-                                .satisfies(o2 -> assertThat(o2.getIcon()).isNotEmpty())
-                                .satisfies(o2 -> assertThat(o2.getTitle()).isNotEmpty())
-                                .satisfies(o2 -> assertThat(o2.getValueMap()).isNotEmpty())));
     }
 
     @Test

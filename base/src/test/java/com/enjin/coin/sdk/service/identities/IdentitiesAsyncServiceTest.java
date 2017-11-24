@@ -1,5 +1,19 @@
 package com.enjin.coin.sdk.service.identities;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.Future;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.service.identities.impl.IdentitiesAsyncServiceImpl;
 import com.enjin.coin.sdk.util.JsonRpcUtils;
@@ -14,27 +28,10 @@ import com.enjin.coin.sdk.vo.identity.ImmutableCreateIdentityResponseVO;
 import com.enjin.coin.sdk.vo.identity.ImmutableDeleteIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.ImmutableGetIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.ImmutableGetIdentityResponseVO;
-import com.enjin.coin.sdk.vo.identity.ImmutableListIdentitiesRequestVO;
-import com.enjin.coin.sdk.vo.identity.ImmutableListIdentitiesResponseVO;
 import com.enjin.coin.sdk.vo.identity.ImmutableUpdateIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.ImmutableUpdateIdentityResponseVO;
-import com.enjin.coin.sdk.vo.identity.ListIdentitiesRequestVO;
-import com.enjin.coin.sdk.vo.identity.ListIdentitiesResponseVO;
 import com.enjin.coin.sdk.vo.identity.UpdateIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.UpdateIdentityResponseVO;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mockito;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.Future;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(IdentitiesAsyncServiceImpl.class)
@@ -82,65 +79,6 @@ public class IdentitiesAsyncServiceTest {
         Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
     }
 
-
-    @SuppressWarnings({"unchecked", "serial"})
-    @Test
-    public void testListIdentities_Success1() throws Exception {
-        ListIdentitiesRequestVO listIdentitiesRequestVO = ImmutableListIdentitiesRequestVO.builder()
-                .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>() {{
-                    put("key", "value");
-                }})
-                .build();
-
-        ListIdentitiesResponseVO[] returnedListIdentitiesResponseVO = new ListIdentitiesResponseVO[]{
-                ImmutableListIdentitiesResponseVO.builder().build()
-        };
-
-        JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
-        PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
-        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedListIdentitiesResponseVO);
-
-        identitiesAsyncService = new IdentitiesAsyncServiceImpl(enjinConfig);
-        Future<ListIdentitiesResponseVO[]> listIdentitiesResponseFutureVO = identitiesAsyncService.listIdentitiesAsync(listIdentitiesRequestVO);
-        assertThat(listIdentitiesResponseFutureVO).isNotNull();
-        ListIdentitiesResponseVO[] listIdentitiesResponseVO = listIdentitiesResponseFutureVO.get();
-        assertThat(listIdentitiesResponseVO).isNotNull()
-                .satisfies(o -> assertThat(o.length).isEqualTo(1));
-
-        PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
-        Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
-    }
-
-    @SuppressWarnings({"unchecked", "serial"})
-    @Test
-    public void testListIdentities_Success2() throws Exception {
-        ListIdentitiesRequestVO listIdentitiesRequestVO = ImmutableListIdentitiesRequestVO.builder()
-                .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>() {{
-                    put("key", "value");
-                }})
-                .build();
-
-        ListIdentitiesResponseVO[] returnedListIdentitiesResponseVO = new ListIdentitiesResponseVO[]{
-                ImmutableListIdentitiesResponseVO.builder().build(),
-                ImmutableListIdentitiesResponseVO.builder().build()
-        };
-
-        JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
-        PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
-        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedListIdentitiesResponseVO);
-
-        identitiesAsyncService = new IdentitiesAsyncServiceImpl(enjinConfig);
-        Future<ListIdentitiesResponseVO[]> listIdentitiesResponseFutureVO = identitiesAsyncService.listIdentitiesAsync(listIdentitiesRequestVO);
-        assertThat(listIdentitiesResponseFutureVO).isNotNull();
-        ListIdentitiesResponseVO[] listIdentitiesResponseVO = listIdentitiesResponseFutureVO.get();
-        assertThat(listIdentitiesResponseVO).isNotNull()
-                .satisfies(o -> assertThat(o.length).isEqualTo(2));
-
-        PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
-        Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
-    }
 
 
     @SuppressWarnings({"unchecked", "serial"})

@@ -1,5 +1,13 @@
 package com.enjin.coin.sdk.mockServer;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.junit.Before;
+import org.junit.Test;
+
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.config.ImmutableConfig;
 import com.enjin.coin.sdk.service.EnjinCoinClient;
@@ -10,17 +18,8 @@ import com.enjin.coin.sdk.vo.identity.GetIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.ImmutableCreateIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.ImmutableDeleteIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.ImmutableGetIdentityRequestVO;
-import com.enjin.coin.sdk.vo.identity.ImmutableListIdentitiesRequestVO;
 import com.enjin.coin.sdk.vo.identity.ImmutableUpdateIdentityRequestVO;
-import com.enjin.coin.sdk.vo.identity.ListIdentitiesRequestVO;
 import com.enjin.coin.sdk.vo.identity.UpdateIdentityRequestVO;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
 
@@ -61,33 +60,6 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
                         .satisfies(o2 -> assertThat(o2.getPlayerName()).isNotEmpty()));
     }
 
-    @Test
-    public void testListIdentities() {
-        Map<String, Object> identityMap = new HashMap<>();
-        identityMap.put("identity_id", "123456");
-        identityMap.put("test_damien1", "test_damien1_value");
-        identityMap.put("test_damien2", "test_damien2_value");
-
-        String afterIdentityId = "after-1";
-        String limit = "limit1";
-        boolean linked = false;
-        ListIdentitiesRequestVO listIdentitiesRequestVO = ImmutableListIdentitiesRequestVO.builder()
-                .setAfterIdentityId(afterIdentityId)
-                .setAuth("xxzcxcxz")
-                .setLimit(limit)
-                .setLinked(linked)
-                .setIdentity(identityMap)
-                .build();
-        assertThat(listIdentitiesRequestVO).isNotNull()
-                .satisfies(o -> assertThat(o.toString()).isNotNull())
-                .satisfies(o -> assertThat(identitiesService.listIdentities(o)).isNotEmpty()
-                        .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
-                        .allSatisfy(i -> assertThat(i).isNotNull()
-                                .satisfies(o3 -> assertThat(o3.toString()).isNotEmpty())
-                                .satisfies(o3 -> assertThat(o3.getIdentityId()).isNotEmpty())
-                                .satisfies(o3 -> assertThat(o3.getEthereumAddress()).isNotEmpty())
-                                .satisfies(o3 -> assertThat(o3.getPlayerName()).isNotEmpty())));
-    }
 
     @Test
     public void testCreateIdentity() {

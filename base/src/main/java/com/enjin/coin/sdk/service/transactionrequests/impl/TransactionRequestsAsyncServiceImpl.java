@@ -1,5 +1,7 @@
 package com.enjin.coin.sdk.service.transactionrequests.impl;
 
+import java.util.concurrent.Future;
+
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.service.transactionrequests.TransactionRequestsAsyncService;
 import com.enjin.coin.sdk.vo.transactionrequest.CancelTransactionRequestRequestVO;
@@ -8,10 +10,6 @@ import com.enjin.coin.sdk.vo.transactionrequest.CreateTransactionRequestRequestV
 import com.enjin.coin.sdk.vo.transactionrequest.CreateTransactionRequestResponseVO;
 import com.enjin.coin.sdk.vo.transactionrequest.GetTransactionRequestRequestVO;
 import com.enjin.coin.sdk.vo.transactionrequest.GetTransactionRequestResponseVO;
-import com.enjin.coin.sdk.vo.transactionrequest.ListTransactionRequestsRequestVO;
-import com.enjin.coin.sdk.vo.transactionrequest.ListTransactionRequestsResponseVO;
-
-import java.util.concurrent.Future;
 
 /**
  * <p>Contains services related to transaction requests.</p>
@@ -33,13 +31,6 @@ public final class TransactionRequestsAsyncServiceImpl extends TransactionReques
             final GetTransactionRequestRequestVO request
     ) {
         return getExecutorService().submit(() -> getTransactionRequest(request));
-    }
-
-    @Override
-    public Future<ListTransactionRequestsResponseVO[]> listTransactionRequestsAsync(
-            final ListTransactionRequestsRequestVO request
-    ) {
-        return getExecutorService().submit(() -> listTransactionRequests(request));
     }
 
     @Override

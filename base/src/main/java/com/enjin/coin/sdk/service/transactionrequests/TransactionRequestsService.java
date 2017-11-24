@@ -6,8 +6,6 @@ import com.enjin.coin.sdk.vo.transactionrequest.CreateTransactionRequestRequestV
 import com.enjin.coin.sdk.vo.transactionrequest.CreateTransactionRequestResponseVO;
 import com.enjin.coin.sdk.vo.transactionrequest.GetTransactionRequestRequestVO;
 import com.enjin.coin.sdk.vo.transactionrequest.GetTransactionRequestResponseVO;
-import com.enjin.coin.sdk.vo.transactionrequest.ListTransactionRequestsRequestVO;
-import com.enjin.coin.sdk.vo.transactionrequest.ListTransactionRequestsResponseVO;
 
 /**
  * TransactionRequests service interface.
@@ -21,14 +19,6 @@ public interface TransactionRequestsService {
      * @return - GetTransactionRequestResponseVO
      */
     GetTransactionRequestResponseVO getTransactionRequest(GetTransactionRequestRequestVO request);
-
-    /**
-     * Method to list the transactionRequests.
-     *
-     * @param request - list the transactionRequest request vo's
-     * @return - ListTransactionRequestsResponseVO array
-     */
-    ListTransactionRequestsResponseVO[] listTransactionRequests(ListTransactionRequestsRequestVO request);
 
     /**
      * Method to create an transactionRequest.

@@ -1,5 +1,7 @@
 package com.enjin.coin.sdk.service.identities.impl;
 
+import java.util.concurrent.Future;
+
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.service.identities.IdentitiesAsyncService;
 import com.enjin.coin.sdk.vo.identity.CreateIdentityRequestVO;
@@ -8,12 +10,8 @@ import com.enjin.coin.sdk.vo.identity.DeleteIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.DeleteIdentityResponseVO;
 import com.enjin.coin.sdk.vo.identity.GetIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.GetIdentityResponseVO;
-import com.enjin.coin.sdk.vo.identity.ListIdentitiesRequestVO;
-import com.enjin.coin.sdk.vo.identity.ListIdentitiesResponseVO;
 import com.enjin.coin.sdk.vo.identity.UpdateIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.UpdateIdentityResponseVO;
-
-import java.util.concurrent.Future;
 
 /**
  * <p>Asynchronous implementation of IdentitiesService.</p>
@@ -34,10 +32,6 @@ public final class IdentitiesAsyncServiceImpl extends IdentitiesServiceImpl impl
         return getExecutorService().submit(() -> getIdentity(request));
     }
 
-    @Override
-    public Future<ListIdentitiesResponseVO[]> listIdentitiesAsync(final ListIdentitiesRequestVO request) {
-        return getExecutorService().submit(() -> listIdentities(request));
-    }
 
     @Override
     public Future<CreateIdentityResponseVO> createIdentityAsync(final CreateIdentityRequestVO request) {

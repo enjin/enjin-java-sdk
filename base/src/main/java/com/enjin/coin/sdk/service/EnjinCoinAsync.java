@@ -1,9 +1,9 @@
-package com.enjin.coin.sdk.service.transactionrequests;
+package com.enjin.coin.sdk.service;
 
-import com.enjin.coin.sdk.service.EnjinCoin;
 import com.enjin.coin.sdk.service.events.EventsAsyncService;
 import com.enjin.coin.sdk.service.identities.IdentitiesAsyncService;
 import com.enjin.coin.sdk.service.tokens.TokensAsyncService;
+import com.enjin.coin.sdk.service.transactionrequests.TransactionRequestsAsyncService;
 
 /**
  * <p>Interface for the EnjinCoin async client.</p>
