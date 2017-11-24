@@ -1,23 +1,66 @@
 {
-  "jsonrpc": "2.0",
-  "result": {
-    "txr_id": 12345,
-    "identity": {
-      "identity_id": "12345",
-      "player_name": "joe",
-      "ethereum_address": "0x0000000000000000000000000000000000000000"
-    },
-    "recipient": {
-      "identity_id": "12345",
-      "player_name": "alice",
-      "ethereum_address": "0x0000000000000000000000000000000000000000"
-    },
-    "type": "send",
-    "icon": "https://enjincoin.io/images/bubble.png",
-    "title": "Mineplex: /transfer alice 3 ENJ",
-    "value": {
-      "ENJ": "3000000000000000000"
-    }
-  },
-  "id": "1"
+	"jsonrpc": "2.0",
+	"result": [
+		{
+			"txr_id": 123,
+			"identity": {
+				"identity_id": "12345",
+				"player_name": "joe",
+				"ethereum_address": "0x0000000000000000000000000000000000000000"
+			},
+			"recipient": {
+				"identity_id": "54321",
+				"player_name": "alice",
+				"ethereum_address": "0x0000000000000000000000000000000000000000"
+			},
+			"type": "send",
+			"icon": "https://enjincoin.io/images/bubble.png",
+			"title": "Mineplex: /transfer alice 3 ENJ",
+			"value": {
+				"ENJ": "3000000000000000000"
+			},
+			"state": "confirmed"
+		},
+		{
+			"txr_id": 234,
+			"identity": {
+				"identity_id": "12345",
+				"player_name": "joe",
+				"ethereum_address": "0x0000000000000000000000000000000000000000"
+			},
+			"recipient": {
+				"identity_id": "54321",
+				"player_name": "alice",
+				"ethereum_address": "0x0000000000000000000000000000000000000000"
+			},
+			"type": "buy",
+			"icon": "https://enjincoin.io/images/loading.png",
+			"title": "Buy Golden Sword with Mineplex Coins",
+			"value": {
+				"45678": "100"
+			},
+			"state": "pending"
+		},
+		{
+			"txr_id": 345,
+			"identity": {
+				"identity_id": "12345",
+				"player_name": "joe",
+				"ethereum_address": "0x0000000000000000000000000000000000000000"
+			},
+			"recipient": {
+				"identity_id": "54321",
+				"player_name": "alice",
+				"ethereum_address": "0x0000000000000000000000000000000000000000"
+			},
+			"type": "sell",
+			"icon": "https://enjincoin.io/images/loading.png",
+			"title": "Sell Bronze Axe for Mineplex Coins",
+			"value": {
+				"67890": "1"
+			},
+			"state": "accepted"
+		}
+	],
+	"id": "1"
 }

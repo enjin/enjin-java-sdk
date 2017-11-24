@@ -2,7 +2,9 @@
   "jsonrpc": "2.0",
   "method": "get",
   "params": {
-    "token_id": "12345"
+    "app_id": "352",
+    "after_token_id": "123456",
+    "limit": "50"
   },
   "id": "1"
 }
