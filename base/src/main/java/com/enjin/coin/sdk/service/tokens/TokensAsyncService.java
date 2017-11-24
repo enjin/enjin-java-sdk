@@ -16,6 +16,6 @@ public interface TokensAsyncService extends TokensService {
      * @param request - token request object
      * @return - GetTokenResponseVO
      */
-    Future<GetTokenResponseVO> getTokenAsync(GetTokenRequestVO request);
+    Future<GetTokenResponseVO[]> getTokenAsync(GetTokenRequestVO request);
 
 }

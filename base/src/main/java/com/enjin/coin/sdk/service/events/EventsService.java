@@ -14,5 +14,5 @@ public interface EventsService {
      * @param request - get event request vo
      * @return - GetEventResponseVO
      */
-    GetEventResponseVO getEvent(GetEventRequestVO request);
+    GetEventResponseVO[] getEvent(GetEventRequestVO request);
 }

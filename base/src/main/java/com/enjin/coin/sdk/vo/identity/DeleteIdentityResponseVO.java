@@ -1,10 +1,9 @@
 package com.enjin.coin.sdk.vo.identity;
 
-import com.google.gson.annotations.SerializedName;
+import java.util.Optional;
+
 import org.immutables.gson.Gson;
 import org.immutables.value.Value;
-
-import java.util.Optional;
 
 /**
  * <p>Delete Identity Response class.
@@ -18,7 +17,6 @@ public abstract class DeleteIdentityResponseVO {
      * Method to get the result.
      * @return Optional
      */
-    @SerializedName("result")
     public abstract Optional<Boolean> getResult();
 
     /**

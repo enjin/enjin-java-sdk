@@ -18,7 +18,7 @@ public interface TransactionRequestsService {
      * @param request - get the transactionRequest request vo
      * @return - GetTransactionRequestResponseVO
      */
-    GetTransactionRequestResponseVO getTransactionRequest(GetTransactionRequestRequestVO request);
+    GetTransactionRequestResponseVO[] getTransactionRequest(GetTransactionRequestRequestVO request);
 
     /**
      * Method to create an transactionRequest.

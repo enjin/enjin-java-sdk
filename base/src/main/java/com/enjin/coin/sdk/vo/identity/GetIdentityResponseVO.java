@@ -5,6 +5,8 @@ import java.util.Optional;
 import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * <p>Get Identity Response class.
  * </p>
@@ -14,9 +16,34 @@ import org.immutables.value.Value;
 public abstract class GetIdentityResponseVO {
 
     /**
-     * Method to get the GetIdentityDetailsResponseVO.
+     * Method to get the identityId.
      * @return Optional
      */
-    public abstract Optional<GetIdentityDetailsResponseVO[]> getGetIdentityDetailsResponseVO();
+    @SerializedName("identity_id")
+    public abstract Optional<String> getIdentityId();
+
+    /**
+     * Method to get the ethereumAddress.
+     * @return Optional
+     */
+    @SerializedName("ethereum_address")
+    public abstract Optional<String> getEthereumAddress();
+
+    /**
+     * Method to get the playerName.
+     * @return Optional
+     */
+    @SerializedName("player_name")
+    public abstract Optional<String> getPlayerName();
+
+    /**
+     * Class toString method.
+     * @return String
+     */
+    @Override
+    public String toString() {
+        return "GetIdentityResponseVO [identityId=" + getIdentityId().orElse(null) + ", ethereumAddress=" + getEthereumAddress().orElse(null) + ", playerName="
+                + getPlayerName().orElse(null) +  "]";
+    }
 
 }

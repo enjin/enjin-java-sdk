@@ -20,7 +20,7 @@ public interface IdentitiesService {
      * @param request - get identity request vo
      * @return - GetIdentityResponseVO
      */
-    GetIdentityResponseVO getIdentity(GetIdentityRequestVO request);
+    GetIdentityResponseVO[] getIdentity(GetIdentityRequestVO request);
 
     /**
      * Method to create an identity.

@@ -2,9 +2,10 @@ package com.enjin.coin.sdk.vo.event;
 
 import java.util.Optional;
 
-import com.google.gson.annotations.SerializedName;
 import org.immutables.gson.Gson;
 import org.immutables.value.Value;
+
+import com.google.gson.annotations.SerializedName;
 
 /**
  * <p>
@@ -15,11 +16,39 @@ import org.immutables.value.Value;
 @Gson.TypeAdapters(emptyAsNulls = true)
 public abstract class GetEventResponseVO {
 
-    /**
-     * Method to get the event details responseVOArray.
+	/**
+     * Method to get the data.
      * @return Optional
      */
-    @SerializedName("result")
-    public abstract Optional<GetEventDetailsResponseVO[]> eventDetailsResponseVOArray();
+    @SerializedName("data")
+    public abstract Optional<GetEventDataVO> getData();
+
+    /**
+     * Method to get the eventId.
+     * @return Optional
+     */
+    @SerializedName("event_id")
+    public abstract Optional<String> getEventId();
+
+    /**
+     * Method to get the eventType.
+     * @return Optional
+     */
+    @SerializedName("event_type")
+    public abstract Optional<String> getEventType();
+
+    /**
+     * Method to get the timestamp.
+     * @return Optional
+     */
+    @SerializedName("timestamp")
+    public abstract Optional<String> getTimestamp();
+
+    /**
+     * Method to get the appId.
+     * @return Optional
+     */
+    @SerializedName("app_id")
+    public abstract Optional<String> getAppId();
 
 }

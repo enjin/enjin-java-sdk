@@ -41,8 +41,8 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
     }
 
     @Override
-    public final GetIdentityResponseVO getIdentity(final GetIdentityRequestVO request) {
-        GetIdentityResponseVO response = null;
+    public final GetIdentityResponseVO[] getIdentity(final GetIdentityRequestVO request) {
+        GetIdentityResponseVO[] response = null;
 
         if (ObjectUtils.isNull(request)) {
             LOGGER.warning("Identities.get request is null.");
@@ -50,12 +50,12 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
         }
 
         if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentity())) {
-            LOGGER.warning("Identities.get parameters may be empty or null.");
+            LOGGER.warning("1. Identities.get parameters may be empty or null.");
             return response;
         }
 
         if (StringUtils.isEmpty(request.getAfterIdentityId()) || StringUtils.isEmpty(request.getLimit())) {
-            LOGGER.warning("Identities.get parameters may be empty or null.");
+            LOGGER.warning("2. Identities.get parameters may be empty or null.");
             return response;
         }
         
@@ -70,8 +70,8 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
         // Construct new request
         String method = Constants.METHOD_IDENTITIES_GET;
 
-        response = (GetIdentityResponseVO) getJsonRpcUtils()
-                .sendJsonRpcRequest(getIdentitiesUrl(), GetIdentityResponseVO.class, method, params);
+        response = (GetIdentityResponseVO[]) getJsonRpcUtils()
+                .sendJsonRpcRequest(getIdentitiesUrl(), GetIdentityResponseVO[].class, method, params);
 
         return response;
     }

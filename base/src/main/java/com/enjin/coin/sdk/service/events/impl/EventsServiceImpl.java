@@ -12,7 +12,6 @@ import com.enjin.coin.sdk.util.ObjectUtils;
 import com.enjin.coin.sdk.util.StringUtils;
 import com.enjin.coin.sdk.vo.event.GetEventRequestVO;
 import com.enjin.coin.sdk.vo.event.GetEventResponseVO;
-import com.enjin.coin.sdk.vo.event.ImmutableGetEventResponseVO;
 
 /**
  * <p>Synchronous implementation of EventsService.</p>
@@ -34,8 +33,8 @@ public class EventsServiceImpl extends BaseService implements EventsService {
     }
 
     @Override
-    public final GetEventResponseVO getEvent(final GetEventRequestVO request) {
-        GetEventResponseVO response = null;
+    public final GetEventResponseVO[] getEvent(final GetEventRequestVO request) {
+        GetEventResponseVO[] response = null;
         
         if (ObjectUtils.isNull(request)) {
             LOGGER.warning("Events.get request is null.");
@@ -53,7 +52,7 @@ public class EventsServiceImpl extends BaseService implements EventsService {
         
         // Construct new request
         String method = Constants.METHOD_EVENTS_GET;
-        response = (GetEventResponseVO) getJsonRpcUtils().sendJsonRpcRequest(getEventsUrl(), ImmutableGetEventResponseVO.class, method, params);
+        response = (GetEventResponseVO[]) getJsonRpcUtils().sendJsonRpcRequest(getEventsUrl(), GetEventResponseVO[].class, method, params);
         return response;
     }
 

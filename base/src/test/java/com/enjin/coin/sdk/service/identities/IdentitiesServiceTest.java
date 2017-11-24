@@ -55,7 +55,7 @@ public class IdentitiesServiceTest {
 		GetIdentityRequestVO getIdentityRequestVO = null;
 
 		identitiesService = new IdentitiesServiceImpl(enjinConfig);
-		GetIdentityResponseVO getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
+		GetIdentityResponseVO[] getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
 		assertThat(getIdentityResponseVO).isNull();
 	}
 
@@ -65,7 +65,7 @@ public class IdentitiesServiceTest {
 				.build();
 
 		identitiesService = new IdentitiesServiceImpl(enjinConfig);
-		GetIdentityResponseVO getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
+		GetIdentityResponseVO[] getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
 		assertThat(getIdentityResponseVO).isNull();
 	}
 
@@ -74,7 +74,7 @@ public class IdentitiesServiceTest {
 		GetIdentityRequestVO getIdentityRequestVO = ImmutableGetIdentityRequestVO.builder().setAuth("").build();
 
 		identitiesService = new IdentitiesServiceImpl(enjinConfig);
-		GetIdentityResponseVO getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
+		GetIdentityResponseVO[] getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
 		assertThat(getIdentityResponseVO).isNull();
 	}
 
@@ -85,7 +85,7 @@ public class IdentitiesServiceTest {
 				.setIdentity((Map) null).build();
 
 		identitiesService = new IdentitiesServiceImpl(enjinConfig);
-		GetIdentityResponseVO getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
+		GetIdentityResponseVO[] getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
 		assertThat(getIdentityResponseVO).isNull();
 	}
 
@@ -95,7 +95,7 @@ public class IdentitiesServiceTest {
 				.setIdentity(new HashMap<>()).build();
 
 		identitiesService = new IdentitiesServiceImpl(enjinConfig);
-		GetIdentityResponseVO getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
+		GetIdentityResponseVO[] getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
 		assertThat(getIdentityResponseVO).isNull();
 	}
 
@@ -121,7 +121,7 @@ public class IdentitiesServiceTest {
 				Mockito.isA(Map.class))).thenReturn(returnedGetIdentityResponseVO);
 
 		identitiesService = new IdentitiesServiceImpl(enjinConfig);
-		GetIdentityResponseVO getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
+		GetIdentityResponseVO[] getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
 		assertThat(getIdentityResponseVO).isNull();
 
 		PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
@@ -143,14 +143,15 @@ public class IdentitiesServiceTest {
                 .setLimit("50").build();
 
 		GetIdentityResponseVO returnedGetIdentityResponseVO = ImmutableGetIdentityResponseVO.builder().build();
-
+		GetIdentityResponseVO[] returnedGetIdentityResponseArray = new GetIdentityResponseVO[] {returnedGetIdentityResponseVO};
+		
 		JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
 		PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
 		Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(),
-				Mockito.isA(Map.class))).thenReturn(returnedGetIdentityResponseVO);
+				Mockito.isA(Map.class))).thenReturn(returnedGetIdentityResponseArray);
 
 		identitiesService = new IdentitiesServiceImpl(enjinConfig);
-		GetIdentityResponseVO getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
+		GetIdentityResponseVO[] getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
 		assertThat(getIdentityResponseVO).isNotNull();
 
 		PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();

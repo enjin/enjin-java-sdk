@@ -39,8 +39,8 @@ public class TransactionRequestsServiceImpl extends BaseService implements Trans
     }
 
     @Override
-    public final GetTransactionRequestResponseVO getTransactionRequest(final GetTransactionRequestRequestVO request) {
-        GetTransactionRequestResponseVO response = null;
+    public final GetTransactionRequestResponseVO[] getTransactionRequest(final GetTransactionRequestRequestVO request) {
+        GetTransactionRequestResponseVO[] response = null;
 
         if (ObjectUtils.isNull(request)) {
             LOGGER.warning("TransactionRequests.get request is null.");
@@ -75,8 +75,8 @@ public class TransactionRequestsServiceImpl extends BaseService implements Trans
         // Construct new request
         String method = Constants.METHOD_TRANSACTION_REQUESTS_GET;
 
-        response = (GetTransactionRequestResponseVO) getJsonRpcUtils()
-                .sendJsonRpcRequest(getTransactionRequestsUrl(), GetTransactionRequestResponseVO.class, method, params);
+        response = (GetTransactionRequestResponseVO[]) getJsonRpcUtils()
+                .sendJsonRpcRequest(getTransactionRequestsUrl(), GetTransactionRequestResponseVO[].class, method, params);
 
         return response;
     }

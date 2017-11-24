@@ -20,7 +20,7 @@ public interface TransactionRequestsAsyncService extends TransactionRequestsServ
      * @param request - get the transactionRequest request vo
      * @return - GetTransactionRequestResponseVO
      */
-    Future<GetTransactionRequestResponseVO> getTransactionRequestAsync(GetTransactionRequestRequestVO request);
+    Future<GetTransactionRequestResponseVO[]> getTransactionRequestAsync(GetTransactionRequestRequestVO request);
 
     /**
      * Method to create an transactionRequest.

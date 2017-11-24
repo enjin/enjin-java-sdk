@@ -36,8 +36,8 @@ public class TokensServiceImpl extends BaseService implements TokensService {
 	}
 
 	@Override
-	public final GetTokenResponseVO getToken(final GetTokenRequestVO request) {
-		GetTokenResponseVO response = null;
+	public final GetTokenResponseVO[] getToken(final GetTokenRequestVO request) {
+		GetTokenResponseVO[] response = null;
 
 		if (ObjectUtils.isNull(request)) {
 			LOGGER.warning("Tokens.get request is null.");
@@ -57,7 +57,7 @@ public class TokensServiceImpl extends BaseService implements TokensService {
 		// Construct new request
 		String method = Constants.METHOD_TOKENS_GET;
 
-		response = (GetTokenResponseVO) getJsonRpcUtils().sendJsonRpcRequest(getTokensUrl(), GetTokenResponseVO.class,
+		response = (GetTokenResponseVO[]) getJsonRpcUtils().sendJsonRpcRequest(getTokensUrl(), GetTokenResponseVO[].class,
 				method, params);
 
 		return response;

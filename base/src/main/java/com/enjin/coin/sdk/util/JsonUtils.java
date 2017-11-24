@@ -42,19 +42,21 @@ public final class JsonUtils {
      * @return An object representing the json in the fileReader
      */
     public static Object convertJsonToObject(final Gson gson, final String jsonString, final Class<?> responseClass) {
+
         Object responseObject = null;
 
         if (gson == null || StringUtils.isEmpty(jsonString) || ObjectUtils.isNull(responseClass)) {
             LOGGER.warning("gson passed in is null or jsonString passed in is null or empty or the responseClass is null");
             return responseObject;
         }
-
         // JSON from file to Object
         try {
             LOGGER.fine(String.format("jsonString:%s", jsonString));
             responseObject = gson.fromJson(jsonString, responseClass);
         } catch (JsonSyntaxException e) {
             LOGGER.warning(String.format("A JsonSyntaxException has occured. Exception: %s", StringUtils.exceptionToString(e)));
+        } catch (Exception e) {
+            LOGGER.warning(String.format("An Exception has occured. Exception: %s. ResponseClass:%s", StringUtils.exceptionToString(e), responseClass));
         }
 
         return responseObject;

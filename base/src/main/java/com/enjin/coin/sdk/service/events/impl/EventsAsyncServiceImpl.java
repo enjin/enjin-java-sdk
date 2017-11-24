@@ -22,7 +22,7 @@ public final class EventsAsyncServiceImpl extends EventsServiceImpl implements E
     }
 
     @Override
-    public Future<GetEventResponseVO> getEventAsync(final GetEventRequestVO request) {
+    public Future<GetEventResponseVO[]> getEventAsync(final GetEventRequestVO request) {
         return getExecutorService().submit(() -> getEvent(request));
     }
 

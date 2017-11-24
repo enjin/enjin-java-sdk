@@ -28,7 +28,7 @@ public final class IdentitiesAsyncServiceImpl extends IdentitiesServiceImpl impl
     }
 
     @Override
-    public Future<GetIdentityResponseVO> getIdentityAsync(final GetIdentityRequestVO request) {
+    public Future<GetIdentityResponseVO[]> getIdentityAsync(final GetIdentityRequestVO request) {
         return getExecutorService().submit(() -> getIdentity(request));
     }
 

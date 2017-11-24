@@ -22,7 +22,7 @@ public interface IdentitiesAsyncService extends IdentitiesService {
      * @param request - get identity request vo
      * @return - GetIdentityResponseVO
      */
-    Future<GetIdentityResponseVO> getIdentityAsync(GetIdentityRequestVO request);
+    Future<GetIdentityResponseVO[]> getIdentityAsync(GetIdentityRequestVO request);
 
     /**
      * Method to create an identity.

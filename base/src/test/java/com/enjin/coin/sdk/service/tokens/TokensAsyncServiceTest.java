@@ -16,6 +16,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.service.tokens.impl.TokensAsyncServiceImpl;
 import com.enjin.coin.sdk.util.JsonRpcUtils;
+import com.enjin.coin.sdk.vo.identity.GetIdentityResponseVO;
 import com.enjin.coin.sdk.vo.token.GetTokenRequestVO;
 import com.enjin.coin.sdk.vo.token.GetTokenResponseVO;
 import com.enjin.coin.sdk.vo.token.ImmutableGetTokenRequestVO;
@@ -51,16 +52,16 @@ public class TokensAsyncServiceTest {
                 .build();
 
         GetTokenResponseVO returnedGetTokenResponseVO = ImmutableGetTokenResponseVO.builder().build();
-
+        GetTokenResponseVO[] returnedGetTokenResponseArray = new GetTokenResponseVO[] {returnedGetTokenResponseVO};
+        
         JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
-        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetTokenResponseVO);
+        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetTokenResponseArray);
 
         tokensAsyncService = new TokensAsyncServiceImpl(enjinConfig);
-        Future<GetTokenResponseVO> getTokenResponseFutureVO = tokensAsyncService.getTokenAsync(getTokenRequestVO);
+        Future<GetTokenResponseVO[]> getTokenResponseFutureVO = tokensAsyncService.getTokenAsync(getTokenRequestVO);
         assertThat(getTokenResponseFutureVO).isNotNull();
-        GetTokenResponseVO getTokenResponseVO = getTokenResponseFutureVO.get();
-        assertThat(getTokenResponseVO).isNotNull();
+        assertThat(getTokenResponseFutureVO.get()).isNotNull();
 
         PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
         Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));

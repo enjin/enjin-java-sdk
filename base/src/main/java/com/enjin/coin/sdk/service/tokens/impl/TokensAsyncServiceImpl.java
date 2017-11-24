@@ -22,7 +22,7 @@ public final class TokensAsyncServiceImpl extends TokensServiceImpl implements T
     }
 
     @Override
-    public Future<GetTokenResponseVO> getTokenAsync(final GetTokenRequestVO request) {
+    public Future<GetTokenResponseVO[]> getTokenAsync(final GetTokenRequestVO request) {
         return getExecutorService().submit(() -> getToken(request));
     }
 

@@ -1,12 +1,12 @@
 package com.enjin.coin.sdk.util;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.TypeAdapterFactory;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ServiceLoader;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.TypeAdapterFactory;
 
 /**
  * <p>
@@ -54,6 +54,24 @@ public final class GsonUtils {
     public static List<TypeAdapterFactory> getAllTypeAdapterFactories() {
         List<TypeAdapterFactory> factories = new ArrayList<>();
         getTypeAdapterFactoryServiceLoader().forEach(factories::add);
+        
+        //TODO: remove - needed by damien - should not need to be added here
+        factories.add(new GsonAdaptersGetEventRequestVO());
+        factories.add(new GsonAdaptersGetEventResponseVO());
+        factories.add(new GsonAdaptersGetEventDataVO());
+        factories.add(new GsonAdaptersGetEventDataBalancesVO());
+        factories.add(new GsonAdaptersGetTransactionRequestRequestVO());
+        factories.add(new GsonAdaptersGetTransactionRequestResponseVO());
+        factories.add(new GsonAdaptersCreateTransactionRequestRequestVO());
+        factories.add(new GsonAdaptersCreateTransactionRequestResponseVO());
+        factories.add(new GsonAdaptersGetIdentityRequestVO());
+        factories.add(new GsonAdaptersGetIdentityResponseVO());
+        factories.add(new GsonAdaptersUpdateIdentityRequestVO());
+        factories.add(new GsonAdaptersUpdateIdentityResponseVO());
+        factories.add(new GsonAdaptersCreateIdentityRequestVO());
+        factories.add(new GsonAdaptersCreateIdentityResponseVO());
+        factories.add(new GsonAdaptersGetTokenRequestVO());
+        factories.add(new GsonAdaptersGetTokenResponseVO());
         return factories;
     }
 

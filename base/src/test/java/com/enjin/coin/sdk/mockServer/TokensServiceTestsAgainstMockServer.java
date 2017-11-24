@@ -9,7 +9,6 @@ import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.config.ImmutableConfig;
 import com.enjin.coin.sdk.service.EnjinCoinClient;
 import com.enjin.coin.sdk.service.tokens.TokensService;
-import com.enjin.coin.sdk.vo.token.GetTokenDetailsResponseVO;
 import com.enjin.coin.sdk.vo.token.GetTokenRequestVO;
 import com.enjin.coin.sdk.vo.token.GetTokenResponseVO;
 import com.enjin.coin.sdk.vo.token.ImmutableGetTokenRequestVO;
@@ -38,11 +37,11 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer {
         assertThat(getTokenRequestVO).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty());
         
-        GetTokenResponseVO getTokenResponseVO = tokensService.getToken(getTokenRequestVO);
+        GetTokenResponseVO[] getTokenResponseVO = tokensService.getToken(getTokenRequestVO);
         assertThat(getTokenResponseVO).isNotNull();    
-        for (GetTokenDetailsResponseVO tokenDetailsResponseVO : getTokenResponseVO.getGetTokenDetailsResponseVO().get()) {
-        	assertThat(tokenDetailsResponseVO).isNotNull()
-                .satisfies(o -> assertThat(tokenDetailsResponseVO).isNotNull()
+        for (GetTokenResponseVO tokenResponseVO : getTokenResponseVO) {
+        	assertThat(tokenResponseVO).isNotNull()
+                .satisfies(o -> assertThat(tokenResponseVO).isNotNull()
                         .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getAdapter()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getCreator()).isNotEmpty())

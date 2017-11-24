@@ -1,10 +1,9 @@
 package com.enjin.coin.sdk.vo.transactionrequest;
 
-import com.google.gson.annotations.SerializedName;
+import java.util.Optional;
+
 import org.immutables.gson.Gson;
 import org.immutables.value.Value;
-
-import java.util.Optional;
 
 /**
  * <p>
@@ -19,7 +18,6 @@ public abstract class CancelTransactionRequestResponseVO {
      * Method to get the result.
      * @return Optional
      */
-    @SerializedName("result")
     public abstract Optional<Boolean> getResult();
 
     /**

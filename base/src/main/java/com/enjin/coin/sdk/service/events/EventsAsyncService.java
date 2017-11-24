@@ -16,5 +16,5 @@ public interface EventsAsyncService extends EventsService {
      * @param request - get event request vo
      * @return - GetEventResponseVO
      */
-    Future<GetEventResponseVO> getEventAsync(GetEventRequestVO request);
+    Future<GetEventResponseVO[]> getEventAsync(GetEventRequestVO request);
 }

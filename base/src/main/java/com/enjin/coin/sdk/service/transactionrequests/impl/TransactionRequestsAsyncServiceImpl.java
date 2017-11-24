@@ -27,7 +27,7 @@ public final class TransactionRequestsAsyncServiceImpl extends TransactionReques
     }
 
     @Override
-    public Future<GetTransactionRequestResponseVO> getTransactionRequestAsync(
+    public Future<GetTransactionRequestResponseVO[]> getTransactionRequestAsync(
             final GetTransactionRequestRequestVO request
     ) {
         return getExecutorService().submit(() -> getTransactionRequest(request));

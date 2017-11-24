@@ -67,16 +67,16 @@ public class IdentitiesAsyncServiceTest {
                 .build();
 
         GetIdentityResponseVO returnedGetIdentityResponseVO = ImmutableGetIdentityResponseVO.builder().build();
-
+        GetIdentityResponseVO[] returnedGetIdentityResponseArray = new GetIdentityResponseVO[] {returnedGetIdentityResponseVO};
+        
         JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
-        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetIdentityResponseVO);
+        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetIdentityResponseArray);
 
         identitiesAsyncService = new IdentitiesAsyncServiceImpl(enjinConfig);
-        Future<GetIdentityResponseVO> getIdentityResponseFutureVO = identitiesAsyncService.getIdentityAsync(getIdentityRequestVO);
+        Future<GetIdentityResponseVO[]> getIdentityResponseFutureVO = identitiesAsyncService.getIdentityAsync(getIdentityRequestVO);
         assertThat(getIdentityResponseFutureVO).isNotNull();
-        GetIdentityResponseVO getIdentityResponseVO = getIdentityResponseFutureVO.get();
-        assertThat(getIdentityResponseVO).isNotNull();
+        assertThat(getIdentityResponseFutureVO.get()).isNotNull();
 
         PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
         Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));

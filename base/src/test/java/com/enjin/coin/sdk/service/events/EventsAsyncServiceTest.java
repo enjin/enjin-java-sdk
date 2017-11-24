@@ -46,14 +46,15 @@ public class EventsAsyncServiceTest {
 				.build();
 
 		GetEventResponseVO returnedGetEventResponseVO = ImmutableGetEventResponseVO.builder().build();
-
+		GetEventResponseVO[] returnedGetEventResponseArray = new GetEventResponseVO[] {returnedGetEventResponseVO};
+		
 		JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
 		PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
 		Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(),
-				Mockito.isA(Map.class))).thenReturn(returnedGetEventResponseVO);
+				Mockito.isA(Map.class))).thenReturn(returnedGetEventResponseArray);
 
 		eventAsyncService = new EventsAsyncServiceImpl(enjinConfig);
-		Future<GetEventResponseVO> getEventResponseVO = eventAsyncService.getEventAsync(getEventRequestVO);
+		Future<GetEventResponseVO[]> getEventResponseVO = eventAsyncService.getEventAsync(getEventRequestVO);
 		assertThat(getEventResponseVO).isNotNull();
 		assertThat(getEventResponseVO.get()).isNotNull();
 

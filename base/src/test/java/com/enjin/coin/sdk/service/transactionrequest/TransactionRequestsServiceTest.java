@@ -16,6 +16,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.service.transactionrequests.impl.TransactionRequestsServiceImpl;
 import com.enjin.coin.sdk.util.JsonRpcUtils;
+import com.enjin.coin.sdk.vo.token.GetTokenResponseVO;
 import com.enjin.coin.sdk.vo.transactionrequest.CancelTransactionRequestRequestVO;
 import com.enjin.coin.sdk.vo.transactionrequest.CancelTransactionRequestResponseVO;
 import com.enjin.coin.sdk.vo.transactionrequest.CreateTransactionRequestRequestVO;
@@ -52,7 +53,7 @@ public class TransactionRequestsServiceTest {
         GetTransactionRequestRequestVO getTransactionRequestRequestVO = null;
 
         transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
-        GetTransactionRequestResponseVO getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
+        GetTransactionRequestResponseVO[] getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
         assertThat(getTransactionRequestResponseVO).isNull();
     }
     
@@ -76,7 +77,7 @@ public class TransactionRequestsServiceTest {
                 .build();
 
         transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
-        GetTransactionRequestResponseVO getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
+        GetTransactionRequestResponseVO[] getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
         assertThat(getTransactionRequestResponseVO).isNull();
     }
 
@@ -100,7 +101,7 @@ public class TransactionRequestsServiceTest {
                 .build();
 
         transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
-        GetTransactionRequestResponseVO getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
+        GetTransactionRequestResponseVO[] getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
         assertThat(getTransactionRequestResponseVO).isNull();
     }
 
@@ -130,7 +131,7 @@ public class TransactionRequestsServiceTest {
         Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetTransactionRequestResponseVO);
 
         transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
-        GetTransactionRequestResponseVO getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
+        GetTransactionRequestResponseVO[] getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
         assertThat(getTransactionRequestResponseVO).isNull();
 
         PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
@@ -156,13 +157,14 @@ public class TransactionRequestsServiceTest {
                 .build();
 
         GetTransactionRequestResponseVO returnedGetTransactionRequestResponseVO = ImmutableGetTransactionRequestResponseVO.builder().build();
-
+        GetTransactionRequestResponseVO[] returnedGetTransactionRequestResponseArray = new GetTransactionRequestResponseVO[] {returnedGetTransactionRequestResponseVO};
+        
         JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
-        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetTransactionRequestResponseVO);
+        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetTransactionRequestResponseArray);
 
         transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
-        GetTransactionRequestResponseVO getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
+        GetTransactionRequestResponseVO[] getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
         assertThat(getTransactionRequestResponseVO).isNotNull();
 
         PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();

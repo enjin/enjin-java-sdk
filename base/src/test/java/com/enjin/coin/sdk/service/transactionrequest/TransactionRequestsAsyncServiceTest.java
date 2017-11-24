@@ -69,16 +69,16 @@ public class TransactionRequestsAsyncServiceTest {
                 .build();
 
         GetTransactionRequestResponseVO returnedGetTransactionRequestResponseVO = ImmutableGetTransactionRequestResponseVO.builder().build();
-
+        GetTransactionRequestResponseVO[] returnedGetTransactionRequestResponseArray = new GetTransactionRequestResponseVO[] {returnedGetTransactionRequestResponseVO};
+        
         JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
-        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetTransactionRequestResponseVO);
+        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetTransactionRequestResponseArray);
 
         transactionRequestsAsyncService = new TransactionRequestsAsyncServiceImpl(enjinConfig);
-        Future<GetTransactionRequestResponseVO> getTransactionRequestResponseFutureVO = transactionRequestsAsyncService.getTransactionRequestAsync(getTransactionRequestRequestVO);
+        Future<GetTransactionRequestResponseVO[]> getTransactionRequestResponseFutureVO = transactionRequestsAsyncService.getTransactionRequestAsync(getTransactionRequestRequestVO);
         assertThat(getTransactionRequestResponseFutureVO).isNotNull();
-        GetTransactionRequestResponseVO getTransactionRequestResponseVO = getTransactionRequestResponseFutureVO.get();
-        assertThat(getTransactionRequestResponseVO).isNotNull();
+        assertThat(getTransactionRequestResponseFutureVO.get()).isNotNull();
 
         PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
         Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
