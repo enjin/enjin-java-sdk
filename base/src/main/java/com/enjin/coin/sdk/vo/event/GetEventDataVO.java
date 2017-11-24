@@ -137,12 +137,32 @@ public abstract class GetEventDataVO {
     
     
     /**
-     * Method to get the value.
+     * Method to get the valueMap.
      * @return Optional
      */
     @SerializedName("value")
-    public abstract Optional<Map<String, Object>> getValue();
+    public abstract Optional<Map<String, Object>> getValueMap();
     
+    /**
+     * Method to get the fromMap.
+     * @return Optional
+     */
+    @SerializedName("from")
+    public abstract Optional<Map<String, Object>> getFromMap();
+    
+    /**
+     * Method to get the pendingMap.
+     * @return Optional
+     */
+    @SerializedName("pending")
+    public abstract Optional<Map<String, Object>> getPendingMap();
+    
+    /**
+     * Method to get the confirmedMap.
+     * @return Optional
+     */
+    @SerializedName("confirmed")
+    public abstract Optional<Map<String, Object>> getConfirmedMap();
     /**
      * Method to get the title.
      * @return Optional
@@ -150,6 +170,13 @@ public abstract class GetEventDataVO {
     @SerializedName("state")
     public abstract Optional<String> getState();
 
+    /**
+     * Method to get the enj.
+     * @return Optional
+     */
+    @SerializedName("ENJ")
+    public abstract Optional<String> getEnj();
+    
     @Override
 	public String toString() {
 		return "GetEventDataVO [getIdentityMap()=" + getIdentityMap() + ", getTokenId()=" + getTokenId()
@@ -159,6 +186,6 @@ public abstract class GetEventDataVO {
 				+ ", getMeltFee()=" + getMeltFee() + ", getTransferable()=" + getTransferable() + ", getRecipientMap()="
 				+ getRecipientMap() + ", getGetEventDataBalancesVO()=" + getGetEventDataBalancesVO() + ", getTxrId()="
 				+ getTxrId() + ", getType()=" + getType() + ", getTitle()="
-				+ getTitle() + ", getValue()=" + getValue() + ", getState()=" + getState() + "]";
+				+ getTitle() + ", getValueMap()=" + getValueMap() + ", getState()=" + getState() + "]";
 	}
 }

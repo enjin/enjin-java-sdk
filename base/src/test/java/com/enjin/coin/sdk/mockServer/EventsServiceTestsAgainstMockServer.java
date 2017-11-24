@@ -19,12 +19,10 @@ import com.enjin.coin.sdk.vo.event.ImmutableGetEventRequestVO;
 
 public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
 
-    private static final String IDENTITY_ID_KEY = "identity_id";
+    private static final String IDENTITY_ID_KEY      = "identity_id";
     private static final String ETHEREUM_ADDRESS_KEY = "ethereum_address";
-    private static final String UUID_KEY = "uuid";
-    private static final String PLAYER_NAME_KEY = "player_name";
-
-    private static final String[] KEYS_ARRAY = {IDENTITY_ID_KEY, PLAYER_NAME_KEY};
+    private static final String UUID_KEY             = "uuid";
+    private static final String PLAYER_NAME_KEY      = "player_name";
 
     private EventsService eventsService;
 
@@ -67,14 +65,31 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
                 .satisfies(o -> assertThat(o.getData()).isNotEmpty());
         	 
         	 String eventType = eventResponseVO.getEventType().get();
-        	 System.out.println("eventType:"+eventType);
         	 Map<String, Object> identityMap = null;
         	 if (eventResponseVO.getData().isPresent() && eventResponseVO.getData().get().getIdentityMap().isPresent()) {
         		 identityMap = eventResponseVO.getData().get().getIdentityMap().get();
         	 }
    
         	 GetEventDataVO eventData = eventResponseVO.getData().get();
+        	 Map<String, Object> fromMap = null;
+        	 Map<String, Object> pendingMap = null;
+        	 Map<String, Object> confirmedMap = null;
         	 
+        	 Map<String, Object> recipientMap = null;
+         	 if (eventData.getRecipientMap().isPresent()) {
+         		recipientMap = eventData.getRecipientMap().get();
+        	 }
+         	 
+        	 if (eventData.getFromMap().isPresent()) {
+        		 fromMap = eventData.getFromMap().get();
+        	 }
+           	 if (eventData.getPendingMap().isPresent()) {
+           		pendingMap = eventData.getPendingMap().get();
+        	 }
+           	 if (eventData.getConfirmedMap().isPresent()) {
+           		confirmedMap = eventData.getConfirmedMap().get();
+        	 }
+
         	 switch (eventType) {
         	 	case "identity_created":
                     String[] ic_map_keys = {IDENTITY_ID_KEY, UUID_KEY, PLAYER_NAME_KEY};
@@ -101,11 +116,18 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
                     .isNotEmpty()
                     .containsKeys(tr_map_keys)
                             .extracting(tr_map_keys).doesNotContainNull();
-                    Map<String, Object> recipientMap = eventResponseVO.getData().get().getIdentityMap().get();
+                   
                     assertThat(recipientMap)
                     .isNotEmpty()
                     .containsKeys(tr_map_keys)
                             .extracting(tr_map_keys).doesNotContainNull();
+                    assertThat(eventData.getType()).isNotNull();
+                    assertThat(eventData.getIcon()).isNotNull();
+                    assertThat(eventData.getTitle()).isNotNull();
+                    Map<String, Object> valueMap = eventResponseVO.getData().get().getValueMap().get();
+                    assertThat(valueMap).isNotEmpty();
+                    assertThat(valueMap.get("ENJ")).isNotNull();
+                    assertThat(eventData.getState()).isNotNull();
         	 		break;
         	 	case "balance_updated":
                     String[] bu_map_keys = {IDENTITY_ID_KEY, ETHEREUM_ADDRESS_KEY, PLAYER_NAME_KEY};
@@ -113,6 +135,17 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
                     .isNotEmpty()
                     .containsKeys(bu_map_keys)
                             .extracting(bu_map_keys).doesNotContainNull();
+
+                    assertThat(fromMap).isNotEmpty();
+                    assertThat(fromMap.get("ethereum_address")).isNotNull();
+
+                    assertThat(pendingMap).isNotEmpty();
+                    assertThat(pendingMap.get("ENJ")).isNotNull();
+                    assertThat(pendingMap.get("123456")).isNotNull();                    
+  
+                    assertThat(confirmedMap).isNotEmpty();
+                    assertThat(confirmedMap.get("234567")).isNotNull();
+                    assertThat(confirmedMap.get("345678")).isNotNull();
         	 		break;
         	 	case "balance_melted":
                     String[] bm_map_keys = {IDENTITY_ID_KEY, ETHEREUM_ADDRESS_KEY, PLAYER_NAME_KEY};
@@ -120,6 +153,14 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
                     .isNotEmpty()
                     .containsKeys(bm_map_keys)
                             .extracting(bm_map_keys).doesNotContainNull();
+
+                    assertThat(pendingMap).isNotEmpty();
+                    assertThat(pendingMap.get("123456")).isNotNull();
+
+                    assertThat(confirmedMap).isNotEmpty();
+                    assertThat(confirmedMap.get("345678")).isNotNull();  
+                    
+                    assertThat(eventData.getEnj()).isNotEmpty();                    
         	 		break;
         	 	case "token_updated":
 	               	 assertThat(eventData).isNotNull()
