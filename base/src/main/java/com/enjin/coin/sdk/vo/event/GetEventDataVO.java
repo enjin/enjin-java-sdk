@@ -122,13 +122,6 @@ public abstract class GetEventDataVO {
     public abstract Optional<String> getTxrId();
     
     /**
-     * Method to get the identityMap.
-     * @return Optional
-     */
-    @SerializedName("recipient")
-    public abstract Optional<Map<String, Object>> getRecipient();
-    
-    /**
      * Method to get the type.
      * @return Optional
      */
@@ -165,7 +158,7 @@ public abstract class GetEventDataVO {
 				+ getExchangeRate() + ", getDecimals()=" + getDecimals() + ", getMaxMeltFee()=" + getMaxMeltFee()
 				+ ", getMeltFee()=" + getMeltFee() + ", getTransferable()=" + getTransferable() + ", getRecipientMap()="
 				+ getRecipientMap() + ", getGetEventDataBalancesVO()=" + getGetEventDataBalancesVO() + ", getTxrId()="
-				+ getTxrId() + ", getRecipient()=" + getRecipient() + ", getType()=" + getType() + ", getTitle()="
+				+ getTxrId() + ", getType()=" + getType() + ", getTitle()="
 				+ getTitle() + ", getValue()=" + getValue() + ", getState()=" + getState() + "]";
 	}
 }
