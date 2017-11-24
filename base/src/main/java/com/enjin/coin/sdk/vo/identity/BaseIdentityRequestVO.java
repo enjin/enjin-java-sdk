@@ -1,10 +1,11 @@
 package com.enjin.coin.sdk.vo.identity;
 
-import com.google.gson.annotations.SerializedName;
-import org.immutables.gson.Gson;
-
 import java.util.Map;
 import java.util.Optional;
+
+import org.immutables.gson.Gson;
+
+import com.google.gson.annotations.SerializedName;
 
 /**
  * <p>
@@ -26,7 +27,7 @@ public abstract class BaseIdentityRequestVO {
      * @return Optional
      */
     @SerializedName("identity")
-    public abstract Optional<Map<String, Object>> getIdentity();
+    public abstract Optional<Map<String, Object>> getIdentityMap();
 
     /**
      * Class toString method.
@@ -34,7 +35,7 @@ public abstract class BaseIdentityRequestVO {
      */
     @Override
     public String toString() {
-        return "BaseIdentityRequestVO [auth=" + getAuth().orElse(null) + ", identity=" + getIdentity().orElse(null) + "]";
+        return "BaseIdentityRequestVO [auth=" + getAuth().orElse(null) + ", identityMap=" + getIdentityMap().orElse(null) + "]";
     }
 
 }

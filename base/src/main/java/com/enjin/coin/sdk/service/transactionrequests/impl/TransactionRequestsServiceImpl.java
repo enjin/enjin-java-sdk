@@ -49,11 +49,11 @@ public class TransactionRequestsServiceImpl extends BaseService implements Trans
             return response;
         }
 
-        if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentity())) {
+        if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentityMap())) {
             LOGGER.warning("1. TransactionRequests.get parameters may be empty or null.");
             return response;
         }
-        if (StringUtils.isEmpty(request.getAppId()) || MapUtils.isEmpty(request.getRecipient())) {
+        if (StringUtils.isEmpty(request.getAppId()) || MapUtils.isEmpty(request.getRecipientMap())) {
             LOGGER.warning("2. TransactionRequests.get parameters may be empty or null.");
             return response;
         }
@@ -65,9 +65,9 @@ public class TransactionRequestsServiceImpl extends BaseService implements Trans
 
         Map<String, Object> params = new HashMap<>();
         params.put("auth", request.getAuth().get());
-        params.put("identity", request.getIdentity().get());
+        params.put("identity", request.getIdentityMap().get());
         params.put("app_id", request.getAppId().get());
-        params.put("recipient", request.getRecipient().get());
+        params.put("recipient", request.getRecipientMap().get());
         params.put("type", request.getType().get());
         params.put("after_txr_id", request.getAfterTxrId().get());
         params.put("limit", request.getLimit().get());

@@ -55,18 +55,18 @@ public class TransactionRequestsServiceTest {
         GetTransactionRequestResponseVO[] getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
         assertThat(getTransactionRequestResponseVO).isNull();
     }
-    
+
     @SuppressWarnings("serial")
 	@Test
     public void testGetTransactionRequest_AuthIsNull() throws Exception {
 
         GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
                 .setAuth((String) null)
-                .setIdentity(new HashMap<String, Object>() {{
+                .setIdentityMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setAppId("123")
-                .setRecipient(new HashMap<String, Object>() {{
+                .setRecipientMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setType("buy")
@@ -86,11 +86,11 @@ public class TransactionRequestsServiceTest {
 
         GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
                 .setAuth("")
-                .setIdentity(new HashMap<String, Object>() {{
+                .setIdentityMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setAppId("123")
-                .setRecipient(new HashMap<String, Object>() {{
+                .setRecipientMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setType("buy")
@@ -110,11 +110,11 @@ public class TransactionRequestsServiceTest {
 
         GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>() {{
+                .setIdentityMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setAppId("")
-                .setRecipient(new HashMap<String, Object>() {{
+                .setRecipientMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setType("buy")
@@ -133,11 +133,11 @@ public class TransactionRequestsServiceTest {
 
         GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>() {{
+                .setIdentityMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setAppId((String) null)
-                .setRecipient(new HashMap<String, Object>() {{
+                .setRecipientMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setType("buy")
@@ -150,18 +150,18 @@ public class TransactionRequestsServiceTest {
         GetTransactionRequestResponseVO[] getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
         assertThat(getTransactionRequestResponseVO).isNull();
     }
-    
+
     @SuppressWarnings("serial")
     @Test
     public void testGetTransactionRequest_RecipientMapIsEmpty() throws Exception {
 
         GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>() {{
+                .setIdentityMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setAppId("123")
-                .setRecipient(new HashMap<String, Object>() {{}})
+                .setRecipientMap(new HashMap<String, Object>() {{}})
                 .setType("buy")
                 .setAfterTxrId("1234567")
                 .setLimit("50")
@@ -178,11 +178,11 @@ public class TransactionRequestsServiceTest {
 
         GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>() {{
+                .setIdentityMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setAppId("123")
-                .setRecipient((Map<String, Object>)null)
+                .setRecipientMap((Map<String, Object>)null)
                 .setType("buy")
                 .setAfterTxrId("1234567")
                 .setLimit("50")
@@ -193,18 +193,18 @@ public class TransactionRequestsServiceTest {
         GetTransactionRequestResponseVO[] getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
         assertThat(getTransactionRequestResponseVO).isNull();
     }
-    
+
     @SuppressWarnings("serial")
     @Test
     public void testGetTransactionRequest_TypeIsEmpty() throws Exception {
 
         GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>() {{
+                .setIdentityMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setAppId("123")
-                .setRecipient(new HashMap<String, Object>() {{
+                .setRecipientMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setType("")
@@ -223,11 +223,11 @@ public class TransactionRequestsServiceTest {
 
         GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>() {{
+                .setIdentityMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setAppId("123")
-                .setRecipient(new HashMap<String, Object>() {{
+                .setRecipientMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setType((String) null)
@@ -246,11 +246,11 @@ public class TransactionRequestsServiceTest {
 
         GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>() {{
+                .setIdentityMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setAppId("123")
-                .setRecipient(new HashMap<String, Object>() {{
+                .setRecipientMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setType("buy")
@@ -269,11 +269,11 @@ public class TransactionRequestsServiceTest {
 
         GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>() {{
+                .setIdentityMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setAppId("123")
-                .setRecipient(new HashMap<String, Object>() {{
+                .setRecipientMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setType("buy")
@@ -286,18 +286,18 @@ public class TransactionRequestsServiceTest {
         GetTransactionRequestResponseVO[] getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
         assertThat(getTransactionRequestResponseVO).isNull();
     }
-    
+
     @SuppressWarnings("serial")
     @Test
     public void testGetTransactionRequest_LimitIsEmpty() throws Exception {
 
         GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>() {{
+                .setIdentityMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setAppId("123")
-                .setRecipient(new HashMap<String, Object>() {{
+                .setRecipientMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setType("buy")
@@ -316,11 +316,11 @@ public class TransactionRequestsServiceTest {
 
         GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>() {{
+                .setIdentityMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setAppId("123")
-                .setRecipient(new HashMap<String, Object>() {{
+                .setRecipientMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setType("buy")
@@ -339,11 +339,11 @@ public class TransactionRequestsServiceTest {
 
         GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>() {{
+                .setIdentityMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setAppId("123")
-                .setRecipient(new HashMap<String, Object>() {{
+                .setRecipientMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setType("buy")
@@ -362,11 +362,11 @@ public class TransactionRequestsServiceTest {
 
         GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>() {{
+                .setIdentityMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setAppId("123")
-                .setRecipient(new HashMap<String, Object>() {{
+                .setRecipientMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setType("buy")
@@ -379,19 +379,19 @@ public class TransactionRequestsServiceTest {
         GetTransactionRequestResponseVO[] getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
         assertThat(getTransactionRequestResponseVO).isNull();
     }
-    
-    
+
+
     @SuppressWarnings({ "unchecked", "serial" })
     @Test
     public void testGetTransactionRequest_ResponseIsNull() throws Exception {
 
         GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
                 .setAuth("xxxxxxxx")
-                .setIdentity(new HashMap<String, Object>() {{
+                .setIdentityMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setAppId("123")
-                .setRecipient(new HashMap<String, Object>() {{
+                .setRecipientMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setType("buy")
@@ -419,11 +419,11 @@ public class TransactionRequestsServiceTest {
 
         GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
                 .setAuth("xxxxxxxx")
-                .setIdentity(new HashMap<String, Object>() {{
+                .setIdentityMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setAppId("123")
-                .setRecipient(new HashMap<String, Object>() {{
+                .setRecipientMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setType("buy")
@@ -434,7 +434,7 @@ public class TransactionRequestsServiceTest {
 
         GetTransactionRequestResponseVO returnedGetTransactionRequestResponseVO = ImmutableGetTransactionRequestResponseVO.builder().build();
         GetTransactionRequestResponseVO[] returnedGetTransactionRequestResponseArray = new GetTransactionRequestResponseVO[] {returnedGetTransactionRequestResponseVO};
-        
+
         JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
         Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetTransactionRequestResponseArray);

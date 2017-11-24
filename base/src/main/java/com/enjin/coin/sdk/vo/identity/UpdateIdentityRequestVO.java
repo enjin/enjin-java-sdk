@@ -1,12 +1,13 @@
 package com.enjin.coin.sdk.vo.identity;
 
-import com.enjin.coin.sdk.annotations.immutables.SkipNulls;
-import com.google.gson.annotations.SerializedName;
+import java.util.Map;
+import java.util.Optional;
+
 import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 
-import java.util.Map;
-import java.util.Optional;
+import com.enjin.coin.sdk.annotations.immutables.SkipNulls;
+import com.google.gson.annotations.SerializedName;
 
 /**
  * <p>Update Identity Request class.
@@ -22,7 +23,7 @@ public abstract class UpdateIdentityRequestVO extends BaseIdentityRequestVO {
      */
     @SkipNulls
     @SerializedName("update")
-    public abstract Optional<Map<String, Object>> getUpdate();
+    public abstract Optional<Map<String, Object>> getUpdateMap();
 
     /**
      * Class toString method.
@@ -30,7 +31,7 @@ public abstract class UpdateIdentityRequestVO extends BaseIdentityRequestVO {
      */
     @Override
     public String toString() {
-        return "UpdateIdentityRequestVO [update=" + getUpdate().orElse(null) + "]";
+        return "UpdateIdentityRequestVO [updateMap=" + getUpdateMap().orElse(null) + "]";
     }
 
 }

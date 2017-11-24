@@ -31,7 +31,7 @@ public abstract class GetTransactionRequestRequestVO {
      * @return Optional
      */
     @SerializedName("identity")
-    public abstract Optional<Map<String, Object>> getIdentity();
+    public abstract Optional<Map<String, Object>> getIdentityMap();
 
     /**
      * Method to get the auth.
@@ -47,7 +47,7 @@ public abstract class GetTransactionRequestRequestVO {
      * @return Optional
      */
     @SerializedName("recipient")
-    public abstract Optional<Map<String, Object>> getRecipient();
+    public abstract Optional<Map<String, Object>> getRecipientMap();
 
     /**
      * Method to get the type.

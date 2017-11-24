@@ -51,7 +51,7 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
             return response;
         }
 
-        if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentity())) {
+        if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentityMap())) {
             LOGGER.warning("1. Identities.get parameters may be empty or null.");
             return response;
         }
@@ -63,7 +63,7 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
 
         Map<String, Object> params = new HashMap<>();
         params.put("auth", request.getAuth().get());
-        params.put("identity", request.getIdentity().get());
+        params.put("identity", request.getIdentityMap().get());
         params.put("linked", request.getLinked().get());
         params.put("after_identity_id", request.getAfterIdentityId().get());
         params.put("limit", request.getLimit().get());
@@ -85,14 +85,14 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
             return response;
         }
 
-        if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentity())) {
+        if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentityMap())) {
             LOGGER.warning("Identities.create parameters may be empty or null.");
             return response;
         }
 
         Map<String, Object> params = new HashMap<>();
         params.put("auth", request.getAuth().get());
-        params.put("identity", request.getIdentity().get());
+        params.put("identity", request.getIdentityMap().get());
 
         // Construct new request
         String method = Constants.METHOD_IDENTITIES_CREATE;
@@ -111,15 +111,15 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
             return response;
         }
 
-        if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentity()) || MapUtils.isEmpty(request.getUpdate())) {
+        if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentityMap()) || MapUtils.isEmpty(request.getUpdateMap())) {
             LOGGER.warning("Identities.update parameters may be empty or null.");
             return response;
         }
 
         Map<String, Object> params = new HashMap<>();
         params.put("auth", request.getAuth().get());
-        params.put("identity", request.getIdentity().get());
-        params.put("update", request.getUpdate().get());
+        params.put("identity", request.getIdentityMap().get());
+        params.put("update", request.getUpdateMap().get());
 
         // Construct new request
         String method = Constants.METHOD_IDENTITIES_UPDATE;
@@ -138,13 +138,13 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
             return response;
         }
 
-        if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentity())) {
+        if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentityMap())) {
             LOGGER.warning("Identities.list parameters may be empty or null.");
             return response;
         }
         Map<String, Object> params = new HashMap<>();
         params.put("auth", request.getAuth().get());
-        params.put("identity", request.getIdentity().get());
+        params.put("identity", request.getIdentityMap().get());
 
         // Construct new request
         String method = Constants.METHOD_IDENTITIES_DELETE;

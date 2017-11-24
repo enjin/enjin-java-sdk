@@ -44,7 +44,7 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
         GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
                 .setEventId("12345")
                 .setAuth("auth")
-                .setIdentity(identityMapParam)
+                .setIdentityMap(identityMapParam)
                 .setAfterEventId("123456789")
                 .setLimit("50")
                 .build();
@@ -63,23 +63,23 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
                 .satisfies(o -> assertThat(o.getEventType()).isNotEmpty())
                 .satisfies(o -> assertThat(o.getTimestamp()).isNotEmpty())
                 .satisfies(o -> assertThat(o.getData()).isNotEmpty());
-        	 
+
         	 String eventType = eventResponseVO.getEventType().get();
         	 Map<String, Object> identityMap = null;
         	 if (eventResponseVO.getData().isPresent() && eventResponseVO.getData().get().getIdentityMap().isPresent()) {
         		 identityMap = eventResponseVO.getData().get().getIdentityMap().get();
         	 }
-   
+
         	 GetEventDataVO eventData = eventResponseVO.getData().get();
         	 Map<String, Object> fromMap = null;
         	 Map<String, Object> pendingMap = null;
         	 Map<String, Object> confirmedMap = null;
-        	 
+
         	 Map<String, Object> recipientMap = null;
          	 if (eventData.getRecipientMap().isPresent()) {
          		recipientMap = eventData.getRecipientMap().get();
         	 }
-         	 
+
         	 if (eventData.getFromMap().isPresent()) {
         		 fromMap = eventData.getFromMap().get();
         	 }
@@ -116,7 +116,7 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
                     .isNotEmpty()
                     .containsKeys(tr_map_keys)
                             .extracting(tr_map_keys).doesNotContainNull();
-                   
+
                     assertThat(recipientMap)
                     .isNotEmpty()
                     .containsKeys(tr_map_keys)
@@ -141,8 +141,8 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
 
                     assertThat(pendingMap).isNotEmpty();
                     assertThat(pendingMap.get("ENJ")).isNotNull();
-                    assertThat(pendingMap.get("123456")).isNotNull();                    
-  
+                    assertThat(pendingMap.get("123456")).isNotNull();
+
                     assertThat(confirmedMap).isNotEmpty();
                     assertThat(confirmedMap.get("234567")).isNotNull();
                     assertThat(confirmedMap.get("345678")).isNotNull();
@@ -158,9 +158,9 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
                     assertThat(pendingMap.get("123456")).isNotNull();
 
                     assertThat(confirmedMap).isNotEmpty();
-                    assertThat(confirmedMap.get("345678")).isNotNull();  
-                    
-                    assertThat(eventData.getEnj()).isNotEmpty();                    
+                    assertThat(confirmedMap.get("345678")).isNotNull();
+
+                    assertThat(eventData.getEnj()).isNotEmpty();
         	 		break;
         	 	case "token_updated":
 	               	 assertThat(eventData).isNotNull()
@@ -191,13 +191,13 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
 	                 .satisfies(o -> assertThat(o.getMaxMeltFee()).isNotEmpty())
 	                 .satisfies(o -> assertThat(o.getMeltFee()).isNotEmpty())
 	                 .satisfies(o -> assertThat(o.getTransferable()).isNotEmpty());
-        	 		break;          	 		
+        	 		break;
         	 }
-        	 
+
         	 //TODO: come back to this and map the values in Events.get.response.json
             /*    .satisfies(o -> assertThat(o.getData()).isNotEmpty()
                         .hasValueSatisfying(v -> assertThat(v.getIdentityMap()).isNotEmpty()
                                 .hasValueSatisfying(v2 -> assertThat(v2).extracting(KEYS_ARRAY))));*/
        	 }
-    }   
+    }
 }

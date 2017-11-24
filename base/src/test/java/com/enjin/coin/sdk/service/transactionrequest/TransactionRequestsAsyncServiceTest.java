@@ -49,17 +49,17 @@ public class TransactionRequestsAsyncServiceTest {
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty());
     }
 
-   
+
     @SuppressWarnings({ "unchecked", "serial" })
     @Test
     public void testGetTransactionRequest_Success() throws Exception {
         GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
                 .setAuth("xxxxxxxx")
-                .setIdentity(new HashMap<String, Object>() {{
+                .setIdentityMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setAppId("123")
-                .setRecipient(new HashMap<String, Object>() {{
+                .setRecipientMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setType("buy")
@@ -70,7 +70,7 @@ public class TransactionRequestsAsyncServiceTest {
 
         GetTransactionRequestResponseVO returnedGetTransactionRequestResponseVO = ImmutableGetTransactionRequestResponseVO.builder().build();
         GetTransactionRequestResponseVO[] returnedGetTransactionRequestResponseArray = new GetTransactionRequestResponseVO[] {returnedGetTransactionRequestResponseVO};
-        
+
         JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
         Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetTransactionRequestResponseArray);

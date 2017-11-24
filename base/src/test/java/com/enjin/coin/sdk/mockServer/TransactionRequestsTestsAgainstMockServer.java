@@ -41,14 +41,14 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
     @SuppressWarnings("serial")
 	@Test
     public void testGetTransactionRequest() {
-        
+
 		GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
                 .setAuth("xxxxxxxx")
-                .setIdentity(new HashMap<String, Object>() {{
+                .setIdentityMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setAppId("123")
-                .setRecipient(new HashMap<String, Object>() {{
+                .setRecipientMap(new HashMap<String, Object>() {{
                     put("identity_id", "12345");
                 }})
                 .setType("buy")
@@ -60,10 +60,10 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
 
         assertThat(getTransactionRequestRequestVO).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty());
-        
+
         GetTransactionRequestResponseVO[] getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
         assertThat(getTransactionRequestResponseVO).isNotNull();
-        
+
         for (GetTransactionRequestResponseVO transactionRequestDetailsResponseVO : getTransactionRequestResponseVO) {
         	assertThat(transactionRequestDetailsResponseVO).isNotNull()
                         .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
@@ -79,7 +79,7 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
                         .satisfies(o2 -> assertThat(o2.getTitle()).isNotEmpty());
         	//TODO: look at the values
                         /*.satisfies(o2 -> assertThat(o2.getValueMap()).isNotEmpty()
-                        		
+
                                 .hasValueSatisfying(v -> assertThat(v).containsKeys(value_map_keys)
                                         .extracting(value_map_keys).doesNotContainNull()));*/
         }

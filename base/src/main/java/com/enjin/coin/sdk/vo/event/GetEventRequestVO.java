@@ -39,7 +39,7 @@ public abstract class GetEventRequestVO {
      * @return Optional
      */
     @SerializedName("identity")
-    public abstract Optional<Map<String, Object>> getIdentity();
+    public abstract Optional<Map<String, Object>> getIdentityMap();
 
     /**
      * Method to get the afterEventId.

@@ -58,7 +58,7 @@ public class IdentitiesAsyncServiceTest {
     public void testGetIdentity_Success() throws Exception {
         GetIdentityRequestVO getIdentityRequestVO = ImmutableGetIdentityRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>() {{
+                .setIdentityMap(new HashMap<String, Object>() {{
                     put("key", "value");
                 }})
                 .setAfterIdentityId("1234567")
@@ -68,7 +68,7 @@ public class IdentitiesAsyncServiceTest {
 
         GetIdentityResponseVO returnedGetIdentityResponseVO = ImmutableGetIdentityResponseVO.builder().build();
         GetIdentityResponseVO[] returnedGetIdentityResponseArray = new GetIdentityResponseVO[] {returnedGetIdentityResponseVO};
-        
+
         JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
         Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetIdentityResponseArray);
@@ -89,7 +89,7 @@ public class IdentitiesAsyncServiceTest {
     public void testCreateIdentity_Success() throws Exception {
         CreateIdentityRequestVO createIdentityRequestVO = ImmutableCreateIdentityRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>() {{
+                .setIdentityMap(new HashMap<String, Object>() {{
                     put("key", "value");
                 }})
                 .build();
@@ -115,10 +115,10 @@ public class IdentitiesAsyncServiceTest {
     public void testUpdateIdentity_Success() throws Exception {
         UpdateIdentityRequestVO updateIdentityRequestVO = ImmutableUpdateIdentityRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>() {{
+                .setIdentityMap(new HashMap<String, Object>() {{
                     put("key", "value");
                 }})
-                .setUpdate(new HashMap<String, Object>() {{
+                .setUpdateMap(new HashMap<String, Object>() {{
                     put("key", "value");
                 }})
                 .build();
@@ -139,13 +139,13 @@ public class IdentitiesAsyncServiceTest {
         Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
     }
 
-   
+
     @SuppressWarnings({"unchecked", "serial"})
     @Test
     public void testDeleteIdentity_Success() throws Exception {
         DeleteIdentityRequestVO deleteIdentityRequestVO = ImmutableDeleteIdentityRequestVO.builder()
                 .setAuth("auth")
-                .setIdentity(new HashMap<String, Object>() {{
+                .setIdentityMap(new HashMap<String, Object>() {{
                     put("key", "value");
                 }})
                 .build();
