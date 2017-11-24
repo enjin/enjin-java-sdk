@@ -98,7 +98,68 @@ public class IdentitiesServiceTest {
 		GetIdentityResponseVO[] getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
 		assertThat(getIdentityResponseVO).isNull();
 	}
+	@SuppressWarnings("serial")
+	@Test
+	public void testGetIdentity_AfterIdentityIdIsEmpty() {
+		GetIdentityRequestVO getIdentityRequestVO = ImmutableGetIdentityRequestVO.builder().setAuth("auth")
+				.setIdentity(new HashMap<String, Object>() {
+					{
+						put("key", "value");
+					}
+				}).setAfterIdentityId("")
+				.build();
 
+		identitiesService = new IdentitiesServiceImpl(enjinConfig);
+		GetIdentityResponseVO[] getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
+		assertThat(getIdentityResponseVO).isNull();
+	}
+	@SuppressWarnings("serial")
+	@Test
+	public void testGetIdentity_AfterIdentityIdIsNull() {
+		GetIdentityRequestVO getIdentityRequestVO = ImmutableGetIdentityRequestVO.builder().setAuth("auth")
+				.setIdentity(new HashMap<String, Object>() {
+					{
+						put("key", "value");
+					}
+				}).setAfterIdentityId((String)null)
+				.build();
+
+		identitiesService = new IdentitiesServiceImpl(enjinConfig);
+		GetIdentityResponseVO[] getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
+		assertThat(getIdentityResponseVO).isNull();
+	}
+	@SuppressWarnings("serial")
+	@Test
+	public void testGetIdentity_LimitIsEmpty() {
+		GetIdentityRequestVO getIdentityRequestVO = ImmutableGetIdentityRequestVO.builder().setAuth("auth")
+				.setIdentity(new HashMap<String, Object>() {
+					{
+						put("key", "value");
+					}
+				}).setAfterIdentityId("12345")
+				.setLimit("")
+				.build();
+
+		identitiesService = new IdentitiesServiceImpl(enjinConfig);
+		GetIdentityResponseVO[] getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
+		assertThat(getIdentityResponseVO).isNull();
+	}
+	@SuppressWarnings("serial")
+	@Test
+	public void testGetIdentity_LimitIsNull() {
+		GetIdentityRequestVO getIdentityRequestVO = ImmutableGetIdentityRequestVO.builder().setAuth("auth")
+				.setIdentity(new HashMap<String, Object>() {
+					{
+						put("key", "value");
+					}
+				}).setAfterIdentityId("12345")
+				.setLimit((String) null)
+				.build();
+
+		identitiesService = new IdentitiesServiceImpl(enjinConfig);
+		GetIdentityResponseVO[] getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
+		assertThat(getIdentityResponseVO).isNull();
+	}
 	@SuppressWarnings({ "unchecked", "serial" })
 	@Test
 	public void testGetIdentity_ResponseIsNull() throws Exception {

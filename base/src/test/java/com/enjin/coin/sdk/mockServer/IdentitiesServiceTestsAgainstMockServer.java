@@ -55,7 +55,8 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
                 .setLimit("50")
                 .setLinked(true)
                 .build();
-        assertThat(getIdentityRequestVO).isNotNull();
+        assertThat(getIdentityRequestVO).isNotNull()
+        .satisfies(o -> assertThat(o.toString()).isNotEmpty());
         
         GetIdentityResponseVO[] getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
         assertThat(getIdentityResponseVO).isNotNull();

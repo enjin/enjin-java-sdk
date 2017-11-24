@@ -104,6 +104,283 @@ public class TransactionRequestsServiceTest {
         assertThat(getTransactionRequestResponseVO).isNull();
     }
 
+    @SuppressWarnings("serial")
+    @Test
+    public void testGetTransactionRequest_AppIdIsEmpty() throws Exception {
+
+        GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<String, Object>() {{
+                    put("identity_id", "12345");
+                }})
+                .setAppId("")
+                .setRecipient(new HashMap<String, Object>() {{
+                    put("identity_id", "12345");
+                }})
+                .setType("buy")
+                .setAfterTxrId("1234567")
+                .setLimit("50")
+                .setCurrency("23456")
+                .build();
+
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
+        GetTransactionRequestResponseVO[] getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
+        assertThat(getTransactionRequestResponseVO).isNull();
+    }
+    @SuppressWarnings("serial")
+    @Test
+    public void testGetTransactionRequest_AppIdIsNull() throws Exception {
+
+        GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<String, Object>() {{
+                    put("identity_id", "12345");
+                }})
+                .setAppId((String) null)
+                .setRecipient(new HashMap<String, Object>() {{
+                    put("identity_id", "12345");
+                }})
+                .setType("buy")
+                .setAfterTxrId("1234567")
+                .setLimit("50")
+                .setCurrency("23456")
+                .build();
+
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
+        GetTransactionRequestResponseVO[] getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
+        assertThat(getTransactionRequestResponseVO).isNull();
+    }
+    
+    @SuppressWarnings("serial")
+    @Test
+    public void testGetTransactionRequest_RecipientMapIsEmpty() throws Exception {
+
+        GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<String, Object>() {{
+                    put("identity_id", "12345");
+                }})
+                .setAppId("123")
+                .setRecipient(new HashMap<String, Object>() {{}})
+                .setType("buy")
+                .setAfterTxrId("1234567")
+                .setLimit("50")
+                .setCurrency("23456")
+                .build();
+
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
+        GetTransactionRequestResponseVO[] getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
+        assertThat(getTransactionRequestResponseVO).isNull();
+    }
+    @SuppressWarnings("serial")
+    @Test
+    public void testGetTransactionRequest_RecipientMapIsNull() throws Exception {
+
+        GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<String, Object>() {{
+                    put("identity_id", "12345");
+                }})
+                .setAppId("123")
+                .setRecipient((Map<String, Object>)null)
+                .setType("buy")
+                .setAfterTxrId("1234567")
+                .setLimit("50")
+                .setCurrency("23456")
+                .build();
+
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
+        GetTransactionRequestResponseVO[] getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
+        assertThat(getTransactionRequestResponseVO).isNull();
+    }
+    
+    @SuppressWarnings("serial")
+    @Test
+    public void testGetTransactionRequest_TypeIsEmpty() throws Exception {
+
+        GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<String, Object>() {{
+                    put("identity_id", "12345");
+                }})
+                .setAppId("123")
+                .setRecipient(new HashMap<String, Object>() {{
+                    put("identity_id", "12345");
+                }})
+                .setType("")
+                .setAfterTxrId("1234567")
+                .setLimit("50")
+                .setCurrency("23456")
+                .build();
+
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
+        GetTransactionRequestResponseVO[] getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
+        assertThat(getTransactionRequestResponseVO).isNull();
+    }
+    @SuppressWarnings("serial")
+    @Test
+    public void testGetTransactionRequest_TypeIsNull() throws Exception {
+
+        GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<String, Object>() {{
+                    put("identity_id", "12345");
+                }})
+                .setAppId("123")
+                .setRecipient(new HashMap<String, Object>() {{
+                    put("identity_id", "12345");
+                }})
+                .setType((String) null)
+                .setAfterTxrId("1234567")
+                .setLimit("50")
+                .setCurrency("23456")
+                .build();
+
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
+        GetTransactionRequestResponseVO[] getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
+        assertThat(getTransactionRequestResponseVO).isNull();
+    }
+    @SuppressWarnings("serial")
+    @Test
+    public void testGetTransactionRequest_AfterTxrIdIdIsEmpty() throws Exception {
+
+        GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<String, Object>() {{
+                    put("identity_id", "12345");
+                }})
+                .setAppId("123")
+                .setRecipient(new HashMap<String, Object>() {{
+                    put("identity_id", "12345");
+                }})
+                .setType("buy")
+                .setAfterTxrId("")
+                .setLimit("50")
+                .setCurrency("23456")
+                .build();
+
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
+        GetTransactionRequestResponseVO[] getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
+        assertThat(getTransactionRequestResponseVO).isNull();
+    }
+    @SuppressWarnings("serial")
+    @Test
+    public void testGetTransactionRequest_AfterTxrIdIdIsNull() throws Exception {
+
+        GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<String, Object>() {{
+                    put("identity_id", "12345");
+                }})
+                .setAppId("123")
+                .setRecipient(new HashMap<String, Object>() {{
+                    put("identity_id", "12345");
+                }})
+                .setType("buy")
+                .setAfterTxrId((String) null)
+                .setLimit("50")
+                .setCurrency("23456")
+                .build();
+
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
+        GetTransactionRequestResponseVO[] getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
+        assertThat(getTransactionRequestResponseVO).isNull();
+    }
+    
+    @SuppressWarnings("serial")
+    @Test
+    public void testGetTransactionRequest_LimitIsEmpty() throws Exception {
+
+        GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<String, Object>() {{
+                    put("identity_id", "12345");
+                }})
+                .setAppId("123")
+                .setRecipient(new HashMap<String, Object>() {{
+                    put("identity_id", "12345");
+                }})
+                .setType("buy")
+                .setAfterTxrId("1234567")
+                .setLimit("")
+                .setCurrency("23456")
+                .build();
+
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
+        GetTransactionRequestResponseVO[] getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
+        assertThat(getTransactionRequestResponseVO).isNull();
+    }
+    @SuppressWarnings("serial")
+    @Test
+    public void testGetTransactionRequest_LimitIsNull() throws Exception {
+
+        GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<String, Object>() {{
+                    put("identity_id", "12345");
+                }})
+                .setAppId("123")
+                .setRecipient(new HashMap<String, Object>() {{
+                    put("identity_id", "12345");
+                }})
+                .setType("buy")
+                .setAfterTxrId("1234567")
+                .setLimit((String) null)
+                .setCurrency("23456")
+                .build();
+
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
+        GetTransactionRequestResponseVO[] getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
+        assertThat(getTransactionRequestResponseVO).isNull();
+    }
+    @SuppressWarnings("serial")
+    @Test
+    public void testGetTransactionRequest_CurrencyIsEmpty() throws Exception {
+
+        GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<String, Object>() {{
+                    put("identity_id", "12345");
+                }})
+                .setAppId("123")
+                .setRecipient(new HashMap<String, Object>() {{
+                    put("identity_id", "12345");
+                }})
+                .setType("buy")
+                .setAfterTxrId("1234567")
+                .setLimit("50")
+                .setCurrency("")
+                .build();
+
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
+        GetTransactionRequestResponseVO[] getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
+        assertThat(getTransactionRequestResponseVO).isNull();
+    }
+    @SuppressWarnings("serial")
+    @Test
+    public void testGetTransactionRequest_CurrencyIsNull() throws Exception {
+
+        GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
+                .setAuth("auth")
+                .setIdentity(new HashMap<String, Object>() {{
+                    put("identity_id", "12345");
+                }})
+                .setAppId("123")
+                .setRecipient(new HashMap<String, Object>() {{
+                    put("identity_id", "12345");
+                }})
+                .setType("buy")
+                .setAfterTxrId("1234567")
+                .setLimit("50")
+                .setCurrency((String) null)
+                .build();
+
+        transactionRequestsService = new TransactionRequestsServiceImpl(enjinConfig);
+        GetTransactionRequestResponseVO[] getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
+        assertThat(getTransactionRequestResponseVO).isNull();
+    }
+    
+    
     @SuppressWarnings({ "unchecked", "serial" })
     @Test
     public void testGetTransactionRequest_ResponseIsNull() throws Exception {
