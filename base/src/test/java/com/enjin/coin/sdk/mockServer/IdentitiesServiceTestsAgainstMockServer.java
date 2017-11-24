@@ -28,7 +28,7 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
     private static final String ETHEREUM_ADDRESS_KEY = "ethereum_address";
     private static final String UUID_KEY = "uuid";
 
-    private IdentitiesService identities;
+    private IdentitiesService identitiesService;
 
     @Before
     public void init() {
@@ -37,7 +37,7 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
                 .setInTestMode(true)
                 .build();
         EnjinCoinClient enjinService = new EnjinCoinClient(enjinConfig);
-        identities = enjinService.getIdentitiesService();
+        identitiesService = enjinService.getIdentitiesService();
     }
 
     @Test
@@ -53,7 +53,7 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
                 .setIdentity(identityMap)
                 .build();
         assertThat(getIdentityRequestVO).isNotNull()
-                .satisfies(o -> assertThat(identities.getIdentity(o)).isNotNull()
+                .satisfies(o -> assertThat(identitiesService.getIdentity(o)).isNotNull()
                         .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getIdentityId()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getEthereumAddress()).isNotEmpty())
@@ -80,7 +80,7 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
                 .build();
         assertThat(listIdentitiesRequestVO).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotNull())
-                .satisfies(o -> assertThat(identities.listIdentities(o)).isNotEmpty()
+                .satisfies(o -> assertThat(identitiesService.listIdentities(o)).isNotEmpty()
                         .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
                         .allSatisfy(i -> assertThat(i).isNotNull()
                                 .satisfies(o3 -> assertThat(o3.toString()).isNotEmpty())
@@ -103,7 +103,7 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
                 .build();
         assertThat(createIdentityRequestVO).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty())
-                .satisfies(o -> assertThat(identities.createIdentity(o)).isNotNull()
+                .satisfies(o -> assertThat(identitiesService.createIdentity(o)).isNotNull()
                         .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getIdentityId()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getIdentityCode()).isNotEmpty()));
@@ -128,7 +128,7 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
         String[] keys = {IDENTITY_ID_KEY, ETHEREUM_ADDRESS_KEY, UUID_KEY};
         assertThat(updateIdentityRequestVO).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty())
-                .satisfies(o -> assertThat(identities.updateIdentity(o)).isNotNull()
+                .satisfies(o -> assertThat(identitiesService.updateIdentity(o)).isNotNull()
                         .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getIdentityMap()).isPresent()
                                 .hasValueSatisfying(v -> assertThat(v).containsKeys(keys)
@@ -149,7 +149,7 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
                 .build();
         assertThat(deleteIdentityRequestVO).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty())
-                .satisfies(o -> assertThat(identities.deleteIdentity(o)).isNotNull()
+                .satisfies(o -> assertThat(identitiesService.deleteIdentity(o)).isNotNull()
                         .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getResult()).isPresent()
                                 .hasValueSatisfying(v -> assertThat(v).isTrue())));

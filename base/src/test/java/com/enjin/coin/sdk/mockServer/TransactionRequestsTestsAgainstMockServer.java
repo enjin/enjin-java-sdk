@@ -26,7 +26,7 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
     private static final String ETHEREUM_ADDRESS_KEY = "ethereum_address";
     private static final String PLAYER_NAME_KEY = "player_name";
 
-    private TransactionRequestsService transactionRequests;
+    private TransactionRequestsService transactionRequestsService;
 
     @Before
     public void init() {
@@ -35,7 +35,7 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
                 .setInTestMode(true)
                 .build();
         EnjinCoinClient enjinService = new EnjinCoinClient(enjinConfig);
-        transactionRequests = enjinService.getTransactionRequestsService();
+        transactionRequestsService = enjinService.getTransactionRequestsService();
     }
 
     @Test
@@ -48,7 +48,7 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
         String[] value_map_keys = {"ENJ"};
         assertThat(getTransactionRequestRequestVO).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty())
-                .satisfies(o -> assertThat(transactionRequests.getTransactionRequest(o)).isNotNull()
+                .satisfies(o -> assertThat(transactionRequestsService.getTransactionRequest(o)).isNotNull()
                         .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getTxrId()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getIdentityMap()).isNotEmpty()
@@ -85,7 +85,7 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
         String[] keys = {IDENTITY_ID_KEY, ETHEREUM_ADDRESS_KEY, PLAYER_NAME_KEY};
         assertThat(listTransactionRequestsRequestVO).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty())
-                .satisfies(o -> assertThat(transactionRequests.listTransactionRequests(o)).isNotNull()
+                .satisfies(o -> assertThat(transactionRequestsService.listTransactionRequests(o)).isNotNull()
                         .allSatisfy(i -> assertThat(i).isNotNull()
                                 .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
                                 .satisfies(o2 -> assertThat(o2.getTxrId()).isNotEmpty())
@@ -125,7 +125,7 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
         String[] value_map_keys = {"ENJ"};
         assertThat(createTransactionRequestRequestVO).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty())
-                .satisfies(o -> assertThat(transactionRequests.createTransactionRequest(o)).isNotNull()
+                .satisfies(o -> assertThat(transactionRequestsService.createTransactionRequest(o)).isNotNull()
                         .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getTxrId()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getIdentityMap()).isNotEmpty()
@@ -150,7 +150,7 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
                 .build();
         assertThat(cancelTransactionRequestRequestVO).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty())
-                .satisfies(o -> assertThat(transactionRequests.cancelTransactionRequest(o)).isNotNull()
+                .satisfies(o -> assertThat(transactionRequestsService.cancelTransactionRequest(o)).isNotNull()
                         .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getResult()).isPresent()));
     }

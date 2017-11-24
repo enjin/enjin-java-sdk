@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class TokensServiceTestsAgainstMockServer extends BaseMockServer {
 
-    private TokensService tokens;
+    private TokensService tokensService;
 
     @Before
     public void init() {
@@ -24,7 +24,7 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer {
                 .setInTestMode(true)
                 .build();
         EnjinCoinClient enjinService = new EnjinCoinClient(enjinConfig);
-        tokens = enjinService.getTokensService();
+        tokensService = enjinService.getTokensService();
     }
 
     @Test
@@ -34,7 +34,7 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer {
                 .build();
         assertThat(getTokenRequestVO).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty())
-                .satisfies(o -> assertThat(tokens.getToken(o)).isNotNull()
+                .satisfies(o -> assertThat(tokensService.getToken(o)).isNotNull()
                         .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getAdapter()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getCreator()).isNotEmpty())
@@ -59,7 +59,7 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer {
                 .build();
         assertThat(listTokensRequestVO).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty())
-                .satisfies(o -> assertThat(tokens.listTokens(o)).isNotNull()
+                .satisfies(o -> assertThat(tokensService.listTokens(o)).isNotNull()
                         .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getGetTokensResponseVOArray()).isPresent()
                                 .hasValueSatisfying(o3 -> assertThat(o3).allSatisfy(i -> assertThat(i).isNotNull()

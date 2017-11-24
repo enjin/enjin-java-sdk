@@ -28,7 +28,7 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
 
     private static final String[] KEYS_ARRAY = {IDENTITY_ID_KEY, ETHEREUM_ADDRESS_KEY, UUID_KEY, PLAYER_NAME_KEY};
 
-    private EventsService events;
+    private EventsService eventsService;
 
     @Before
     public void init() {
@@ -37,7 +37,7 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
                 .setInTestMode(true)
                 .build();
         EnjinCoinClient enjinService = new EnjinCoinClient(enjinConfig);
-        events = enjinService.getEventsService();
+        eventsService = enjinService.getEventsService();
     }
 
     @Test
@@ -49,7 +49,7 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
         assertThat(getEventRequestVO).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty());
 
-        GetEventResponseVO getEventResponseVO = events.getEvent(getEventRequestVO);
+        GetEventResponseVO getEventResponseVO = eventsService.getEvent(getEventRequestVO);
         assertThat(getEventResponseVO).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty())
                 .satisfies(o -> assertThat(o.getAppId()).isNotEmpty())
@@ -73,7 +73,7 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
         assertThat(listEventsRequestVO).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty());
 
-        ListEventsResponseVO listEventsResponseVOArray = events.listEvents(listEventsRequestVO);
+        ListEventsResponseVO listEventsResponseVOArray = eventsService.listEvents(listEventsRequestVO);
         assertThat(listEventsResponseVOArray).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty())
                 .satisfies(o -> assertThat(o.getGetEventsResponseVOArray()).isPresent()
