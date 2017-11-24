@@ -22,144 +22,138 @@ import com.enjin.coin.sdk.vo.identity.UpdateIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.UpdateIdentityResponseVO;
 
 /**
- * <p>Synchronous implementation of IdentitiesService.</p>
+ * <p>
+ * Synchronous implementation of IdentitiesService.
+ * </p>
  */
 public class IdentitiesServiceImpl extends BaseService implements IdentitiesService {
 
-    /**
-     * Logger used by this class.
-     */
-    private static final Logger LOGGER = Logger.getLogger(IdentitiesServiceImpl.class.getName());
+	/**
+	 * Logger used by this class.
+	 */
+	private static final Logger LOGGER = Logger.getLogger(IdentitiesServiceImpl.class.getName());
 
-    /**
-     * Class constructor.
-     *
-     * @param config - the config to use
-     */
-    public IdentitiesServiceImpl(final Config config) {
-        super(config);
-    }
+	/**
+	 * Class constructor.
+	 *
+	 * @param config - the config to use
+	 */
+	public IdentitiesServiceImpl(final Config config) {
+		super(config);
+	}
 
-    @Override
-    public final GetIdentityResponseVO[] getIdentity(final GetIdentityRequestVO request) {
-        GetIdentityResponseVO[] response = null;
+	@Override
+	public final GetIdentityResponseVO[] getIdentity(final GetIdentityRequestVO request) {
+		GetIdentityResponseVO[] response = null;
 
-        if (ObjectUtils.isNull(request)) {
-            LOGGER.warning("Identities.get request is null.");
-            return response;
-        }
+		if (ObjectUtils.isNull(request)) {
+			LOGGER.warning("Identities.get request is null.");
+			return response;
+		}
 
-        if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentity())) {
-            LOGGER.warning("1. Identities.get parameters may be empty or null.");
-            return response;
-        }
+		if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentity())) {
+			LOGGER.warning("1. Identities.get parameters may be empty or null.");
+			return response;
+		}
 
-        if (StringUtils.isEmpty(request.getAfterIdentityId()) || StringUtils.isEmpty(request.getLimit())) {
-            LOGGER.warning("2. Identities.get parameters may be empty or null.");
-            return response;
-        }
-        
-        
-        Map<String, Object> params = new HashMap<>();
-        params.put("auth", request.getAuth().get());
-        params.put("identity", request.getIdentity().get());
-        params.put("linked", request.getLinked().get());
-        params.put("after_identity_id", request.getAfterIdentityId().get());
-        params.put("limit", request.getLimit().get());
-        
-        // Construct new request
-        String method = Constants.METHOD_IDENTITIES_GET;
+		if (StringUtils.isEmpty(request.getAfterIdentityId()) || StringUtils.isEmpty(request.getLimit())) {
+			LOGGER.warning("2. Identities.get parameters may be empty or null.");
+			return response;
+		}
 
-        response = (GetIdentityResponseVO[]) getJsonRpcUtils()
-                .sendJsonRpcRequest(getIdentitiesUrl(), GetIdentityResponseVO[].class, method, params);
+		Map<String, Object> params = new HashMap<>();
+		params.put("auth", request.getAuth().get());
+		params.put("identity", request.getIdentity().get());
+		params.put("linked", request.getLinked().get());
+		params.put("after_identity_id", request.getAfterIdentityId().get());
+		params.put("limit", request.getLimit().get());
 
-        return response;
-    }
+		// Construct new request
+		String method = Constants.METHOD_IDENTITIES_GET;
 
+		response = (GetIdentityResponseVO[]) getJsonRpcUtils().sendJsonRpcRequest(getIdentitiesUrl(), GetIdentityResponseVO[].class, method, params);
 
-    @Override
-    public final CreateIdentityResponseVO createIdentity(final CreateIdentityRequestVO request) {
-        CreateIdentityResponseVO response = null;
+		return response;
+	}
 
-        if (ObjectUtils.isNull(request)) {
-            LOGGER.warning("Identities.create request is null.");
-            return response;
-        }
+	@Override
+	public final CreateIdentityResponseVO createIdentity(final CreateIdentityRequestVO request) {
+		CreateIdentityResponseVO response = null;
 
-        if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentity())) {
-            LOGGER.warning("Identities.create parameters may be empty or null.");
-            return response;
-        }
+		if (ObjectUtils.isNull(request)) {
+			LOGGER.warning("Identities.create request is null.");
+			return response;
+		}
 
-        Map<String, Object> params = new HashMap<>();
-        params.put("auth", request.getAuth().get());
-        params.put("identity", request.getIdentity().get());
+		if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentity())) {
+			LOGGER.warning("Identities.create parameters may be empty or null.");
+			return response;
+		}
 
-        // Construct new request
-        String method = Constants.METHOD_IDENTITIES_CREATE;
+		Map<String, Object> params = new HashMap<>();
+		params.put("auth", request.getAuth().get());
+		params.put("identity", request.getIdentity().get());
 
-        response = (CreateIdentityResponseVO) getJsonRpcUtils()
-                .sendJsonRpcRequest(getIdentitiesUrl(), CreateIdentityResponseVO.class, method, params);
+		// Construct new request
+		String method = Constants.METHOD_IDENTITIES_CREATE;
 
-        return response;
-    }
+		response = (CreateIdentityResponseVO) getJsonRpcUtils().sendJsonRpcRequest(getIdentitiesUrl(), CreateIdentityResponseVO.class, method, params);
 
-    @Override
-    public final UpdateIdentityResponseVO updateIdentity(final UpdateIdentityRequestVO request) {
-        UpdateIdentityResponseVO response = null;
+		return response;
+	}
 
-        if (ObjectUtils.isNull(request)) {
-            LOGGER.warning("Identities.update request is null.");
-            return response;
-        }
+	@Override
+	public final UpdateIdentityResponseVO updateIdentity(final UpdateIdentityRequestVO request) {
+		UpdateIdentityResponseVO response = null;
 
-        if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentity())
-                || MapUtils.isEmpty(request.getUpdate())) {
-            LOGGER.warning("Identities.update parameters may be empty or null.");
-            return response;
-        }
+		if (ObjectUtils.isNull(request)) {
+			LOGGER.warning("Identities.update request is null.");
+			return response;
+		}
 
-        Map<String, Object> params = new HashMap<>();
-        params.put("auth", request.getAuth().get());
-        params.put("identity", request.getIdentity().get());
-        params.put("update", request.getUpdate().get());
+		if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentity()) || MapUtils.isEmpty(request.getUpdate())) {
+			LOGGER.warning("Identities.update parameters may be empty or null.");
+			return response;
+		}
 
-        // Construct new request
-        String method = Constants.METHOD_IDENTITIES_UPDATE;
+		Map<String, Object> params = new HashMap<>();
+		params.put("auth", request.getAuth().get());
+		params.put("identity", request.getIdentity().get());
+		params.put("update", request.getUpdate().get());
 
-        response = (UpdateIdentityResponseVO) getJsonRpcUtils()
-                .sendJsonRpcRequest(getIdentitiesUrl(), UpdateIdentityResponseVO.class, method, params);
+		// Construct new request
+		String method = Constants.METHOD_IDENTITIES_UPDATE;
 
-        return response;
-    }
+		response = (UpdateIdentityResponseVO) getJsonRpcUtils().sendJsonRpcRequest(getIdentitiesUrl(), UpdateIdentityResponseVO.class, method, params);
 
-    @Override
-    public final DeleteIdentityResponseVO deleteIdentity(final DeleteIdentityRequestVO request) {
-        DeleteIdentityResponseVO response = null;
+		return response;
+	}
 
-        if (ObjectUtils.isNull(request)) {
-            LOGGER.warning("Identities.list request is null.");
-            return response;
-        }
+	@Override
+	public final DeleteIdentityResponseVO deleteIdentity(final DeleteIdentityRequestVO request) {
+		DeleteIdentityResponseVO response = null;
 
-        if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentity())) {
-            LOGGER.warning("Identities.list parameters may be empty or null.");
-            return response;
-        }
-        Map<String, Object> params = new HashMap<>();
-        params.put("auth", request.getAuth().get());
-        params.put("identity", request.getIdentity().get());
+		if (ObjectUtils.isNull(request)) {
+			LOGGER.warning("Identities.list request is null.");
+			return response;
+		}
 
-        // Construct new request
-        String method = Constants.METHOD_IDENTITIES_DELETE;
+		if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentity())) {
+			LOGGER.warning("Identities.list parameters may be empty or null.");
+			return response;
+		}
+		Map<String, Object> params = new HashMap<>();
+		params.put("auth", request.getAuth().get());
+		params.put("identity", request.getIdentity().get());
 
-        Boolean result = (Boolean) getJsonRpcUtils().sendJsonRpcRequest(getIdentitiesUrl(), Boolean.class, method, params);
+		// Construct new request
+		String method = Constants.METHOD_IDENTITIES_DELETE;
 
-        response = ImmutableDeleteIdentityResponseVO.builder()
-                .setResult(result)
-                .build();
+		Boolean result = (Boolean) getJsonRpcUtils().sendJsonRpcRequest(getIdentitiesUrl(), Boolean.class, method, params);
 
-        return response;
-    }
+		response = ImmutableDeleteIdentityResponseVO.builder().setResult(result).build();
+
+		return response;
+	}
 
 }

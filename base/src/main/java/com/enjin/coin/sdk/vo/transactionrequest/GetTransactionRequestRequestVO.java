@@ -1,11 +1,12 @@
 package com.enjin.coin.sdk.vo.transactionrequest;
 
-import com.google.gson.annotations.SerializedName;
+import java.util.Map;
+import java.util.Optional;
+
 import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 
-import java.util.Map;
-import java.util.Optional;
+import com.google.gson.annotations.SerializedName;
 
 /**
  * <p>
@@ -16,68 +17,76 @@ import java.util.Optional;
 @Gson.TypeAdapters
 public abstract class GetTransactionRequestRequestVO {
 
-    /**
-     * Method to get the auth.
-     * @return Optional
-     */
-    @SerializedName("auth")
-    public abstract Optional<String> getAuth();
+	/**
+	 * Method to get the auth.
+	 * 
+	 * @return Optional
+	 */
+	@SerializedName("auth")
+	public abstract Optional<String> getAuth();
 
-    /**
-     * Method to get the identityMap.
-     * @return Optional
-     */
-    @SerializedName("identity")
-    public abstract Optional<Map<String, Object>> getIdentity();
-    
-    /**
-     * Method to get the auth.
-     * @return Optional
-     */
-    @SerializedName("app_id")
-    public abstract Optional<String> getAppId();
-    
-    /**
-     * Method to get the recipientMap.
-     * @return Optional
-     */
-    @SerializedName("recipient")
-    public abstract Optional<Map<String, Object>> getRecipient();
-    
-    /**
-     * Method to get the type.
-     * @return Optional
-     */
-    @SerializedName("type")
-    public abstract Optional<String> getType();
+	/**
+	 * Method to get the identityMap.
+	 * 
+	 * @return Optional
+	 */
+	@SerializedName("identity")
+	public abstract Optional<Map<String, Object>> getIdentity();
 
-    /**
-     * Method to get the type.
-     * @return Optional
-     */
-    @SerializedName("after_txr_id")
-    public abstract Optional<String> getAfterTxrId();
-    
-    /**
-     * Method to get the type.
-     * @return Optional
-     */
-    @SerializedName("limit")
-    public abstract Optional<String> getLimit();
-    
-    /**
-     * Method to get the type.
-     * @return Optional
-     */
-    @SerializedName("currency")
-    public abstract Optional<String> getCurrency();
+	/**
+	 * Method to get the auth.
+	 * 
+	 * @return Optional
+	 */
+	@SerializedName("app_id")
+	public abstract Optional<String> getAppId();
 
-    /**
-     * Class toString method.
-     */
-    @Override
-    public String toString() {
-        return "GetTransactionRequestRequestVO [auth=" + getAuth().orElse(null) + "]";
-    }
+	/**
+	 * Method to get the recipientMap.
+	 * 
+	 * @return Optional
+	 */
+	@SerializedName("recipient")
+	public abstract Optional<Map<String, Object>> getRecipient();
+
+	/**
+	 * Method to get the type.
+	 * 
+	 * @return Optional
+	 */
+	@SerializedName("type")
+	public abstract Optional<String> getType();
+
+	/**
+	 * Method to get the type.
+	 * 
+	 * @return Optional
+	 */
+	@SerializedName("after_txr_id")
+	public abstract Optional<String> getAfterTxrId();
+
+	/**
+	 * Method to get the type.
+	 * 
+	 * @return Optional
+	 */
+	@SerializedName("limit")
+	public abstract Optional<String> getLimit();
+
+	/**
+	 * Method to get the type.
+	 * 
+	 * @return Optional
+	 */
+	@SerializedName("currency")
+	public abstract Optional<String> getCurrency();
+
+	/**
+	 * Class toString method.
+	 */
+	@Override
+	public String toString() {
+		return "GetTransactionRequestRequestVO [auth=" + getAuth().orElse(null) + "]";
+	}
 
 }
