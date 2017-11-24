@@ -114,12 +114,58 @@ public abstract class GetEventDataVO {
     @SerializedName("balances")
     public abstract Optional<GetEventDataBalancesVO[]> getGetEventDataBalancesVO();
 
-    @Override
-    public String toString() {
-        return "GetEventDataVO [getTokenId()=" + getTokenId() + ", getCreator()=" + getCreator() + ", getAdapter()=" + getAdapter() + ", getName()=" + getName()
-                + ", getIcon()=" + getIcon() + ", getTotalSupply()=" + getTotalSupply() + ", getExchangeRate()=" + getExchangeRate() + ", getDecimals()="
-                + getDecimals() + ", getMaxMeltFee()=" + getMaxMeltFee() + ", getMeltFee()=" + getMeltFee() + ", getTransferable()=" + getTransferable()
-                + ", getGetEventDataBalancesVO()=" + getGetEventDataBalancesVO() + "]";
-    }
+    /**
+     * Method to get the txrId.
+     * @return Optional
+     */
+    @SerializedName("txr_id")
+    public abstract Optional<String> getTxrId();
+    
+    /**
+     * Method to get the identityMap.
+     * @return Optional
+     */
+    @SerializedName("recipient")
+    public abstract Optional<Map<String, Object>> getRecipient();
+    
+    /**
+     * Method to get the type.
+     * @return Optional
+     */
+    @SerializedName("type")
+    public abstract Optional<String> getType();
+    
+    /**
+     * Method to get the title.
+     * @return Optional
+     */
+    @SerializedName("title")
+    public abstract Optional<String> getTitle();
+    
+    
+    /**
+     * Method to get the value.
+     * @return Optional
+     */
+    @SerializedName("value")
+    public abstract Optional<Map<String, Object>> getValue();
+    
+    /**
+     * Method to get the title.
+     * @return Optional
+     */
+    @SerializedName("state")
+    public abstract Optional<String> getState();
 
+    @Override
+	public String toString() {
+		return "GetEventDataVO [getIdentityMap()=" + getIdentityMap() + ", getTokenId()=" + getTokenId()
+				+ ", getCreator()=" + getCreator() + ", getAdapter()=" + getAdapter() + ", getName()=" + getName()
+				+ ", getIcon()=" + getIcon() + ", getTotalSupply()=" + getTotalSupply() + ", getExchangeRate()="
+				+ getExchangeRate() + ", getDecimals()=" + getDecimals() + ", getMaxMeltFee()=" + getMaxMeltFee()
+				+ ", getMeltFee()=" + getMeltFee() + ", getTransferable()=" + getTransferable() + ", getRecipientMap()="
+				+ getRecipientMap() + ", getGetEventDataBalancesVO()=" + getGetEventDataBalancesVO() + ", getTxrId()="
+				+ getTxrId() + ", getRecipient()=" + getRecipient() + ", getType()=" + getType() + ", getTitle()="
+				+ getTitle() + ", getValue()=" + getValue() + ", getState()=" + getState() + "]";
+	}
 }

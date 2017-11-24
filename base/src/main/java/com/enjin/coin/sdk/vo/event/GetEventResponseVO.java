@@ -16,13 +16,6 @@ import com.google.gson.annotations.SerializedName;
 @Gson.TypeAdapters(emptyAsNulls = true)
 public abstract class GetEventResponseVO {
 
-	/**
-     * Method to get the data.
-     * @return Optional
-     */
-    @SerializedName("data")
-    public abstract Optional<GetEventDataVO> getData();
-
     /**
      * Method to get the eventId.
      * @return Optional
@@ -50,5 +43,13 @@ public abstract class GetEventResponseVO {
      */
     @SerializedName("app_id")
     public abstract Optional<String> getAppId();
+    
+
+	/**
+     * Method to get the data.
+     * @return Optional
+     */
+    @SerializedName("data")
+    public abstract Optional<GetEventDataVO> getData();
 
 }
