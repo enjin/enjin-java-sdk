@@ -1,11 +1,12 @@
 package com.enjin.coin.sdk.vo.event;
 
-import com.google.gson.annotations.SerializedName;
+import java.util.Map;
+import java.util.Optional;
+
 import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 
-import java.util.Map;
-import java.util.Optional;
+import com.google.gson.annotations.SerializedName;
 
 /**
  * <p>
@@ -18,7 +19,7 @@ public abstract class GetEventDataVO {
 
     /**
      * Method to get the identityMap.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("identity")
@@ -26,7 +27,7 @@ public abstract class GetEventDataVO {
 
     /**
      * Method to get the tokenId.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("token_id")
@@ -34,7 +35,7 @@ public abstract class GetEventDataVO {
 
     /**
      * Method to get the creator.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("creator")
@@ -42,7 +43,7 @@ public abstract class GetEventDataVO {
 
     /**
      * Method to get the adapter.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("adapter")
@@ -50,7 +51,7 @@ public abstract class GetEventDataVO {
 
     /**
      * Method to get the name.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("name")
@@ -58,7 +59,7 @@ public abstract class GetEventDataVO {
 
     /**
      * Method to get the icon.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("icon")
@@ -66,7 +67,7 @@ public abstract class GetEventDataVO {
 
     /**
      * Method to get the tokenSupply.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("totalSupply")
@@ -74,7 +75,7 @@ public abstract class GetEventDataVO {
 
     /**
      * Method to get the exchangeRate.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("exchangeRate")
@@ -82,7 +83,7 @@ public abstract class GetEventDataVO {
 
     /**
      * Method to get the decimals.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("decimals")
@@ -90,7 +91,7 @@ public abstract class GetEventDataVO {
 
     /**
      * Method to get the maxMeltFee.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("maxMeltFee")
@@ -98,7 +99,7 @@ public abstract class GetEventDataVO {
 
     /**
      * Method to get the meltFee.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("meltFee")
@@ -106,7 +107,7 @@ public abstract class GetEventDataVO {
 
     /**
      * Method to get the transferable.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("transferable")
@@ -114,7 +115,7 @@ public abstract class GetEventDataVO {
 
     /**
      * Method to get the recipientMap.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("recipient")
@@ -122,7 +123,7 @@ public abstract class GetEventDataVO {
 
     /**
      * Method to get the balances.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("balances")
@@ -130,7 +131,7 @@ public abstract class GetEventDataVO {
 
     /**
      * Method to get the txrId.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("txr_id")
@@ -138,7 +139,7 @@ public abstract class GetEventDataVO {
 
     /**
      * Method to get the type.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("type")
@@ -146,7 +147,7 @@ public abstract class GetEventDataVO {
 
     /**
      * Method to get the title.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("title")
@@ -154,7 +155,7 @@ public abstract class GetEventDataVO {
 
     /**
      * Method to get the valueMap.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("value")
@@ -162,7 +163,7 @@ public abstract class GetEventDataVO {
 
     /**
      * Method to get the fromMap.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("from")
@@ -170,7 +171,7 @@ public abstract class GetEventDataVO {
 
     /**
      * Method to get the pendingMap.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("pending")
@@ -178,7 +179,7 @@ public abstract class GetEventDataVO {
 
     /**
      * Method to get the confirmedMap.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("confirmed")
@@ -186,7 +187,7 @@ public abstract class GetEventDataVO {
 
     /**
      * Method to get the title.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("state")
@@ -194,7 +195,7 @@ public abstract class GetEventDataVO {
 
     /**
      * Method to get the enj.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("ENJ")

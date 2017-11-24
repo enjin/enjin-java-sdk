@@ -17,7 +17,7 @@ import com.google.gson.annotations.SerializedName;
 public abstract class GetTokenResponseVO {
     /**
      * Method to get the tokenId.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("token_id")
@@ -25,7 +25,7 @@ public abstract class GetTokenResponseVO {
 
     /**
      * Method to get the creator.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("creator")
@@ -33,7 +33,7 @@ public abstract class GetTokenResponseVO {
 
     /**
      * Method to get the adapter.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("adapter")
@@ -41,7 +41,7 @@ public abstract class GetTokenResponseVO {
 
     /**
      * Method to get the name.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("name")
@@ -49,7 +49,7 @@ public abstract class GetTokenResponseVO {
 
     /**
      * Method to get the icon.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("icon")
@@ -57,7 +57,7 @@ public abstract class GetTokenResponseVO {
 
     /**
      * Method to get the totalSupply.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("totalSupply")
@@ -65,7 +65,7 @@ public abstract class GetTokenResponseVO {
 
     /**
      * Method to get the exchangeRate.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("exchangeRate")
@@ -73,7 +73,7 @@ public abstract class GetTokenResponseVO {
 
     /**
      * Method to get the decimals.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("decimals")
@@ -81,7 +81,7 @@ public abstract class GetTokenResponseVO {
 
     /**
      * Method to get the maxMeltFee.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("maxMeltFee")
@@ -89,7 +89,7 @@ public abstract class GetTokenResponseVO {
 
     /**
      * Method to get the meltFee.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("meltFee")
@@ -97,7 +97,7 @@ public abstract class GetTokenResponseVO {
 
     /**
      * Method to get the transferable.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("transferable")
@@ -108,8 +108,8 @@ public abstract class GetTokenResponseVO {
      */
     @Override
     public String toString() {
-        return "GetTokenResponseVO [tokenId=" + getTokenId().orElse(null) + ", creator=" + getCreator().orElse(null) + ", adapter=" + getAdapter().orElse(null) + ", name="
-                + getName().orElse(null) + ", icon=" + getIcon().orElse(null) + ", totalSupply=" + getTotalSupply().orElse(null) + ", exchangeRate="
+        return "GetTokenResponseVO [tokenId=" + getTokenId().orElse(null) + ", creator=" + getCreator().orElse(null) + ", adapter=" + getAdapter().orElse(null)
+                + ", name=" + getName().orElse(null) + ", icon=" + getIcon().orElse(null) + ", totalSupply=" + getTotalSupply().orElse(null) + ", exchangeRate="
                 + getExchangeRate().orElse(null) + ", decimals=" + getDecimals().orElse(null) + ", maxMeltFee=" + getMaxMeltFee().orElse(null) + ", meltFee="
                 + getMeltFee().orElse(null) + ", transferable=" + getTransferable().orElse(null) + "]";
     }

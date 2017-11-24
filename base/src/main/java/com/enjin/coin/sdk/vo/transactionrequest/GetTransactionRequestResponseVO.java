@@ -19,7 +19,7 @@ public abstract class GetTransactionRequestResponseVO {
 
     /**
      * Method to get the txrId.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("txr_id")
@@ -27,7 +27,7 @@ public abstract class GetTransactionRequestResponseVO {
 
     /**
      * Method to get the identityMap.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("identity")
@@ -35,7 +35,7 @@ public abstract class GetTransactionRequestResponseVO {
 
     /**
      * Method to get the recipientMap.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("recipient")
@@ -43,7 +43,7 @@ public abstract class GetTransactionRequestResponseVO {
 
     /**
      * Method to get the type.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("type")
@@ -51,7 +51,7 @@ public abstract class GetTransactionRequestResponseVO {
 
     /**
      * Method to get the icon.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("icon")
@@ -59,7 +59,7 @@ public abstract class GetTransactionRequestResponseVO {
 
     /**
      * Method to get the title.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("title")
@@ -67,7 +67,7 @@ public abstract class GetTransactionRequestResponseVO {
 
     /**
      * Method to get the valueMap.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("value")
@@ -75,7 +75,7 @@ public abstract class GetTransactionRequestResponseVO {
 
     /**
      * Method to get the state.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("state")
@@ -87,8 +87,8 @@ public abstract class GetTransactionRequestResponseVO {
     @Override
     public String toString() {
         return "GetTransactionRequestResponseVO [txrId=" + getTxrId().orElse(null) + ", identityMap=" + getIdentityMap().orElse(null) + ", recipientMap="
-                + getRecipientMap().orElse(null) + ", type=" + getType().orElse(null) + ", icon=" + getIcon().orElse(null) + ", title=" + getTitle().orElse(null) + ", valueMap="
-                + getValueMap().orElse(null) + ", state=" + getState().orElse(null) + "]";
+                + getRecipientMap().orElse(null) + ", type=" + getType().orElse(null) + ", icon=" + getIcon().orElse(null) + ", title="
+                + getTitle().orElse(null) + ", valueMap=" + getValueMap().orElse(null) + ", state=" + getState().orElse(null) + "]";
     }
 
 }

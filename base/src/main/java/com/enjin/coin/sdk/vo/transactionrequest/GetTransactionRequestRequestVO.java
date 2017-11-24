@@ -19,7 +19,7 @@ public abstract class GetTransactionRequestRequestVO {
 
     /**
      * Method to get the auth.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("auth")
@@ -27,7 +27,7 @@ public abstract class GetTransactionRequestRequestVO {
 
     /**
      * Method to get the identityMap.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("identity")
@@ -35,7 +35,7 @@ public abstract class GetTransactionRequestRequestVO {
 
     /**
      * Method to get the auth.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("app_id")
@@ -43,7 +43,7 @@ public abstract class GetTransactionRequestRequestVO {
 
     /**
      * Method to get the recipientMap.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("recipient")
@@ -51,7 +51,7 @@ public abstract class GetTransactionRequestRequestVO {
 
     /**
      * Method to get the type.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("type")
@@ -59,7 +59,7 @@ public abstract class GetTransactionRequestRequestVO {
 
     /**
      * Method to get the type.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("after_txr_id")
@@ -67,7 +67,7 @@ public abstract class GetTransactionRequestRequestVO {
 
     /**
      * Method to get the type.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("limit")
@@ -75,7 +75,7 @@ public abstract class GetTransactionRequestRequestVO {
 
     /**
      * Method to get the type.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("currency")

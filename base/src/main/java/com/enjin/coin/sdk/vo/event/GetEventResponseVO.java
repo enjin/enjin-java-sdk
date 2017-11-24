@@ -18,6 +18,7 @@ public abstract class GetEventResponseVO {
 
     /**
      * Method to get the eventId.
+     *
      * @return Optional
      */
     @SerializedName("event_id")
@@ -25,6 +26,7 @@ public abstract class GetEventResponseVO {
 
     /**
      * Method to get the eventType.
+     *
      * @return Optional
      */
     @SerializedName("event_type")
@@ -32,6 +34,7 @@ public abstract class GetEventResponseVO {
 
     /**
      * Method to get the timestamp.
+     *
      * @return Optional
      */
     @SerializedName("timestamp")
@@ -39,14 +42,15 @@ public abstract class GetEventResponseVO {
 
     /**
      * Method to get the appId.
+     *
      * @return Optional
      */
     @SerializedName("app_id")
     public abstract Optional<String> getAppId();
-    
 
-	/**
+    /**
      * Method to get the data.
+     *
      * @return Optional
      */
     @SerializedName("data")

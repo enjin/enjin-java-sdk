@@ -18,7 +18,7 @@ public abstract class GetIdentityRequestVO extends BaseIdentityRequestVO {
 
     /**
      * Method to get the linked value.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("linked")
@@ -26,7 +26,7 @@ public abstract class GetIdentityRequestVO extends BaseIdentityRequestVO {
 
     /**
      * Method to get the after_identity_id value.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("after_identity_id")
@@ -34,7 +34,7 @@ public abstract class GetIdentityRequestVO extends BaseIdentityRequestVO {
 
     /**
      * Method to get the limit value.
-     * 
+     *
      * @return Optional
      */
     @SerializedName("limit")
@@ -43,7 +43,8 @@ public abstract class GetIdentityRequestVO extends BaseIdentityRequestVO {
     @Override
     public String toString() {
         return "GetIdentityRequestVO [" + (getLinked() != null ? "getLinked()=" + getLinked() + ", " : "")
-                + (getAfterIdentityId() != null ? "getAfterIdentityId()=" + getAfterIdentityId() + ", " : "") + (getLimit() != null ? "getLimit()=" + getLimit() : "") + "]";
+                + (getAfterIdentityId() != null ? "getAfterIdentityId()=" + getAfterIdentityId() + ", " : "")
+                + (getLimit() != null ? "getLimit()=" + getLimit() : "") + "]";
     }
 
 }

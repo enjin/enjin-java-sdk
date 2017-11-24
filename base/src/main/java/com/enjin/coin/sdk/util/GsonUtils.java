@@ -59,6 +59,7 @@ public final class GsonUtils {
 
     /**
      * Method to register all type adapter factories.
+     *
      * @param gsonBuilder gson builder to configer
      */
     public static void registerAllTypeAdapterFactories(final GsonBuilder gsonBuilder) {
@@ -69,14 +70,16 @@ public final class GsonUtils {
 
     /**
      * Method to get all type adapter factories.
+     *
      * @return List
      */
     public static List<TypeAdapterFactory> getAllTypeAdapterFactories() {
         List<TypeAdapterFactory> factories = new ArrayList<>();
         getTypeAdapterFactoryServiceLoader().forEach(factories::add);
-        
-        //TODO: remove - temporarily needed by damien - should not need to be added here
-        //These adapters are not registering when I run my tests in eclipse or intelliJ
+
+        // TODO: remove - temporarily needed by damien - should not need to be added
+        // here
+        // These adapters are not registering when I run my tests in eclipse or intelliJ
         factories.add(new GsonAdaptersGetEventRequestVO());
         factories.add(new GsonAdaptersGetEventResponseVO());
         factories.add(new GsonAdaptersGetEventDataVO());
@@ -89,7 +92,7 @@ public final class GsonUtils {
         factories.add(new GsonAdaptersCancelTransactionRequestResponseVO());
         factories.add(new GsonAdaptersGetIdentityRequestVO());
         factories.add(new GsonAdaptersGetIdentityResponseVO());
-        factories.add(new GsonAdaptersUpdateIdentityRequestVO());        
+        factories.add(new GsonAdaptersUpdateIdentityRequestVO());
         factories.add(new GsonAdaptersUpdateIdentityResponseVO());
         factories.add(new GsonAdaptersCreateIdentityRequestVO());
         factories.add(new GsonAdaptersCreateIdentityResponseVO());
@@ -102,6 +105,7 @@ public final class GsonUtils {
 
     /**
      * Method to get the type adapter factory service loader.
+     *
      * @return ServiceLoader
      */
     public static ServiceLoader<TypeAdapterFactory> getTypeAdapterFactoryServiceLoader() {
