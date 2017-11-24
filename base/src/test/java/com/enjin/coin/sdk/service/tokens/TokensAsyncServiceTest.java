@@ -45,7 +45,9 @@ public class TokensAsyncServiceTest {
     @Test
     public void testGetToken_Success() throws Exception {
         GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
-                .setTokenId("tokenId")
+                .setAppId("352")
+                .setAfterTokenId("123456")
+                .setLimit("50")
                 .build();
 
         GetTokenResponseVO returnedGetTokenResponseVO = ImmutableGetTokenResponseVO.builder().build();

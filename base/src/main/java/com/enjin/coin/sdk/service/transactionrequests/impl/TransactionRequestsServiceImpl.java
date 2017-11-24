@@ -47,14 +47,30 @@ public class TransactionRequestsServiceImpl extends BaseService implements Trans
             return response;
         }
 
-        if (StringUtils.isEmpty(request.getAuth()) || StringUtils.isEmpty(request.getTxrId())) {
-            LOGGER.warning("TransactionRequests.get parameters may be empty or null.");
+        if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentity())) {
+            LOGGER.warning("1. TransactionRequests.get parameters may be empty or null.");
+            return response;
+        }
+        if (StringUtils.isEmpty(request.getAppId()) || MapUtils.isEmpty(request.getRecipient())) {
+            LOGGER.warning("2. TransactionRequests.get parameters may be empty or null.");
+            return response;
+        }
+        if (StringUtils.isEmpty(request.getType()) || StringUtils.isEmpty(request.getAfterTxrId()) 
+        	|| StringUtils.isEmpty(request.getLimit()) || StringUtils.isEmpty(request.getCurrency())) {
+            LOGGER.warning("3. TransactionRequests.get parameters may be empty or null.");
             return response;
         }
 
+        
         Map<String, Object> params = new HashMap<>();
         params.put("auth", request.getAuth().get());
-        params.put("txr_id", request.getTxrId().get());
+        params.put("identity", request.getIdentity().get());
+        params.put("app_id", request.getAppId().get());
+        params.put("recipient", request.getRecipient().get());
+        params.put("type", request.getType().get());
+        params.put("after_txr_id", request.getAfterTxrId().get());
+        params.put("limit", request.getLimit().get());
+        params.put("currency", request.getCurrency().get());
 
         // Construct new request
         String method = Constants.METHOD_TRANSACTION_REQUESTS_GET;

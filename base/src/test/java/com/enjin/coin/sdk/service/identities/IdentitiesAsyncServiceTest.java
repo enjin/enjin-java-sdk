@@ -61,6 +61,9 @@ public class IdentitiesAsyncServiceTest {
                 .setIdentity(new HashMap<String, Object>() {{
                     put("key", "value");
                 }})
+                .setAfterIdentityId("1234567")
+                .setLinked(true)
+                .setLimit("50")
                 .build();
 
         GetIdentityResponseVO returnedGetIdentityResponseVO = ImmutableGetIdentityResponseVO.builder().build();

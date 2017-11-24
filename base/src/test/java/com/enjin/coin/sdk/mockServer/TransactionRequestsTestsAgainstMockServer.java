@@ -14,7 +14,9 @@ import com.enjin.coin.sdk.service.EnjinCoinClient;
 import com.enjin.coin.sdk.service.transactionrequests.TransactionRequestsService;
 import com.enjin.coin.sdk.vo.transactionrequest.CancelTransactionRequestRequestVO;
 import com.enjin.coin.sdk.vo.transactionrequest.CreateTransactionRequestRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.GetTransactionRequestDetailsResponseVO;
 import com.enjin.coin.sdk.vo.transactionrequest.GetTransactionRequestRequestVO;
+import com.enjin.coin.sdk.vo.transactionrequest.GetTransactionRequestResponseVO;
 import com.enjin.coin.sdk.vo.transactionrequest.ImmutableCancelTransactionRequestRequestVO;
 import com.enjin.coin.sdk.vo.transactionrequest.ImmutableCreateTransactionRequestRequestVO;
 import com.enjin.coin.sdk.vo.transactionrequest.ImmutableGetTransactionRequestRequestVO;
@@ -37,17 +39,34 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
         transactionRequestsService = enjinService.getTransactionRequestsService();
     }
 
-    @Test
+    @SuppressWarnings("serial")
+	@Test
     public void testGetTransactionRequest() {
-        GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
+        
+		GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
                 .setAuth("xxxxxxxx")
-                .setTxrId("123456")
+                .setIdentity(new HashMap<String, Object>() {{
+                    put("identity_id", "12345");
+                }})
+                .setAppId("123")
+                .setRecipient(new HashMap<String, Object>() {{
+                    put("identity_id", "12345");
+                }})
+                .setType("buy")
+                .setAfterTxrId("1234567")
+                .setLimit("50")
+                .setCurrency("23456")
                 .build();
         String[] keys = {IDENTITY_ID_KEY, ETHEREUM_ADDRESS_KEY, PLAYER_NAME_KEY};
         String[] value_map_keys = {"ENJ"};
         assertThat(getTransactionRequestRequestVO).isNotNull()
-                .satisfies(o -> assertThat(o.toString()).isNotEmpty())
-                .satisfies(o -> assertThat(transactionRequestsService.getTransactionRequest(o)).isNotNull()
+                .satisfies(o -> assertThat(o.toString()).isNotEmpty());
+        
+        GetTransactionRequestResponseVO getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
+        assertThat(getTransactionRequestResponseVO).isNotNull();
+        
+        for (GetTransactionRequestDetailsResponseVO transactionRequestDetailsResponseVO : getTransactionRequestResponseVO.getTransactionRequestDetailsResponseVO().get()) {
+        	assertThat(transactionRequestDetailsResponseVO).isNotNull()
                         .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getTxrId()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getIdentityMap()).isNotEmpty()
@@ -61,7 +80,8 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
                         .satisfies(o2 -> assertThat(o2.getTitle()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getValueMap()).isNotEmpty()
                                 .hasValueSatisfying(v -> assertThat(v).containsKeys(value_map_keys)
-                                        .extracting(value_map_keys).doesNotContainNull())));
+                                        .extracting(value_map_keys).doesNotContainNull()));
+        }
     }
 
     @Test

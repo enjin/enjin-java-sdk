@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -29,6 +30,27 @@ public abstract class GetEventRequestVO {
     @SerializedName("event_id")
     public abstract Optional<String> getEventId();
 
+    /**
+     * Method to get the identityMap.
+     * @return Optional
+     */
+    @SerializedName("identity")
+    public abstract Optional<Map<String, Object>> getIdentity();
+    
+    /**
+     * Method to get the afterEventId.
+     * @return Optional
+     */
+    @SerializedName("after_event_id")
+    public abstract Optional<String> getAfterEventId();
+    
+    /**
+     * Method to get the limit.
+     * @return Optional
+     */
+    @SerializedName("limit")
+    public abstract Optional<String> getLimit();
+    
     /**
      * Class toString method.
      */

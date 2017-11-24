@@ -81,43 +81,34 @@ public class BaseMockServer {
         //Formatted with https://www.freeformatter.com/json-formatter.html
 
         //Setup the identities stubs
-        String identitiesGetMethod = "Identities.get";
-        String identitiesListMethod = "Identities.list";
+        String identitiesGetMethod    = "Identities.get";
         String identitiesCreateMethod = "Identities.create";
         String identitiesUpdateMethod = "Identities.update";
         String identitiesDeleteMethod = "Identities.delete";
 
         setUpStub(IDENTITIES_URL, identitiesGetMethod);
-        setUpStub(IDENTITIES_URL, identitiesListMethod);
         setUpStub(IDENTITIES_URL, identitiesCreateMethod);
         setUpStub(IDENTITIES_URL, identitiesUpdateMethod);
         setUpStub(IDENTITIES_URL, identitiesDeleteMethod);
 
         //Setup the tokens stubs
         String tokensGetMethod = "Tokens.get";
-        String tokensListMethod = "Tokens.list";
 
         setUpStub(TOKENS_URL, tokensGetMethod);
-        setUpStub(TOKENS_URL, tokensListMethod);
 
         //Setup the TransactionRequests stubs
-        String transactionRequestsGetMethod = "TransactionRequests.get";
-        String transactionRequestsListMethod = "TransactionRequests.list";
+        String transactionRequestsGetMethod    = "TransactionRequests.get";
         String transactionRequestsCreateMethod = "TransactionRequests.create";
         String transactionRequestsCancelMethod = "TransactionRequests.cancel";
 
         setUpStub(TRANSACTION_REQUESTS_URL, transactionRequestsGetMethod);
-        setUpStub(TRANSACTION_REQUESTS_URL, transactionRequestsListMethod);
         setUpStub(TRANSACTION_REQUESTS_URL, transactionRequestsCreateMethod);
         setUpStub(TRANSACTION_REQUESTS_URL, transactionRequestsCancelMethod);
 
         //Setup the events stubs
         String eventsGetMethod = "Events.get";
-        String eventsListMethod = "Events.list";
 
         setUpStub(EVENTS_URL, eventsGetMethod);
-        setUpStub(EVENTS_URL, eventsListMethod);
-
     }
 
     protected String getUrlFromPlatform(Platform platform) {

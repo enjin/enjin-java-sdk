@@ -44,13 +44,15 @@ public class TokensServiceImpl extends BaseService implements TokensService {
 			return response;
 		}
 
-		if (StringUtils.isEmpty(request.getTokenId())) {
+		if (StringUtils.isEmpty(request.getAppId()) || StringUtils.isEmpty(request.getAfterTokenId()) || StringUtils.isEmpty(request.getLimit())) {
 			LOGGER.warning("Tokens.get parameters may be empty or null.");
 			return response;
 		}
-
+		
 		Map<String, Object> params = new HashMap<>();
-		params.put("token_id", request.getTokenId().get());
+		params.put("app_id", request.getAppId().get());
+		params.put("after_token_id", request.getAfterTokenId().get());
+		params.put("limit", request.getLimit().get());
 
 		// Construct new request
 		String method = Constants.METHOD_TOKENS_GET;

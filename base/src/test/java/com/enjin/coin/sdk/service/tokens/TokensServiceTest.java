@@ -49,9 +49,11 @@ public class TokensServiceTest {
     }
 
     @Test
-    public void testGetToken_TokenIsNull() {
+    public void testGetToken_AppIdIsNull() {
         GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
-                .setTokenId((String) null)
+        	     .setAppId((String)null)
+                 .setAfterTokenId("123456")
+                 .setLimit("50")
                 .build();
 
         tokenService = new TokensServiceImpl(enjinConfig);
@@ -60,9 +62,11 @@ public class TokensServiceTest {
     }
 
     @Test
-    public void testGetToken_TokenIdIsEmpty() {
+    public void testGetToken_AppIdIsEmpty() {
         GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
-                .setTokenId("")
+                .setAppId("")
+                .setAfterTokenId("123456")
+                .setLimit("50")
                 .build();
 
         tokenService = new TokensServiceImpl(enjinConfig);
@@ -70,11 +74,63 @@ public class TokensServiceTest {
         assertThat(getTokenResponseVO).isNull();
     }
 
+    @Test
+    public void testGetToken_AfterTokenIdIsNull() {
+        GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
+        	     .setAppId("352")
+                 .setAfterTokenId((String)null)
+                 .setLimit("50")
+                .build();
+
+        tokenService = new TokensServiceImpl(enjinConfig);
+        GetTokenResponseVO getTokenResponseVO = tokenService.getToken(getTokenRequestVO);
+        assertThat(getTokenResponseVO).isNull();
+    }
+
+    @Test
+    public void testGetToken_AfterTokendIsEmpty() {
+        GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
+                .setAppId("35")
+                .setAfterTokenId("")
+                .setLimit("50")
+                .build();
+
+        tokenService = new TokensServiceImpl(enjinConfig);
+        GetTokenResponseVO getTokenResponseVO = tokenService.getToken(getTokenRequestVO);
+        assertThat(getTokenResponseVO).isNull();
+    }
+    @Test
+    public void testGetToken_LimitIsNull() {
+        GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
+        	     .setAppId("352")
+                 .setAfterTokenId("123456")
+                 .setLimit((String)null)
+                .build();
+
+        tokenService = new TokensServiceImpl(enjinConfig);
+        GetTokenResponseVO getTokenResponseVO = tokenService.getToken(getTokenRequestVO);
+        assertThat(getTokenResponseVO).isNull();
+    }
+
+    @Test
+    public void testGetToken_LimitIsEmpty() {
+        GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
+                .setAppId("35")
+                .setAfterTokenId("123456")
+                .setLimit("")
+                .build();
+
+        tokenService = new TokensServiceImpl(enjinConfig);
+        GetTokenResponseVO getTokenResponseVO = tokenService.getToken(getTokenRequestVO);
+        assertThat(getTokenResponseVO).isNull();
+    }
     @SuppressWarnings("unchecked")
     @Test
     public void testGetToken_ResponseIsNull() throws Exception {
         GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
-                .setTokenId("tokenId")
+                .setAppId("352")
+                .setAfterTokenId("123456")
+                .setLimit("50")
                 .build();
 
         GetTokenResponseVO returnedGetTokenResponseVO = null;
@@ -95,7 +151,9 @@ public class TokensServiceTest {
     @Test
     public void testGetToken_Success() throws Exception {
         GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
-                .setTokenId("tokenId")
+                .setAppId("352")
+                .setAfterTokenId("123456")
+                .setLimit("50")
                 .build();
 
         GetTokenResponseVO returnedGetTokenResponseVO = ImmutableGetTokenResponseVO.builder().build();

@@ -15,5 +15,4 @@ public interface TokensService {
      * @return - GetTokenResponseVO
      */
     GetTokenResponseVO getToken(GetTokenRequestVO request);
-
 }

@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -23,18 +24,60 @@ public abstract class GetTransactionRequestRequestVO {
     public abstract Optional<String> getAuth();
 
     /**
-     * Method to get the txrId.
+     * Method to get the identityMap.
      * @return Optional
      */
-    @SerializedName("txr_id")
-    public abstract Optional<String> getTxrId();
+    @SerializedName("identity")
+    public abstract Optional<Map<String, Object>> getIdentity();
+    
+    /**
+     * Method to get the auth.
+     * @return Optional
+     */
+    @SerializedName("app_id")
+    public abstract Optional<String> getAppId();
+    
+    /**
+     * Method to get the recipientMap.
+     * @return Optional
+     */
+    @SerializedName("recipient")
+    public abstract Optional<Map<String, Object>> getRecipient();
+    
+    /**
+     * Method to get the type.
+     * @return Optional
+     */
+    @SerializedName("type")
+    public abstract Optional<String> getType();
+
+    /**
+     * Method to get the type.
+     * @return Optional
+     */
+    @SerializedName("after_txr_id")
+    public abstract Optional<String> getAfterTxrId();
+    
+    /**
+     * Method to get the type.
+     * @return Optional
+     */
+    @SerializedName("limit")
+    public abstract Optional<String> getLimit();
+    
+    /**
+     * Method to get the type.
+     * @return Optional
+     */
+    @SerializedName("currency")
+    public abstract Optional<String> getCurrency();
 
     /**
      * Class toString method.
      */
     @Override
     public String toString() {
-        return "GetTransactionRequestRequestVO [auth=" + getAuth().orElse(null) + ", txrId=" + getTxrId().orElse(null) + "]";
+        return "GetTransactionRequestRequestVO [auth=" + getAuth().orElse(null) + "]";
     }
 
 }

@@ -14,7 +14,9 @@ import com.enjin.coin.sdk.service.EnjinCoinClient;
 import com.enjin.coin.sdk.service.identities.IdentitiesService;
 import com.enjin.coin.sdk.vo.identity.CreateIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.DeleteIdentityRequestVO;
+import com.enjin.coin.sdk.vo.identity.GetIdentityDetailsResponseVO;
 import com.enjin.coin.sdk.vo.identity.GetIdentityRequestVO;
+import com.enjin.coin.sdk.vo.identity.GetIdentityResponseVO;
 import com.enjin.coin.sdk.vo.identity.ImmutableCreateIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.ImmutableDeleteIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.ImmutableGetIdentityRequestVO;
@@ -51,15 +53,19 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
                 .setAuth("xxzcxcxz")
                 .setIdentity(identityMap)
                 .build();
-        assertThat(getIdentityRequestVO).isNotNull()
-                .satisfies(o -> assertThat(identitiesService.getIdentity(o)).isNotNull()
+        assertThat(getIdentityRequestVO).isNotNull();
+        
+        GetIdentityResponseVO getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
+        assertThat(getIdentityResponseVO).isNotNull();
+        for (GetIdentityDetailsResponseVO identityDetailsResponseVO: getIdentityResponseVO.getGetIdentityDetailsResponseVO().get()) {
+        	assertThat(identityDetailsResponseVO).isNotNull()
+                .satisfies(o -> assertThat(identityDetailsResponseVO).isNotNull()
                         .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getIdentityId()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getEthereumAddress()).isNotEmpty())
-                        .satisfies(o2 -> assertThat(o2.getUuid()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getPlayerName()).isNotEmpty()));
+        }
     }
-
 
     @Test
     public void testCreateIdentity() {

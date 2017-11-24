@@ -107,7 +107,11 @@ public class IdentitiesServiceTest {
 					{
 						put("key", "value");
 					}
-				}).build();
+				})
+				.setAfterIdentityId("1234567")
+				.setLinked(true)
+				.setLimit("50")
+				.build();
 
 		GetIdentityResponseVO returnedGetIdentityResponseVO = null;
 
@@ -133,7 +137,10 @@ public class IdentitiesServiceTest {
 					{
 						put("key", "value");
 					}
-				}).build();
+				})                
+				.setAfterIdentityId("1234567")
+                .setLinked(true)
+                .setLimit("50").build();
 
 		GetIdentityResponseVO returnedGetIdentityResponseVO = ImmutableGetIdentityResponseVO.builder().build();
 

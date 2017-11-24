@@ -33,8 +33,6 @@ public class Constants {
 
     /** Constants for the Identities Get method. **/
     public static final String METHOD_IDENTITIES_GET = "Identities.get";
-    /** Constants for the Identities List method. **/
-    public static final String METHOD_IDENTITIES_LIST = "Identities.list";
     /** Constants for the Identities Create method. **/
     public static final String METHOD_IDENTITIES_CREATE = "Identities.create";
     /** Constants for the Identities Delete method. **/
@@ -44,13 +42,9 @@ public class Constants {
 
     /** Constants for the Tokens Get method. **/
     public static final String METHOD_TOKENS_GET = "Tokens.get";
-    /** Constants for the Tokens List method. **/
-    public static final String METHOD_TOKENS_LIST = "Tokens.list";
 
     /** Constants for the TransactionRequests Get method. **/
     public static final String METHOD_TRANSACTION_REQUESTS_GET = "TransactionRequests.get";
-    /** Constants for the TransactionRequests List method. **/
-    public static final String METHOD_TRANSACTION_REQUESTS_LIST = "TransactionRequests.list";
     /** Constants for the TransactionRequests Create method. **/
     public static final String METHOD_TRANSACTION_REQUESTS_CREATE = "TransactionRequests.create";
     /** Constants for the TransactionRequests Cancel method. **/
@@ -58,8 +52,6 @@ public class Constants {
 
     /** Constants for the Events Get method. **/
     public static final String METHOD_EVENTS_GET = "Events.get";
-    /** Constants for the Events List method. **/
-    public static final String METHOD_EVENTS_LIST = "Events.list";
 
     /** Numeric constants - 1. **/
     public static final int ONE = 1;

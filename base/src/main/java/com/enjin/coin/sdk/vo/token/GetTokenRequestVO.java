@@ -19,15 +19,23 @@ public abstract class GetTokenRequestVO {
      * Method to get the tokenId.
      * @return Optional
      */
-    @SerializedName("token_id")
-    public abstract Optional<String> getTokenId();
+    @SerializedName("app_id")
+    public abstract Optional<String> getAppId();
 
+    @SerializedName("after_token_id")
+    public abstract Optional<String> getAfterTokenId();
+    
+    @SerializedName("limit")
+    public abstract Optional<String> getLimit();
+    
+    
+    
     /**
      * Class toString method.
      */
     @Override
     public String toString() {
-        return "GetTokenRequestVO [tokenId=" + getTokenId().orElse(null) + "]";
+        return "GetTokenRequestVO [appId=" + getAppId().orElse(null) + ", afterTokenId=" + getAfterTokenId().orElse(null) + ", limit=" + getLimit().orElse(null) + "]";
     }
 
 }

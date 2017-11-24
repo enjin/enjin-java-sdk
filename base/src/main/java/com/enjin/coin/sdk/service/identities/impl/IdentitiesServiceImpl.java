@@ -54,10 +54,19 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
             return response;
         }
 
+        if (StringUtils.isEmpty(request.getAfterIdentityId()) || StringUtils.isEmpty(request.getLimit())) {
+            LOGGER.warning("Identities.get parameters may be empty or null.");
+            return response;
+        }
+        
+        
         Map<String, Object> params = new HashMap<>();
         params.put("auth", request.getAuth().get());
         params.put("identity", request.getIdentity().get());
-
+        params.put("linked", request.getLinked().get());
+        params.put("after_identity_id", request.getAfterIdentityId().get());
+        params.put("limit", request.getLimit().get());
+        
         // Construct new request
         String method = Constants.METHOD_IDENTITIES_GET;
 
