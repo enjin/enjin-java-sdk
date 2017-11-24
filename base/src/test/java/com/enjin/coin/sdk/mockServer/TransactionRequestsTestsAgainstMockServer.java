@@ -57,7 +57,7 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
                 .setCurrency("23456")
                 .build();
         String[] keys = {IDENTITY_ID_KEY, ETHEREUM_ADDRESS_KEY, PLAYER_NAME_KEY};
-        String[] value_map_keys = {"ENJ"};
+
         assertThat(getTransactionRequestRequestVO).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty());
         

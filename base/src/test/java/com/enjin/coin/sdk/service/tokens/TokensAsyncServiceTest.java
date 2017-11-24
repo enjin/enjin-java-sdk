@@ -16,7 +16,6 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.service.tokens.impl.TokensAsyncServiceImpl;
 import com.enjin.coin.sdk.util.JsonRpcUtils;
-import com.enjin.coin.sdk.vo.identity.GetIdentityResponseVO;
 import com.enjin.coin.sdk.vo.token.GetTokenRequestVO;
 import com.enjin.coin.sdk.vo.token.GetTokenResponseVO;
 import com.enjin.coin.sdk.vo.token.ImmutableGetTokenRequestVO;
