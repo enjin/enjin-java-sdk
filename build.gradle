@@ -82,7 +82,7 @@ subprojects {
 
     install {
         repositories.mavenInstaller {
-            pom.artifactId = "sdk-${project.name}"
+            pom.artifactId = "enj-sdk-${project.name}"
         }
     }
 
