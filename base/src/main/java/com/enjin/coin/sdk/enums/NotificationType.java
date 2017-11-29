@@ -4,7 +4,7 @@ package com.enjin.coin.sdk.enums;
  * <p> Notification types which can be received from the ThirdPartyNotificationService </p>
  *
  */
-public enum NotificationTypeEnum {
+public enum NotificationType {
 
     UNKNOWN_EVENT("unknown"),
     TXR_PENDING("txr_pending"),
@@ -25,7 +25,7 @@ public enum NotificationTypeEnum {
 
     private String eventType;
 
-    NotificationTypeEnum(String eventType) {
+    NotificationType(String eventType) {
         this.eventType = eventType;
     }
 

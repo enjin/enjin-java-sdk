@@ -1,11 +1,16 @@
 package com.enjin.coin.sdk.service.notifications.impl;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import com.enjin.coin.sdk.config.Notification;
-import com.enjin.coin.sdk.enums.NotificationTypeEnum;
+import com.enjin.coin.sdk.enums.NotificationType;
+import com.enjin.coin.sdk.service.notifications.NotificationListener;
 import com.enjin.coin.sdk.service.notifications.ThirdPartyNotificationService;
+import com.enjin.coin.sdk.util.ListUtils;
 import com.enjin.coin.sdk.util.StringUtils;
+import com.enjin.coin.sdk.vo.notifications.NotificationEvent;
 import com.pusher.client.Pusher;
 import com.pusher.client.PusherOptions;
 import com.pusher.client.channel.Channel;
@@ -31,6 +36,11 @@ public class PusherServiceImpl implements ThirdPartyNotificationService{
 
     /** Local channel variable **/
     private Channel channel;
+
+    /**
+     * Local variable holding all the notification listeners
+     */
+    private List<NotificationListener> _notificationListeners = new ArrayList<NotificationListener>();
 
     /**
      * Method to initialize the notification service.
@@ -90,14 +100,15 @@ public class PusherServiceImpl implements ThirdPartyNotificationService{
         //Convert an enum to an array of strings
         //String[] eventTypes = Arrays.stream(NotificationTypeEnum.values()).map(NotificationTypeEnum::name).toArray(String[]::new);
 
-        for (NotificationTypeEnum notificationTypeEnum : NotificationTypeEnum.values()) {
+        for (NotificationType notificationTypeEnum : NotificationType.values()) {
             String eventType = notificationTypeEnum.getEventType();
 
             // Bind to listen for events called "my-event" sent to "my-channel"
             channel.bind(eventType, new SubscriptionEventListener() {
                 @Override
                 public void onEvent(String channel, String event, String data) {
-                    LOGGER.info(String.format("Received eventType %s with data %s ", eventType, data));
+                    fireNotification(data, channel, event);
+                    LOGGER.info(String.format("Received eventType %s, event %s with data %s ", eventType, event, data));
                 }
             });
         }
@@ -111,4 +122,37 @@ public class PusherServiceImpl implements ThirdPartyNotificationService{
         return initializeResult;
     }
 
+    /**
+     * Method to fire a notification
+     * @param sourceData
+     * @param channel
+     * @param eventType
+     *
+     */
+    private void fireNotification(String sourceData, String channel, String eventType) {
+
+        if (ListUtils.isNotEmpty(_notificationListeners)) {
+            LOGGER.warning("No listeners are currently registered");
+            return ;
+        }
+        NotificationType notificationTypeEnum = NotificationType.valueOf(eventType);
+        if (notificationTypeEnum == null) {
+            LOGGER.warning(String.format("Failed to get NotificationType for the eventType of %s", eventType));
+            return;
+        }
+
+        NotificationEvent notificationEvent = new NotificationEvent(sourceData, channel, notificationTypeEnum);
+        for(NotificationListener notificationListener : _notificationListeners) {
+           notificationListener.notificationReceived(notificationEvent);
+        }
+
+    }
+    /**
+     * Method to set the notification listeners
+     * @param notificationListeners
+     */
+    @Override
+    public synchronized void setNotificationListeners(List<NotificationListener> notificationListeners) {
+        this._notificationListeners = notificationListeners;
+    }
 }
