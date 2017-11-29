@@ -2,6 +2,7 @@ package com.enjin.coin.sdk.service;
 
 import com.enjin.coin.sdk.service.events.EventsAsyncService;
 import com.enjin.coin.sdk.service.identities.IdentitiesAsyncService;
+import com.enjin.coin.sdk.service.notifications.NotificationsAsyncService;
 import com.enjin.coin.sdk.service.tokens.TokensAsyncService;
 import com.enjin.coin.sdk.service.transactionrequests.TransactionRequestsAsyncService;
 
@@ -42,4 +43,11 @@ public interface EnjinCoinAsync extends EnjinCoin {
     @Override
     TransactionRequestsAsyncService getTransactionRequestsService();
 
+    /**
+     * Method to get the notificationsService.
+     *
+     * @return - NotificationsService
+     */
+    @Override
+    NotificationsAsyncService getNotificationsService();
 }

@@ -2,6 +2,7 @@ package com.enjin.coin.sdk.service;
 
 import com.enjin.coin.sdk.service.events.EventsService;
 import com.enjin.coin.sdk.service.identities.IdentitiesService;
+import com.enjin.coin.sdk.service.notifications.NotificationsService;
 import com.enjin.coin.sdk.service.tokens.TokensService;
 import com.enjin.coin.sdk.service.transactionrequests.TransactionRequestsService;
 
@@ -37,5 +38,12 @@ public interface EnjinCoin {
      * @return - TransactionRequestsService
      */
     TransactionRequestsService getTransactionRequestsService();
+
+    /**
+     * Method to get the notificationsService.
+     *
+     * @return - NotificationsService
+     */
+    NotificationsService getNotificationsService();
 
 }

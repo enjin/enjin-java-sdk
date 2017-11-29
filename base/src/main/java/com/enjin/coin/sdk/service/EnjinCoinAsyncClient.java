@@ -1,17 +1,19 @@
 package com.enjin.coin.sdk.service;
 
+import java.util.logging.Logger;
+
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.service.events.EventsAsyncService;
 import com.enjin.coin.sdk.service.events.impl.EventsAsyncServiceImpl;
 import com.enjin.coin.sdk.service.identities.IdentitiesAsyncService;
 import com.enjin.coin.sdk.service.identities.impl.IdentitiesAsyncServiceImpl;
+import com.enjin.coin.sdk.service.notifications.NotificationsAsyncService;
+import com.enjin.coin.sdk.service.notifications.impl.NotificationsAsyncServiceImpl;
 import com.enjin.coin.sdk.service.tokens.TokensAsyncService;
 import com.enjin.coin.sdk.service.tokens.impl.TokensAsyncServiceImpl;
 import com.enjin.coin.sdk.service.transactionrequests.TransactionRequestsAsyncService;
 import com.enjin.coin.sdk.service.transactionrequests.impl.TransactionRequestsAsyncServiceImpl;
 import com.enjin.coin.sdk.util.ObjectUtils;
-
-import java.util.logging.Logger;
 
 /**
  * <p>Enjin Coin Client - Asynchronous.</p>
@@ -29,22 +31,26 @@ public final class EnjinCoinAsyncClient implements EnjinCoinAsync {
      */
     private Config config;
     /**
-     * Events service.
+     * Events async service.
      */
     private EventsAsyncService eventsAsyncService;
     /**
-     * Identities service.
+     * Identities async service.
      */
     private IdentitiesAsyncService identitiesAsyncService;
     /**
-     * Tokens service.
+     * Tokens async service.
      */
     private TokensAsyncService tokensAsyncService;
     /**
-     * TransactionRequests service.
+     * TransactionRequests async service.
      */
     private TransactionRequestsAsyncService transactionRequestsAsyncService;
 
+    /**
+     * Notifications async service.
+     */
+    private NotificationsAsyncService notificationsAsyncService;
     /**
      * Class constructor.
      *
@@ -89,5 +95,17 @@ public final class EnjinCoinAsyncClient implements EnjinCoinAsync {
             transactionRequestsAsyncService = new TransactionRequestsAsyncServiceImpl(config);
         }
         return transactionRequestsAsyncService;
+    }
+
+    /**
+     * Method to get the notificationsService.
+     * @return NotificationsService
+     */
+    @Override
+    public NotificationsAsyncService getNotificationsService() {
+        if (notificationsAsyncService == null) {
+            notificationsAsyncService = new NotificationsAsyncServiceImpl(config);
+        }
+        return notificationsAsyncService;
     }
 }

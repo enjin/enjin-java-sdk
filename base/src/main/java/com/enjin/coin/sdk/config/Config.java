@@ -1,10 +1,11 @@
 package com.enjin.coin.sdk.config;
 
+import org.immutables.gson.Gson;
+import org.immutables.value.Value;
+
 import com.enjin.coin.sdk.annotations.immutables.Nullable;
 import com.enjin.coin.sdk.util.Constants;
 import com.google.gson.annotations.SerializedName;
-import org.immutables.gson.Gson;
-import org.immutables.value.Value;
 
 /**
  * <p>
@@ -16,7 +17,7 @@ import org.immutables.value.Value;
 public class Config extends JsonConfig {
 
     /**
-     * Get the trusted platform.
+     * Get the trusted platform config.
      * @return Platform
      */
     @Value.Default
@@ -24,6 +25,17 @@ public class Config extends JsonConfig {
     public Platform getTrustedPlatform() {
         return ImmutablePlatform.builder().build();
     }
+
+    /**
+     * Get the notifications config.
+     * @return Platform
+     */
+    @Value.Default
+    @SerializedName("notifications")
+    public Notifications getNotifications() {
+        return ImmutableNotifications.builder().build();
+    }
+
 
     /**
      * Get the total executors.

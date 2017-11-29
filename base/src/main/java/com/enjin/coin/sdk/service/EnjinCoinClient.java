@@ -1,17 +1,19 @@
 package com.enjin.coin.sdk.service;
 
+import java.util.logging.Logger;
+
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.service.events.EventsService;
 import com.enjin.coin.sdk.service.events.impl.EventsServiceImpl;
 import com.enjin.coin.sdk.service.identities.IdentitiesService;
 import com.enjin.coin.sdk.service.identities.impl.IdentitiesServiceImpl;
+import com.enjin.coin.sdk.service.notifications.NotificationsService;
+import com.enjin.coin.sdk.service.notifications.impl.NotificationsServiceImpl;
 import com.enjin.coin.sdk.service.tokens.TokensService;
 import com.enjin.coin.sdk.service.tokens.impl.TokensServiceImpl;
 import com.enjin.coin.sdk.service.transactionrequests.TransactionRequestsService;
 import com.enjin.coin.sdk.service.transactionrequests.impl.TransactionRequestsServiceImpl;
 import com.enjin.coin.sdk.util.ObjectUtils;
-
-import java.util.logging.Logger;
 
 /**
  * <p>Enjin Coin Client - Synchronous.</p>
@@ -29,21 +31,26 @@ public class EnjinCoinClient implements EnjinCoin {
      */
     private Config config;
     /**
-     * Events service.
+     * Events sync service.
      */
     private EventsService eventsService;
     /**
-     * Identities service.
+     * Identities sync service.
      */
     private IdentitiesService identitiesService;
     /**
-     * Tokens service.
+     * Tokens sync service.
      */
     private TokensService tokensService;
     /**
-     * TransactionRequests service.
+     * TransactionRequests sync service.
      */
     private TransactionRequestsService transactionRequestsService;
+
+    /**
+     * Notifications sync service.
+     */
+    private NotificationsService notificationsService;
 
     /**
      * Class constructor.
@@ -64,6 +71,7 @@ public class EnjinCoinClient implements EnjinCoin {
      *
      * @return - EventsService
      */
+    @Override
     public EventsService getEventsService() {
         if (eventsService == null) {
             eventsService = new EventsServiceImpl(config);
@@ -76,6 +84,7 @@ public class EnjinCoinClient implements EnjinCoin {
      *
      * @return - IdentitiesService
      */
+    @Override
     public IdentitiesService getIdentitiesService() {
         if (identitiesService == null) {
             identitiesService = new IdentitiesServiceImpl(config);
@@ -88,6 +97,7 @@ public class EnjinCoinClient implements EnjinCoin {
      *
      * @return - TokensService
      */
+    @Override
     public TokensService getTokensService() {
         if (tokensService == null) {
             tokensService = new TokensServiceImpl(config);
@@ -100,11 +110,24 @@ public class EnjinCoinClient implements EnjinCoin {
      *
      * @return - TransactionRequestsService
      */
+    @Override
     public TransactionRequestsService getTransactionRequestsService() {
         if (transactionRequestsService == null) {
             transactionRequestsService = new TransactionRequestsServiceImpl(config);
         }
         return transactionRequestsService;
+    }
+
+    /**
+     * Method to get the notificationsService.
+     * @return NotificationsService
+     */
+    @Override
+    public NotificationsService getNotificationsService() {
+        if (notificationsService == null) {
+            notificationsService = new NotificationsServiceImpl(config);
+        }
+        return notificationsService;
     }
 
 }
