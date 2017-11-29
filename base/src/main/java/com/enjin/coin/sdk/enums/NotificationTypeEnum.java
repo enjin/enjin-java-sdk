@@ -23,7 +23,6 @@ public enum NotificationTypeEnum {
     TOKEN_UPDATED("token_updated"),
     TOKEN_CREATED("token_created");
 
-
     private String eventType;
 
     NotificationTypeEnum(String eventType) {

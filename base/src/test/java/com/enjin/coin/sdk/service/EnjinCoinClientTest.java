@@ -24,20 +24,13 @@ public class EnjinCoinClientTest {
 
     @Before
     public void setUp() {
-        String appId         = "437770";
-        String appKey        = "505648a2c40940a286e2";
-        String appSecret     = "f4fbf11d052fe6a64988";
-        String cluster       = "eu";
-        String appChannel    = "testChannel";
-        Long activityTimeout = 4000l;
-
         Notifications notifications = ImmutableNotifications.builder()
-                .setActivityTimeout(activityTimeout)
-                .setAppChannel(appChannel)
-                .setAppId(appId)
-                .setAppKey(appKey)
-                .setAppSecret(appSecret)
-                .setCluster(cluster)
+                .setActivityTimeout(4000l)
+                .setAppChannel("testChannel")
+                .setAppId("437770")
+                .setAppKey("505648a2c40940a286e2")
+                .setAppSecret("f4fbf11d052fe6a64988")
+                .setCluster("eu")
                 .build();
         Platform trustedPlatform = ImmutablePlatform.builder()
                 .setHost("localhost")

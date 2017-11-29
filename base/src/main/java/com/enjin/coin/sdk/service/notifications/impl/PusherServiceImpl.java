@@ -19,7 +19,8 @@ public class PusherServiceImpl implements ThirdPartyNotificationService{
      */
     private static final Logger LOGGER = Logger.getLogger(PusherServiceImpl .class.getName());
 
-
+    private Pusher pusher;
+    private Channel channel;
     /**
      * Method to initialize the notification service.
      * @param appId
@@ -45,52 +46,45 @@ public class PusherServiceImpl implements ThirdPartyNotificationService{
 
         // Create a new Pusher instance
         PusherOptions options = new PusherOptions().setCluster(cluster).setActivityTimeout(activityTimeout);
-        Pusher pusher = new Pusher(appKey, options);
+        pusher = new Pusher(appKey, options);
 
+        //Connect to pusher
         pusher.connect(new ConnectionEventListener() {
             @Override
             public void onConnectionStateChange(ConnectionStateChange change) {
-                LOGGER.info("State changed to " + change.getCurrentState() + " from " + change.getPreviousState());
+                LOGGER.info(String.format("State changed to %s from %s ", change.getCurrentState(), change.getPreviousState()));
             }
 
             @Override
             public void onError(String message, String code, Exception e) {
-                LOGGER.info("There was a problem connecting!");
+                LOGGER.warning(String.format("There was a problem connecting!. Exception: %s", StringUtils.exceptionToString(e)));
             }
         }, ConnectionState.ALL);
 
 
         // Subscribe to a channel
-        Channel channel = pusher.subscribe(appChannel);
+        channel = pusher.subscribe(appChannel);
 
+        //Convert an enum to an array of strings
+        //String[] eventTypes = Arrays.stream(NotificationTypeEnum.values()).map(NotificationTypeEnum::name).toArray(String[]::new);
 
         for (NotificationTypeEnum notificationTypeEnum : NotificationTypeEnum.values()) {
             String eventType = notificationTypeEnum.getEventType();
+
             // Bind to listen for events called "my-event" sent to "my-channel"
             channel.bind(eventType, new SubscriptionEventListener() {
                 @Override
                 public void onEvent(String channel, String event, String data) {
-                    LOGGER.info("Received eventType:" + eventType + "  with data: " + data);
+                    LOGGER.info(String.format("Received eventType %s with data %s ", eventType, data));
                 }
             });
         }
 
-
-
-        // Disconnect from the service (or become disconnected my network conditions)
-       // pusher.disconnect();
-
-        // Reconnect, with all channel subscriptions and event bindings automatically recreated
-        //pusher.connect();
-        // The state change listener is notified when the connection has been re-established,
-        // the subscription to "my-channel" and binding on "my-event" still exist.
-
         int a = 1;
         int b = 0;
-        while(a > b) {
+        while (a > b) {
 
         }
-
         initializeResult = true;
         return initializeResult;
     }
