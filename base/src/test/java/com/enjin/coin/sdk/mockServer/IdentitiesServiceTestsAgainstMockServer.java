@@ -45,8 +45,8 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
 
         Map<String, Object> identityMap = new HashMap<>();
         identityMap.put("identity_id", "123456");
-        identityMap.put("test_damien1", "test_damien1_value");
-        identityMap.put("test_damien2", "test_damien2_value");
+        identityMap.put("test_user1", "test_user1_value");
+        identityMap.put("test_user2", "test_user2_value");
 
         GetIdentityRequestVO getIdentityRequestVO = ImmutableGetIdentityRequestVO.builder()
                 .setAuth("xxzcxcxz")
@@ -74,8 +74,8 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
     public void testCreateIdentity() {
         Map<String, Object> identityMap = new HashMap<>();
         identityMap.put("identity_id", "123456");
-        identityMap.put("test_damien1", "test_damien1_value");
-        identityMap.put("test_damien2", "test_damien2_value");
+        identityMap.put("test_user1", "test_user1_value");
+        identityMap.put("test_user2", "test_user2_value");
 
         //Test the create identity request
         CreateIdentityRequestVO createIdentityRequestVO = ImmutableCreateIdentityRequestVO.builder()
@@ -94,8 +94,8 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
     public void testUpdateIdentity() {
         Map<String, Object> identityMap = new HashMap<>();
         identityMap.put("identity_id", "123456");
-        identityMap.put("test_damien1", "test_damien1_value");
-        identityMap.put("test_damien2", "test_damien2_value");
+        identityMap.put("test_user1", "test_user1_value");
+        identityMap.put("test_user2", "test_user2_value");
 
         Map<String, Object> updateMap = new HashMap<>();
         updateMap.put("player_name", null);
@@ -120,8 +120,8 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
     public void testDeleteIdentity() {
         Map<String, Object> identityMap = new HashMap<>();
         identityMap.put("identity_id", "123456");
-        identityMap.put("test_damien1", "test_damien1_value");
-        identityMap.put("test_damien2", "test_damien2_value");
+        identityMap.put("test_user1", "test_user1_value");
+        identityMap.put("test_user2", "test_user2_value");
 
         // Test the delete identity request
         DeleteIdentityRequestVO deleteIdentityRequestVO = ImmutableDeleteIdentityRequestVO.builder()

@@ -2,6 +2,7 @@ package com.enjin.coin.sdk.service.notifications.impl;
 
 import java.util.logging.Logger;
 
+import com.enjin.coin.sdk.enums.NotificationTypeEnum;
 import com.enjin.coin.sdk.service.notifications.ThirdPartyNotificationService;
 import com.enjin.coin.sdk.util.StringUtils;
 import com.pusher.client.Pusher;
@@ -62,14 +63,19 @@ public class PusherServiceImpl implements ThirdPartyNotificationService{
         // Subscribe to a channel
         Channel channel = pusher.subscribe(appChannel);
 
-        String eventType = "my-event";
-        // Bind to listen for events called "my-event" sent to "my-channel"
-        channel.bind("my-event", new SubscriptionEventListener() {
-            @Override
-            public void onEvent(String channel, String event, String data) {
-                LOGGER.info("Received eventType:" + eventType + "  with data: " + data);
-            }
-        });
+
+        for (NotificationTypeEnum notificationTypeEnum : NotificationTypeEnum.values()) {
+            String eventType = notificationTypeEnum.getEventType();
+            // Bind to listen for events called "my-event" sent to "my-channel"
+            channel.bind(eventType, new SubscriptionEventListener() {
+                @Override
+                public void onEvent(String channel, String event, String data) {
+                    LOGGER.info("Received eventType:" + eventType + "  with data: " + data);
+                }
+            });
+        }
+
+
 
         // Disconnect from the service (or become disconnected my network conditions)
        // pusher.disconnect();
