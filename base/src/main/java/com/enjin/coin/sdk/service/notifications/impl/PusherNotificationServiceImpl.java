@@ -24,12 +24,12 @@ import com.pusher.client.connection.ConnectionStateChange;
  * <p>Service to implement methods that interact with the pusher library
  *
  */
-public class PusherServiceImpl implements ThirdPartyNotificationService{
+public class PusherNotificationServiceImpl implements ThirdPartyNotificationService{
 
     /**
      * Logger used by this class.
      */
-    private static final Logger LOGGER = Logger.getLogger(PusherServiceImpl .class.getName());
+    private static final Logger LOGGER = Logger.getLogger(PusherNotificationServiceImpl .class.getName());
 
     /** Local pusher variable **/
     private Pusher pusher;
@@ -108,16 +108,11 @@ public class PusherServiceImpl implements ThirdPartyNotificationService{
                 @Override
                 public void onEvent(String channel, String event, String data) {
                     fireNotification(data, channel, event);
-                    LOGGER.info(String.format("Received eventType %s, event %s with data %s ", eventType, event, data));
+                    LOGGER.fine(String.format("Received eventType %s, event %s with data %s ", eventType, event, data));
                 }
             });
         }
 
-/*        int a = 1;
-        int b = 0;
-        while (a > b) {
-
-        }*/
         initializeResult = true;
         return initializeResult;
     }
@@ -131,11 +126,12 @@ public class PusherServiceImpl implements ThirdPartyNotificationService{
      */
     private void fireNotification(String sourceData, String channel, String eventType) {
 
-        if (ListUtils.isNotEmpty(_notificationListeners)) {
+        if (ListUtils.isEmpty(_notificationListeners)) {
             LOGGER.warning("No listeners are currently registered");
             return ;
         }
-        NotificationType notificationTypeEnum = NotificationType.valueOf(eventType);
+
+        NotificationType notificationTypeEnum = NotificationType.valueOf(eventType.toUpperCase());
         if (notificationTypeEnum == null) {
             LOGGER.warning(String.format("Failed to get NotificationType for the eventType of %s", eventType));
             return;

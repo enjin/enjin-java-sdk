@@ -58,7 +58,7 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
         }
 
         //Setup the thirdPartyNotificationService to use the pusher service.
-        thirdPartyNotificationService = new PusherServiceImpl();
+        thirdPartyNotificationService = new PusherNotificationServiceImpl();
 
         boolean initPusherResult = thirdPartyNotificationService.initializeNotificationService(notification);
         if (BooleanUtils.isNotTrue(initPusherResult)) {
