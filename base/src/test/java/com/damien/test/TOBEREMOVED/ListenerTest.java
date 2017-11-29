@@ -53,12 +53,15 @@ public class ListenerTest {
 
     @Test
     public void testGetNotificationsAsyncService() {
-        NotificationsService notificationsService = enjinCoinAsyncClient.getNotificationsService();
-        assertThat(notificationsService).isNotNull();
+        NotificationsService notificationsAsyncService = enjinCoinAsyncClient.getNotificationsService();
+        assertThat(notificationsAsyncService).isNotNull();
+
+        boolean initNotificationsServiceResult = notificationsAsyncService.initNotificationsService();
+        assertThat(initNotificationsServiceResult).isTrue();
 
         NotificationListener notificationListener1 = new NotificationListenerImpl();
 
-        notificationsService.addNotificationListener(notificationListener1);
+        notificationsAsyncService.addNotificationListener(notificationListener1);
 
         int a =1;
         int b=0;

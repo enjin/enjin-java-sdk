@@ -58,7 +58,6 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
      */
     @Override
     public boolean initializeNotificationService() {
-        System.out.println("TEST");
         boolean initializeResult = false;
 
         String appId         = notificationConfig.getAppId();
@@ -73,8 +72,8 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
             return initializeResult;
         }
 
-        if (StringUtils.isEmpty(appChannel) || activityTimeout == null) {
-            LOGGER.warning("appChannel is null or empty or the activityTimeout is null");
+        if (StringUtils.isEmpty(appChannel)) {
+            LOGGER.warning("appChannel is null or empty");
             return initializeResult;
         }
 
@@ -83,7 +82,6 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
                 .setCluster(cluster)
                 .setActivityTimeout(activityTimeout);
         pusher = new Pusher(appKey, options);
-
 
         //Connect to pusher
         pusher.connect(new ConnectionEventListener() {
