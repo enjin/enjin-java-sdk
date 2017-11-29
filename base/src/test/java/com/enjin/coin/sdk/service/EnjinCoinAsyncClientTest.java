@@ -1,14 +1,17 @@
 package com.enjin.coin.sdk.service;
 
-import com.enjin.coin.sdk.config.Config;
-import com.enjin.coin.sdk.service.events.EventsService;
-import com.enjin.coin.sdk.service.identities.IdentitiesService;
-import com.enjin.coin.sdk.service.tokens.TokensService;
-import com.enjin.coin.sdk.service.transactionrequests.TransactionRequestsService;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import com.enjin.coin.sdk.BaseTestHelper;
+import com.enjin.coin.sdk.config.Config;
+import com.enjin.coin.sdk.service.events.EventsService;
+import com.enjin.coin.sdk.service.identities.IdentitiesService;
+import com.enjin.coin.sdk.service.notifications.NotificationsService;
+import com.enjin.coin.sdk.service.tokens.TokensService;
+import com.enjin.coin.sdk.service.transactionrequests.TransactionRequestsService;
 
 public class EnjinCoinAsyncClientTest {
 
@@ -17,7 +20,7 @@ public class EnjinCoinAsyncClientTest {
 
     @Before
     public void setUp() {
-        enjinConfig = new Config();
+        enjinConfig = BaseTestHelper.getEnjinConfig();
         enjinCoinAsyncClient = new EnjinCoinAsyncClient(enjinConfig);
     }
 
@@ -39,7 +42,7 @@ public class EnjinCoinAsyncClientTest {
         EventsService eventsService = enjinCoinAsyncClient.getEventsService();
         assertThat(eventsService).isNotNull();
 
-        //Second time around - the existin service should be returned
+        //Second time around - the existing service should be returned
         EventsService eventsService2 = enjinCoinAsyncClient.getEventsService();
         assertThat(eventsService2).isNotNull().isSameAs(eventsService);
     }
@@ -49,7 +52,7 @@ public class EnjinCoinAsyncClientTest {
         IdentitiesService identitiesService = enjinCoinAsyncClient.getIdentitiesService();
         assertThat(identitiesService).isNotNull();
 
-        //Second time around - the existin service should be returned
+        //Second time around - the existing service should be returned
         IdentitiesService identitiesService2 = enjinCoinAsyncClient.getIdentitiesService();
         assertThat(identitiesService2).isNotNull().isSameAs(identitiesService);
     }
@@ -59,7 +62,7 @@ public class EnjinCoinAsyncClientTest {
         TokensService tokensService = enjinCoinAsyncClient.getTokensService();
         assertThat(tokensService).isNotNull();
 
-        //Second time around - the existin service should be returned
+        //Second time around - the existing service should be returned
         TokensService tokensService2 = enjinCoinAsyncClient.getTokensService();
         assertThat(tokensService2).isNotNull().isSameAs(tokensService);
     }
@@ -69,8 +72,18 @@ public class EnjinCoinAsyncClientTest {
         TransactionRequestsService transactionRequestsService = enjinCoinAsyncClient.getTransactionRequestsService();
         assertThat(transactionRequestsService).isNotNull();
 
-        //Second time around - the existin service should be returned
+        //Second time around - the existing service should be returned
         TransactionRequestsService transactionRequestsService2 = enjinCoinAsyncClient.getTransactionRequestsService();
         assertThat(transactionRequestsService2).isNotNull().isSameAs(transactionRequestsService);
+    }
+
+    @Test
+    public void testGetNotificationsService() {
+        NotificationsService notificationsService = enjinCoinAsyncClient.getNotificationsService();
+        assertThat(notificationsService).isNotNull();
+
+        //Second time around - the existing service should be returned
+        NotificationsService notificationsService2 = enjinCoinAsyncClient.getNotificationsService();
+        assertThat(notificationsService2).isNotNull().isSameAs(notificationsService);
     }
 }

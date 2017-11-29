@@ -8,6 +8,13 @@ package com.enjin.coin.sdk.service.notifications;
 public interface NotificationsService {
 
     /**
+     * Method to initialize the notifications service.
+     * @param notificationConfig
+     * @return boolean
+     */
+    boolean initNotificationsService();
+
+    /**
      * Method to add a notification listener.
      * @param notificationListener
      */

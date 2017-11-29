@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.enjin.coin.sdk.BaseTestHelper;
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.config.ImmutableConfig;
 import com.enjin.coin.sdk.config.ImmutableNotification;
@@ -20,7 +21,7 @@ public class BaseServiceTest {
 
     @Before
     public void setUp() {
-        enjinConfig = new Config();
+        enjinConfig = BaseTestHelper.getEnjinConfig();
         baseAction = new IdentitiesServiceImpl(enjinConfig);
     }
 
@@ -204,6 +205,7 @@ public class BaseServiceTest {
 
     @Test
     public void testGetTrustedPlatform_Default() {
+        baseAction.setTrustedPlatform(ImmutablePlatform.builder().build());
         Platform trustedPlatform = baseAction.getTrustedPlatform();
         assertThat(trustedPlatform).isEqualToComparingFieldByField(ImmutablePlatform.builder().build());
     }
@@ -218,5 +220,4 @@ public class BaseServiceTest {
         Platform trustedPlatform = baseAction.getTrustedPlatform();
         assertThat(trustedPlatform).isNotNull();
     }
-
 }

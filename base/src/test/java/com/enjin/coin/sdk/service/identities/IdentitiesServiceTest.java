@@ -13,6 +13,7 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import com.enjin.coin.sdk.BaseTestHelper;
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.service.identities.impl.IdentitiesServiceImpl;
 import com.enjin.coin.sdk.util.JsonRpcUtils;
@@ -39,9 +40,9 @@ public class IdentitiesServiceTest {
 	IdentitiesServiceImpl identitiesService;
 	Config enjinConfig;
 
-	@Before
+    @Before
 	public void setUp() {
-		enjinConfig = new Config();
+        enjinConfig = BaseTestHelper.getEnjinConfig();
 	}
 
 	@Test

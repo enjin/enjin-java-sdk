@@ -1,9 +1,12 @@
 package com.enjin.coin.sdk.config;
 
-import com.enjin.coin.sdk.util.JsonUtils;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -11,12 +14,10 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import com.enjin.coin.sdk.util.JsonUtils;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({JsonConfig.class, Class.class, File.class, FileWriter.class, Gson.class, JsonUtils.class, JsonElement.class, JsonObject.class})

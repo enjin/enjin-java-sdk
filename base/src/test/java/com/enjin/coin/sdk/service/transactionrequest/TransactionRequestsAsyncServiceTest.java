@@ -14,6 +14,7 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import com.enjin.coin.sdk.BaseTestHelper;
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.service.transactionrequests.TransactionRequestsAsyncService;
 import com.enjin.coin.sdk.service.transactionrequests.impl.TransactionRequestsAsyncServiceImpl;
@@ -39,7 +40,7 @@ public class TransactionRequestsAsyncServiceTest {
 
     @Before
     public void setUp() {
-        enjinConfig = new Config();
+        enjinConfig = BaseTestHelper.getEnjinConfig();
     }
 
     @Test

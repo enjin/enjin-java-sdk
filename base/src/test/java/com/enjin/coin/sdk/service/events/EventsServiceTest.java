@@ -12,6 +12,7 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import com.enjin.coin.sdk.BaseTestHelper;
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.service.events.impl.EventsServiceImpl;
 import com.enjin.coin.sdk.util.JsonRpcUtils;
@@ -29,7 +30,7 @@ public class EventsServiceTest {
 
     @Before
     public void setUp() {
-        enjinConfig = new Config();
+        enjinConfig = BaseTestHelper.getEnjinConfig();
     }
 
     @Test
@@ -139,5 +140,5 @@ public class EventsServiceTest {
 
         PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
         Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
-    }  
+    }
 }

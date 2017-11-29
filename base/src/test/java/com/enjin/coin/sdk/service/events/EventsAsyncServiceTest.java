@@ -13,6 +13,7 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import com.enjin.coin.sdk.BaseTestHelper;
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.service.events.impl.EventsAsyncServiceImpl;
 import com.enjin.coin.sdk.util.JsonRpcUtils;
@@ -28,9 +29,10 @@ public class EventsAsyncServiceTest {
 	EventsAsyncService eventAsyncService;
 	Config enjinConfig;
 
-	@Before
+
+    @Before
 	public void setUp() {
-		enjinConfig = new Config();
+	    enjinConfig = BaseTestHelper.getEnjinConfig();
 	}
 
 	@Test
@@ -47,7 +49,7 @@ public class EventsAsyncServiceTest {
 
 		GetEventResponseVO returnedGetEventResponseVO = ImmutableGetEventResponseVO.builder().build();
 		GetEventResponseVO[] returnedGetEventResponseArray = new GetEventResponseVO[] {returnedGetEventResponseVO};
-		
+
 		JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
 		PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
 		Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(),

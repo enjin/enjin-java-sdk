@@ -13,6 +13,7 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import com.enjin.coin.sdk.BaseTestHelper;
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.service.tokens.impl.TokensAsyncServiceImpl;
 import com.enjin.coin.sdk.util.JsonRpcUtils;
@@ -30,7 +31,7 @@ public class TokensAsyncServiceTest {
 
     @Before
     public void setUp() {
-        enjinConfig = new Config();
+        enjinConfig = BaseTestHelper.getEnjinConfig();
     }
 
     @Test
@@ -40,7 +41,7 @@ public class TokensAsyncServiceTest {
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty());
     }
 
-  
+
     @SuppressWarnings("unchecked")
     @Test
     public void testGetToken_Success() throws Exception {
@@ -52,7 +53,7 @@ public class TokensAsyncServiceTest {
 
         GetTokenResponseVO returnedGetTokenResponseVO = ImmutableGetTokenResponseVO.builder().build();
         GetTokenResponseVO[] returnedGetTokenResponseArray = new GetTokenResponseVO[] {returnedGetTokenResponseVO};
-        
+
         JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
         Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetTokenResponseArray);

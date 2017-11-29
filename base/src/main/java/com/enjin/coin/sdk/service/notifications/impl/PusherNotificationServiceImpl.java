@@ -43,25 +43,30 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
     private List<NotificationListener> _notificationListeners = new ArrayList<NotificationListener>();
 
     /**
+     * Local notificationConfig variable.
+     */
+    private Notification notificationConfig;
+
+    public PusherNotificationServiceImpl(Notification notificationConfig) {
+        this.notificationConfig = notificationConfig;
+    }
+
+    /**
      * Method to initialize the notification service.
      * @param notification
      * @return
      */
     @Override
-    public boolean initializeNotificationService(Notification notification) {
+    public boolean initializeNotificationService() {
+        System.out.println("TEST");
         boolean initializeResult = false;
 
-        if (notification == null) {
-            LOGGER.warning("Notification config passed in is null");
-            return initializeResult;
-        }
-
-        String appId         = notification.getAppId();
-        String appKey        = notification.getAppKey();
-        String appSecret     = notification.getAppSecret();
-        String cluster       = notification.getCluster();
-        String appChannel    = notification.getAppChannel();
-        Long activityTimeout = notification.getActivityTimeout();
+        String appId         = notificationConfig.getAppId();
+        String appKey        = notificationConfig.getAppKey();
+        String appSecret     = notificationConfig.getAppSecret();
+        String cluster       = notificationConfig.getCluster();
+        String appChannel    = notificationConfig.getAppChannel();
+        Long activityTimeout = notificationConfig.getActivityTimeout();
 
         if (StringUtils.isEmpty(appId) || StringUtils.isEmpty(appKey) || StringUtils.isEmpty(appSecret) || StringUtils.isEmpty(cluster)) {
             LOGGER.warning("appId, appKey, appSecret or cluster is null or empty");

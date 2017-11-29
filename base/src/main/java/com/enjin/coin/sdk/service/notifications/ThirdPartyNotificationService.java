@@ -2,16 +2,14 @@ package com.enjin.coin.sdk.service.notifications;
 
 import java.util.List;
 
-import com.enjin.coin.sdk.config.Notification;
-
 public interface ThirdPartyNotificationService {
 
     /**
      * Method to initialize the notification service.
-     * @param notification
+
      * @return
      */
-    boolean initializeNotificationService(Notification notification);
+    boolean initializeNotificationService();
 
     /**
      * Method to set the notification listeners

@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import com.enjin.coin.sdk.config.Config;
-import com.enjin.coin.sdk.config.Notification;
 import com.enjin.coin.sdk.service.BaseService;
 import com.enjin.coin.sdk.service.notifications.NotificationListener;
 import com.enjin.coin.sdk.service.notifications.NotificationsService;
@@ -34,7 +33,6 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
      */
     private List<NotificationListener> _notificationListeners = new ArrayList<NotificationListener>();
 
-
     /**
      * Class constructor.
      *
@@ -42,28 +40,26 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
      */
     public NotificationsServiceImpl(final Config config) {
         super(config);
-
-        initNotificationsService(config.getNotification());
     }
 
     /**
      * Method to initialize the notifications service.
-     * @param notifications
+     * @param notificationConfig
+     * @return boolean
      */
-    private void initNotificationsService(Notification notification) {
-
-        if (notification == null) {
-            LOGGER.warning("notification config is null.");
-            return ;
-        }
+    @Override
+    public boolean initNotificationsService(){
+        boolean initResult = false;
 
         //Setup the thirdPartyNotificationService to use the pusher service.
-        thirdPartyNotificationService = new PusherNotificationServiceImpl();
+        thirdPartyNotificationService = new PusherNotificationServiceImpl(getNotification());
 
-        boolean initPusherResult = thirdPartyNotificationService.initializeNotificationService(notification);
+        boolean initPusherResult = thirdPartyNotificationService.initializeNotificationService();
         if (BooleanUtils.isNotTrue(initPusherResult)) {
             LOGGER.warning("A problem occured initializing the pusher library");
+            return initResult;
         }
+        return initPusherResult;
     }
 
     /**

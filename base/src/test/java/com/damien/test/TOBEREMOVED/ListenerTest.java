@@ -73,6 +73,9 @@ public class ListenerTest {
         NotificationsService notificationsService = enjinCoinClient.getNotificationsService();
         assertThat(notificationsService).isNotNull();
 
+        boolean initNotificationsServiceResult = notificationsService.initNotificationsService();
+        assertThat(initNotificationsServiceResult).isTrue();
+
         NotificationListener notificationListener1 = new NotificationListenerImpl();
 
         notificationsService.addNotificationListener(notificationListener1);

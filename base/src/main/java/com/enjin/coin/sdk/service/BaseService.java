@@ -1,14 +1,15 @@
 package com.enjin.coin.sdk.service;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.logging.Logger;
+
 import com.enjin.coin.sdk.config.Config;
+import com.enjin.coin.sdk.config.Notification;
 import com.enjin.coin.sdk.config.Platform;
 import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.JsonRpcUtils;
 import com.enjin.coin.sdk.util.ObjectUtils;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.logging.Logger;
 
 /**
  * <p>Provides Services used by the main service classes.</p>
@@ -36,7 +37,10 @@ public abstract class BaseService {
      * Executor service.
      */
     private ExecutorService executorService;
-
+    /**
+     * Notification config.
+     */
+    private Notification notification;
     /**
      * Class contructor.
      *
@@ -48,12 +52,12 @@ public abstract class BaseService {
             return;
         }
 
-        trustedPlatform = config.getTrustedPlatform();
-        isInTestMode = config.isInTestMode();
+        trustedPlatform        = config.getTrustedPlatform();
+        isInTestMode           = config.isInTestMode();
         Integer totalExecutors = config.getTotalExecutors();
-        executorService = Executors.newFixedThreadPool(totalExecutors);
-
-        jsonRpcUtils = new JsonRpcUtils();
+        executorService        = Executors.newFixedThreadPool(totalExecutors);
+        notification           = config.getNotification();
+        jsonRpcUtils           = new JsonRpcUtils();
         jsonRpcUtils.setIsInTestMode(isInTestMode);
     }
 
@@ -145,6 +149,15 @@ public abstract class BaseService {
      */
     public ExecutorService getExecutorService() {
         return executorService;
+    }
+
+
+    /**
+     * Method to get the notification config.
+     * @return
+     */
+    public Notification getNotification() {
+        return notification;
     }
 
     @Override
