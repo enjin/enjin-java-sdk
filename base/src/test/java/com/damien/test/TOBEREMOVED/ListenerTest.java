@@ -17,6 +17,7 @@ import com.enjin.coin.sdk.service.EnjinCoinClient;
 import com.enjin.coin.sdk.service.notifications.NotificationListener;
 import com.enjin.coin.sdk.service.notifications.NotificationsService;
 
+@Ignore
 public class ListenerTest {
 
     EnjinCoinClient enjinCoinClient;
