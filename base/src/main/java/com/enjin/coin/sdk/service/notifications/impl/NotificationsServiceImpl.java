@@ -3,7 +3,7 @@ package com.enjin.coin.sdk.service.notifications.impl;
 import java.util.logging.Logger;
 
 import com.enjin.coin.sdk.config.Config;
-import com.enjin.coin.sdk.config.Notifications;
+import com.enjin.coin.sdk.config.Notification;
 import com.enjin.coin.sdk.service.BaseService;
 import com.enjin.coin.sdk.service.notifications.NotificationsService;
 import com.enjin.coin.sdk.service.notifications.ThirdPartyNotificationService;
@@ -34,31 +34,24 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
     public NotificationsServiceImpl(final Config config) {
         super(config);
 
-        initNotificationsService(config.getNotifications());
+        initNotificationsService(config.getNotification());
     }
 
     /**
      * Method to initialize the notifications service.
      * @param notifications
      */
-    private void initNotificationsService(Notifications notifications) {
+    private void initNotificationsService(Notification notification) {
 
-        if (notifications == null) {
-            LOGGER.warning("Notifications config is null.");
+        if (notification == null) {
+            LOGGER.warning("notification config is null.");
             return ;
         }
-
-        String appId         = notifications.getAppId();
-        String appKey        = notifications.getAppKey();
-        String appSecret     = notifications.getAppSecret();
-        String cluster       = notifications.getCluster();
-        String appChannel    = notifications.getAppChannel();
-        Long activityTimeout = notifications.getActivityTimeout();
 
         //Setup the thirdPartyNotificationService to use the pusher service.
         thirdPartyNotificationService = new PusherServiceImpl();
 
-        boolean initPusherResult = thirdPartyNotificationService.initializeNotificationService(appId, appKey, appSecret, cluster, appChannel, activityTimeout);
+        boolean initPusherResult = thirdPartyNotificationService.initializeNotificationService(notification);
         if (BooleanUtils.isNotTrue(initPusherResult)) {
             LOGGER.warning("A problem occured initializing the pusher library");
         }

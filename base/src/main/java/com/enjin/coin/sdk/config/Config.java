@@ -27,13 +27,13 @@ public class Config extends JsonConfig {
     }
 
     /**
-     * Get the notifications config.
+     * Get the notification config.
      * @return Platform
      */
     @Value.Default
-    @SerializedName("notifications")
-    public Notifications getNotifications() {
-        return ImmutableNotifications.builder().build();
+    @SerializedName("notification")
+    public Notification getNotification() {
+        return ImmutableNotification.builder().build();
     }
 
 

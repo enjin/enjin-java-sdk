@@ -1,17 +1,13 @@
 package com.enjin.coin.sdk.service.notifications;
 
+import com.enjin.coin.sdk.config.Notification;
+
 public interface ThirdPartyNotificationService {
 
     /**
      * Method to initialize the notification service.
-     * @param appId
-     * @param appKey
-     * @param appSecret
-     * @param cluster
-     * @param appChannel
-     * @param activityTimeout
+     * @param notification
      * @return
      */
-    boolean initializeNotificationService(String appId, String appKey, String appSecret, String cluster, String appChannel, Long activityTimeout);
-
+    boolean initializeNotificationService(Notification notification);
 }

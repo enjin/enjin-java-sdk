@@ -7,9 +7,9 @@ import org.junit.Test;
 
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.config.ImmutableConfig;
-import com.enjin.coin.sdk.config.ImmutableNotifications;
+import com.enjin.coin.sdk.config.ImmutableNotification;
 import com.enjin.coin.sdk.config.ImmutablePlatform;
-import com.enjin.coin.sdk.config.Notifications;
+import com.enjin.coin.sdk.config.Notification;
 import com.enjin.coin.sdk.config.Platform;
 import com.enjin.coin.sdk.service.events.EventsService;
 import com.enjin.coin.sdk.service.identities.IdentitiesService;
@@ -24,7 +24,7 @@ public class EnjinCoinClientTest {
 
     @Before
     public void setUp() {
-        Notifications notifications = ImmutableNotifications.builder()
+        Notification notification = ImmutableNotification.builder()
                 .setActivityTimeout(4000l)
                 .setAppChannel("testChannel")
                 .setAppId("437770")
@@ -40,7 +40,7 @@ public class EnjinCoinClientTest {
 
         enjinConfig = ImmutableConfig.builder()
                 .setInTestMode(false)
-                .setNotifications(notifications)
+                .setNotification(notification)
                 .setTotalExecutors(1)
                 .setTrustedPlatform(trustedPlatform)
                 .build();

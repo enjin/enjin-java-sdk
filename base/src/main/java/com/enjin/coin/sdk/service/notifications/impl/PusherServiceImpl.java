@@ -2,6 +2,7 @@ package com.enjin.coin.sdk.service.notifications.impl;
 
 import java.util.logging.Logger;
 
+import com.enjin.coin.sdk.config.Notification;
 import com.enjin.coin.sdk.enums.NotificationTypeEnum;
 import com.enjin.coin.sdk.service.notifications.ThirdPartyNotificationService;
 import com.enjin.coin.sdk.util.StringUtils;
@@ -12,6 +13,12 @@ import com.pusher.client.channel.SubscriptionEventListener;
 import com.pusher.client.connection.ConnectionEventListener;
 import com.pusher.client.connection.ConnectionState;
 import com.pusher.client.connection.ConnectionStateChange;
+
+/**
+ *
+ * <p>Service to implement methods that interact with the pusher library
+ *
+ */
 public class PusherServiceImpl implements ThirdPartyNotificationService{
 
     /**
@@ -19,21 +26,33 @@ public class PusherServiceImpl implements ThirdPartyNotificationService{
      */
     private static final Logger LOGGER = Logger.getLogger(PusherServiceImpl .class.getName());
 
+    /** Local pusher variable **/
     private Pusher pusher;
+
+    /** Local channel variable **/
     private Channel channel;
+
     /**
      * Method to initialize the notification service.
-     * @param appId
-     * @param appKey
-     * @param appSecret
-     * @param cluster
-     * @param appChannel
-     * @param activityTimeout
+     * @param notification
      * @return
      */
     @Override
-    public boolean initializeNotificationService(String appId, String appKey, String appSecret, String cluster, String appChannel, Long activityTimeout) {
+    public boolean initializeNotificationService(Notification notification) {
         boolean initializeResult = false;
+
+        if (notification == null) {
+            LOGGER.warning("Notification config passed in is null");
+            return initializeResult;
+        }
+
+        String appId         = notification.getAppId();
+        String appKey        = notification.getAppKey();
+        String appSecret     = notification.getAppSecret();
+        String cluster       = notification.getCluster();
+        String appChannel    = notification.getAppChannel();
+        Long activityTimeout = notification.getActivityTimeout();
+
         if (StringUtils.isEmpty(appId) || StringUtils.isEmpty(appKey) || StringUtils.isEmpty(appSecret) || StringUtils.isEmpty(cluster)) {
             LOGGER.warning("appId, appKey, appSecret or cluster is null or empty");
             return initializeResult;
@@ -45,8 +64,11 @@ public class PusherServiceImpl implements ThirdPartyNotificationService{
         }
 
         // Create a new Pusher instance
-        PusherOptions options = new PusherOptions().setCluster(cluster).setActivityTimeout(activityTimeout);
+        PusherOptions options = new PusherOptions()
+                .setCluster(cluster)
+                .setActivityTimeout(activityTimeout);
         pusher = new Pusher(appKey, options);
+
 
         //Connect to pusher
         pusher.connect(new ConnectionEventListener() {
@@ -80,14 +102,13 @@ public class PusherServiceImpl implements ThirdPartyNotificationService{
             });
         }
 
-        int a = 1;
+/*        int a = 1;
         int b = 0;
         while (a > b) {
 
-        }
+        }*/
         initializeResult = true;
         return initializeResult;
     }
-
 
 }

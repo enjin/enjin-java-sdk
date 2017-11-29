@@ -12,7 +12,7 @@ import com.google.gson.annotations.SerializedName;
  */
 @Value.Immutable
 @Gson.TypeAdapters
-public abstract class Notifications {
+public abstract class Notification {
 
     /**
      * The appId to use.
