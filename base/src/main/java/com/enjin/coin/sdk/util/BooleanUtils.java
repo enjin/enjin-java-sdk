@@ -21,7 +21,7 @@ public class BooleanUtils {
      * @return - boolean result
      */
     public static boolean isTrue(final Boolean condition) {
-        return null != condition && condition == true;
+        return null != condition && condition;
     }
 
     /**

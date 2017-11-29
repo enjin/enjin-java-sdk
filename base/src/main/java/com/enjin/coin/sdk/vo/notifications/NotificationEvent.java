@@ -11,6 +11,10 @@ import com.enjin.coin.sdk.enums.NotificationType;
 public class NotificationEvent extends EventObject {
 
     /**
+     * Date from the event.
+     */
+    private String sourceData;
+    /**
      * Notification type received.
      */
     private NotificationType notificationType;
@@ -26,12 +30,13 @@ public class NotificationEvent extends EventObject {
 
     /**
      * Class constructor.
-     * @param source
-     * @param channel
-     * @param notificationType
+     * @param sourceData the sourceData received from the notification
+     * @param channel the channel the notification was received from
+     * @param notificationType the type of event we received
      */
-    public NotificationEvent(final String source, final String channel, final NotificationType notificationType) {
-        super(source);
+    public NotificationEvent(final String sourceData, final String channel, final NotificationType notificationType) {
+        super(sourceData);
+        this.sourceData = sourceData;
         this.notificationType = notificationType;
         this.channel = channel;
     }
@@ -51,4 +56,14 @@ public class NotificationEvent extends EventObject {
     public String getChannel() {
         return channel;
     }
+
+    /**
+     * Method to return the sourceData.
+     * @return String
+     */
+    public String getSourceData() {
+        return sourceData;
+    }
+
+
 }

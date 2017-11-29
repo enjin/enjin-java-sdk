@@ -49,7 +49,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
 
     /**
      * Class constructor.
-     * @param notificationConfig
+     * @param notificationConfig the config for the notifications
      */
     public PusherNotificationServiceImpl(final Notification notificationConfig) {
         this.notificationConfig = notificationConfig;
@@ -57,8 +57,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
 
     /**
      * Method to initialize the notification service.
-     * @param notification
-     * @return
+     * @return boolean
      */
     @Override
     public boolean initializeNotificationService() {
@@ -142,9 +141,9 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
 
     /**
      * Method to fire a notification.
-     * @param sourceData
-     * @param channel
-     * @param eventType
+     * @param sourceData the sourceData received from the notification
+     * @param channel the channel the notification was received from
+     * @param eventType the type of event we received
      */
     private void fireNotification(final String sourceData, final String channel, final String eventType) {
 
@@ -167,7 +166,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
     }
     /**
      * Method to set the notification listeners.
-     * @param notificationListeners
+     * @param argNotificationListeners - list of listeners to set as the new listeners
      */
     @Override
     public synchronized void setNotificationListeners(final List<NotificationListener> argNotificationListeners) {

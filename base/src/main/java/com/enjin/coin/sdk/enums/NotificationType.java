@@ -44,7 +44,7 @@ public enum NotificationType {
 
     /**
      * Enum constructor.
-     * @param eventType
+     * @param eventType - eventType being processed
      */
     NotificationType(final String eventType) {
         this.eventType = eventType;

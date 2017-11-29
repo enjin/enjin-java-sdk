@@ -9,20 +9,20 @@ public interface NotificationsService {
 
     /**
      * Method to initialize the notifications service.
-     * @param notificationConfig
+
      * @return boolean
      */
     boolean initNotificationsService();
 
     /**
      * Method to add a notification listener.
-     * @param notificationListener
+     * @param notificationListener the listener to add
      */
     void addNotificationListener(NotificationListener notificationListener);
 
     /**
      * Method to remove a notification listener.
-     * @param notificationListener
+     * @param notificationListener the listener to remove
      */
     void removeNotificationListener(NotificationListener notificationListener);
 }

@@ -44,7 +44,6 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
 
     /**
      * Method to initialize the notifications service.
-     * @param notificationConfig
      * @return boolean
      */
     @Override
@@ -64,7 +63,7 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
 
     /**
      * Method to add a notification listener.
-     * @param notificationListener
+     * @param argNotificationListeners - listener to add
      */
     @Override
     public synchronized void addNotificationListener(final NotificationListener argNotificationListeners) {
@@ -74,7 +73,7 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
 
     /**
      * Method to remove a notification listener.
-     * @param argNotificationListeners
+     * @param argNotificationListeners - listener to remove
      */
     @Override
     public synchronized void removeNotificationListener(final NotificationListener argNotificationListeners) {

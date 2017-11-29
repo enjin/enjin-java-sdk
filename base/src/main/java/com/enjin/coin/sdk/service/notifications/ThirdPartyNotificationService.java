@@ -10,14 +10,13 @@ public interface ThirdPartyNotificationService {
 
     /**
      * Method to initialize the notification service.
-
      * @return boolean
      */
     boolean initializeNotificationService();
 
     /**
      * Method to set the notification listeners.
-     * @param notificationListeners
+     * @param notificationListeners the new list of listeners to set
      */
     void setNotificationListeners(List<NotificationListener> notificationListeners);
 }
