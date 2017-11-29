@@ -3,6 +3,7 @@ package com.enjin.coin.sdk.config;
 import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 
+import com.enjin.coin.sdk.util.Constants;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -56,6 +57,6 @@ public abstract class Notification {
     @Value.Default
     @SerializedName("activityTimeout")
     public Long getActivityTimeout() {
-        return 4000L;
+        return Constants.FOUR_THOUSAND;
     }
 }

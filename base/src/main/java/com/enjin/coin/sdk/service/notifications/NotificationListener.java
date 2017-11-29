@@ -12,5 +12,5 @@ public interface NotificationListener {
      * Method called when a notification event is received.
      * @param notificationEvent
      */
-    public void notificationReceived(NotificationEvent notificationEvent);
+    void notificationReceived(NotificationEvent notificationEvent);
 }

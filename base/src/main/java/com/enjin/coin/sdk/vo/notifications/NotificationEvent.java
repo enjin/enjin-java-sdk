@@ -5,7 +5,7 @@ import java.util.EventObject;
 import com.enjin.coin.sdk.enums.NotificationType;
 
 /**
- * <p> Bean used when a notification event is triggered</p>
+ * <p> Bean used when a notification event is triggered.</p>
  *
  */
 public class NotificationEvent extends EventObject {
@@ -16,7 +16,7 @@ public class NotificationEvent extends EventObject {
     private NotificationType notificationType;
 
     /**
-     * Channel event came from
+     * Channel event came from.
      */
     private String channel;
     /**
@@ -26,22 +26,28 @@ public class NotificationEvent extends EventObject {
 
     /**
      * Class constructor.
-     * @param arg0
+     * @param source
+     * @param channel
+     * @param notificationType
      */
-    public NotificationEvent(String source, String channel, NotificationType notificationType) {
+    public NotificationEvent(final String source, final String channel, final NotificationType notificationType) {
         super(source);
         this.notificationType = notificationType;
         this.channel = channel;
     }
 
     /**
-     * Method to get the notification type
+     * Method to get the notification type.
      * @return NotificationType
      */
     public NotificationType getNotificationType() {
         return notificationType;
     }
 
+    /**
+     * Method to get the channel.
+     * @return String
+     */
     public String getChannel() {
         return channel;
     }

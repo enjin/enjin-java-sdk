@@ -21,33 +21,37 @@ import com.pusher.client.connection.ConnectionStateChange;
 
 /**
  *
- * <p>Service to implement methods that interact with the pusher library
+ * <p>Service to implement methods that interact with the pusher library.</p>
  *
  */
-public class PusherNotificationServiceImpl implements ThirdPartyNotificationService{
+public class PusherNotificationServiceImpl implements ThirdPartyNotificationService {
 
     /**
      * Logger used by this class.
      */
     private static final Logger LOGGER = Logger.getLogger(PusherNotificationServiceImpl .class.getName());
 
-    /** Local pusher variable **/
+    /** Local pusher variable. **/
     private Pusher pusher;
 
-    /** Local channel variable **/
+    /** Local channel variable .**/
     private Channel channel;
 
     /**
-     * Local variable holding all the notification listeners
+     * Local variable holding all the notification listeners.
      */
-    private List<NotificationListener> _notificationListeners = new ArrayList<NotificationListener>();
+    private List<NotificationListener> notificationListeners = new ArrayList<NotificationListener>();
 
     /**
      * Local notificationConfig variable.
      */
     private Notification notificationConfig;
 
-    public PusherNotificationServiceImpl(Notification notificationConfig) {
+    /**
+     * Class constructor.
+     * @param notificationConfig
+     */
+    public PusherNotificationServiceImpl(final Notification notificationConfig) {
         this.notificationConfig = notificationConfig;
     }
 
@@ -85,14 +89,24 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
 
         //Connect to pusher
         pusher.connect(new ConnectionEventListener() {
+            /**
+             * Method call on connection state change.
+             * @param change
+             */
             @Override
-            public void onConnectionStateChange(ConnectionStateChange change) {
+            public void onConnectionStateChange(final ConnectionStateChange change) {
                 LOGGER.info(String.format("State changed to %s from %s ", change.getCurrentState(), change.getPreviousState()));
             }
 
+            /**
+             * Method call on connection error
+             * @param message
+             * @param code
+             * @param exception
+             */
             @Override
-            public void onError(String message, String code, Exception e) {
-                LOGGER.warning(String.format("There was a problem connecting!. Exception: %s", StringUtils.exceptionToString(e)));
+            public void onError(final String message, final String code, final Exception exception) {
+                LOGGER.warning(String.format("There was a problem connecting!. Exception: %s", StringUtils.exceptionToString(exception)));
             }
         }, ConnectionState.ALL);
 
@@ -106,10 +120,16 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
         for (NotificationType notificationTypeEnum : NotificationType.values()) {
             String eventType = notificationTypeEnum.getEventType();
 
-            // Bind to listen for events called "my-event" sent to "my-channel"
+            // Bind to listen for events that match the eventType and appChannel
             channel.bind(eventType, new SubscriptionEventListener() {
+                /**
+                 * Method called on new events from the channel.
+                 * @param channel
+                 * @param event
+                 * @param data
+                 */
                 @Override
-                public void onEvent(String channel, String event, String data) {
+                public void onEvent(final String channel, final String event, final String data) {
                     fireNotification(data, channel, event);
                     LOGGER.fine(String.format("Received eventType %s, event %s with data %s ", eventType, event, data));
                 }
@@ -121,17 +141,16 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
     }
 
     /**
-     * Method to fire a notification
+     * Method to fire a notification.
      * @param sourceData
      * @param channel
      * @param eventType
-     *
      */
-    private void fireNotification(String sourceData, String channel, String eventType) {
+    private void fireNotification(final String sourceData, final String channel, final String eventType) {
 
-        if (ListUtils.isEmpty(_notificationListeners)) {
+        if (ListUtils.isEmpty(notificationListeners)) {
             LOGGER.warning("No listeners are currently registered");
-            return ;
+            return;
         }
 
         NotificationType notificationTypeEnum = NotificationType.valueOf(eventType.toUpperCase());
@@ -141,17 +160,17 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
         }
 
         NotificationEvent notificationEvent = new NotificationEvent(sourceData, channel, notificationTypeEnum);
-        for(NotificationListener notificationListener : _notificationListeners) {
+        for (NotificationListener notificationListener : notificationListeners) {
            notificationListener.notificationReceived(notificationEvent);
         }
 
     }
     /**
-     * Method to set the notification listeners
+     * Method to set the notification listeners.
      * @param notificationListeners
      */
     @Override
-    public synchronized void setNotificationListeners(List<NotificationListener> notificationListeners) {
-        this._notificationListeners = notificationListeners;
+    public synchronized void setNotificationListeners(final List<NotificationListener> argNotificationListeners) {
+        this.notificationListeners = argNotificationListeners;
     }
 }

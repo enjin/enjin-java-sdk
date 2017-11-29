@@ -29,9 +29,9 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
     private ThirdPartyNotificationService thirdPartyNotificationService;
 
     /**
-     * Local variable holding all the notification listeners
+     * Local variable holding all the notification listeners.
      */
-    private List<NotificationListener> _notificationListeners = new ArrayList<NotificationListener>();
+    private List<NotificationListener> notificationListeners = new ArrayList<NotificationListener>();
 
     /**
      * Class constructor.
@@ -48,7 +48,7 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
      * @return boolean
      */
     @Override
-    public boolean initNotificationsService(){
+    public boolean initNotificationsService() {
         boolean initResult = false;
 
         //Setup the thirdPartyNotificationService to use the pusher service.
@@ -67,18 +67,18 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
      * @param notificationListener
      */
     @Override
-    public synchronized void addNotificationListener(NotificationListener notificationListener) {
-        _notificationListeners.add(notificationListener);
-        thirdPartyNotificationService.setNotificationListeners(_notificationListeners);
+    public synchronized void addNotificationListener(final NotificationListener argNotificationListeners) {
+        notificationListeners.add(argNotificationListeners);
+        thirdPartyNotificationService.setNotificationListeners(notificationListeners);
     }
 
     /**
      * Method to remove a notification listener.
-     * @param notificationListener
+     * @param argNotificationListeners
      */
     @Override
-    public synchronized void removeNotificationListener(NotificationListener notificationListener) {
-        _notificationListeners.remove(notificationListener);
-        thirdPartyNotificationService.setNotificationListeners(_notificationListeners);
+    public synchronized void removeNotificationListener(final NotificationListener argNotificationListeners) {
+        notificationListeners.remove(argNotificationListeners);
+        thirdPartyNotificationService.setNotificationListeners(notificationListeners);
     }
 }

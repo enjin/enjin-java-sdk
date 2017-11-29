@@ -154,12 +154,16 @@ public abstract class BaseService {
 
     /**
      * Method to get the notification config.
-     * @return
+     * @return Notification
      */
     public Notification getNotification() {
         return notification;
     }
 
+    /**
+     * toString method.
+     * @return String
+     */
     @Override
     public String toString() {
         return "BaseService [trustedPlatform=" + trustedPlatform + "]";

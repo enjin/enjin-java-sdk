@@ -59,10 +59,14 @@ public class Constants {
     public static final int ONE_THOUSAND = 1000;
     /** Numeric constants - 10,000. **/
     public static final int TEN_THOUSAND = 10000;
+    /** Numeric constants - 40,000. **/
+    public static final Long FOUR_THOUSAND = 4000L;
     /** Numeric constants - 100,000. **/
     public static final int ONE_HUNDRED_THOUSAND = 100000;
 
     /** Charset UTF-8. **/
     public static final String CHARSET_UTF_8 = "UTF-8";
+
+
 
 }
