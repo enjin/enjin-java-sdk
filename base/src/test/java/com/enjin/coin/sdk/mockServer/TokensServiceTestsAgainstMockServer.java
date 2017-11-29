@@ -22,6 +22,7 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer {
         Config enjinConfig = ImmutableConfig.builder()
                 .setTrustedPlatform(getPlatform())
                 .setInTestMode(true)
+                .setNotification(getNotification())
                 .build();
         EnjinCoinClient enjinService = new EnjinCoinClient(enjinConfig);
         tokensService = enjinService.getTokensService();
@@ -36,9 +37,9 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer {
                 .build();
         assertThat(getTokenRequestVO).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty());
-        
+
         GetTokenResponseVO[] getTokenResponseVO = tokensService.getToken(getTokenRequestVO);
-        assertThat(getTokenResponseVO).isNotNull();    
+        assertThat(getTokenResponseVO).isNotNull();
         for (GetTokenResponseVO tokenResponseVO : getTokenResponseVO) {
         	assertThat(tokenResponseVO).isNotNull()
                 .satisfies(o -> assertThat(tokenResponseVO).isNotNull()

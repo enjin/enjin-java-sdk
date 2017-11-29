@@ -1,6 +1,20 @@
 package com.enjin.coin.sdk.mockServer;
 
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
+import static com.github.tomakehurst.wiremock.client.WireMock.matchingJsonPath;
+import static com.github.tomakehurst.wiremock.client.WireMock.post;
+import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Rule;
+
+import com.enjin.coin.sdk.config.ImmutableNotification;
 import com.enjin.coin.sdk.config.ImmutablePlatform;
+import com.enjin.coin.sdk.config.Notification;
 import com.enjin.coin.sdk.config.Platform;
 import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.FileUtils;
@@ -10,17 +24,6 @@ import com.enjin.coin.sdk.util.http.Protocol;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Rule;
-
-import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
-import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
-import static com.github.tomakehurst.wiremock.client.WireMock.matchingJsonPath;
-import static com.github.tomakehurst.wiremock.client.WireMock.post;
-import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
-import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 
 @Ignore
 public class BaseMockServer {
@@ -126,7 +129,16 @@ public class BaseMockServer {
                 .setProtocol(Protocol.HTTP)
                 .build();
     }
-
+    protected Notification getNotification() {
+        return ImmutableNotification.builder()
+                .setActivityTimeout(4000l)
+                .setAppChannel("channel")
+                .setAppId("appId")
+                .setAppKey("appKey")
+                .setAppSecret("appSecret")
+                .setCluster("eu")
+                .build();
+    }
     /**
      * Method to set up the stub
      *

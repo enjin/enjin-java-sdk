@@ -1,15 +1,17 @@
 package com.enjin.coin.sdk.service;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.Before;
+import org.junit.Test;
+
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.config.ImmutableConfig;
+import com.enjin.coin.sdk.config.ImmutableNotification;
 import com.enjin.coin.sdk.config.ImmutablePlatform;
 import com.enjin.coin.sdk.config.Platform;
 import com.enjin.coin.sdk.service.identities.impl.IdentitiesServiceImpl;
 import com.enjin.coin.sdk.util.http.Protocol;
-import org.junit.Before;
-import org.junit.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class BaseServiceTest {
 
@@ -46,6 +48,14 @@ public class BaseServiceTest {
                         .setProtocol(Protocol.HTTP)
                         .build())
                 .setInTestMode(true)
+                .setNotification(ImmutableNotification.builder()
+                        .setActivityTimeout(4000l)
+                        .setAppChannel("channel")
+                        .setAppId("appId")
+                        .setAppKey("appKey")
+                        .setAppSecret("appSecret")
+                        .setCluster("eu")
+                        .build())
                 .build();
         baseAction = new IdentitiesServiceImpl(enjinConfig);
         assertThat(baseAction).isNotNull()

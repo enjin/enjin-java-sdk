@@ -31,6 +31,7 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
         Config enjinConfig = ImmutableConfig.builder()
                 .setTrustedPlatform(getPlatform())
                 .setInTestMode(true)
+                .setNotification(getNotification())
                 .build();
         EnjinCoinClient enjinService = new EnjinCoinClient(enjinConfig);
         eventsService = enjinService.getEventsService();
