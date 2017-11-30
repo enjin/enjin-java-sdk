@@ -3,7 +3,6 @@ package com.enjin.coin.sdk.util;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ServiceLoader;
-import java.util.logging.Logger;
 
 import com.enjin.coin.sdk.service.EnjinCoin;
 import com.google.gson.Gson;
@@ -16,8 +15,6 @@ import com.google.gson.TypeAdapterFactory;
  * </p>
  */
 public final class GsonUtils {
-
-    private static final Logger LOGGER = Logger.getLogger(GsonUtils.class.getName());
 
     /** Standard gson element. **/
     public static final Gson GSON;

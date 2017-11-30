@@ -3,7 +3,7 @@ package com.enjin.coin.sdk.service.tokens;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Map;
-import java.util.concurrent.Future;
+import java.util.concurrent.CompletableFuture;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -59,9 +59,9 @@ public class TokensAsyncServiceTest {
         Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetTokenResponseArray);
 
         tokensAsyncService = new TokensAsyncServiceImpl(enjinConfig);
-        Future<GetTokenResponseVO[]> getTokenResponseFutureVO = tokensAsyncService.getTokenAsync(getTokenRequestVO);
-        assertThat(getTokenResponseFutureVO).isNotNull();
-        assertThat(getTokenResponseFutureVO.get()).isNotNull();
+        CompletableFuture<GetTokenResponseVO[]> getTokenResponseCompletableFutureVO = tokensAsyncService.getTokenAsync(getTokenRequestVO);
+        assertThat(getTokenResponseCompletableFutureVO).isNotNull();
+        assertThat(getTokenResponseCompletableFutureVO.get()).isNotNull();
 
         PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
         Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));

@@ -3,7 +3,7 @@ package com.enjin.coin.sdk.service.events;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Map;
-import java.util.concurrent.Future;
+import java.util.concurrent.CompletableFuture;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -56,7 +56,7 @@ public class EventsAsyncServiceTest {
 				Mockito.isA(Map.class))).thenReturn(returnedGetEventResponseArray);
 
 		eventAsyncService = new EventsAsyncServiceImpl(enjinConfig);
-		Future<GetEventResponseVO[]> getEventResponseVO = eventAsyncService.getEventAsync(getEventRequestVO);
+		CompletableFuture<GetEventResponseVO[]> getEventResponseVO = eventAsyncService.getEventAsync(getEventRequestVO);
 		assertThat(getEventResponseVO).isNotNull();
 		assertThat(getEventResponseVO.get()).isNotNull();
 

@@ -1,7 +1,6 @@
 package com.enjin.coin.sdk.service.tokens.impl;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Future;
 
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.service.tokens.TokensAsyncService;

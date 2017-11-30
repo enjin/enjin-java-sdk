@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.Future;
+import java.util.concurrent.CompletableFuture;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -76,9 +76,9 @@ public class IdentitiesAsyncServiceTest {
         Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetIdentityResponseArray);
 
         identitiesAsyncService = new IdentitiesAsyncServiceImpl(enjinConfig);
-        Future<GetIdentityResponseVO[]> getIdentityResponseFutureVO = identitiesAsyncService.getIdentityAsync(getIdentityRequestVO);
-        assertThat(getIdentityResponseFutureVO).isNotNull();
-        assertThat(getIdentityResponseFutureVO.get()).isNotNull();
+        CompletableFuture<GetIdentityResponseVO[]> getIdentityResponseCompletableFutureVO = identitiesAsyncService.getIdentityAsync(getIdentityRequestVO);
+        assertThat(getIdentityResponseCompletableFutureVO).isNotNull();
+        assertThat(getIdentityResponseCompletableFutureVO.get()).isNotNull();
 
         PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
         Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
@@ -103,9 +103,9 @@ public class IdentitiesAsyncServiceTest {
         Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedCreateIdentityResponseVO);
 
         identitiesAsyncService = new IdentitiesAsyncServiceImpl(enjinConfig);
-        Future<CreateIdentityResponseVO> createIdentityResponseFutureVO = identitiesAsyncService.createIdentityAsync(createIdentityRequestVO);
-        assertThat(createIdentityResponseFutureVO).isNotNull();
-        CreateIdentityResponseVO createIdentityResponseVO = createIdentityResponseFutureVO.get();
+        CompletableFuture<CreateIdentityResponseVO> createIdentityResponseCompletableFutureVO = identitiesAsyncService.createIdentityAsync(createIdentityRequestVO);
+        assertThat(createIdentityResponseCompletableFutureVO).isNotNull();
+        CreateIdentityResponseVO createIdentityResponseVO = createIdentityResponseCompletableFutureVO.get();
         assertThat(createIdentityResponseVO).isNotNull();
 
         PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
@@ -132,9 +132,9 @@ public class IdentitiesAsyncServiceTest {
         Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedUpdateIdentityResponseVO);
 
         identitiesAsyncService = new IdentitiesAsyncServiceImpl(enjinConfig);
-        Future<UpdateIdentityResponseVO> updateIdentityResponseFutureVO = identitiesAsyncService.updateIdentityAsync(updateIdentityRequestVO);
-        assertThat(updateIdentityResponseFutureVO).isNotNull();
-        UpdateIdentityResponseVO updateIdentityResponseVO = updateIdentityResponseFutureVO.get();
+        CompletableFuture<UpdateIdentityResponseVO> updateIdentityResponseCompletableFutureVO = identitiesAsyncService.updateIdentityAsync(updateIdentityRequestVO);
+        assertThat(updateIdentityResponseCompletableFutureVO).isNotNull();
+        UpdateIdentityResponseVO updateIdentityResponseVO = updateIdentityResponseCompletableFutureVO.get();
         assertThat(updateIdentityResponseVO).isNotNull();
 
         PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
@@ -159,9 +159,9 @@ public class IdentitiesAsyncServiceTest {
         Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(result);
 
         identitiesAsyncService = new IdentitiesAsyncServiceImpl(enjinConfig);
-        Future<DeleteIdentityResponseVO> deleteIdentityResponseFutureVO = identitiesAsyncService.deleteIdentityAsync(deleteIdentityRequestVO);
-        assertThat(deleteIdentityResponseFutureVO).isNotNull();
-        DeleteIdentityResponseVO deleteIdentityResponseVO = deleteIdentityResponseFutureVO.get();
+        CompletableFuture<DeleteIdentityResponseVO> deleteIdentityResponseCompletableFutureVO = identitiesAsyncService.deleteIdentityAsync(deleteIdentityRequestVO);
+        assertThat(deleteIdentityResponseCompletableFutureVO).isNotNull();
+        DeleteIdentityResponseVO deleteIdentityResponseVO = deleteIdentityResponseCompletableFutureVO.get();
         assertThat(deleteIdentityResponseVO).isNotNull()
                 .satisfies(o -> assertThat(o.getResult()).isPresent()
                         .hasValueSatisfying(v -> assertThat(v).isTrue()));

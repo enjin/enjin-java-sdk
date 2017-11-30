@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.Future;
+import java.util.concurrent.CompletableFuture;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -77,9 +77,9 @@ public class TransactionRequestsAsyncServiceTest {
         Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetTransactionRequestResponseArray);
 
         transactionRequestsAsyncService = new TransactionRequestsAsyncServiceImpl(enjinConfig);
-        Future<GetTransactionRequestResponseVO[]> getTransactionRequestResponseFutureVO = transactionRequestsAsyncService.getTransactionRequestAsync(getTransactionRequestRequestVO);
-        assertThat(getTransactionRequestResponseFutureVO).isNotNull();
-        assertThat(getTransactionRequestResponseFutureVO.get()).isNotNull();
+        CompletableFuture<GetTransactionRequestResponseVO[]> getTransactionRequestResponseCompletableFutureVO = transactionRequestsAsyncService.getTransactionRequestAsync(getTransactionRequestRequestVO);
+        assertThat(getTransactionRequestResponseCompletableFutureVO).isNotNull();
+        assertThat(getTransactionRequestResponseCompletableFutureVO.get()).isNotNull();
 
         PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
         Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
@@ -111,9 +111,9 @@ public class TransactionRequestsAsyncServiceTest {
         Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedCreateTransactionRequestResponseVO);
 
         transactionRequestsAsyncService = new TransactionRequestsAsyncServiceImpl(enjinConfig);
-        Future<CreateTransactionRequestResponseVO> createTransactionRequestResponseFutureVO = transactionRequestsAsyncService.createTransactionRequestAsync(createTransactionRequestRequestVO);
-        assertThat(createTransactionRequestResponseFutureVO).isNotNull();
-        CreateTransactionRequestResponseVO createTransactionRequestResponseVO = createTransactionRequestResponseFutureVO.get();
+        CompletableFuture<CreateTransactionRequestResponseVO> createTransactionRequestResponseCompletableFutureVO = transactionRequestsAsyncService.createTransactionRequestAsync(createTransactionRequestRequestVO);
+        assertThat(createTransactionRequestResponseCompletableFutureVO).isNotNull();
+        CreateTransactionRequestResponseVO createTransactionRequestResponseVO = createTransactionRequestResponseCompletableFutureVO.get();
         assertThat(createTransactionRequestResponseVO).isNotNull();
 
         PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
@@ -135,9 +135,9 @@ public class TransactionRequestsAsyncServiceTest {
         Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(response);
 
         transactionRequestsAsyncService = new TransactionRequestsAsyncServiceImpl(enjinConfig);
-        Future<CancelTransactionRequestResponseVO> cancelTransactionRequestResponseFutureVO = transactionRequestsAsyncService.cancelTransactionRequestAsync(cancelTransactionRequestRequestVO);
-        assertThat(cancelTransactionRequestResponseFutureVO).isNotNull();
-        CancelTransactionRequestResponseVO cancelTransactionRequestResponseVO = cancelTransactionRequestResponseFutureVO.get();
+        CompletableFuture<CancelTransactionRequestResponseVO> cancelTransactionRequestResponseCompletableFutureVO = transactionRequestsAsyncService.cancelTransactionRequestAsync(cancelTransactionRequestRequestVO);
+        assertThat(cancelTransactionRequestResponseCompletableFutureVO).isNotNull();
+        CancelTransactionRequestResponseVO cancelTransactionRequestResponseVO = cancelTransactionRequestResponseCompletableFutureVO.get();
         assertThat(cancelTransactionRequestResponseVO).isNotNull()
                 .satisfies(o -> assertThat(o.getResult()).isPresent()
                         .hasValueSatisfying(v -> assertThat(v).isTrue()));
