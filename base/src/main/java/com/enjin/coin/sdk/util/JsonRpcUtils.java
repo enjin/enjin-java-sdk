@@ -101,7 +101,7 @@ public class JsonRpcUtils {
                 jsonRpcRequest = new JSONRPC2Request(method, requestId);
             }
 
-            LOGGER.info(String.format("jsonRpcRequest:%s", jsonRpcRequest.toJSONString()));
+            LOGGER.fine(String.format("jsonRpcRequest:%s", jsonRpcRequest.toJSONString()));
 
             // Send request - exception here
             JSONRPC2Response jsonRpcResponse = jsonRpcSession.send(jsonRpcRequest);
@@ -109,7 +109,7 @@ public class JsonRpcUtils {
             // Print response result / error
             if (jsonRpcResponse != null && jsonRpcResponse.indicatesSuccess()) {
                 String responseString = jsonRpcResponse.getResult().toString();
-                LOGGER.info(String.format("responseString:%s", responseString));
+                LOGGER.fine(String.format("responseString:%s", responseString));
                 responseObject = JsonUtils.convertJsonToObject(GsonUtils.GSON, responseString, responseClass);
             } else if (jsonRpcResponse != null) {
                 LOGGER.warning(String.format("Error Message:%s", jsonRpcResponse.getError().getMessage()));
