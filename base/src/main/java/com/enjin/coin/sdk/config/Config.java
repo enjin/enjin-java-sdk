@@ -44,7 +44,7 @@ public class Config extends JsonConfig {
      * @return Integer
      */
     @Value.Default
-    @SerializedName("totalExecutors")
+    @SerializedName("total-executors")
     public Integer getTotalExecutors() {
         return Constants.ONE;
     }

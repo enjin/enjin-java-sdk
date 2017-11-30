@@ -20,7 +20,7 @@ public class Notification {
      * @return String
      */
     @Value.Default
-    @SerializedName("appId")
+    @SerializedName("id")
     public String getAppId() {
         return "replace-with-app-id";
     }
@@ -30,7 +30,7 @@ public class Notification {
      * @return String
      */
     @Value.Default
-    @SerializedName("appKey")
+    @SerializedName("key")
     public String getAppKey() {
         return "replace-with-app-key";
     }
@@ -40,7 +40,7 @@ public class Notification {
      * @return String
      */
     @Value.Default
-    @SerializedName("appSecret")
+    @SerializedName("secret")
     public String getAppSecret() {
         return "replace-with-secret";
     }
@@ -60,7 +60,7 @@ public class Notification {
      * @return String
      */
     @Value.Default
-    @SerializedName("appChannel")
+    @SerializedName("channel")
     public String getAppChannel() {
         return "replace-with-app-channel";
     }
@@ -70,7 +70,7 @@ public class Notification {
      * @return long
      */
     @Value.Default
-    @SerializedName("activityTimeout")
+    @SerializedName("activity-timeout")
     public Long getActivityTimeout() {
         return Constants.FOUR_THOUSAND;
     }

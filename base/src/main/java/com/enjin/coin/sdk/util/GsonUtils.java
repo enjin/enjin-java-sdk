@@ -3,7 +3,9 @@ package com.enjin.coin.sdk.util;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ServiceLoader;
+import java.util.logging.Logger;
 
+import com.enjin.coin.sdk.service.EnjinCoin;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.TypeAdapterFactory;
@@ -14,6 +16,8 @@ import com.google.gson.TypeAdapterFactory;
  * </p>
  */
 public final class GsonUtils {
+
+    private static final Logger LOGGER = Logger.getLogger(GsonUtils.class.getName());
 
     /** Standard gson element. **/
     public static final Gson GSON;
@@ -65,7 +69,17 @@ public final class GsonUtils {
      * @return ServiceLoader
      */
     public static ServiceLoader<TypeAdapterFactory> getTypeAdapterFactoryServiceLoader() {
-        return ServiceLoader.load(TypeAdapterFactory.class);
+        return getTypeAdapterFactoryServiceLoader(EnjinCoin.class.getClassLoader());
+    }
+
+    /**
+     * Method to get the type adapter factory service loader for the given ClassLoader.
+     *
+     * @param classLoader the given ClassLoader
+     * @return ServiceLoader
+     */
+    public static ServiceLoader<TypeAdapterFactory> getTypeAdapterFactoryServiceLoader(ClassLoader classLoader) {
+        return ServiceLoader.load(TypeAdapterFactory.class, classLoader);
     }
 
 }
