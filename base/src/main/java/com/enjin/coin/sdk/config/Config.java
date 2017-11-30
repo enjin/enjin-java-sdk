@@ -7,6 +7,8 @@ import com.enjin.coin.sdk.annotations.immutables.Nullable;
 import com.enjin.coin.sdk.util.Constants;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.File;
+
 /**
  * <p>
  * Config used throughout the sdk.
@@ -56,6 +58,17 @@ public class Config extends JsonConfig {
     @SerializedName("test-mode")
     public Boolean isInTestMode() {
         return false;
+    }
+
+    /**
+     * Loads a config if it exists or creates a new config with default values.
+     *
+     * @param file target destination
+     * @return Config
+     * @throws Exception
+     */
+    public static Config load(File file) throws Exception {
+        return load(file, Config.class, () -> ImmutableConfig.builder().build());
     }
 
 }

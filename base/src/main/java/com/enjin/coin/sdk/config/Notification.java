@@ -13,42 +13,57 @@ import com.google.gson.annotations.SerializedName;
  */
 @Value.Immutable
 @Gson.TypeAdapters
-public abstract class Notification {
+public class Notification {
 
     /**
      * The appId to use.
      * @return String
      */
+    @Value.Default
     @SerializedName("appId")
-    public abstract String getAppId();
+    public String getAppId() {
+        return "replace-with-app-id";
+    }
 
     /**
      * The appKey to use.
      * @return String
      */
+    @Value.Default
     @SerializedName("appKey")
-    public abstract String getAppKey();
+    public String getAppKey() {
+        return "replace-with-app-key";
+    }
 
     /**
      * The appSecret to use.
      * @return String
      */
+    @Value.Default
     @SerializedName("appSecret")
-    public abstract String getAppSecret();
+    public String getAppSecret() {
+        return "replace-with-secret";
+    }
 
     /**
      * The cluster to use.
      * @return String
      */
+    @Value.Default
     @SerializedName("cluster")
-    public abstract String getCluster();
+    public String getCluster() {
+        return "replace-with-cluster";
+    }
 
     /**
      * The appChannel to use.
      * @return String
      */
+    @Value.Default
     @SerializedName("appChannel")
-    public abstract String getAppChannel();
+    public String getAppChannel() {
+        return "replace-with-app-channel";
+    }
 
     /**
      * The activityTimeout to use.

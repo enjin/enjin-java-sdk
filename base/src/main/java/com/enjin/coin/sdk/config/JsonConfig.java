@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
+import java.util.function.Supplier;
 import java.util.logging.Logger;
 
 /**
@@ -50,6 +51,23 @@ public class JsonConfig {
 
         if (!file.exists() || file.length() == 0) {
             config = loadNew(clazz);
+            config.save(file);
+        } else {
+            config = loadExisting(file, clazz);
+        }
+
+        if (config == null) {
+            throw new Exception(String.format("Could not load config of type %s at %s.", clazz.getName(), file.getPath()));
+        }
+
+        return clazz.cast(config);
+    }
+
+    public static <T extends JsonConfig> T load(final File file, final Class<T> clazz, Supplier<T> loadNewSupplier) throws Exception {
+        JsonConfig config = null;
+
+        if (!file.exists() || file.length() == 0) {
+            config = loadNewSupplier.get();
             config.save(file);
         } else {
             config = loadExisting(file, clazz);
