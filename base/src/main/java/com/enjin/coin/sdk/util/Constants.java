@@ -32,26 +32,26 @@ public class Constants {
     public static final String EVENTS_URL = "Events.php";
 
     /** Constants for the Identities Get method. **/
-    public static final String METHOD_IDENTITIES_GET = "Identities.get";
+    public static final String METHOD_IDENTITIES_GET = "get";
     /** Constants for the Identities Create method. **/
-    public static final String METHOD_IDENTITIES_CREATE = "Identities.create";
+    public static final String METHOD_IDENTITIES_CREATE = "create";
     /** Constants for the Identities Delete method. **/
-    public static final String METHOD_IDENTITIES_DELETE = "Identities.delete";
+    public static final String METHOD_IDENTITIES_DELETE = "delete";
     /** Constants for the Identities Update method. **/
-    public static final String METHOD_IDENTITIES_UPDATE = "Identities.update";
+    public static final String METHOD_IDENTITIES_UPDATE = "update";
 
     /** Constants for the Tokens Get method. **/
-    public static final String METHOD_TOKENS_GET = "Tokens.get";
+    public static final String METHOD_TOKENS_GET = "get";
 
     /** Constants for the TransactionRequests Get method. **/
-    public static final String METHOD_TRANSACTION_REQUESTS_GET = "TransactionRequests.get";
+    public static final String METHOD_TRANSACTION_REQUESTS_GET = "get";
     /** Constants for the TransactionRequests Create method. **/
-    public static final String METHOD_TRANSACTION_REQUESTS_CREATE = "TransactionRequests.create";
+    public static final String METHOD_TRANSACTION_REQUESTS_CREATE = "create";
     /** Constants for the TransactionRequests Cancel method. **/
-    public static final String METHOD_TRANSACTION_REQUESTS_CANCEL = "TransactionRequests.cancel";
+    public static final String METHOD_TRANSACTION_REQUESTS_CANCEL = "cancel";
 
     /** Constants for the Events Get method. **/
-    public static final String METHOD_EVENTS_GET = "Events.get";
+    public static final String METHOD_EVENTS_GET = "get";
 
     /** Numeric constants - 1. **/
     public static final int ONE = 1;
