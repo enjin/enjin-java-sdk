@@ -1,6 +1,6 @@
 package com.enjin.coin.sdk.service.events;
 
-import java.util.concurrent.Future;
+import java.util.concurrent.CompletableFuture;
 
 import com.enjin.coin.sdk.vo.event.GetEventRequestVO;
 import com.enjin.coin.sdk.vo.event.GetEventResponseVO;
@@ -16,5 +16,5 @@ public interface EventsAsyncService extends EventsService {
      * @param request - get event request vo
      * @return - GetEventResponseVO
      */
-    Future<GetEventResponseVO[]> getEventAsync(GetEventRequestVO request);
+    CompletableFuture<GetEventResponseVO[]> getEventAsync(GetEventRequestVO request);
 }

@@ -1,7 +1,5 @@
 package com.enjin.coin.sdk.service.identities;
 
-import java.util.concurrent.Future;
-
 import com.enjin.coin.sdk.vo.identity.CreateIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.CreateIdentityResponseVO;
 import com.enjin.coin.sdk.vo.identity.DeleteIdentityRequestVO;
@@ -10,6 +8,8 @@ import com.enjin.coin.sdk.vo.identity.GetIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.GetIdentityResponseVO;
 import com.enjin.coin.sdk.vo.identity.UpdateIdentityRequestVO;
 import com.enjin.coin.sdk.vo.identity.UpdateIdentityResponseVO;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Asynchronous Identities service interface.
@@ -22,7 +22,7 @@ public interface IdentitiesAsyncService extends IdentitiesService {
      * @param request - get identity request vo
      * @return - GetIdentityResponseVO
      */
-    Future<GetIdentityResponseVO[]> getIdentityAsync(GetIdentityRequestVO request);
+    CompletableFuture<GetIdentityResponseVO[]> getIdentityAsync(GetIdentityRequestVO request);
 
     /**
      * Method to create an identity.
@@ -30,7 +30,7 @@ public interface IdentitiesAsyncService extends IdentitiesService {
      * @param request - create identity request vo
      * @return - CreateIdentityResponseVO
      */
-    Future<CreateIdentityResponseVO> createIdentityAsync(CreateIdentityRequestVO request);
+    CompletableFuture<CreateIdentityResponseVO> createIdentityAsync(CreateIdentityRequestVO request);
 
     /**
      * Method to update an identity.
@@ -38,7 +38,7 @@ public interface IdentitiesAsyncService extends IdentitiesService {
      * @param request - update identity request vo
      * @return - UpdateIdentityResponseVO
      */
-    Future<UpdateIdentityResponseVO> updateIdentityAsync(UpdateIdentityRequestVO request);
+    CompletableFuture<UpdateIdentityResponseVO> updateIdentityAsync(UpdateIdentityRequestVO request);
 
     /**
      * Method to delete an identity.
@@ -46,6 +46,6 @@ public interface IdentitiesAsyncService extends IdentitiesService {
      * @param request - delete identity request vo
      * @return - DeleteIdentityResponseVO
      */
-    Future<DeleteIdentityResponseVO> deleteIdentityAsync(DeleteIdentityRequestVO request);
+    CompletableFuture<DeleteIdentityResponseVO> deleteIdentityAsync(DeleteIdentityRequestVO request);
 
 }

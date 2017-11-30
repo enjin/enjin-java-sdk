@@ -1,5 +1,6 @@
 package com.enjin.coin.sdk.service.events.impl;
 
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
 
 import com.enjin.coin.sdk.config.Config;
@@ -24,8 +25,8 @@ public final class EventsAsyncServiceImpl extends EventsServiceImpl implements E
     }
 
     @Override
-    public Future<GetEventResponseVO[]> getEventAsync(final GetEventRequestVO request) {
-        return getExecutorService().submit(() -> getEvent(request));
+    public CompletableFuture<GetEventResponseVO[]> getEventAsync(final GetEventRequestVO request) {
+        return CompletableFuture.supplyAsync(() -> getEvent(request), getExecutorService());
     }
 
 }

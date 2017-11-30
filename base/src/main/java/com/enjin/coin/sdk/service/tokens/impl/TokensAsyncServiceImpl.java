@@ -1,5 +1,6 @@
 package com.enjin.coin.sdk.service.tokens.impl;
 
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
 
 import com.enjin.coin.sdk.config.Config;
@@ -24,8 +25,8 @@ public final class TokensAsyncServiceImpl extends TokensServiceImpl implements T
     }
 
     @Override
-    public Future<GetTokenResponseVO[]> getTokenAsync(final GetTokenRequestVO request) {
-        return getExecutorService().submit(() -> getToken(request));
+    public CompletableFuture<GetTokenResponseVO[]> getTokenAsync(final GetTokenRequestVO request) {
+        return CompletableFuture.supplyAsync(() -> getToken(request), getExecutorService());
     }
 
 }

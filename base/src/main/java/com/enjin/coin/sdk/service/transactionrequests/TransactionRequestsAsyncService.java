@@ -1,13 +1,13 @@
 package com.enjin.coin.sdk.service.transactionrequests;
 
-import java.util.concurrent.Future;
-
 import com.enjin.coin.sdk.vo.transactionrequest.CancelTransactionRequestRequestVO;
 import com.enjin.coin.sdk.vo.transactionrequest.CancelTransactionRequestResponseVO;
 import com.enjin.coin.sdk.vo.transactionrequest.CreateTransactionRequestRequestVO;
 import com.enjin.coin.sdk.vo.transactionrequest.CreateTransactionRequestResponseVO;
 import com.enjin.coin.sdk.vo.transactionrequest.GetTransactionRequestRequestVO;
 import com.enjin.coin.sdk.vo.transactionrequest.GetTransactionRequestResponseVO;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Asynchronous TransactionRequests service interface.
@@ -20,7 +20,7 @@ public interface TransactionRequestsAsyncService extends TransactionRequestsServ
      * @param request - get the transactionRequest request vo
      * @return - GetTransactionRequestResponseVO
      */
-    Future<GetTransactionRequestResponseVO[]> getTransactionRequestAsync(GetTransactionRequestRequestVO request);
+    CompletableFuture<GetTransactionRequestResponseVO[]> getTransactionRequestAsync(GetTransactionRequestRequestVO request);
 
     /**
      * Method to create an transactionRequest.
@@ -28,7 +28,7 @@ public interface TransactionRequestsAsyncService extends TransactionRequestsServ
      * @param request - create the transactionRequest request vo
      * @return - CreateTransactionRequestResponseVO
      */
-    Future<CreateTransactionRequestResponseVO> createTransactionRequestAsync(CreateTransactionRequestRequestVO request);
+    CompletableFuture<CreateTransactionRequestResponseVO> createTransactionRequestAsync(CreateTransactionRequestRequestVO request);
 
     /**
      * Method to cancel an transactionRequest.
@@ -36,6 +36,6 @@ public interface TransactionRequestsAsyncService extends TransactionRequestsServ
      * @param request - cancel the transactionRequest request vo
      * @return - CancelTransactionRequestResponseVO
      */
-    Future<CancelTransactionRequestResponseVO> cancelTransactionRequestAsync(CancelTransactionRequestRequestVO request);
+    CompletableFuture<CancelTransactionRequestResponseVO> cancelTransactionRequestAsync(CancelTransactionRequestRequestVO request);
 
 }

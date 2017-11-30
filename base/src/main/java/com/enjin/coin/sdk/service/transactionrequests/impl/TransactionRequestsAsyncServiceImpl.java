@@ -1,6 +1,6 @@
 package com.enjin.coin.sdk.service.transactionrequests.impl;
 
-import java.util.concurrent.Future;
+import java.util.concurrent.CompletableFuture;
 
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.service.transactionrequests.TransactionRequestsAsyncService;
@@ -28,18 +28,18 @@ public final class TransactionRequestsAsyncServiceImpl extends TransactionReques
     }
 
     @Override
-    public Future<GetTransactionRequestResponseVO[]> getTransactionRequestAsync(final GetTransactionRequestRequestVO request) {
-        return getExecutorService().submit(() -> getTransactionRequest(request));
+    public CompletableFuture<GetTransactionRequestResponseVO[]> getTransactionRequestAsync(final GetTransactionRequestRequestVO request) {
+        return CompletableFuture.supplyAsync(() -> getTransactionRequest(request), getExecutorService());
     }
 
     @Override
-    public Future<CreateTransactionRequestResponseVO> createTransactionRequestAsync(final CreateTransactionRequestRequestVO request) {
-        return getExecutorService().submit(() -> createTransactionRequest(request));
+    public CompletableFuture<CreateTransactionRequestResponseVO> createTransactionRequestAsync(final CreateTransactionRequestRequestVO request) {
+        return CompletableFuture.supplyAsync(() -> createTransactionRequest(request), getExecutorService());
     }
 
     @Override
-    public Future<CancelTransactionRequestResponseVO> cancelTransactionRequestAsync(final CancelTransactionRequestRequestVO request) {
-        return getExecutorService().submit(() -> cancelTransactionRequest(request));
+    public CompletableFuture<CancelTransactionRequestResponseVO> cancelTransactionRequestAsync(final CancelTransactionRequestRequestVO request) {
+        return CompletableFuture.supplyAsync(() -> cancelTransactionRequest(request), getExecutorService());
     }
 
 }
