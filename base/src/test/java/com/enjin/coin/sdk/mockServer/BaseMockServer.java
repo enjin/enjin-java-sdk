@@ -60,8 +60,8 @@ public class BaseMockServer {
      **/
     private static final String EVENTS_URL = String.format("/%s", Constants.EVENTS_URL);
 
-    private static final String JSON_FILE_EXTENSION = ".response.json";
-    private static final String JSON_FILE_BASE_FOLDER = "src/test/resources/examples/API/";
+    private static final String JSON_FILE_EXTENSION = "response.json";
+    private static final String JSON_FILE_BASE_FOLDER = "src/test/resources/examples/API";
 
     @Before
     public void setUp() {
@@ -84,34 +84,38 @@ public class BaseMockServer {
         //Formatted with https://www.freeformatter.com/json-formatter.html
 
         //Setup the identities stubs
-        String identitiesGetMethod    = "Identities.get";
-        String identitiesCreateMethod = "Identities.create";
-        String identitiesUpdateMethod = "Identities.update";
-        String identitiesDeleteMethod = "Identities.delete";
+        String identitiesFolder       = "Identities";
+        String identitiesGetMethod    = "get";
+        String identitiesCreateMethod = "create";
+        String identitiesUpdateMethod = "update";
+        String identitiesDeleteMethod = "delete";
 
-        setUpStub(IDENTITIES_URL, identitiesGetMethod);
-        setUpStub(IDENTITIES_URL, identitiesCreateMethod);
-        setUpStub(IDENTITIES_URL, identitiesUpdateMethod);
-        setUpStub(IDENTITIES_URL, identitiesDeleteMethod);
+        setUpStub(IDENTITIES_URL, identitiesFolder, identitiesGetMethod);
+        setUpStub(IDENTITIES_URL, identitiesFolder, identitiesCreateMethod);
+        setUpStub(IDENTITIES_URL, identitiesFolder, identitiesUpdateMethod);
+        setUpStub(IDENTITIES_URL, identitiesFolder, identitiesDeleteMethod);
 
         //Setup the tokens stubs
-        String tokensGetMethod = "Tokens.get";
+        String tokensFolder    = "Tokens";
+        String tokensGetMethod = "get";
 
-        setUpStub(TOKENS_URL, tokensGetMethod);
+        setUpStub(TOKENS_URL, tokensFolder, tokensGetMethod);
 
         //Setup the TransactionRequests stubs
-        String transactionRequestsGetMethod    = "TransactionRequests.get";
-        String transactionRequestsCreateMethod = "TransactionRequests.create";
-        String transactionRequestsCancelMethod = "TransactionRequests.cancel";
+        String transactionRequestsFolder       = "TransactionRequests";
+        String transactionRequestsGetMethod    = "get";
+        String transactionRequestsCreateMethod = "create";
+        String transactionRequestsCancelMethod = "cancel";
 
-        setUpStub(TRANSACTION_REQUESTS_URL, transactionRequestsGetMethod);
-        setUpStub(TRANSACTION_REQUESTS_URL, transactionRequestsCreateMethod);
-        setUpStub(TRANSACTION_REQUESTS_URL, transactionRequestsCancelMethod);
+        setUpStub(TRANSACTION_REQUESTS_URL, transactionRequestsFolder, transactionRequestsGetMethod);
+        setUpStub(TRANSACTION_REQUESTS_URL, transactionRequestsFolder, transactionRequestsCreateMethod);
+        setUpStub(TRANSACTION_REQUESTS_URL, transactionRequestsFolder, transactionRequestsCancelMethod);
 
         //Setup the events stubs
-        String eventsGetMethod = "Events.get";
+        String eventsFolder     = "Events";
+        String eventsGetMethod = "get";
 
-        setUpStub(EVENTS_URL, eventsGetMethod);
+        setUpStub(EVENTS_URL, eventsFolder, eventsGetMethod);
     }
 
     protected String getUrlFromPlatform(Platform platform) {
@@ -143,24 +147,12 @@ public class BaseMockServer {
      * Method to set up the stub
      *
      * @param baseURL
+     * @param folder
      * @param methodToCall
      */
-    private static void setUpStub(String baseURL, String methodToCall) {
-        String fileToLoad = methodToCall + JSON_FILE_EXTENSION;
-
-        setUpStub(baseURL, methodToCall, fileToLoad);
-    }
-
-    /**
-     * Method to set up the stub
-     *
-     * @param baseURL
-     * @param methodToCall
-     * @param fileToLoad
-     */
-    private static void setUpStub(String baseURL, String methodToCall, String fileToLoad) {
-        String filePath = JSON_FILE_BASE_FOLDER + fileToLoad;
-        String fileContents = FileUtils.getFileContents(filePath);
+    private static void setUpStub(String baseURL, String folder, String methodToCall) {
+        String fileToLoad = String.format("%s/%s/%s.%s", JSON_FILE_BASE_FOLDER, folder, methodToCall, JSON_FILE_EXTENSION);
+        String fileContents = FileUtils.getFileContents(fileToLoad);
 
         // See http://wiremock.org/docs/request-matching/ for request matching
         stubFor(post(urlEqualTo(baseURL))
@@ -170,5 +162,8 @@ public class BaseMockServer {
                         .withStatus(200)
                         .withHeader(Header.CONTENT_TYPE, ContentType.TEXT_JSON)
                         .withBody(fileContents)));
+
     }
+
+
 }
