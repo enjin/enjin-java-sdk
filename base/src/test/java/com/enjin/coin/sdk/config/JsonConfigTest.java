@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.function.Supplier;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -268,6 +269,263 @@ public class JsonConfigTest {
         Mockito.verify(mockFile, Mockito.times(1)).length();
         PowerMockito.verifyNew(FileReader.class, Mockito.times(1)).withArguments(Mockito.isA(File.class));
     }
+
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    @Test
+    public void testLoadWithSupplier_FileDoesntExistSuccess() throws Exception {
+        Class configClass = JsonConfig.class;
+        Supplier supplier  = ()-> new JsonConfig();
+
+        File mockFile = PowerMockito.mock(File.class);
+        FileWriter mockFileWriter = PowerMockito.mock(FileWriter.class);
+        FileWriter spyFileWriter = Mockito.spy(mockFileWriter);
+
+        Mockito.when(mockFile.exists()).thenReturn(false);
+        PowerMockito.whenNew(FileWriter.class).withParameterTypes(File.class).withArguments(mockFile).thenReturn(mockFileWriter);
+        Mockito.when(mockFile.getParentFile()).thenReturn(null);
+        Mockito.when(mockFile.exists()).thenReturn(false);
+        Mockito.when(mockFile.createNewFile()).thenReturn(true);
+        Mockito.doNothing().when(spyFileWriter).write(Mockito.anyString());
+        Mockito.doNothing().when(spyFileWriter).close();
+
+        JsonConfig response = JsonConfig.load(mockFile, configClass, supplier);
+        assertThat(response).isNotNull();
+
+        Mockito.verify(mockFile, Mockito.times(2)).exists();
+        PowerMockito.verifyNew(FileWriter.class, Mockito.times(1)).withArguments(Mockito.isA(File.class));
+        Mockito.verify(mockFile, Mockito.times(1)).getParentFile();
+        Mockito.verify(mockFile, Mockito.times(1)).createNewFile();
+        Mockito.verify(mockFileWriter, Mockito.times(1)).write(Mockito.anyString());
+        Mockito.verify(mockFileWriter, Mockito.times(2)).close();
+    }
+
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    @Test
+    public void testLoadWithSupplier_FilesExistsSecondTimeAroundSuccess() throws Exception {
+        Class configClass = JsonConfig.class;
+        Supplier supplier  = ()-> new JsonConfig();
+
+        File mockFile = PowerMockito.mock(File.class);
+        FileWriter mockFileWriter = PowerMockito.mock(FileWriter.class);
+        FileWriter spyFileWriter = Mockito.spy(mockFileWriter);
+
+        Mockito.when(mockFile.exists()).thenReturn(false);
+        PowerMockito.whenNew(FileWriter.class).withParameterTypes(File.class).withArguments(mockFile).thenReturn(mockFileWriter);
+        Mockito.when(mockFile.getParentFile()).thenReturn(null);
+        Mockito.when(mockFile.exists()).thenReturn(true);
+        Mockito.doNothing().when(spyFileWriter).write(Mockito.anyString());
+        Mockito.doNothing().when(spyFileWriter).close();
+
+        JsonConfig response = JsonConfig.load(mockFile, configClass, supplier);
+        assertThat(response).isNotNull();
+
+        Mockito.verify(mockFile, Mockito.times(2)).exists();
+        PowerMockito.verifyNew(FileWriter.class, Mockito.times(1)).withArguments(Mockito.isA(File.class));
+        Mockito.verify(mockFile, Mockito.times(1)).getParentFile();
+        Mockito.verify(mockFileWriter, Mockito.times(1)).write(Mockito.anyString());
+        Mockito.verify(mockFileWriter, Mockito.times(2)).close();
+    }
+
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    @Test
+    public void testLoadWithSupplier_IOExceptionPerformingWrite() throws Exception {
+        Class configClass = JsonConfig.class;
+        Supplier supplier  = ()-> new JsonConfig();
+
+        File mockFile = PowerMockito.mock(File.class);
+        FileWriter mockFileWriter = PowerMockito.mock(FileWriter.class);
+
+        Mockito.when(mockFile.exists()).thenReturn(false);
+        PowerMockito.whenNew(FileWriter.class).withParameterTypes(File.class).withArguments(mockFile).thenReturn(mockFileWriter);
+        Mockito.when(mockFile.getParentFile()).thenReturn(null);
+        Mockito.when(mockFile.exists()).thenReturn(true);
+        Mockito.doThrow(new IOException("exception")).when(mockFileWriter).write(Mockito.anyString());
+
+        JsonConfig response = JsonConfig.load(mockFile, configClass, supplier);
+        assertThat(response).isNotNull();
+
+        Mockito.verify(mockFile, Mockito.times(2)).exists();
+        PowerMockito.verifyNew(FileWriter.class, Mockito.times(1)).withArguments(Mockito.isA(File.class));
+        Mockito.verify(mockFile, Mockito.times(1)).getParentFile();
+        Mockito.verify(mockFileWriter, Mockito.times(1)).write(Mockito.anyString());
+        Mockito.verify(mockFileWriter, Mockito.times(1)).close();
+    }
+
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    @Test
+    public void testLoadWithSupplier_FileExistsLengthIs0Success() throws Exception {
+        Class configClass = JsonConfig.class;
+        Supplier supplier  = ()-> new JsonConfig();
+
+        File mockFile = PowerMockito.mock(File.class);
+        FileWriter mockFileWriter = PowerMockito.mock(FileWriter.class);
+        FileWriter spyFileWriter = Mockito.spy(mockFileWriter);
+
+        Mockito.when(mockFile.exists()).thenReturn(true);
+        Mockito.when(mockFile.length()).thenReturn(0l);
+        PowerMockito.whenNew(FileWriter.class).withParameterTypes(File.class).withArguments(mockFile).thenReturn(mockFileWriter);
+        Mockito.when(mockFile.getParentFile()).thenReturn(null);
+        Mockito.when(mockFile.exists()).thenReturn(true);
+        Mockito.when(mockFile.exists()).thenReturn(true);
+        Mockito.when(mockFile.exists()).thenReturn(true);
+        Mockito.doNothing().when(spyFileWriter).write(Mockito.anyString());
+        Mockito.doNothing().when(spyFileWriter).close();
+
+        JsonConfig response = JsonConfig.load(mockFile, configClass, supplier);
+        assertThat(response).isNotNull();
+
+        Mockito.verify(mockFile, Mockito.times(2)).exists();
+        Mockito.verify(mockFile, Mockito.times(1)).length();
+        PowerMockito.verifyNew(FileWriter.class, Mockito.times(1)).withArguments(Mockito.isA(File.class));
+        Mockito.verify(mockFile, Mockito.times(1)).getParentFile();
+        Mockito.verify(mockFileWriter, Mockito.times(1)).write(Mockito.anyString());
+        Mockito.verify(mockFileWriter, Mockito.times(2)).close();
+    }
+
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    @Test
+    public void testLoadWithSupplier_ParentFileExists() throws Exception {
+        Class configClass = JsonConfig.class;
+        Supplier supplier  = ()-> new JsonConfig();
+
+        File mockFile = PowerMockito.mock(File.class);
+        FileWriter mockFileWriter = PowerMockito.mock(FileWriter.class);
+        FileWriter spyFileWriter = Mockito.spy(mockFileWriter);
+
+        Mockito.when(mockFile.exists()).thenReturn(true);
+        Mockito.when(mockFile.length()).thenReturn(0l);
+        PowerMockito.whenNew(FileWriter.class).withParameterTypes(File.class).withArguments(mockFile).thenReturn(mockFileWriter);
+        Mockito.when(mockFile.getParentFile()).thenReturn(mockFile);
+        Mockito.when(mockFile.mkdir()).thenReturn(true);
+        Mockito.when(mockFile.exists()).thenReturn(true);
+        Mockito.when(mockFile.exists()).thenReturn(true);
+        Mockito.when(mockFile.exists()).thenReturn(true);
+        Mockito.doNothing().when(spyFileWriter).write(Mockito.anyString());
+        Mockito.doNothing().when(spyFileWriter).close();
+
+        JsonConfig response = JsonConfig.load(mockFile, configClass, supplier);
+        assertThat(response).isNotNull();
+
+        Mockito.verify(mockFile, Mockito.times(2)).exists();
+        Mockito.verify(mockFile, Mockito.times(1)).length();
+        PowerMockito.verifyNew(FileWriter.class, Mockito.times(1)).withArguments(Mockito.isA(File.class));
+        Mockito.verify(mockFile, Mockito.times(2)).getParentFile();
+        Mockito.verify(mockFileWriter, Mockito.times(1)).write(Mockito.anyString());
+        Mockito.verify(mockFileWriter, Mockito.times(2)).close();
+    }
+
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    @Test
+    public void testLoadWithSupplier_FileLengthis0FilesExistsSecondTimeAroundSuccess() throws Exception {
+        Class configClass = JsonConfig.class;
+        Supplier supplier  = ()-> new JsonConfig();
+
+        File mockFile = PowerMockito.mock(File.class);
+        FileWriter mockFileWriter = PowerMockito.mock(FileWriter.class);
+        FileWriter spyFileWriter = Mockito.spy(mockFileWriter);
+
+        Mockito.when(mockFile.exists()).thenReturn(true);
+        Mockito.when(mockFile.length()).thenReturn(0l);
+        PowerMockito.whenNew(FileWriter.class).withParameterTypes(File.class).withArguments(mockFile).thenReturn(mockFileWriter);
+        Mockito.when(mockFile.getParentFile()).thenReturn(null);
+        Mockito.when(mockFile.exists()).thenReturn(true);
+        Mockito.doNothing().when(spyFileWriter).write(Mockito.anyString());
+        Mockito.doNothing().when(spyFileWriter).close();
+
+        JsonConfig response = JsonConfig.load(mockFile, configClass, supplier);
+        assertThat(response).isNotNull();
+
+        Mockito.verify(mockFile, Mockito.times(2)).exists();
+        Mockito.verify(mockFile, Mockito.times(1)).length();
+        PowerMockito.verifyNew(FileWriter.class, Mockito.times(1)).withArguments(Mockito.isA(File.class));
+        Mockito.verify(mockFile, Mockito.times(1)).getParentFile();
+        Mockito.verify(mockFileWriter, Mockito.times(1)).write(Mockito.anyString());
+        Mockito.verify(mockFileWriter, Mockito.times(2)).close();
+    }
+
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    @Test
+    public void testLoadWithSupplier_FileLengthis0IOExceptionPerformingWrite() throws Exception {
+        Class configClass = JsonConfig.class;
+        Supplier supplier  = ()-> new JsonConfig();
+
+        File mockFile = PowerMockito.mock(File.class);
+        FileWriter mockFileWriter = PowerMockito.mock(FileWriter.class);
+        FileWriter spyFileWriter = Mockito.spy(mockFileWriter);
+
+        Mockito.when(mockFile.exists()).thenReturn(true);
+        Mockito.when(mockFile.length()).thenReturn(0l);
+        PowerMockito.whenNew(FileWriter.class).withParameterTypes(File.class).withArguments(mockFile).thenReturn(mockFileWriter);
+        Mockito.when(mockFile.getParentFile()).thenReturn(null);
+        Mockito.when(mockFile.exists()).thenReturn(true);
+        Mockito.doThrow(new IOException("exception")).when(spyFileWriter).write(Mockito.anyString());
+        Mockito.doNothing().when(spyFileWriter).close();
+
+        JsonConfig response = JsonConfig.load(mockFile, configClass, supplier);
+        assertThat(response).isNotNull();
+
+        Mockito.verify(mockFile, Mockito.times(2)).exists();
+        Mockito.verify(mockFile, Mockito.times(1)).length();
+        PowerMockito.verifyNew(FileWriter.class, Mockito.times(1)).withArguments(Mockito.isA(File.class));
+        Mockito.verify(mockFile, Mockito.times(1)).getParentFile();
+        Mockito.verify(mockFileWriter, Mockito.times(1)).write(Mockito.anyString());
+        Mockito.verify(mockFileWriter, Mockito.times(2)).close();
+    }
+
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    @Test
+    public void testLoadWithSupplier_LoadExistingSuccess() throws Exception {
+        Class configClass = JsonConfig.class;
+        JsonConfig jsonConfig = new JsonConfig();
+        Supplier supplier  = ()-> new JsonConfig();
+
+        PowerMockito.mockStatic(JsonUtils.class);
+
+        File mockFile = PowerMockito.mock(File.class);
+        FileReader mockFileReader = PowerMockito.mock(FileReader.class);
+
+        Mockito.when(mockFile.exists()).thenReturn(true);
+        Mockito.when(mockFile.length()).thenReturn(1l);
+        PowerMockito.whenNew(FileReader.class).withParameterTypes(File.class).withArguments(mockFile).thenReturn(mockFileReader);
+        PowerMockito.when(JsonUtils.convertJsonFromFileReaderToObject(Mockito.isA(Gson.class), Mockito.isA(FileReader.class), Mockito.isA(Class.class))).thenReturn(jsonConfig);
+
+        JsonConfig response = JsonConfig.load(mockFile, configClass, supplier);
+        assertThat(response).isNotNull();
+
+        Mockito.verify(mockFile, Mockito.times(1)).exists();
+        Mockito.verify(mockFile, Mockito.times(1)).length();
+        PowerMockito.verifyNew(FileReader.class, Mockito.times(1)).withArguments(Mockito.isA(File.class));
+    }
+
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    @Test
+    public void testLoadWithSupplier_FailedToLoadExistingSuccess() throws Exception {
+        Class configClass = JsonConfig.class;
+        JsonConfig jsonConfig = null;
+        Supplier supplier  = ()-> new JsonConfig();
+
+        PowerMockito.mockStatic(JsonUtils.class);
+
+        File mockFile = PowerMockito.mock(File.class);
+        FileReader mockFileReader = PowerMockito.mock(FileReader.class);
+
+        Mockito.when(mockFile.exists()).thenReturn(true);
+        Mockito.when(mockFile.length()).thenReturn(1l);
+        PowerMockito.whenNew(FileReader.class).withParameterTypes(File.class).withArguments(mockFile).thenReturn(mockFileReader);
+        PowerMockito.when(JsonUtils.convertJsonFromFileReaderToObject(Mockito.isA(Gson.class), Mockito.isA(FileReader.class), Mockito.isA(Class.class))).thenReturn(jsonConfig);
+
+        try {
+            JsonConfig response = JsonConfig.load(mockFile, configClass, supplier);
+            assertThat(response).isNull();
+        } catch (Exception e) {
+            assertThat(e).isNotNull();
+        }
+        Mockito.verify(mockFile, Mockito.times(1)).exists();
+        Mockito.verify(mockFile, Mockito.times(1)).length();
+        PowerMockito.verifyNew(FileReader.class, Mockito.times(1)).withArguments(Mockito.isA(File.class));
+    }
+
+
 
     @Test
     public void testUpdate_NotJsonObjects() {

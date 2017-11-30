@@ -94,7 +94,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
              */
             @Override
             public void onConnectionStateChange(final ConnectionStateChange change) {
-                LOGGER.info(String.format("State changed to %s from %s ", change.getCurrentState(), change.getPreviousState()));
+                LOGGER.fine(String.format("State changed to %s from %s ", change.getCurrentState(), change.getPreviousState()));
             }
 
             /**
