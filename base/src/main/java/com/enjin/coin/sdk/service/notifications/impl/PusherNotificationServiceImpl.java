@@ -70,7 +70,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
         String appChannel    = notificationConfig.getAppChannel();
         Long activityTimeout = notificationConfig.getActivityTimeout();
 
-        if (StringUtils.isEmpty(appId) || StringUtils.isEmpty(appKey) || StringUtils.isEmpty(appSecret) || StringUtils.isEmpty(cluster)) {
+        if (StringUtils.isEmpty(appKey) || StringUtils.isEmpty(cluster)) {
             LOGGER.warning("appId, appKey, appSecret or cluster is null or empty");
             return initializeResult;
         }
