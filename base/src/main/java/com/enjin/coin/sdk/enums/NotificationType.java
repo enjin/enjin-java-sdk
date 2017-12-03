@@ -77,4 +77,9 @@ public enum NotificationType {
 
         return false;
     }
+
+    public static NotificationType valueOfEnum(String name) {
+        NotificationType type = valueOf(name);
+        return type != null ? type : UNKNOWN_EVENT;
+    }
 }

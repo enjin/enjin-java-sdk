@@ -155,7 +155,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
             return;
         }
 
-        NotificationType notificationTypeEnum = NotificationType.valueOf(eventType.toUpperCase());
+        NotificationType notificationTypeEnum = NotificationType.valueOfEnum(eventType.toUpperCase());
         if (notificationTypeEnum == null) {
             LOGGER.warning(String.format("Failed to get NotificationType for the eventType of %s", eventType));
             return;
