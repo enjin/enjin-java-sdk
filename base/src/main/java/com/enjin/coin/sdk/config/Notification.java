@@ -22,7 +22,7 @@ public class Notification {
     @Value.Default
     @SerializedName("id")
     public String getAppId() {
-        return "replace-with-app-id";
+        return "";
     }
 
     /**
@@ -32,7 +32,7 @@ public class Notification {
     @Value.Default
     @SerializedName("key")
     public String getAppKey() {
-        return "replace-with-app-key";
+        return "";
     }
 
     /**
@@ -42,7 +42,7 @@ public class Notification {
     @Value.Default
     @SerializedName("secret")
     public String getAppSecret() {
-        return "replace-with-secret";
+        return "";
     }
 
     /**
@@ -52,7 +52,7 @@ public class Notification {
     @Value.Default
     @SerializedName("cluster")
     public String getCluster() {
-        return "replace-with-cluster";
+        return "";
     }
 
     /**
@@ -62,7 +62,7 @@ public class Notification {
     @Value.Default
     @SerializedName("channel")
     public String getAppChannel() {
-        return "replace-with-app-channel";
+        return "";
     }
 
     /**
