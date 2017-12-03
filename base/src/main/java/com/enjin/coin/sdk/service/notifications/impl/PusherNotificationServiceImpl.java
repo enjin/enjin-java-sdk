@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import com.enjin.coin.sdk.config.ImmutableNotification;
 import com.enjin.coin.sdk.config.Notification;
 import com.enjin.coin.sdk.enums.NotificationType;
 import com.enjin.coin.sdk.service.notifications.NotificationListener;
 import com.enjin.coin.sdk.service.notifications.ThirdPartyNotificationService;
 import com.enjin.coin.sdk.util.ListUtils;
 import com.enjin.coin.sdk.util.StringUtils;
+import com.enjin.coin.sdk.vo.notifications.ImmutableNotificationEvent;
 import com.enjin.coin.sdk.vo.notifications.NotificationEvent;
 import com.pusher.client.Pusher;
 import com.pusher.client.PusherOptions;
@@ -158,7 +160,11 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
             return;
         }
 
-        NotificationEvent notificationEvent = new NotificationEvent(sourceData, channel, notificationTypeEnum);
+        NotificationEvent notificationEvent = ImmutableNotificationEvent.builder()
+                .setSourceData(sourceData)
+                .setChannel(channel)
+                .setNotificationType(notificationTypeEnum)
+                .build();
         for (NotificationListener notificationListener : notificationListeners) {
            notificationListener.notificationReceived(notificationEvent);
         }
