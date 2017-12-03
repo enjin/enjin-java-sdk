@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import com.enjin.coin.sdk.config.ImmutableNotification;
+import com.enjin.coin.sdk.annotations.notifications.EventFilter;
 import com.enjin.coin.sdk.config.Notification;
 import com.enjin.coin.sdk.enums.NotificationType;
 import com.enjin.coin.sdk.service.notifications.NotificationListener;
+import com.enjin.coin.sdk.service.notifications.NotificationListenerRegistration;
 import com.enjin.coin.sdk.service.notifications.ThirdPartyNotificationService;
 import com.enjin.coin.sdk.util.ListUtils;
 import com.enjin.coin.sdk.util.StringUtils;
@@ -42,7 +43,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
     /**
      * Local variable holding all the notification listeners.
      */
-    private List<NotificationListener> notificationListeners = new ArrayList<NotificationListener>();
+    private List<NotificationListenerRegistration> notificationListeners = new ArrayList<>();
 
     /**
      * Local notificationConfig variable.
@@ -165,8 +166,18 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
                 .setChannel(channel)
                 .setNotificationType(notificationTypeEnum)
                 .build();
-        for (NotificationListener notificationListener : notificationListeners) {
-           notificationListener.notificationReceived(notificationEvent);
+
+        for (NotificationListenerRegistration registration : notificationListeners) {
+            NotificationListener listener = registration.getListener();
+            if (registration.hasFilter()) {
+                EventFilter filter = registration.getFilter();
+                boolean present = notificationTypeEnum.in(filter);
+                if ((present && !filter.ignore()) || (!present && filter.ignore())) {
+                    listener.notificationReceived(notificationEvent);
+                }
+            } else {
+                listener.notificationReceived(notificationEvent);
+            }
         }
 
     }
@@ -175,7 +186,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
      * @param argNotificationListeners - list of listeners to set as the new listeners
      */
     @Override
-    public synchronized void setNotificationListeners(final List<NotificationListener> argNotificationListeners) {
+    public synchronized void setNotificationListeners(final List<NotificationListenerRegistration> argNotificationListeners) {
         this.notificationListeners = argNotificationListeners;
     }
 }

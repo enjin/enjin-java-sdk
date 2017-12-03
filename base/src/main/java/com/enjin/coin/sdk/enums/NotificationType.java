@@ -1,5 +1,7 @@
 package com.enjin.coin.sdk.enums;
 
+import com.enjin.coin.sdk.annotations.notifications.EventFilter;
+
 /**
  * <p> Notification types which can be received from the ThirdPartyNotificationService.</p>
  *
@@ -56,5 +58,23 @@ public enum NotificationType {
      */
     public String getEventType() {
         return eventType;
+    }
+
+    /**
+     * Checks if this type is value in the given filter.
+     *
+     * @param filter - filter being processed
+     * @return boolean
+     */
+    public boolean in(EventFilter filter) {
+        if (filter != null) {
+            for (NotificationType type : filter.value()) {
+                if (this == type) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }

@@ -18,5 +18,5 @@ public interface ThirdPartyNotificationService {
      * Method to set the notification listeners.
      * @param notificationListeners the new list of listeners to set
      */
-    void setNotificationListeners(List<NotificationListener> notificationListeners);
+    void setNotificationListeners(List<NotificationListenerRegistration> notificationListeners);
 }

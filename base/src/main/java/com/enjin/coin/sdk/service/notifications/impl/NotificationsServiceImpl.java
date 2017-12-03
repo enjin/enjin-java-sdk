@@ -3,13 +3,16 @@ package com.enjin.coin.sdk.service.notifications.impl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.service.BaseService;
 import com.enjin.coin.sdk.service.notifications.NotificationListener;
+import com.enjin.coin.sdk.service.notifications.NotificationListenerRegistration;
 import com.enjin.coin.sdk.service.notifications.NotificationsService;
 import com.enjin.coin.sdk.service.notifications.ThirdPartyNotificationService;
 import com.enjin.coin.sdk.util.BooleanUtils;
+import com.enjin.coin.sdk.util.ObjectUtils;
 
 /**
  *
@@ -31,7 +34,7 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
     /**
      * Local variable holding all the notification listeners.
      */
-    private List<NotificationListener> notificationListeners = new ArrayList<NotificationListener>();
+    protected List<NotificationListenerRegistration> notificationListeners = new ArrayList<>();
 
     /**
      * Class constructor.
@@ -67,8 +70,23 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
      */
     @Override
     public synchronized void addNotificationListener(final NotificationListener argNotificationListeners) {
-        notificationListeners.add(argNotificationListeners);
-        thirdPartyNotificationService.setNotificationListeners(notificationListeners);
+        if (ObjectUtils.isNull(argNotificationListeners)) {
+            LOGGER.warning("Could not add a NotificationListener because it was null.");
+            return;
+        }
+
+        long count = notificationListeners.stream()
+                .filter(registration -> registration.getListener() == argNotificationListeners)
+                .count();
+
+        if (count == 0) {
+            NotificationListenerRegistration registration = new NotificationListenerRegistration(argNotificationListeners);
+            notificationListeners.add(registration);
+
+            thirdPartyNotificationService.setNotificationListeners(notificationListeners);
+        } else {
+            LOGGER.warning("Could not add a NotificationListener because it was already registered.");
+        }
     }
 
     /**
@@ -77,7 +95,20 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
      */
     @Override
     public synchronized void removeNotificationListener(final NotificationListener argNotificationListeners) {
-        notificationListeners.remove(argNotificationListeners);
-        thirdPartyNotificationService.setNotificationListeners(notificationListeners);
+        if (ObjectUtils.isNull(argNotificationListeners)) {
+            LOGGER.warning("Could not remove a NotificationListener because it was null.");
+            return;
+        }
+
+        List<NotificationListenerRegistration> matching = notificationListeners.stream()
+                .filter(registration -> registration.getListener() == argNotificationListeners)
+                .collect(Collectors.toList());
+        if (matching.size() > 0) {
+            matching.forEach(registration -> notificationListeners.remove(registration));
+
+            thirdPartyNotificationService.setNotificationListeners(notificationListeners);
+        } else {
+            LOGGER.warning("Could not remove a NotificationListener because it wasn't already registered.");
+        }
     }
 }
