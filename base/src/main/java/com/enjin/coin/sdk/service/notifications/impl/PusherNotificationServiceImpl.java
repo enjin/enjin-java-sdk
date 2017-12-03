@@ -168,15 +168,8 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
                 .build();
 
         for (NotificationListenerRegistration registration : notificationListeners) {
-            NotificationListener listener = registration.getListener();
-            if (registration.hasFilter()) {
-                EventFilter filter = registration.getFilter();
-                boolean present = notificationTypeEnum.in(filter);
-                if ((present && !filter.ignore()) || (!present && filter.ignore())) {
-                    listener.notificationReceived(notificationEvent);
-                }
-            } else {
-                listener.notificationReceived(notificationEvent);
+            if (registration.getEventMatcher().matches(notificationEvent)) {
+                registration.getListener().notificationReceived(notificationEvent);
             }
         }
 

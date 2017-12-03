@@ -68,10 +68,16 @@ public enum NotificationType {
      */
     public boolean in(EventFilter filter) {
         if (filter != null) {
-            for (NotificationType type : filter.value()) {
-                if (this == type) {
-                    return true;
-                }
+            return in(filter.value());
+        }
+
+        return false;
+    }
+
+    public boolean in(NotificationType... types) {
+        for (NotificationType type : types) {
+            if (this == type) {
+                return true;
             }
         }
 

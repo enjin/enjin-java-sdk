@@ -1,5 +1,8 @@
 package com.enjin.coin.sdk.service.notifications;
 
+import com.enjin.coin.sdk.enums.NotificationType;
+import com.enjin.coin.sdk.service.notifications.NotificationListenerRegistration.RegistrationListenerConfiguration;
+
 /**
  *
  *<p>NotificationsService - Synchronous.</p>
@@ -14,15 +17,27 @@ public interface NotificationsService {
      */
     boolean initNotificationsService();
 
+    RegistrationListenerConfiguration configureListener(NotificationListener listener);
+
     /**
      * Method to add a notification listener.
-     * @param notificationListener the listener to add
+     * @param listener the listener to add
      */
-    void addNotificationListener(NotificationListener notificationListener);
+    NotificationListenerRegistration addNotificationListener(NotificationListener listener);
+
+    NotificationListenerRegistration addNotificationListener(NotificationListener listener, EventMatcher eventMatcher);
+
+    NotificationListenerRegistration addAllowedTypesNotificationListener(NotificationListener listener, NotificationType... allowed);
+
+    NotificationListenerRegistration addIgnoredTypesNotificationListener(NotificationListener listener, NotificationType... ignored);
 
     /**
      * Method to remove a notification listener.
-     * @param notificationListener the listener to remove
+     * @param listener the listener to remove
      */
-    void removeNotificationListener(NotificationListener notificationListener);
+    void removeNotificationListener(NotificationListener listener);
+
+    void addNotificationListenerRegistration(NotificationListenerRegistration registration);
+
+    void removeNotificationListenerRegistration(NotificationListenerRegistration registration);
 }

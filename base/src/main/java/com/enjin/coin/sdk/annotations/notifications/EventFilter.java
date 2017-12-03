@@ -18,6 +18,6 @@ public @interface EventFilter {
      */
     NotificationType[] value();
 
-    boolean ignore() default false;
+    boolean allow() default true;
 
 }
