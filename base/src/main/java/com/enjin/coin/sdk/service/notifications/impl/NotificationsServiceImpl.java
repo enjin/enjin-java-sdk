@@ -66,6 +66,7 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
         return initPusherResult;
     }
 
+    @SuppressWarnings("rawtypes")
     @Override
     public NotificationListenerRegistration.RegistrationListenerConfiguration configureListener(NotificationListener listener) {
         return NotificationListenerRegistration.configure(this, listener);

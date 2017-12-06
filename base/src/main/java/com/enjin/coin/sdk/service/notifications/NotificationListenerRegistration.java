@@ -45,6 +45,7 @@ public class NotificationListenerRegistration {
             detectAndApplyListenerAnnotations();
         }
 
+        @SuppressWarnings("unchecked")
         public T withMatcher(EventMatcher eventMatcher) {
             this.eventMatcher = eventMatcher == null ? ALLOW_ALL_MATCHER : eventMatcher;
             return (T) this;
@@ -72,16 +73,18 @@ public class NotificationListenerRegistration {
                 Class<?> clazz = this.listener.getClass();
                 if (clazz.isAnnotationPresent(EventFilter.class)) {
                     EventFilter filter = clazz.getAnnotation(EventFilter.class);
-                    if (filter.allow())
+                    if (filter.allow()) {
                         withAllowedEvents(filter.value());
-                    else
+                    } else {
                         withIgnoredEvents(filter.value());
+                    }
                 }
             }
         }
     }
 
-    public static RegistrationListenerConfiguration configure(NotificationsService service, NotificationListener listener) {
+    @SuppressWarnings("rawtypes")
+    public static RegistrationListenerConfiguration<?> configure(NotificationsService service, NotificationListener listener) {
         return new RegistrationListenerConfiguration(service, listener);
     }
 

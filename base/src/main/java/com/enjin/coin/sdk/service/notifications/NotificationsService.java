@@ -17,6 +17,7 @@ public interface NotificationsService {
      */
     boolean initNotificationsService();
 
+    @SuppressWarnings("rawtypes")
     RegistrationListenerConfiguration configureListener(NotificationListener listener);
 
     /**

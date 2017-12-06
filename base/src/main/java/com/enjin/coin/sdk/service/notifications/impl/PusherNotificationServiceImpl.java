@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import com.enjin.coin.sdk.annotations.notifications.EventFilter;
 import com.enjin.coin.sdk.config.Notification;
 import com.enjin.coin.sdk.enums.NotificationType;
-import com.enjin.coin.sdk.service.notifications.NotificationListener;
 import com.enjin.coin.sdk.service.notifications.NotificationListenerRegistration;
 import com.enjin.coin.sdk.service.notifications.ThirdPartyNotificationService;
 import com.enjin.coin.sdk.util.ListUtils;
@@ -66,9 +64,9 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
     public boolean initializeNotificationService() {
         boolean initializeResult = false;
 
-        String appId         = notificationConfig.getAppId();
+        //String appId         = notificationConfig.getAppId();
         String appKey        = notificationConfig.getAppKey();
-        String appSecret     = notificationConfig.getAppSecret();
+        //String appSecret     = notificationConfig.getAppSecret();
         String cluster       = notificationConfig.getCluster();
         String appChannel    = notificationConfig.getAppChannel();
         Long activityTimeout = notificationConfig.getActivityTimeout();
