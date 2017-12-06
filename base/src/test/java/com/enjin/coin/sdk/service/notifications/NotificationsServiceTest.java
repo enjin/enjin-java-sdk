@@ -85,10 +85,9 @@ public class NotificationsServiceTest {
         PowerMockito.verifyNew(PusherNotificationServiceImpl.class).withArguments(Mockito.isA(Notification.class));
         Mockito.verify(mockPusherNotificationService).setNotificationListeners(Mockito.isA(List.class));
     }
-
     @SuppressWarnings("unchecked")
     @Test
-    public void testRemoveNotificationListener( ) throws Exception {
+    public void testAddNotificationListener_ListenerAlreadyExists( ) throws Exception {
         PusherNotificationServiceImpl mockPusherNotificationService = PowerMockito.mock(PusherNotificationServiceImpl.class);
 
         PowerMockito.whenNew(PusherNotificationServiceImpl.class).withParameterTypes(Notification.class).withArguments(Mockito.isA(Notification.class)).thenReturn(mockPusherNotificationService);
@@ -99,9 +98,49 @@ public class NotificationsServiceTest {
         boolean result = notificationsService.initNotificationsService();
         assertThat(result).isTrue();
 
-        notificationsService.removeNotificationListener(mockNotificationListener);
+        NotificationListenerRegistration addNotificationListenerRegistration1 = notificationsService.addNotificationListener(mockNotificationListener);
+        assertThat(addNotificationListenerRegistration1).isNotNull();
+
+        NotificationListenerRegistration addNotificationListenerRegistration2 = notificationsService.addNotificationListener(mockNotificationListener);
+        assertThat(addNotificationListenerRegistration2).isNull();
 
         PowerMockito.verifyNew(PusherNotificationServiceImpl.class).withArguments(Mockito.isA(Notification.class));
         Mockito.verify(mockPusherNotificationService).setNotificationListeners(Mockito.isA(List.class));
+    }
+    @Test
+    public void testRemoveNotificationListener_ListenerDoesntExist( ) throws Exception {
+        PusherNotificationServiceImpl mockPusherNotificationService = PowerMockito.mock(PusherNotificationServiceImpl.class);
+
+        PowerMockito.whenNew(PusherNotificationServiceImpl.class).withParameterTypes(Notification.class).withArguments(Mockito.isA(Notification.class)).thenReturn(mockPusherNotificationService);
+        Mockito.when(mockPusherNotificationService.initializeNotificationService()).thenReturn(true);
+
+        notificationsService = new NotificationsServiceImpl(enjinConfig);
+        boolean result = notificationsService.initNotificationsService();
+        assertThat(result).isTrue();
+
+        notificationsService.removeNotificationListener(mockNotificationListener);
+
+        PowerMockito.verifyNew(PusherNotificationServiceImpl.class).withArguments(Mockito.isA(Notification.class));
+    }
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testRemoveNotificationListener_AlreadyExists( ) throws Exception {
+        PusherNotificationServiceImpl mockPusherNotificationService = PowerMockito.mock(PusherNotificationServiceImpl.class);
+
+        PowerMockito.whenNew(PusherNotificationServiceImpl.class).withParameterTypes(Notification.class).withArguments(Mockito.isA(Notification.class)).thenReturn(mockPusherNotificationService);
+        Mockito.when(mockPusherNotificationService.initializeNotificationService()).thenReturn(true);
+        Mockito.doNothing().when(mockPusherNotificationService).setNotificationListeners(Mockito.isA(List.class));
+
+        notificationsService = new NotificationsServiceImpl(enjinConfig);
+        boolean result = notificationsService.initNotificationsService();
+        assertThat(result).isTrue();
+
+        NotificationListenerRegistration addNotificationListenerRegistration = notificationsService.addNotificationListener(mockNotificationListener);
+        assertThat(addNotificationListenerRegistration).isNotNull();
+
+        notificationsService.removeNotificationListener(mockNotificationListener);
+
+        PowerMockito.verifyNew(PusherNotificationServiceImpl.class).withArguments(Mockito.isA(Notification.class));
+        Mockito.verify(mockPusherNotificationService, Mockito.times(2)).setNotificationListeners(Mockito.isA(List.class));
     }
 }

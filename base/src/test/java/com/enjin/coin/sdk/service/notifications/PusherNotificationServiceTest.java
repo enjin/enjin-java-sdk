@@ -47,15 +47,6 @@ public class PusherNotificationServiceTest {
     }
 
     @Test
-    public void testInitializeNotificationService_AppIdIsEmpty() throws Exception {
-        notificationConfig = ImmutableNotification.copyOf(notificationConfig).withAppId("");
-
-        pusherNotificationService = new PusherNotificationServiceImpl(notificationConfig);
-        boolean result = pusherNotificationService.initializeNotificationService();
-        assertThat(result).isFalse();
-    }
-
-    @Test
     public void testInitializeNotificationService_AppKeyIsEmpty() throws Exception {
         notificationConfig = ImmutableNotification.copyOf(notificationConfig).withAppKey("");
 
@@ -64,14 +55,7 @@ public class PusherNotificationServiceTest {
         assertThat(result).isFalse();
     }
 
-    @Test
-    public void testInitializeNotificationService_AppSecretIsEmpty() throws Exception {
-        notificationConfig = ImmutableNotification.copyOf(notificationConfig).withAppSecret("");
 
-        pusherNotificationService = new PusherNotificationServiceImpl(notificationConfig);
-        boolean result = pusherNotificationService.initializeNotificationService();
-        assertThat(result).isFalse();
-    }
     @Test
     public void testInitializeNotificationService_ClusterIsEmpty() throws Exception {
         notificationConfig = ImmutableNotification.copyOf(notificationConfig).withCluster("");

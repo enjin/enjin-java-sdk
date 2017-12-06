@@ -39,9 +39,9 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
     private Channel channel;
 
     /**
-     * Local variable holding all the notification listeners.
+     * Local variable holding all the notification listener registrations.
      */
-    private List<NotificationListenerRegistration> notificationListeners = new ArrayList<>();
+    private List<NotificationListenerRegistration> notificationListenerRegistrations = new ArrayList<>();
 
     /**
      * Local notificationConfig variable.
@@ -148,7 +148,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
      */
     private void fireNotification(final String sourceData, final String channel, final String eventType) {
 
-        if (ListUtils.isEmpty(notificationListeners)) {
+        if (ListUtils.isEmpty(notificationListenerRegistrations)) {
             LOGGER.warning("No listeners are currently registered");
             return;
         }
@@ -165,7 +165,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
                 .setNotificationType(notificationTypeEnum)
                 .build();
 
-        for (NotificationListenerRegistration registration : notificationListeners) {
+        for (NotificationListenerRegistration registration : notificationListenerRegistrations) {
             if (registration.getEventMatcher().matches(notificationEvent)) {
                 registration.getListener().notificationReceived(notificationEvent);
             }
@@ -178,6 +178,6 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
      */
     @Override
     public synchronized void setNotificationListeners(final List<NotificationListenerRegistration> argNotificationListeners) {
-        this.notificationListeners = argNotificationListeners;
+        this.notificationListenerRegistrations = argNotificationListeners;
     }
 }

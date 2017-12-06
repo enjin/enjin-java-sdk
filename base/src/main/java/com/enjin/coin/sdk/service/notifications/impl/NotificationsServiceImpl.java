@@ -89,7 +89,6 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
 
             if (count == 0) {
                 registration = NotificationListenerRegistration.configure(this, listener).register();
-
             } else {
                 LOGGER.warning("Could not add a NotificationListener because it was already registered.");
             }
@@ -126,10 +125,10 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
         List<NotificationListenerRegistration> matching = notificationListeners.stream()
                 .filter(registration -> registration.getListener() == listener)
                 .collect(Collectors.toList());
+
         if (matching.size() > 0) {
             matching.forEach(registration -> removeNotificationListenerRegistration(registration));
-
-            thirdPartyNotificationService.setNotificationListeners(notificationListeners);
+            //thirdPartyNotificationService.setNotificationListeners(notificationListeners);
         } else {
             LOGGER.warning("Could not remove a NotificationListener because it wasn't already registered.");
         }
