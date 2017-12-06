@@ -2,6 +2,9 @@ package com.enjin.coin.sdk.service.notifications;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -100,5 +103,33 @@ public class PusherNotificationServiceTest {
         Mockito.verify(mockPusher).connect(Mockito.isA(ConnectionEventListener.class), Mockito.isA(ConnectionState.class));
         Mockito.verify(mockPusher, Mockito.times(1)).subscribe(Mockito.anyString());
         Mockito.verify(mockChannel, Mockito.atLeastOnce()).bind(Mockito.anyString(), Mockito.isA(SubscriptionEventListener.class));
+    }
+    @Test
+    public void testSetNotificationListeners_NotificationListenerListIsNull() {
+        pusherNotificationService = new PusherNotificationServiceImpl(notificationConfig);
+        boolean result = pusherNotificationService.initializeNotificationService();
+        assertThat(result).isTrue();
+
+        List<NotificationListenerRegistration> notificationListenersList = null;
+        pusherNotificationService.setNotificationListeners(notificationListenersList );
+    }
+    @Test
+    public void testSetNotificationListeners_NotificationListenerListIsEmpty() {
+        pusherNotificationService = new PusherNotificationServiceImpl(notificationConfig);
+        boolean result = pusherNotificationService.initializeNotificationService();
+        assertThat(result).isTrue();
+
+        List<NotificationListenerRegistration> notificationListenersList = new LinkedList<>();
+        pusherNotificationService.setNotificationListeners(notificationListenersList );
+    }
+    @Test
+    public void testSetNotificationListeners_NotificationListenerListHas1Element() {
+        pusherNotificationService = new PusherNotificationServiceImpl(notificationConfig);
+        boolean result = pusherNotificationService.initializeNotificationService();
+        assertThat(result).isTrue();
+
+        List<NotificationListenerRegistration> notificationListenersList = new LinkedList<>();
+        notificationListenersList.add(new NotificationListenerRegistration(mockNotificationListener, NotificationListenerRegistration.ALLOW_ALL_MATCHER));
+        pusherNotificationService.setNotificationListeners(notificationListenersList );
     }
 }
