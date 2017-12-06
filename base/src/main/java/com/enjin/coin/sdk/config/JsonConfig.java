@@ -1,11 +1,5 @@
 package com.enjin.coin.sdk.config;
 
-import com.enjin.coin.sdk.util.GsonUtils;
-import com.enjin.coin.sdk.util.JsonUtils;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -13,6 +7,12 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.function.Supplier;
 import java.util.logging.Logger;
+
+import com.enjin.coin.sdk.util.GsonUtils;
+import com.enjin.coin.sdk.util.JsonUtils;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 /**
  * <p>
@@ -63,7 +63,16 @@ public class JsonConfig {
         return clazz.cast(config);
     }
 
-    public static <T extends JsonConfig> T load(final File file, final Class<T> clazz, Supplier<T> loadNewSupplier) throws Exception {
+    /**
+     * Method to load config.
+     * @param file file to load config from
+     * @param clazz the class type of the config
+     * @param <T> the class type of the config
+     * @param loadNewSupplier to use
+     * @return <T> - jsonConfig
+     * @throws Exception any exceptions that occur when loading the config
+     */
+    public static <T extends JsonConfig> T load(final File file, final Class<T> clazz, final Supplier<T> loadNewSupplier) throws Exception {
         JsonConfig config = null;
 
         if (!file.exists() || file.length() == 0) {

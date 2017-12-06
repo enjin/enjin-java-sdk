@@ -1,13 +1,13 @@
 package com.enjin.coin.sdk.config;
 
+import java.io.File;
+
 import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 
 import com.enjin.coin.sdk.annotations.immutables.Nullable;
 import com.enjin.coin.sdk.util.Constants;
 import com.google.gson.annotations.SerializedName;
-
-import java.io.File;
 
 /**
  * <p>
@@ -65,9 +65,9 @@ public class Config extends JsonConfig {
      *
      * @param file target destination
      * @return Config
-     * @throws Exception
+     * @throws Exception to be thrown
      */
-    public static Config load(File file) throws Exception {
+    public static Config load(final File file) throws Exception {
         return load(file, Config.class, () -> ImmutableConfig.builder().build());
     }
 

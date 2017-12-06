@@ -66,7 +66,7 @@ public enum NotificationType {
      * @param filter - filter being processed
      * @return boolean
      */
-    public boolean in(EventFilter filter) {
+    public boolean in(final EventFilter filter) {
         if (filter != null) {
             return in(filter.value());
         }
@@ -74,7 +74,12 @@ public enum NotificationType {
         return false;
     }
 
-    public boolean in(NotificationType... types) {
+    /**
+     * Check if this type is the current type.
+     * @param types to check
+     * @return boolean
+     */
+    public boolean in(final NotificationType... types) {
         for (NotificationType type : types) {
             if (this == type) {
                 return true;
@@ -84,7 +89,12 @@ public enum NotificationType {
         return false;
     }
 
-    public static NotificationType valueOfEnum(String name) {
+    /**
+     * Method to get the correct enum value.
+     * @param name to get enum for
+     * @return NotificationType
+     */
+    public static NotificationType valueOfEnum(final String name) {
         NotificationType type = valueOf(name);
         return type != null ? type : UNKNOWN_EVENT;
     }

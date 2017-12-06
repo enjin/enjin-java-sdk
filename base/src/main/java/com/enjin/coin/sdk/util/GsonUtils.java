@@ -75,7 +75,7 @@ public final class GsonUtils {
      * @param classLoader the given ClassLoader
      * @return ServiceLoader
      */
-    public static ServiceLoader<TypeAdapterFactory> getTypeAdapterFactoryServiceLoader(ClassLoader classLoader) {
+    public static ServiceLoader<TypeAdapterFactory> getTypeAdapterFactoryServiceLoader(final ClassLoader classLoader) {
         return ServiceLoader.load(TypeAdapterFactory.class, classLoader);
     }
 
