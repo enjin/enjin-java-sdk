@@ -60,7 +60,7 @@ public class NotificationListenerRegistration {
     /**
      * Configuration class for the registration listener.
      *
-     * @param <T>
+     * @param <T> class type
      */
     public static class RegistrationListenerConfiguration<T extends RegistrationListenerConfiguration<T>> {
 

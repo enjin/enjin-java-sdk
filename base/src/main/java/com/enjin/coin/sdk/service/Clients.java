@@ -3,7 +3,7 @@ package com.enjin.coin.sdk.service;
 import com.enjin.coin.sdk.config.Config;
 
 /**
- * <p Method to return the necessary client.</p>
+ * <p> Method to return the necessary client.</p>
  */
 public class Clients {
 
