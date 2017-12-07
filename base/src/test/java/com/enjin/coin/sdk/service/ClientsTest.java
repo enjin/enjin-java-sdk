@@ -22,9 +22,7 @@ public class ClientsTest {
         Notification notification = ImmutableNotification.builder()
                 .setActivityTimeout(4000l)
                 .setAppChannel("testChannel")
-                .setAppId("437770")
                 .setAppKey("505648a2c40940a286e2")
-                .setAppSecret("f4fbf11d052fe6a64988")
                 .setCluster("eu")
                 .build();
         Platform trustedPlatform = ImmutablePlatform.builder()

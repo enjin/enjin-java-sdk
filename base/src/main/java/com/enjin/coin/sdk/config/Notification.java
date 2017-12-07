@@ -16,32 +16,12 @@ import com.google.gson.annotations.SerializedName;
 public class Notification {
 
     /**
-     * The appId to use.
-     * @return String
-     */
-    @Value.Default
-    @SerializedName("id")
-    public String getAppId() {
-        return "";
-    }
-
-    /**
      * The appKey to use.
      * @return String
      */
     @Value.Default
     @SerializedName("key")
     public String getAppKey() {
-        return "";
-    }
-
-    /**
-     * The appSecret to use.
-     * @return String
-     */
-    @Value.Default
-    @SerializedName("secret")
-    public String getAppSecret() {
         return "";
     }
 

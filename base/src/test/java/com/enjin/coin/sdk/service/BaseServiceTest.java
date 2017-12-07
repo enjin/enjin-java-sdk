@@ -52,9 +52,7 @@ public class BaseServiceTest {
                 .setNotification(ImmutableNotification.builder()
                         .setActivityTimeout(4000l)
                         .setAppChannel("channel")
-                        .setAppId("appId")
                         .setAppKey("appKey")
-                        .setAppSecret("appSecret")
                         .setCluster("eu")
                         .build())
                 .build();
