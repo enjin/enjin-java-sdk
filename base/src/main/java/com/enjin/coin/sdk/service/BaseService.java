@@ -98,6 +98,15 @@ public abstract class BaseService {
     }
 
     /**
+     * Method to get the platform url.
+     *
+     * @return - the platform url
+     */
+    protected String getPlatformUrl() {
+        return getJsonRpcURL(Constants.PLATFORM_URL);
+    }
+
+    /**
      * Method to get the rpc url to use.
      *
      * @param endpoint - the base endpoint

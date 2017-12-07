@@ -9,6 +9,8 @@ import com.enjin.coin.sdk.service.identities.IdentitiesAsyncService;
 import com.enjin.coin.sdk.service.identities.impl.IdentitiesAsyncServiceImpl;
 import com.enjin.coin.sdk.service.notifications.NotificationsAsyncService;
 import com.enjin.coin.sdk.service.notifications.impl.NotificationsAsyncServiceImpl;
+import com.enjin.coin.sdk.service.platform.PlatformAsyncService;
+import com.enjin.coin.sdk.service.platform.impl.PlatformAsyncServiceImpl;
 import com.enjin.coin.sdk.service.tokens.TokensAsyncService;
 import com.enjin.coin.sdk.service.tokens.impl.TokensAsyncServiceImpl;
 import com.enjin.coin.sdk.service.transactionrequests.TransactionRequestsAsyncService;
@@ -51,6 +53,12 @@ public final class EnjinCoinAsyncClient implements EnjinCoinAsync {
      * Notifications async service.
      */
     private NotificationsAsyncService notificationsAsyncService;
+
+    /**
+     * Platform async service.
+     */
+    private PlatformAsyncService platformAsyncService;
+
     /**
      * Class constructor.
      *
@@ -99,7 +107,7 @@ public final class EnjinCoinAsyncClient implements EnjinCoinAsync {
 
     /**
      * Method to get the notificationsService.
-     * @return NotificationsService
+     * @return NotificationsAsyncService
      */
     @Override
     public NotificationsAsyncService getNotificationsService() {
@@ -107,5 +115,17 @@ public final class EnjinCoinAsyncClient implements EnjinCoinAsync {
             notificationsAsyncService = new NotificationsAsyncServiceImpl(config);
         }
         return notificationsAsyncService;
+    }
+
+    /**
+     * Method to get the platformService.
+     * @return PlatformAsyncService
+     */
+    @Override
+    public PlatformAsyncService getPlatformService() {
+        if (platformAsyncService == null) {
+            platformAsyncService = new PlatformAsyncServiceImpl(config);
+        }
+        return platformAsyncService;
     }
 }

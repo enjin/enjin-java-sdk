@@ -30,6 +30,8 @@ public class Constants {
     public static final String TRANSACTION_REQUESTS_URL = "TransactionRequests.php";
     /** the events action. **/
     public static final String EVENTS_URL = "Events.php";
+    /** the Platform action. **/
+    public static final String PLATFORM_URL = "Platform.php";
 
     /** Constants for the Identities Get method. **/
     public static final String METHOD_IDENTITIES_GET = "get";
@@ -52,6 +54,9 @@ public class Constants {
 
     /** Constants for the Events Get method. **/
     public static final String METHOD_EVENTS_GET = "get";
+
+    /** Constants for the Platform Auth method. **/
+    public static final String METHOD_PLATFORM_AUTH = "auth";
 
     /** Numeric constants - 1. **/
     public static final int ONE = 1;

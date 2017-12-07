@@ -1,0 +1,17 @@
+{
+	"jsonrpc": "2.0",
+	"result": {
+		"notifications": {
+			"method": "pusher",
+			"client_info": {
+				"app_key": "XXXX",
+				"cluster": "us2"
+			},
+			"channels": {
+				"server": "channel_name"
+			},
+			"role": "game_server"
+		}
+	},
+	"id": "1"
+}

@@ -55,10 +55,16 @@ public class BaseMockServer {
      * Base url for the TransactionRequests
      **/
     private static final String TRANSACTION_REQUESTS_URL = String.format("/%s", Constants.TRANSACTION_REQUESTS_URL);
+
     /**
      * Base url for the events
      **/
     private static final String EVENTS_URL = String.format("/%s", Constants.EVENTS_URL);
+
+    /**
+     * Base url for the platform
+     **/
+    private static final String PLATFORM_URL = String.format("/%s", Constants.PLATFORM_URL);
 
     private static final String JSON_FILE_EXTENSION = "response.json";
     private static final String JSON_FILE_BASE_FOLDER = "src/test/resources/examples/API";
@@ -116,6 +122,12 @@ public class BaseMockServer {
         String eventsGetMethod = "get";
 
         setUpStub(EVENTS_URL, eventsFolder, eventsGetMethod);
+
+        //Setup the platform stubs
+        String platformFolder        = "Platform";
+        String platformGetAuthMethod = "auth";
+
+        setUpStub(PLATFORM_URL, platformFolder, platformGetAuthMethod);
     }
 
     protected String getUrlFromPlatform(Platform platform) {

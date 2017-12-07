@@ -102,7 +102,6 @@ public class JsonRpcUtils {
             }
 
             LOGGER.fine(String.format("jsonRpcRequest:%s", jsonRpcRequest.toJSONString()));
-
             // Send request - exception here
             JSONRPC2Response jsonRpcResponse = jsonRpcSession.send(jsonRpcRequest);
 

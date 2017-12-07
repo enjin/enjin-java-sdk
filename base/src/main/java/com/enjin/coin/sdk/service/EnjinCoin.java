@@ -3,6 +3,7 @@ package com.enjin.coin.sdk.service;
 import com.enjin.coin.sdk.service.events.EventsService;
 import com.enjin.coin.sdk.service.identities.IdentitiesService;
 import com.enjin.coin.sdk.service.notifications.NotificationsService;
+import com.enjin.coin.sdk.service.platform.PlatformService;
 import com.enjin.coin.sdk.service.tokens.TokensService;
 import com.enjin.coin.sdk.service.transactionrequests.TransactionRequestsService;
 
@@ -46,4 +47,10 @@ public interface EnjinCoin {
      */
     NotificationsService getNotificationsService();
 
+    /**
+     * Method to get the platformService.
+     *
+     * @return - PlatformService
+     */
+    PlatformService getPlatformService();
 }

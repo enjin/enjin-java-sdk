@@ -2,6 +2,8 @@ package com.enjin.coin.sdk.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.concurrent.ExecutorService;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,8 +12,10 @@ import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.config.ImmutableConfig;
 import com.enjin.coin.sdk.config.ImmutableNotification;
 import com.enjin.coin.sdk.config.ImmutablePlatform;
+import com.enjin.coin.sdk.config.Notification;
 import com.enjin.coin.sdk.config.Platform;
 import com.enjin.coin.sdk.service.identities.impl.IdentitiesServiceImpl;
+import com.enjin.coin.sdk.util.JsonRpcUtils;
 import com.enjin.coin.sdk.util.http.Protocol;
 
 public class BaseServiceTest {
@@ -200,7 +204,40 @@ public class BaseServiceTest {
         String identitiesURL = baseAction.getEventsUrl();
         assertThat(identitiesURL).isNotEmpty();
     }
+    @Test
+    public void testGetPlatformUrl1() {
+        String identitiesURL = baseAction.getPlatformUrl();
+        assertThat(identitiesURL).isNotEmpty();
+    }
 
+    @Test
+    public void testGetPlatformUrl2() {
+        baseAction.setTrustedPlatform(ImmutablePlatform.builder()
+                .setHost("localhost")
+                .setPort(8081)
+                .setProtocol(Protocol.HTTP)
+                .build());
+        String identitiesURL = baseAction.getPlatformUrl();
+        assertThat(identitiesURL).isNotEmpty();
+    }
+
+    @Test
+    public void testGetPlatformUrl3() {
+        baseAction.setTrustedPlatform(ImmutablePlatform.builder()
+                .setHost("localhost")
+                .setPort(8081)
+                .setProtocol(Protocol.HTTP)
+                .build());
+        String identitiesURL = baseAction.getPlatformUrl();
+        assertThat(identitiesURL).isNotEmpty();
+    }
+
+    @Test
+    public void testGetPlatformUrl_TrustedPlatformIsNull() {
+        baseAction.setTrustedPlatform(null);
+        String identitiesURL = baseAction.getPlatformUrl();
+        assertThat(identitiesURL).isNotEmpty();
+    }
     @Test
     public void testGetTrustedPlatform_Default() {
         baseAction.setTrustedPlatform(ImmutablePlatform.builder().build());
@@ -217,5 +254,23 @@ public class BaseServiceTest {
                 .build());
         Platform trustedPlatform = baseAction.getTrustedPlatform();
         assertThat(trustedPlatform).isNotNull();
+    }
+
+    @Test
+    public void testGetJsonRpcUtils() {
+        JsonRpcUtils jsonRpcUtils = baseAction.getJsonRpcUtils();
+        assertThat(jsonRpcUtils).isNotNull();
+    }
+
+    @Test
+    public void testGetExecutorService() {
+        ExecutorService executorService = baseAction.getExecutorService();
+        assertThat(executorService).isNotNull();
+    }
+
+    @Test
+    public void testGetNotification() {
+        Notification notification = baseAction.getNotification();
+        assertThat(notification).isNotNull();
     }
 }

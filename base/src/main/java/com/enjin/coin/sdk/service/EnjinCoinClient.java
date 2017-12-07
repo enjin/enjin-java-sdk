@@ -9,6 +9,8 @@ import com.enjin.coin.sdk.service.identities.IdentitiesService;
 import com.enjin.coin.sdk.service.identities.impl.IdentitiesServiceImpl;
 import com.enjin.coin.sdk.service.notifications.NotificationsService;
 import com.enjin.coin.sdk.service.notifications.impl.NotificationsServiceImpl;
+import com.enjin.coin.sdk.service.platform.PlatformService;
+import com.enjin.coin.sdk.service.platform.impl.PlatformServiceImpl;
 import com.enjin.coin.sdk.service.tokens.TokensService;
 import com.enjin.coin.sdk.service.tokens.impl.TokensServiceImpl;
 import com.enjin.coin.sdk.service.transactionrequests.TransactionRequestsService;
@@ -51,6 +53,11 @@ public class EnjinCoinClient implements EnjinCoin {
      * Notifications sync service.
      */
     private NotificationsService notificationsService;
+
+    /**
+     * Platform sync service.
+     */
+    private PlatformService platformService;
 
     /**
      * Class constructor.
@@ -130,4 +137,15 @@ public class EnjinCoinClient implements EnjinCoin {
         return notificationsService;
     }
 
+    /**
+     * Method to get the platformService.
+     * @return PlatformService
+     */
+    @Override
+    public PlatformService getPlatformService() {
+        if (platformService == null) {
+            platformService = new PlatformServiceImpl(config);
+        }
+        return platformService;
+    }
 }

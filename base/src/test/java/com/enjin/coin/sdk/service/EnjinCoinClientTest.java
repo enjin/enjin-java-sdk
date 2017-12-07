@@ -14,6 +14,7 @@ import com.enjin.coin.sdk.config.Platform;
 import com.enjin.coin.sdk.service.events.EventsService;
 import com.enjin.coin.sdk.service.identities.IdentitiesService;
 import com.enjin.coin.sdk.service.notifications.NotificationsService;
+import com.enjin.coin.sdk.service.platform.PlatformService;
 import com.enjin.coin.sdk.service.tokens.TokensService;
 import com.enjin.coin.sdk.service.transactionrequests.TransactionRequestsService;
 
@@ -108,5 +109,15 @@ public class EnjinCoinClientTest {
         //Second time around - the existing service should be returned
         NotificationsService notificationsService2 = enjinCoinClient.getNotificationsService();
         assertThat(notificationsService2).isNotNull().isSameAs(notificationsService);
+    }
+
+    @Test
+    public void testGetPlatformService() {
+        PlatformService platformService = enjinCoinClient.getPlatformService();
+        assertThat(platformService).isNotNull();
+
+        //Second time around - the existing service should be returned
+        PlatformService platformService2 = enjinCoinClient.getPlatformService();
+        assertThat(platformService2).isNotNull().isSameAs(platformService2);
     }
 }
