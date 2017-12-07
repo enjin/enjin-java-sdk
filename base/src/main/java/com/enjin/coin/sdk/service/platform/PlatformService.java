@@ -4,15 +4,15 @@ import com.enjin.coin.sdk.vo.platform.GetPlatformAuthRequestVO;
 import com.enjin.coin.sdk.vo.platform.GetPlatformAuthResponseVO;
 
 /**
- * Platform service interface.
+ * <p>Platform service interface.</p>
  */
 public interface PlatformService {
 
     /**
      * Method to get the auth details.
      *
-     * @param request - get platform auth request vo
-     * @return - GetPlatformAuthResponseVO
+     * @param platformAuthRequestVO - get platform auth request vo
+     * @return GetPlatformAuthResponseVO
      */
-    GetPlatformAuthResponseVO getAuth(GetPlatformAuthRequestVO request);
+    GetPlatformAuthResponseVO getAuth(GetPlatformAuthRequestVO platformAuthRequestVO);
 }

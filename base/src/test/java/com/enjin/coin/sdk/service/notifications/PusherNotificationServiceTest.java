@@ -2,8 +2,10 @@ package com.enjin.coin.sdk.service.notifications;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,9 +19,10 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.enjin.coin.sdk.BaseTestHelper;
 import com.enjin.coin.sdk.config.Config;
-import com.enjin.coin.sdk.config.ImmutableNotification;
 import com.enjin.coin.sdk.config.Notification;
 import com.enjin.coin.sdk.service.notifications.impl.PusherNotificationServiceImpl;
+import com.enjin.coin.sdk.vo.platform.GetPlatformAuthDetailsResponseVO;
+import com.enjin.coin.sdk.vo.platform.ImmutableGetPlatformAuthDetailsResponseVO;
 import com.pusher.client.Pusher;
 import com.pusher.client.PusherOptions;
 import com.pusher.client.channel.Channel;
@@ -38,10 +41,28 @@ public class PusherNotificationServiceTest {
     @Mock
     private NotificationListener mockNotificationListener;
     private Notification notificationConfig;
+    private GetPlatformAuthDetailsResponseVO getPlatformAuthDetailsResponseVO;
+
+    @SuppressWarnings("serial")
     @Before
     public void setUp() {
         enjinConfig = BaseTestHelper.getEnjinConfig();
         notificationConfig = enjinConfig.getNotification();
+
+
+        getPlatformAuthDetailsResponseVO = ImmutableGetPlatformAuthDetailsResponseVO.builder().setMethod("pusher")
+                .setClientInfoMap(new HashMap<String, Object>() {
+                    {
+                        put("app_key", "XXXX");
+                        put("cluster", "us2");
+                    }
+                }).setChannelsMap(new HashMap<String, Object>() {
+                    {
+                        put("server", "channel_name");
+                    }
+                }).setRole("game_server").build();
+
+        pusherNotificationService = new PusherNotificationServiceImpl(notificationConfig);
     }
     @Test
     public void testContructor() throws Exception {
@@ -50,34 +71,178 @@ public class PusherNotificationServiceTest {
     }
 
     @Test
-    public void testInitializeNotificationService_AppKeyIsEmpty() throws Exception {
-        notificationConfig = ImmutableNotification.copyOf(notificationConfig).withAppKey("");
+    public void testInitializeNotificationService_ObjectPassedInIsNull() throws Exception {
+        getPlatformAuthDetailsResponseVO = null;
 
-        pusherNotificationService = new PusherNotificationServiceImpl(notificationConfig);
-        boolean result = pusherNotificationService.initializeNotificationService();
+        boolean result = pusherNotificationService.initializeNotificationService(getPlatformAuthDetailsResponseVO);
         assertThat(result).isFalse();
     }
 
-
+    @SuppressWarnings("serial")
     @Test
-    public void testInitializeNotificationService_ClusterIsEmpty() throws Exception {
-        notificationConfig = ImmutableNotification.copyOf(notificationConfig).withCluster("");
+    public void testInitializeNotificationService_ClientInfoMapIsEmpty() throws Exception {
+        getPlatformAuthDetailsResponseVO = ImmutableGetPlatformAuthDetailsResponseVO.builder().setMethod("pusher")
+                .setClientInfoMap(new HashMap<String, Object>() { }).setChannelsMap(new HashMap<String, Object>() {
+                    {
+                        put("server", "server");
+                    }
+                }).setRole("game_server").build();
 
-        pusherNotificationService = new PusherNotificationServiceImpl(notificationConfig);
-        boolean result = pusherNotificationService.initializeNotificationService();
+        boolean result = pusherNotificationService.initializeNotificationService(getPlatformAuthDetailsResponseVO);
+        assertThat(result).isFalse();
+    }
+    @SuppressWarnings({ "serial", "unchecked", "rawtypes" })
+    @Test
+    public void testInitializeNotificationService_ClientInfoMapIsNull() throws Exception {
+        getPlatformAuthDetailsResponseVO = ImmutableGetPlatformAuthDetailsResponseVO.builder().setMethod("pusher")
+                .setClientInfoMap((Map) null)
+                .setChannelsMap(new HashMap<String, Object>() {
+                    {
+                        put("server", "server");
+                    }
+                }).setRole("game_server").build();
+
+        boolean result = pusherNotificationService.initializeNotificationService(getPlatformAuthDetailsResponseVO);
+        assertThat(result).isFalse();
+    }
+    @SuppressWarnings("serial")
+    @Test
+    public void testInitializeNotificationService_ChannelsMapIsEmpty() throws Exception {
+        getPlatformAuthDetailsResponseVO = ImmutableGetPlatformAuthDetailsResponseVO.builder().setMethod("pusher")
+                .setClientInfoMap(new HashMap<String, Object>() {
+                    {
+                        put("app_key", "");
+                        put("cluster", "us");
+                    }
+                }).setChannelsMap(new HashMap<String, Object>() {}).setRole("game_server").build();
+
+        boolean result = pusherNotificationService.initializeNotificationService(getPlatformAuthDetailsResponseVO);
+        assertThat(result).isFalse();
+    }
+    @SuppressWarnings({ "serial", "unchecked", "rawtypes" })
+    @Test
+    public void testInitializeNotificationService_ChannelsMapIsNull() throws Exception {
+        getPlatformAuthDetailsResponseVO = ImmutableGetPlatformAuthDetailsResponseVO.builder().setMethod("pusher")
+                .setClientInfoMap(new HashMap<String, Object>() {
+                    {
+                        put("app_key", "");
+                        put("cluster", "us");
+                    }
+                }).setChannelsMap((Map)null).setRole("game_server").build();
+
+        boolean result = pusherNotificationService.initializeNotificationService(getPlatformAuthDetailsResponseVO);
         assertThat(result).isFalse();
     }
 
+
+    @SuppressWarnings("serial")
+    @Test
+    public void testInitializeNotificationService_AppKeyIsEmpty() throws Exception {
+        getPlatformAuthDetailsResponseVO = ImmutableGetPlatformAuthDetailsResponseVO.builder().setMethod("pusher")
+                .setClientInfoMap(new HashMap<String, Object>() {
+                    {
+                        put("app_key", "");
+                        put("cluster", "us");
+                    }
+                }).setChannelsMap(new HashMap<String, Object>() {
+                    {
+                        put("server", "server");
+                    }
+                }).setRole("game_server").build();
+
+        boolean result = pusherNotificationService.initializeNotificationService(getPlatformAuthDetailsResponseVO);
+        assertThat(result).isFalse();
+    }
+    @SuppressWarnings("serial")
+    @Test
+    public void testInitializeNotificationService_AppKeyIsNull() throws Exception {
+        getPlatformAuthDetailsResponseVO = ImmutableGetPlatformAuthDetailsResponseVO.builder().setMethod("pusher")
+                .setClientInfoMap(new HashMap<String, Object>() {
+                    {
+                        put("app_key", null);
+                        put("cluster", "us");
+                    }
+                }).setChannelsMap(new HashMap<String, Object>() {
+                    {
+                        put("server", "server");
+                    }
+                }).setRole("game_server").build();
+
+        boolean result = pusherNotificationService.initializeNotificationService(getPlatformAuthDetailsResponseVO);
+        assertThat(result).isFalse();
+    }
+    @SuppressWarnings("serial")
+    @Test
+    public void testInitializeNotificationService_ClusterlIsEmpty() throws Exception {
+        getPlatformAuthDetailsResponseVO = ImmutableGetPlatformAuthDetailsResponseVO.builder().setMethod("pusher")
+                .setClientInfoMap(new HashMap<String, Object>() {
+                    {
+                        put("app_key", "XXXX");
+                        put("cluster", "");
+                    }
+                }).setChannelsMap(new HashMap<String, Object>() {
+                    {
+                        put("server", "server");
+                    }
+                }).setRole("game_server").build();
+
+        boolean result = pusherNotificationService.initializeNotificationService(getPlatformAuthDetailsResponseVO);
+        assertThat(result).isFalse();
+    }
+    @SuppressWarnings("serial")
+    @Test
+    public void testInitializeNotificationService_ClusterlIsNull() throws Exception {
+        getPlatformAuthDetailsResponseVO = ImmutableGetPlatformAuthDetailsResponseVO.builder().setMethod("pusher")
+                .setClientInfoMap(new HashMap<String, Object>() {
+                    {
+                        put("app_key", "XXXX");
+                        put("cluster", null);
+                    }
+                }).setChannelsMap(new HashMap<String, Object>() {
+                    {
+                        put("server", "server");
+                    }
+                }).setRole("game_server").build();
+
+        boolean result = pusherNotificationService.initializeNotificationService(getPlatformAuthDetailsResponseVO);
+        assertThat(result).isFalse();
+    }
+    @SuppressWarnings("serial")
     @Test
     public void testInitializeNotificationService_AppChannelIsEmpty() throws Exception {
-        notificationConfig = ImmutableNotification.copyOf(notificationConfig).withAppChannel("");
+        getPlatformAuthDetailsResponseVO = ImmutableGetPlatformAuthDetailsResponseVO.builder().setMethod("pusher")
+                .setClientInfoMap(new HashMap<String, Object>() {
+                    {
+                        put("app_key", "XXXX");
+                        put("cluster", "us2");
+                    }
+                }).setChannelsMap(new HashMap<String, Object>() {
+                    {
+                        put("server", "");
+                    }
+                }).setRole("game_server").build();
 
-        pusherNotificationService = new PusherNotificationServiceImpl(notificationConfig);
-        boolean result = pusherNotificationService.initializeNotificationService();
+        boolean result = pusherNotificationService.initializeNotificationService(getPlatformAuthDetailsResponseVO);
         assertThat(result).isFalse();
     }
+    @SuppressWarnings("serial")
+    @Test
+    public void testInitializeNotificationService_AppChannelIsNull() throws Exception {
+        getPlatformAuthDetailsResponseVO = ImmutableGetPlatformAuthDetailsResponseVO.builder().setMethod("pusher")
+                .setClientInfoMap(new HashMap<String, Object>() {
+                    {
+                        put("app_key", "XXXX");
+                        put("cluster", "us2");
+                    }
+                }).setChannelsMap(new HashMap<String, Object>() {
+                    {
+                        put("server", null);
+                    }
+                }).setRole("game_server").build();
 
-
+        boolean result = pusherNotificationService.initializeNotificationService(getPlatformAuthDetailsResponseVO);
+        assertThat(result).isFalse();
+    }
     @Test
     public void testInitializeNotificationService_Success() throws Exception {
         PusherOptions mockPusherOptions = PowerMockito.mock(PusherOptions.class);
@@ -92,8 +257,7 @@ public class PusherNotificationServiceTest {
         Mockito.when(mockPusher.subscribe(Mockito.anyString())).thenReturn(mockChannel);
         Mockito.doNothing().when(mockChannel).bind(Mockito.anyString(), Mockito.isA(SubscriptionEventListener.class));
 
-        pusherNotificationService = new PusherNotificationServiceImpl(notificationConfig);
-        boolean result = pusherNotificationService.initializeNotificationService();
+        boolean result = pusherNotificationService.initializeNotificationService(getPlatformAuthDetailsResponseVO);
         assertThat(result).isTrue();
 
         PowerMockito.verifyNew(PusherOptions.class).withNoArguments();
@@ -106,8 +270,7 @@ public class PusherNotificationServiceTest {
     }
     @Test
     public void testSetNotificationListeners_NotificationListenerListIsNull() {
-        pusherNotificationService = new PusherNotificationServiceImpl(notificationConfig);
-        boolean result = pusherNotificationService.initializeNotificationService();
+        boolean result = pusherNotificationService.initializeNotificationService(getPlatformAuthDetailsResponseVO);
         assertThat(result).isTrue();
 
         List<NotificationListenerRegistration> notificationListenersList = null;
@@ -115,8 +278,7 @@ public class PusherNotificationServiceTest {
     }
     @Test
     public void testSetNotificationListeners_NotificationListenerListIsEmpty() {
-        pusherNotificationService = new PusherNotificationServiceImpl(notificationConfig);
-        boolean result = pusherNotificationService.initializeNotificationService();
+        boolean result = pusherNotificationService.initializeNotificationService(getPlatformAuthDetailsResponseVO);
         assertThat(result).isTrue();
 
         List<NotificationListenerRegistration> notificationListenersList = new LinkedList<>();
@@ -124,8 +286,7 @@ public class PusherNotificationServiceTest {
     }
     @Test
     public void testSetNotificationListeners_NotificationListenerListHas1Element() {
-        pusherNotificationService = new PusherNotificationServiceImpl(notificationConfig);
-        boolean result = pusherNotificationService.initializeNotificationService();
+        boolean result = pusherNotificationService.initializeNotificationService(getPlatformAuthDetailsResponseVO);
         assertThat(result).isTrue();
 
         List<NotificationListenerRegistration> notificationListenersList = new LinkedList<>();

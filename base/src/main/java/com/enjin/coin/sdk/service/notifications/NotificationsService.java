@@ -13,9 +13,17 @@ public interface NotificationsService {
     /**
      * Method to initialize the notifications service.
      *
+     * @param auth to use
      * @return boolean
      */
-    boolean initNotificationsService();
+    boolean initNotificationsService(String auth);
+
+    /**
+     * Method to re-initialize the notifications service.
+     *
+     * @return boolean
+     */
+    boolean reInitNotificationsService();
 
     /**
      * Method to configure a listener.

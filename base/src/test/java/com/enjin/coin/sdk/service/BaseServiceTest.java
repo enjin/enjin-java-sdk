@@ -15,6 +15,7 @@ import com.enjin.coin.sdk.config.ImmutablePlatform;
 import com.enjin.coin.sdk.config.Notification;
 import com.enjin.coin.sdk.config.Platform;
 import com.enjin.coin.sdk.service.identities.impl.IdentitiesServiceImpl;
+import com.enjin.coin.sdk.service.platform.PlatformService;
 import com.enjin.coin.sdk.util.JsonRpcUtils;
 import com.enjin.coin.sdk.util.http.Protocol;
 
@@ -55,9 +56,9 @@ public class BaseServiceTest {
                 .setInTestMode(true)
                 .setNotification(ImmutableNotification.builder()
                         .setActivityTimeout(4000l)
-                        .setAppChannel("channel")
+                        /*.setAppChannel("channel")
                         .setAppKey("appKey")
-                        .setCluster("eu")
+                        .setCluster("eu")*/
                         .build())
                 .build();
         baseAction = new IdentitiesServiceImpl(enjinConfig);
@@ -272,5 +273,14 @@ public class BaseServiceTest {
     public void testGetNotification() {
         Notification notification = baseAction.getNotification();
         assertThat(notification).isNotNull();
+    }
+
+    @Test
+    public void testGetPlatformService() {
+        PlatformService platformService1 = baseAction.getPlatformService(enjinConfig);
+        assertThat(platformService1).isNotNull();
+
+        PlatformService platformService2 = baseAction.getPlatformService(enjinConfig);
+        assertThat(platformService2).isNotNull().isSameAs(platformService1);
     }
 }

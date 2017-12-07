@@ -2,16 +2,20 @@ package com.enjin.coin.sdk.service.notifications.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import com.enjin.coin.sdk.config.Notification;
 import com.enjin.coin.sdk.enums.NotificationType;
 import com.enjin.coin.sdk.service.notifications.NotificationListenerRegistration;
 import com.enjin.coin.sdk.service.notifications.ThirdPartyNotificationService;
+import com.enjin.coin.sdk.util.BooleanUtils;
 import com.enjin.coin.sdk.util.ListUtils;
+import com.enjin.coin.sdk.util.MapUtils;
 import com.enjin.coin.sdk.util.StringUtils;
 import com.enjin.coin.sdk.vo.notifications.ImmutableNotificationEvent;
 import com.enjin.coin.sdk.vo.notifications.NotificationEvent;
+import com.enjin.coin.sdk.vo.platform.GetPlatformAuthDetailsResponseVO;
 import com.pusher.client.Pusher;
 import com.pusher.client.PusherOptions;
 import com.pusher.client.channel.Channel;
@@ -50,7 +54,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
 
     /**
      * Class constructor.
-     * @param notificationConfig the config for the notifications
+     * @param notificationConfig to use
      */
     public PusherNotificationServiceImpl(final Notification notificationConfig) {
         this.notificationConfig = notificationConfig;
@@ -58,17 +62,39 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
 
     /**
      * Method to initialize the notification service.
+     * @param getPlatformAuthDetailsResponseVO notification details config
      * @return boolean
      */
     @Override
-    public boolean initializeNotificationService() {
+    public boolean initializeNotificationService(final GetPlatformAuthDetailsResponseVO getPlatformAuthDetailsResponseVO) {
         boolean initializeResult = false;
 
-        //String appId         = notificationConfig.getAppId();
-        String appKey        = notificationConfig.getAppKey();
-        //String appSecret     = notificationConfig.getAppSecret();
-        String cluster       = notificationConfig.getCluster();
-        String appChannel    = notificationConfig.getAppChannel();
+        if (getPlatformAuthDetailsResponseVO == null) {
+            LOGGER.warning("getPlatformAuthDetailsResponseVO passed in is null");
+            return initializeResult;
+        }
+
+        if (getPlatformAuthDetailsResponseVO.getClientInfoMap() == null
+                || BooleanUtils.isFalse(getPlatformAuthDetailsResponseVO.getClientInfoMap().isPresent())) {
+            LOGGER.warning("clientInfoMap passed in is null or not present");
+            return initializeResult;
+        }
+        if (getPlatformAuthDetailsResponseVO.getChannelsMap() == null || BooleanUtils.isFalse(getPlatformAuthDetailsResponseVO.getChannelsMap().isPresent())) {
+            LOGGER.warning("channelsMap passed in is null or not present");
+            return initializeResult;
+        }
+
+        Map<String, Object> clientInfoMap = getPlatformAuthDetailsResponseVO.getClientInfoMap().get();
+        Map<String, Object> channelsMap   = getPlatformAuthDetailsResponseVO.getChannelsMap().get();
+
+        if (MapUtils.isEmpty(clientInfoMap) || MapUtils.isEmpty(channelsMap)) {
+            LOGGER.warning("clientInfoMap or channelsMap are null or empty");
+            return initializeResult;
+        }
+
+        String appKey        = MapUtils.convertKeyObjectToString(clientInfoMap, "app_key");
+        String cluster       = MapUtils.convertKeyObjectToString(clientInfoMap, "cluster");
+        String appChannel    = MapUtils.convertKeyObjectToString(channelsMap, "server");
         Long activityTimeout = notificationConfig.getActivityTimeout();
 
         if (StringUtils.isEmpty(appKey) || StringUtils.isEmpty(cluster)) {

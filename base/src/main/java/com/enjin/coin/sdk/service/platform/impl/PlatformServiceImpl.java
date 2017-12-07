@@ -35,25 +35,25 @@ public class PlatformServiceImpl extends BaseService implements PlatformService 
     /**
      * Method to get the auth details.
      *
-     * @param request - get platform auth request vo
+     * @param platformAuthRequestVO - get platform auth request vo
      * @return - GetPlatformAuthResponseVO
      */
     @Override
-    public GetPlatformAuthResponseVO getAuth(final GetPlatformAuthRequestVO request) {
+    public GetPlatformAuthResponseVO getAuth(final GetPlatformAuthRequestVO platformAuthRequestVO) {
         GetPlatformAuthResponseVO response = null;
 
-        if (ObjectUtils.isNull(request)) {
+        if (ObjectUtils.isNull(platformAuthRequestVO)) {
             LOGGER.warning("Platform.auth request is null.");
             return response;
         }
 
-        if (StringUtils.isEmpty(request.getAuth())) {
+        if (StringUtils.isEmpty(platformAuthRequestVO.getAuth())) {
             LOGGER.warning("Platform.auth - auth is null or empty.");
             return response;
         }
 
         Map<String, Object> params = new HashMap<>();
-        params.put("auth", request.getAuth().get());
+        params.put("auth", platformAuthRequestVO.getAuth().get());
 
         // Construct new request
         String method = Constants.METHOD_PLATFORM_AUTH;

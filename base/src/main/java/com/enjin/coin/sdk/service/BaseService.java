@@ -7,6 +7,8 @@ import java.util.logging.Logger;
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.config.Notification;
 import com.enjin.coin.sdk.config.Platform;
+import com.enjin.coin.sdk.service.platform.PlatformService;
+import com.enjin.coin.sdk.service.platform.impl.PlatformServiceImpl;
 import com.enjin.coin.sdk.util.Constants;
 import com.enjin.coin.sdk.util.JsonRpcUtils;
 import com.enjin.coin.sdk.util.ObjectUtils;
@@ -41,6 +43,12 @@ public abstract class BaseService {
      * Notification config.
      */
     private Notification notification;
+
+    /**
+     * Platform Service.
+     */
+    private PlatformService platformService;
+
     /**
      * Class contructor.
      *
@@ -167,6 +175,18 @@ public abstract class BaseService {
      */
     public Notification getNotification() {
         return notification;
+    }
+
+    /**
+     * Method to get the platformService.
+     * @param config to use
+     * @return PlatformService
+     */
+    public PlatformService getPlatformService(final Config config) {
+        if (platformService == null) {
+            platformService = new PlatformServiceImpl(config);
+        }
+        return platformService;
     }
 
     /**

@@ -147,10 +147,10 @@ public class BaseMockServer {
     }
     protected Notification getNotification() {
         return ImmutableNotification.builder()
-                .setActivityTimeout(4000l)
+                /*.setActivityTimeout(4000l)
                 .setAppChannel("channel")
                 .setAppKey("appKey")
-                .setCluster("eu")
+                .setCluster("eu")*/
                 .build();
     }
     /**

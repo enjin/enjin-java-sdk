@@ -27,9 +27,9 @@ public class EnjinCoinClientTest {
     public void setUp() {
         Notification notification = ImmutableNotification.builder()
                 .setActivityTimeout(4000l)
-                .setAppChannel("testChannel")
+                /*.setAppChannel("testChannel")
                 .setAppKey("505648a2c40940a286e2")
-                .setCluster("eu")
+                .setCluster("eu")*/
                 .build();
         Platform trustedPlatform = ImmutablePlatform.builder()
                 .setHost("localhost")

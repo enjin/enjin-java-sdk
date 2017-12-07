@@ -61,4 +61,26 @@ public final class MapUtils {
         return !isEmpty(optional);
     }
 
+    /**
+     * Method to convert a key object to a string.
+     * @param map to check
+     * @param key to check for
+     * @return String
+     */
+    public static String convertKeyObjectToString(final Map<String, Object> map, final String key) {
+        String value = null;
+        if (isEmpty(map) || StringUtils.isEmpty(key)) {
+            return value;
+        }
+
+        if (!map.containsKey(key)) {
+            return value;
+        }
+        Object objectValue = map.get(key);
+        if (objectValue != null) {
+            value = objectValue.toString();
+        }
+        return value;
+    }
+
 }

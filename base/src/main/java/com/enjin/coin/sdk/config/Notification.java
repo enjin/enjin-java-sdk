@@ -15,36 +15,36 @@ import com.google.gson.annotations.SerializedName;
 @Gson.TypeAdapters
 public class Notification {
 
-    /**
+/*    *//**
      * The appKey to use.
      * @return String
-     */
+     *//*
     @Value.Default
     @SerializedName("key")
     public String getAppKey() {
         return "";
     }
 
-    /**
+    *//**
      * The cluster to use.
      * @return String
-     */
+     *//*
     @Value.Default
     @SerializedName("cluster")
     public String getCluster() {
         return "";
     }
 
-    /**
+    *//**
      * The appChannel to use.
      * @return String
-     */
+     *//*
     @Value.Default
     @SerializedName("channel")
     public String getAppChannel() {
         return "";
     }
-
+*/
     /**
      * The activityTimeout to use.
      * @return long
