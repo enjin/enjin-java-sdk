@@ -29,17 +29,6 @@ public class Config extends JsonConfig {
     }
 
     /**
-     * Get the notification config.
-     * @return Platform
-     */
-    @Value.Default
-    @SerializedName("notification")
-    public Notification getNotification() {
-        return ImmutableNotification.builder().build();
-    }
-
-
-    /**
      * Get the total executors.
      * @return Integer
      */
