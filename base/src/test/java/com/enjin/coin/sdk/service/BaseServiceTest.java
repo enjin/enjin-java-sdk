@@ -10,9 +10,7 @@ import org.junit.Test;
 import com.enjin.coin.sdk.BaseTestHelper;
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.config.ImmutableConfig;
-import com.enjin.coin.sdk.config.ImmutableNotification;
 import com.enjin.coin.sdk.config.ImmutablePlatform;
-import com.enjin.coin.sdk.config.Notification;
 import com.enjin.coin.sdk.config.Platform;
 import com.enjin.coin.sdk.service.identities.impl.IdentitiesServiceImpl;
 import com.enjin.coin.sdk.service.platform.PlatformService;
@@ -54,12 +52,6 @@ public class BaseServiceTest {
                         .setProtocol(Protocol.HTTP)
                         .build())
                 .setInTestMode(true)
-                .setNotification(ImmutableNotification.builder()
-                        .setActivityTimeout(4000l)
-                        /*.setAppChannel("channel")
-                        .setAppKey("appKey")
-                        .setCluster("eu")*/
-                        .build())
                 .build();
         baseAction = new IdentitiesServiceImpl(enjinConfig);
         assertThat(baseAction).isNotNull()
@@ -269,11 +261,6 @@ public class BaseServiceTest {
         assertThat(executorService).isNotNull();
     }
 
-    @Test
-    public void testGetNotification() {
-        Notification notification = baseAction.getNotification();
-        assertThat(notification).isNotNull();
-    }
 
     @Test
     public void testGetPlatformService() {

@@ -17,8 +17,7 @@ import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.enjin.coin.sdk.BaseTestHelper;
-import com.enjin.coin.sdk.config.Config;
+import com.enjin.coin.sdk.config.ImmutableNotification;
 import com.enjin.coin.sdk.config.Notification;
 import com.enjin.coin.sdk.service.notifications.impl.PusherNotificationServiceImpl;
 import com.enjin.coin.sdk.vo.platform.GetPlatformAuthDetailsResponseVO;
@@ -36,7 +35,6 @@ import com.pusher.client.connection.ConnectionState;
 public class PusherNotificationServiceTest {
 
     private ThirdPartyNotificationService pusherNotificationService;
-    private Config enjinConfig;
 
     @Mock
     private NotificationListener mockNotificationListener;
@@ -46,10 +44,10 @@ public class PusherNotificationServiceTest {
     @SuppressWarnings("serial")
     @Before
     public void setUp() {
-        enjinConfig = BaseTestHelper.getEnjinConfig();
-        notificationConfig = enjinConfig.getNotification();
-
-
+        notificationConfig = ImmutableNotification
+                .builder()
+                .setActivityTimeout(5000L)
+                .build();
         getPlatformAuthDetailsResponseVO = ImmutableGetPlatformAuthDetailsResponseVO.builder().setMethod("pusher")
                 .setClientInfoMap(new HashMap<String, Object>() {
                     {

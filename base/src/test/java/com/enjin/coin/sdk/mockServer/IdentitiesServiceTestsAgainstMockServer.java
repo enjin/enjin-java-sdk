@@ -35,7 +35,6 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
         Config enjinConfig = ImmutableConfig.builder()
                 .setTrustedPlatform(getPlatform())
                 .setInTestMode(true)
-                .setNotification(getNotification())
                 .build();
         EnjinCoinClient enjinService = new EnjinCoinClient(enjinConfig);
         identitiesService = enjinService.getIdentitiesService();

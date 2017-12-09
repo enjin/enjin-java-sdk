@@ -7,9 +7,7 @@ import org.junit.Test;
 
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.config.ImmutableConfig;
-import com.enjin.coin.sdk.config.ImmutableNotification;
 import com.enjin.coin.sdk.config.ImmutablePlatform;
-import com.enjin.coin.sdk.config.Notification;
 import com.enjin.coin.sdk.config.Platform;
 
 public class ClientsTest {
@@ -19,12 +17,6 @@ public class ClientsTest {
 
     @Before
     public void setUp() {
-        Notification notification = ImmutableNotification.builder()
-                .setActivityTimeout(4000l)
-                /*.setAppChannel("testChannel")
-                .setAppKey("505648a2c40940a286e2")
-                .setCluster("eu")*/
-                .build();
         Platform trustedPlatform = ImmutablePlatform.builder()
                 .setHost("localhost")
                 .setPort(80)
@@ -33,7 +25,6 @@ public class ClientsTest {
 
         enjinConfig = ImmutableConfig.builder()
                 .setInTestMode(false)
-                .setNotification(notification)
                 .setTotalExecutors(1)
                 .setTrustedPlatform(trustedPlatform)
                 .build();

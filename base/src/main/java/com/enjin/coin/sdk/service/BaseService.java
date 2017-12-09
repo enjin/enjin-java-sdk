@@ -5,7 +5,6 @@ import java.util.concurrent.Executors;
 import java.util.logging.Logger;
 
 import com.enjin.coin.sdk.config.Config;
-import com.enjin.coin.sdk.config.Notification;
 import com.enjin.coin.sdk.config.Platform;
 import com.enjin.coin.sdk.service.platform.PlatformService;
 import com.enjin.coin.sdk.service.platform.impl.PlatformServiceImpl;
