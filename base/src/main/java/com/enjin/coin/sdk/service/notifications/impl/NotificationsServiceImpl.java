@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import com.enjin.coin.sdk.config.Config;
+import com.enjin.coin.sdk.config.Notification;
 import com.enjin.coin.sdk.enums.NotificationType;
 import com.enjin.coin.sdk.service.BaseService;
 import com.enjin.coin.sdk.service.notifications.EventMatcher;
@@ -120,7 +121,7 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
 
         // Setup the thirdPartyNotificationService to use the pusher service.
         if (thirdPartyNotificationService == null) {
-            thirdPartyNotificationService = new PusherNotificationServiceImpl(getNotification());
+            thirdPartyNotificationService = new PusherNotificationServiceImpl(new Notification());
         }
 
         boolean initPusherResult = thirdPartyNotificationService.initializeNotificationService(platformAuthDetailsResponseVO);

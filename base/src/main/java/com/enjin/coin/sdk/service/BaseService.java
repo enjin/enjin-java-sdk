@@ -39,10 +39,6 @@ public abstract class BaseService {
      * Executor service.
      */
     private ExecutorService executorService;
-    /**
-     * Notification config.
-     */
-    private Notification notification;
 
     /**
      * Platform Service.
@@ -64,7 +60,6 @@ public abstract class BaseService {
         isInTestMode           = config.isInTestMode();
         Integer totalExecutors = config.getTotalExecutors();
         executorService        = Executors.newFixedThreadPool(totalExecutors);
-        notification           = config.getNotification();
         jsonRpcUtils           = new JsonRpcUtils();
         jsonRpcUtils.setIsInTestMode(isInTestMode);
     }
@@ -166,15 +161,6 @@ public abstract class BaseService {
      */
     public ExecutorService getExecutorService() {
         return executorService;
-    }
-
-
-    /**
-     * Method to get the notification config.
-     * @return Notification
-     */
-    public Notification getNotification() {
-        return notification;
     }
 
     /**
