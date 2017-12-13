@@ -1,12 +1,12 @@
 {
-  "jsonrpc": "2.0",
-  "method": "create",
-  "params": {
-	"auth": "xxxxxxxx",
-	"identity": {
-	  "uuid": "069a79f4-44e9-4726-a5be-fca90e38aaf5",
-	  "player_name": "notch"
-	}
-  },
-  "id": "1"
+	"jsonrpc": "2.0",
+	"method": "create",
+	"params": {
+		"auth": "xxxxxxxx",
+		"identity": {
+			"uuid": "069a79f4-44e9-4726-a5be-fca90e38aaf5",
+			"player_name": "notch"
+		}
+	},
+	"id": "1"
 }

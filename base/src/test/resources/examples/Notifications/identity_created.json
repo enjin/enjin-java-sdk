@@ -1,0 +1,17 @@
+{
+  "app_id": 1,
+  "identity_id": "14",
+  "event_type": 8,
+  "data": {
+    "identity": [
+      {
+        "identity_id": "14",
+        "ethereum_address": null,
+        "player_name": "Cool Player"
+      }
+    ],
+    "identity_code": "ABCDEF"
+  },
+  "event_id": 1,
+  "timestamp": 1510000000
+}

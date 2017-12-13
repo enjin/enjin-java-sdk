@@ -1,0 +1,21 @@
+{
+  "app_id": 1,
+  "identity_id": "1",
+  "event_type": 9,
+  "data": {
+    "identity": [
+      {
+        "identity_id": "1",
+        "ethereum_address": "0x0000000000000000000000000000000000000000",
+        "player_name": "rererer"
+      },
+      {
+        "identity_id": "14",
+        "ethereum_address": "0x0000000000000000000000000000000000000000",
+        "player_name": "rererer"
+      }
+    ]
+  },
+  "event_id": 2,
+  "timestamp": 1512166100
+}

@@ -1,10 +1,10 @@
 {
-  "jsonrpc": "2.0",
-  "method": "get",
-  "params": {
-    "app_id": "352",
-    "after_token_id": "123456",
-    "limit": "50"
-  },
-  "id": "1"
+	"jsonrpc": "2.0",
+	"method": "get",
+	"params": {
+		"app_id": "352",
+		"after_token_id": "123456",
+		"limit": "50"
+	},
+	"id": "1"
 }

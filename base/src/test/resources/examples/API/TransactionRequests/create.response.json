@@ -1,23 +1,23 @@
 {
-  "jsonrpc": "2.0",
-  "result": {
-	"txr_id": 12345,
-	"identity": {
-	  "identity_id": "12345",
-	  "player_name": "joe",
-	  "ethereum_address": "0x0000000000000000000000000000000000000000"
+	"jsonrpc": "2.0",
+	"result": {
+		"txr_id": 12345,
+		"identity": {
+			"identity_id": "12345",
+			"player_name": "joe",
+			"ethereum_address": "0x0000000000000000000000000000000000000000"
+		},
+		"recipient": {
+			"identity_id": "12345",
+			"player_name": "alice",
+			"ethereum_address": "0x0000000000000000000000000000000000000000"
+		},
+		"type": "send",
+		"icon": "https://enjincoin.io/images/bubble.png",
+		"title": "Mineplex: /transfer alice 3 ENJ",
+		"value": {
+			"ENJ": "3000000000000000000"
+		}
 	},
-	"recipient": {
-	  "identity_id": "12345",
-	  "player_name": "alice",
-	  "ethereum_address": "0x0000000000000000000000000000000000000000"
-	},
-	"type": "send",
-	"icon": "https://enjincoin.io/images/bubble.png",
-	"title": "Mineplex: /transfer alice 3 ENJ",
-	"value": {
-	  "ENJ": "3000000000000000000"
-	}
-  },
-  "id": "1"
+	"id": "1"
 }

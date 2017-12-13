@@ -1,19 +1,19 @@
 {
-  "jsonrpc": "2.0",
-  "method": "get",
-  "params": {
-    "auth": "xxxxxxxx",
-    "identity": {
-      "identity_id": "12345"
-    },
-    "app_id": "123",
-    "recipient": {
-      "identity_id": "54321"
-    },
-    "type": "buy",
-    "after_txr_id": "1234567",
-    "limit": "50",
-    "currency": "23456"
-  },
-  "id": "1"
+	"jsonrpc": "2.0",
+	"method": "get",
+	"params": {
+		"auth": "xxxxxxxx",
+		"identity": {
+			"identity_id": "12345"
+		},
+		"app_id": "123",
+		"recipient": {
+			"identity_id": "54321"
+		},
+		"type": "buy",
+		"after_txr_id": "1234567",
+		"limit": "50",
+		"currency": "23456"
+	},
+	"id": "1"
 }

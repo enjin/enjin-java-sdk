@@ -1,9 +1,9 @@
 {
-  "jsonrpc": "2.0",
-  "method": "cancel",
-  "params": {
-	"auth": "xxxxxxxx",
-	"txr_id": "123456"
-  },
-  "id": "1"
+	"jsonrpc": "2.0",
+	"method": "cancel",
+	"params": {
+		"auth": "xxxxxxxx",
+		"txr_id": "123456"
+	},
+	"id": "1"
 }

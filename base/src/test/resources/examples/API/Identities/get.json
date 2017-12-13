@@ -1,16 +1,16 @@
 {
-  "jsonrpc": "2.0",
-  "method": "get",
-  "params": {
-    "auth":"xxxxxxxx",
-    "identity": {
-      "ethereum_address":"0x0000000000000000000000000000000000000000",
-      "uuid":"069a79f4-44e9-4726-a5be-fca90e38aaf5",
-      "player_name":"notch"
-    },
-    "linked": true,
-    "after_identity_id":"1234567",
-    "limit":"50"
-  },
-  "id": "1"
+	"jsonrpc": "2.0",
+	"method": "get",
+	"params": {
+		"auth": "xxxxxxxx",
+		"identity": {
+			"ethereum_address": "0x0000000000000000000000000000000000000000",
+			"uuid": "069a79f4-44e9-4726-a5be-fca90e38aaf5",
+			"player_name": "notch"
+		},
+		"linked": true,
+		"after_identity_id": "1234567",
+		"limit": "50"
+	},
+	"id": "1"
 }

@@ -44,11 +44,11 @@
 		},
 		{
 			"event_id": "123456792",
-			"event_type": "transaction_request",
+			"event_type": "txr_confirmed",
 			"timestamp": "1510000003",
 			"app_id": "1234",
 			"data": {
-				"txr_id": 123,
+				"txr_id": "123",
 				"identity": {
 					"identity_id": "12345",
 					"player_name": "joe",
@@ -109,7 +109,7 @@
 				"confirmed": {
 					"345678": "20"
 				},
-				"ENJ":"1000000000000000000"
+				"ENJ": "1000000000000000000"
 			}
 		},
 		{
