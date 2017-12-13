@@ -115,7 +115,7 @@ public class NotificationsAsyncServiceImpl extends NotificationsServiceImpl impl
      */
     @Override
     public void removeNotificationListenerAsync(NotificationListener listener) {
-        removeNotificationListenerAsync(listener);
+        CompletableFuture.runAsync(() -> removeNotificationListener(listener));
     }
 
     /**
@@ -125,7 +125,7 @@ public class NotificationsAsyncServiceImpl extends NotificationsServiceImpl impl
      */
     @Override
     public void addNotificationListenerRegistrationAsync(NotificationListenerRegistration registration) {
-        addNotificationListenerRegistration(registration);
+        CompletableFuture.runAsync(() -> addNotificationListenerRegistration(registration));
     }
 
     /**
@@ -135,7 +135,7 @@ public class NotificationsAsyncServiceImpl extends NotificationsServiceImpl impl
      */
     @Override
     public void removeNotificationListenerRegistrationAsync(NotificationListenerRegistration registration) {
-        removeNotificationListenerRegistration(registration);
+        CompletableFuture.runAsync(() -> removeNotificationListenerRegistration(registration));
     }
 
 }

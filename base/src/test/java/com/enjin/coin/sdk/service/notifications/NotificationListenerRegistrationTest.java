@@ -71,8 +71,8 @@ public class NotificationListenerRegistrationTest {
         RegistrationListenerConfiguration registrationListenerConfiguration = NotificationListenerRegistration.configure(mockNotificationsService, mockNotificationListener);
         assertThat(registrationListenerConfiguration).isNotNull();
 
-        NotificationType notificationType = null;
-        RegistrationListenerConfiguration regConfig = registrationListenerConfiguration.withAllowedEvents(notificationType);
+        NotificationType[] notificationTypes = null;
+        RegistrationListenerConfiguration regConfig = registrationListenerConfiguration.withAllowedEvents(notificationTypes);
         assertThat(regConfig).isNotNull();
     }
     @SuppressWarnings({ "rawtypes"})
@@ -91,8 +91,8 @@ public class NotificationListenerRegistrationTest {
         RegistrationListenerConfiguration registrationListenerConfiguration = NotificationListenerRegistration.configure(mockNotificationsService, mockNotificationListener);
         assertThat(registrationListenerConfiguration).isNotNull();
 
-        NotificationType notificationType = null;
-        RegistrationListenerConfiguration regConfig = registrationListenerConfiguration.withIgnoredEvents(notificationType);
+        NotificationType[] notificationTypes = null;
+        RegistrationListenerConfiguration regConfig = registrationListenerConfiguration.withIgnoredEvents(notificationTypes);
         assertThat(regConfig).isNotNull();
     }
     @SuppressWarnings({ "rawtypes"})
@@ -107,12 +107,66 @@ public class NotificationListenerRegistrationTest {
     }
     @SuppressWarnings({ "rawtypes"})
     @Test
+    public void testRegister_ServiceIsNull() throws Exception {
+        mockNotificationsService = null;
+        RegistrationListenerConfiguration registrationListenerConfiguration = NotificationListenerRegistration.configure(mockNotificationsService, mockNotificationListener);
+        assertThat(registrationListenerConfiguration).isNotNull();
+
+        NotificationListenerRegistration notificationListenerRegistration = registrationListenerConfiguration.register();
+        assertThat(notificationListenerRegistration).isNull();
+    }
+    @SuppressWarnings({ "rawtypes"})
+    @Test
+    public void testRegister_NotificationListenerIsNull() throws Exception {
+        mockNotificationListener = null;
+        RegistrationListenerConfiguration registrationListenerConfiguration = NotificationListenerRegistration.configure(mockNotificationsService, mockNotificationListener);
+        assertThat(registrationListenerConfiguration).isNotNull();
+
+        NotificationListenerRegistration notificationListenerRegistration = registrationListenerConfiguration.register();
+        assertThat(notificationListenerRegistration).isNull();
+    }
+    @SuppressWarnings({ "rawtypes"})
+    @Test
     public void testRegister() throws Exception {
         RegistrationListenerConfiguration registrationListenerConfiguration = NotificationListenerRegistration.configure(mockNotificationsService, mockNotificationListener);
         assertThat(registrationListenerConfiguration).isNotNull();
 
         NotificationListenerRegistration notificationListenerRegistration = registrationListenerConfiguration.register();
         assertThat(notificationListenerRegistration).isNotNull();
+    }
+    @SuppressWarnings("rawtypes")
+    @Test
+    public void testDetectAndApplyListenerAnnotations_ListenerIsNull() {
+        mockNotificationListener = null;
+        RegistrationListenerConfiguration registrationListenerConfiguration = NotificationListenerRegistration.configure(mockNotificationsService, mockNotificationListener);
+        assertThat(registrationListenerConfiguration).isNotNull();
+    }
+    @SuppressWarnings("rawtypes")
+    @Test
+    public void testDetectAndApplyListenerAnnotations_ListenerIsNotNull() {
+        RegistrationListenerConfiguration registrationListenerConfiguration = NotificationListenerRegistration.configure(mockNotificationsService, mockNotificationListener);
+        assertThat(registrationListenerConfiguration).isNotNull();
+    }
+    @SuppressWarnings("rawtypes")
+    @Test
+    public void testDetectAndApplyListenerAnnotations_EventFilterAnnotationIsPresentAllowed() {
+        NotificationListener listener = new DummyListener1();
+        RegistrationListenerConfiguration registrationListenerConfiguration = NotificationListenerRegistration.configure(mockNotificationsService, listener);
+        assertThat(registrationListenerConfiguration).isNotNull();
+    }
+    @SuppressWarnings("rawtypes")
+    @Test
+    public void testDetectAndApplyListenerAnnotations_EventFilterAnnotationIsPresentNotAllowed() {
+        NotificationListener listener = new DummyListener2();
+        RegistrationListenerConfiguration registrationListenerConfiguration = NotificationListenerRegistration.configure(mockNotificationsService, listener);
+        assertThat(registrationListenerConfiguration).isNotNull();
+    }
+    @SuppressWarnings("rawtypes")
+    @Test
+    public void testDetectAndApplyListenerAnnotations_EventFilterAnnotationIsNotPresent() {
+        NotificationListener listener = new DummyListener3();
+        RegistrationListenerConfiguration registrationListenerConfiguration = NotificationListenerRegistration.configure(mockNotificationsService, listener);
+        assertThat(registrationListenerConfiguration).isNotNull();
     }
 }
 

@@ -113,10 +113,6 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
         }
 
         Optional<GetPlatformAuthDetailsResponseVO> platformAuthDetailsResponseVOOptional = platformAuthResponseVO.getPlatformAuthNotificationDetails();
-        if (platformAuthDetailsResponseVOOptional == null || BooleanUtils.isFalse(platformAuthDetailsResponseVOOptional.isPresent())) {
-            LOGGER.warning("Returned getPlatformAuthDetailsResponseVO is null or not present");
-            return initResult;
-        }
         GetPlatformAuthDetailsResponseVO platformAuthDetailsResponseVO = platformAuthDetailsResponseVOOptional.get();
 
         // Setup the thirdPartyNotificationService to use the pusher service.

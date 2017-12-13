@@ -42,9 +42,7 @@ public abstract class GetIdentityRequestVO extends BaseIdentityRequestVO {
 
     @Override
     public String toString() {
-        return "GetIdentityRequestVO [" + (getLinked() != null ? "getLinked()=" + getLinked() + ", " : "")
-                + (getAfterIdentityId() != null ? "getAfterIdentityId()=" + getAfterIdentityId() + ", " : "")
-                + (getLimit() != null ? "getLimit()=" + getLimit() : "") + "]";
+        return "GetIdentityRequestVO [getLinked()=" + getLinked() + ", getAfterIdentityId()=" + getAfterIdentityId() + ", getLimit()=" + getLimit() + "]";
     }
 
 }
