@@ -1,11 +1,11 @@
 {
-  "jsonrpc": "2.0",
-  "result": {
-	"identity": {
-	  "identity_id": "123456",
-	  "ethereum_address": "0x1111111111111111111111111111111111111111",
-	  "uuid": "069a79f4-44e9-4726-a5be-fca90e38aaf5"
-	}
-  },
-  "id": "1"
+	"jsonrpc": "2.0",
+	"result": {
+		"identity": {
+			"identity_id": "123456",
+			"ethereum_address": "0x1111111111111111111111111111111111111111",
+			"uuid": "069a79f4-44e9-4726-a5be-fca90e38aaf5"
+		}
+	},
+	"id": "1"
 }
