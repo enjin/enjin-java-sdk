@@ -35,7 +35,7 @@ public class NotificationsAsyncServiceImpl extends NotificationsServiceImpl impl
      * @return boolean
      */
     @Override
-    public CompletableFuture<Boolean> initNotificationsServiceAsync(String auth) {
+    public CompletableFuture<Boolean> initNotificationsServiceAsync(final String auth) {
         return CompletableFuture.supplyAsync(() -> initNotificationsService(auth), getExecutorService());
     }
 
@@ -57,7 +57,7 @@ public class NotificationsAsyncServiceImpl extends NotificationsServiceImpl impl
      */
     @Override
     @SuppressWarnings("rawtypes")
-    public CompletableFuture<RegistrationListenerConfiguration> configureListenerAsync(NotificationListener listener) {
+    public CompletableFuture<RegistrationListenerConfiguration> configureListenerAsync(final NotificationListener listener) {
         return CompletableFuture.supplyAsync(() -> configureListener(listener), getExecutorService());
     }
 
@@ -68,7 +68,7 @@ public class NotificationsAsyncServiceImpl extends NotificationsServiceImpl impl
      * @return NotificationListenerRegistration
      */
     @Override
-    public CompletableFuture<NotificationListenerRegistration> addNotificationListenerAsync(NotificationListener listener) {
+    public CompletableFuture<NotificationListenerRegistration> addNotificationListenerAsync(final NotificationListener listener) {
         return CompletableFuture.supplyAsync(() -> addNotificationListener(listener), getExecutorService());
     }
 
@@ -80,7 +80,8 @@ public class NotificationsAsyncServiceImpl extends NotificationsServiceImpl impl
      * @return NotificationListenerRegistration
      */
     @Override
-    public CompletableFuture<NotificationListenerRegistration> addNotificationListenerAsync(NotificationListener listener, EventMatcher eventMatcher) {
+    public CompletableFuture<NotificationListenerRegistration> addNotificationListenerAsync(final NotificationListener listener,
+            final EventMatcher eventMatcher) {
         return CompletableFuture.supplyAsync(() -> addNotificationListener(listener), getExecutorService());
     }
 
@@ -92,7 +93,8 @@ public class NotificationsAsyncServiceImpl extends NotificationsServiceImpl impl
      * @return NotificationListenerRegistration
      */
     @Override
-    public CompletableFuture<NotificationListenerRegistration> addAllowedTypesNotificationListenerAsync(NotificationListener listener, NotificationType... allowed){
+    public CompletableFuture<NotificationListenerRegistration> addAllowedTypesNotificationListenerAsync(final NotificationListener listener,
+            final NotificationType... allowed) {
         return CompletableFuture.supplyAsync(() -> addAllowedTypesNotificationListener(listener, allowed), getExecutorService());
     }
 
@@ -104,7 +106,8 @@ public class NotificationsAsyncServiceImpl extends NotificationsServiceImpl impl
      * @return NotificationListenerRegistration
      */
     @Override
-    public CompletableFuture<NotificationListenerRegistration> addIgnoredTypesNotificationListenerAsync(NotificationListener listener, NotificationType... ignored) {
+    public CompletableFuture<NotificationListenerRegistration> addIgnoredTypesNotificationListenerAsync(final NotificationListener listener,
+            final NotificationType... ignored) {
         return CompletableFuture.supplyAsync(() -> addIgnoredTypesNotificationListener(listener, ignored), getExecutorService());
     }
 
@@ -114,7 +117,7 @@ public class NotificationsAsyncServiceImpl extends NotificationsServiceImpl impl
      * @param listener the listener to remove
      */
     @Override
-    public void removeNotificationListenerAsync(NotificationListener listener) {
+    public void removeNotificationListenerAsync(final NotificationListener listener) {
         CompletableFuture.runAsync(() -> removeNotificationListener(listener));
     }
 
@@ -124,7 +127,7 @@ public class NotificationsAsyncServiceImpl extends NotificationsServiceImpl impl
      * @param registration to add
      */
     @Override
-    public void addNotificationListenerRegistrationAsync(NotificationListenerRegistration registration) {
+    public void addNotificationListenerRegistrationAsync(final NotificationListenerRegistration registration) {
         CompletableFuture.runAsync(() -> addNotificationListenerRegistration(registration));
     }
 
@@ -134,7 +137,7 @@ public class NotificationsAsyncServiceImpl extends NotificationsServiceImpl impl
      * @param registration to remove
      */
     @Override
-    public void removeNotificationListenerRegistrationAsync(NotificationListenerRegistration registration) {
+    public void removeNotificationListenerRegistrationAsync(final NotificationListenerRegistration registration) {
         CompletableFuture.runAsync(() -> removeNotificationListenerRegistration(registration));
     }
 
