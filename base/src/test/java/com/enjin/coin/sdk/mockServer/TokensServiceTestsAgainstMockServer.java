@@ -90,8 +90,9 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer {
         assertThat(getTokenBalanceResponseVO).isNotNull();
         for (GetTokenBalanceResponseVO tokenBalanceResponseVO : getTokenBalanceResponseVO) {
             assertThat(tokenBalanceResponseVO).isNotNull()
-            .satisfies(o -> assertThat(o.toString()).isNotEmpty())
-            .satisfies(o -> assertThat(o.getTokenBalanceMap()).isNotEmpty());
+            .satisfies(o -> assertThat(tokenBalanceResponseVO).isNotNull()
+                    .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
+                    .satisfies(o2 -> assertThat(o2.getTokenBalanceMap()).isNotNull()));
         }
     }
 

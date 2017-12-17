@@ -20,4 +20,11 @@ public abstract class GetTokenBalanceResponseVO {
      */
     //@SerializedName("token_ids")
     public abstract Optional<Map<String, Object>> getTokenBalanceMap();
+
+    @Override
+    public String toString() {
+        return "GetTokenBalanceResponseVO [getTokenBalanceMap()=" + getTokenBalanceMap() + "]";
+    }
+
+
 }
