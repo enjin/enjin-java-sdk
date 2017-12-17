@@ -4,6 +4,8 @@ import java.util.concurrent.CompletableFuture;
 
 import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.service.tokens.TokensAsyncService;
+import com.enjin.coin.sdk.vo.token.GetTokenBalanceRequestVO;
+import com.enjin.coin.sdk.vo.token.GetTokenBalanceResponseVO;
 import com.enjin.coin.sdk.vo.token.GetTokenRequestVO;
 import com.enjin.coin.sdk.vo.token.GetTokenResponseVO;
 
@@ -23,9 +25,25 @@ public final class TokensAsyncServiceImpl extends TokensServiceImpl implements T
         super(config);
     }
 
+    /**
+     * Method to get a token.
+     *
+     * @param getTokenRequestVO - token request object
+     * @return - GetTokenResponseVO
+     */
     @Override
-    public CompletableFuture<GetTokenResponseVO[]> getTokenAsync(final GetTokenRequestVO request) {
-        return CompletableFuture.supplyAsync(() -> getToken(request), getExecutorService());
+    public CompletableFuture<GetTokenResponseVO[]> getTokenAsync(GetTokenRequestVO getTokenRequestVO) {
+        return CompletableFuture.supplyAsync(() -> getToken(getTokenRequestVO), getExecutorService());
+    }
+
+    /**
+     * Method to get the token balance
+     * @param getTokenBalanceRequestVO - token balance request object
+     * @return - GetTokenBalanceResponseVO
+     */
+    @Override
+    public CompletableFuture<GetTokenBalanceResponseVO[]> getTokenBalanceAsync(GetTokenBalanceRequestVO getTokenBalanceRequestVO) {
+        return CompletableFuture.supplyAsync(() -> getTokenBalance(getTokenBalanceRequestVO), getExecutorService());
     }
 
 }

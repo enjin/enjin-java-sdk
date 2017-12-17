@@ -44,6 +44,8 @@ public class Constants {
 
     /** Constants for the Tokens Get method. **/
     public static final String METHOD_TOKENS_GET = "get";
+    /** Constants for the Tokens GetBalance method. **/
+    public static final String METHOD_TOKENS_GET_BALANCE = "getBalance";
 
     /** Constants for the TransactionRequests Get method. **/
     public static final String METHOD_TRANSACTION_REQUESTS_GET = "get";

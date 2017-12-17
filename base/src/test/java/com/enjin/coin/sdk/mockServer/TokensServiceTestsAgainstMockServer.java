@@ -2,6 +2,9 @@ package com.enjin.coin.sdk.mockServer;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,8 +12,11 @@ import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.config.ImmutableConfig;
 import com.enjin.coin.sdk.service.EnjinCoinClient;
 import com.enjin.coin.sdk.service.tokens.TokensService;
+import com.enjin.coin.sdk.vo.token.GetTokenBalanceRequestVO;
+import com.enjin.coin.sdk.vo.token.GetTokenBalanceResponseVO;
 import com.enjin.coin.sdk.vo.token.GetTokenRequestVO;
 import com.enjin.coin.sdk.vo.token.GetTokenResponseVO;
+import com.enjin.coin.sdk.vo.token.ImmutableGetTokenBalanceRequestVO;
 import com.enjin.coin.sdk.vo.token.ImmutableGetTokenRequestVO;
 
 public class TokensServiceTestsAgainstMockServer extends BaseMockServer {
@@ -55,6 +61,37 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer {
                         .satisfies(o2 -> assertThat(o2.getTotalSupply()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getTransferable()).isNotEmpty())
                 );
+        }
+    }
+
+    @Test
+    public void testGetBalanceToken() {
+        Map<String, Object> identityMapParam = new HashMap<>();
+        identityMapParam.put("ethereum_address", "0x0000000000000000000000000000000000000000");
+        identityMapParam.put("uuid", "069a79f4-44e9-4726-a5be-fca90e38aaf5");
+        identityMapParam.put("player_name", "notch");
+
+        Map<String, Object> tokenIdsMap = new HashMap<>();
+        tokenIdsMap.put("1", "1");
+        tokenIdsMap.put("2", "2");
+        tokenIdsMap.put("3", "3");
+
+        GetTokenBalanceRequestVO getTokenBalanceRequestVO = ImmutableGetTokenBalanceRequestVO.builder()
+                .setIdentityMap(identityMapParam)
+                .setTokenIdsMap(tokenIdsMap)
+                .build();
+
+        assertThat(getTokenBalanceRequestVO).isNotNull()
+                .satisfies(o -> assertThat(o.toString()).isNotEmpty())
+                .satisfies(o -> assertThat(o.getIdentityMap()).isNotEmpty())
+                .satisfies(o -> assertThat(o.getTokenIdsMap()).isNotEmpty());
+
+        GetTokenBalanceResponseVO[] getTokenBalanceResponseVO = tokensService.getTokenBalance(getTokenBalanceRequestVO);
+        assertThat(getTokenBalanceResponseVO).isNotNull();
+        for (GetTokenBalanceResponseVO tokenBalanceResponseVO : getTokenBalanceResponseVO) {
+            assertThat(tokenBalanceResponseVO).isNotNull()
+            .satisfies(o -> assertThat(o.toString()).isNotEmpty())
+            .satisfies(o -> assertThat(o.getTokenBalanceMap()).isNotEmpty());
         }
     }
 

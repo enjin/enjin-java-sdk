@@ -1,5 +1,7 @@
 package com.enjin.coin.sdk.service.tokens;
 
+import com.enjin.coin.sdk.vo.token.GetTokenBalanceRequestVO;
+import com.enjin.coin.sdk.vo.token.GetTokenBalanceResponseVO;
 import com.enjin.coin.sdk.vo.token.GetTokenRequestVO;
 import com.enjin.coin.sdk.vo.token.GetTokenResponseVO;
 
@@ -15,4 +17,11 @@ public interface TokensService {
      * @return - GetTokenResponseVO
      */
     GetTokenResponseVO[] getToken(GetTokenRequestVO request);
+
+    /**
+     * Method to get the token balance
+     * @param request
+     * @return - GetTokenBalanceResponseVO
+     */
+    GetTokenBalanceResponseVO[] getTokenBalance(GetTokenBalanceRequestVO request);
 }

@@ -104,8 +104,10 @@ public class BaseMockServer {
         //Setup the tokens stubs
         String tokensFolder    = "Tokens";
         String tokensGetMethod = "get";
+        String tokensGetBalanceMethod = "getBalance";
 
         setUpStub(TOKENS_URL, tokensFolder, tokensGetMethod);
+        setUpStub(TOKENS_URL, tokensFolder, tokensGetBalanceMethod);
 
         //Setup the TransactionRequests stubs
         String transactionRequestsFolder       = "TransactionRequests";
