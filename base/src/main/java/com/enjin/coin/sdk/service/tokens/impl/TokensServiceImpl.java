@@ -46,7 +46,8 @@ public class TokensServiceImpl extends BaseService implements TokensService {
             return getTokenResponseVO;
         }
 
-        if (StringUtils.isEmpty(getTokenRequestVO.getAppId()) || StringUtils.isEmpty(getTokenRequestVO.getAfterTokenId()) || StringUtils.isEmpty(getTokenRequestVO.getLimit())) {
+        if (StringUtils.isEmpty(getTokenRequestVO.getAppId()) || StringUtils.isEmpty(getTokenRequestVO.getAfterTokenId())
+                || StringUtils.isEmpty(getTokenRequestVO.getLimit())) {
             LOGGER.warning("Tokens.get parameters may be empty or null.");
             return getTokenResponseVO;
         }
@@ -64,14 +65,14 @@ public class TokensServiceImpl extends BaseService implements TokensService {
         return getTokenResponseVO;
     }
 
-
     /**
-     * Method to get the token balance
+     * Method to get the token balance.
+     *
      * @param getTokenBalanceRequestVO
      * @return - GetTokenBalanceResponseVO
      */
     @Override
-    public GetTokenBalanceResponseVO[] getTokenBalance(GetTokenBalanceRequestVO getTokenBalanceRequestVO) {
+    public GetTokenBalanceResponseVO[] getTokenBalance(final GetTokenBalanceRequestVO getTokenBalanceRequestVO) {
         GetTokenBalanceResponseVO[] getTokenBalanceResponseVO = null;
 
         if (ObjectUtils.isNull(getTokenBalanceRequestVO)) {
@@ -91,7 +92,8 @@ public class TokensServiceImpl extends BaseService implements TokensService {
         // Construct new request
         String method = Constants.METHOD_TOKENS_GET_BALANCE;
 
-        getTokenBalanceResponseVO = (GetTokenBalanceResponseVO[]) getJsonRpcUtils().sendJsonRpcRequest(getTokensUrl(), GetTokenBalanceResponseVO[].class, method, params);
+        getTokenBalanceResponseVO = (GetTokenBalanceResponseVO[])
+                getJsonRpcUtils().sendJsonRpcRequest(getTokensUrl(), GetTokenBalanceResponseVO[].class, method, params);
 
         return getTokenBalanceResponseVO;
     }

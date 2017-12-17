@@ -13,15 +13,15 @@ public interface TokensService {
     /**
      * Method to get a token.
      *
-     * @param request - token request object
+     * @param getTokenRequestVO - token request object
      * @return - GetTokenResponseVO
      */
-    GetTokenResponseVO[] getToken(GetTokenRequestVO request);
+    GetTokenResponseVO[] getToken(GetTokenRequestVO getTokenRequestVO);
 
     /**
-     * Method to get the token balance
-     * @param request
+     * Method to get the token balance.
+     * @param getTokenBalanceRequestVO - token balance request object
      * @return - GetTokenBalanceResponseVO
      */
-    GetTokenBalanceResponseVO[] getTokenBalance(GetTokenBalanceRequestVO request);
+    GetTokenBalanceResponseVO[] getTokenBalance(GetTokenBalanceRequestVO getTokenBalanceRequestVO);
 }

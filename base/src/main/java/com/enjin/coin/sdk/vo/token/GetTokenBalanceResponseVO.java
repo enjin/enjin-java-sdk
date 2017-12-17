@@ -1,5 +1,6 @@
 package com.enjin.coin.sdk.vo.token;
 
+import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Optional;
 
@@ -19,7 +20,7 @@ public abstract class GetTokenBalanceResponseVO {
      * @return Optional
      */
     //@SerializedName("token_ids")
-    public abstract Optional<Map<String, Object>> getTokenBalanceMap();
+    public abstract Optional<Map<String, BigDecimal>> getTokenBalanceMap();
 
     @Override
     public String toString() {

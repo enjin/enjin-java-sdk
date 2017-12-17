@@ -21,7 +21,7 @@ public interface TokensAsyncService extends TokensService {
     CompletableFuture<GetTokenResponseVO[]> getTokenAsync(GetTokenRequestVO getTokenRequestVO);
 
     /**
-     * Method to get the token balance
+     * Method to get the token balance.
      * @param getTokenBalanceRequestVO - token balance request object
      * @return - GetTokenBalanceResponseVO
      */

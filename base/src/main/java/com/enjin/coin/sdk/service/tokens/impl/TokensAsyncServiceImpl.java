@@ -32,17 +32,17 @@ public final class TokensAsyncServiceImpl extends TokensServiceImpl implements T
      * @return - GetTokenResponseVO
      */
     @Override
-    public CompletableFuture<GetTokenResponseVO[]> getTokenAsync(GetTokenRequestVO getTokenRequestVO) {
+    public CompletableFuture<GetTokenResponseVO[]> getTokenAsync(final GetTokenRequestVO getTokenRequestVO) {
         return CompletableFuture.supplyAsync(() -> getToken(getTokenRequestVO), getExecutorService());
     }
 
     /**
-     * Method to get the token balance
+     * Method to get the token balance.
      * @param getTokenBalanceRequestVO - token balance request object
      * @return - GetTokenBalanceResponseVO
      */
     @Override
-    public CompletableFuture<GetTokenBalanceResponseVO[]> getTokenBalanceAsync(GetTokenBalanceRequestVO getTokenBalanceRequestVO) {
+    public CompletableFuture<GetTokenBalanceResponseVO[]> getTokenBalanceAsync(final GetTokenBalanceRequestVO getTokenBalanceRequestVO) {
         return CompletableFuture.supplyAsync(() -> getTokenBalance(getTokenBalanceRequestVO), getExecutorService());
     }
 
