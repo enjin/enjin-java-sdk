@@ -26,12 +26,12 @@ public abstract class GetEventRequestVO {
     public abstract Optional<String> getAuth();
 
     /**
-     * Method to get the eventId.
+     * Method to get the appId.
      *
      * @return Optional
      */
-    @SerializedName("event_id")
-    public abstract Optional<String> getEventId();
+    @SerializedName("app_id")
+    public abstract Optional<String> getAppId();
 
     /**
      * Method to get the identityMap.
@@ -57,12 +57,10 @@ public abstract class GetEventRequestVO {
     @SerializedName("limit")
     public abstract Optional<String> getLimit();
 
-    /**
-     * Class toString method.
-     */
     @Override
     public String toString() {
-        return "GetEventRequestVO [auth=" + getAuth().orElse(null) + ", eventId=" + getEventId().orElse(null) + "]";
+        return "GetEventRequestVO [getAuth()=" + getAuth() + ", getAppId()=" + getAppId() + ", getIdentityMap()=" + getIdentityMap() + ", getAfterEventId()=" + getAfterEventId()
+                + ", getLimit()=" + getLimit() + "]";
     }
 
 }

@@ -52,7 +52,7 @@ public class EventsServiceTest {
     @Test
     public void testGetEvent_EventIsNull() {
         GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
-                .setEventId((String) null)
+                .setAppId((String) null)
                 .setAuth("auth")
                 .build();
 
@@ -64,7 +64,7 @@ public class EventsServiceTest {
     @Test
     public void testGetEvent_EventIdIsEmpty() {
         GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
-                .setEventId("")
+                .setAppId("")
                 .setAuth("auth")
                 .build();
 
@@ -76,7 +76,7 @@ public class EventsServiceTest {
     @Test
     public void testGetEvent_AuthIdIsEmpty() {
         GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
-                .setEventId("eventId")
+                .setAppId("eventId")
                 .setAuth("")
                 .build();
 
@@ -88,7 +88,7 @@ public class EventsServiceTest {
     @Test
     public void testGetEvent_AuthIsNull() {
         GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
-                .setEventId("eventId")
+                .setAppId("eventId")
                 .setAuth((String) null)
                 .build();
 
@@ -101,7 +101,7 @@ public class EventsServiceTest {
     @Test
     public void testGetEvent_ResponseIsNull() throws Exception {
         GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
-                .setEventId("eventId")
+                .setAppId("eventId")
                 .setAuth("auth")
                 .build();
 
@@ -123,7 +123,7 @@ public class EventsServiceTest {
     @Test
     public void testGetEvent_Success() throws Exception {
         GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
-                .setEventId("eventId")
+                .setAppId("eventId")
                 .setAuth("auth")
                 .build();
 

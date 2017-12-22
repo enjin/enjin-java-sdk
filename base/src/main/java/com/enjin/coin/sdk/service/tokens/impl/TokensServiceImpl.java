@@ -47,12 +47,17 @@ public class TokensServiceImpl extends BaseService implements TokensService {
         }
 
         Map<String, Object> params = new HashMap<>();
-        if (ObjectUtils.isNotNull(getTokenRequestVO.getAppId()))
+        if (StringUtils.isNotEmpty(getTokenRequestVO.getAppId())) {
             getTokenRequestVO.getAppId().ifPresent(id -> params.put("app_id", id));
-        if (ObjectUtils.isNotNull(getTokenRequestVO.getAfterTokenId()))
+        }
+
+        if (StringUtils.isNotEmpty(getTokenRequestVO.getAfterTokenId())) {
             getTokenRequestVO.getAppId().ifPresent(afterId -> params.put("after_token_id", afterId));
-        if (ObjectUtils.isNotNull(getTokenRequestVO.getLimit()))
+        }
+
+        if (StringUtils.isNotEmpty(getTokenRequestVO.getLimit())) {
             getTokenRequestVO.getAppId().ifPresent(limit -> params.put("limit", limit));
+        }
 
         // Construct new request
         String method = Constants.METHOD_TOKENS_GET;

@@ -42,7 +42,7 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
         identityMapParam.put("uuid", "069a79f4-44e9-4726-a5be-fca90e38aaf5");
 
         GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
-                .setEventId("12345")
+                .setAppId("1234")
                 .setAuth("auth")
                 .setIdentityMap(identityMapParam)
                 .setAfterEventId("123456789")

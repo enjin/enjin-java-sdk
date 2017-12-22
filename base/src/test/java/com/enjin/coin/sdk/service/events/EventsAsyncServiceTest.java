@@ -44,7 +44,7 @@ public class EventsAsyncServiceTest {
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testGetEvent_Success() throws Exception {
-		GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder().setEventId("eventId").setAuth("auth")
+		GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder().setAppId("eventId").setAuth("auth")
 				.build();
 
 		GetEventResponseVO returnedGetEventResponseVO = ImmutableGetEventResponseVO.builder().build();

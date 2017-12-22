@@ -8,6 +8,7 @@ import com.enjin.coin.sdk.config.Config;
 import com.enjin.coin.sdk.service.BaseService;
 import com.enjin.coin.sdk.service.events.EventsService;
 import com.enjin.coin.sdk.util.Constants;
+import com.enjin.coin.sdk.util.MapUtils;
 import com.enjin.coin.sdk.util.ObjectUtils;
 import com.enjin.coin.sdk.util.StringUtils;
 import com.enjin.coin.sdk.vo.event.GetEventRequestVO;
@@ -35,22 +36,31 @@ public class EventsServiceImpl extends BaseService implements EventsService {
     }
 
     @Override
-    public final GetEventResponseVO[] getEvent(final GetEventRequestVO request) {
+    public final GetEventResponseVO[] getEvent(final GetEventRequestVO getEventRequestVO) {
         GetEventResponseVO[] response = null;
 
-        if (ObjectUtils.isNull(request)) {
+        if (ObjectUtils.isNull(getEventRequestVO)) {
             LOGGER.warning("Events.get request is null.");
             return response;
         }
 
-        if (StringUtils.isEmpty(request.getAuth()) || StringUtils.isEmpty(request.getEventId())) {
-            LOGGER.warning("Events.get parameters may be empty or null.");
-            return response;
-        }
-
         Map<String, Object> params = new HashMap<>();
-        params.put("auth", request.getAuth().get());
-        params.put("event_id", request.getEventId().get());
+
+        if (StringUtils.isNotEmpty(getEventRequestVO.getAuth())) {
+            getEventRequestVO.getAuth().ifPresent(auth -> params.put("auth", auth));
+        }
+        if (StringUtils.isNotEmpty(getEventRequestVO.getAppId())) {
+            getEventRequestVO.getAppId().ifPresent(appId -> params.put("app_id", appId));
+        }
+        if (MapUtils.isNotEmpty(getEventRequestVO.getIdentityMap())) {
+            getEventRequestVO.getIdentityMap().ifPresent(identity -> params.put("identity", identity));
+        }
+        if (StringUtils.isNotEmpty(getEventRequestVO.getAfterEventId())) {
+            getEventRequestVO.getAfterEventId().ifPresent(afterEventId -> params.put("after_event_id", afterEventId));
+        }
+        if (StringUtils.isNotEmpty(getEventRequestVO.getLimit())) {
+            getEventRequestVO.getLimit().ifPresent(limit -> params.put("limit", limit));
+        }
 
         // Construct new request
         String method = Constants.METHOD_EVENTS_GET;
