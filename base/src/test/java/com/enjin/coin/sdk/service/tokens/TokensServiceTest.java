@@ -54,82 +54,6 @@ public class TokensServiceTest {
         assertThat(getTokenResponseVO).isNull();
     }
 
-    @Test
-    public void testGetToken_AppIdIsNull() {
-        GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
-        	     .setAppId((String)null)
-                 .setAfterTokenId("123456")
-                 .setLimit("50")
-                .build();
-
-        tokenService = new TokensServiceImpl(enjinConfig);
-        GetTokenResponseVO[] getTokenResponseVO = tokenService.getToken(getTokenRequestVO);
-        assertThat(getTokenResponseVO).isNull();
-    }
-
-    @Test
-    public void testGetToken_AppIdIsEmpty() {
-        GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
-                .setAppId("")
-                .setAfterTokenId("123456")
-                .setLimit("50")
-                .build();
-
-        tokenService = new TokensServiceImpl(enjinConfig);
-        GetTokenResponseVO[] getTokenResponseVO = tokenService.getToken(getTokenRequestVO);
-        assertThat(getTokenResponseVO).isNull();
-    }
-
-    @Test
-    public void testGetToken_AfterTokenIdIsNull() {
-        GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
-        	     .setAppId("352")
-                 .setAfterTokenId((String)null)
-                 .setLimit("50")
-                .build();
-
-        tokenService = new TokensServiceImpl(enjinConfig);
-        GetTokenResponseVO[] getTokenResponseVO = tokenService.getToken(getTokenRequestVO);
-        assertThat(getTokenResponseVO).isNull();
-    }
-
-    @Test
-    public void testGetToken_AfterTokendIsEmpty() {
-        GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
-                .setAppId("35")
-                .setAfterTokenId("")
-                .setLimit("50")
-                .build();
-
-        tokenService = new TokensServiceImpl(enjinConfig);
-        GetTokenResponseVO[] getTokenResponseVO = tokenService.getToken(getTokenRequestVO);
-        assertThat(getTokenResponseVO).isNull();
-    }
-    @Test
-    public void testGetToken_LimitIsNull() {
-        GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
-        	     .setAppId("352")
-                 .setAfterTokenId("123456")
-                 .setLimit((String)null)
-                .build();
-
-        tokenService = new TokensServiceImpl(enjinConfig);
-        GetTokenResponseVO[] getTokenResponseVO = tokenService.getToken(getTokenRequestVO);
-        assertThat(getTokenResponseVO).isNull();
-    }
-
-    @Test
-    public void testGetToken_LimitIsEmpty() {
-        GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
-                .setAppId("35")
-                .setAfterTokenId("123456")
-                .setLimit("")
-                .build();
-
-        tokenService = new TokensServiceImpl(enjinConfig);
-        GetTokenResponseVO[] getTokenResponseVO = tokenService.getToken(getTokenRequestVO);
-        assertThat(getTokenResponseVO).isNull();
-    }
     @SuppressWarnings("unchecked")
     @Test
     public void testGetToken_ResponseIsNull() throws Exception {
@@ -152,6 +76,150 @@ public class TokensServiceTest {
         PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
         Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
     }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testGetToken_AppIdIsNull() throws Exception {
+        GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
+        	     .setAppId((String)null)
+                 .setAfterTokenId("123456")
+                 .setLimit("50")
+                .build();
+
+        GetTokenResponseVO returnedGetTokenResponseVO = ImmutableGetTokenResponseVO.builder().build();
+        GetTokenResponseVO[] returnedGetTokenResponseArray = new GetTokenResponseVO[] {returnedGetTokenResponseVO};
+
+        JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
+        PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
+        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetTokenResponseArray);
+
+        tokenService = new TokensServiceImpl(enjinConfig);
+        GetTokenResponseVO[] getTokenResponseVO = tokenService.getToken(getTokenRequestVO);
+        assertThat(getTokenResponseVO).isNotNull();
+
+        PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
+        Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testGetToken_AppIdIsEmpty() throws Exception {
+        GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
+                .setAppId("")
+                .setAfterTokenId("123456")
+                .setLimit("50")
+                .build();
+
+        GetTokenResponseVO returnedGetTokenResponseVO = ImmutableGetTokenResponseVO.builder().build();
+        GetTokenResponseVO[] returnedGetTokenResponseArray = new GetTokenResponseVO[] {returnedGetTokenResponseVO};
+
+        JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
+        PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
+        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetTokenResponseArray);
+
+        tokenService = new TokensServiceImpl(enjinConfig);
+        GetTokenResponseVO[] getTokenResponseVO = tokenService.getToken(getTokenRequestVO);
+        assertThat(getTokenResponseVO).isNotNull();
+
+        PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
+        Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testGetToken_AfterTokenIdIsNull() throws Exception {
+        GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
+        	     .setAppId("352")
+                 .setAfterTokenId((String)null)
+                 .setLimit("50")
+                .build();
+
+        GetTokenResponseVO returnedGetTokenResponseVO = ImmutableGetTokenResponseVO.builder().build();
+        GetTokenResponseVO[] returnedGetTokenResponseArray = new GetTokenResponseVO[] {returnedGetTokenResponseVO};
+
+        JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
+        PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
+        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetTokenResponseArray);
+
+        tokenService = new TokensServiceImpl(enjinConfig);
+        GetTokenResponseVO[] getTokenResponseVO = tokenService.getToken(getTokenRequestVO);
+        assertThat(getTokenResponseVO).isNotNull();
+
+        PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
+        Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testGetToken_AfterTokenIdIsEmpty() throws Exception {
+        GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
+                .setAppId("35")
+                .setAfterTokenId("")
+                .setLimit("50")
+                .build();
+
+        GetTokenResponseVO returnedGetTokenResponseVO = ImmutableGetTokenResponseVO.builder().build();
+        GetTokenResponseVO[] returnedGetTokenResponseArray = new GetTokenResponseVO[] {returnedGetTokenResponseVO};
+
+        JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
+        PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
+        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetTokenResponseArray);
+
+        tokenService = new TokensServiceImpl(enjinConfig);
+        GetTokenResponseVO[] getTokenResponseVO = tokenService.getToken(getTokenRequestVO);
+        assertThat(getTokenResponseVO).isNotNull();
+
+        PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
+        Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
+    }
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testGetToken_LimitIsNull() throws Exception {
+        GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
+        	     .setAppId("352")
+                 .setAfterTokenId("123456")
+                 .setLimit((String)null)
+                .build();
+
+        GetTokenResponseVO returnedGetTokenResponseVO = ImmutableGetTokenResponseVO.builder().build();
+        GetTokenResponseVO[] returnedGetTokenResponseArray = new GetTokenResponseVO[] {returnedGetTokenResponseVO};
+
+        JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
+        PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
+        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetTokenResponseArray);
+
+        tokenService = new TokensServiceImpl(enjinConfig);
+        GetTokenResponseVO[] getTokenResponseVO = tokenService.getToken(getTokenRequestVO);
+        assertThat(getTokenResponseVO).isNotNull();
+
+        PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
+        Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testGetToken_LimitIsEmpty() throws Exception {
+        GetTokenRequestVO getTokenRequestVO = ImmutableGetTokenRequestVO.builder()
+                .setAppId("35")
+                .setAfterTokenId("123456")
+                .setLimit("")
+                .build();
+
+        GetTokenResponseVO returnedGetTokenResponseVO = ImmutableGetTokenResponseVO.builder().build();
+        GetTokenResponseVO[] returnedGetTokenResponseArray = new GetTokenResponseVO[] {returnedGetTokenResponseVO};
+
+        JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
+        PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
+        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetTokenResponseArray);
+
+        tokenService = new TokensServiceImpl(enjinConfig);
+        GetTokenResponseVO[] getTokenResponseVO = tokenService.getToken(getTokenRequestVO);
+        assertThat(getTokenResponseVO).isNotNull();
+
+        PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
+        Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
+    }
+
 
     @SuppressWarnings("unchecked")
     @Test

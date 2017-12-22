@@ -2,6 +2,7 @@ package com.enjin.coin.sdk.service.events;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Before;
@@ -49,54 +50,6 @@ public class EventsServiceTest {
         assertThat(getEventResponseVO).isNull();
     }
 
-    @Test
-    public void testGetEvent_EventIsNull() {
-        GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
-                .setAppId((String) null)
-                .setAuth("auth")
-                .build();
-
-        eventService = new EventsServiceImpl(enjinConfig);
-        GetEventResponseVO[] getEventResponseVO = eventService.getEvent(getEventRequestVO);
-        assertThat(getEventResponseVO).isNull();
-    }
-
-    @Test
-    public void testGetEvent_EventIdIsEmpty() {
-        GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
-                .setAppId("")
-                .setAuth("auth")
-                .build();
-
-        eventService = new EventsServiceImpl(enjinConfig);
-        GetEventResponseVO[] getEventResponseVO = eventService.getEvent(getEventRequestVO);
-        assertThat(getEventResponseVO).isNull();
-    }
-
-    @Test
-    public void testGetEvent_AuthIdIsEmpty() {
-        GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
-                .setAppId("eventId")
-                .setAuth("")
-                .build();
-
-        eventService = new EventsServiceImpl(enjinConfig);
-        GetEventResponseVO[] getEventResponseVO = eventService.getEvent(getEventRequestVO);
-        assertThat(getEventResponseVO).isNull();
-    }
-
-    @Test
-    public void testGetEvent_AuthIsNull() {
-        GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
-                .setAppId("eventId")
-                .setAuth((String) null)
-                .build();
-
-        eventService = new EventsServiceImpl(enjinConfig);
-        GetEventResponseVO[] getEventResponseVO = eventService.getEvent(getEventRequestVO);
-        assertThat(getEventResponseVO).isNull();
-    }
-
     @SuppressWarnings("unchecked")
     @Test
     public void testGetEvent_ResponseIsNull() throws Exception {
@@ -119,12 +72,268 @@ public class EventsServiceTest {
         Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "serial" })
+    @Test
+    public void testGetEvent_AppIdIsNull() throws Exception {
+        GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
+                .setAppId((String) null)
+                .setAuth("auth")
+                .setIdentityMap(new HashMap<String, Object>() {{put("uuid", "069a79f4-44e9-4726-a5be-fca90e38aaf5");}})
+                .setAfterEventId("123456789")
+                .setLimit("50")
+                .build();
+
+        GetEventResponseVO returnedGetEventResponseVO = ImmutableGetEventResponseVO.builder().build();
+        GetEventResponseVO[] returnedGetEventResponseArray = new GetEventResponseVO[] {returnedGetEventResponseVO};
+
+        JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
+        PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
+        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetEventResponseArray);
+
+        eventService = new EventsServiceImpl(enjinConfig);
+        GetEventResponseVO[] getEventResponseVO = eventService.getEvent(getEventRequestVO);
+        assertThat(getEventResponseVO).isNotNull();
+
+        PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
+        Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
+    }
+
+    @SuppressWarnings({ "unchecked", "serial" })
+    @Test
+    public void testGetEvent_AppIdIsEmpty() throws Exception {
+        GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
+                .setAppId("")
+                .setAuth("auth")
+                .setIdentityMap(new HashMap<String, Object>() {{put("uuid", "069a79f4-44e9-4726-a5be-fca90e38aaf5");}})
+                .setAfterEventId("123456789")
+                .setLimit("50")
+                .build();
+
+        GetEventResponseVO returnedGetEventResponseVO = ImmutableGetEventResponseVO.builder().build();
+        GetEventResponseVO[] returnedGetEventResponseArray = new GetEventResponseVO[] {returnedGetEventResponseVO};
+
+        JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
+        PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
+        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetEventResponseArray);
+
+        eventService = new EventsServiceImpl(enjinConfig);
+        GetEventResponseVO[] getEventResponseVO = eventService.getEvent(getEventRequestVO);
+        assertThat(getEventResponseVO).isNotNull();
+
+        PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
+        Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
+    }
+
+    @SuppressWarnings({ "unchecked", "serial" })
+    @Test
+    public void testGetEvent_AuthIdIsEmpty() throws Exception {
+        GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
+                .setAppId("eventId")
+                .setAuth("")
+                .setIdentityMap(new HashMap<String, Object>() {{put("uuid", "069a79f4-44e9-4726-a5be-fca90e38aaf5");}})
+                .setAfterEventId("123456789")
+                .setLimit("50")
+                .build();
+
+        GetEventResponseVO returnedGetEventResponseVO = ImmutableGetEventResponseVO.builder().build();
+        GetEventResponseVO[] returnedGetEventResponseArray = new GetEventResponseVO[] {returnedGetEventResponseVO};
+
+        JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
+        PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
+        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetEventResponseArray);
+
+        eventService = new EventsServiceImpl(enjinConfig);
+        GetEventResponseVO[] getEventResponseVO = eventService.getEvent(getEventRequestVO);
+        assertThat(getEventResponseVO).isNotNull();
+
+        PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
+        Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
+    }
+
+    @SuppressWarnings({ "unchecked", "serial" })
+    @Test
+    public void testGetEvent_AuthIsNull() throws Exception {
+        GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
+                .setAppId("eventId")
+                .setAuth((String) null)
+                .setIdentityMap(new HashMap<String, Object>() {{put("uuid", "069a79f4-44e9-4726-a5be-fca90e38aaf5");}})
+                .setAfterEventId("123456789")
+                .setLimit("50")
+                .build();
+
+        GetEventResponseVO returnedGetEventResponseVO = ImmutableGetEventResponseVO.builder().build();
+        GetEventResponseVO[] returnedGetEventResponseArray = new GetEventResponseVO[] {returnedGetEventResponseVO};
+
+        JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
+        PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
+        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetEventResponseArray);
+
+        eventService = new EventsServiceImpl(enjinConfig);
+        GetEventResponseVO[] getEventResponseVO = eventService.getEvent(getEventRequestVO);
+        assertThat(getEventResponseVO).isNotNull();
+
+        PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
+        Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
+    }
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @Test
+    public void testGetEvent_IdentityMapIsNull() throws Exception {
+        GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
+                .setAppId("eventId")
+                .setAuth("auth")
+                .setIdentityMap((Map) null)
+                .setAfterEventId("123456789")
+                .setLimit("50")
+                .build();
+
+        GetEventResponseVO returnedGetEventResponseVO = ImmutableGetEventResponseVO.builder().build();
+        GetEventResponseVO[] returnedGetEventResponseArray = new GetEventResponseVO[] {returnedGetEventResponseVO};
+
+        JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
+        PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
+        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetEventResponseArray);
+
+        eventService = new EventsServiceImpl(enjinConfig);
+        GetEventResponseVO[] getEventResponseVO = eventService.getEvent(getEventRequestVO);
+        assertThat(getEventResponseVO).isNotNull();
+
+        PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
+        Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
+    }
+    @SuppressWarnings({ "unchecked", "serial" })
+    @Test
+    public void testGetEvent_IdentityMapIsEmpty() throws Exception {
+        GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
+                .setAppId("eventId")
+                .setAuth("auth")
+                .setIdentityMap(new HashMap<String, Object>() {})
+                .setAfterEventId("123456789")
+                .setLimit("50")
+                .build();
+
+        GetEventResponseVO returnedGetEventResponseVO = ImmutableGetEventResponseVO.builder().build();
+        GetEventResponseVO[] returnedGetEventResponseArray = new GetEventResponseVO[] {returnedGetEventResponseVO};
+
+        JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
+        PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
+        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetEventResponseArray);
+
+        eventService = new EventsServiceImpl(enjinConfig);
+        GetEventResponseVO[] getEventResponseVO = eventService.getEvent(getEventRequestVO);
+        assertThat(getEventResponseVO).isNotNull();
+
+        PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
+        Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
+    }
+    @SuppressWarnings({ "unchecked", "serial" })
+    @Test
+    public void testGetEvent_AfterEventIdIsNull() throws Exception {
+        GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
+                .setAppId("eventId")
+                .setAuth("auth")
+                .setIdentityMap(new HashMap<String, Object>() {{put("uuid", "069a79f4-44e9-4726-a5be-fca90e38aaf5");}})
+                .setAfterEventId((String)null)
+                .setLimit("50")
+                .build();
+
+        GetEventResponseVO returnedGetEventResponseVO = ImmutableGetEventResponseVO.builder().build();
+        GetEventResponseVO[] returnedGetEventResponseArray = new GetEventResponseVO[] {returnedGetEventResponseVO};
+
+        JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
+        PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
+        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetEventResponseArray);
+
+        eventService = new EventsServiceImpl(enjinConfig);
+        GetEventResponseVO[] getEventResponseVO = eventService.getEvent(getEventRequestVO);
+        assertThat(getEventResponseVO).isNotNull();
+
+        PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
+        Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
+    }
+    @SuppressWarnings({ "unchecked", "serial" })
+    @Test
+    public void testGetEvent_AfterEventIdIsEmpty() throws Exception {
+        GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
+                .setAppId("eventId")
+                .setAuth("auth")
+                .setIdentityMap(new HashMap<String, Object>() {{put("uuid", "069a79f4-44e9-4726-a5be-fca90e38aaf5");}})
+                .setAfterEventId("")
+                .setLimit("50")
+                .build();
+
+        GetEventResponseVO returnedGetEventResponseVO = ImmutableGetEventResponseVO.builder().build();
+        GetEventResponseVO[] returnedGetEventResponseArray = new GetEventResponseVO[] {returnedGetEventResponseVO};
+
+        JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
+        PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
+        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetEventResponseArray);
+
+        eventService = new EventsServiceImpl(enjinConfig);
+        GetEventResponseVO[] getEventResponseVO = eventService.getEvent(getEventRequestVO);
+        assertThat(getEventResponseVO).isNotNull();
+
+        PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
+        Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
+    }
+    @SuppressWarnings({ "unchecked", "serial" })
+    @Test
+    public void testGetEvent_LimitIsNull() throws Exception {
+        GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
+                .setAppId("eventId")
+                .setAuth("auth")
+                .setIdentityMap(new HashMap<String, Object>() {{put("uuid", "069a79f4-44e9-4726-a5be-fca90e38aaf5");}})
+                .setAfterEventId("123456789")
+                .setLimit((String) null)
+                .build();
+
+        GetEventResponseVO returnedGetEventResponseVO = ImmutableGetEventResponseVO.builder().build();
+        GetEventResponseVO[] returnedGetEventResponseArray = new GetEventResponseVO[] {returnedGetEventResponseVO};
+
+        JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
+        PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
+        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetEventResponseArray);
+
+        eventService = new EventsServiceImpl(enjinConfig);
+        GetEventResponseVO[] getEventResponseVO = eventService.getEvent(getEventRequestVO);
+        assertThat(getEventResponseVO).isNotNull();
+
+        PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
+        Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
+    }
+    @SuppressWarnings({ "unchecked", "serial" })
+    @Test
+    public void testGetEvent_LimitIsEmpty() throws Exception {
+        GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
+                .setAppId("eventId")
+                .setAuth("auth")
+                .setIdentityMap(new HashMap<String, Object>() {{put("uuid", "069a79f4-44e9-4726-a5be-fca90e38aaf5");}})
+                .setAfterEventId("123456789")
+                .setLimit("")
+                .build();
+
+        GetEventResponseVO returnedGetEventResponseVO = ImmutableGetEventResponseVO.builder().build();
+        GetEventResponseVO[] returnedGetEventResponseArray = new GetEventResponseVO[] {returnedGetEventResponseVO};
+
+        JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
+        PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
+        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetEventResponseArray);
+
+        eventService = new EventsServiceImpl(enjinConfig);
+        GetEventResponseVO[] getEventResponseVO = eventService.getEvent(getEventRequestVO);
+        assertThat(getEventResponseVO).isNotNull();
+
+        PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
+        Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
+    }
+    @SuppressWarnings({ "unchecked", "serial" })
     @Test
     public void testGetEvent_Success() throws Exception {
         GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
                 .setAppId("eventId")
                 .setAuth("auth")
+                .setIdentityMap(new HashMap<String, Object>() {{put("uuid", "069a79f4-44e9-4726-a5be-fca90e38aaf5");}})
+                .setAfterEventId("123456789")
+                .setLimit("50")
                 .build();
 
 		GetEventResponseVO returnedGetEventResponseVO = ImmutableGetEventResponseVO.builder().build();
