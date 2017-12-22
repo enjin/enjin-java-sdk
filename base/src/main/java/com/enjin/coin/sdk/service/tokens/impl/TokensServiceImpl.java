@@ -70,7 +70,7 @@ public class TokensServiceImpl extends BaseService implements TokensService {
     /**
      * Method to get the token balance.
      *
-     * @param getTokenBalanceRequestVO
+     * @param getTokenBalanceRequestVO - the get token request object
      * @return - GetTokenBalanceResponseVO
      */
     @Override

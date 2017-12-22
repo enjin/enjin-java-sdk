@@ -59,7 +59,8 @@ public abstract class GetEventRequestVO {
 
     @Override
     public String toString() {
-        return "GetEventRequestVO [getAuth()=" + getAuth() + ", getAppId()=" + getAppId() + ", getIdentityMap()=" + getIdentityMap() + ", getAfterEventId()=" + getAfterEventId()
+        return "GetEventRequestVO [getAuth()=" + getAuth() + ", getAppId()=" + getAppId()
+                + ", getIdentityMap()=" + getIdentityMap() + ", getAfterEventId()=" + getAfterEventId()
                 + ", getLimit()=" + getLimit() + "]";
     }
 
