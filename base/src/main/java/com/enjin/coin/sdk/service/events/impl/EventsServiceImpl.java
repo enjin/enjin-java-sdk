@@ -46,8 +46,8 @@ public class EventsServiceImpl extends BaseService implements EventsService {
 
         Map<String, Object> params = new HashMap<>();
 
-        if (StringUtils.isNotEmpty(getEventRequestVO.getAuth())) {
-            getEventRequestVO.getAuth().ifPresent(auth -> params.put("auth", auth));
+        if (StringUtils.isNotEmpty(getEventRequestVO.getEventId())) {
+            getEventRequestVO.getEventId().ifPresent(eventId -> params.put("event_id", eventId));
         }
         if (StringUtils.isNotEmpty(getEventRequestVO.getAppId())) {
             getEventRequestVO.getAppId().ifPresent(appId -> params.put("app_id", appId));
@@ -57,6 +57,9 @@ public class EventsServiceImpl extends BaseService implements EventsService {
         }
         if (StringUtils.isNotEmpty(getEventRequestVO.getAfterEventId())) {
             getEventRequestVO.getAfterEventId().ifPresent(afterEventId -> params.put("after_event_id", afterEventId));
+        }
+        if (StringUtils.isNotEmpty(getEventRequestVO.getBeforeEventId())) {
+            getEventRequestVO.getBeforeEventId().ifPresent(beforeEventId -> params.put("before_event_id", beforeEventId));
         }
         if (StringUtils.isNotEmpty(getEventRequestVO.getLimit())) {
             getEventRequestVO.getLimit().ifPresent(limit -> params.put("limit", limit));

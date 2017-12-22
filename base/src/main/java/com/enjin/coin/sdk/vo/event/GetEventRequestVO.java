@@ -18,12 +18,12 @@ import com.google.gson.annotations.SerializedName;
 public abstract class GetEventRequestVO {
 
     /**
-     * Method to get the auth.
+     * Method to get the eventId.
      *
      * @return Optional
      */
-    @SerializedName("auth")
-    public abstract Optional<String> getAuth();
+    @SerializedName("event_id")
+    public abstract Optional<String> getEventId();
 
     /**
      * Method to get the appId.
@@ -50,6 +50,14 @@ public abstract class GetEventRequestVO {
     public abstract Optional<String> getAfterEventId();
 
     /**
+     * Method to get the beforeEventId.
+     *
+     * @return Optional
+     */
+    @SerializedName("before_event_id")
+    public abstract Optional<String> getBeforeEventId();
+
+    /**
      * Method to get the limit.
      *
      * @return Optional
@@ -59,9 +67,9 @@ public abstract class GetEventRequestVO {
 
     @Override
     public String toString() {
-        return "GetEventRequestVO [getAuth()=" + getAuth() + ", getAppId()=" + getAppId()
+        return "GetEventRequestVO [getEventId()=" + getEventId() + ", getAppId()=" + getAppId()
                 + ", getIdentityMap()=" + getIdentityMap() + ", getAfterEventId()=" + getAfterEventId()
-                + ", getLimit()=" + getLimit() + "]";
+                + ", getBeforeEventId()=" + getBeforeEventId() + ", getLimit()=" + getLimit() + "]";
     }
 
 }

@@ -2,6 +2,7 @@ package com.enjin.coin.sdk.service.events;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
@@ -41,11 +42,17 @@ public class EventsAsyncServiceTest {
 		assertThat(eventAsyncService).isNotNull().satisfies(o -> assertThat(o.toString()).isNotEmpty());
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "serial" })
 	@Test
 	public void testGetEvent_Success() throws Exception {
-		GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder().setAppId("eventId").setAuth("auth")
-				.build();
+        GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
+                .setAppId("eventId")
+                .setEventId("eventId")
+                .setIdentityMap(new HashMap<String, Object>() {{put("uuid", "069a79f4-44e9-4726-a5be-fca90e38aaf5");}})
+                .setAfterEventId("123456789")
+                .setBeforeEventId("123456789")
+                .setLimit("50")
+                .build();
 
 		GetEventResponseVO returnedGetEventResponseVO = ImmutableGetEventResponseVO.builder().build();
 		GetEventResponseVO[] returnedGetEventResponseArray = new GetEventResponseVO[] {returnedGetEventResponseVO};

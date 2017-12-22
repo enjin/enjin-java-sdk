@@ -55,7 +55,7 @@ public class EventsServiceTest {
     public void testGetEvent_ResponseIsNull() throws Exception {
         GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
                 .setAppId("eventId")
-                .setAuth("auth")
+                .setEventId("eventId")
                 .build();
 
         GetEventResponseVO returnedGetEventResponseVO = null;
@@ -77,9 +77,10 @@ public class EventsServiceTest {
     public void testGetEvent_AppIdIsNull() throws Exception {
         GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
                 .setAppId((String) null)
-                .setAuth("auth")
+                .setEventId("eventId")
                 .setIdentityMap(new HashMap<String, Object>() {{put("uuid", "069a79f4-44e9-4726-a5be-fca90e38aaf5");}})
                 .setAfterEventId("123456789")
+                .setBeforeEventId("123456789")
                 .setLimit("50")
                 .build();
 
@@ -103,9 +104,10 @@ public class EventsServiceTest {
     public void testGetEvent_AppIdIsEmpty() throws Exception {
         GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
                 .setAppId("")
-                .setAuth("auth")
+                .setEventId("eventId")
                 .setIdentityMap(new HashMap<String, Object>() {{put("uuid", "069a79f4-44e9-4726-a5be-fca90e38aaf5");}})
                 .setAfterEventId("123456789")
+                .setBeforeEventId("123456789")
                 .setLimit("50")
                 .build();
 
@@ -126,12 +128,13 @@ public class EventsServiceTest {
 
     @SuppressWarnings({ "unchecked", "serial" })
     @Test
-    public void testGetEvent_AuthIdIsEmpty() throws Exception {
+    public void testGetEvent_EventIdIsEmpty() throws Exception {
         GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
                 .setAppId("eventId")
-                .setAuth("")
+                .setEventId("")
                 .setIdentityMap(new HashMap<String, Object>() {{put("uuid", "069a79f4-44e9-4726-a5be-fca90e38aaf5");}})
                 .setAfterEventId("123456789")
+                .setBeforeEventId("123456789")
                 .setLimit("50")
                 .build();
 
@@ -155,9 +158,10 @@ public class EventsServiceTest {
     public void testGetEvent_AuthIsNull() throws Exception {
         GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
                 .setAppId("eventId")
-                .setAuth((String) null)
+                .setEventId((String) null)
                 .setIdentityMap(new HashMap<String, Object>() {{put("uuid", "069a79f4-44e9-4726-a5be-fca90e38aaf5");}})
                 .setAfterEventId("123456789")
+                .setBeforeEventId("123456789")
                 .setLimit("50")
                 .build();
 
@@ -180,9 +184,10 @@ public class EventsServiceTest {
     public void testGetEvent_IdentityMapIsNull() throws Exception {
         GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
                 .setAppId("eventId")
-                .setAuth("auth")
+                .setEventId("eventId")
                 .setIdentityMap((Map) null)
                 .setAfterEventId("123456789")
+                .setBeforeEventId("123456789")
                 .setLimit("50")
                 .build();
 
@@ -205,9 +210,10 @@ public class EventsServiceTest {
     public void testGetEvent_IdentityMapIsEmpty() throws Exception {
         GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
                 .setAppId("eventId")
-                .setAuth("auth")
+                .setEventId("eventId")
                 .setIdentityMap(new HashMap<String, Object>() {})
                 .setAfterEventId("123456789")
+                .setBeforeEventId("123456789")
                 .setLimit("50")
                 .build();
 
@@ -230,9 +236,10 @@ public class EventsServiceTest {
     public void testGetEvent_AfterEventIdIsNull() throws Exception {
         GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
                 .setAppId("eventId")
-                .setAuth("auth")
+                .setEventId("eventId")
                 .setIdentityMap(new HashMap<String, Object>() {{put("uuid", "069a79f4-44e9-4726-a5be-fca90e38aaf5");}})
                 .setAfterEventId((String)null)
+                .setBeforeEventId("123456789")
                 .setLimit("50")
                 .build();
 
@@ -255,9 +262,62 @@ public class EventsServiceTest {
     public void testGetEvent_AfterEventIdIsEmpty() throws Exception {
         GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
                 .setAppId("eventId")
-                .setAuth("auth")
+                .setEventId("eventId")
                 .setIdentityMap(new HashMap<String, Object>() {{put("uuid", "069a79f4-44e9-4726-a5be-fca90e38aaf5");}})
                 .setAfterEventId("")
+                .setBeforeEventId("123456789")
+                .setLimit("50")
+                .build();
+
+        GetEventResponseVO returnedGetEventResponseVO = ImmutableGetEventResponseVO.builder().build();
+        GetEventResponseVO[] returnedGetEventResponseArray = new GetEventResponseVO[] {returnedGetEventResponseVO};
+
+        JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
+        PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
+        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetEventResponseArray);
+
+        eventService = new EventsServiceImpl(enjinConfig);
+        GetEventResponseVO[] getEventResponseVO = eventService.getEvent(getEventRequestVO);
+        assertThat(getEventResponseVO).isNotNull();
+
+        PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
+        Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
+    }
+    @SuppressWarnings({ "unchecked", "serial" })
+    @Test
+    public void testGetEvent_BeforeEventIdIsNull() throws Exception {
+        GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
+                .setAppId("eventId")
+                .setEventId("eventId")
+                .setIdentityMap(new HashMap<String, Object>() {{put("uuid", "069a79f4-44e9-4726-a5be-fca90e38aaf5");}})
+                .setAfterEventId("123456789")
+                .setBeforeEventId((String)null)
+                .setLimit("50")
+                .build();
+
+        GetEventResponseVO returnedGetEventResponseVO = ImmutableGetEventResponseVO.builder().build();
+        GetEventResponseVO[] returnedGetEventResponseArray = new GetEventResponseVO[] {returnedGetEventResponseVO};
+
+        JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
+        PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
+        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetEventResponseArray);
+
+        eventService = new EventsServiceImpl(enjinConfig);
+        GetEventResponseVO[] getEventResponseVO = eventService.getEvent(getEventRequestVO);
+        assertThat(getEventResponseVO).isNotNull();
+
+        PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
+        Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
+    }
+    @SuppressWarnings({ "unchecked", "serial" })
+    @Test
+    public void testGetEvent_BeforeEventIdIsEmpty() throws Exception {
+        GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
+                .setAppId("eventId")
+                .setEventId("eventId")
+                .setIdentityMap(new HashMap<String, Object>() {{put("uuid", "069a79f4-44e9-4726-a5be-fca90e38aaf5");}})
+                .setAfterEventId("123456789")
+                .setBeforeEventId("")
                 .setLimit("50")
                 .build();
 
@@ -280,9 +340,10 @@ public class EventsServiceTest {
     public void testGetEvent_LimitIsNull() throws Exception {
         GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
                 .setAppId("eventId")
-                .setAuth("auth")
+                .setEventId("eventId")
                 .setIdentityMap(new HashMap<String, Object>() {{put("uuid", "069a79f4-44e9-4726-a5be-fca90e38aaf5");}})
                 .setAfterEventId("123456789")
+                .setBeforeEventId("123456789")
                 .setLimit((String) null)
                 .build();
 
@@ -305,9 +366,10 @@ public class EventsServiceTest {
     public void testGetEvent_LimitIsEmpty() throws Exception {
         GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
                 .setAppId("eventId")
-                .setAuth("auth")
+                .setEventId("eventId")
                 .setIdentityMap(new HashMap<String, Object>() {{put("uuid", "069a79f4-44e9-4726-a5be-fca90e38aaf5");}})
                 .setAfterEventId("123456789")
+                .setBeforeEventId("123456789")
                 .setLimit("")
                 .build();
 
@@ -330,9 +392,10 @@ public class EventsServiceTest {
     public void testGetEvent_Success() throws Exception {
         GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
                 .setAppId("eventId")
-                .setAuth("auth")
+                .setEventId("eventId")
                 .setIdentityMap(new HashMap<String, Object>() {{put("uuid", "069a79f4-44e9-4726-a5be-fca90e38aaf5");}})
                 .setAfterEventId("123456789")
+                .setBeforeEventId("123456789")
                 .setLimit("50")
                 .build();
 

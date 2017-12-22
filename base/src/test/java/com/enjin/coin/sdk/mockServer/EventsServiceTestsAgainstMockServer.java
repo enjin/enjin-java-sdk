@@ -43,9 +43,10 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
 
         GetEventRequestVO getEventRequestVO = ImmutableGetEventRequestVO.builder()
                 .setAppId("1234")
-                .setAuth("auth")
+                .setEventId("eventId")
                 .setIdentityMap(identityMapParam)
                 .setAfterEventId("123456789")
+                .setBeforeEventId("123456789")
                 .setLimit("50")
                 .build();
         assertThat(getEventRequestVO).isNotNull()
