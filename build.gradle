@@ -31,7 +31,7 @@ subprojects {
 		toolVersion "3.0.1"
 	}
 
-    group = 'com.enjin'
+    group = 'io.enjincoin'
     version = '0.0.1-SNAPSHOT'
 
     idea {
@@ -82,7 +82,7 @@ subprojects {
 
     install {
         repositories.mavenInstaller {
-            pom.artifactId = "enj-sdk-${project.name}"
+            pom.artifactId = "java-sdk-${project.name}"
         }
     }
 

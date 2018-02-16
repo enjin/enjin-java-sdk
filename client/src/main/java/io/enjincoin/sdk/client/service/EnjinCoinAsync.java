@@ -1,0 +1,62 @@
+package io.enjincoin.sdk.client.service;
+
+import io.enjincoin.sdk.client.service.events.EventsAsyncService;
+import io.enjincoin.sdk.client.service.identities.IdentitiesAsyncService;
+import io.enjincoin.sdk.client.service.notifications.NotificationsAsyncService;
+import io.enjincoin.sdk.client.service.platform.PlatformAsyncService;
+import io.enjincoin.sdk.client.service.tokens.TokensAsyncService;
+import io.enjincoin.sdk.client.service.transactionrequests.TransactionRequestsAsyncService;
+
+/**
+ * <p>Interface for the EnjinCoin async client.</p>
+ */
+public interface EnjinCoinAsync extends EnjinCoin {
+
+    /**
+     * Method to get the eventsService.
+     *
+     * @return - EventsAsyncService
+     */
+    @Override
+    EventsAsyncService getEventsService();
+
+    /**
+     * Method to get the identitiesService.
+     *
+     * @return - IdentitiesAsyncService
+     */
+    @Override
+    IdentitiesAsyncService getIdentitiesService();
+
+    /**
+     * Method to get the tokensService.
+     *
+     * @return - TokensAsyncService
+     */
+    @Override
+    TokensAsyncService getTokensService();
+
+    /**
+     * Method to get the transactionRequestsService.
+     *
+     * @return - TransactionRequestsAsyncService
+     */
+    @Override
+    TransactionRequestsAsyncService getTransactionRequestsService();
+
+    /**
+     * Method to get the notificationsService.
+     *
+     * @return - NotificationsAsyncService
+     */
+    @Override
+    NotificationsAsyncService getNotificationsService();
+
+    /**
+     * Method to get the platformService.
+     *
+     * @return - PlatformAsyncService
+     */
+    @Override
+    PlatformAsyncService getPlatformService();
+}
