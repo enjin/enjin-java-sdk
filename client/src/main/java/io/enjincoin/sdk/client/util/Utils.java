@@ -20,6 +20,7 @@ public class Utils {
      * Method to generate a randomId.
      *
      * @param inTestMode - whether we are in testmode or not
+     *
      * @return - a randomId
      */
     public static String generateRandomId(final boolean inTestMode) {
@@ -42,7 +43,9 @@ public class Utils {
      *
      * @param min Minimum value
      * @param max Maximum value. Must be greater than min.
+     *
      * @return Integer between min and max, inclusive.
+     *
      * @see java.util.Random#nextInt(int)
      */
     public static int generateRandomInt(final int min, final int max) {

@@ -11,6 +11,7 @@ import io.enjincoin.sdk.client.vo.identity.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 import java.util.logging.Logger;
 
 /**
@@ -35,7 +36,7 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
     }
 
     @Override
-    public final GetIdentityResponseVO[] getIdentity(final GetIdentityRequestVO request) {
+    public final GetIdentityResponseVO[] getIdentitiesSync(final GetIdentityRequestVO request) {
         GetIdentityResponseVO[] response = null;
 
         if (ObjectUtils.isNull(request)) {
@@ -63,13 +64,13 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
         // Construct new request
         String method = Constants.METHOD_IDENTITIES_GET;
 
-        response = (GetIdentityResponseVO[]) getJsonRpcUtils().sendJsonRpcRequest(getIdentitiesUrl(), GetIdentityResponseVO[].class, method, params);
+        response = (GetIdentityResponseVO[]) this.getJsonRpcUtils().sendJsonRpcRequest(this.getIdentitiesUrl(), GetIdentityResponseVO[].class, method, params);
 
         return response;
     }
 
     @Override
-    public final CreateIdentityResponseVO createIdentity(final CreateIdentityRequestVO request) {
+    public final CreateIdentityResponseVO createIdentitySync(final CreateIdentityRequestVO request) {
         CreateIdentityResponseVO response = null;
 
         if (ObjectUtils.isNull(request)) {
@@ -89,13 +90,13 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
         // Construct new request
         String method = Constants.METHOD_IDENTITIES_CREATE;
 
-        response = (CreateIdentityResponseVO) getJsonRpcUtils().sendJsonRpcRequest(getIdentitiesUrl(), CreateIdentityResponseVO.class, method, params);
+        response = (CreateIdentityResponseVO) this.getJsonRpcUtils().sendJsonRpcRequest(this.getIdentitiesUrl(), CreateIdentityResponseVO.class, method, params);
 
         return response;
     }
 
     @Override
-    public final UpdateIdentityResponseVO updateIdentity(final UpdateIdentityRequestVO request) {
+    public final UpdateIdentityResponseVO updateIdentitySync(final UpdateIdentityRequestVO request) {
         UpdateIdentityResponseVO response = null;
 
         if (ObjectUtils.isNull(request)) {
@@ -116,13 +117,13 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
         // Construct new request
         String method = Constants.METHOD_IDENTITIES_UPDATE;
 
-        response = (UpdateIdentityResponseVO) getJsonRpcUtils().sendJsonRpcRequest(getIdentitiesUrl(), UpdateIdentityResponseVO.class, method, params);
+        response = (UpdateIdentityResponseVO) this.getJsonRpcUtils().sendJsonRpcRequest(this.getIdentitiesUrl(), UpdateIdentityResponseVO.class, method, params);
 
         return response;
     }
 
     @Override
-    public final DeleteIdentityResponseVO deleteIdentity(final DeleteIdentityRequestVO request) {
+    public final DeleteIdentityResponseVO deleteIdentitySync(final DeleteIdentityRequestVO request) {
         DeleteIdentityResponseVO response = null;
 
         if (ObjectUtils.isNull(request)) {
@@ -141,11 +142,31 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
         // Construct new request
         String method = Constants.METHOD_IDENTITIES_DELETE;
 
-        Boolean result = (Boolean) getJsonRpcUtils().sendJsonRpcRequest(getIdentitiesUrl(), Boolean.class, method, params);
+        Boolean result = (Boolean) this.getJsonRpcUtils().sendJsonRpcRequest(this.getIdentitiesUrl(), Boolean.class, method, params);
 
         response = ImmutableDeleteIdentityResponseVO.builder().setResult(result).build();
 
         return response;
+    }
+
+    @Override
+    public CompletableFuture<GetIdentityResponseVO[]> getIdentitiesAsync(final GetIdentityRequestVO request) {
+        return CompletableFuture.supplyAsync(() -> this.getIdentitiesSync(request), this.getExecutorService());
+    }
+
+    @Override
+    public CompletableFuture<CreateIdentityResponseVO> createIdentityAsync(final CreateIdentityRequestVO request) {
+        return CompletableFuture.supplyAsync(() -> this.createIdentitySync(request), this.getExecutorService());
+    }
+
+    @Override
+    public CompletableFuture<UpdateIdentityResponseVO> updateIdentityAsync(final UpdateIdentityRequestVO request) {
+        return CompletableFuture.supplyAsync(() -> this.updateIdentitySync(request), this.getExecutorService());
+    }
+
+    @Override
+    public CompletableFuture<DeleteIdentityResponseVO> deleteIdentityAsync(final DeleteIdentityRequestVO request) {
+        return CompletableFuture.supplyAsync(() -> this.deleteIdentitySync(request), this.getExecutorService());
     }
 
 }

@@ -44,7 +44,7 @@ public abstract class GetTokenRequestVO {
      */
     @Override
     public String toString() {
-        return "GetTokenRequestVO [appId=" + getAppId().orElse(null) + ", afterTokenId=" + getAfterTokenId().orElse(null) + ", limit=" + getLimit().orElse(null)
+        return "GetTokenRequestVO [appId=" + this.getAppId().orElse(null) + ", afterTokenId=" + this.getAfterTokenId().orElse(null) + ", limit=" + this.getLimit().orElse(null)
                 + "]";
     }
 

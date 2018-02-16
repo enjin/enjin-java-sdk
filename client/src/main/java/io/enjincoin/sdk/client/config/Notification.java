@@ -14,7 +14,7 @@ import org.immutables.value.Value;
 @Gson.TypeAdapters
 public class Notification {
 
-/*    *//**
+    /*    *//**
      * The appKey to use.
      * @return String
      *//*
@@ -44,8 +44,10 @@ public class Notification {
         return "";
     }
 */
+
     /**
      * The activityTimeout to use.
+     *
      * @return long
      */
     @Value.Default

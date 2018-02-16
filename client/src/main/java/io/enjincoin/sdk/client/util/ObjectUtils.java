@@ -18,6 +18,7 @@ public class ObjectUtils {
      * Method to check if an object is null.
      *
      * @param object - object to check
+     *
      * @return - boolean result
      */
     public static boolean isNull(final Object object) {
@@ -28,6 +29,7 @@ public class ObjectUtils {
      * Method to check if an object is not null.
      *
      * @param object - object to check
+     *
      * @return - boolean result
      */
     public static boolean isNotNull(final Object object) {

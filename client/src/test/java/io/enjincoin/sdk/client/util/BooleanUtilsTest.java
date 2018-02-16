@@ -17,11 +17,13 @@ public class BooleanUtilsTest {
         Boolean condition = null;
         assertThat(BooleanUtils.isTrue(condition)).isFalse();
     }
+
     @Test
     public void testIsTrue_FalseCondition() {
         Boolean condition = false;
         assertThat(BooleanUtils.isTrue(condition)).isFalse();
     }
+
     @Test
     public void testIsTrue_TrueCondition() {
         Boolean condition = true;
@@ -33,11 +35,13 @@ public class BooleanUtilsTest {
         Boolean condition = null;
         assertThat(BooleanUtils.isNotTrue(condition)).isTrue();
     }
+
     @Test
     public void testIsNotTrue_FalseCondition() {
         Boolean condition = false;
         assertThat(BooleanUtils.isNotTrue(condition)).isTrue();
     }
+
     @Test
     public void testIsNotTrue_TrueCondition() {
         Boolean condition = true;
@@ -49,11 +53,13 @@ public class BooleanUtilsTest {
         Boolean condition = null;
         assertThat(BooleanUtils.isFalse(condition)).isTrue();
     }
+
     @Test
     public void testIsFalse_FalseCondition() {
         Boolean condition = false;
         assertThat(BooleanUtils.isFalse(condition)).isTrue();
     }
+
     @Test
     public void testIsFalse_TrueCondition() {
         Boolean condition = true;
@@ -65,11 +71,13 @@ public class BooleanUtilsTest {
         Boolean condition = null;
         assertThat(BooleanUtils.isNotFalse(condition)).isFalse();
     }
+
     @Test
     public void testIsNotFalse_FalseCondition() {
         Boolean condition = false;
         assertThat(BooleanUtils.isNotFalse(condition)).isFalse();
     }
+
     @Test
     public void testIsNotFalse_TrueCondition() {
         Boolean condition = true;

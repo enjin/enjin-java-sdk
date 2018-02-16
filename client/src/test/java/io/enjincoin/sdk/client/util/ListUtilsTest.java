@@ -20,7 +20,7 @@ public class ListUtilsTest {
     @Test
     public void testIsEmpty_List_False() {
         List list = new ArrayList() {{
-            add("value");
+            this.add("value");
         }};
         assertThat(ListUtils.isEmpty(list)).isFalse();
     }
@@ -57,7 +57,7 @@ public class ListUtilsTest {
     @Test
     public void testIsNotEmpty_List_True() {
         List list = new ArrayList() {{
-            add("value");
+            this.add("value");
         }};
         assertThat(ListUtils.isNotEmpty(list)).isTrue();
     }
@@ -66,7 +66,7 @@ public class ListUtilsTest {
     @Test
     public void testIsEmpty_OptionalList_False() {
         Optional<List> list = Optional.of(new ArrayList() {{
-            add("value");
+            this.add("value");
         }});
         assertThat(ListUtils.isEmpty(list)).isFalse();
     }
@@ -96,7 +96,7 @@ public class ListUtilsTest {
     @Test
     public void testIsNotEmpty_OptionalList_True() {
         Optional<List> list = Optional.of(new ArrayList() {{
-            add("value");
+            this.add("value");
         }});
         assertThat(ListUtils.isNotEmpty(list)).isTrue();
     }

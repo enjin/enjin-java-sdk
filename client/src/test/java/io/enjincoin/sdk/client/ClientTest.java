@@ -1,24 +1,24 @@
-package io.enjincoin.sdk.client.service;
+package io.enjincoin.sdk.client;
 
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.config.ImmutableConfig;
 import io.enjincoin.sdk.client.config.ImmutablePlatform;
 import io.enjincoin.sdk.client.config.Platform;
-import io.enjincoin.sdk.client.service.events.EventsService;
-import io.enjincoin.sdk.client.service.identities.IdentitiesService;
+import io.enjincoin.sdk.client.service.events.SynchronousEventsService;
+import io.enjincoin.sdk.client.service.identities.SynchronousIdentitiesService;
 import io.enjincoin.sdk.client.service.notifications.NotificationsService;
-import io.enjincoin.sdk.client.service.platform.PlatformService;
-import io.enjincoin.sdk.client.service.tokens.TokensService;
-import io.enjincoin.sdk.client.service.transactionrequests.TransactionRequestsService;
+import io.enjincoin.sdk.client.service.platform.SynchronousPlatformService;
+import io.enjincoin.sdk.client.service.tokens.SynchronousTokensService;
+import io.enjincoin.sdk.client.service.transactionrequests.SynchronousTransactionRequestsService;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class EnjinCoinClientTest {
+public class ClientTest {
 
-    EnjinCoinClient enjinCoinClient;
-    Config enjinConfig;
+    private ClientImpl client;
+    private Config config;
 
     @Before
     public void setUp() {
@@ -28,86 +28,86 @@ public class EnjinCoinClientTest {
                 .setProtocol("http")
                 .build();
 
-        enjinConfig = ImmutableConfig.builder()
+        this.config = ImmutableConfig.builder()
                 .setInTestMode(false)
                 .setTotalExecutors(1)
                 .setTrustedPlatform(trustedPlatform)
                 .build();
 
-        enjinCoinClient = new EnjinCoinClient(enjinConfig);
+        this.client = new ClientImpl(this.config);
     }
 
     @Test
     public void testContructor_EnjinConfigIsNull() {
-        enjinConfig = null;
-        enjinCoinClient = new EnjinCoinClient(enjinConfig);
-        assertThat(enjinCoinClient).isNotNull();
+        this.config = null;
+        this.client = new ClientImpl(this.config);
+        assertThat(this.client).isNotNull();
     }
 
     @Test
     public void testContructor() {
-        enjinCoinClient = new EnjinCoinClient(enjinConfig);
-        assertThat(enjinCoinClient).isNotNull();
+        this.client = new ClientImpl(this.config);
+        assertThat(this.client).isNotNull();
     }
 
     @Test
     public void testGetEventsService() {
-        EventsService eventsService = enjinCoinClient.getEventsService();
+        SynchronousEventsService eventsService = this.client.getEventsService();
         assertThat(eventsService).isNotNull();
 
         //Second time around - the existing service should be returned
-        EventsService eventsService2 = enjinCoinClient.getEventsService();
+        SynchronousEventsService eventsService2 = this.client.getEventsService();
         assertThat(eventsService2).isNotNull().isSameAs(eventsService);
     }
 
     @Test
     public void testGetIdentitiesService() {
-        IdentitiesService identitiesService = enjinCoinClient.getIdentitiesService();
+        SynchronousIdentitiesService identitiesService = this.client.getIdentitiesService();
         assertThat(identitiesService).isNotNull();
 
         //Second time around - the existing service should be returned
-        IdentitiesService identitiesService2 = enjinCoinClient.getIdentitiesService();
+        SynchronousIdentitiesService identitiesService2 = this.client.getIdentitiesService();
         assertThat(identitiesService2).isNotNull().isSameAs(identitiesService);
     }
 
     @Test
     public void testGetTokensService() {
-        TokensService tokensService = enjinCoinClient.getTokensService();
+        SynchronousTokensService tokensService = this.client.getTokensService();
         assertThat(tokensService).isNotNull();
 
         //Second time around - the existing service should be returned
-        TokensService tokensService2 = enjinCoinClient.getTokensService();
+        SynchronousTokensService tokensService2 = this.client.getTokensService();
         assertThat(tokensService2).isNotNull().isSameAs(tokensService);
     }
 
     @Test
     public void testGetTransactionRequestsService() {
-        TransactionRequestsService transactionRequestsService = enjinCoinClient.getTransactionRequestsService();
+        SynchronousTransactionRequestsService transactionRequestsService = this.client.getTransactionRequestsService();
         assertThat(transactionRequestsService).isNotNull();
 
         //Second time around - the existing service should be returned
-        TransactionRequestsService transactionRequestsService2 = enjinCoinClient.getTransactionRequestsService();
+        SynchronousTransactionRequestsService transactionRequestsService2 = this.client.getTransactionRequestsService();
         assertThat(transactionRequestsService2).isNotNull().isSameAs(transactionRequestsService);
     }
 
 
     @Test
     public void testGetNotificationsService() {
-        NotificationsService notificationsService = enjinCoinClient.getNotificationsService();
+        NotificationsService notificationsService = this.client.getNotificationsService();
         assertThat(notificationsService).isNotNull();
 
         //Second time around - the existing service should be returned
-        NotificationsService notificationsService2 = enjinCoinClient.getNotificationsService();
+        NotificationsService notificationsService2 = this.client.getNotificationsService();
         assertThat(notificationsService2).isNotNull().isSameAs(notificationsService);
     }
 
     @Test
     public void testGetPlatformService() {
-        PlatformService platformService = enjinCoinClient.getPlatformService();
+        SynchronousPlatformService platformService = this.client.getPlatformService();
         assertThat(platformService).isNotNull();
 
         //Second time around - the existing service should be returned
-        PlatformService platformService2 = enjinCoinClient.getPlatformService();
+        SynchronousPlatformService platformService2 = this.client.getPlatformService();
         assertThat(platformService2).isNotNull().isSameAs(platformService2);
     }
 }

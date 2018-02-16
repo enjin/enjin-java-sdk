@@ -1,18 +1,7 @@
 package io.enjincoin.sdk.client.service.platform;
 
-import io.enjincoin.sdk.client.vo.platform.GetPlatformAuthRequestVO;
-import io.enjincoin.sdk.client.vo.platform.GetPlatformAuthResponseVO;
+import io.enjincoin.sdk.client.service.platform.AsynchronousPlatformService;
+import io.enjincoin.sdk.client.service.platform.SynchronousPlatformService;
 
-/**
- * <p>Platform service interface.</p>
- */
-public interface PlatformService {
-
-    /**
-     * Method to get the auth details.
-     *
-     * @param platformAuthRequestVO - get platform auth request vo
-     * @return GetPlatformAuthResponseVO
-     */
-    GetPlatformAuthResponseVO getAuth(GetPlatformAuthRequestVO platformAuthRequestVO);
+public interface PlatformService extends SynchronousPlatformService, AsynchronousPlatformService {
 }

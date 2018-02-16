@@ -1,4 +1,4 @@
-package io.enjincoin.sdk.client.service;
+package io.enjincoin.sdk.client;
 
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.config.ImmutableConfig;
@@ -11,8 +11,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class ClientsTest {
 
-    Clients clients;
-    Config enjinConfig;
+    private Clients clients;
+    private Config config;
 
     @Before
     public void setUp() {
@@ -22,7 +22,7 @@ public class ClientsTest {
                 .setProtocol("http")
                 .build();
 
-        enjinConfig = ImmutableConfig.builder()
+        this.config = ImmutableConfig.builder()
                 .setInTestMode(false)
                 .setTotalExecutors(1)
                 .setTrustedPlatform(trustedPlatform)
@@ -31,19 +31,19 @@ public class ClientsTest {
 
     @Test
     public void testContructor() {
-        clients = new Clients();
-        assertThat(clients).isNotNull();
+        this.clients = new Clients();
+        assertThat(this.clients).isNotNull();
     }
 
     @Test
     public void testLoadSyncClient() {
-        EnjinCoin enjinCoin = Clients.sync(enjinConfig);
-        assertThat(enjinCoin).isNotNull();
+        Client client = Clients.create(this.config);
+        assertThat(client).isNotNull();
     }
 
     @Test
     public void testLoadAsyncClient() {
-        EnjinCoinAsync enjinCoinAsync = Clients.async(enjinConfig);
+        Client enjinCoinAsync = Clients.create(this.config);
         assertThat(enjinCoinAsync).isNotNull();
     }
 }

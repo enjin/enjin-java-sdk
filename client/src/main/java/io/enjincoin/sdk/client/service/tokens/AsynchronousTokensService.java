@@ -10,20 +10,23 @@ import java.util.concurrent.CompletableFuture;
 /**
  * Asynchronous Tokens service interface.
  */
-public interface TokensAsyncService extends TokensService {
+public interface AsynchronousTokensService {
 
     /**
      * Method to get a token.
      *
      * @param getTokenRequestVO - token request object
+     *
      * @return - GetTokenResponseVO
      */
-    CompletableFuture<GetTokenResponseVO[]> getTokenAsync(GetTokenRequestVO getTokenRequestVO);
+    CompletableFuture<GetTokenResponseVO[]> getTokensAsync(GetTokenRequestVO getTokenRequestVO);
 
     /**
      * Method to get the token balance.
+     *
      * @param getTokenBalanceRequestVO - token balance request object
+     *
      * @return - GetTokenBalanceResponseVO
      */
-    CompletableFuture<GetTokenBalanceResponseVO[]> getTokenBalanceAsync(GetTokenBalanceRequestVO getTokenBalanceRequestVO);
+    CompletableFuture<GetTokenBalanceResponseVO[]> getTokenBalancesAsync(GetTokenBalanceRequestVO getTokenBalanceRequestVO);
 }

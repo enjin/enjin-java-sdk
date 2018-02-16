@@ -3,7 +3,7 @@ package io.enjincoin.sdk.client.util;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.TypeAdapterFactory;
-import io.enjincoin.sdk.client.service.EnjinCoin;
+import io.enjincoin.sdk.client.Client;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +16,13 @@ import java.util.ServiceLoader;
  */
 public final class GsonUtils {
 
-    /** Standard gson element. **/
+    /**
+     * Standard gson element.
+     **/
     public static final Gson GSON;
-    /** Gson element with pretty print configured. **/
+    /**
+     * Gson element with pretty print configured.
+     **/
     public static final Gson GSON_PRETTY_PRINT;
 
     static {
@@ -66,13 +70,14 @@ public final class GsonUtils {
      * @return ServiceLoader
      */
     public static ServiceLoader<TypeAdapterFactory> getTypeAdapterFactoryServiceLoader() {
-        return getTypeAdapterFactoryServiceLoader(EnjinCoin.class.getClassLoader());
+        return getTypeAdapterFactoryServiceLoader(Client.class.getClassLoader());
     }
 
     /**
      * Method to get the type adapter factory service loader for the given ClassLoader.
      *
      * @param classLoader the given ClassLoader
+     *
      * @return ServiceLoader
      */
     public static ServiceLoader<TypeAdapterFactory> getTypeAdapterFactoryServiceLoader(final ClassLoader classLoader) {

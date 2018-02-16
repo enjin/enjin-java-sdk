@@ -17,6 +17,7 @@ public abstract class CancelTransactionRequestRequestVO {
 
     /**
      * Method to get the auth.
+     *
      * @return Optional
      */
     @SerializedName("auth")
@@ -24,6 +25,7 @@ public abstract class CancelTransactionRequestRequestVO {
 
     /**
      * Method to get the txrId.
+     *
      * @return Optional
      */
     @SerializedName("txr_id")
@@ -34,7 +36,7 @@ public abstract class CancelTransactionRequestRequestVO {
      */
     @Override
     public String toString() {
-        return "CancelTransactionRequestRequestVO [auth=" + getAuth().orElse(null) + ", txrId=" + getTxrId().orElse(null) + "]";
+        return "CancelTransactionRequestRequestVO [auth=" + this.getAuth().orElse(null) + ", txrId=" + this.getTxrId().orElse(null) + "]";
     }
 
 }

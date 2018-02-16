@@ -7,20 +7,22 @@ import java.util.concurrent.CompletableFuture;
 /**
  * Asynchronous Identities service interface.
  */
-public interface IdentitiesAsyncService extends IdentitiesService {
+public interface AsynchronousIdentitiesService {
 
     /**
      * Method to get an identity.
      *
      * @param request - get identity request vo
+     *
      * @return - GetIdentityResponseVO
      */
-    CompletableFuture<GetIdentityResponseVO[]> getIdentityAsync(GetIdentityRequestVO request);
+    CompletableFuture<GetIdentityResponseVO[]> getIdentitiesAsync(GetIdentityRequestVO request);
 
     /**
      * Method to create an identity.
      *
      * @param request - create identity request vo
+     *
      * @return - CreateIdentityResponseVO
      */
     CompletableFuture<CreateIdentityResponseVO> createIdentityAsync(CreateIdentityRequestVO request);
@@ -29,6 +31,7 @@ public interface IdentitiesAsyncService extends IdentitiesService {
      * Method to update an identity.
      *
      * @param request - update identity request vo
+     *
      * @return - UpdateIdentityResponseVO
      */
     CompletableFuture<UpdateIdentityResponseVO> updateIdentityAsync(UpdateIdentityRequestVO request);
@@ -37,6 +40,7 @@ public interface IdentitiesAsyncService extends IdentitiesService {
      * Method to delete an identity.
      *
      * @param request - delete identity request vo
+     *
      * @return - DeleteIdentityResponseVO
      */
     CompletableFuture<DeleteIdentityResponseVO> deleteIdentityAsync(DeleteIdentityRequestVO request);

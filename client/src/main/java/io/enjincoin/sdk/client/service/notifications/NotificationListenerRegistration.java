@@ -9,14 +9,22 @@ import io.enjincoin.sdk.client.enums.NotificationType;
  */
 public class NotificationListenerRegistration {
 
-    /** All All Matchers Event. **/
+    /**
+     * All All Matchers Event.
+     **/
     public static final EventMatcher ALLOW_ALL_MATCHER = event -> true;
-    /** All No Matchers Event. **/
+    /**
+     * All No Matchers Event.
+     **/
     public static final EventMatcher ALLOW_NONE_MATCHER = event -> false;
 
-    /** Notification Listener. **/
+    /**
+     * Notification Listener.
+     **/
     private NotificationListener listener;
-    /** Event Matcher. **/
+    /**
+     * Event Matcher.
+     **/
     private EventMatcher eventMatcher = ALLOW_ALL_MATCHER;
 
     /**
@@ -31,7 +39,7 @@ public class NotificationListenerRegistration {
     /**
      * Class constructor.
      *
-     * @param listener to use
+     * @param listener     to use
      * @param eventMatcher to match against
      */
     protected NotificationListenerRegistration(final NotificationListener listener, final EventMatcher eventMatcher) {
@@ -45,7 +53,7 @@ public class NotificationListenerRegistration {
      * @return NotificationListener
      */
     public NotificationListener getListener() {
-        return listener;
+        return this.listener;
     }
 
     /**
@@ -54,7 +62,7 @@ public class NotificationListenerRegistration {
      * @return EventMatcher
      */
     public EventMatcher getEventMatcher() {
-        return eventMatcher;
+        return this.eventMatcher;
     }
 
     /**
@@ -64,30 +72,37 @@ public class NotificationListenerRegistration {
      */
     public static class RegistrationListenerConfiguration<T extends RegistrationListenerConfiguration<T>> {
 
-        /** Notification Service. **/
+        /**
+         * Notification Service.
+         **/
         private NotificationsService service;
-        /** Notification Listener. **/
+        /**
+         * Notification Listener.
+         **/
         private NotificationListener listener;
 
-        /** Event Matcher. **/
+        /**
+         * Event Matcher.
+         **/
         private EventMatcher eventMatcher = ALLOW_ALL_MATCHER;
 
         /**
          * Class Constructor.
          *
-         * @param service to use
+         * @param service  to use
          * @param listener to use
          */
         protected RegistrationListenerConfiguration(final NotificationsService service, final NotificationListener listener) {
             this.service = service;
             this.listener = listener;
-            detectAndApplyListenerAnnotations();
+            this.detectAndApplyListenerAnnotations();
         }
 
         /**
          * Method to match against an event matcher.
          *
          * @param eventMatcher to check
+         *
          * @return T
          */
         @SuppressWarnings("unchecked")
@@ -100,20 +115,22 @@ public class NotificationListenerRegistration {
          * Method to check if the notification type is allowed.
          *
          * @param types to check
+         *
          * @return T
          */
         public T withAllowedEvents(final NotificationType... types) {
-            return withMatcher(types == null ? null : event -> event.getNotificationType().in(types));
+            return this.withMatcher(types == null ? null : event -> event.getNotificationType().in(types));
         }
 
         /**
          * Method to check if the notification type is ignored.
          *
          * @param types to check
+         *
          * @return T
          */
         public T withIgnoredEvents(final NotificationType... types) {
-            return withMatcher(types == null ? null : event -> !event.getNotificationType().in(types));
+            return this.withMatcher(types == null ? null : event -> !event.getNotificationType().in(types));
         }
 
         /**
@@ -124,7 +141,7 @@ public class NotificationListenerRegistration {
         public NotificationListenerRegistration register() {
             NotificationListenerRegistration registration = null;
             if (this.service != null && this.listener != null) {
-                registration = new NotificationListenerRegistration(listener, eventMatcher);
+                registration = new NotificationListenerRegistration(this.listener, this.eventMatcher);
                 this.service.addNotificationListenerRegistration(registration);
             }
             return registration;
@@ -139,9 +156,9 @@ public class NotificationListenerRegistration {
                 if (clazz.isAnnotationPresent(EventFilter.class)) {
                     EventFilter filter = clazz.getAnnotation(EventFilter.class);
                     if (filter.allow()) {
-                        withAllowedEvents(filter.value());
+                        this.withAllowedEvents(filter.value());
                     } else {
-                        withIgnoredEvents(filter.value());
+                        this.withIgnoredEvents(filter.value());
                     }
                 }
             }
@@ -151,8 +168,9 @@ public class NotificationListenerRegistration {
     /**
      * Method to configure a RegistrationListener.
      *
-     * @param service to use
+     * @param service  to use
      * @param listener to use
+     *
      * @return RegistrationListenerConfiguration
      */
     @SuppressWarnings("rawtypes")

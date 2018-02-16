@@ -11,6 +11,7 @@ import io.enjincoin.sdk.client.vo.transactionrequest.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 import java.util.logging.Logger;
 
 /**
@@ -35,7 +36,7 @@ public class TransactionRequestsServiceImpl extends BaseService implements Trans
     }
 
     @Override
-    public final GetTransactionRequestResponseVO[] getTransactionRequest(final GetTransactionRequestRequestVO request) {
+    public final GetTransactionRequestResponseVO[] getTransactionRequestsSync(final GetTransactionRequestRequestVO request) {
         GetTransactionRequestResponseVO[] response = null;
 
         if (ObjectUtils.isNull(request)) {
@@ -70,14 +71,14 @@ public class TransactionRequestsServiceImpl extends BaseService implements Trans
         // Construct new request
         String method = Constants.METHOD_TRANSACTION_REQUESTS_GET;
 
-        response = (GetTransactionRequestResponseVO[]) getJsonRpcUtils().sendJsonRpcRequest(getTransactionRequestsUrl(),
+        response = (GetTransactionRequestResponseVO[]) this.getJsonRpcUtils().sendJsonRpcRequest(this.getTransactionRequestsUrl(),
                 GetTransactionRequestResponseVO[].class, method, params);
 
         return response;
     }
 
     @Override
-    public final CreateTransactionRequestResponseVO createTransactionRequest(final CreateTransactionRequestRequestVO request) {
+    public final CreateTransactionRequestResponseVO createTransactionRequestSync(final CreateTransactionRequestRequestVO request) {
         CreateTransactionRequestResponseVO response = null;
 
         if (ObjectUtils.isNull(request)) {
@@ -104,14 +105,14 @@ public class TransactionRequestsServiceImpl extends BaseService implements Trans
         // Construct new request
         String method = Constants.METHOD_TRANSACTION_REQUESTS_CREATE;
 
-        response = (CreateTransactionRequestResponseVO) getJsonRpcUtils().sendJsonRpcRequest(getTransactionRequestsUrl(),
+        response = (CreateTransactionRequestResponseVO) this.getJsonRpcUtils().sendJsonRpcRequest(this.getTransactionRequestsUrl(),
                 CreateTransactionRequestResponseVO.class, method, params);
 
         return response;
     }
 
     @Override
-    public final CancelTransactionRequestResponseVO cancelTransactionRequest(final CancelTransactionRequestRequestVO request) {
+    public final CancelTransactionRequestResponseVO cancelTransactionRequestSync(final CancelTransactionRequestRequestVO request) {
         CancelTransactionRequestResponseVO response = null;
 
         if (ObjectUtils.isNull(request)) {
@@ -131,11 +132,26 @@ public class TransactionRequestsServiceImpl extends BaseService implements Trans
         // Construct new request
         String method = Constants.METHOD_TRANSACTION_REQUESTS_CANCEL;
 
-        Boolean result = (Boolean) getJsonRpcUtils().sendJsonRpcRequest(getTransactionRequestsUrl(), Boolean.class, method, params);
+        Boolean result = (Boolean) this.getJsonRpcUtils().sendJsonRpcRequest(this.getTransactionRequestsUrl(), Boolean.class, method, params);
 
         response = ImmutableCancelTransactionRequestResponseVO.builder().setResult(result).build();
 
         return response;
+    }
+
+    @Override
+    public CompletableFuture<GetTransactionRequestResponseVO[]> getTransactionRequestsAsync(final GetTransactionRequestRequestVO request) {
+        return CompletableFuture.supplyAsync(() -> this.getTransactionRequestsSync(request), this.getExecutorService());
+    }
+
+    @Override
+    public CompletableFuture<CreateTransactionRequestResponseVO> createTransactionRequestAsync(final CreateTransactionRequestRequestVO request) {
+        return CompletableFuture.supplyAsync(() -> this.createTransactionRequestSync(request), this.getExecutorService());
+    }
+
+    @Override
+    public CompletableFuture<CancelTransactionRequestResponseVO> cancelTransactionRequestAsync(final CancelTransactionRequestRequestVO request) {
+        return CompletableFuture.supplyAsync(() -> this.cancelTransactionRequestSync(request), this.getExecutorService());
     }
 
 }

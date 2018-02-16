@@ -85,9 +85,9 @@ public abstract class GetTransactionRequestResponseVO {
      */
     @Override
     public String toString() {
-        return "GetTransactionRequestResponseVO [txrId=" + getTxrId().orElse(null) + ", identityMap=" + getIdentityMap().orElse(null) + ", recipientMap="
-                + getRecipientMap().orElse(null) + ", type=" + getType().orElse(null) + ", icon=" + getIcon().orElse(null) + ", title="
-                + getTitle().orElse(null) + ", valueMap=" + getValueMap().orElse(null) + ", state=" + getState().orElse(null) + "]";
+        return "GetTransactionRequestResponseVO [txrId=" + this.getTxrId().orElse(null) + ", identityMap=" + this.getIdentityMap().orElse(null) + ", recipientMap="
+                + this.getRecipientMap().orElse(null) + ", type=" + this.getType().orElse(null) + ", icon=" + this.getIcon().orElse(null) + ", title="
+                + this.getTitle().orElse(null) + ", valueMap=" + this.getValueMap().orElse(null) + ", state=" + this.getState().orElse(null) + "]";
     }
 
 }

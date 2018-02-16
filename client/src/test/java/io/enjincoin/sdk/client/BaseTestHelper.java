@@ -8,13 +8,13 @@ import org.junit.Ignore;
 
 /**
  * <p>Utility class used when running test.</p>
- *
  */
 @Ignore
 public class BaseTestHelper {
 
     /**
      * Method to get the endjinConfig
+     *
      * @return
      */
     public static Config getEnjinConfig() {

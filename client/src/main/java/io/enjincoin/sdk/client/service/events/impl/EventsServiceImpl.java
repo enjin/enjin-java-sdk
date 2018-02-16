@@ -12,14 +12,15 @@ import io.enjincoin.sdk.client.vo.event.GetEventResponseVO;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 import java.util.logging.Logger;
 
 /**
  * <p>
- * Synchronous implementation of EventsService.
+ * Asynchronous implementation of SynchronousEventsService.
  * </p>
  */
-public class EventsServiceImpl extends BaseService implements EventsService {
+public final class EventsServiceImpl extends BaseService implements EventsService {
 
     /**
      * Logger used by this class.
@@ -36,7 +37,12 @@ public class EventsServiceImpl extends BaseService implements EventsService {
     }
 
     @Override
-    public final GetEventResponseVO[] getEvent(final GetEventRequestVO getEventRequestVO) {
+    public CompletableFuture<GetEventResponseVO[]> getEventsAsync(final GetEventRequestVO request) {
+        return CompletableFuture.supplyAsync(() -> this.getEventsSync(request), this.getExecutorService());
+    }
+
+    @Override
+    public final GetEventResponseVO[] getEventsSync(final GetEventRequestVO getEventRequestVO) {
         GetEventResponseVO[] response = null;
 
         if (ObjectUtils.isNull(getEventRequestVO)) {
@@ -67,7 +73,7 @@ public class EventsServiceImpl extends BaseService implements EventsService {
 
         // Construct new request
         String method = Constants.METHOD_EVENTS_GET;
-        response = (GetEventResponseVO[]) getJsonRpcUtils().sendJsonRpcRequest(getEventsUrl(), GetEventResponseVO[].class, method, params);
+        response = (GetEventResponseVO[]) this.getJsonRpcUtils().sendJsonRpcRequest(this.getEventsUrl(), GetEventResponseVO[].class, method, params);
         return response;
     }
 

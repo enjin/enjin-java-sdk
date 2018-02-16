@@ -18,6 +18,7 @@ public abstract class UpdateIdentityResponseVO {
 
     /**
      * Method to get the identityMap.
+     *
      * @return Optional
      */
     @SkipNulls
@@ -26,11 +27,12 @@ public abstract class UpdateIdentityResponseVO {
 
     /**
      * Class toString method.
+     *
      * @return String
      */
     @Override
     public String toString() {
-        return "UpdateIdentityResponseVO [identityMap=" + getIdentityMap().orElse(null) + "]";
+        return "UpdateIdentityResponseVO [identityMap=" + this.getIdentityMap().orElse(null) + "]";
     }
 
 }

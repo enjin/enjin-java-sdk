@@ -15,6 +15,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -22,18 +23,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 @PrepareForTest(PlatformServiceImpl.class)
 public class PlatformServiceTest {
 
-    PlatformServiceImpl platformService;
-    Config enjinConfig;
+    private PlatformServiceImpl service;
+    private Config config;
 
     @Before
     public void setUp() {
-        enjinConfig = BaseTestHelper.getEnjinConfig();
+        this.config = BaseTestHelper.getEnjinConfig();
     }
 
     @Test
     public void testContructor() {
-        platformService = new PlatformServiceImpl(enjinConfig);
-        assertThat(platformService).isNotNull()
+        this.service = new PlatformServiceImpl(this.config);
+        assertThat(this.service).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty());
     }
 
@@ -41,19 +42,19 @@ public class PlatformServiceTest {
     public void testGetPlatform_GetPlatformAuthRequestVOIsNull() {
         GetPlatformAuthRequestVO getAuthAuthRequestVO = null;
 
-        platformService = new PlatformServiceImpl(enjinConfig);
-        GetPlatformAuthResponseVO getAuthAuthResponseVO = platformService.getAuth(getAuthAuthRequestVO);
+        this.service = new PlatformServiceImpl(this.config);
+        GetPlatformAuthResponseVO getAuthAuthResponseVO = this.service.getAuthSync(getAuthAuthRequestVO);
         assertThat(getAuthAuthResponseVO).isNull();
     }
 
     @Test
     public void testGetPlatform_AuthIsNull() {
         GetPlatformAuthRequestVO getAuthAuthRequestVO = ImmutableGetPlatformAuthRequestVO.builder()
-        	     .setAuth((String)null)
+                .setAuth((String) null)
                 .build();
 
-        platformService = new PlatformServiceImpl(enjinConfig);
-        GetPlatformAuthResponseVO getAuthAuthResponseVO = platformService.getAuth(getAuthAuthRequestVO);
+        this.service = new PlatformServiceImpl(this.config);
+        GetPlatformAuthResponseVO getAuthAuthResponseVO = this.service.getAuthSync(getAuthAuthRequestVO);
         assertThat(getAuthAuthResponseVO).isNull();
     }
 
@@ -63,11 +64,10 @@ public class PlatformServiceTest {
                 .setAuth("")
                 .build();
 
-        platformService = new PlatformServiceImpl(enjinConfig);
-        GetPlatformAuthResponseVO getAuthAuthResponseVO = platformService.getAuth(getAuthAuthRequestVO);
+        this.service = new PlatformServiceImpl(this.config);
+        GetPlatformAuthResponseVO getAuthAuthResponseVO = this.service.getAuthSync(getAuthAuthRequestVO);
         assertThat(getAuthAuthResponseVO).isNull();
     }
-
 
 
     @SuppressWarnings("unchecked")
@@ -83,15 +83,15 @@ public class PlatformServiceTest {
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
         Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetPlatformAuthResponseVO);
 
-        platformService = new PlatformServiceImpl(enjinConfig);
-        GetPlatformAuthResponseVO getAuthAuthResponseVO = platformService.getAuth(getAuthAuthRequestVO);
+        this.service = new PlatformServiceImpl(this.config);
+        GetPlatformAuthResponseVO getAuthAuthResponseVO = this.service.getAuthSync(getAuthAuthRequestVO);
         assertThat(getAuthAuthResponseVO).isNull();
 
         PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
         Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
     }
 
-    @SuppressWarnings({ "unchecked", "serial" })
+    @SuppressWarnings({"unchecked", "serial"})
     @Test
     public void testGetPlatform_Success() throws Exception {
         GetPlatformAuthRequestVO getPlatformAuthRequestVO = ImmutableGetPlatformAuthRequestVO.builder()
@@ -103,12 +103,12 @@ public class PlatformServiceTest {
                 .setMethod("pusher")
                 .setClientInfoMap(new HashMap<String, Object>() {
                     {
-                        put("app_key", "XXXX");
-                        put("cluster", "us2");
+                        this.put("app_key", "XXXX");
+                        this.put("cluster", "us2");
                     }
                 }).setChannelsMap(new HashMap<String, Object>() {
                     {
-                        put("server", "channel_name");
+                        this.put("server", "channel_name");
                     }
                 }).setRole("game_server").build();
 
@@ -121,16 +121,63 @@ public class PlatformServiceTest {
         PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
         Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class))).thenReturn(returnedGetPlatformAuthResponseVO);
 
-        platformService = new PlatformServiceImpl(enjinConfig);
-        GetPlatformAuthResponseVO getPlatformAuthResponseVO = platformService.getAuth(getPlatformAuthRequestVO);
+        this.service = new PlatformServiceImpl(this.config);
+        GetPlatformAuthResponseVO getPlatformAuthResponseVO = this.service.getAuthSync(getPlatformAuthRequestVO);
         assertThat(getPlatformAuthResponseVO).isNotNull()
-        .satisfies(o -> assertThat(o.toString()).isNotEmpty())
-        .satisfies(o -> assertThat(o.getPlatformAuthNotificationDetails()).isNotNull())
-        .satisfies(o -> assertThat(o.getPlatformAuthNotificationDetails().get()).isNotNull()
-                .satisfies(j -> assertThat(j.getMethod()).isNotEmpty())
-                .satisfies(j -> assertThat(j.getChannelsMap()).isNotEmpty())
-                .satisfies(j -> assertThat(j.getClientInfoMap()).isNotEmpty())
-                .satisfies(j -> assertThat(j.getRole()).isNotEmpty()));
+                .satisfies(o -> assertThat(o.toString()).isNotEmpty())
+                .satisfies(o -> assertThat(o.getPlatformAuthNotificationDetails()).isNotNull())
+                .satisfies(o -> assertThat(o.getPlatformAuthNotificationDetails().get()).isNotNull()
+                        .satisfies(j -> assertThat(j.getMethod()).isNotEmpty())
+                        .satisfies(j -> assertThat(j.getChannelsMap()).isNotEmpty())
+                        .satisfies(j -> assertThat(j.getClientInfoMap()).isNotEmpty())
+                        .satisfies(j -> assertThat(j.getRole()).isNotEmpty()));
+
+        PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
+        Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
+    }
+
+    @SuppressWarnings({"unchecked", "serial"})
+    @Test
+    public void testGetPlatformAsync_Success() throws Exception {
+        GetPlatformAuthRequestVO getPlatformAuthRequestVO = ImmutableGetPlatformAuthRequestVO.builder()
+                .setAuth("xxxxxxxx")
+                .build();
+
+        GetPlatformAuthDetailsResponseVO platformAuthNotificationDetails = ImmutableGetPlatformAuthDetailsResponseVO
+                .builder()
+                .setMethod("pusher")
+                .setClientInfoMap(new HashMap<String, Object>() {
+                    {
+                        this.put("app_key", "XXXX");
+                        this.put("cluster", "us2");
+                    }
+                }).setChannelsMap(new HashMap<String, Object>() {
+                    {
+                        this.put("server", "channel_name");
+                    }
+                }).setRole("game_server").build();
+
+        GetPlatformAuthResponseVO returnedGetPlatformAuthResponseVO = ImmutableGetPlatformAuthResponseVO
+                .builder()
+                .setPlatformAuthNotificationDetails(platformAuthNotificationDetails)
+                .build();
+
+        JsonRpcUtils mockJsonRpcUtils = PowerMockito.mock(JsonRpcUtils.class);
+        PowerMockito.whenNew(JsonRpcUtils.class).withNoArguments().thenReturn(mockJsonRpcUtils);
+        Mockito.when(mockJsonRpcUtils.sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class)))
+                .thenReturn(returnedGetPlatformAuthResponseVO);
+
+        this.service = new PlatformServiceImpl(this.config);
+        CompletableFuture<GetPlatformAuthResponseVO> getPlatformAuthResponseCompletableFutureVO = this.service.getAuthAsync(getPlatformAuthRequestVO);
+        assertThat(getPlatformAuthResponseCompletableFutureVO).isNotNull();
+        assertThat(getPlatformAuthResponseCompletableFutureVO.get()).isNotNull()
+                .satisfies(o -> assertThat(o.toString()).isNotEmpty())
+                .satisfies(o -> assertThat(o.getPlatformAuthNotificationDetails()).isNotNull())
+                .satisfies(o -> assertThat(o.getPlatformAuthNotificationDetails().get()).isNotNull()
+                        .satisfies(j -> assertThat(j.getMethod()).isNotEmpty())
+                        .satisfies(j -> assertThat(j.getChannelsMap()).isNotEmpty())
+                        .satisfies(j -> assertThat(j.getClientInfoMap()).isNotEmpty())
+                        .satisfies(j -> assertThat(j.getRole()).isNotEmpty()));
 
         PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
         Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));

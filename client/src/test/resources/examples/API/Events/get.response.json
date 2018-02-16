@@ -1,155 +1,155 @@
 {
-	"jsonrpc": "2.0",
-	"result": [
-		{
-			"event_id": "123456789",
-			"event_type": "identity_created",
-			"timestamp": "1510000000",
-			"app_id": "1234",
-			"data": {
-				"identity": {
-					"identity_id": "123456",
-					"uuid": "069a79f4-44e9-4726-a5be-fca90e38aaf5",
-					"player_name": "notch"
-				}
-			}
-		},
-		{
-			"event_id": "123456790",
-			"event_type": "identity_linked",
-			"timestamp": "1510000001",
-			"app_id": "1234",
-			"data": {
-				"identity": {
-					"identity_id": "123456",
-					"ethereum_address": "0x0000000000000000000000000000000000000000",
-					"uuid": "069a79f4-44e9-4726-a5be-fca90e38aaf5",
-					"player_name": "notch"
-				}
-			}
-		},
-		{
-			"event_id": "123456791",
-			"event_type": "identity_updated",
-			"timestamp": "1510000002",
-			"app_id": "1234",
-			"data": {
-				"identity": {
-					"identity_id": "123456",
-					"ethereum_address": "0x0000000000000000000000000000000000000000",
-					"uuid": "069a79f4-44e9-4726-a5be-fca90e38aaf5",
-					"player_name": "notch"
-				}
-			}
-		},
-		{
-			"event_id": "123456792",
-			"event_type": "txr_confirmed",
-			"timestamp": "1510000003",
-			"app_id": "1234",
-			"data": {
-				"txr_id": "123",
-				"identity": {
-					"identity_id": "12345",
-					"player_name": "joe",
-					"ethereum_address": "0x0000000000000000000000000000000000000000"
-				},
-				"recipient": {
-					"identity_id": "54321",
-					"player_name": "alice",
-					"ethereum_address": "0x0000000000000000000000000000000000000000"
-				},
-				"type": "send",
-				"icon": "https://enjincoin.io/images/bubble.png",
-				"title": "Mineplex: /transfer alice 3 ENJ",
-				"value": {
-					"ENJ": "3000000000000000000"
-				},
-				"state": "confirmed"
-			}
-		},
-		{
-			"event_id": "123456793",
-			"event_type": "balance_updated",
-			"timestamp": "1510000004",
-			"app_id": "1234",
-			"data": {
-				"identity": {
-					"identity_id": "12345",
-					"player_name": "joe",
-					"ethereum_address": "0x0000000000000000000000000000000000000000"
-				},
-				"from": {
-					"ethereum_address": "0x0000000000000000000000000000000000000000"
-				},
-				"pending": {
-					"ENJ": "100",
-					"123456": "53"
-				},
-				"confirmed": {
-					"234567": "10",
-					"345678": "20"
-				}
-			}
-		},
-		{
-			"event_id": "123456793",
-			"event_type": "balance_melted",
-			"timestamp": "1510000004",
-			"app_id": "1234",
-			"data": {
-				"identity": {
-					"identity_id": "12345",
-					"player_name": "joe",
-					"ethereum_address": "0x0000000000000000000000000000000000000000"
-				},
-				"pending": {
-					"123456": "53"
-				},
-				"confirmed": {
-					"345678": "20"
-				},
-				"ENJ": "1000000000000000000"
-			}
-		},
-		{
-			"event_id": "123456794",
-			"event_type": "token_updated",
-			"timestamp": "1510000005",
-			"app_id": "1234",
-			"data": {
-				"token_id": "234567",
-				"creator": "0x0000000000000000000000000000000000000000",
-				"adapter": "0x0000000000000000000000000000000000000000",
-				"name": "Sword of Glory",
-				"icon": "https://enjincoin.io/images/bubble.png",
-				"totalSupply": "100000",
-				"exchangeRate": "1000000000000000000",
-				"decimals": "0",
-				"maxMeltFee": "0",
-				"meltFee": "0",
-				"transferable": "0"
-			}
-		},
-		{
-			"event_id": "123456795",
-			"event_type": "token_created",
-			"timestamp": "1510000006",
-			"app_id": "1234",
-			"data": {
-				"token_id": "234567",
-				"creator": "0x0000000000000000000000000000000000000000",
-				"adapter": "0x0000000000000000000000000000000000000000",
-				"name": "Sword of Glory",
-				"icon": "https://enjincoin.io/images/bubble.png",
-				"totalSupply": "100000",
-				"exchangeRate": "1000000000000000000",
-				"decimals": "0",
-				"maxMeltFee": "0",
-				"meltFee": "0",
-				"transferable": "0"
-			}
-		}
-	],
-	"id": "1"
+  "jsonrpc": "2.0",
+  "result": [
+    {
+      "event_id": "123456789",
+      "event_type": "identity_created",
+      "timestamp": "1510000000",
+      "app_id": "1234",
+      "data": {
+        "identity": {
+          "identity_id": "123456",
+          "uuid": "069a79f4-44e9-4726-a5be-fca90e38aaf5",
+          "player_name": "notch"
+        }
+      }
+    },
+    {
+      "event_id": "123456790",
+      "event_type": "identity_linked",
+      "timestamp": "1510000001",
+      "app_id": "1234",
+      "data": {
+        "identity": {
+          "identity_id": "123456",
+          "ethereum_address": "0x0000000000000000000000000000000000000000",
+          "uuid": "069a79f4-44e9-4726-a5be-fca90e38aaf5",
+          "player_name": "notch"
+        }
+      }
+    },
+    {
+      "event_id": "123456791",
+      "event_type": "identity_updated",
+      "timestamp": "1510000002",
+      "app_id": "1234",
+      "data": {
+        "identity": {
+          "identity_id": "123456",
+          "ethereum_address": "0x0000000000000000000000000000000000000000",
+          "uuid": "069a79f4-44e9-4726-a5be-fca90e38aaf5",
+          "player_name": "notch"
+        }
+      }
+    },
+    {
+      "event_id": "123456792",
+      "event_type": "txr_confirmed",
+      "timestamp": "1510000003",
+      "app_id": "1234",
+      "data": {
+        "txr_id": "123",
+        "identity": {
+          "identity_id": "12345",
+          "player_name": "joe",
+          "ethereum_address": "0x0000000000000000000000000000000000000000"
+        },
+        "recipient": {
+          "identity_id": "54321",
+          "player_name": "alice",
+          "ethereum_address": "0x0000000000000000000000000000000000000000"
+        },
+        "type": "send",
+        "icon": "https://enjincoin.io/images/bubble.png",
+        "title": "Mineplex: /transfer alice 3 ENJ",
+        "value": {
+          "ENJ": "3000000000000000000"
+        },
+        "state": "confirmed"
+      }
+    },
+    {
+      "event_id": "123456793",
+      "event_type": "balance_updated",
+      "timestamp": "1510000004",
+      "app_id": "1234",
+      "data": {
+        "identity": {
+          "identity_id": "12345",
+          "player_name": "joe",
+          "ethereum_address": "0x0000000000000000000000000000000000000000"
+        },
+        "from": {
+          "ethereum_address": "0x0000000000000000000000000000000000000000"
+        },
+        "pending": {
+          "ENJ": "100",
+          "123456": "53"
+        },
+        "confirmed": {
+          "234567": "10",
+          "345678": "20"
+        }
+      }
+    },
+    {
+      "event_id": "123456793",
+      "event_type": "balance_melted",
+      "timestamp": "1510000004",
+      "app_id": "1234",
+      "data": {
+        "identity": {
+          "identity_id": "12345",
+          "player_name": "joe",
+          "ethereum_address": "0x0000000000000000000000000000000000000000"
+        },
+        "pending": {
+          "123456": "53"
+        },
+        "confirmed": {
+          "345678": "20"
+        },
+        "ENJ": "1000000000000000000"
+      }
+    },
+    {
+      "event_id": "123456794",
+      "event_type": "token_updated",
+      "timestamp": "1510000005",
+      "app_id": "1234",
+      "data": {
+        "token_id": "234567",
+        "creator": "0x0000000000000000000000000000000000000000",
+        "adapter": "0x0000000000000000000000000000000000000000",
+        "name": "Sword of Glory",
+        "icon": "https://enjincoin.io/images/bubble.png",
+        "totalSupply": "100000",
+        "exchangeRate": "1000000000000000000",
+        "decimals": "0",
+        "maxMeltFee": "0",
+        "meltFee": "0",
+        "transferable": "0"
+      }
+    },
+    {
+      "event_id": "123456795",
+      "event_type": "token_created",
+      "timestamp": "1510000006",
+      "app_id": "1234",
+      "data": {
+        "token_id": "234567",
+        "creator": "0x0000000000000000000000000000000000000000",
+        "adapter": "0x0000000000000000000000000000000000000000",
+        "name": "Sword of Glory",
+        "icon": "https://enjincoin.io/images/bubble.png",
+        "totalSupply": "100000",
+        "exchangeRate": "1000000000000000000",
+        "decimals": "0",
+        "maxMeltFee": "0",
+        "meltFee": "0",
+        "transferable": "0"
+      }
+    }
+  ],
+  "id": "1"
 }

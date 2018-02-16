@@ -14,10 +14,14 @@ public class Protocol {
 
     }
 
-    /** http protocol. **/
+    /**
+     * http protocol.
+     **/
     public static final String HTTP = "http";
 
-    /** https protocol. **/
+    /**
+     * https protocol.
+     **/
     public static final String HTTPS = "https";
 
 }

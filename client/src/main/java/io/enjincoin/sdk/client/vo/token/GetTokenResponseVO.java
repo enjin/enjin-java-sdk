@@ -107,10 +107,10 @@ public abstract class GetTokenResponseVO {
      */
     @Override
     public String toString() {
-        return "GetTokenResponseVO [tokenId=" + getTokenId().orElse(null) + ", creator=" + getCreator().orElse(null) + ", adapter=" + getAdapter().orElse(null)
-                + ", name=" + getName().orElse(null) + ", icon=" + getIcon().orElse(null) + ", totalSupply=" + getTotalSupply().orElse(null) + ", exchangeRate="
-                + getExchangeRate().orElse(null) + ", decimals=" + getDecimals().orElse(null) + ", maxMeltFee=" + getMaxMeltFee().orElse(null) + ", meltFee="
-                + getMeltFee().orElse(null) + ", transferable=" + getTransferable().orElse(null) + "]";
+        return "GetTokenResponseVO [tokenId=" + this.getTokenId().orElse(null) + ", creator=" + this.getCreator().orElse(null) + ", adapter=" + this.getAdapter().orElse(null)
+                + ", name=" + this.getName().orElse(null) + ", icon=" + this.getIcon().orElse(null) + ", totalSupply=" + this.getTotalSupply().orElse(null) + ", exchangeRate="
+                + this.getExchangeRate().orElse(null) + ", decimals=" + this.getDecimals().orElse(null) + ", maxMeltFee=" + this.getMaxMeltFee().orElse(null) + ", meltFee="
+                + this.getMeltFee().orElse(null) + ", transferable=" + this.getTransferable().orElse(null) + "]";
     }
 
 }

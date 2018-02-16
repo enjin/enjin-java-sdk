@@ -202,11 +202,11 @@ public abstract class GetEventDataVO {
 
     @Override
     public String toString() {
-        return "GetEventDataVO [getIdentityMap()=" + getIdentityMap() + ", getTokenId()=" + getTokenId() + ", getCreator()=" + getCreator() + ", getAdapter()="
-                + getAdapter() + ", getName()=" + getName() + ", getIcon()=" + getIcon() + ", getTotalSupply()=" + getTotalSupply() + ", getExchangeRate()="
-                + getExchangeRate() + ", getDecimals()=" + getDecimals() + ", getMaxMeltFee()=" + getMaxMeltFee() + ", getMeltFee()=" + getMeltFee()
-                + ", getTransferable()=" + getTransferable() + ", getRecipientMap()=" + getRecipientMap() + ", getGetEventDataBalancesVO()="
-                + getGetEventDataBalancesVO() + ", getTxrId()=" + getTxrId() + ", getType()=" + getType() + ", getTitle()=" + getTitle() + ", getValueMap()="
-                + getValueMap() + ", getState()=" + getState() + "]";
+        return "GetEventDataVO [getIdentityMap()=" + this.getIdentityMap() + ", getTokenId()=" + this.getTokenId() + ", getCreator()=" + this.getCreator() + ", getAdapter()="
+                + this.getAdapter() + ", getName()=" + this.getName() + ", getIcon()=" + this.getIcon() + ", getTotalSupply()=" + this.getTotalSupply() + ", getExchangeRate()="
+                + this.getExchangeRate() + ", getDecimals()=" + this.getDecimals() + ", getMaxMeltFee()=" + this.getMaxMeltFee() + ", getMeltFee()=" + this.getMeltFee()
+                + ", getTransferable()=" + this.getTransferable() + ", getRecipientMap()=" + this.getRecipientMap() + ", getGetEventDataBalancesVO()="
+                + this.getGetEventDataBalancesVO() + ", getTxrId()=" + this.getTxrId() + ", getType()=" + this.getType() + ", getTitle()=" + this.getTitle() + ", getValueMap()="
+                + this.getValueMap() + ", getState()=" + this.getState() + "]";
     }
 }

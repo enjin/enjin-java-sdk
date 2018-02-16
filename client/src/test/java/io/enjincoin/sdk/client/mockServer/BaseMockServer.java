@@ -65,12 +65,12 @@ public class BaseMockServer {
 
     @Before
     public void setUp() {
-        startWiremockServer();
+        this.startWiremockServer();
     }
 
     @After
     public void tearDown() {
-        wireMockRule.stop();
+        this.wireMockRule.stop();
     }
 
     /**
@@ -78,14 +78,14 @@ public class BaseMockServer {
      * Note: we dont actually stop the server as we want the server to be available to requests can be mocked
      */
     private void startWiremockServer() {
-        WireMock.configureFor("localhost", wireMockRule.port());
-        wireMockRule.start();
+        WireMock.configureFor("localhost", this.wireMockRule.port());
+        this.wireMockRule.start();
 
         //Formatted with https://www.freeformatter.com/json-formatter.html
 
         //Setup the identities stubs
-        String identitiesFolder       = "Identities";
-        String identitiesGetMethod    = "get";
+        String identitiesFolder = "Identities";
+        String identitiesGetMethod = "get";
         String identitiesCreateMethod = "create";
         String identitiesUpdateMethod = "update";
         String identitiesDeleteMethod = "delete";
@@ -96,7 +96,7 @@ public class BaseMockServer {
         setUpStub(IDENTITIES_URL, identitiesFolder, identitiesDeleteMethod);
 
         //Setup the tokens stubs
-        String tokensFolder    = "Tokens";
+        String tokensFolder = "Tokens";
         String tokensGetMethod = "get";
         String tokensGetBalanceMethod = "getBalance";
 
@@ -104,8 +104,8 @@ public class BaseMockServer {
         setUpStub(TOKENS_URL, tokensFolder, tokensGetBalanceMethod);
 
         //Setup the TransactionRequests stubs
-        String transactionRequestsFolder       = "TransactionRequests";
-        String transactionRequestsGetMethod    = "get";
+        String transactionRequestsFolder = "TransactionRequests";
+        String transactionRequestsGetMethod = "get";
         String transactionRequestsCreateMethod = "create";
         String transactionRequestsCancelMethod = "cancel";
 
@@ -114,20 +114,20 @@ public class BaseMockServer {
         setUpStub(TRANSACTION_REQUESTS_URL, transactionRequestsFolder, transactionRequestsCancelMethod);
 
         //Setup the events stubs
-        String eventsFolder     = "Events";
+        String eventsFolder = "Events";
         String eventsGetMethod = "get";
 
         setUpStub(EVENTS_URL, eventsFolder, eventsGetMethod);
 
         //Setup the platform stubs
-        String platformFolder        = "Platform";
+        String platformFolder = "Platform";
         String platformGetAuthMethod = "auth";
 
         setUpStub(PLATFORM_URL, platformFolder, platformGetAuthMethod);
     }
 
     protected String getUrlFromPlatform(Platform platform) {
-        return getURL(platform.getProtocol(), platform.getHost(), platform.getPort());
+        return this.getURL(platform.getProtocol(), platform.getHost(), platform.getPort());
     }
 
     protected String getURL(String protocol, String hostname, int port) {
@@ -137,10 +137,11 @@ public class BaseMockServer {
     protected Platform getPlatform() {
         return ImmutablePlatform.builder()
                 .setHost(HOSTNAME)
-                .setPort(wireMockRule.port())
+                .setPort(this.wireMockRule.port())
                 .setProtocol(Protocol.HTTP)
                 .build();
     }
+
     protected Notification getNotification() {
         return ImmutableNotification.builder()
                 /*.setActivityTimeout(4000l)
@@ -149,6 +150,7 @@ public class BaseMockServer {
                 .setCluster("eu")*/
                 .build();
     }
+
     /**
      * Method to set up the stub
      *

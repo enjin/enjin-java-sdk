@@ -33,7 +33,7 @@ public class JsonRpcUtilsTest {
 
     @Before
     public void setUp() {
-        jsonRpcUtils = new JsonRpcUtils();
+        this.jsonRpcUtils = new JsonRpcUtils();
     }
 
     @Test
@@ -88,8 +88,8 @@ public class JsonRpcUtilsTest {
         Mockito.when(mockJSONRPC2Response.getResult()).thenReturn(responseJson);
         PowerMockito.when(JsonUtils.convertJsonToObject(Mockito.isA(Gson.class), Mockito.anyString(), Mockito.isA(Class.class))).thenReturn(createIdentityRequestVO);
 
-        jsonRpcUtils = new JsonRpcUtils();
-        Object responseObject = jsonRpcUtils.sendJsonRpcRequest(url, responseClass, method);
+        this.jsonRpcUtils = new JsonRpcUtils();
+        Object responseObject = this.jsonRpcUtils.sendJsonRpcRequest(url, responseClass, method);
         assertThat(responseObject).isNotNull();
 
         PowerMockito.verifyNew(URL.class, Mockito.times(1)).withArguments(Mockito.anyString());
@@ -107,8 +107,8 @@ public class JsonRpcUtilsTest {
         Class<?> responseClass = GetEventDataVO.class;
         String method = "method";
         Map<String, Object> params = new HashMap<>();
-        jsonRpcUtils = new JsonRpcUtils();
-        Object responseObject = jsonRpcUtils.sendJsonRpcRequest(url, responseClass, method, params);
+        this.jsonRpcUtils = new JsonRpcUtils();
+        Object responseObject = this.jsonRpcUtils.sendJsonRpcRequest(url, responseClass, method, params);
         assertThat(responseObject).isNull();
     }
 
@@ -118,8 +118,8 @@ public class JsonRpcUtilsTest {
         Class<?> responseClass = GetEventDataVO.class;
         String method = "method";
         Map<String, Object> params = new HashMap<>();
-        jsonRpcUtils = new JsonRpcUtils();
-        Object responseObject = jsonRpcUtils.sendJsonRpcRequest(url, responseClass, method, params);
+        this.jsonRpcUtils = new JsonRpcUtils();
+        Object responseObject = this.jsonRpcUtils.sendJsonRpcRequest(url, responseClass, method, params);
         assertThat(responseObject).isNull();
     }
 
@@ -129,8 +129,8 @@ public class JsonRpcUtilsTest {
         Class<?> responseClass = null;
         String method = "method";
         Map<String, Object> params = new HashMap<>();
-        jsonRpcUtils = new JsonRpcUtils();
-        Object responseObject = jsonRpcUtils.sendJsonRpcRequest(url, responseClass, method, params);
+        this.jsonRpcUtils = new JsonRpcUtils();
+        Object responseObject = this.jsonRpcUtils.sendJsonRpcRequest(url, responseClass, method, params);
         assertThat(responseObject).isNull();
     }
 
@@ -140,8 +140,8 @@ public class JsonRpcUtilsTest {
         Class<?> responseClass = GetEventDataVO.class;
         String method = "";
         Map<String, Object> params = new HashMap<>();
-        jsonRpcUtils = new JsonRpcUtils();
-        Object responseObject = jsonRpcUtils.sendJsonRpcRequest(url, responseClass, method, params);
+        this.jsonRpcUtils = new JsonRpcUtils();
+        Object responseObject = this.jsonRpcUtils.sendJsonRpcRequest(url, responseClass, method, params);
         assertThat(responseObject).isNull();
     }
 
@@ -151,8 +151,8 @@ public class JsonRpcUtilsTest {
         Class<?> responseClass = GetEventDataVO.class;
         String method = null;
         Map<String, Object> params = new HashMap<>();
-        jsonRpcUtils = new JsonRpcUtils();
-        Object responseObject = jsonRpcUtils.sendJsonRpcRequest(url, responseClass, method, params);
+        this.jsonRpcUtils = new JsonRpcUtils();
+        Object responseObject = this.jsonRpcUtils.sendJsonRpcRequest(url, responseClass, method, params);
         assertThat(responseObject).isNull();
     }
 
@@ -166,8 +166,8 @@ public class JsonRpcUtilsTest {
 
         PowerMockito.whenNew(URL.class).withArguments(Mockito.anyString()).thenThrow(new MalformedURLException());
 
-        jsonRpcUtils = new JsonRpcUtils();
-        Object responseObject = jsonRpcUtils.sendJsonRpcRequest(url, responseClass, method, params);
+        this.jsonRpcUtils = new JsonRpcUtils();
+        Object responseObject = this.jsonRpcUtils.sendJsonRpcRequest(url, responseClass, method, params);
         assertThat(responseObject).isNull();
 
         //PowerMockito.verifyNew(URL.class, Mockito.times(1)).withArguments(Mockito.anyString());
@@ -192,8 +192,8 @@ public class JsonRpcUtilsTest {
         PowerMockito.whenNew(JSONRPC2Request.class).withParameterTypes(String.class, Map.class, Object.class).withArguments(Mockito.anyString(), Mockito.isA(Map.class), Mockito.any()).thenReturn(mockJSONRPC2Request);
         Mockito.when(mockJSONRPC2Session.send(Mockito.isA(JSONRPC2Request.class))).thenThrow(new JSONRPC2SessionException("exception"));
 
-        jsonRpcUtils = new JsonRpcUtils();
-        Object responseObject = jsonRpcUtils.sendJsonRpcRequest(url, responseClass, method, params);
+        this.jsonRpcUtils = new JsonRpcUtils();
+        Object responseObject = this.jsonRpcUtils.sendJsonRpcRequest(url, responseClass, method, params);
         assertThat(responseObject).isNull();
 
         //PowerMockito.verifyNew(URL.class, Mockito.times(1)).withArguments(Mockito.anyString());
@@ -229,8 +229,8 @@ public class JsonRpcUtilsTest {
         Mockito.when(mockJSONRPC2Response.getResult()).thenReturn(responseJson);
         PowerMockito.when(JsonUtils.convertJsonToObject(Mockito.isA(Gson.class), Mockito.anyString(), Mockito.isA(Class.class))).thenReturn(createIdentityRequestVO);
 
-        jsonRpcUtils = new JsonRpcUtils();
-        Object responseObject = jsonRpcUtils.sendJsonRpcRequest(url, responseClass, method, params);
+        this.jsonRpcUtils = new JsonRpcUtils();
+        Object responseObject = this.jsonRpcUtils.sendJsonRpcRequest(url, responseClass, method, params);
         assertThat(responseObject).isNotNull();
 
         PowerMockito.verifyNew(URL.class, Mockito.times(1)).withArguments(Mockito.anyString());
@@ -267,8 +267,8 @@ public class JsonRpcUtilsTest {
         Mockito.when(mockJSONRPC2Response.getResult()).thenReturn(responseJson);
         PowerMockito.when(JsonUtils.convertJsonToObject(Mockito.isA(Gson.class), Mockito.anyString(), Mockito.isA(Class.class))).thenReturn(createIdentityRequestVO);
 
-        jsonRpcUtils = new JsonRpcUtils();
-        Object responseObject = jsonRpcUtils.sendJsonRpcRequest(url, responseClass, method, params);
+        this.jsonRpcUtils = new JsonRpcUtils();
+        Object responseObject = this.jsonRpcUtils.sendJsonRpcRequest(url, responseClass, method, params);
         assertThat(responseObject).isNotNull();
 
         PowerMockito.verifyNew(URL.class, Mockito.times(1)).withArguments(Mockito.anyString());
@@ -299,8 +299,8 @@ public class JsonRpcUtilsTest {
         PowerMockito.whenNew(JSONRPC2Request.class).withParameterTypes(String.class, Map.class, Object.class).withArguments(Mockito.anyString(), Mockito.isA(Map.class), Mockito.any()).thenReturn(mockJSONRPC2Request);
         Mockito.when(mockJSONRPC2Session.send(Mockito.isA(JSONRPC2Request.class))).thenReturn(null);
 
-        jsonRpcUtils = new JsonRpcUtils();
-        Object responseObject = jsonRpcUtils.sendJsonRpcRequest(url, responseClass, method, params);
+        this.jsonRpcUtils = new JsonRpcUtils();
+        Object responseObject = this.jsonRpcUtils.sendJsonRpcRequest(url, responseClass, method, params);
         assertThat(responseObject).isNull();
 
         //PowerMockito.verifyNew(URL.class, Mockito.times(1)).withArguments(Mockito.anyString());
@@ -334,8 +334,8 @@ public class JsonRpcUtilsTest {
         Mockito.when(mockJSONRPC2Response.getError()).thenReturn(mockJSONRPC2Error);
         Mockito.when(mockJSONRPC2Error.getMessage()).thenReturn("Error Message");
 
-        jsonRpcUtils = new JsonRpcUtils();
-        Object responseObject = jsonRpcUtils.sendJsonRpcRequest(url, responseClass, method, params);
+        this.jsonRpcUtils = new JsonRpcUtils();
+        Object responseObject = this.jsonRpcUtils.sendJsonRpcRequest(url, responseClass, method, params);
         assertThat(responseObject).isNull();
 
         //PowerMockito.verifyNew(URL.class, Mockito.times(1)).withArguments(Mockito.anyString());

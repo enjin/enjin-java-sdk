@@ -1,4 +1,4 @@
-package io.enjincoin.sdk.client.service;
+package io.enjincoin.sdk.client;
 
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.service.events.EventsService;
@@ -18,44 +18,44 @@ import io.enjincoin.sdk.client.util.ObjectUtils;
 import java.util.logging.Logger;
 
 /**
- * <p>Enjin Coin Client - Synchronous.</p>
+ * <p>Enjin Coin SyncClient - Synchronous.</p>
  * <p>All services will be instantiated from this class that will be called in a synchronous fashion.</p>
  */
-public class EnjinCoinClient implements EnjinCoin {
+public class ClientImpl implements Client {
 
     /**
      * Logger used by this class.
      */
-    private static final Logger LOGGER = Logger.getLogger(EnjinCoinClient.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ClientImpl.class.getName());
 
     /**
      * SDK configuration for this client.
      */
     private Config config;
     /**
-     * Events sync service.
+     * Events create service.
      */
     private EventsService eventsService;
     /**
-     * Identities sync service.
+     * Identities create service.
      */
     private IdentitiesService identitiesService;
     /**
-     * Tokens sync service.
+     * Tokens create service.
      */
     private TokensService tokensService;
     /**
-     * TransactionRequests sync service.
+     * TransactionRequests create service.
      */
     private TransactionRequestsService transactionRequestsService;
 
     /**
-     * Notifications sync service.
+     * Notifications create service.
      */
     private NotificationsService notificationsService;
 
     /**
-     * Platform sync service.
+     * Platform create service.
      */
     private PlatformService platformService;
 
@@ -64,7 +64,7 @@ public class EnjinCoinClient implements EnjinCoin {
      *
      * @param config - config to use
      */
-    public EnjinCoinClient(final Config config) {
+    public ClientImpl(final Config config) {
         if (ObjectUtils.isNull(config)) {
             LOGGER.warning("The supplied config is null.");
             return;
@@ -76,14 +76,14 @@ public class EnjinCoinClient implements EnjinCoin {
     /**
      * Method to get the EventService.
      *
-     * @return - EventsService
+     * @return - SynchronousEventsService
      */
     @Override
     public EventsService getEventsService() {
-        if (eventsService == null) {
-            eventsService = new EventsServiceImpl(config);
+        if (this.eventsService == null) {
+            this.eventsService = new EventsServiceImpl(this.config);
         }
-        return eventsService;
+        return this.eventsService;
     }
 
     /**
@@ -93,10 +93,10 @@ public class EnjinCoinClient implements EnjinCoin {
      */
     @Override
     public IdentitiesService getIdentitiesService() {
-        if (identitiesService == null) {
-            identitiesService = new IdentitiesServiceImpl(config);
+        if (this.identitiesService == null) {
+            this.identitiesService = new IdentitiesServiceImpl(this.config);
         }
-        return identitiesService;
+        return this.identitiesService;
     }
 
     /**
@@ -106,10 +106,10 @@ public class EnjinCoinClient implements EnjinCoin {
      */
     @Override
     public TokensService getTokensService() {
-        if (tokensService == null) {
-            tokensService = new TokensServiceImpl(config);
+        if (this.tokensService == null) {
+            this.tokensService = new TokensServiceImpl(this.config);
         }
-        return tokensService;
+        return this.tokensService;
     }
 
     /**
@@ -119,33 +119,35 @@ public class EnjinCoinClient implements EnjinCoin {
      */
     @Override
     public TransactionRequestsService getTransactionRequestsService() {
-        if (transactionRequestsService == null) {
-            transactionRequestsService = new TransactionRequestsServiceImpl(config);
+        if (this.transactionRequestsService == null) {
+            this.transactionRequestsService = new TransactionRequestsServiceImpl(this.config);
         }
-        return transactionRequestsService;
+        return this.transactionRequestsService;
     }
 
     /**
      * Method to get the notificationsService.
+     *
      * @return NotificationsService
      */
     @Override
     public NotificationsService getNotificationsService() {
-        if (notificationsService == null) {
-            notificationsService = new NotificationsServiceImpl(config);
+        if (this.notificationsService == null) {
+            this.notificationsService = new NotificationsServiceImpl(this.config);
         }
-        return notificationsService;
+        return this.notificationsService;
     }
 
     /**
      * Method to get the platformService.
+     *
      * @return PlatformService
      */
     @Override
     public PlatformService getPlatformService() {
-        if (platformService == null) {
-            platformService = new PlatformServiceImpl(config);
+        if (this.platformService == null) {
+            this.platformService = new PlatformServiceImpl(this.config);
         }
-        return platformService;
+        return this.platformService;
     }
 }

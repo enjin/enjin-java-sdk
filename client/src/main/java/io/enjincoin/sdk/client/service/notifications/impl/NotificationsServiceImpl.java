@@ -5,7 +5,7 @@ import io.enjincoin.sdk.client.config.Notification;
 import io.enjincoin.sdk.client.enums.NotificationType;
 import io.enjincoin.sdk.client.service.BaseService;
 import io.enjincoin.sdk.client.service.notifications.*;
-import io.enjincoin.sdk.client.service.platform.PlatformService;
+import io.enjincoin.sdk.client.service.platform.SynchronousPlatformService;
 import io.enjincoin.sdk.client.util.BooleanUtils;
 import io.enjincoin.sdk.client.util.ObjectUtils;
 import io.enjincoin.sdk.client.util.StringUtils;
@@ -45,7 +45,7 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
     /**
      * Local variable for the platformService.
      */
-    private PlatformService platformService;
+    private SynchronousPlatformService platformService;
 
     /**
      * Local config variable.
@@ -77,7 +77,7 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
         this.auth = auth;
 
         //Call out to the reinitialize method in order to initialize the pusher notifications
-        return reInitNotificationsService();
+        return this.reInitNotificationsService();
     }
 
 
@@ -96,13 +96,13 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
             return initResult;
         }
 
-        platformService = getPlatformService(config);
+        this.platformService = this.getPlatformService(this.config);
 
         GetPlatformAuthRequestVO platformAuthRequestVO = ImmutableGetPlatformAuthRequestVO.builder()
-                .setAuth(auth)
+                .setAuth(this.auth)
                 .build();
 
-        GetPlatformAuthResponseVO platformAuthResponseVO = platformService.getAuth(platformAuthRequestVO);
+        GetPlatformAuthResponseVO platformAuthResponseVO = this.platformService.getAuthSync(platformAuthRequestVO);
         if (platformAuthResponseVO == null || BooleanUtils.isFalse(platformAuthResponseVO.getPlatformAuthNotificationDetails().isPresent())) {
             LOGGER.warning("Returned getPlatformAuthResponseVO is null or notificationDetails is not present");
             return initResult;
@@ -112,11 +112,11 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
         GetPlatformAuthDetailsResponseVO platformAuthDetailsResponseVO = platformAuthDetailsResponseVOOptional.get();
 
         // Setup the thirdPartyNotificationService to use the pusher service.
-        if (thirdPartyNotificationService == null) {
-            thirdPartyNotificationService = new PusherNotificationServiceImpl(new Notification());
+        if (this.thirdPartyNotificationService == null) {
+            this.thirdPartyNotificationService = new PusherNotificationServiceImpl(new Notification());
         }
 
-        boolean initPusherResult = thirdPartyNotificationService.initializeNotificationService(platformAuthDetailsResponseVO);
+        boolean initPusherResult = this.thirdPartyNotificationService.initializeNotificationService(platformAuthDetailsResponseVO);
         if (BooleanUtils.isNotTrue(initPusherResult)) {
             LOGGER.warning("A problem occured initializing the pusher library");
             return initResult;
@@ -129,6 +129,7 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
      * Method to configure a listener.
      *
      * @param listener notificationListener to configer
+     *
      * @return NotificationListenerRegistration
      */
     @SuppressWarnings("rawtypes")
@@ -141,6 +142,7 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
      * Method to add a notification listener.
      *
      * @param listener - listener to add
+     *
      * @return NotificationListenerRegistration
      */
     @Override
@@ -150,7 +152,7 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
             LOGGER.warning("Could not add a NotificationListener because it was null.");
             return null;
         } else {
-            long count = notificationListeners.stream().filter(r -> r.getListener() == listener).count();
+            long count = this.notificationListeners.stream().filter(r -> r.getListener() == listener).count();
 
             if (count == 0) {
                 registration = NotificationListenerRegistration.configure(this, listener).register();
@@ -164,37 +166,40 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
     /**
      * Method to add a notification listener.
      *
-     * @param listener the listener to add
+     * @param listener     the listener to add
      * @param eventMatcher to match against
+     *
      * @return NotificationListenerRegistration
      */
     @Override
     public NotificationListenerRegistration addNotificationListener(final NotificationListener listener, final EventMatcher eventMatcher) {
-        return configureListener(listener).withMatcher(eventMatcher).register();
+        return this.configureListener(listener).withMatcher(eventMatcher).register();
     }
 
     /**
      * Method to configure a listener for allowed types.
      *
      * @param listener to configure
-     * @param allowed types
+     * @param allowed  types
+     *
      * @return NotificationListenerRegistration
      */
     @Override
     public NotificationListenerRegistration addAllowedTypesNotificationListener(final NotificationListener listener, final NotificationType... allowed) {
-        return configureListener(listener).withAllowedEvents(allowed).register();
+        return this.configureListener(listener).withAllowedEvents(allowed).register();
     }
 
     /**
      * Method to configure a listener for ignore types.
      *
      * @param listener to configure
-     * @param ignored types
+     * @param ignored  types
+     *
      * @return NotificationListenerRegistration
      */
     @Override
     public NotificationListenerRegistration addIgnoredTypesNotificationListener(final NotificationListener listener, final NotificationType... ignored) {
-        return configureListener(listener).withIgnoredEvents(ignored).register();
+        return this.configureListener(listener).withIgnoredEvents(ignored).register();
     }
 
     /**
@@ -209,11 +214,11 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
             return;
         }
 
-        List<NotificationListenerRegistration> matching = notificationListeners.stream().filter(registration -> registration.getListener() == listener)
+        List<NotificationListenerRegistration> matching = this.notificationListeners.stream().filter(registration -> registration.getListener() == listener)
                 .collect(Collectors.toList());
 
         if (matching.size() > 0) {
-            matching.forEach(registration -> removeNotificationListenerRegistration(registration));
+            matching.forEach(registration -> this.removeNotificationListenerRegistration(registration));
             // thirdPartyNotificationService.setNotificationListeners(notificationListeners);
         } else {
             LOGGER.warning("Could not remove a NotificationListener because it wasn't already registered.");
@@ -228,8 +233,8 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
     @Override
     public void addNotificationListenerRegistration(final NotificationListenerRegistration registration) {
         if (registration != null) {
-            notificationListeners.add(registration);
-            thirdPartyNotificationService.setNotificationListeners(notificationListeners);
+            this.notificationListeners.add(registration);
+            this.thirdPartyNotificationService.setNotificationListeners(this.notificationListeners);
         } else {
             LOGGER.warning("Could not add a NotificationListenerRegistration because it was null.");
         }
@@ -243,8 +248,8 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
     @Override
     public void removeNotificationListenerRegistration(final NotificationListenerRegistration registration) {
         if (registration != null) {
-            notificationListeners.remove(registration);
-            thirdPartyNotificationService.setNotificationListeners(notificationListeners);
+            this.notificationListeners.remove(registration);
+            this.thirdPartyNotificationService.setNotificationListeners(this.notificationListeners);
         } else {
             LOGGER.warning("Could not add a NotificationListenerRegistration because it was null.");
         }

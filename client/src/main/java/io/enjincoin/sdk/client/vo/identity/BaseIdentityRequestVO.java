@@ -16,6 +16,7 @@ public abstract class BaseIdentityRequestVO {
 
     /**
      * Method to get the auth.
+     *
      * @return Optional
      */
     @SerializedName("auth")
@@ -23,6 +24,7 @@ public abstract class BaseIdentityRequestVO {
 
     /**
      * Method to get the identityMap.
+     *
      * @return Optional
      */
     @SerializedName("identity")
@@ -30,11 +32,12 @@ public abstract class BaseIdentityRequestVO {
 
     /**
      * Class toString method.
+     *
      * @return String
      */
     @Override
     public String toString() {
-        return "BaseIdentityRequestVO [auth=" + getAuth().orElse(null) + ", identityMap=" + getIdentityMap().orElse(null) + "]";
+        return "BaseIdentityRequestVO [auth=" + this.getAuth().orElse(null) + ", identityMap=" + this.getIdentityMap().orElse(null) + "]";
     }
 
 }

@@ -30,9 +30,10 @@ public final class JsonUtils {
     /**
      * Method to convert a json string to an object.
      *
-     * @param gson gson object
-     * @param jsonString json to convert to an object
+     * @param gson          gson object
+     * @param jsonString    json to convert to an object
      * @param responseClass class type to convert to
+     *
      * @return An object representing the json in the fileReader
      */
     public static Object convertJsonToObject(final Gson gson, final String jsonString, final Class<?> responseClass) {
@@ -57,9 +58,10 @@ public final class JsonUtils {
     /**
      * Method to convert a json string from a file to an object.
      *
-     * @param gson gson object
-     * @param filePath filePath to read json from
+     * @param gson          gson object
+     * @param filePath      filePath to read json from
      * @param responseClass class type to convert to
+     *
      * @return An object representing the json at the filePath
      */
     public static Object convertJsonFromFileToObject(final Gson gson, final String filePath, final Class<?> responseClass) {
@@ -89,9 +91,10 @@ public final class JsonUtils {
     /**
      * Method to convert json from a fileReader to an object.
      *
-     * @param gson gson object
-     * @param fileReader fileReader with the required content
+     * @param gson          gson object
+     * @param fileReader    fileReader with the required content
      * @param responseClass class type to convert to
+     *
      * @return An object representing the json in the fileReader
      */
     public static Object convertJsonFromFileReaderToObject(final Gson gson, final FileReader fileReader, final Class<?> responseClass) {
@@ -116,8 +119,9 @@ public final class JsonUtils {
     /**
      * Method to convert an object to a json string.
      *
-     * @param gson gson object
+     * @param gson       gson object
      * @param jsonObject jsonObject tp cpmvert
+     *
      * @return - A string with the object in json format
      */
     public static String convertObjectToJson(final Gson gson, final Object jsonObject) {
@@ -136,8 +140,9 @@ public final class JsonUtils {
     /**
      * Method to convert an object to a json tree.
      *
-     * @param gson gson object
+     * @param gson       gson object
      * @param jsonObject jsonObject to convert
+     *
      * @return a JsonElement
      */
     public static JsonElement convertObjectToJsonTree(final Gson gson, final Object jsonObject) {

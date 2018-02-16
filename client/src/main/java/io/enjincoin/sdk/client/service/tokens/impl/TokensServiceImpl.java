@@ -14,6 +14,7 @@ import io.enjincoin.sdk.client.vo.token.GetTokenResponseVO;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 import java.util.logging.Logger;
 
 /**
@@ -38,7 +39,7 @@ public class TokensServiceImpl extends BaseService implements TokensService {
     }
 
     @Override
-    public final GetTokenResponseVO[] getToken(final GetTokenRequestVO getTokenRequestVO) {
+    public final GetTokenResponseVO[] getTokensSync(final GetTokenRequestVO getTokenRequestVO) {
         GetTokenResponseVO[] getTokenResponseVO = null;
 
         if (ObjectUtils.isNull(getTokenRequestVO)) {
@@ -62,7 +63,7 @@ public class TokensServiceImpl extends BaseService implements TokensService {
         // Construct new request
         String method = Constants.METHOD_TOKENS_GET;
 
-        getTokenResponseVO = (GetTokenResponseVO[]) getJsonRpcUtils().sendJsonRpcRequest(getTokensUrl(), GetTokenResponseVO[].class, method, params);
+        getTokenResponseVO = (GetTokenResponseVO[]) this.getJsonRpcUtils().sendJsonRpcRequest(this.getTokensUrl(), GetTokenResponseVO[].class, method, params);
 
         return getTokenResponseVO;
     }
@@ -71,10 +72,11 @@ public class TokensServiceImpl extends BaseService implements TokensService {
      * Method to get the token balance.
      *
      * @param getTokenBalanceRequestVO - the get token request object
+     *
      * @return - GetTokenBalanceResponseVO
      */
     @Override
-    public GetTokenBalanceResponseVO[] getTokenBalance(final GetTokenBalanceRequestVO getTokenBalanceRequestVO) {
+    public GetTokenBalanceResponseVO[] getTokenBalancesSync(final GetTokenBalanceRequestVO getTokenBalanceRequestVO) {
         GetTokenBalanceResponseVO[] getTokenBalanceResponseVO = null;
 
         if (ObjectUtils.isNull(getTokenBalanceRequestVO)) {
@@ -95,8 +97,33 @@ public class TokensServiceImpl extends BaseService implements TokensService {
         String method = Constants.METHOD_TOKENS_GET_BALANCE;
 
         getTokenBalanceResponseVO = (GetTokenBalanceResponseVO[])
-                getJsonRpcUtils().sendJsonRpcRequest(getTokensUrl(), GetTokenBalanceResponseVO[].class, method, params);
+                this.getJsonRpcUtils().sendJsonRpcRequest(this.getTokensUrl(), GetTokenBalanceResponseVO[].class, method, params);
 
         return getTokenBalanceResponseVO;
     }
+
+    /**
+     * Method to get a token.
+     *
+     * @param getTokenRequestVO - token request object
+     *
+     * @return - GetTokenResponseVO
+     */
+    @Override
+    public CompletableFuture<GetTokenResponseVO[]> getTokensAsync(final GetTokenRequestVO getTokenRequestVO) {
+        return CompletableFuture.supplyAsync(() -> this.getTokensSync(getTokenRequestVO), this.getExecutorService());
+    }
+
+    /**
+     * Method to get the token balance.
+     *
+     * @param getTokenBalanceRequestVO - token balance request object
+     *
+     * @return - GetTokenBalanceResponseVO
+     */
+    @Override
+    public CompletableFuture<GetTokenBalanceResponseVO[]> getTokenBalancesAsync(final GetTokenBalanceRequestVO getTokenBalanceRequestVO) {
+        return CompletableFuture.supplyAsync(() -> this.getTokenBalancesSync(getTokenBalanceRequestVO), this.getExecutorService());
+    }
+
 }

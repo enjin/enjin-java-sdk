@@ -18,6 +18,7 @@ public abstract class CreateTransactionRequestResponseVO {
 
     /**
      * Method to get the txrId.
+     *
      * @return Optional
      */
     @SerializedName("txr_id")
@@ -25,6 +26,7 @@ public abstract class CreateTransactionRequestResponseVO {
 
     /**
      * Method to get the identityMap.
+     *
      * @return Optional
      */
     @SerializedName("identity")
@@ -32,6 +34,7 @@ public abstract class CreateTransactionRequestResponseVO {
 
     /**
      * Method to get the recipientMap.
+     *
      * @return Optional
      */
     @SerializedName("recipient")
@@ -39,6 +42,7 @@ public abstract class CreateTransactionRequestResponseVO {
 
     /**
      * Method to get the type.
+     *
      * @return Optional
      */
     @SerializedName("type")
@@ -46,6 +50,7 @@ public abstract class CreateTransactionRequestResponseVO {
 
     /**
      * Method to get the icon.
+     *
      * @return Optional
      */
     @SerializedName("icon")
@@ -53,6 +58,7 @@ public abstract class CreateTransactionRequestResponseVO {
 
     /**
      * Method to get the title.
+     *
      * @return Optional
      */
     @SerializedName("title")
@@ -60,6 +66,7 @@ public abstract class CreateTransactionRequestResponseVO {
 
     /**
      * Method to get the value.
+     *
      * @return Optional
      */
     @SerializedName("value")
@@ -70,9 +77,9 @@ public abstract class CreateTransactionRequestResponseVO {
      */
     @Override
     public String toString() {
-        return "CreateTransactionRequestResponseVO [txrId=" + getTxrId().orElse(null) + ", identityMap=" + getIdentityMap().orElse(null) + ", recipientMap="
-                + getRecipientMap().orElse(null) + ", type=" + getType().orElse(null) + ", icon=" + getIcon().orElse(null) + ", title="
-                + getTitle().orElse(null) + ", valueMap=" + getValueMap().orElse(null) + "]";
+        return "CreateTransactionRequestResponseVO [txrId=" + this.getTxrId().orElse(null) + ", identityMap=" + this.getIdentityMap().orElse(null) + ", recipientMap="
+                + this.getRecipientMap().orElse(null) + ", type=" + this.getType().orElse(null) + ", icon=" + this.getIcon().orElse(null) + ", title="
+                + this.getTitle().orElse(null) + ", valueMap=" + this.getValueMap().orElse(null) + "]";
     }
 
 }

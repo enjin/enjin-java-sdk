@@ -17,6 +17,7 @@ import java.util.Optional;
 public abstract class GetTokenBalanceResponseVO {
     /**
      * Method to get the tokenIdsMap.
+     *
      * @return Optional
      */
     //@SerializedName("token_ids")
@@ -24,7 +25,7 @@ public abstract class GetTokenBalanceResponseVO {
 
     @Override
     public String toString() {
-        return "GetTokenBalanceResponseVO [getTokenBalanceMap()=" + getTokenBalanceMap() + "]";
+        return "GetTokenBalanceResponseVO [getTokenBalanceMap()=" + this.getTokenBalanceMap() + "]";
     }
 
 

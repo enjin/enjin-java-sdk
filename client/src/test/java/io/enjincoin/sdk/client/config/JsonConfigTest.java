@@ -273,7 +273,7 @@ public class JsonConfigTest {
     @Test
     public void testLoadWithSupplier_FileDoesntExistSuccess() throws Exception {
         Class configClass = JsonConfig.class;
-        Supplier supplier  = ()-> new JsonConfig();
+        Supplier supplier = () -> new JsonConfig();
 
         File mockFile = PowerMockito.mock(File.class);
         FileWriter mockFileWriter = PowerMockito.mock(FileWriter.class);
@@ -302,7 +302,7 @@ public class JsonConfigTest {
     @Test
     public void testLoadWithSupplier_FilesExistsSecondTimeAroundSuccess() throws Exception {
         Class configClass = JsonConfig.class;
-        Supplier supplier  = ()-> new JsonConfig();
+        Supplier supplier = () -> new JsonConfig();
 
         File mockFile = PowerMockito.mock(File.class);
         FileWriter mockFileWriter = PowerMockito.mock(FileWriter.class);
@@ -329,7 +329,7 @@ public class JsonConfigTest {
     @Test
     public void testLoadWithSupplier_IOExceptionPerformingWrite() throws Exception {
         Class configClass = JsonConfig.class;
-        Supplier supplier  = ()-> new JsonConfig();
+        Supplier supplier = () -> new JsonConfig();
 
         File mockFile = PowerMockito.mock(File.class);
         FileWriter mockFileWriter = PowerMockito.mock(FileWriter.class);
@@ -354,7 +354,7 @@ public class JsonConfigTest {
     @Test
     public void testLoadWithSupplier_FileExistsLengthIs0Success() throws Exception {
         Class configClass = JsonConfig.class;
-        Supplier supplier  = ()-> new JsonConfig();
+        Supplier supplier = () -> new JsonConfig();
 
         File mockFile = PowerMockito.mock(File.class);
         FileWriter mockFileWriter = PowerMockito.mock(FileWriter.class);
@@ -385,7 +385,7 @@ public class JsonConfigTest {
     @Test
     public void testLoadWithSupplier_ParentFileExists() throws Exception {
         Class configClass = JsonConfig.class;
-        Supplier supplier  = ()-> new JsonConfig();
+        Supplier supplier = () -> new JsonConfig();
 
         File mockFile = PowerMockito.mock(File.class);
         FileWriter mockFileWriter = PowerMockito.mock(FileWriter.class);
@@ -417,7 +417,7 @@ public class JsonConfigTest {
     @Test
     public void testLoadWithSupplier_FileLengthis0FilesExistsSecondTimeAroundSuccess() throws Exception {
         Class configClass = JsonConfig.class;
-        Supplier supplier  = ()-> new JsonConfig();
+        Supplier supplier = () -> new JsonConfig();
 
         File mockFile = PowerMockito.mock(File.class);
         FileWriter mockFileWriter = PowerMockito.mock(FileWriter.class);
@@ -446,7 +446,7 @@ public class JsonConfigTest {
     @Test
     public void testLoadWithSupplier_FileLengthis0IOExceptionPerformingWrite() throws Exception {
         Class configClass = JsonConfig.class;
-        Supplier supplier  = ()-> new JsonConfig();
+        Supplier supplier = () -> new JsonConfig();
 
         File mockFile = PowerMockito.mock(File.class);
         FileWriter mockFileWriter = PowerMockito.mock(FileWriter.class);
@@ -476,7 +476,7 @@ public class JsonConfigTest {
     public void testLoadWithSupplier_LoadExistingSuccess() throws Exception {
         Class configClass = JsonConfig.class;
         JsonConfig jsonConfig = new JsonConfig();
-        Supplier supplier  = ()-> new JsonConfig();
+        Supplier supplier = () -> new JsonConfig();
 
         PowerMockito.mockStatic(JsonUtils.class);
 
@@ -501,7 +501,7 @@ public class JsonConfigTest {
     public void testLoadWithSupplier_FailedToLoadExistingSuccess() throws Exception {
         Class configClass = JsonConfig.class;
         JsonConfig jsonConfig = null;
-        Supplier supplier  = ()-> new JsonConfig();
+        Supplier supplier = () -> new JsonConfig();
 
         PowerMockito.mockStatic(JsonUtils.class);
 
@@ -523,7 +523,6 @@ public class JsonConfigTest {
         Mockito.verify(mockFile, Mockito.times(1)).length();
         PowerMockito.verifyNew(FileReader.class, Mockito.times(1)).withArguments(Mockito.isA(File.class));
     }
-
 
 
     @Test

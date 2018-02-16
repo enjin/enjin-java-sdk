@@ -16,6 +16,7 @@ public abstract class GetIdentityResponseVO {
 
     /**
      * Method to get the identityId.
+     *
      * @return Optional
      */
     @SerializedName("identity_id")
@@ -23,6 +24,7 @@ public abstract class GetIdentityResponseVO {
 
     /**
      * Method to get the ethereumAddress.
+     *
      * @return Optional
      */
     @SerializedName("ethereum_address")
@@ -30,6 +32,7 @@ public abstract class GetIdentityResponseVO {
 
     /**
      * Method to get the playerName.
+     *
      * @return Optional
      */
     @SerializedName("player_name")
@@ -37,12 +40,13 @@ public abstract class GetIdentityResponseVO {
 
     /**
      * Class toString method.
+     *
      * @return String
      */
     @Override
     public String toString() {
-        return "GetIdentityResponseVO [identityId=" + getIdentityId().orElse(null) + ", ethereumAddress=" + getEthereumAddress().orElse(null) + ", playerName="
-                + getPlayerName().orElse(null) +  "]";
+        return "GetIdentityResponseVO [identityId=" + this.getIdentityId().orElse(null) + ", ethereumAddress=" + this.getEthereumAddress().orElse(null) + ", playerName="
+                + this.getPlayerName().orElse(null) + "]";
     }
 
 }

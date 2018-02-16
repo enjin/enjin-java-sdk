@@ -11,6 +11,7 @@ public interface EventMatcher {
      * Method to match against any events.
      *
      * @param event to match
+     *
      * @return boolean
      */
     boolean matches(NotificationEvent event);

@@ -17,6 +17,7 @@ public abstract class CreateIdentityResponseVO {
 
     /**
      * Method to get the identityId.
+     *
      * @return Optional
      */
     @SerializedName("identity_id")
@@ -24,6 +25,7 @@ public abstract class CreateIdentityResponseVO {
 
     /**
      * Method to get the identityCode.
+     *
      * @return Optional
      */
     @SerializedName("identity_code")
@@ -31,11 +33,12 @@ public abstract class CreateIdentityResponseVO {
 
     /**
      * Class toString method.
+     *
      * @return String
      */
     @Override
     public String toString() {
-        return "CreateIdentityResponseVO [identityId=" + getIdentityId().orElse(null) + ", identityCode=" + getIdentityCode().orElse(null) + "]";
+        return "CreateIdentityResponseVO [identityId=" + this.getIdentityId().orElse(null) + ", identityCode=" + this.getIdentityCode().orElse(null) + "]";
     }
 
 }

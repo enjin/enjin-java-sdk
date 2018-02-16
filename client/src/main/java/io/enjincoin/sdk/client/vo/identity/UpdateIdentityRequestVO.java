@@ -18,6 +18,7 @@ public abstract class UpdateIdentityRequestVO extends BaseIdentityRequestVO {
 
     /**
      * Method to get the updateMap.
+     *
      * @return Optional
      */
     @SkipNulls
@@ -26,11 +27,12 @@ public abstract class UpdateIdentityRequestVO extends BaseIdentityRequestVO {
 
     /**
      * Class toString method.
+     *
      * @return String
      */
     @Override
     public String toString() {
-        return "UpdateIdentityRequestVO [updateMap=" + getUpdateMap().orElse(null) + "]";
+        return "UpdateIdentityRequestVO [updateMap=" + this.getUpdateMap().orElse(null) + "]";
     }
 
 }

@@ -2,7 +2,7 @@ package io.enjincoin.sdk.client.service;
 
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.config.Platform;
-import io.enjincoin.sdk.client.service.platform.PlatformService;
+import io.enjincoin.sdk.client.service.platform.SynchronousPlatformService;
 import io.enjincoin.sdk.client.service.platform.impl.PlatformServiceImpl;
 import io.enjincoin.sdk.client.util.Constants;
 import io.enjincoin.sdk.client.util.JsonRpcUtils;
@@ -42,7 +42,7 @@ public abstract class BaseService {
     /**
      * Platform Service.
      */
-    private PlatformService platformService;
+    private SynchronousPlatformService platformService;
 
     /**
      * Class contructor.
@@ -55,12 +55,12 @@ public abstract class BaseService {
             return;
         }
 
-        trustedPlatform        = config.getTrustedPlatform();
-        isInTestMode           = config.isInTestMode();
+        this.trustedPlatform = config.getTrustedPlatform();
+        this.isInTestMode = config.isInTestMode();
         Integer totalExecutors = config.getTotalExecutors();
-        executorService        = Executors.newFixedThreadPool(totalExecutors);
-        jsonRpcUtils           = new JsonRpcUtils();
-        jsonRpcUtils.setIsInTestMode(isInTestMode);
+        this.executorService = Executors.newFixedThreadPool(totalExecutors);
+        this.jsonRpcUtils = new JsonRpcUtils();
+        this.jsonRpcUtils.setIsInTestMode(this.isInTestMode);
     }
 
     /**
@@ -69,7 +69,7 @@ public abstract class BaseService {
      * @return - the identities url
      */
     protected String getIdentitiesUrl() {
-        return getJsonRpcURL(Constants.IDENTITIES_URL);
+        return this.getJsonRpcURL(Constants.IDENTITIES_URL);
     }
 
     /**
@@ -78,7 +78,7 @@ public abstract class BaseService {
      * @return - the tokens url
      */
     protected String getTokensUrl() {
-        return getJsonRpcURL(Constants.TOKENS_URL);
+        return this.getJsonRpcURL(Constants.TOKENS_URL);
     }
 
     /**
@@ -87,7 +87,7 @@ public abstract class BaseService {
      * @return - the transaction requests url
      */
     protected String getTransactionRequestsUrl() {
-        return getJsonRpcURL(Constants.TRANSACTION_REQUESTS_URL);
+        return this.getJsonRpcURL(Constants.TRANSACTION_REQUESTS_URL);
     }
 
     /**
@@ -96,7 +96,7 @@ public abstract class BaseService {
      * @return - the events url
      */
     protected String getEventsUrl() {
-        return getJsonRpcURL(Constants.EVENTS_URL);
+        return this.getJsonRpcURL(Constants.EVENTS_URL);
     }
 
     /**
@@ -105,20 +105,21 @@ public abstract class BaseService {
      * @return - the platform url
      */
     protected String getPlatformUrl() {
-        return getJsonRpcURL(Constants.PLATFORM_URL);
+        return this.getJsonRpcURL(Constants.PLATFORM_URL);
     }
 
     /**
      * Method to get the rpc url to use.
      *
      * @param endpoint - the base endpoint
+     *
      * @return - the final base endpoint to use
      */
     private String getJsonRpcURL(final String endpoint) {
         String baseURL = Constants.TRUSTED_PLATFORM_BASE_URL;
 
-        if (ObjectUtils.isNotNull(trustedPlatform)) {
-            baseURL = trustedPlatform.toString();
+        if (ObjectUtils.isNotNull(this.trustedPlatform)) {
+            baseURL = this.trustedPlatform.toString();
         }
 
         String jsonRpcURL = baseURL + endpoint;
@@ -132,7 +133,7 @@ public abstract class BaseService {
      * @return - the trusted platform
      */
     public Platform getTrustedPlatform() {
-        return trustedPlatform;
+        return this.trustedPlatform;
     }
 
     /**
@@ -150,7 +151,7 @@ public abstract class BaseService {
      * @return - the JsonRpcUtils
      */
     public JsonRpcUtils getJsonRpcUtils() {
-        return jsonRpcUtils;
+        return this.jsonRpcUtils;
     }
 
     /**
@@ -159,28 +160,31 @@ public abstract class BaseService {
      * @return - the ExecutorService.
      */
     public ExecutorService getExecutorService() {
-        return executorService;
+        return this.executorService;
     }
 
     /**
      * Method to get the platformService.
+     *
      * @param config to use
+     *
      * @return PlatformService
      */
-    public PlatformService getPlatformService(final Config config) {
-        if (platformService == null) {
-            platformService = new PlatformServiceImpl(config);
+    public SynchronousPlatformService getPlatformService(final Config config) {
+        if (this.platformService == null) {
+            this.platformService = new PlatformServiceImpl(config);
         }
-        return platformService;
+        return this.platformService;
     }
 
     /**
      * toString method.
+     *
      * @return String
      */
     @Override
     public String toString() {
-        return "BaseService [trustedPlatform=" + trustedPlatform + "]";
+        return "BaseService [trustedPlatform=" + this.trustedPlatform + "]";
     }
 
 }

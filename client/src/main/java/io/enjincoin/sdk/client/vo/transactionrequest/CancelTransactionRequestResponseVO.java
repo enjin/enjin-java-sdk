@@ -16,6 +16,7 @@ public abstract class CancelTransactionRequestResponseVO {
 
     /**
      * Method to get the result.
+     *
      * @return Optional
      */
     public abstract Optional<Boolean> getResult();
@@ -25,7 +26,7 @@ public abstract class CancelTransactionRequestResponseVO {
      */
     @Override
     public String toString() {
-        return "CancelTransactionRequestResponseVO [result=" + getResult().orElse(null) + "]";
+        return "CancelTransactionRequestResponseVO [result=" + this.getResult().orElse(null) + "]";
     }
 
 }

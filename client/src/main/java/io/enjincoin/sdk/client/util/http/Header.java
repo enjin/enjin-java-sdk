@@ -14,10 +14,14 @@ public class Header {
 
     }
 
-    /** accept header. **/
+    /**
+     * accept header.
+     **/
     public static final String ACCEPT = "Accept";
 
-    /** content-type header. **/
+    /**
+     * content-type header.
+     **/
     public static final String CONTENT_TYPE = "Content-Type";
 
 }

@@ -14,6 +14,7 @@ public interface NotificationsService {
      * Method to initialize the notifications service.
      *
      * @param auth to use
+     *
      * @return boolean
      */
     boolean initNotificationsService(String auth);
@@ -29,6 +30,7 @@ public interface NotificationsService {
      * Method to configure a listener.
      *
      * @param listener notificationListener to configure
+     *
      * @return RegistrationListenerConfiguration
      */
     @SuppressWarnings("rawtypes")
@@ -38,6 +40,7 @@ public interface NotificationsService {
      * Method to add a notification listener.
      *
      * @param listener the listener to add
+     *
      * @return NotificationListenerRegistration
      */
     NotificationListenerRegistration addNotificationListener(NotificationListener listener);
@@ -45,8 +48,9 @@ public interface NotificationsService {
     /**
      * Method to add a notification listener.
      *
-     * @param listener the listener to add
+     * @param listener     the listener to add
      * @param eventMatcher to match against
+     *
      * @return NotificationListenerRegistration
      */
     NotificationListenerRegistration addNotificationListener(NotificationListener listener, EventMatcher eventMatcher);
@@ -55,7 +59,8 @@ public interface NotificationsService {
      * Method to configure a listener for allowed types.
      *
      * @param listener to configure
-     * @param allowed types
+     * @param allowed  types
+     *
      * @return NotificationListenerRegistration
      */
     NotificationListenerRegistration addAllowedTypesNotificationListener(NotificationListener listener, NotificationType... allowed);
@@ -64,7 +69,8 @@ public interface NotificationsService {
      * Method to configure a listener for ignore types.
      *
      * @param listener to configure
-     * @param ignored types
+     * @param ignored  types
+     *
      * @return NotificationListenerRegistration
      */
     NotificationListenerRegistration addIgnoredTypesNotificationListener(NotificationListener listener, NotificationType... ignored);

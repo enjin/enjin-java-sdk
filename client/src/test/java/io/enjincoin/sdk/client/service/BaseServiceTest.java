@@ -6,7 +6,7 @@ import io.enjincoin.sdk.client.config.ImmutableConfig;
 import io.enjincoin.sdk.client.config.ImmutablePlatform;
 import io.enjincoin.sdk.client.config.Platform;
 import io.enjincoin.sdk.client.service.identities.impl.IdentitiesServiceImpl;
-import io.enjincoin.sdk.client.service.platform.PlatformService;
+import io.enjincoin.sdk.client.service.platform.SynchronousPlatformService;
 import io.enjincoin.sdk.client.util.JsonRpcUtils;
 import io.enjincoin.sdk.client.util.http.Protocol;
 import org.junit.Before;
@@ -23,28 +23,28 @@ public class BaseServiceTest {
 
     @Before
     public void setUp() {
-        enjinConfig = BaseTestHelper.getEnjinConfig();
-        baseAction = new IdentitiesServiceImpl(enjinConfig);
+        this.enjinConfig = BaseTestHelper.getEnjinConfig();
+        this.baseAction = new IdentitiesServiceImpl(this.enjinConfig);
     }
 
     @Test
     public void testContructor_EnjinConfigIsNull() {
-        enjinConfig = null;
-        baseAction = new IdentitiesServiceImpl(enjinConfig);
-        assertThat(baseAction).isNotNull()
+        this.enjinConfig = null;
+        this.baseAction = new IdentitiesServiceImpl(this.enjinConfig);
+        assertThat(this.baseAction).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty());
     }
 
     @Test
     public void testContructor1() {
-        baseAction = new IdentitiesServiceImpl(enjinConfig);
-        assertThat(baseAction).isNotNull()
+        this.baseAction = new IdentitiesServiceImpl(this.enjinConfig);
+        assertThat(this.baseAction).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty());
     }
 
     @Test
     public void testContructor2() {
-        enjinConfig = ImmutableConfig.builder()
+        this.enjinConfig = ImmutableConfig.builder()
                 .setTrustedPlatform(ImmutablePlatform.builder()
                         .setHost("localhost")
                         .setPort(8080)
@@ -52,221 +52,223 @@ public class BaseServiceTest {
                         .build())
                 .setInTestMode(true)
                 .build();
-        baseAction = new IdentitiesServiceImpl(enjinConfig);
-        assertThat(baseAction).isNotNull()
+        this.baseAction = new IdentitiesServiceImpl(this.enjinConfig);
+        assertThat(this.baseAction).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty());
     }
 
     @Test
     public void testGetIdentitiesUrl1() {
-        String identitiesURL = baseAction.getIdentitiesUrl();
+        String identitiesURL = this.baseAction.getIdentitiesUrl();
         assertThat(identitiesURL).isNotEmpty();
     }
 
     @Test
     public void testGetIdentitiesUrl2() {
-        baseAction.setTrustedPlatform(ImmutablePlatform.builder()
+        this.baseAction.setTrustedPlatform(ImmutablePlatform.builder()
                 .setHost("localhost")
                 .setPort(8081)
                 .setProtocol(Protocol.HTTP)
                 .build());
-        String identitiesURL = baseAction.getIdentitiesUrl();
+        String identitiesURL = this.baseAction.getIdentitiesUrl();
         assertThat(identitiesURL).isNotEmpty();
     }
 
     @Test
     public void testGetIdentitiesUrl3() {
-        baseAction.setTrustedPlatform(ImmutablePlatform.builder()
+        this.baseAction.setTrustedPlatform(ImmutablePlatform.builder()
                 .setHost("localhost")
                 .setPort(8081)
                 .setProtocol(Protocol.HTTP)
                 .build());
-        String identitiesURL = baseAction.getIdentitiesUrl();
+        String identitiesURL = this.baseAction.getIdentitiesUrl();
         assertThat(identitiesURL).isNotEmpty();
     }
 
     @Test
     public void testGetIdentitiesUrl_TrustedPlatformIsNull() {
-        baseAction.setTrustedPlatform(null);
-        String identitiesURL = baseAction.getIdentitiesUrl();
+        this.baseAction.setTrustedPlatform(null);
+        String identitiesURL = this.baseAction.getIdentitiesUrl();
         assertThat(identitiesURL).isNotEmpty();
     }
 
     @Test
     public void testGetTokensUrl1() {
-        String tokensURL = baseAction.getTokensUrl();
+        String tokensURL = this.baseAction.getTokensUrl();
         assertThat(tokensURL).isNotEmpty();
     }
 
     @Test
     public void testGetTokensUrl2() {
-        baseAction.setTrustedPlatform(ImmutablePlatform.builder()
+        this.baseAction.setTrustedPlatform(ImmutablePlatform.builder()
                 .setHost("localhost")
                 .setPort(8081)
                 .setProtocol(Protocol.HTTP)
                 .build());
-        String tokensURL = baseAction.getTokensUrl();
+        String tokensURL = this.baseAction.getTokensUrl();
         assertThat(tokensURL).isNotEmpty();
     }
 
     @Test
     public void testGetTokensUrl3() {
-        baseAction.setTrustedPlatform(ImmutablePlatform.builder()
+        this.baseAction.setTrustedPlatform(ImmutablePlatform.builder()
                 .setHost("localhost")
                 .setPort(8081)
                 .setProtocol(Protocol.HTTP)
                 .build());
-        String tokensURL = baseAction.getTokensUrl();
+        String tokensURL = this.baseAction.getTokensUrl();
         assertThat(tokensURL).isNotEmpty();
     }
 
     @Test
     public void testGetTokensUrl_TrustedPlatformIsNull() {
-        baseAction.setTrustedPlatform(null);
-        String tokensURL = baseAction.getTokensUrl();
+        this.baseAction.setTrustedPlatform(null);
+        String tokensURL = this.baseAction.getTokensUrl();
         assertThat(tokensURL).isNotEmpty();
     }
 
     @Test
     public void testGetTransactionRequestsUrl1() {
-        String transactionRequestsURL = baseAction.getTransactionRequestsUrl();
+        String transactionRequestsURL = this.baseAction.getTransactionRequestsUrl();
         assertThat(transactionRequestsURL).isNotEmpty();
     }
 
     @Test
     public void testGetTransactionRequestsUrl2() {
-        baseAction.setTrustedPlatform(ImmutablePlatform.builder()
+        this.baseAction.setTrustedPlatform(ImmutablePlatform.builder()
                 .setHost("localhost")
                 .setPort(8081)
                 .setProtocol(Protocol.HTTP)
                 .build());
-        String transactionRequestsURL = baseAction.getTransactionRequestsUrl();
+        String transactionRequestsURL = this.baseAction.getTransactionRequestsUrl();
         assertThat(transactionRequestsURL).isNotEmpty();
     }
 
     @Test
     public void testGetTransactionRequestsUrl3() {
-        baseAction.setTrustedPlatform(ImmutablePlatform.builder()
+        this.baseAction.setTrustedPlatform(ImmutablePlatform.builder()
                 .setHost("localhost")
                 .setPort(8081)
                 .setProtocol(Protocol.HTTP)
                 .build());
-        String transactionRequestsURL = baseAction.getTransactionRequestsUrl();
+        String transactionRequestsURL = this.baseAction.getTransactionRequestsUrl();
         assertThat(transactionRequestsURL).isNotEmpty();
     }
 
     @Test
     public void testGetTransactionRequestsUrl_TrustedPlatformIsNull() {
-        baseAction.setTrustedPlatform(null);
-        String transactionRequestsURL = baseAction.getTransactionRequestsUrl();
+        this.baseAction.setTrustedPlatform(null);
+        String transactionRequestsURL = this.baseAction.getTransactionRequestsUrl();
         assertThat(transactionRequestsURL).isNotEmpty();
     }
 
     @Test
     public void testGetEventsUrl1() {
-        String identitiesURL = baseAction.getEventsUrl();
+        String identitiesURL = this.baseAction.getEventsUrl();
         assertThat(identitiesURL).isNotEmpty();
     }
 
     @Test
     public void testGetEventsUrl2() {
-        baseAction.setTrustedPlatform(ImmutablePlatform.builder()
+        this.baseAction.setTrustedPlatform(ImmutablePlatform.builder()
                 .setHost("localhost")
                 .setPort(8081)
                 .setProtocol(Protocol.HTTP)
                 .build());
-        String identitiesURL = baseAction.getEventsUrl();
+        String identitiesURL = this.baseAction.getEventsUrl();
         assertThat(identitiesURL).isNotEmpty();
     }
 
     @Test
     public void testGetEventsUrl3() {
-        baseAction.setTrustedPlatform(ImmutablePlatform.builder()
+        this.baseAction.setTrustedPlatform(ImmutablePlatform.builder()
                 .setHost("localhost")
                 .setPort(8081)
                 .setProtocol(Protocol.HTTP)
                 .build());
-        String identitiesURL = baseAction.getEventsUrl();
+        String identitiesURL = this.baseAction.getEventsUrl();
         assertThat(identitiesURL).isNotEmpty();
     }
 
     @Test
     public void testGetEventsUrl_TrustedPlatformIsNull() {
-        baseAction.setTrustedPlatform(null);
-        String identitiesURL = baseAction.getEventsUrl();
+        this.baseAction.setTrustedPlatform(null);
+        String identitiesURL = this.baseAction.getEventsUrl();
         assertThat(identitiesURL).isNotEmpty();
     }
+
     @Test
     public void testGetPlatformUrl1() {
-        String identitiesURL = baseAction.getPlatformUrl();
+        String identitiesURL = this.baseAction.getPlatformUrl();
         assertThat(identitiesURL).isNotEmpty();
     }
 
     @Test
     public void testGetPlatformUrl2() {
-        baseAction.setTrustedPlatform(ImmutablePlatform.builder()
+        this.baseAction.setTrustedPlatform(ImmutablePlatform.builder()
                 .setHost("localhost")
                 .setPort(8081)
                 .setProtocol(Protocol.HTTP)
                 .build());
-        String identitiesURL = baseAction.getPlatformUrl();
+        String identitiesURL = this.baseAction.getPlatformUrl();
         assertThat(identitiesURL).isNotEmpty();
     }
 
     @Test
     public void testGetPlatformUrl3() {
-        baseAction.setTrustedPlatform(ImmutablePlatform.builder()
+        this.baseAction.setTrustedPlatform(ImmutablePlatform.builder()
                 .setHost("localhost")
                 .setPort(8081)
                 .setProtocol(Protocol.HTTP)
                 .build());
-        String identitiesURL = baseAction.getPlatformUrl();
+        String identitiesURL = this.baseAction.getPlatformUrl();
         assertThat(identitiesURL).isNotEmpty();
     }
 
     @Test
     public void testGetPlatformUrl_TrustedPlatformIsNull() {
-        baseAction.setTrustedPlatform(null);
-        String identitiesURL = baseAction.getPlatformUrl();
+        this.baseAction.setTrustedPlatform(null);
+        String identitiesURL = this.baseAction.getPlatformUrl();
         assertThat(identitiesURL).isNotEmpty();
     }
+
     @Test
     public void testGetTrustedPlatform_Default() {
-        baseAction.setTrustedPlatform(ImmutablePlatform.builder().build());
-        Platform trustedPlatform = baseAction.getTrustedPlatform();
+        this.baseAction.setTrustedPlatform(ImmutablePlatform.builder().build());
+        Platform trustedPlatform = this.baseAction.getTrustedPlatform();
         assertThat(trustedPlatform).isEqualToComparingFieldByField(ImmutablePlatform.builder().build());
     }
 
     @Test
     public void testGetTrustedPlatform_Success() {
-        baseAction.setTrustedPlatform(ImmutablePlatform.builder()
+        this.baseAction.setTrustedPlatform(ImmutablePlatform.builder()
                 .setHost("localhost")
                 .setPort(8081)
                 .setProtocol(Protocol.HTTP)
                 .build());
-        Platform trustedPlatform = baseAction.getTrustedPlatform();
+        Platform trustedPlatform = this.baseAction.getTrustedPlatform();
         assertThat(trustedPlatform).isNotNull();
     }
 
     @Test
     public void testGetJsonRpcUtils() {
-        JsonRpcUtils jsonRpcUtils = baseAction.getJsonRpcUtils();
+        JsonRpcUtils jsonRpcUtils = this.baseAction.getJsonRpcUtils();
         assertThat(jsonRpcUtils).isNotNull();
     }
 
     @Test
     public void testGetExecutorService() {
-        ExecutorService executorService = baseAction.getExecutorService();
+        ExecutorService executorService = this.baseAction.getExecutorService();
         assertThat(executorService).isNotNull();
     }
 
 
     @Test
     public void testGetPlatformService() {
-        PlatformService platformService1 = baseAction.getPlatformService(enjinConfig);
+        SynchronousPlatformService platformService1 = this.baseAction.getPlatformService(this.enjinConfig);
         assertThat(platformService1).isNotNull();
 
-        PlatformService platformService2 = baseAction.getPlatformService(enjinConfig);
+        SynchronousPlatformService platformService2 = this.baseAction.getPlatformService(this.enjinConfig);
         assertThat(platformService2).isNotNull().isSameAs(platformService1);
     }
 }

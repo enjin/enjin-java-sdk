@@ -2,35 +2,36 @@ package io.enjincoin.sdk.client.service.transactionrequests;
 
 import io.enjincoin.sdk.client.vo.transactionrequest.*;
 
-import java.util.concurrent.CompletableFuture;
-
 /**
- * Asynchronous TransactionRequests service interface.
+ * TransactionRequests service interface.
  */
-public interface TransactionRequestsAsyncService extends TransactionRequestsService {
+public interface SynchronousTransactionRequestsService {
 
     /**
      * Method to get an transactionRequest.
      *
      * @param request - get the transactionRequest request vo
+     *
      * @return - GetTransactionRequestResponseVO
      */
-    CompletableFuture<GetTransactionRequestResponseVO[]> getTransactionRequestAsync(GetTransactionRequestRequestVO request);
+    GetTransactionRequestResponseVO[] getTransactionRequestsSync(GetTransactionRequestRequestVO request);
 
     /**
      * Method to create an transactionRequest.
      *
      * @param request - create the transactionRequest request vo
+     *
      * @return - CreateTransactionRequestResponseVO
      */
-    CompletableFuture<CreateTransactionRequestResponseVO> createTransactionRequestAsync(CreateTransactionRequestRequestVO request);
+    CreateTransactionRequestResponseVO createTransactionRequestSync(CreateTransactionRequestRequestVO request);
 
     /**
      * Method to cancel an transactionRequest.
      *
      * @param request - cancel the transactionRequest request vo
+     *
      * @return - CancelTransactionRequestResponseVO
      */
-    CompletableFuture<CancelTransactionRequestResponseVO> cancelTransactionRequestAsync(CancelTransactionRequestRequestVO request);
+    CancelTransactionRequestResponseVO cancelTransactionRequestSync(CancelTransactionRequestRequestVO request);
 
 }

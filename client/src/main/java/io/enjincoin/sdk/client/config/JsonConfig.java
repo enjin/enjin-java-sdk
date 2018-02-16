@@ -40,10 +40,13 @@ public class JsonConfig {
 
     /**
      * Method to load config.
-     * @param file file to load config from
+     *
+     * @param file  file to load config from
      * @param clazz the class type of the config
-     * @param <T> the class type of the config
+     * @param <T>   the class type of the config
+     *
      * @return T - jsonConfig
+     *
      * @throws Exception any exceptions that occur when loading the config
      */
     public static <T extends JsonConfig> T load(final File file, final Class<T> clazz) throws Exception {
@@ -65,11 +68,14 @@ public class JsonConfig {
 
     /**
      * Method to load config.
-     * @param file file to load config from
-     * @param clazz the class type of the config
-     * @param <T> the class type of the config
+     *
+     * @param file            file to load config from
+     * @param clazz           the class type of the config
+     * @param <T>             the class type of the config
      * @param loadNewSupplier to use
+     *
      * @return T - jsonConfig
+     *
      * @throws Exception any exceptions that occur when loading the config
      */
     public static <T extends JsonConfig> T load(final File file, final Class<T> clazz, final Supplier<T> loadNewSupplier) throws Exception {
@@ -91,9 +97,12 @@ public class JsonConfig {
 
     /**
      * Method to load new config.
+     *
      * @param clazz the class type of the config
-     * @param <T> the class type of the config
+     * @param <T>   the class type of the config
+     *
      * @return <T> - JsonConfig
+     *
      * @throws Exception any exceptions that occur when loading the config
      */
     private static <T extends JsonConfig> T loadNew(final Class<T> clazz) throws Exception {
@@ -102,10 +111,13 @@ public class JsonConfig {
 
     /**
      * Method to load existing config.
-     * @param file file to load config from
+     *
+     * @param file  file to load config from
      * @param clazz the class type of the config
-     * @param <T> the class type of the config
+     * @param <T>   the class type of the config
+     *
      * @return <T> - JsonConfig
+     *
      * @throws Exception any exceptions that occur when loading the config
      */
     @SuppressWarnings("unchecked")
@@ -117,7 +129,9 @@ public class JsonConfig {
 
     /**
      * Method to save config.
+     *
      * @param file file to save config to
+     *
      * @return boolean
      */
     public boolean save(final File file) {
@@ -145,8 +159,10 @@ public class JsonConfig {
 
     /**
      * Method to update config.
+     *
      * @param file file to store the updated config
      * @param data date to write to the config
+     *
      * @return boolean
      */
     public boolean update(final File file, final Object data) {
@@ -161,7 +177,7 @@ public class JsonConfig {
             JsonObject oldObj = old.getAsJsonObject();
             JsonObject updatesObj = updates.getAsJsonObject();
 
-            update(oldObj, updatesObj);
+            this.update(oldObj, updatesObj);
 
             try (FileWriter fw = new FileWriter(file)) {
                 String jsonStr = JsonUtils.convertObjectToJson(GSON, oldObj);
@@ -177,7 +193,8 @@ public class JsonConfig {
 
     /**
      * Method to update config.
-     * @param oldObj the old object
+     *
+     * @param oldObj     the old object
      * @param updatedObj the updated object
      */
     private void update(final JsonObject oldObj, final JsonObject updatedObj) {
@@ -192,7 +209,7 @@ public class JsonConfig {
 
             if (entry.getValue().isJsonObject()) {
                 LOGGER.fine(String.format("%s is an object, processing object fields.", entry.getKey()));
-                update(element.getAsJsonObject(), element.getAsJsonObject());
+                this.update(element.getAsJsonObject(), element.getAsJsonObject());
             } else {
                 LOGGER.fine(String.format("Setting %s to %s.", entry.getKey(), entry.getValue().toString()));
                 oldObj.add(entry.getKey(), entry.getValue());

@@ -8,13 +8,14 @@ import java.util.concurrent.CompletableFuture;
 /**
  * Asynchronous Events service interface.
  */
-public interface EventsAsyncService extends EventsService {
+public interface AsynchronousEventsService {
 
     /**
      * Method to get an event.
      *
      * @param request - get event request vo
+     *
      * @return - GetEventResponseVO
      */
-    CompletableFuture<GetEventResponseVO[]> getEventAsync(GetEventRequestVO request);
+    CompletableFuture<GetEventResponseVO[]> getEventsAsync(GetEventRequestVO request);
 }

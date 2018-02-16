@@ -14,10 +14,14 @@ public class ProtocolPort {
 
     }
 
-    /** http port constant. **/
+    /**
+     * http port constant.
+     **/
     public static final int HTTP = 80;
 
-    /** https port constant. **/
+    /**
+     * https port constant.
+     **/
     public static final int HTTPS = 443;
 
 }

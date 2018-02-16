@@ -1,9 +1,9 @@
 package io.enjincoin.sdk.client.mockServer;
 
+import io.enjincoin.sdk.client.ClientImpl;
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.config.ImmutableConfig;
-import io.enjincoin.sdk.client.service.EnjinCoinClient;
-import io.enjincoin.sdk.client.service.identities.IdentitiesService;
+import io.enjincoin.sdk.client.service.identities.SynchronousIdentitiesService;
 import io.enjincoin.sdk.client.vo.identity.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,16 +19,16 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
     private static final String ETHEREUM_ADDRESS_KEY = "ethereum_address";
     private static final String UUID_KEY = "uuid";
 
-    private IdentitiesService identitiesService;
+    private SynchronousIdentitiesService identitiesService;
 
     @Before
     public void init() {
         Config enjinConfig = ImmutableConfig.builder()
-                .setTrustedPlatform(getPlatform())
+                .setTrustedPlatform(this.getPlatform())
                 .setInTestMode(true)
                 .build();
-        EnjinCoinClient enjinService = new EnjinCoinClient(enjinConfig);
-        identitiesService = enjinService.getIdentitiesService();
+        ClientImpl enjinService = new ClientImpl(enjinConfig);
+        this.identitiesService = enjinService.getIdentitiesService();
     }
 
     @Test
@@ -49,15 +49,15 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
         assertThat(getIdentityRequestVO).isNotNull();
         assertThat(getIdentityRequestVO.toString()).isNotNull();
 
-        GetIdentityResponseVO[] getIdentityResponseVO = identitiesService.getIdentity(getIdentityRequestVO);
+        GetIdentityResponseVO[] getIdentityResponseVO = this.identitiesService.getIdentitiesSync(getIdentityRequestVO);
         assertThat(getIdentityResponseVO).isNotNull();
-        for (GetIdentityResponseVO identityResponseVO: getIdentityResponseVO) {
-        	assertThat(identityResponseVO).isNotNull()
-                .satisfies(o -> assertThat(identityResponseVO).isNotNull()
-                        .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
-                        .satisfies(o2 -> assertThat(o2.getIdentityId()).isNotEmpty())
-                        .satisfies(o2 -> assertThat(o2.getEthereumAddress()).isNotEmpty())
-                        .satisfies(o2 -> assertThat(o2.getPlayerName()).isNotEmpty()));
+        for (GetIdentityResponseVO identityResponseVO : getIdentityResponseVO) {
+            assertThat(identityResponseVO).isNotNull()
+                    .satisfies(o -> assertThat(identityResponseVO).isNotNull()
+                            .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
+                            .satisfies(o2 -> assertThat(o2.getIdentityId()).isNotEmpty())
+                            .satisfies(o2 -> assertThat(o2.getEthereumAddress()).isNotEmpty())
+                            .satisfies(o2 -> assertThat(o2.getPlayerName()).isNotEmpty()));
         }
     }
 
@@ -75,7 +75,7 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
                 .build();
         assertThat(createIdentityRequestVO).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty())
-                .satisfies(o -> assertThat(identitiesService.createIdentity(o)).isNotNull()
+                .satisfies(o -> assertThat(this.identitiesService.createIdentitySync(o)).isNotNull()
                         .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getIdentityId()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getIdentityCode()).isNotEmpty()));
@@ -100,7 +100,7 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
         String[] keys = {IDENTITY_ID_KEY, ETHEREUM_ADDRESS_KEY, UUID_KEY};
         assertThat(updateIdentityRequestVO).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty())
-                .satisfies(o -> assertThat(identitiesService.updateIdentity(o)).isNotNull()
+                .satisfies(o -> assertThat(this.identitiesService.updateIdentitySync(o)).isNotNull()
                         .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getIdentityMap()).isPresent()
                                 .hasValueSatisfying(v -> assertThat(v).containsKeys(keys)
@@ -121,7 +121,7 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
                 .build();
         assertThat(deleteIdentityRequestVO).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty())
-                .satisfies(o -> assertThat(identitiesService.deleteIdentity(o)).isNotNull()
+                .satisfies(o -> assertThat(this.identitiesService.deleteIdentitySync(o)).isNotNull()
                         .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getResult()).isPresent()
                                 .hasValueSatisfying(v -> assertThat(v).isTrue())));

@@ -85,7 +85,7 @@ public abstract class GetTransactionRequestRequestVO {
      */
     @Override
     public String toString() {
-        return "GetTransactionRequestRequestVO [auth=" + getAuth().orElse(null) + "]";
+        return "GetTransactionRequestRequestVO [auth=" + this.getAuth().orElse(null) + "]";
     }
 
 }

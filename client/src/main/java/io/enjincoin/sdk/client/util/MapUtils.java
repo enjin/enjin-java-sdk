@@ -21,6 +21,7 @@ public final class MapUtils {
      * Method to check if a map is empty.
      *
      * @param map - map to check
+     *
      * @return - boolean result
      */
     @SuppressWarnings("rawtypes")
@@ -32,6 +33,7 @@ public final class MapUtils {
      * Method to check if a map is not empty.
      *
      * @param map - map to check
+     *
      * @return - boolean result
      */
     @SuppressWarnings("rawtypes")
@@ -43,6 +45,7 @@ public final class MapUtils {
      * Method to check if an optional map is empty.
      *
      * @param optional - optional map to check
+     *
      * @return - boolean result
      */
     @SuppressWarnings("rawtypes")
@@ -54,6 +57,7 @@ public final class MapUtils {
      * Method to check if an optional map is not empty.
      *
      * @param optional - optional map to check
+     *
      * @return - boolean result
      */
     @SuppressWarnings("rawtypes")
@@ -63,8 +67,10 @@ public final class MapUtils {
 
     /**
      * Method to convert a key object to a string.
+     *
      * @param map to check
      * @param key to check for
+     *
      * @return String
      */
     public static String convertKeyObjectToString(final Map<String, Object> map, final String key) {

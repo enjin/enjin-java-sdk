@@ -1,5 +1,5 @@
 {
-  "event":"Event",
+  "event": "Event",
   "data": {
     "event_id": "123456790",
     "event_type": "identity_linked",

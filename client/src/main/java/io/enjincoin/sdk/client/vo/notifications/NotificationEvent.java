@@ -12,6 +12,7 @@ public abstract class NotificationEvent {
 
     /**
      * Method to get the notification type.
+     *
      * @return NotificationType
      */
     @Nullable
@@ -19,6 +20,7 @@ public abstract class NotificationEvent {
 
     /**
      * Method to get the channel.
+     *
      * @return String
      */
     @Nullable
@@ -26,6 +28,7 @@ public abstract class NotificationEvent {
 
     /**
      * Method to return the sourceData.
+     *
      * @return String
      */
     @Nullable

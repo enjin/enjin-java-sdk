@@ -18,6 +18,7 @@ public abstract class GetPlatformAuthRequestVO {
 
     /**
      * Method to get the auth.
+     *
      * @return Optional
      */
     @SerializedName("auth")
@@ -26,11 +27,12 @@ public abstract class GetPlatformAuthRequestVO {
 
     /**
      * Class toString method.
+     *
      * @return String
      */
     @Override
     public String toString() {
-        return "GetPlatformAuthRequestVO [auth=" + getAuth().orElse(null) + "]";
+        return "GetPlatformAuthRequestVO [auth=" + this.getAuth().orElse(null) + "]";
     }
 
 }

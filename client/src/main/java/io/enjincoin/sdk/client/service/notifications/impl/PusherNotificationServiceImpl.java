@@ -25,21 +25,23 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 /**
- *
  * <p>Service to implement methods that interact with the pusher library.</p>
- *
  */
 public class PusherNotificationServiceImpl implements ThirdPartyNotificationService {
 
     /**
      * Logger used by this class.
      */
-    private static final Logger LOGGER = Logger.getLogger(PusherNotificationServiceImpl .class.getName());
+    private static final Logger LOGGER = Logger.getLogger(PusherNotificationServiceImpl.class.getName());
 
-    /** Local pusher variable. **/
+    /**
+     * Local pusher variable.
+     **/
     private Pusher pusher;
 
-    /** Local channel variable .**/
+    /**
+     * Local channel variable .
+     **/
     private Channel channel;
 
     /**
@@ -54,6 +56,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
 
     /**
      * Class constructor.
+     *
      * @param notificationConfig to use
      */
     public PusherNotificationServiceImpl(final Notification notificationConfig) {
@@ -62,7 +65,9 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
 
     /**
      * Method to initialize the notification service.
+     *
      * @param getPlatformAuthDetailsResponseVO notification details config
+     *
      * @return boolean
      */
     @Override
@@ -85,17 +90,17 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
         }
 
         Map<String, Object> clientInfoMap = getPlatformAuthDetailsResponseVO.getClientInfoMap().get();
-        Map<String, Object> channelsMap   = getPlatformAuthDetailsResponseVO.getChannelsMap().get();
+        Map<String, Object> channelsMap = getPlatformAuthDetailsResponseVO.getChannelsMap().get();
 
         if (MapUtils.isEmpty(clientInfoMap) || MapUtils.isEmpty(channelsMap)) {
             LOGGER.warning("clientInfoMap or channelsMap are null or empty");
             return initializeResult;
         }
 
-        String appKey        = MapUtils.convertKeyObjectToString(clientInfoMap, "app_key");
-        String cluster       = MapUtils.convertKeyObjectToString(clientInfoMap, "cluster");
-        String appChannel    = MapUtils.convertKeyObjectToString(channelsMap, "server");
-        Long activityTimeout = notificationConfig.getActivityTimeout();
+        String appKey = MapUtils.convertKeyObjectToString(clientInfoMap, "app_key");
+        String cluster = MapUtils.convertKeyObjectToString(clientInfoMap, "cluster");
+        String appChannel = MapUtils.convertKeyObjectToString(channelsMap, "server");
+        Long activityTimeout = this.notificationConfig.getActivityTimeout();
 
         if (StringUtils.isEmpty(appKey) || StringUtils.isEmpty(cluster)) {
             LOGGER.warning("appId, appKey, appSecret or cluster is null or empty");
@@ -111,10 +116,10 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
         PusherOptions options = new PusherOptions()
                 .setCluster(cluster)
                 .setActivityTimeout(activityTimeout);
-        pusher = new Pusher(appKey, options);
+        this.pusher = new Pusher(appKey, options);
 
         //Connect to pusher
-        pusher.connect(new ConnectionEventListener() {
+        this.pusher.connect(new ConnectionEventListener() {
             /**
              * Method call on connection state change.
              * @param change
@@ -138,7 +143,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
 
 
         // Subscribe to a channel
-        channel = pusher.subscribe(appChannel);
+        this.channel = this.pusher.subscribe(appChannel);
 
         //Convert an enum to an array of strings
         //String[] eventTypes = Arrays.stream(NotificationTypeEnum.values()).map(NotificationTypeEnum::name).toArray(String[]::new);
@@ -147,7 +152,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
             String eventType = notificationTypeEnum.getEventType();
 
             // Bind to listen for events that match the eventType and appChannel
-            channel.bind(eventType, new SubscriptionEventListener() {
+            this.channel.bind(eventType, new SubscriptionEventListener() {
                 /**
                  * Method called on new events from the channel.
                  * @param channel
@@ -156,7 +161,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
                  */
                 @Override
                 public void onEvent(final String channel, final String event, final String data) {
-                    fireNotification(data, channel, event);
+                    PusherNotificationServiceImpl.this.fireNotification(data, channel, event);
                     LOGGER.fine(String.format("Received eventType %s, event %s with data %s ", eventType, event, data));
                 }
             });
@@ -168,13 +173,14 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
 
     /**
      * Method to fire a notification.
+     *
      * @param sourceData the sourceData received from the notification
-     * @param channel the channel the notification was received from
-     * @param eventType the type of event we received
+     * @param channel    the channel the notification was received from
+     * @param eventType  the type of event we received
      */
     private void fireNotification(final String sourceData, final String channel, final String eventType) {
 
-        if (ListUtils.isEmpty(notificationListenerRegistrations)) {
+        if (ListUtils.isEmpty(this.notificationListenerRegistrations)) {
             LOGGER.warning("No listeners are currently registered");
             return;
         }
@@ -191,15 +197,17 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
                 .setNotificationType(notificationTypeEnum)
                 .build();
 
-        for (NotificationListenerRegistration registration : notificationListenerRegistrations) {
+        for (NotificationListenerRegistration registration : this.notificationListenerRegistrations) {
             if (registration.getEventMatcher().matches(notificationEvent)) {
                 registration.getListener().notificationReceived(notificationEvent);
             }
         }
 
     }
+
     /**
      * Method to set the notification listeners.
+     *
      * @param argNotificationListeners - list of listeners to set as the new listeners
      */
     @Override

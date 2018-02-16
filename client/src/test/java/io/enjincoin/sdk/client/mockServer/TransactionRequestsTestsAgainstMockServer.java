@@ -1,9 +1,9 @@
 package io.enjincoin.sdk.client.mockServer;
 
+import io.enjincoin.sdk.client.ClientImpl;
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.config.ImmutableConfig;
-import io.enjincoin.sdk.client.service.EnjinCoinClient;
-import io.enjincoin.sdk.client.service.transactionrequests.TransactionRequestsService;
+import io.enjincoin.sdk.client.service.transactionrequests.SynchronousTransactionRequestsService;
 import io.enjincoin.sdk.client.vo.transactionrequest.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,30 +19,30 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
     private static final String ETHEREUM_ADDRESS_KEY = "ethereum_address";
     private static final String PLAYER_NAME_KEY = "player_name";
 
-    private TransactionRequestsService transactionRequestsService;
+    private SynchronousTransactionRequestsService transactionRequestsService;
 
     @Before
     public void init() {
         Config enjinConfig = ImmutableConfig.builder()
-                .setTrustedPlatform(getPlatform())
+                .setTrustedPlatform(this.getPlatform())
                 .setInTestMode(true)
                 .build();
-        EnjinCoinClient enjinService = new EnjinCoinClient(enjinConfig);
-        transactionRequestsService = enjinService.getTransactionRequestsService();
+        ClientImpl enjinService = new ClientImpl(enjinConfig);
+        this.transactionRequestsService = enjinService.getTransactionRequestsService();
     }
 
     @SuppressWarnings("serial")
-	@Test
+    @Test
     public void testGetTransactionRequest() {
 
-		GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
+        GetTransactionRequestRequestVO getTransactionRequestRequestVO = ImmutableGetTransactionRequestRequestVO.builder()
                 .setAuth("xxxxxxxx")
                 .setIdentityMap(new HashMap<String, Object>() {{
-                    put("identity_id", "12345");
+                    this.put("identity_id", "12345");
                 }})
                 .setAppId("123")
                 .setRecipientMap(new HashMap<String, Object>() {{
-                    put("identity_id", "12345");
+                    this.put("identity_id", "12345");
                 }})
                 .setType("buy")
                 .setAfterTxrId("1234567")
@@ -54,23 +54,23 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
         assertThat(getTransactionRequestRequestVO).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty());
 
-        GetTransactionRequestResponseVO[] getTransactionRequestResponseVO = transactionRequestsService.getTransactionRequest(getTransactionRequestRequestVO);
+        GetTransactionRequestResponseVO[] getTransactionRequestResponseVO = this.transactionRequestsService.getTransactionRequestsSync(getTransactionRequestRequestVO);
         assertThat(getTransactionRequestResponseVO).isNotNull();
 
         for (GetTransactionRequestResponseVO transactionRequestDetailsResponseVO : getTransactionRequestResponseVO) {
-        	assertThat(transactionRequestDetailsResponseVO).isNotNull()
-                        .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
-                        .satisfies(o2 -> assertThat(o2.getTxrId()).isNotEmpty())
-                        .satisfies(o2 -> assertThat(o2.getIdentityMap()).isNotEmpty()
-                                .hasValueSatisfying(v -> assertThat(v).containsKeys(keys)
-                                        .extracting(keys).doesNotContainNull()))
-                        .satisfies(o2 -> assertThat(o2.getRecipientMap()).isNotEmpty()
-                                .hasValueSatisfying(v -> assertThat(v).containsKeys(keys)
-                                        .extracting(keys).doesNotContainNull()))
-                        .satisfies(o2 -> assertThat(o2.getType()).isNotEmpty())
-                        .satisfies(o2 -> assertThat(o2.getIcon()).isNotEmpty())
-                        .satisfies(o2 -> assertThat(o2.getTitle()).isNotEmpty());
-        	//TODO: look at the values
+            assertThat(transactionRequestDetailsResponseVO).isNotNull()
+                    .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
+                    .satisfies(o2 -> assertThat(o2.getTxrId()).isNotEmpty())
+                    .satisfies(o2 -> assertThat(o2.getIdentityMap()).isNotEmpty()
+                            .hasValueSatisfying(v -> assertThat(v).containsKeys(keys)
+                                    .extracting(keys).doesNotContainNull()))
+                    .satisfies(o2 -> assertThat(o2.getRecipientMap()).isNotEmpty()
+                            .hasValueSatisfying(v -> assertThat(v).containsKeys(keys)
+                                    .extracting(keys).doesNotContainNull()))
+                    .satisfies(o2 -> assertThat(o2.getType()).isNotEmpty())
+                    .satisfies(o2 -> assertThat(o2.getIcon()).isNotEmpty())
+                    .satisfies(o2 -> assertThat(o2.getTitle()).isNotEmpty());
+            //TODO: look at the values
                         /*.satisfies(o2 -> assertThat(o2.getValueMap()).isNotEmpty()
 
                                 .hasValueSatisfying(v -> assertThat(v).containsKeys(value_map_keys)
@@ -102,7 +102,7 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
         String[] value_map_keys = {"ENJ"};
         assertThat(createTransactionRequestRequestVO).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty())
-                .satisfies(o -> assertThat(transactionRequestsService.createTransactionRequest(o)).isNotNull()
+                .satisfies(o -> assertThat(this.transactionRequestsService.createTransactionRequestSync(o)).isNotNull()
                         .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getTxrId()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getIdentityMap()).isNotEmpty()
@@ -127,7 +127,7 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
                 .build();
         assertThat(cancelTransactionRequestRequestVO).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty())
-                .satisfies(o -> assertThat(transactionRequestsService.cancelTransactionRequest(o)).isNotNull()
+                .satisfies(o -> assertThat(this.transactionRequestsService.cancelTransactionRequestSync(o)).isNotNull()
                         .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getResult()).isPresent()));
     }

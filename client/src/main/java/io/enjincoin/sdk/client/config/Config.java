@@ -19,6 +19,7 @@ public class Config extends JsonConfig {
 
     /**
      * Get the trusted platform config.
+     *
      * @return Platform
      */
     @Value.Default
@@ -29,6 +30,7 @@ public class Config extends JsonConfig {
 
     /**
      * Get the total executors.
+     *
      * @return Integer
      */
     @Value.Default
@@ -39,6 +41,7 @@ public class Config extends JsonConfig {
 
     /**
      * Get whether in test mode or not.
+     *
      * @return Boolean
      */
     @Nullable
@@ -52,7 +55,9 @@ public class Config extends JsonConfig {
      * Loads a config if it exists or creates a new config with default values.
      *
      * @param file target destination
+     *
      * @return Config
+     *
      * @throws Exception to be thrown
      */
     public static Config load(final File file) throws Exception {

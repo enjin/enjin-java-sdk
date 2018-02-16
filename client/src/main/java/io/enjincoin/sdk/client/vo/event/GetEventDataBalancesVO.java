@@ -18,6 +18,7 @@ public abstract class GetEventDataBalancesVO {
 
     /**
      * Method to get the identityMap.
+     *
      * @return Optional
      */
     @SerializedName("identity")
@@ -25,6 +26,7 @@ public abstract class GetEventDataBalancesVO {
 
     /**
      * Method to get the fromMap.
+     *
      * @return Optional
      */
     @SerializedName("from")
@@ -32,6 +34,7 @@ public abstract class GetEventDataBalancesVO {
 
     /**
      * Method to get the pendingMap.
+     *
      * @return Optional
      */
     @SerializedName("pending")
@@ -39,6 +42,7 @@ public abstract class GetEventDataBalancesVO {
 
     /**
      * Method to get the confirmedMap.
+     *
      * @return Optional
      */
     @SerializedName("confirmed")

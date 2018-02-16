@@ -28,6 +28,7 @@ public final class FileUtils {
      * Method to get file contents into a string.
      *
      * @param filePath - path to get contents from
+     *
      * @return - A string with the contents of the file
      */
     public static String getFileContents(final String filePath) {

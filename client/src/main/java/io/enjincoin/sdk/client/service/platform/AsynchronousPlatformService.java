@@ -8,13 +8,14 @@ import java.util.concurrent.CompletableFuture;
 /**
  * Asynchronous Events service interface.
  */
-public interface PlatformAsyncService extends PlatformService {
+public interface AsynchronousPlatformService extends SynchronousPlatformService {
 
 
     /**
      * Method to get the auth details.
      *
      * @param request - get platform auth request vo
+     *
      * @return - GetPlatformAuthResponseVO
      */
     CompletableFuture<GetPlatformAuthResponseVO> getAuthAsync(GetPlatformAuthRequestVO request);

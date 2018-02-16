@@ -9,7 +9,6 @@ import java.lang.annotation.Target;
 
 /**
  * Annotation for filtering events.
- *
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
@@ -24,6 +23,7 @@ public @interface EventFilter {
 
     /**
      * Allow or not.
+     *
      * @return boolean
      */
     boolean allow() default true;

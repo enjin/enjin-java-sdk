@@ -22,6 +22,7 @@ public final class StringUtils {
      * Method to convert an exception to string.
      *
      * @param e - exception to print
+     *
      * @return - exception in String format
      */
     public static String exceptionToString(final Exception e) {
@@ -43,6 +44,7 @@ public final class StringUtils {
      * Method to check if a string is empty.
      *
      * @param str - str to check
+     *
      * @return - boolean result
      */
     public static boolean isEmpty(final String str) {
@@ -53,6 +55,7 @@ public final class StringUtils {
      * Method to check if a string is not empty.
      *
      * @param str - str to check
+     *
      * @return - boolean result
      */
     public static boolean isNotEmpty(final String str) {
@@ -63,6 +66,7 @@ public final class StringUtils {
      * Method to check if an optional string is empty.
      *
      * @param optional - optional str to check
+     *
      * @return - boolean result
      */
     public static boolean isEmpty(final Optional<String> optional) {
@@ -73,6 +77,7 @@ public final class StringUtils {
      * Method to check if an optional string is not empty.
      *
      * @param optional - optional str to check
+     *
      * @return - boolean result
      */
     public static boolean isNotEmpty(final Optional<String> optional) {

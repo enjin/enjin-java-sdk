@@ -21,6 +21,7 @@ public final class ListUtils {
      * Method to check if a list is empty.
      *
      * @param list - list to check
+     *
      * @return - boolean result
      */
     @SuppressWarnings("rawtypes")
@@ -32,6 +33,7 @@ public final class ListUtils {
      * Method to check if a list is not empty.
      *
      * @param list - list to check
+     *
      * @return - boolean result
      */
     @SuppressWarnings("rawtypes")
@@ -43,6 +45,7 @@ public final class ListUtils {
      * Method to check if an optional list is empty.
      *
      * @param optional - optional list to check
+     *
      * @return - boolean result
      */
     @SuppressWarnings("rawtypes")
@@ -54,6 +57,7 @@ public final class ListUtils {
      * Method to check if an optional list is not empty.
      *
      * @param optional - optional list to check
+     *
      * @return - boolean result
      */
     @SuppressWarnings("rawtypes")

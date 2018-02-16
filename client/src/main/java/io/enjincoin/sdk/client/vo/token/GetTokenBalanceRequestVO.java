@@ -18,6 +18,7 @@ public abstract class GetTokenBalanceRequestVO {
 
     /**
      * Method to get the identityMap.
+     *
      * @return Optional
      */
     @SerializedName("identity")
@@ -25,6 +26,7 @@ public abstract class GetTokenBalanceRequestVO {
 
     /**
      * Method to get the tokenIdsMap.
+     *
      * @return Optional
      */
     @SerializedName("token_ids")
@@ -33,7 +35,7 @@ public abstract class GetTokenBalanceRequestVO {
 
     @Override
     public String toString() {
-        return "GetTokenBalanceRequestVO [getIdentityMap()=" + getIdentityMap() + ", getTokenIdsMap()=" + getTokenIdsMap() + "]";
+        return "GetTokenBalanceRequestVO [getIdentityMap()=" + this.getIdentityMap() + ", getTokenIdsMap()=" + this.getTokenIdsMap() + "]";
     }
 
 }

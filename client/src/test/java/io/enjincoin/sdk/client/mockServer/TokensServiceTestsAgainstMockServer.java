@@ -1,9 +1,9 @@
 package io.enjincoin.sdk.client.mockServer;
 
+import io.enjincoin.sdk.client.ClientImpl;
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.config.ImmutableConfig;
-import io.enjincoin.sdk.client.service.EnjinCoinClient;
-import io.enjincoin.sdk.client.service.tokens.TokensService;
+import io.enjincoin.sdk.client.service.tokens.SynchronousTokensService;
 import io.enjincoin.sdk.client.vo.token.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,16 +15,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class TokensServiceTestsAgainstMockServer extends BaseMockServer {
 
-    private TokensService tokensService;
+    private SynchronousTokensService tokensService;
 
     @Before
     public void init() {
         Config enjinConfig = ImmutableConfig.builder()
-                .setTrustedPlatform(getPlatform())
+                .setTrustedPlatform(this.getPlatform())
                 .setInTestMode(true)
                 .build();
-        EnjinCoinClient enjinService = new EnjinCoinClient(enjinConfig);
-        tokensService = enjinService.getTokensService();
+        ClientImpl enjinService = new ClientImpl(enjinConfig);
+        this.tokensService = enjinService.getTokensService();
     }
 
     @Test
@@ -37,24 +37,24 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer {
         assertThat(getTokenRequestVO).isNotNull()
                 .satisfies(o -> assertThat(o.toString()).isNotEmpty());
 
-        GetTokenResponseVO[] getTokenResponseVO = tokensService.getToken(getTokenRequestVO);
+        GetTokenResponseVO[] getTokenResponseVO = this.tokensService.getTokensSync(getTokenRequestVO);
         assertThat(getTokenResponseVO).isNotNull();
         for (GetTokenResponseVO tokenResponseVO : getTokenResponseVO) {
-        	assertThat(tokenResponseVO).isNotNull()
-                .satisfies(o -> assertThat(tokenResponseVO).isNotNull()
-                        .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
-                        .satisfies(o2 -> assertThat(o2.getAdapter()).isNotEmpty())
-                        .satisfies(o2 -> assertThat(o2.getCreator()).isNotEmpty())
-                        .satisfies(o2 -> assertThat(o2.getDecimals()).isNotEmpty())
-                        .satisfies(o2 -> assertThat(o2.getExchangeRate()).isNotEmpty())
-                        .satisfies(o2 -> assertThat(o2.getIcon()).isNotEmpty())
-                        .satisfies(o2 -> assertThat(o2.getMaxMeltFee()).isNotEmpty())
-                        .satisfies(o2 -> assertThat(o2.getMeltFee()).isNotEmpty())
-                        .satisfies(o2 -> assertThat(o2.getName()).isNotEmpty())
-                        .satisfies(o2 -> assertThat(o2.getTokenId()).isNotEmpty())
-                        .satisfies(o2 -> assertThat(o2.getTotalSupply()).isNotEmpty())
-                        .satisfies(o2 -> assertThat(o2.getTransferable()).isNotEmpty())
-                );
+            assertThat(tokenResponseVO).isNotNull()
+                    .satisfies(o -> assertThat(tokenResponseVO).isNotNull()
+                            .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
+                            .satisfies(o2 -> assertThat(o2.getAdapter()).isNotEmpty())
+                            .satisfies(o2 -> assertThat(o2.getCreator()).isNotEmpty())
+                            .satisfies(o2 -> assertThat(o2.getDecimals()).isNotEmpty())
+                            .satisfies(o2 -> assertThat(o2.getExchangeRate()).isNotEmpty())
+                            .satisfies(o2 -> assertThat(o2.getIcon()).isNotEmpty())
+                            .satisfies(o2 -> assertThat(o2.getMaxMeltFee()).isNotEmpty())
+                            .satisfies(o2 -> assertThat(o2.getMeltFee()).isNotEmpty())
+                            .satisfies(o2 -> assertThat(o2.getName()).isNotEmpty())
+                            .satisfies(o2 -> assertThat(o2.getTokenId()).isNotEmpty())
+                            .satisfies(o2 -> assertThat(o2.getTotalSupply()).isNotEmpty())
+                            .satisfies(o2 -> assertThat(o2.getTransferable()).isNotEmpty())
+                    );
         }
     }
 
@@ -80,13 +80,13 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer {
                 .satisfies(o -> assertThat(o.getIdentityMap()).isNotEmpty())
                 .satisfies(o -> assertThat(o.getTokenIdsMap()).isNotEmpty());
 
-        GetTokenBalanceResponseVO[] getTokenBalanceResponseVO = tokensService.getTokenBalance(getTokenBalanceRequestVO);
+        GetTokenBalanceResponseVO[] getTokenBalanceResponseVO = this.tokensService.getTokenBalancesSync(getTokenBalanceRequestVO);
         assertThat(getTokenBalanceResponseVO).isNotNull();
         for (GetTokenBalanceResponseVO tokenBalanceResponseVO : getTokenBalanceResponseVO) {
             assertThat(tokenBalanceResponseVO).isNotNull()
-            .satisfies(o -> assertThat(tokenBalanceResponseVO).isNotNull()
-                    .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
-                    .satisfies(o2 -> assertThat(o2.getTokenBalanceMap()).isNotNull()));
+                    .satisfies(o -> assertThat(tokenBalanceResponseVO).isNotNull()
+                            .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
+                            .satisfies(o2 -> assertThat(o2.getTokenBalanceMap()).isNotNull()));
         }
     }
 
