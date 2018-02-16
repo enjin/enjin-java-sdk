@@ -135,7 +135,14 @@ public enum NotificationType {
      * @return NotificationType
      */
     public static NotificationType valueOfEnum(final String name) {
-        NotificationType type = valueOf(name);
-        return type != null ? type : UNKNOWN_EVENT;
+        NotificationType type;
+
+        try {
+            type = valueOf(name);
+        } catch (IllegalArgumentException e) {
+            type = UNKNOWN_EVENT;
+        }
+
+        return type;
     }
 }
