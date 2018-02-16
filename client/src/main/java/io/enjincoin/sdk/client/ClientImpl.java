@@ -150,4 +150,12 @@ public class ClientImpl implements Client {
         }
         return this.platformService;
     }
+
+    @Override
+    public void close() {
+        if (this.notificationsService != null) {
+            this.notificationsService.shutdown();
+            this.notificationsService = null;
+        }
+    }
 }

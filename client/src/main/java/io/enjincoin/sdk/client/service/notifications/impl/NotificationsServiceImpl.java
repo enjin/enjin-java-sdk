@@ -73,11 +73,11 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
      * @return boolean
      */
     @Override
-    public boolean initNotificationsService(final String auth) {
+    public boolean start(final String auth) {
         this.auth = auth;
 
         //Call out to the reinitialize method in order to initialize the pusher notifications
-        return this.reInitNotificationsService();
+        return this.restart();
     }
 
 
@@ -87,7 +87,7 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
      * @return boolean
      */
     @Override
-    public boolean reInitNotificationsService() {
+    public boolean restart() {
         boolean initResult = false;
 
 
@@ -116,13 +116,19 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
             this.thirdPartyNotificationService = new PusherNotificationServiceImpl(new Notification());
         }
 
-        boolean initPusherResult = this.thirdPartyNotificationService.initializeNotificationService(platformAuthDetailsResponseVO);
+        boolean initPusherResult = this.thirdPartyNotificationService.init(platformAuthDetailsResponseVO);
         if (BooleanUtils.isNotTrue(initPusherResult)) {
             LOGGER.warning("A problem occured initializing the pusher library");
             return initResult;
         }
 
         return initPusherResult;
+    }
+
+    @Override
+    public void shutdown() {
+        if (this.thirdPartyNotificationService != null)
+            this.thirdPartyNotificationService.shutdown();
     }
 
     /**

@@ -68,7 +68,7 @@ public class NotificationsServiceTest {
     public void testInitNotificationsService_AuthIsNull() throws Exception {
         String auth = null;
 
-        boolean result = this.notificationsService.initNotificationsService(auth);
+        boolean result = this.notificationsService.start(auth);
         assertThat(result).isFalse();
     }
 
@@ -76,7 +76,7 @@ public class NotificationsServiceTest {
     public void testInitNotificationsService_AuthIsEmpty() throws Exception {
         String auth = "";
 
-        boolean result = this.notificationsService.initNotificationsService(auth);
+        boolean result = this.notificationsService.start(auth);
         assertThat(result).isFalse();
     }
 
@@ -89,7 +89,7 @@ public class NotificationsServiceTest {
         PowerMockito.whenNew(PlatformServiceImpl.class).withParameterTypes(Config.class).withArguments(Mockito.isA(Config.class)).thenReturn(mockPlatformService);
         Mockito.when(mockPlatformService.getAuthSync(Mockito.isA(GetPlatformAuthRequestVO.class))).thenReturn(tempGetPlatformAuthResponseVO);
 
-        boolean result = this.notificationsService.initNotificationsService(auth);
+        boolean result = this.notificationsService.start(auth);
         assertThat(result).isFalse();
 
         PowerMockito.verifyNew(PlatformServiceImpl.class).withArguments(Mockito.isA(Config.class));
@@ -108,7 +108,7 @@ public class NotificationsServiceTest {
         PowerMockito.whenNew(PlatformServiceImpl.class).withParameterTypes(Config.class).withArguments(Mockito.isA(Config.class)).thenReturn(mockPlatformService);
         Mockito.when(mockPlatformService.getAuthSync(Mockito.isA(GetPlatformAuthRequestVO.class))).thenReturn(tempGetPlatformAuthResponseVO);
 
-        boolean result = this.notificationsService.initNotificationsService(auth);
+        boolean result = this.notificationsService.start(auth);
         assertThat(result).isFalse();
 
         PowerMockito.verifyNew(PlatformServiceImpl.class).withArguments(Mockito.isA(Config.class));
@@ -124,9 +124,9 @@ public class NotificationsServiceTest {
         PowerMockito.whenNew(PlatformServiceImpl.class).withParameterTypes(Config.class).withArguments(Mockito.isA(Config.class)).thenReturn(mockPlatformService);
         Mockito.when(mockPlatformService.getAuthSync(Mockito.isA(GetPlatformAuthRequestVO.class))).thenReturn(this.getPlatformAuthResponseVO);
         PowerMockito.whenNew(PusherNotificationServiceImpl.class).withArguments(Mockito.isA(Notification.class)).thenReturn(mockPusherNotificationService);
-        Mockito.when(mockPusherNotificationService.initializeNotificationService(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(false);
+        Mockito.when(mockPusherNotificationService.init(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(false);
 
-        boolean result = this.notificationsService.initNotificationsService(auth);
+        boolean result = this.notificationsService.start(auth);
         assertThat(result).isFalse();
 
         PowerMockito.verifyNew(PlatformServiceImpl.class).withArguments(Mockito.isA(Config.class));
@@ -144,9 +144,9 @@ public class NotificationsServiceTest {
         Mockito.when(mockPlatformService.getAuthSync(Mockito.isA(GetPlatformAuthRequestVO.class))).thenReturn(this.getPlatformAuthResponseVO);
         PowerMockito.whenNew(PusherNotificationServiceImpl.class).withParameterTypes(Notification.class).withArguments(Mockito.isA(Notification.class))
                 .thenReturn(mockPusherNotificationService);
-        Mockito.when(mockPusherNotificationService.initializeNotificationService(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(true);
+        Mockito.when(mockPusherNotificationService.init(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(true);
 
-        boolean result = this.notificationsService.initNotificationsService(auth);
+        boolean result = this.notificationsService.start(auth);
         assertThat(result).isTrue();
 
         PowerMockito.verifyNew(PlatformServiceImpl.class).withArguments(Mockito.isA(Config.class));
@@ -165,12 +165,12 @@ public class NotificationsServiceTest {
         Mockito.when(mockPlatformService.getAuthSync(Mockito.isA(GetPlatformAuthRequestVO.class))).thenReturn(this.getPlatformAuthResponseVO);
         PowerMockito.whenNew(PusherNotificationServiceImpl.class).withParameterTypes(Notification.class).withArguments(Mockito.isA(Notification.class))
                 .thenReturn(mockPusherNotificationService);
-        Mockito.when(mockPusherNotificationService.initializeNotificationService(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(true);
+        Mockito.when(mockPusherNotificationService.init(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(true);
 
-        boolean result = this.notificationsService.initNotificationsService(auth);
+        boolean result = this.notificationsService.start(auth);
         assertThat(result).isTrue();
 
-        result = this.notificationsService.initNotificationsService(auth);
+        result = this.notificationsService.start(auth);
         assertThat(result).isTrue();
 
         PowerMockito.verifyNew(PlatformServiceImpl.class).withArguments(Mockito.isA(Config.class));
@@ -197,9 +197,9 @@ public class NotificationsServiceTest {
         Mockito.when(mockPlatformService.getAuthSync(Mockito.isA(GetPlatformAuthRequestVO.class))).thenReturn(this.getPlatformAuthResponseVO);
         PowerMockito.whenNew(PusherNotificationServiceImpl.class).withParameterTypes(Notification.class).withArguments(Mockito.isA(Notification.class))
                 .thenReturn(mockPusherNotificationService);
-        Mockito.when(mockPusherNotificationService.initializeNotificationService(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(true);
+        Mockito.when(mockPusherNotificationService.init(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(true);
 
-        boolean result = this.notificationsService.initNotificationsService(auth);
+        boolean result = this.notificationsService.start(auth);
         assertThat(result).isTrue();
 
         NotificationListenerRegistration addNotificationListenerRegistration = this.notificationsService.addNotificationListener(null);
@@ -221,10 +221,10 @@ public class NotificationsServiceTest {
         Mockito.when(mockPlatformService.getAuthSync(Mockito.isA(GetPlatformAuthRequestVO.class))).thenReturn(this.getPlatformAuthResponseVO);
         PowerMockito.whenNew(PusherNotificationServiceImpl.class).withParameterTypes(Notification.class).withArguments(Mockito.isA(Notification.class))
                 .thenReturn(mockPusherNotificationService);
-        Mockito.when(mockPusherNotificationService.initializeNotificationService(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(true);
+        Mockito.when(mockPusherNotificationService.init(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(true);
         Mockito.doNothing().when(mockPusherNotificationService).setNotificationListeners(Mockito.isA(List.class));
 
-        boolean result = this.notificationsService.initNotificationsService(auth);
+        boolean result = this.notificationsService.start(auth);
         assertThat(result).isTrue();
 
         NotificationListenerRegistration addNotificationListenerRegistration = this.notificationsService.addNotificationListener(this.mockNotificationListener);
@@ -247,10 +247,10 @@ public class NotificationsServiceTest {
         Mockito.when(mockPlatformService.getAuthSync(Mockito.isA(GetPlatformAuthRequestVO.class))).thenReturn(this.getPlatformAuthResponseVO);
         PowerMockito.whenNew(PusherNotificationServiceImpl.class).withParameterTypes(Notification.class).withArguments(Mockito.isA(Notification.class))
                 .thenReturn(mockPusherNotificationService);
-        Mockito.when(mockPusherNotificationService.initializeNotificationService(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(true);
+        Mockito.when(mockPusherNotificationService.init(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(true);
         Mockito.doNothing().when(mockPusherNotificationService).setNotificationListeners(Mockito.isA(List.class));
 
-        boolean result = this.notificationsService.initNotificationsService(auth);
+        boolean result = this.notificationsService.start(auth);
         assertThat(result).isTrue();
 
         NotificationListenerRegistration addNotificationListenerRegistration1 = this.notificationsService.addNotificationListener(this.mockNotificationListener);
@@ -276,10 +276,10 @@ public class NotificationsServiceTest {
         Mockito.when(mockPlatformService.getAuthSync(Mockito.isA(GetPlatformAuthRequestVO.class))).thenReturn(this.getPlatformAuthResponseVO);
         PowerMockito.whenNew(PusherNotificationServiceImpl.class).withParameterTypes(Notification.class).withArguments(Mockito.isA(Notification.class))
                 .thenReturn(mockPusherNotificationService);
-        Mockito.when(mockPusherNotificationService.initializeNotificationService(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(true);
+        Mockito.when(mockPusherNotificationService.init(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(true);
         Mockito.doNothing().when(mockPusherNotificationService).setNotificationListeners(Mockito.isA(List.class));
 
-        boolean result = this.notificationsService.initNotificationsService(auth);
+        boolean result = this.notificationsService.start(auth);
         assertThat(result).isTrue();
 
         EventMatcher eventMatcher = NotificationListenerRegistration.ALLOW_ALL_MATCHER;
@@ -303,10 +303,10 @@ public class NotificationsServiceTest {
         Mockito.when(mockPlatformService.getAuthSync(Mockito.isA(GetPlatformAuthRequestVO.class))).thenReturn(this.getPlatformAuthResponseVO);
         PowerMockito.whenNew(PusherNotificationServiceImpl.class).withParameterTypes(Notification.class).withArguments(Mockito.isA(Notification.class))
                 .thenReturn(mockPusherNotificationService);
-        Mockito.when(mockPusherNotificationService.initializeNotificationService(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(true);
+        Mockito.when(mockPusherNotificationService.init(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(true);
         Mockito.doNothing().when(mockPusherNotificationService).setNotificationListeners(Mockito.isA(List.class));
 
-        boolean result = this.notificationsService.initNotificationsService(auth);
+        boolean result = this.notificationsService.start(auth);
         assertThat(result).isTrue();
 
         NotificationType notificationType = NotificationType.BALANCE_MELTED;
@@ -330,10 +330,10 @@ public class NotificationsServiceTest {
         Mockito.when(mockPlatformService.getAuthSync(Mockito.isA(GetPlatformAuthRequestVO.class))).thenReturn(this.getPlatformAuthResponseVO);
         PowerMockito.whenNew(PusherNotificationServiceImpl.class).withParameterTypes(Notification.class).withArguments(Mockito.isA(Notification.class))
                 .thenReturn(mockPusherNotificationService);
-        Mockito.when(mockPusherNotificationService.initializeNotificationService(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(true);
+        Mockito.when(mockPusherNotificationService.init(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(true);
         Mockito.doNothing().when(mockPusherNotificationService).setNotificationListeners(Mockito.isA(List.class));
 
-        boolean result = this.notificationsService.initNotificationsService(auth);
+        boolean result = this.notificationsService.start(auth);
         assertThat(result).isTrue();
 
         NotificationType notificationType = NotificationType.BALANCE_MELTED;
@@ -357,9 +357,9 @@ public class NotificationsServiceTest {
         Mockito.when(mockPlatformService.getAuthSync(Mockito.isA(GetPlatformAuthRequestVO.class))).thenReturn(this.getPlatformAuthResponseVO);
         PowerMockito.whenNew(PusherNotificationServiceImpl.class).withParameterTypes(Notification.class).withArguments(Mockito.isA(Notification.class))
                 .thenReturn(mockPusherNotificationService);
-        Mockito.when(mockPusherNotificationService.initializeNotificationService(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(true);
+        Mockito.when(mockPusherNotificationService.init(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(true);
 
-        boolean result = this.notificationsService.initNotificationsService(auth);
+        boolean result = this.notificationsService.start(auth);
         assertThat(result).isTrue();
 
         this.notificationsService.removeNotificationListener(null);
@@ -379,9 +379,9 @@ public class NotificationsServiceTest {
         Mockito.when(mockPlatformService.getAuthSync(Mockito.isA(GetPlatformAuthRequestVO.class))).thenReturn(this.getPlatformAuthResponseVO);
         PowerMockito.whenNew(PusherNotificationServiceImpl.class).withParameterTypes(Notification.class).withArguments(Mockito.isA(Notification.class))
                 .thenReturn(mockPusherNotificationService);
-        Mockito.when(mockPusherNotificationService.initializeNotificationService(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(true);
+        Mockito.when(mockPusherNotificationService.init(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(true);
 
-        boolean result = this.notificationsService.initNotificationsService(auth);
+        boolean result = this.notificationsService.start(auth);
         assertThat(result).isTrue();
 
         this.notificationsService.removeNotificationListener(this.mockNotificationListener);
@@ -402,10 +402,10 @@ public class NotificationsServiceTest {
         Mockito.when(mockPlatformService.getAuthSync(Mockito.isA(GetPlatformAuthRequestVO.class))).thenReturn(this.getPlatformAuthResponseVO);
         PowerMockito.whenNew(PusherNotificationServiceImpl.class).withParameterTypes(Notification.class).withArguments(Mockito.isA(Notification.class))
                 .thenReturn(mockPusherNotificationService);
-        Mockito.when(mockPusherNotificationService.initializeNotificationService(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(true);
+        Mockito.when(mockPusherNotificationService.init(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(true);
         Mockito.doNothing().when(mockPusherNotificationService).setNotificationListeners(Mockito.isA(List.class));
 
-        boolean result = this.notificationsService.initNotificationsService(auth);
+        boolean result = this.notificationsService.start(auth);
         assertThat(result).isTrue();
 
         NotificationListenerRegistration addNotificationListenerRegistration = this.notificationsService.addNotificationListener(this.mockNotificationListener);
@@ -429,9 +429,9 @@ public class NotificationsServiceTest {
         Mockito.when(mockPlatformService.getAuthSync(Mockito.isA(GetPlatformAuthRequestVO.class))).thenReturn(this.getPlatformAuthResponseVO);
         PowerMockito.whenNew(PusherNotificationServiceImpl.class).withParameterTypes(Notification.class).withArguments(Mockito.isA(Notification.class))
                 .thenReturn(mockPusherNotificationService);
-        Mockito.when(mockPusherNotificationService.initializeNotificationService(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(true);
+        Mockito.when(mockPusherNotificationService.init(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(true);
 
-        boolean result = this.notificationsService.initNotificationsService(auth);
+        boolean result = this.notificationsService.start(auth);
         assertThat(result).isTrue();
 
         NotificationListenerRegistration notificationListenerRegistration = null;
@@ -453,10 +453,10 @@ public class NotificationsServiceTest {
         Mockito.when(mockPlatformService.getAuthSync(Mockito.isA(GetPlatformAuthRequestVO.class))).thenReturn(this.getPlatformAuthResponseVO);
         PowerMockito.whenNew(PusherNotificationServiceImpl.class).withParameterTypes(Notification.class).withArguments(Mockito.isA(Notification.class))
                 .thenReturn(mockPusherNotificationService);
-        Mockito.when(mockPusherNotificationService.initializeNotificationService(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(true);
+        Mockito.when(mockPusherNotificationService.init(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(true);
         Mockito.doNothing().when(mockPusherNotificationService).setNotificationListeners(Mockito.isA(List.class));
 
-        boolean result = this.notificationsService.initNotificationsService(auth);
+        boolean result = this.notificationsService.start(auth);
         assertThat(result).isTrue();
 
         NotificationListenerRegistration notificationListenerRegistration = new NotificationListenerRegistration(this.mockNotificationListener);
@@ -479,9 +479,9 @@ public class NotificationsServiceTest {
         Mockito.when(mockPlatformService.getAuthSync(Mockito.isA(GetPlatformAuthRequestVO.class))).thenReturn(this.getPlatformAuthResponseVO);
         PowerMockito.whenNew(PusherNotificationServiceImpl.class).withParameterTypes(Notification.class).withArguments(Mockito.isA(Notification.class))
                 .thenReturn(mockPusherNotificationService);
-        Mockito.when(mockPusherNotificationService.initializeNotificationService(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(true);
+        Mockito.when(mockPusherNotificationService.init(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(true);
 
-        boolean result = this.notificationsService.initNotificationsService(auth);
+        boolean result = this.notificationsService.start(auth);
         assertThat(result).isTrue();
 
         NotificationListenerRegistration notificationListenerRegistration = null;
@@ -503,10 +503,10 @@ public class NotificationsServiceTest {
         Mockito.when(mockPlatformService.getAuthSync(Mockito.isA(GetPlatformAuthRequestVO.class))).thenReturn(this.getPlatformAuthResponseVO);
         PowerMockito.whenNew(PusherNotificationServiceImpl.class).withParameterTypes(Notification.class).withArguments(Mockito.isA(Notification.class))
                 .thenReturn(mockPusherNotificationService);
-        Mockito.when(mockPusherNotificationService.initializeNotificationService(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(true);
+        Mockito.when(mockPusherNotificationService.init(Mockito.isA(GetPlatformAuthDetailsResponseVO.class))).thenReturn(true);
         Mockito.doNothing().when(mockPusherNotificationService).setNotificationListeners(Mockito.isA(List.class));
 
-        boolean result = this.notificationsService.initNotificationsService(auth);
+        boolean result = this.notificationsService.start(auth);
         assertThat(result).isTrue();
 
         NotificationListenerRegistration notificationListenerRegistration = new NotificationListenerRegistration(this.mockNotificationListener);

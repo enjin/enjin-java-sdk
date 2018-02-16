@@ -72,7 +72,7 @@ public class PusherNotificationServiceTest {
     public void testInitializeNotificationService_ObjectPassedInIsNull() throws Exception {
         this.getPlatformAuthDetailsResponseVO = null;
 
-        boolean result = this.pusherNotificationService.initializeNotificationService(this.getPlatformAuthDetailsResponseVO);
+        boolean result = this.pusherNotificationService.init(this.getPlatformAuthDetailsResponseVO);
         assertThat(result).isFalse();
     }
 
@@ -87,7 +87,7 @@ public class PusherNotificationServiceTest {
                     }
                 }).setRole("game_server").build();
 
-        boolean result = this.pusherNotificationService.initializeNotificationService(this.getPlatformAuthDetailsResponseVO);
+        boolean result = this.pusherNotificationService.init(this.getPlatformAuthDetailsResponseVO);
         assertThat(result).isFalse();
     }
 
@@ -102,7 +102,7 @@ public class PusherNotificationServiceTest {
                     }
                 }).setRole("game_server").build();
 
-        boolean result = this.pusherNotificationService.initializeNotificationService(this.getPlatformAuthDetailsResponseVO);
+        boolean result = this.pusherNotificationService.init(this.getPlatformAuthDetailsResponseVO);
         assertThat(result).isFalse();
     }
 
@@ -118,7 +118,7 @@ public class PusherNotificationServiceTest {
                 }).setChannelsMap(new HashMap<String, Object>() {
                 }).setRole("game_server").build();
 
-        boolean result = this.pusherNotificationService.initializeNotificationService(this.getPlatformAuthDetailsResponseVO);
+        boolean result = this.pusherNotificationService.init(this.getPlatformAuthDetailsResponseVO);
         assertThat(result).isFalse();
     }
 
@@ -133,7 +133,7 @@ public class PusherNotificationServiceTest {
                     }
                 }).setChannelsMap((Map) null).setRole("game_server").build();
 
-        boolean result = this.pusherNotificationService.initializeNotificationService(this.getPlatformAuthDetailsResponseVO);
+        boolean result = this.pusherNotificationService.init(this.getPlatformAuthDetailsResponseVO);
         assertThat(result).isFalse();
     }
 
@@ -153,7 +153,7 @@ public class PusherNotificationServiceTest {
                     }
                 }).setRole("game_server").build();
 
-        boolean result = this.pusherNotificationService.initializeNotificationService(this.getPlatformAuthDetailsResponseVO);
+        boolean result = this.pusherNotificationService.init(this.getPlatformAuthDetailsResponseVO);
         assertThat(result).isFalse();
     }
 
@@ -172,7 +172,7 @@ public class PusherNotificationServiceTest {
                     }
                 }).setRole("game_server").build();
 
-        boolean result = this.pusherNotificationService.initializeNotificationService(this.getPlatformAuthDetailsResponseVO);
+        boolean result = this.pusherNotificationService.init(this.getPlatformAuthDetailsResponseVO);
         assertThat(result).isFalse();
     }
 
@@ -191,7 +191,7 @@ public class PusherNotificationServiceTest {
                     }
                 }).setRole("game_server").build();
 
-        boolean result = this.pusherNotificationService.initializeNotificationService(this.getPlatformAuthDetailsResponseVO);
+        boolean result = this.pusherNotificationService.init(this.getPlatformAuthDetailsResponseVO);
         assertThat(result).isFalse();
     }
 
@@ -210,7 +210,7 @@ public class PusherNotificationServiceTest {
                     }
                 }).setRole("game_server").build();
 
-        boolean result = this.pusherNotificationService.initializeNotificationService(this.getPlatformAuthDetailsResponseVO);
+        boolean result = this.pusherNotificationService.init(this.getPlatformAuthDetailsResponseVO);
         assertThat(result).isFalse();
     }
 
@@ -229,7 +229,7 @@ public class PusherNotificationServiceTest {
                     }
                 }).setRole("game_server").build();
 
-        boolean result = this.pusherNotificationService.initializeNotificationService(this.getPlatformAuthDetailsResponseVO);
+        boolean result = this.pusherNotificationService.init(this.getPlatformAuthDetailsResponseVO);
         assertThat(result).isFalse();
     }
 
@@ -248,7 +248,7 @@ public class PusherNotificationServiceTest {
                     }
                 }).setRole("game_server").build();
 
-        boolean result = this.pusherNotificationService.initializeNotificationService(this.getPlatformAuthDetailsResponseVO);
+        boolean result = this.pusherNotificationService.init(this.getPlatformAuthDetailsResponseVO);
         assertThat(result).isFalse();
     }
 
@@ -266,7 +266,7 @@ public class PusherNotificationServiceTest {
         Mockito.when(mockPusher.subscribe(Mockito.anyString())).thenReturn(mockChannel);
         Mockito.doNothing().when(mockChannel).bind(Mockito.anyString(), Mockito.isA(SubscriptionEventListener.class));
 
-        boolean result = this.pusherNotificationService.initializeNotificationService(this.getPlatformAuthDetailsResponseVO);
+        boolean result = this.pusherNotificationService.init(this.getPlatformAuthDetailsResponseVO);
         assertThat(result).isTrue();
 
         PowerMockito.verifyNew(PusherOptions.class).withNoArguments();
@@ -280,7 +280,7 @@ public class PusherNotificationServiceTest {
 
     @Test
     public void testSetNotificationListeners_NotificationListenerListIsNull() {
-        boolean result = this.pusherNotificationService.initializeNotificationService(this.getPlatformAuthDetailsResponseVO);
+        boolean result = this.pusherNotificationService.init(this.getPlatformAuthDetailsResponseVO);
         assertThat(result).isTrue();
 
         List<NotificationListenerRegistration> notificationListenersList = null;
@@ -289,7 +289,7 @@ public class PusherNotificationServiceTest {
 
     @Test
     public void testSetNotificationListeners_NotificationListenerListIsEmpty() {
-        boolean result = this.pusherNotificationService.initializeNotificationService(this.getPlatformAuthDetailsResponseVO);
+        boolean result = this.pusherNotificationService.init(this.getPlatformAuthDetailsResponseVO);
         assertThat(result).isTrue();
 
         List<NotificationListenerRegistration> notificationListenersList = new LinkedList<>();
@@ -298,7 +298,7 @@ public class PusherNotificationServiceTest {
 
     @Test
     public void testSetNotificationListeners_NotificationListenerListHas1Element() {
-        boolean result = this.pusherNotificationService.initializeNotificationService(this.getPlatformAuthDetailsResponseVO);
+        boolean result = this.pusherNotificationService.init(this.getPlatformAuthDetailsResponseVO);
         assertThat(result).isTrue();
 
         List<NotificationListenerRegistration> notificationListenersList = new LinkedList<>();

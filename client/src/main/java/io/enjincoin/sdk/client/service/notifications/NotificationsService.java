@@ -17,14 +17,19 @@ public interface NotificationsService {
      *
      * @return boolean
      */
-    boolean initNotificationsService(String auth);
+    boolean start(String auth);
 
     /**
      * Method to re-initialize the notifications service.
      *
      * @return boolean
      */
-    boolean reInitNotificationsService();
+    boolean restart();
+
+    /**
+     * Method to shut down the notifications service.
+     */
+    void shutdown();
 
     /**
      * Method to configure a listener.

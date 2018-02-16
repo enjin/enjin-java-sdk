@@ -16,7 +16,12 @@ public interface ThirdPartyNotificationService {
      *
      * @return boolean
      */
-    boolean initializeNotificationService(GetPlatformAuthDetailsResponseVO getPlatformAuthDetailsResponseVO);
+    boolean init(GetPlatformAuthDetailsResponseVO getPlatformAuthDetailsResponseVO);
+
+    /**
+     * Method to shut down the notification service.
+     */
+    void shutdown();
 
     /**
      * Method to set the notification listeners.

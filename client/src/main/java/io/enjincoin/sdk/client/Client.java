@@ -58,4 +58,9 @@ public interface Client {
      * @return - PlatformService
      */
     PlatformService getPlatformService();
+
+    /**
+     * Closes all active resources.
+     */
+    void close();
 }

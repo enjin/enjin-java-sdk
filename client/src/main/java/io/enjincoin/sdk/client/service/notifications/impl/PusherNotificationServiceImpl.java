@@ -71,7 +71,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
      * @return boolean
      */
     @Override
-    public boolean initializeNotificationService(final GetPlatformAuthDetailsResponseVO getPlatformAuthDetailsResponseVO) {
+    public boolean init(final GetPlatformAuthDetailsResponseVO getPlatformAuthDetailsResponseVO) {
         boolean initializeResult = false;
 
         if (getPlatformAuthDetailsResponseVO == null) {
@@ -169,6 +169,12 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
 
         initializeResult = true;
         return initializeResult;
+    }
+
+    @Override
+    public void shutdown() {
+        if (this.pusher != null)
+            this.pusher.disconnect();
     }
 
     /**
