@@ -1,8 +1,6 @@
 package io.enjincoin.sdk.client.enums;
 
 import io.enjincoin.sdk.client.annotations.notifications.EventFilter;
-import io.enjincoin.sdk.client.service.notifications.NotificationListener;
-import io.enjincoin.sdk.client.vo.notifications.NotificationEvent;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -53,13 +51,4 @@ public class NotificationTypeTest {
         assertThat(NotificationType.valueOfEnum("")).isEqualTo(NotificationType.UNKNOWN_EVENT);
     }
 
-    @EventFilter(value = NotificationType.IDENTITY_CREATED)
-    public static class NotificationTypeTestHelper implements NotificationListener {
-
-        @Override
-        public void notificationReceived(NotificationEvent event) {
-            // Do Nothing
-        }
-
-    }
 }

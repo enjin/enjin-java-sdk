@@ -90,7 +90,7 @@ subprojects {
     clover {
         excludes = ['**/GsonAdapters*.java', '**/Immutable*.java']
 
-        testExcludes = ['**/*Test.java']
+        testIncludes = ['**/*Test.java']
 
         report {
             html = true
