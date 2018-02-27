@@ -137,23 +137,30 @@ public class JsonConfig {
     public boolean save(final File file) {
         boolean success = true;
 
-        try (FileWriter fw = new FileWriter(file)) {
+        if (file == null)
+            return false;
+
+        try {
             if (file.getParentFile() != null) {
                 boolean mkdirsResult = file.getParentFile().mkdirs();
                 LOGGER.fine(String.format("mkdirsResult is %s.", mkdirsResult));
             }
+
             if (!file.exists()) {
                 boolean createNewFileResult = file.createNewFile();
                 LOGGER.fine(String.format("createNewFileResult is %s.", createNewFileResult));
             }
 
-            String jsonStr = JsonUtils.convertObjectToJson(GSON, this);
-            fw.write(jsonStr);
-            fw.close();
+            try (FileWriter fw = new FileWriter(file)) {
+                String jsonStr = JsonUtils.convertObjectToJson(GSON, this);
+                fw.write(jsonStr);
+                fw.close();
+            }
         } catch (IOException e) {
             LOGGER.warning(String.format("Could not save the config to %s.", file.getName()));
             success = false;
         }
+
         return success;
     }
 
