@@ -1,12 +1,12 @@
 package io.enjincoin.sdk.client.service.events.impl;
 
+import com.enjin.java_commons.MapUtils;
+import com.enjin.java_commons.ObjectUtils;
+import com.enjin.java_commons.OptionalUtils;
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.service.BaseService;
 import io.enjincoin.sdk.client.service.events.EventsService;
 import io.enjincoin.sdk.client.util.Constants;
-import io.enjincoin.sdk.client.util.MapUtils;
-import io.enjincoin.sdk.client.util.ObjectUtils;
-import io.enjincoin.sdk.client.util.StringUtils;
 import io.enjincoin.sdk.client.vo.event.GetEventRequestVO;
 import io.enjincoin.sdk.client.vo.event.GetEventResponseVO;
 
@@ -52,22 +52,22 @@ public final class EventsServiceImpl extends BaseService implements EventsServic
 
         Map<String, Object> params = new HashMap<>();
 
-        if (StringUtils.isNotEmpty(getEventRequestVO.getEventId())) {
+        if (OptionalUtils.isStringPresent(getEventRequestVO.getEventId())) {
             getEventRequestVO.getEventId().ifPresent(eventId -> params.put("event_id", eventId));
         }
-        if (StringUtils.isNotEmpty(getEventRequestVO.getAppId())) {
+        if (OptionalUtils.isStringPresent(getEventRequestVO.getAppId())) {
             getEventRequestVO.getAppId().ifPresent(appId -> params.put("app_id", appId));
         }
-        if (MapUtils.isNotEmpty(getEventRequestVO.getIdentityMap())) {
+        if (OptionalUtils.isMapPresent(getEventRequestVO.getIdentityMap())) {
             getEventRequestVO.getIdentityMap().ifPresent(identity -> params.put("identity", identity));
         }
-        if (StringUtils.isNotEmpty(getEventRequestVO.getAfterEventId())) {
+        if (OptionalUtils.isStringPresent(getEventRequestVO.getAfterEventId())) {
             getEventRequestVO.getAfterEventId().ifPresent(afterEventId -> params.put("after_event_id", afterEventId));
         }
-        if (StringUtils.isNotEmpty(getEventRequestVO.getBeforeEventId())) {
+        if (OptionalUtils.isStringPresent(getEventRequestVO.getBeforeEventId())) {
             getEventRequestVO.getBeforeEventId().ifPresent(beforeEventId -> params.put("before_event_id", beforeEventId));
         }
-        if (StringUtils.isNotEmpty(getEventRequestVO.getLimit())) {
+        if (OptionalUtils.isStringPresent(getEventRequestVO.getLimit())) {
             getEventRequestVO.getLimit().ifPresent(limit -> params.put("limit", limit));
         }
 

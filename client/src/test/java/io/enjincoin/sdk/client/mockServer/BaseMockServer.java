@@ -1,5 +1,6 @@
 package io.enjincoin.sdk.client.mockServer;
 
+import com.enjin.java_commons.FileUtils;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
@@ -8,7 +9,6 @@ import io.enjincoin.sdk.client.config.ImmutablePlatform;
 import io.enjincoin.sdk.client.config.Notification;
 import io.enjincoin.sdk.client.config.Platform;
 import io.enjincoin.sdk.client.util.Constants;
-import io.enjincoin.sdk.client.util.FileUtils;
 import io.enjincoin.sdk.client.util.http.ContentType;
 import io.enjincoin.sdk.client.util.http.Header;
 import io.enjincoin.sdk.client.util.http.Protocol;
@@ -16,6 +16,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Rule;
+
+import java.io.IOException;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 
@@ -159,17 +161,21 @@ public class BaseMockServer {
      * @param methodToCall
      */
     private static void setUpStub(String baseURL, String folder, String methodToCall) {
-        String fileToLoad = String.format("%s/%s/%s.%s", JSON_FILE_BASE_FOLDER, folder, methodToCall, JSON_FILE_EXTENSION);
-        String fileContents = FileUtils.getFileContents(fileToLoad);
+        try {
+            String fileToLoad = String.format("%s/%s/%s.%s", JSON_FILE_BASE_FOLDER, folder, methodToCall, JSON_FILE_EXTENSION);
+            String fileContents = FileUtils.getFileContents(fileToLoad);
 
-        // See http://wiremock.org/docs/request-matching/ for request matching
-        stubFor(post(urlEqualTo(baseURL))
-                .withHeader(Header.ACCEPT, equalTo(ContentType.ANY))
-                .withRequestBody(matchingJsonPath(JSON_METHOD_LABEL, equalTo(methodToCall)))
-                .willReturn(aResponse()
-                        .withStatus(200)
-                        .withHeader(Header.CONTENT_TYPE, ContentType.TEXT_JSON)
-                        .withBody(fileContents)));
+            // See http://wiremock.org/docs/request-matching/ for request matching
+            stubFor(post(urlEqualTo(baseURL))
+                    .withHeader(Header.ACCEPT, equalTo(ContentType.ANY))
+                    .withRequestBody(matchingJsonPath(JSON_METHOD_LABEL, equalTo(methodToCall)))
+                    .willReturn(aResponse()
+                            .withStatus(200)
+                            .withHeader(Header.CONTENT_TYPE, ContentType.TEXT_JSON)
+                            .withBody(fileContents)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

@@ -1,12 +1,12 @@
 package io.enjincoin.sdk.client.service.transactionrequests.impl;
 
+import com.enjin.java_commons.ObjectUtils;
+import com.enjin.java_commons.OptionalUtils;
+import com.enjin.java_commons.StringUtils;
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.service.BaseService;
 import io.enjincoin.sdk.client.service.transactionrequests.TransactionRequestsService;
 import io.enjincoin.sdk.client.util.Constants;
-import io.enjincoin.sdk.client.util.MapUtils;
-import io.enjincoin.sdk.client.util.ObjectUtils;
-import io.enjincoin.sdk.client.util.StringUtils;
 import io.enjincoin.sdk.client.vo.transactionrequest.*;
 
 import java.util.HashMap;
@@ -44,16 +44,16 @@ public class TransactionRequestsServiceImpl extends BaseService implements Trans
             return response;
         }
 
-        if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentityMap())) {
+        if (!OptionalUtils.isStringPresent(request.getAuth()) || !OptionalUtils.isMapPresent(request.getIdentityMap())) {
             LOGGER.warning("1. TransactionRequests.get parameters may be empty or null.");
             return response;
         }
-        if (StringUtils.isEmpty(request.getAppId()) || MapUtils.isEmpty(request.getRecipientMap())) {
+        if (!OptionalUtils.isStringPresent(request.getAppId()) || !OptionalUtils.isMapPresent(request.getRecipientMap())) {
             LOGGER.warning("2. TransactionRequests.get parameters may be empty or null.");
             return response;
         }
-        if (StringUtils.isEmpty(request.getType()) || StringUtils.isEmpty(request.getAfterTxrId()) || StringUtils.isEmpty(request.getLimit())
-                || StringUtils.isEmpty(request.getCurrency())) {
+        if (!OptionalUtils.isStringPresent(request.getType()) || !OptionalUtils.isStringPresent(request.getAfterTxrId())
+                || !OptionalUtils.isStringPresent(request.getLimit()) || !OptionalUtils.isStringPresent(request.getCurrency())) {
             LOGGER.warning("3. TransactionRequests.get parameters may be empty or null.");
             return response;
         }
@@ -86,9 +86,10 @@ public class TransactionRequestsServiceImpl extends BaseService implements Trans
             return response;
         }
 
-        if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentityMap()) || MapUtils.isEmpty(request.getRecipientMap())
-                || StringUtils.isEmpty(request.getType()) || StringUtils.isEmpty(request.getIcon()) || StringUtils.isEmpty(request.getTitle())
-                || MapUtils.isEmpty(request.getValueMap())) {
+        if (!OptionalUtils.isStringPresent(request.getAuth()) || !OptionalUtils.isMapPresent(request.getIdentityMap())
+                || !OptionalUtils.isMapPresent(request.getRecipientMap()) || !OptionalUtils.isStringPresent(request.getType())
+                || !OptionalUtils.isStringPresent(request.getIcon()) || !OptionalUtils.isStringPresent(request.getTitle())
+                || !OptionalUtils.isMapPresent(request.getValueMap())) {
             LOGGER.warning("TransactionRequests.create parameters may be empty or null.");
             return response;
         }
@@ -120,7 +121,7 @@ public class TransactionRequestsServiceImpl extends BaseService implements Trans
             return response;
         }
 
-        if (StringUtils.isEmpty(request.getAuth()) || StringUtils.isEmpty(request.getTxrId())) {
+        if (!OptionalUtils.isStringPresent(request.getAuth()) || !OptionalUtils.isStringPresent(request.getTxrId())) {
             LOGGER.warning("TransactionRequests.cancel parameters may be empty or null.");
             return response;
         }

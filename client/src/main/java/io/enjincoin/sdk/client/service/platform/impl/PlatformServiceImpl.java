@@ -1,12 +1,11 @@
 package io.enjincoin.sdk.client.service.platform.impl;
 
+import com.enjin.java_commons.ObjectUtils;
+import com.enjin.java_commons.OptionalUtils;
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.service.BaseService;
 import io.enjincoin.sdk.client.service.platform.PlatformService;
-import io.enjincoin.sdk.client.service.platform.SynchronousPlatformService;
 import io.enjincoin.sdk.client.util.Constants;
-import io.enjincoin.sdk.client.util.ObjectUtils;
-import io.enjincoin.sdk.client.util.StringUtils;
 import io.enjincoin.sdk.client.vo.platform.GetPlatformAuthRequestVO;
 import io.enjincoin.sdk.client.vo.platform.GetPlatformAuthResponseVO;
 
@@ -50,7 +49,7 @@ public class PlatformServiceImpl extends BaseService implements PlatformService 
             return response;
         }
 
-        if (StringUtils.isEmpty(platformAuthRequestVO.getAuth())) {
+        if (!OptionalUtils.isStringPresent(platformAuthRequestVO.getAuth())) {
             LOGGER.warning("Platform.auth - auth is null or empty.");
             return response;
         }

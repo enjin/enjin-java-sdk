@@ -1,14 +1,15 @@
 package io.enjincoin.sdk.client.service.notifications.impl;
 
+import com.enjin.java_commons.BooleanUtils;
+import com.enjin.java_commons.ObjectUtils;
+import com.enjin.java_commons.OptionalUtils;
+import com.enjin.java_commons.StringUtils;
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.config.Notification;
 import io.enjincoin.sdk.client.enums.NotificationType;
 import io.enjincoin.sdk.client.service.BaseService;
 import io.enjincoin.sdk.client.service.notifications.*;
 import io.enjincoin.sdk.client.service.platform.SynchronousPlatformService;
-import io.enjincoin.sdk.client.util.BooleanUtils;
-import io.enjincoin.sdk.client.util.ObjectUtils;
-import io.enjincoin.sdk.client.util.StringUtils;
 import io.enjincoin.sdk.client.vo.platform.GetPlatformAuthDetailsResponseVO;
 import io.enjincoin.sdk.client.vo.platform.GetPlatformAuthRequestVO;
 import io.enjincoin.sdk.client.vo.platform.GetPlatformAuthResponseVO;
@@ -117,7 +118,7 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
         }
 
         boolean initPusherResult = this.thirdPartyNotificationService.init(platformAuthDetailsResponseVO);
-        if (BooleanUtils.isNotTrue(initPusherResult)) {
+        if (BooleanUtils.isFalse(initPusherResult)) {
             LOGGER.warning("A problem occured initializing the pusher library");
             return initResult;
         }

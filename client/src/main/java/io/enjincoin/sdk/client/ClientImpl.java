@@ -1,5 +1,6 @@
 package io.enjincoin.sdk.client;
 
+import com.enjin.java_commons.ObjectUtils;
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.service.events.EventsService;
 import io.enjincoin.sdk.client.service.events.impl.EventsServiceImpl;
@@ -13,7 +14,6 @@ import io.enjincoin.sdk.client.service.tokens.TokensService;
 import io.enjincoin.sdk.client.service.tokens.impl.TokensServiceImpl;
 import io.enjincoin.sdk.client.service.transactionrequests.TransactionRequestsService;
 import io.enjincoin.sdk.client.service.transactionrequests.impl.TransactionRequestsServiceImpl;
-import io.enjincoin.sdk.client.util.ObjectUtils;
 
 import java.util.logging.Logger;
 

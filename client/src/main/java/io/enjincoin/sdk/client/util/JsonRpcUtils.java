@@ -1,5 +1,8 @@
 package io.enjincoin.sdk.client.util;
 
+import com.enjin.java_commons.ExceptionUtils;
+import com.enjin.java_commons.MapUtils;
+import com.enjin.java_commons.StringUtils;
 import com.thetransactioncompany.jsonrpc2.JSONRPC2Request;
 import com.thetransactioncompany.jsonrpc2.JSONRPC2Response;
 import com.thetransactioncompany.jsonrpc2.client.JSONRPC2Session;
@@ -101,7 +104,7 @@ public class JsonRpcUtils {
             String requestId = Utils.generateRandomId(this.isInTestMode);
 
             JSONRPC2Request jsonRpcRequest;
-            if (MapUtils.isNotEmpty(params)) {
+            if (!MapUtils.isEmpty(params)) {
                 jsonRpcRequest = new JSONRPC2Request(method, params, requestId);
             } else {
                 jsonRpcRequest = new JSONRPC2Request(method, requestId);
@@ -123,9 +126,9 @@ public class JsonRpcUtils {
             }
 
         } catch (MalformedURLException e) {
-            LOGGER.warning(String.format("A MalformedURLException has occured. Exception: %s", StringUtils.exceptionToString(e)));
+            LOGGER.warning(String.format("A MalformedURLException has occured. Exception: %s", ExceptionUtils.exceptionToString(e)));
         } catch (JSONRPC2SessionException e) {
-            LOGGER.warning(String.format("A JSONRPC2SessionException has occured. Exception: %s", StringUtils.exceptionToString(e)));
+            LOGGER.warning(String.format("A JSONRPC2SessionException has occured. Exception: %s", ExceptionUtils.exceptionToString(e)));
         }
 
         return responseObject;

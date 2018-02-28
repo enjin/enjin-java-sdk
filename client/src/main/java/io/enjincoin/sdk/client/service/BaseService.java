@@ -1,12 +1,12 @@
 package io.enjincoin.sdk.client.service;
 
+import com.enjin.java_commons.ObjectUtils;
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.config.Platform;
 import io.enjincoin.sdk.client.service.platform.SynchronousPlatformService;
 import io.enjincoin.sdk.client.service.platform.impl.PlatformServiceImpl;
 import io.enjincoin.sdk.client.util.Constants;
 import io.enjincoin.sdk.client.util.JsonRpcUtils;
-import io.enjincoin.sdk.client.util.ObjectUtils;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -118,7 +118,7 @@ public abstract class BaseService {
     private String getJsonRpcURL(final String endpoint) {
         String baseURL = Constants.TRUSTED_PLATFORM_BASE_URL;
 
-        if (ObjectUtils.isNotNull(this.trustedPlatform)) {
+        if (!ObjectUtils.isNull(this.trustedPlatform)) {
             baseURL = this.trustedPlatform.toString();
         }
 

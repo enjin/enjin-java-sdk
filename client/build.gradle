@@ -21,6 +21,7 @@ ext {
     gson = '2.8.2'
     pusher = '1.6.0'
     immutables = '2.5.5'
+    okhttp = '3.10.0'
 }
 
 dependencies {
@@ -35,6 +36,7 @@ dependencies {
     compile group: 'com.google.code.gson', name: 'gson', version: gson
     compile group: 'com.pusher', name: 'pusher-java-client', version: pusher
     compile group: 'org.immutables', name: 'gson', version: immutables
+    compile group: 'com.squareup.okhttp3', name: 'okhttp', version: okhttp
 
     // testCompile dependencies
     testCompile group: 'com.github.tomakehurst', name: 'wiremock-standalone', version: wiremock

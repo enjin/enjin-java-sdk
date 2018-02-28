@@ -1,12 +1,11 @@
 package io.enjincoin.sdk.client.service.tokens.impl;
 
+import com.enjin.java_commons.ObjectUtils;
+import com.enjin.java_commons.OptionalUtils;
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.service.BaseService;
 import io.enjincoin.sdk.client.service.tokens.TokensService;
 import io.enjincoin.sdk.client.util.Constants;
-import io.enjincoin.sdk.client.util.MapUtils;
-import io.enjincoin.sdk.client.util.ObjectUtils;
-import io.enjincoin.sdk.client.util.StringUtils;
 import io.enjincoin.sdk.client.vo.token.GetTokenBalanceRequestVO;
 import io.enjincoin.sdk.client.vo.token.GetTokenBalanceResponseVO;
 import io.enjincoin.sdk.client.vo.token.GetTokenRequestVO;
@@ -48,15 +47,15 @@ public class TokensServiceImpl extends BaseService implements TokensService {
         }
 
         Map<String, Object> params = new HashMap<>();
-        if (StringUtils.isNotEmpty(getTokenRequestVO.getAppId())) {
+        if (OptionalUtils.isStringPresent(getTokenRequestVO.getAppId())) {
             getTokenRequestVO.getAppId().ifPresent(id -> params.put("app_id", id));
         }
 
-        if (StringUtils.isNotEmpty(getTokenRequestVO.getAfterTokenId())) {
+        if (OptionalUtils.isStringPresent(getTokenRequestVO.getAfterTokenId())) {
             getTokenRequestVO.getAppId().ifPresent(afterId -> params.put("after_token_id", afterId));
         }
 
-        if (StringUtils.isNotEmpty(getTokenRequestVO.getLimit())) {
+        if (OptionalUtils.isStringPresent(getTokenRequestVO.getLimit())) {
             getTokenRequestVO.getAppId().ifPresent(limit -> params.put("limit", limit));
         }
 
@@ -84,7 +83,7 @@ public class TokensServiceImpl extends BaseService implements TokensService {
             return getTokenBalanceResponseVO;
         }
 
-        if (MapUtils.isEmpty(getTokenBalanceRequestVO.getIdentityMap()) || MapUtils.isEmpty(getTokenBalanceRequestVO.getTokenIdsMap())) {
+        if (!OptionalUtils.isMapPresent(getTokenBalanceRequestVO.getIdentityMap()) || !OptionalUtils.isMapPresent(getTokenBalanceRequestVO.getTokenIdsMap())) {
             LOGGER.warning("Tokens.getBalance parameters may be empty or null.");
             return getTokenBalanceResponseVO;
         }

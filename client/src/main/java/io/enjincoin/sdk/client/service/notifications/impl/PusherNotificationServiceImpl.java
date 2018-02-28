@@ -1,5 +1,6 @@
 package io.enjincoin.sdk.client.service.notifications.impl;
 
+import com.enjin.java_commons.*;
 import com.pusher.client.Pusher;
 import com.pusher.client.PusherOptions;
 import com.pusher.client.channel.Channel;
@@ -11,10 +12,6 @@ import io.enjincoin.sdk.client.config.Notification;
 import io.enjincoin.sdk.client.enums.NotificationType;
 import io.enjincoin.sdk.client.service.notifications.NotificationListenerRegistration;
 import io.enjincoin.sdk.client.service.notifications.ThirdPartyNotificationService;
-import io.enjincoin.sdk.client.util.BooleanUtils;
-import io.enjincoin.sdk.client.util.ListUtils;
-import io.enjincoin.sdk.client.util.MapUtils;
-import io.enjincoin.sdk.client.util.StringUtils;
 import io.enjincoin.sdk.client.vo.notifications.ImmutableNotificationEvent;
 import io.enjincoin.sdk.client.vo.notifications.NotificationEvent;
 import io.enjincoin.sdk.client.vo.platform.GetPlatformAuthDetailsResponseVO;
@@ -97,12 +94,12 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
             return initializeResult;
         }
 
-        String appKey = MapUtils.convertKeyObjectToString(clientInfoMap, "app_key");
-        String cluster = MapUtils.convertKeyObjectToString(clientInfoMap, "cluster");
-        String appChannel = MapUtils.convertKeyObjectToString(channelsMap, "server");
+        String appKey = MapUtils.mapKeyValueToString(clientInfoMap, "app_key");
+        String cluster = MapUtils.mapKeyValueToString(clientInfoMap, "cluster");
+        String appChannel = MapUtils.mapKeyValueToString(channelsMap, "server");
         Long activityTimeout = this.notificationConfig.getActivityTimeout();
 
-        if (StringUtils.isEmpty(appKey) || StringUtils.isEmpty(cluster)) {
+        if (StringUtils.isEmpty(appKey) ||StringUtils.isEmpty(cluster)) {
             LOGGER.warning("appId, appKey, appSecret or cluster is null or empty");
             return initializeResult;
         }
@@ -137,7 +134,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
              */
             @Override
             public void onError(final String message, final String code, final Exception exception) {
-                LOGGER.warning(String.format("There was a problem connecting!. Exception: %s", StringUtils.exceptionToString(exception)));
+                LOGGER.warning(String.format("There was a problem connecting!. Exception: %s", ExceptionUtils.exceptionToString(exception)));
             }
         }, ConnectionState.ALL);
 
@@ -186,7 +183,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
      */
     private void fireNotification(final String sourceData, final String channel, final String eventType) {
 
-        if (ListUtils.isEmpty(this.notificationListenerRegistrations)) {
+        if (CollectionUtils.isEmpty(this.notificationListenerRegistrations)) {
             LOGGER.warning("No listeners are currently registered");
             return;
         }

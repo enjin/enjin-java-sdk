@@ -1,5 +1,9 @@
 package io.enjincoin.sdk.client.util;
 
+import com.enjin.java_commons.ExceptionUtils;
+import com.enjin.java_commons.ObjectUtils;
+import com.enjin.java_commons.OptionalUtils;
+import com.enjin.java_commons.StringUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonSyntaxException;
@@ -49,7 +53,7 @@ public final class JsonUtils {
             LOGGER.fine(String.format("jsonString:%s", jsonString));
             responseObject = gson.fromJson(jsonString, responseClass);
         } catch (JsonSyntaxException e) {
-            LOGGER.warning(String.format("A JsonSyntaxException has occured. Exception: %s", StringUtils.exceptionToString(e)));
+            LOGGER.warning(String.format("A JsonSyntaxException has occured. Exception: %s", ExceptionUtils.exceptionToString(e)));
         }
 
         return responseObject;
@@ -80,9 +84,9 @@ public final class JsonUtils {
             JsonReader jsonReader = new JsonReader(fileReader);
             responseObject = gson.fromJson(jsonReader, responseClass);
         } catch (FileNotFoundException e) {
-            LOGGER.warning(String.format("A FileNotFoundException has occured. Exception: %s", StringUtils.exceptionToString(e)));
+            LOGGER.warning(String.format("A FileNotFoundException has occured. Exception: %s", ExceptionUtils.exceptionToString(e)));
         } catch (UnsupportedEncodingException e) {
-            LOGGER.warning(String.format("An UnsupportedEncodingException has occured. Exception: %s", StringUtils.exceptionToString(e)));
+            LOGGER.warning(String.format("An UnsupportedEncodingException has occured. Exception: %s", ExceptionUtils.exceptionToString(e)));
         }
 
         return responseObject;
@@ -110,7 +114,7 @@ public final class JsonUtils {
             JsonReader jsonReader = new JsonReader(fileReader);
             responseObject = gson.fromJson(jsonReader, responseClass);
         } catch (JsonSyntaxException e) {
-            LOGGER.warning(String.format("A JsonSyntaxException has occured. Exception: %s", StringUtils.exceptionToString(e)));
+            LOGGER.warning(String.format("A JsonSyntaxException has occured. Exception: %s", ExceptionUtils.exceptionToString(e)));
         }
 
         return responseObject;

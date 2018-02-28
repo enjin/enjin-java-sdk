@@ -1,12 +1,13 @@
 package io.enjincoin.sdk.client.service.identities.impl;
 
+import com.enjin.java_commons.MapUtils;
+import com.enjin.java_commons.ObjectUtils;
+import com.enjin.java_commons.OptionalUtils;
+import com.enjin.java_commons.StringUtils;
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.service.BaseService;
 import io.enjincoin.sdk.client.service.identities.IdentitiesService;
 import io.enjincoin.sdk.client.util.Constants;
-import io.enjincoin.sdk.client.util.MapUtils;
-import io.enjincoin.sdk.client.util.ObjectUtils;
-import io.enjincoin.sdk.client.util.StringUtils;
 import io.enjincoin.sdk.client.vo.identity.*;
 
 import java.util.HashMap;
@@ -44,12 +45,12 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
             return response;
         }
 
-        if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentityMap())) {
+        if (!OptionalUtils.isStringPresent(request.getAuth()) || !OptionalUtils.isMapPresent(request.getIdentityMap())) {
             LOGGER.warning("1. Identities.get parameters may be empty or null.");
             return response;
         }
 
-        if (StringUtils.isEmpty(request.getAfterIdentityId()) || StringUtils.isEmpty(request.getLimit())) {
+        if (!OptionalUtils.isStringPresent(request.getAfterIdentityId()) || !OptionalUtils.isStringPresent(request.getLimit())) {
             LOGGER.warning("2. Identities.get parameters may be empty or null.");
             return response;
         }
@@ -78,7 +79,7 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
             return response;
         }
 
-        if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentityMap())) {
+        if (!OptionalUtils.isStringPresent(request.getAuth()) || !OptionalUtils.isMapPresent(request.getIdentityMap())) {
             LOGGER.warning("Identities.create parameters may be empty or null.");
             return response;
         }
@@ -104,7 +105,8 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
             return response;
         }
 
-        if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentityMap()) || MapUtils.isEmpty(request.getUpdateMap())) {
+        if (!OptionalUtils.isStringPresent(request.getAuth()) || !OptionalUtils.isMapPresent(request.getIdentityMap())
+                || !OptionalUtils.isMapPresent(request.getUpdateMap())) {
             LOGGER.warning("Identities.update parameters may be empty or null.");
             return response;
         }
@@ -131,7 +133,7 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
             return response;
         }
 
-        if (StringUtils.isEmpty(request.getAuth()) || MapUtils.isEmpty(request.getIdentityMap())) {
+        if (!OptionalUtils.isStringPresent(request.getAuth()) || !OptionalUtils.isMapPresent(request.getIdentityMap())) {
             LOGGER.warning("Identities.list parameters may be empty or null.");
             return response;
         }
