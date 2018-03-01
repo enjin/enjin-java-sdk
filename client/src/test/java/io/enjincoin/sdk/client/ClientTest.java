@@ -49,7 +49,7 @@ public class ClientTest {
 
     //TODO: Damien Remove - only temp
     @Test
-    public void testIdentitiesService_GetIdentities() {
+    public void testTempIdentitiesService_GetIdentities() {
         SynchronousIdentitiesService identitiesService = this.client.getIdentitiesService();
         assertThat(identitiesService).isNotNull();
 
@@ -67,7 +67,7 @@ public class ClientTest {
 
     //TODO: Damien Remove - only temp
     @Test
-    public void testIdentitiesService_GetIdentity() {
+    public void testTempIdentitiesService_GetIdentity() {
         SynchronousIdentitiesService identitiesService = this.client.getIdentitiesService();
         assertThat(identitiesService).isNotNull();
 
