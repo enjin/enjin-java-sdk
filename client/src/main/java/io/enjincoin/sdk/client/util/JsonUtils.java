@@ -57,6 +57,7 @@ public final class JsonUtils {
         try {
             LOGGER.fine(String.format("jsonString:%s", jsonString));
             responseObject = gson.fromJson(jsonString, responseClass);
+
         } catch (JsonSyntaxException e) {
             LOGGER.warning(String.format("A JsonSyntaxException has occured. Exception: %s", ExceptionUtils.exceptionToString(e)));
         }

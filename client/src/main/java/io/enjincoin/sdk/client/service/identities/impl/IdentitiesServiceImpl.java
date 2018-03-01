@@ -1,5 +1,6 @@
 package io.enjincoin.sdk.client.service.identities.impl;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
@@ -12,15 +13,19 @@ import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.service.BaseService;
 import io.enjincoin.sdk.client.service.identities.IdentitiesService;
 import io.enjincoin.sdk.client.util.Constants;
+import io.enjincoin.sdk.client.util.GsonUtils;
+import io.enjincoin.sdk.client.util.JsonUtils;
 import io.enjincoin.sdk.client.vo.identity.CreateIdentityRequestVO;
 import io.enjincoin.sdk.client.vo.identity.CreateIdentityResponseVO;
 import io.enjincoin.sdk.client.vo.identity.DeleteIdentityRequestVO;
 import io.enjincoin.sdk.client.vo.identity.DeleteIdentityResponseVO;
-import io.enjincoin.sdk.client.vo.identity.GetIdentityRequestVO;
 import io.enjincoin.sdk.client.vo.identity.GetIdentityResponseVO;
 import io.enjincoin.sdk.client.vo.identity.ImmutableDeleteIdentityResponseVO;
+import io.enjincoin.sdk.client.vo.identity.ImmutableGetIdentityResponseVO;
 import io.enjincoin.sdk.client.vo.identity.UpdateIdentityRequestVO;
 import io.enjincoin.sdk.client.vo.identity.UpdateIdentityResponseVO;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * <p>
@@ -43,36 +48,60 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
         super(config);
     }
 
+    /**
+     * Method to get all identities.
+     *
+     *
+     * @return - GetIdentityResponseVO
+     */
     @Override
-    public final GetIdentityResponseVO[] getIdentitiesSync(final GetIdentityRequestVO request) {
+    public final GetIdentityResponseVO[] getIdentitiesSync() {
         GetIdentityResponseVO[] response = null;
 
-        if (ObjectUtils.isNull(request)) {
-            LOGGER.warning("Identities.get request is null.");
-            return response;
+        // Construct new request
+        String getIdentitiesUrl = getIdentitiesUrl();
+        System.out.println("getIdentitiesUrl:"+getIdentitiesUrl);
+
+        try {
+            Request httpRequest = new Request.Builder().url(getIdentitiesUrl).build();
+            Response httpResponse = getOkHttpClient().newCall(httpRequest).execute();
+            String jsonString = httpResponse.body().string();
+            response = (GetIdentityResponseVO[]) JsonUtils.convertJsonToObject(GsonUtils.GSON, jsonString, ImmutableGetIdentityResponseVO[].class);
+
+        } catch (IOException e) {
+            LOGGER.warning("An IOException has occured getting all identities. Exception:" + e);
         }
 
-        if (!OptionalUtils.isStringPresent(request.getAuth()) || !OptionalUtils.isMapPresent(request.getIdentityMap())) {
-            LOGGER.warning("1. Identities.get parameters may be empty or null.");
+        return response;
+    }
+
+    /**
+     * Method to get an entity by identityId
+     * @param identityId
+     * @return
+     */
+    @Override
+    public GetIdentityResponseVO getIdentitySync(Integer identityId) {
+        GetIdentityResponseVO response = null;
+
+        if (identityId == null) {
+            LOGGER.warning("Identity passed in is null");
             return response;
         }
-
-        if (!OptionalUtils.isStringPresent(request.getAfterIdentityId()) || !OptionalUtils.isStringPresent(request.getLimit())) {
-            LOGGER.warning("2. Identities.get parameters may be empty or null.");
-            return response;
-        }
-
-        Map<String, Object> params = new HashMap<>();
-        params.put("auth", request.getAuth().get());
-        params.put("identity", request.getIdentityMap().get());
-        params.put("linked", request.getLinked().get());
-        params.put("after_identity_id", request.getAfterIdentityId().get());
-        params.put("limit", request.getLimit().get());
 
         // Construct new request
-        String method = Constants.METHOD_IDENTITIES_GET;
+        String getIdentityByIdUrl = String.format("%s/%d", getIdentitiesUrl(), identityId);
+        System.out.println("getIdentityByIdUrl:"+getIdentityByIdUrl);
 
-        response = (GetIdentityResponseVO[]) this.getJsonRpcUtils().sendJsonRpcRequest(this.getIdentitiesUrl(), GetIdentityResponseVO[].class, method, params);
+        try {
+            Request httpRequest = new Request.Builder().url(getIdentityByIdUrl).build();
+            Response httpResponse = getOkHttpClient().newCall(httpRequest).execute();
+            String jsonString = httpResponse.body().string();
+            response = (GetIdentityResponseVO) JsonUtils.convertJsonToObject(GsonUtils.GSON, jsonString, ImmutableGetIdentityResponseVO.class);
+
+        } catch (IOException e) {
+            LOGGER.warning("An IOException has occured getting identities byId. Exception:" + e);
+        }
 
         return response;
     }
@@ -159,8 +188,13 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
     }
 
     @Override
-    public CompletableFuture<GetIdentityResponseVO[]> getIdentitiesAsync(final GetIdentityRequestVO request) {
-        return CompletableFuture.supplyAsync(() -> this.getIdentitiesSync(request), this.getExecutorService());
+    public CompletableFuture<GetIdentityResponseVO[]> getIdentitiesAsync() {
+        return CompletableFuture.supplyAsync(() -> this.getIdentitiesSync(), this.getExecutorService());
+    }
+
+    @Override
+    public CompletableFuture<GetIdentityResponseVO> getIdentityAsync(Integer identityId) {
+        return CompletableFuture.supplyAsync(() -> this.getIdentitySync(identityId), this.getExecutorService());
     }
 
     @Override

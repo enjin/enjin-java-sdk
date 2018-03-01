@@ -1,26 +1,30 @@
 package io.enjincoin.sdk.client.vo.identity;
 
-import com.google.gson.annotations.SerializedName;
+import java.util.Optional;
+
 import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 
-import java.util.Optional;
+import com.google.gson.annotations.SerializedName;
+
+import io.enjincoin.sdk.client.annotations.immutables.SkipNulls;
 
 /**
  * <p>Get Identity Response class.
  * </p>
  */
 @Value.Immutable
-@Gson.TypeAdapters
+@Gson.TypeAdapters(emptyAsNulls = true)
 public abstract class GetIdentityResponseVO {
+
 
     /**
      * Method to get the identityId.
      *
      * @return Optional
      */
-    @SerializedName("identity_id")
-    public abstract Optional<String> getIdentityId();
+    @SerializedName("id")
+    public abstract Optional<Integer> getId();
 
     /**
      * Method to get the ethereumAddress.
@@ -28,25 +32,56 @@ public abstract class GetIdentityResponseVO {
      * @return Optional
      */
     @SerializedName("ethereum_address")
-    public abstract Optional<String> getEthereumAddress();
+    public abstract Optional<String> getEthereum_address();
 
     /**
-     * Method to get the playerName.
+     * Method to get the linkingCode.
      *
      * @return Optional
      */
-    @SerializedName("player_name")
-    public abstract Optional<String> getPlayerName();
+    @SerializedName("linking_code")
+    public abstract Optional<String> getLinking_code();
 
     /**
-     * Class toString method.
+     * Method to get the updatedAt.
      *
-     * @return String
+     * @return Optional
      */
+    @SerializedName("updated_at")
+    public abstract Optional<String> getUpdated_at();
+
+    /**
+     * Method to get the createdAt.
+     *
+     * @return Optional
+     */
+    @SerializedName("created_at")
+    public abstract String getCreated_at();
+
+    /**
+     * Method to get the user.
+     *
+     * @return Optional
+     */
+    @SerializedName("user")
+    public abstract Optional<String> getUser();
+
+
+    /**
+     * Method to get the fields.
+     *
+     * @return Optional
+     */
+    @SkipNulls
+    @SerializedName("fields")
+    public abstract Optional<ImmutableFieldVO[]> getFields();
+
     @Override
     public String toString() {
-        return "GetIdentityResponseVO [identityId=" + this.getIdentityId().orElse(null) + ", ethereumAddress=" + this.getEthereumAddress().orElse(null) + ", playerName="
-                + this.getPlayerName().orElse(null) + "]";
+        return "GetIdentityResponseVO [getId()=" + getId() + ", getEthereum_address()=" + getEthereum_address() + ", getLinking_code()=" + getLinking_code() + ", getUpdated_at()="
+                + getUpdated_at() + ", getCreated_at()=" + getCreated_at() + ", getUser()=" + getUser() + ", getFields()=" + getFields() + "]";
     }
+
+
 
 }

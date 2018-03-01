@@ -1,8 +1,14 @@
 package io.enjincoin.sdk.client.service.identities;
 
-import io.enjincoin.sdk.client.vo.identity.*;
-
 import java.util.concurrent.CompletableFuture;
+
+import io.enjincoin.sdk.client.vo.identity.CreateIdentityRequestVO;
+import io.enjincoin.sdk.client.vo.identity.CreateIdentityResponseVO;
+import io.enjincoin.sdk.client.vo.identity.DeleteIdentityRequestVO;
+import io.enjincoin.sdk.client.vo.identity.DeleteIdentityResponseVO;
+import io.enjincoin.sdk.client.vo.identity.GetIdentityResponseVO;
+import io.enjincoin.sdk.client.vo.identity.UpdateIdentityRequestVO;
+import io.enjincoin.sdk.client.vo.identity.UpdateIdentityResponseVO;
 
 /**
  * Asynchronous Identities service interface.
@@ -10,13 +16,20 @@ import java.util.concurrent.CompletableFuture;
 public interface AsynchronousIdentitiesService {
 
     /**
-     * Method to get an identity.
+     * Method to get all identities.
      *
-     * @param request - get identity request vo
      *
      * @return - GetIdentityResponseVO
      */
-    CompletableFuture<GetIdentityResponseVO[]> getIdentitiesAsync(GetIdentityRequestVO request);
+    CompletableFuture<GetIdentityResponseVO[]> getIdentitiesAsync();
+
+    /**
+     * Method to get an entity by identityId
+     * @param identityId
+     * @return
+     */
+    CompletableFuture<GetIdentityResponseVO> getIdentityAsync(Integer identityId);
+
 
     /**
      * Method to create an identity.

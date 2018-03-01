@@ -1,6 +1,12 @@
 package io.enjincoin.sdk.client.service.identities;
 
-import io.enjincoin.sdk.client.vo.identity.*;
+import io.enjincoin.sdk.client.vo.identity.CreateIdentityRequestVO;
+import io.enjincoin.sdk.client.vo.identity.CreateIdentityResponseVO;
+import io.enjincoin.sdk.client.vo.identity.DeleteIdentityRequestVO;
+import io.enjincoin.sdk.client.vo.identity.DeleteIdentityResponseVO;
+import io.enjincoin.sdk.client.vo.identity.GetIdentityResponseVO;
+import io.enjincoin.sdk.client.vo.identity.UpdateIdentityRequestVO;
+import io.enjincoin.sdk.client.vo.identity.UpdateIdentityResponseVO;
 
 /**
  * Identities service interface.
@@ -8,13 +14,19 @@ import io.enjincoin.sdk.client.vo.identity.*;
 public interface SynchronousIdentitiesService {
 
     /**
-     * Method to get an identity.
+     * Method to get all identities.
      *
-     * @param request - get identity request vo
      *
      * @return - GetIdentityResponseVO
      */
-    GetIdentityResponseVO[] getIdentitiesSync(GetIdentityRequestVO request);
+    GetIdentityResponseVO[] getIdentitiesSync();
+
+    /**
+     * Method to get an entity by identityId
+     * @param identityId
+     * @return
+     */
+    GetIdentityResponseVO getIdentitySync(Integer identityId);
 
     /**
      * Method to create an identity.
@@ -42,5 +54,7 @@ public interface SynchronousIdentitiesService {
      * @return - DeleteIdentityResponseVO
      */
     DeleteIdentityResponseVO deleteIdentitySync(DeleteIdentityRequestVO request);
+
+
 
 }

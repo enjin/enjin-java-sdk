@@ -1,10 +1,12 @@
 package io.enjincoin.sdk.client.config;
 
-import com.google.gson.annotations.SerializedName;
-import io.enjincoin.sdk.client.util.http.Protocol;
-import io.enjincoin.sdk.client.util.http.ProtocolPort;
 import org.immutables.gson.Gson;
 import org.immutables.value.Value;
+
+import com.google.gson.annotations.SerializedName;
+
+import io.enjincoin.sdk.client.util.http.Protocol;
+import io.enjincoin.sdk.client.util.http.ProtocolPort;
 
 /**
  * <p>
@@ -46,6 +48,17 @@ public class Platform {
     @SerializedName("protocol")
     public String getProtocol() {
         return Protocol.HTTPS;
+    }
+
+    /**
+     * The base api endpoint to use.
+     *
+     * @return String.
+     */
+    @Value.Default
+    @SerializedName("baseApiEndpoint")
+    public String getBaseApiEndpoint() {
+        return "api";
     }
 
     /**

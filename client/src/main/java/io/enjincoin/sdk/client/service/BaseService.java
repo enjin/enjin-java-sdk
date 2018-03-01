@@ -1,16 +1,19 @@
 package io.enjincoin.sdk.client.service;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.logging.Logger;
+
 import com.enjin.java_commons.ObjectUtils;
+
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.config.Platform;
 import io.enjincoin.sdk.client.service.platform.SynchronousPlatformService;
 import io.enjincoin.sdk.client.service.platform.impl.PlatformServiceImpl;
 import io.enjincoin.sdk.client.util.Constants;
+import io.enjincoin.sdk.client.util.HttpClient;
 import io.enjincoin.sdk.client.util.JsonRpcUtils;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.logging.Logger;
+import okhttp3.OkHttpClient;
 
 /**
  * <p>Provides Services used by the main service classes.</p>
@@ -45,6 +48,11 @@ public abstract class BaseService {
     private SynchronousPlatformService platformService;
 
     /**
+     * Private OKHttpClient instance
+     */
+    private OkHttpClient okHttpClient;
+
+    /**
      * Class contructor.
      *
      * @param config - config to use
@@ -61,7 +69,19 @@ public abstract class BaseService {
         this.executorService = Executors.newFixedThreadPool(totalExecutors);
         this.jsonRpcUtils = new JsonRpcUtils();
         this.jsonRpcUtils.setIsInTestMode(this.isInTestMode);
+
+        okHttpClient = new OkHttpClient();
+        okHttpClient = HttpClient.trustAllSslClient(okHttpClient);
     }
+
+    /**
+     * Method to get the okHttpClient
+     * @return
+     */
+    protected OkHttpClient getOkHttpClient() {
+        return okHttpClient;
+    }
+
 
     /**
      * Method to get the identities url.
@@ -69,7 +89,7 @@ public abstract class BaseService {
      * @return - the identities url
      */
     protected String getIdentitiesUrl() {
-        return this.getJsonRpcURL(Constants.IDENTITIES_URL);
+        return this.getRestURL(Constants.IDENTITIES_URL);
     }
 
     /**
@@ -78,7 +98,7 @@ public abstract class BaseService {
      * @return - the tokens url
      */
     protected String getTokensUrl() {
-        return this.getJsonRpcURL(Constants.TOKENS_URL);
+        return this.getRestURL(Constants.TOKENS_URL);
     }
 
     /**
@@ -87,7 +107,7 @@ public abstract class BaseService {
      * @return - the transaction requests url
      */
     protected String getTransactionRequestsUrl() {
-        return this.getJsonRpcURL(Constants.TRANSACTION_REQUESTS_URL);
+        return this.getRestURL(Constants.TRANSACTION_REQUESTS_URL);
     }
 
     /**
@@ -96,7 +116,7 @@ public abstract class BaseService {
      * @return - the events url
      */
     protected String getEventsUrl() {
-        return this.getJsonRpcURL(Constants.EVENTS_URL);
+        return this.getRestURL(Constants.EVENTS_URL);
     }
 
     /**
@@ -105,26 +125,26 @@ public abstract class BaseService {
      * @return - the platform url
      */
     protected String getPlatformUrl() {
-        return this.getJsonRpcURL(Constants.PLATFORM_URL);
+        return this.getRestURL(Constants.PLATFORM_URL);
     }
 
     /**
-     * Method to get the rpc url to use.
+     * Method to get the rest url to use.
      *
      * @param endpoint - the base endpoint
      *
      * @return - the final base endpoint to use
      */
-    private String getJsonRpcURL(final String endpoint) {
-        String baseURL = Constants.TRUSTED_PLATFORM_BASE_URL;
-
-        if (!ObjectUtils.isNull(this.trustedPlatform)) {
-            baseURL = this.trustedPlatform.toString();
+    private String getRestURL(final String endpoint) {
+        String restUrl = null;
+        if (ObjectUtils.isNull(this.trustedPlatform)) {
+            LOGGER.warning("TraustedPlatform is not set");
+            return restUrl;
         }
 
-        String jsonRpcURL = baseURL + endpoint;
+        restUrl = String.format("%s://%s:%d/api/v1/%s", trustedPlatform.getProtocol(), trustedPlatform.getHost(), trustedPlatform.getPort(), endpoint);
 
-        return jsonRpcURL;
+        return restUrl;
     }
 
     /**

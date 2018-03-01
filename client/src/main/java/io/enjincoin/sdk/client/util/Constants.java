@@ -29,7 +29,7 @@ public class Constants {
     /**
      * the identities action.
      **/
-    public static final String IDENTITIES_URL = "Identities.php";
+    public static final String IDENTITIES_URL = "identities";
     /**
      * the tokens action.
      **/
@@ -47,10 +47,7 @@ public class Constants {
      **/
     public static final String PLATFORM_URL = "Platform.php";
 
-    /**
-     * Constants for the Identities Get method.
-     **/
-    public static final String METHOD_IDENTITIES_GET = "get";
+
     /**
      * Constants for the Identities Create method.
      **/
