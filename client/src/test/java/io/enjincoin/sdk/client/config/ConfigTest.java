@@ -1,10 +1,10 @@
 package io.enjincoin.sdk.client.config;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import io.enjincoin.sdk.client.util.Constants;
-import io.enjincoin.sdk.client.util.JsonUtils;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.io.File;
+import java.io.FileWriter;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -12,21 +12,20 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import java.io.File;
-import java.io.FileWriter;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import io.enjincoin.sdk.client.util.Constants;
+import io.enjincoin.sdk.client.util.JsonUtils;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({JsonConfig.class, Class.class, File.class, FileWriter.class,
         Gson.class, Config.class, JsonUtils.class, JsonElement.class, JsonObject.class})
 public class ConfigTest {
 
-    @SuppressWarnings({"rawtypes", "unchecked"})
     @Test
     public void testLoad_FilesExistsSecondTimeAroundSuccess() throws Exception {
-        Class configClass = JsonConfig.class;
-
         File mockFile = PowerMockito.mock(File.class);
         FileWriter mockFileWriter = PowerMockito.mock(FileWriter.class);
         FileWriter spyFileWriter = Mockito.spy(mockFileWriter);

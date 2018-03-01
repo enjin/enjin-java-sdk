@@ -1,19 +1,26 @@
 package io.enjincoin.sdk.client.service.identities.impl;
 
-import com.enjin.java_commons.MapUtils;
-import com.enjin.java_commons.ObjectUtils;
-import com.enjin.java_commons.OptionalUtils;
-import com.enjin.java_commons.StringUtils;
-import io.enjincoin.sdk.client.config.Config;
-import io.enjincoin.sdk.client.service.BaseService;
-import io.enjincoin.sdk.client.service.identities.IdentitiesService;
-import io.enjincoin.sdk.client.util.Constants;
-import io.enjincoin.sdk.client.vo.identity.*;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.logging.Logger;
+
+import com.enjin.java_commons.ObjectUtils;
+import com.enjin.java_commons.OptionalUtils;
+
+import io.enjincoin.sdk.client.config.Config;
+import io.enjincoin.sdk.client.service.BaseService;
+import io.enjincoin.sdk.client.service.identities.IdentitiesService;
+import io.enjincoin.sdk.client.util.Constants;
+import io.enjincoin.sdk.client.vo.identity.CreateIdentityRequestVO;
+import io.enjincoin.sdk.client.vo.identity.CreateIdentityResponseVO;
+import io.enjincoin.sdk.client.vo.identity.DeleteIdentityRequestVO;
+import io.enjincoin.sdk.client.vo.identity.DeleteIdentityResponseVO;
+import io.enjincoin.sdk.client.vo.identity.GetIdentityRequestVO;
+import io.enjincoin.sdk.client.vo.identity.GetIdentityResponseVO;
+import io.enjincoin.sdk.client.vo.identity.ImmutableDeleteIdentityResponseVO;
+import io.enjincoin.sdk.client.vo.identity.UpdateIdentityRequestVO;
+import io.enjincoin.sdk.client.vo.identity.UpdateIdentityResponseVO;
 
 /**
  * <p>

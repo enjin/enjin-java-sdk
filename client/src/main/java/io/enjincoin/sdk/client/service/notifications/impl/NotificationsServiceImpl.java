@@ -1,25 +1,29 @@
 package io.enjincoin.sdk.client.service.notifications.impl;
 
-import com.enjin.java_commons.BooleanUtils;
-import com.enjin.java_commons.ObjectUtils;
-import com.enjin.java_commons.OptionalUtils;
-import com.enjin.java_commons.StringUtils;
-import io.enjincoin.sdk.client.config.Config;
-import io.enjincoin.sdk.client.config.Notification;
-import io.enjincoin.sdk.client.enums.NotificationType;
-import io.enjincoin.sdk.client.service.BaseService;
-import io.enjincoin.sdk.client.service.notifications.*;
-import io.enjincoin.sdk.client.service.platform.SynchronousPlatformService;
-import io.enjincoin.sdk.client.vo.platform.GetPlatformAuthDetailsResponseVO;
-import io.enjincoin.sdk.client.vo.platform.GetPlatformAuthRequestVO;
-import io.enjincoin.sdk.client.vo.platform.GetPlatformAuthResponseVO;
-import io.enjincoin.sdk.client.vo.platform.ImmutableGetPlatformAuthRequestVO;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+
+import com.enjin.java_commons.BooleanUtils;
+import com.enjin.java_commons.ObjectUtils;
+import com.enjin.java_commons.StringUtils;
+
+import io.enjincoin.sdk.client.config.Config;
+import io.enjincoin.sdk.client.config.Notification;
+import io.enjincoin.sdk.client.enums.NotificationType;
+import io.enjincoin.sdk.client.service.BaseService;
+import io.enjincoin.sdk.client.service.notifications.EventMatcher;
+import io.enjincoin.sdk.client.service.notifications.NotificationListener;
+import io.enjincoin.sdk.client.service.notifications.NotificationListenerRegistration;
+import io.enjincoin.sdk.client.service.notifications.NotificationsService;
+import io.enjincoin.sdk.client.service.notifications.ThirdPartyNotificationService;
+import io.enjincoin.sdk.client.service.platform.SynchronousPlatformService;
+import io.enjincoin.sdk.client.vo.platform.GetPlatformAuthDetailsResponseVO;
+import io.enjincoin.sdk.client.vo.platform.GetPlatformAuthRequestVO;
+import io.enjincoin.sdk.client.vo.platform.GetPlatformAuthResponseVO;
+import io.enjincoin.sdk.client.vo.platform.ImmutableGetPlatformAuthRequestVO;
 
 /**
  * <p>

@@ -1,16 +1,21 @@
 package io.enjincoin.sdk.client.util;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
+import java.util.logging.Logger;
+
 import com.enjin.java_commons.ExceptionUtils;
 import com.enjin.java_commons.ObjectUtils;
-import com.enjin.java_commons.OptionalUtils;
 import com.enjin.java_commons.StringUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.stream.JsonReader;
-
-import java.io.*;
-import java.util.logging.Logger;
 
 /**
  * <p>
