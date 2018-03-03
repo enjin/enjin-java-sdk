@@ -1,6 +1,5 @@
 package io.enjincoin.sdk.client.service.identities.impl;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
@@ -8,6 +7,7 @@ import java.util.logging.Logger;
 
 import com.enjin.java_commons.ObjectUtils;
 import com.enjin.java_commons.OptionalUtils;
+import com.enjin.java_commons.StringUtils;
 
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.service.BaseService;
@@ -15,15 +15,11 @@ import io.enjincoin.sdk.client.service.identities.IdentitiesService;
 import io.enjincoin.sdk.client.util.Constants;
 import io.enjincoin.sdk.client.util.GsonUtils;
 import io.enjincoin.sdk.client.util.JsonUtils;
+import io.enjincoin.sdk.client.vo.identity.CreateIdentityRequestVO;
+import io.enjincoin.sdk.client.vo.identity.CreateIdentityResponseVO;
 import io.enjincoin.sdk.client.vo.identity.GetIdentityResponseVO;
-import io.enjincoin.sdk.client.vo.legacy.identity.CreateIdentityRequestVO;
-import io.enjincoin.sdk.client.vo.legacy.identity.CreateIdentityResponseVO;
-import io.enjincoin.sdk.client.vo.legacy.identity.DeleteIdentityRequestVO;
-import io.enjincoin.sdk.client.vo.legacy.identity.DeleteIdentityResponseVO;
 import io.enjincoin.sdk.client.vo.legacy.identity.UpdateIdentityRequestVO;
 import io.enjincoin.sdk.client.vo.legacy.identity.UpdateIdentityResponseVO;
-import okhttp3.Request;
-import okhttp3.Response;
 
 /**
  * <p>
@@ -54,23 +50,22 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
      */
     @Override
     public final GetIdentityResponseVO[] getIdentitiesSync() {
-        GetIdentityResponseVO[] response = null;
+        GetIdentityResponseVO[] getIdentitiesResponse = null;
 
-        // Construct new request
+        // Get the identities url
         String getIdentitiesUrl = getIdentitiesUrl();
-        try {
-            Request httpRequest = new Request.Builder().url(getIdentitiesUrl).build();
-            Response httpResponse = getOkHttpClient().newCall(httpRequest).execute();
-            String jsonString = httpResponse.body().string();
-            System.out.println(jsonString);
-            response = (GetIdentityResponseVO[]) JsonUtils.convertJsonToObject(GsonUtils.GSON, jsonString, GetIdentityResponseVO[].class);
 
-        } catch (IOException e) {
-            LOGGER.warning("An IOException has occured getting all identities. Exception:" + e);
+        String responseJsonString = performGetCall(getIdentitiesUrl);
+        if (StringUtils.isEmpty(responseJsonString)) {
+            LOGGER.warning("No response returned from the getIdentities call");
+            return getIdentitiesResponse;
         }
+        getIdentitiesResponse = (GetIdentityResponseVO[]) JsonUtils.convertJsonToObject(GsonUtils.GSON, responseJsonString, GetIdentityResponseVO[].class);
 
-        return response;
+        return getIdentitiesResponse;
     }
+
+
 
     /**
      * Method to get an entity by identityId
@@ -78,54 +73,88 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
      * @return
      */
     @Override
-    public GetIdentityResponseVO getIdentitySync(Integer identityId) {
-        GetIdentityResponseVO response = null;
+    public GetIdentityResponseVO getIdentitySync(final Integer identityId) {
+        GetIdentityResponseVO getIdentityResponse = null;
 
         if (identityId == null) {
             LOGGER.warning("Identity passed in is null");
-            return response;
+            return getIdentityResponse;
         }
 
-        // Construct new request
+        // Get the identities url and append the identityId
         String getIdentityByIdUrl = String.format("%s/%d", getIdentitiesUrl(), identityId);
 
-        try {
-            Request httpRequest = new Request.Builder().url(getIdentityByIdUrl).build();
-            Response httpResponse = getOkHttpClient().newCall(httpRequest).execute();
-            String jsonString = httpResponse.body().string();
-            response = (GetIdentityResponseVO) JsonUtils.convertJsonToObject(GsonUtils.GSON, jsonString, GetIdentityResponseVO.class);
-
-        } catch (IOException e) {
-            LOGGER.warning("An IOException has occured getting identities byId. Exception:" + e);
+        String responseJsonString = performGetCall(getIdentityByIdUrl);
+        if (StringUtils.isEmpty(responseJsonString)) {
+            LOGGER.warning("No response returned from the getIdentity call");
+            return getIdentityResponse;
         }
 
-        return response;
+        getIdentityResponse = (GetIdentityResponseVO) JsonUtils.convertJsonToObject(GsonUtils.GSON, responseJsonString, GetIdentityResponseVO.class);
+
+        return getIdentityResponse;
     }
 
     @Override
-    public final CreateIdentityResponseVO createIdentitySync(final CreateIdentityRequestVO request) {
-        CreateIdentityResponseVO response = null;
+    public final CreateIdentityResponseVO createIdentitySync(final CreateIdentityRequestVO createIdentityRequest) {
+        CreateIdentityResponseVO createIdentityResponseVO = null;
 
-        if (ObjectUtils.isNull(request)) {
+        if (ObjectUtils.isNull(createIdentityRequest)) {
             LOGGER.warning("Identities.create request is null.");
-            return response;
+            return createIdentityResponseVO;
         }
 
-        if (!OptionalUtils.isStringPresent(request.getAuth()) || !OptionalUtils.isMapPresent(request.getIdentityMap())) {
+        if (!OptionalUtils.isStringPresent(createIdentityRequest.getEthereumAddress())) {
             LOGGER.warning("Identities.create parameters may be empty or null.");
-            return response;
+            return createIdentityResponseVO;
         }
 
-        Map<String, Object> params = new HashMap<>();
-        params.put("auth", request.getAuth().get());
-        params.put("identity", request.getIdentityMap().get());
+        //Convert the request object to json
+        String requestJsonString = JsonUtils.convertObjectToJson(GsonUtils.GSON, createIdentityRequest);
+        if (StringUtils.isEmpty(requestJsonString)) {
+            LOGGER.warning("Identities.create failed to convert request object to json.");
+        }
+         // Get the identities url
+        String createIdentitiesUrl = getIdentitiesUrl();
 
-        // Construct new request
-        String method = Constants.METHOD_IDENTITIES_CREATE;
+        String responseJsonString = performPostCall(createIdentitiesUrl, requestJsonString);
+        if (StringUtils.isEmpty(responseJsonString)) {
+            LOGGER.warning("No response returned from the createIdentity call");
+            return createIdentityResponseVO;
+        }
+        createIdentityResponseVO = (CreateIdentityResponseVO) JsonUtils.convertJsonToObject(GsonUtils.GSON, responseJsonString, CreateIdentityResponseVO.class);
 
-        response = (CreateIdentityResponseVO) this.getJsonRpcUtils().sendJsonRpcRequest(this.getIdentitiesUrl(), CreateIdentityResponseVO.class, method, params);
+        return createIdentityResponseVO;
+    }
 
-        return response;
+    /**
+     * Method to delete an identity
+     * @param identityId - the identity to delete
+     * @return
+     */
+    @Override
+    public final Boolean deleteIdentitySync(final Integer identityId) {
+        Boolean deleteIdentityResponseVO = false;
+
+        if (identityId == null) {
+            LOGGER.warning("Identities.delete identityId is null.");
+            return deleteIdentityResponseVO;
+        }
+
+
+        // Get the identities url and append the identityId
+        String deleteIdentityByIdUrl = String.format("%s/%d", getIdentitiesUrl(), identityId);
+
+        String responseJsonString = performDeleteCall(deleteIdentityByIdUrl);
+        if (StringUtils.isEmpty(responseJsonString)) {
+            LOGGER.warning("No response returned from the deleteIdentity call");
+            return deleteIdentityResponseVO;
+        }
+        if (responseJsonString.equalsIgnoreCase("true")) {
+            deleteIdentityResponseVO = true;
+        }
+
+        return deleteIdentityResponseVO;
     }
 
     @Override
@@ -156,32 +185,7 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
         return response;
     }
 
-    @Override
-    public final DeleteIdentityResponseVO deleteIdentitySync(final DeleteIdentityRequestVO request) {
-        DeleteIdentityResponseVO response = null;
 
-        if (ObjectUtils.isNull(request)) {
-            LOGGER.warning("Identities.list request is null.");
-            return response;
-        }
-
-        if (!OptionalUtils.isStringPresent(request.getAuth()) || !OptionalUtils.isMapPresent(request.getIdentityMap())) {
-            LOGGER.warning("Identities.list parameters may be empty or null.");
-            return response;
-        }
-        Map<String, Object> params = new HashMap<>();
-        params.put("auth", request.getAuth().get());
-        params.put("identity", request.getIdentityMap().get());
-
-        // Construct new request
-        String method = Constants.METHOD_IDENTITIES_DELETE;
-
-        Boolean result = (Boolean) this.getJsonRpcUtils().sendJsonRpcRequest(this.getIdentitiesUrl(), Boolean.class, method, params);
-
-       // response = ImmutableDeleteIdentityResponseVO.builder().setResult(result).build();
-
-        return response;
-    }
 
     @Override
     public CompletableFuture<GetIdentityResponseVO[]> getIdentitiesAsync() {
@@ -189,7 +193,7 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
     }
 
     @Override
-    public CompletableFuture<GetIdentityResponseVO> getIdentityAsync(Integer identityId) {
+    public CompletableFuture<GetIdentityResponseVO> getIdentityAsync(final Integer identityId) {
         return CompletableFuture.supplyAsync(() -> this.getIdentitySync(identityId), this.getExecutorService());
     }
 
@@ -204,8 +208,8 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
     }
 
     @Override
-    public CompletableFuture<DeleteIdentityResponseVO> deleteIdentityAsync(final DeleteIdentityRequestVO request) {
-        return CompletableFuture.supplyAsync(() -> this.deleteIdentitySync(request), this.getExecutorService());
+    public CompletableFuture<Boolean> deleteIdentityAsync(final Integer identityId) {
+        return CompletableFuture.supplyAsync(() -> this.deleteIdentitySync(identityId), this.getExecutorService());
     }
 
 }
