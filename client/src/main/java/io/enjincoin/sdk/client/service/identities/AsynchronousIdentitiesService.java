@@ -22,6 +22,14 @@ public interface AsynchronousIdentitiesService {
     CompletableFuture<GetIdentityResponseVO[]> getIdentitiesAsync();
 
     /**
+     * Method to get all identities - supplying a filter also.
+     * @param filterJsonString - the json to use for filtering
+     *
+     * @return - GetIdentityResponseVO
+     */
+    CompletableFuture<GetIdentityResponseVO[]> getIdentitiesAsync(String filterJsonString);
+
+    /**
      * Method to get an entity by identityId
      * @param identityId
      * @return

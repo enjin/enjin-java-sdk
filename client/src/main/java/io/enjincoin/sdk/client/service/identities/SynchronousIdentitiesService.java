@@ -20,6 +20,14 @@ public interface SynchronousIdentitiesService {
     GetIdentityResponseVO[] getIdentitiesSync();
 
     /**
+     * Method to get all identities - supplying a filter also.
+     * @param filterJsonString - the json to use for filtering
+     *
+     * @return - GetIdentityResponseVO
+     */
+    GetIdentityResponseVO[] getIdentitiesSync(String filterJsonString);
+
+    /**
      * Method to get an entity by identityId
      * @param identityId - identity to get
      * @return

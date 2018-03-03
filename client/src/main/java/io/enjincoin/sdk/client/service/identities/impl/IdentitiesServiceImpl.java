@@ -62,7 +62,33 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
         return getIdentitiesResponse;
     }
 
+    /**
+     * Method to get all identities - supplying a filter also.
+     * @param filterJsonString - the json to use for filtering
+     *
+     * @return - GetIdentityResponseVO
+     */
+    @Override
+    public GetIdentityResponseVO[] getIdentitiesSync(String filterJsonString) {
+        GetIdentityResponseVO[] getIdentitiesResponse = null;
 
+        if (StringUtils.isEmpty(filterJsonString)) {
+            LOGGER.warning("Identities.get filterJsonString is null or empty.");
+            return getIdentitiesResponse;
+        }
+
+        // Get the identities url and append the filter
+        String getIdentitiesUrl = String.format("%s?q=%s", getIdentitiesUrl(), filterJsonString);
+
+        String responseJsonString = performGetCall(getIdentitiesUrl);
+        if (StringUtils.isEmpty(responseJsonString)) {
+            LOGGER.warning("No response returned from the getIdentities call");
+            return getIdentitiesResponse;
+        }
+        getIdentitiesResponse = (GetIdentityResponseVO[]) JsonUtils.convertJsonToObject(GsonUtils.GSON, responseJsonString, GetIdentityResponseVO[].class);
+
+        return getIdentitiesResponse;
+    }
 
     /**
      * Method to get an entity by identityId
@@ -191,6 +217,10 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
     @Override
     public CompletableFuture<GetIdentityResponseVO[]> getIdentitiesAsync() {
         return CompletableFuture.supplyAsync(() -> this.getIdentitiesSync(), this.getExecutorService());
+    }
+    @Override
+    public CompletableFuture<GetIdentityResponseVO[]> getIdentitiesAsync(String filterJsonString) {
+        return CompletableFuture.supplyAsync(() -> this.getIdentitiesSync(filterJsonString), this.getExecutorService());
     }
 
     @Override

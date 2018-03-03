@@ -63,6 +63,48 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
     }
 
     @Test
+    public void testSychronousIdentitiesService_GetIdentitiesWithFilter() {
+        SynchronousIdentitiesService identitiesService = this.client.getIdentitiesService();
+        assertThat(identitiesService).isNotNull();
+
+        String filterJsonString = "[{\"key\":[\"player_name\"]}]";
+
+        GetIdentityResponseVO[] getIdentityResponseVOArray = identitiesService.getIdentitiesSync(filterJsonString);
+        assertThat(getIdentityResponseVOArray).isNotNull();
+
+        for (GetIdentityResponseVO getIdentityResponseVO : getIdentityResponseVOArray) {
+            if (getIdentityResponseVO.getFields().isPresent()) {
+
+                for (FieldVO fieldVO : getIdentityResponseVO.getFields().get()) {
+                    assertThat(fieldVO).isNotNull();
+                }
+            }
+        }
+    }
+
+    @Test
+    public void testAsychronousIdentitiesService_GetIdentitiesWithFilter() throws InterruptedException, ExecutionException {
+        AsynchronousIdentitiesService identitiesService = this.client.getIdentitiesService();
+        assertThat(identitiesService).isNotNull();
+
+        String filterJsonString = "[{\"key\":[\"player_name\"]}]";
+
+        CompletableFuture<GetIdentityResponseVO[]> getIdentityResponseVOArrayCf = identitiesService.getIdentitiesAsync(filterJsonString);
+        assertThat(getIdentityResponseVOArrayCf).isNotNull();
+        assertThat(getIdentityResponseVOArrayCf.get()).isNotNull();
+        GetIdentityResponseVO[] getIdentityResponseVOArray = getIdentityResponseVOArrayCf.get();
+
+        for (GetIdentityResponseVO getIdentityResponseVO : getIdentityResponseVOArray) {
+            if (getIdentityResponseVO.getFields().isPresent()) {
+
+                for (FieldVO fieldVO : getIdentityResponseVO.getFields().get()) {
+                    assertThat(fieldVO).isNotNull();
+                }
+            }
+        }
+    }
+
+    @Test
     public void testSychronousIdentitiesService_GetIdentityById() {
         SynchronousIdentitiesService identitiesService = this.client.getIdentitiesService();
         assertThat(identitiesService).isNotNull();
