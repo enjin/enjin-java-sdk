@@ -22,7 +22,7 @@ import io.enjincoin.sdk.client.vo.user.UserResponseVO;
 public class LiveUsersServiceTest extends BaseLiveServiceTest {
 
     @Test
-    public void testSychronousUsersService_GetUsers() {
+    public void testSynchronousUsersService_GetUsers() {
         SynchronousUsersService usersService = this.client.getUsersService();
         assertThat(usersService).isNotNull();
 
@@ -62,7 +62,7 @@ public class LiveUsersServiceTest extends BaseLiveServiceTest {
     }
 
     @Test
-    public void testSychronousUsersService_GetUser() {
+    public void testSynchronousUsersService_GetUser() {
         SynchronousUsersService usersService = this.client.getUsersService();
         assertThat(usersService).isNotNull();
 
@@ -112,7 +112,7 @@ public class LiveUsersServiceTest extends BaseLiveServiceTest {
     }
 
     @Test
-    public void testSychronousUsersService_CreateUser() {
+    public void testSynchronousUsersService_CreateUser() {
         SynchronousUsersService usersService = this.client.getUsersService();
         assertThat(usersService).isNotNull();
 
@@ -155,7 +155,7 @@ public class LiveUsersServiceTest extends BaseLiveServiceTest {
     }
 
     @Test
-    public void testSychronousUsersService_UpdateUser() {
+    public void testSynchronousUsersService_UpdateUser() {
         SynchronousUsersService usersService = this.client.getUsersService();
         assertThat(usersService).isNotNull();
 
@@ -222,7 +222,7 @@ public class LiveUsersServiceTest extends BaseLiveServiceTest {
     }
 
     @Test
-    public void testSychronousUsersService_LoginUser() {
+    public void testSynchronousUsersService_LoginUser() {
         SynchronousUsersService usersService = this.client.getUsersService();
         assertThat(usersService).isNotNull();
 
@@ -284,7 +284,7 @@ public class LiveUsersServiceTest extends BaseLiveServiceTest {
     }
 
     @Test
-    public void testSychronousUsersService_LoginUserFailed() {
+    public void testSynchronousUsersService_LoginUserFailed() {
         SynchronousUsersService usersService = this.client.getUsersService();
         assertThat(usersService).isNotNull();
 

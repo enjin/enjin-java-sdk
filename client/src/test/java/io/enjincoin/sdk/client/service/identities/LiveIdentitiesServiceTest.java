@@ -31,7 +31,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
 
 
     @Test
-    public void testSychronousIdentitiesService_GetIdentities() {
+    public void testSynchronousIdentitiesService_GetIdentities() {
         SynchronousIdentitiesService identitiesService = this.client.getIdentitiesService();
         assertThat(identitiesService).isNotNull();
 
@@ -69,7 +69,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
     }
 
     @Test
-    public void testSychronousIdentitiesService_GetIdentitiesWithFilter() {
+    public void testSynchronousIdentitiesService_GetIdentitiesWithFilter() {
         SynchronousIdentitiesService identitiesService = this.client.getIdentitiesService();
         assertThat(identitiesService).isNotNull();
 
@@ -125,7 +125,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
     }
 
     @Test
-    public void testSychronousIdentitiesService_GetIdentityById() {
+    public void testSynchronousIdentitiesService_GetIdentityById() {
         SynchronousIdentitiesService identitiesService = this.client.getIdentitiesService();
         assertThat(identitiesService).isNotNull();
 
@@ -192,7 +192,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
     }
 
     @Test
-    public void testSychronousIdentitiesService_CreateIdentity() {
+    public void testSynchronousIdentitiesService_CreateIdentity() {
         SynchronousIdentitiesService identitiesService = this.client.getIdentitiesService();
         assertThat(identitiesService).isNotNull();
 
@@ -259,7 +259,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
     }
 
     @Test
-    public void testSychronousIdentitiesService_DeleteIdentity() {
+    public void testSynchronousIdentitiesService_DeleteIdentity() {
         SynchronousIdentitiesService identitiesService = this.client.getIdentitiesService();
         assertThat(identitiesService).isNotNull();
 
@@ -304,7 +304,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
     }
 
     @Test
-    public void testSychronousIdentitiesService_UpdateIdentity() {
+    public void testSynchronousIdentitiesService_UpdateIdentity() {
         SynchronousIdentitiesService identitiesService = this.client.getIdentitiesService();
         assertThat(identitiesService).isNotNull();
 
@@ -383,7 +383,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
 
 
     @Test
-    public void testSychronousIdentitiesService_LinkIdentity() {
+    public void testSynchronousIdentitiesService_LinkIdentity() {
         SynchronousIdentitiesService identitiesService = this.client.getIdentitiesService();
         assertThat(identitiesService).isNotNull();
 
