@@ -5,8 +5,8 @@ import java.util.concurrent.CompletableFuture;
 import io.enjincoin.sdk.client.vo.identity.CreateIdentityRequestVO;
 import io.enjincoin.sdk.client.vo.identity.CreateIdentityResponseVO;
 import io.enjincoin.sdk.client.vo.identity.GetIdentityResponseVO;
-import io.enjincoin.sdk.client.vo.legacy.identity.UpdateIdentityRequestVO;
-import io.enjincoin.sdk.client.vo.legacy.identity.UpdateIdentityResponseVO;
+import io.enjincoin.sdk.client.vo.identity.UpdateIdentityRequestVO;
+import io.enjincoin.sdk.client.vo.identity.UpdateIdentityResponseVO;
 
 /**
  * Asynchronous Identities service interface.
@@ -42,10 +42,10 @@ public interface AsynchronousIdentitiesService {
      * Method to update an identity.
      *
      * @param request - update identity request vo
-     *
+     * @param identityId - identity to update
      * @return - UpdateIdentityResponseVO
      */
-    CompletableFuture<UpdateIdentityResponseVO> updateIdentityAsync(UpdateIdentityRequestVO request);
+    CompletableFuture<UpdateIdentityResponseVO> updateIdentityAsync(UpdateIdentityRequestVO request, Integer identityId);
 
     /**
      * Method to delete an identity

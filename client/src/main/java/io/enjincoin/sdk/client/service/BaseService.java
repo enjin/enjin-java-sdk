@@ -141,7 +141,30 @@ public abstract class BaseService {
         }
         return responseJsonString;
     }
+    /**
+     * Method to perform a put call
+     * @param urlToCall - url to call
+     * @param requestJsonString - the request to send
+     * @return
+     */
+    protected String performPutCall(String urlToCall, String requestJsonString) {
+        String responseJsonString = null;
 
+        if (StringUtils.isEmpty(urlToCall) || StringUtils.isEmpty(requestJsonString)) {
+            LOGGER.warning("performPutCall. urlToCall or requestJsonString cannot be null or empty");
+            return responseJsonString;
+        }
+
+        try {
+            RequestBody requestBody = RequestBody.create(MEDIATYPE_JSON, requestJsonString);
+            Request httpRequest = new Request.Builder().url(urlToCall).put(requestBody).build();
+            Response httpResponse = getHttpClient().newCall(httpRequest).execute();
+            responseJsonString = httpResponse.body().string();
+        } catch (IOException e) {
+            LOGGER.warning("performPutCall. An IOException has occured calling the url "+urlToCall+". Exception:" + e);
+        }
+        return responseJsonString;
+    }
     /**
      * Method to perform a delete call
      * @param urlToCall - url to call

@@ -13,6 +13,8 @@ import io.enjincoin.sdk.client.vo.identity.CreateIdentityRequestVO;
 import io.enjincoin.sdk.client.vo.identity.CreateIdentityResponseVO;
 import io.enjincoin.sdk.client.vo.identity.FieldVO;
 import io.enjincoin.sdk.client.vo.identity.GetIdentityResponseVO;
+import io.enjincoin.sdk.client.vo.identity.UpdateIdentityRequestVO;
+import io.enjincoin.sdk.client.vo.identity.UpdateIdentityResponseVO;
 
 /**
  * Calls out to the actual api
@@ -191,6 +193,109 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
 
         Boolean deleteIdentityResult = identitiesService.deleteIdentitySync(identityId);
         assertThat(deleteIdentityResult).isTrue();
-
     }
+
+    @Test
+    public void testAsychronousIdentitiesService_DeleteIdentity() throws InterruptedException, ExecutionException {
+        AsynchronousIdentitiesService identitiesService = this.client.getIdentitiesService();
+        assertThat(identitiesService).isNotNull();
+
+        Optional<String> ethereumAddress = Optional.of("TestEthereumAddress_"+System.currentTimeMillis());
+        CreateIdentityRequestVO createIdentityRequestVO = new CreateIdentityRequestVO(ethereumAddress, null);
+        CompletableFuture<CreateIdentityResponseVO> createIdentityResponseVOCf = identitiesService.createIdentityAsync(createIdentityRequestVO);
+        assertThat(createIdentityResponseVOCf).isNotNull();
+        assertThat(createIdentityResponseVOCf.get()).isNotNull();
+
+        CreateIdentityResponseVO createIdentityResponseVO = createIdentityResponseVOCf.get();
+        assertThat(createIdentityResponseVO.getId()).isNotNull();
+        assertThat(createIdentityResponseVO.getEthereumAddress()).isNotNull();
+        assertThat(createIdentityResponseVO.getCreatedAt()).isNotNull();
+        assertThat(createIdentityResponseVO.getUpdatedAt()).isNotNull();
+
+        Integer identityId = createIdentityResponseVO.getId().get();
+
+        CompletableFuture<Boolean> deleteIdentityResultCf = identitiesService.deleteIdentityAsync(identityId);
+        assertThat(deleteIdentityResultCf).isNotNull();
+        assertThat(deleteIdentityResultCf.get()).isNotNull();
+        assertThat(deleteIdentityResultCf.get()).isTrue();
+    }
+
+    @Test
+    public void testSychronousIdentitiesService_UpdateIdentity() {
+        SynchronousIdentitiesService identitiesService = this.client.getIdentitiesService();
+        assertThat(identitiesService).isNotNull();
+
+        Optional<String> ethereumAddress = Optional.of("TestEthereumAddress_"+System.currentTimeMillis());
+        CreateIdentityRequestVO createIdentityRequestVO = new CreateIdentityRequestVO(ethereumAddress, null);
+        CreateIdentityResponseVO createIdentityResponseVO = identitiesService.createIdentitySync(createIdentityRequestVO);
+        assertThat(createIdentityResponseVO).isNotNull();
+        assertThat(createIdentityResponseVO.getId()).isNotNull();
+        assertThat(createIdentityResponseVO.getEthereumAddress()).isNotNull();
+        assertThat(createIdentityResponseVO.getCreatedAt()).isNotNull();
+        assertThat(createIdentityResponseVO.getUpdatedAt()).isNotNull();
+
+        Integer identityId = createIdentityResponseVO.getId().get();
+
+        FieldVO field1 = new FieldVO(Optional.of("player_name"), Optional.of("Player Ten"), Optional.of(1), Optional.of(1), Optional.of(1));
+        FieldVO field2 = new FieldVO(Optional.of("New Field"), Optional.of("New Field Data"), Optional.of(1), Optional.of(1), Optional.of(1));
+        FieldVO[] fieldsArray = new FieldVO[] {field1, field2};
+        Optional<FieldVO[]> fields = Optional.of(fieldsArray);
+
+        UpdateIdentityRequestVO updateIdentityRequestVO = new UpdateIdentityRequestVO(fields);
+        UpdateIdentityResponseVO updateIdentityResponseVO = identitiesService.updateIdentitySync(updateIdentityRequestVO , identityId);
+        assertThat(updateIdentityResponseVO).isNotNull();
+        assertThat(updateIdentityResponseVO.getId()).isNotNull();
+        assertThat(updateIdentityResponseVO.getEthereumAddress()).isNotNull();
+        assertThat(updateIdentityResponseVO.getCreatedAt()).isNotNull();
+        assertThat(updateIdentityResponseVO.getUpdatedAt()).isNotNull();
+        //assertThat(updateIdentityResponseVO.getUserId()).isNotNull();
+        assertThat(updateIdentityResponseVO.getLinkingCode()).isNotNull();
+
+        Boolean deleteIdentityResult = identitiesService.deleteIdentitySync(identityId);
+        assertThat(deleteIdentityResult).isTrue();
+    }
+
+    @Test
+    public void testAsychronousIdentitiesService_UpdateIdentity() throws InterruptedException, ExecutionException {
+        AsynchronousIdentitiesService identitiesService = this.client.getIdentitiesService();
+        assertThat(identitiesService).isNotNull();
+
+        Optional<String> ethereumAddress = Optional.of("TestEthereumAddress_"+System.currentTimeMillis());
+        CreateIdentityRequestVO createIdentityRequestVO = new CreateIdentityRequestVO(ethereumAddress, null);
+        CompletableFuture<CreateIdentityResponseVO> createIdentityResponseVOCf = identitiesService.createIdentityAsync(createIdentityRequestVO);
+        assertThat(createIdentityResponseVOCf).isNotNull();
+        assertThat(createIdentityResponseVOCf.get()).isNotNull();
+
+        CreateIdentityResponseVO createIdentityResponseVO = createIdentityResponseVOCf.get();
+        assertThat(createIdentityResponseVO.getId()).isNotNull();
+        assertThat(createIdentityResponseVO.getEthereumAddress()).isNotNull();
+        assertThat(createIdentityResponseVO.getCreatedAt()).isNotNull();
+        assertThat(createIdentityResponseVO.getUpdatedAt()).isNotNull();
+
+        Integer identityId = createIdentityResponseVO.getId().get();
+
+        FieldVO field1 = new FieldVO(Optional.of("player_name"), Optional.of("Player Ten"), Optional.of(1), Optional.of(1), Optional.of(1));
+        FieldVO field2 = new FieldVO(Optional.of("New Field"), Optional.of("New Field Data"), Optional.of(1), Optional.of(1), Optional.of(1));
+        FieldVO[] fieldsArray = new FieldVO[] {field1, field2};
+        Optional<FieldVO[]> fields = Optional.of(fieldsArray);
+
+        UpdateIdentityRequestVO updateIdentityRequestVO = new UpdateIdentityRequestVO(fields);
+        CompletableFuture<UpdateIdentityResponseVO> updateIdentityResponseVOCf = identitiesService.updateIdentityAsync(updateIdentityRequestVO , identityId);
+        assertThat(updateIdentityResponseVOCf).isNotNull();
+        assertThat(updateIdentityResponseVOCf.get()).isNotNull();
+
+        UpdateIdentityResponseVO updateIdentityResponseVO = updateIdentityResponseVOCf.get();
+        assertThat(updateIdentityResponseVO.getId()).isNotNull();
+        assertThat(updateIdentityResponseVO.getEthereumAddress()).isNotNull();
+        assertThat(updateIdentityResponseVO.getCreatedAt()).isNotNull();
+        assertThat(updateIdentityResponseVO.getUpdatedAt()).isNotNull();
+        //assertThat(updateIdentityResponseVO.getUserId()).isNotNull();
+        assertThat(updateIdentityResponseVO.getLinkingCode()).isNotNull();
+
+        CompletableFuture<Boolean> deleteIdentityResultCf = identitiesService.deleteIdentityAsync(identityId);
+        assertThat(deleteIdentityResultCf).isNotNull();
+        assertThat(deleteIdentityResultCf.get()).isNotNull();
+        assertThat(deleteIdentityResultCf.get()).isTrue();
+    }
+
 }

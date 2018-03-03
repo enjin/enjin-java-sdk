@@ -1,7 +1,5 @@
 package io.enjincoin.sdk.client.service.identities.impl;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.logging.Logger;
 
@@ -12,14 +10,13 @@ import com.enjin.java_commons.StringUtils;
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.service.BaseService;
 import io.enjincoin.sdk.client.service.identities.IdentitiesService;
-import io.enjincoin.sdk.client.util.Constants;
 import io.enjincoin.sdk.client.util.GsonUtils;
 import io.enjincoin.sdk.client.util.JsonUtils;
 import io.enjincoin.sdk.client.vo.identity.CreateIdentityRequestVO;
 import io.enjincoin.sdk.client.vo.identity.CreateIdentityResponseVO;
 import io.enjincoin.sdk.client.vo.identity.GetIdentityResponseVO;
-import io.enjincoin.sdk.client.vo.legacy.identity.UpdateIdentityRequestVO;
-import io.enjincoin.sdk.client.vo.legacy.identity.UpdateIdentityResponseVO;
+import io.enjincoin.sdk.client.vo.identity.UpdateIdentityRequestVO;
+import io.enjincoin.sdk.client.vo.identity.UpdateIdentityResponseVO;
 
 /**
  * <p>
@@ -77,7 +74,7 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
         GetIdentityResponseVO getIdentityResponse = null;
 
         if (identityId == null) {
-            LOGGER.warning("Identity passed in is null");
+            LOGGER.warning("Identities.get identityId is null.");
             return getIdentityResponse;
         }
 
@@ -100,7 +97,7 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
         CreateIdentityResponseVO createIdentityResponseVO = null;
 
         if (ObjectUtils.isNull(createIdentityRequest)) {
-            LOGGER.warning("Identities.create request is null.");
+            LOGGER.warning("Identities.create createIdentityRequest is null.");
             return createIdentityResponseVO;
         }
 
@@ -141,8 +138,7 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
             return deleteIdentityResponseVO;
         }
 
-
-        // Get the identities url and append the identityId
+        // Get the delete identities url and append the identityId
         String deleteIdentityByIdUrl = String.format("%s/%d", getIdentitiesUrl(), identityId);
 
         String responseJsonString = performDeleteCall(deleteIdentityByIdUrl);
@@ -158,31 +154,36 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
     }
 
     @Override
-    public final UpdateIdentityResponseVO updateIdentitySync(final UpdateIdentityRequestVO request) {
-        UpdateIdentityResponseVO response = null;
+    public final UpdateIdentityResponseVO updateIdentitySync(final UpdateIdentityRequestVO updateIdentityRequestVO, Integer identityId) {
+        UpdateIdentityResponseVO updateIdentityResponseVO = null;
 
-        if (ObjectUtils.isNull(request)) {
-            LOGGER.warning("Identities.update request is null.");
-            return response;
+        if (ObjectUtils.isNull(updateIdentityRequestVO) || identityId == null) {
+            LOGGER.warning("Identities.update updateIdentityRequestVO or identityId is null.");
+            return updateIdentityResponseVO;
         }
 
-        if (!OptionalUtils.isStringPresent(request.getAuth()) || !OptionalUtils.isMapPresent(request.getIdentityMap())
-                || !OptionalUtils.isMapPresent(request.getUpdateMap())) {
-            LOGGER.warning("Identities.update parameters may be empty or null.");
-            return response;
+        if (!OptionalUtils.isPresent(updateIdentityRequestVO.getFields())) {
+            LOGGER.warning("Identities.update fields must be present.");
+            return updateIdentityResponseVO;
         }
 
-        Map<String, Object> params = new HashMap<>();
-        params.put("auth", request.getAuth().get());
-        params.put("identity", request.getIdentityMap().get());
-        params.put("update", request.getUpdateMap().get());
+        //Convert the request object to json
+        String requestJsonString = JsonUtils.convertObjectToJson(GsonUtils.GSON, updateIdentityRequestVO);
+        if (StringUtils.isEmpty(requestJsonString)) {
+            LOGGER.warning("Identities.update failed to convert request object to json.");
+        }
 
-        // Construct new request
-        String method = Constants.METHOD_IDENTITIES_UPDATE;
+        // Get the update identities url and append the identityId
+        String updateIdentityByIdUrl = String.format("%s/%d", getIdentitiesUrl(), identityId);
 
-        response = (UpdateIdentityResponseVO) this.getJsonRpcUtils().sendJsonRpcRequest(this.getIdentitiesUrl(), UpdateIdentityResponseVO.class, method, params);
+        String responseJsonString = performPutCall(updateIdentityByIdUrl, requestJsonString);
+        if (StringUtils.isEmpty(responseJsonString)) {
+            LOGGER.warning("No response returned from the updateIdentity call");
+            return updateIdentityResponseVO;
+        }
+        updateIdentityResponseVO = (UpdateIdentityResponseVO) JsonUtils.convertJsonToObject(GsonUtils.GSON, responseJsonString, UpdateIdentityResponseVO.class);
 
-        return response;
+        return updateIdentityResponseVO;
     }
 
 
@@ -203,8 +204,8 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
     }
 
     @Override
-    public CompletableFuture<UpdateIdentityResponseVO> updateIdentityAsync(final UpdateIdentityRequestVO request) {
-        return CompletableFuture.supplyAsync(() -> this.updateIdentitySync(request), this.getExecutorService());
+    public CompletableFuture<UpdateIdentityResponseVO> updateIdentityAsync(final UpdateIdentityRequestVO request, final Integer identityId) {
+        return CompletableFuture.supplyAsync(() -> this.updateIdentitySync(request, identityId), this.getExecutorService());
     }
 
     @Override

@@ -25,6 +25,24 @@ public class FieldVO {
     @SerializedName("unique")
     private Optional<Integer> unique;
 
+
+    /**
+     * Class constructor.
+     * @param key
+     * @param fieldValue
+     * @param searchable
+     * @param displayable
+     * @param unique
+     */
+    public FieldVO(Optional<String> key, Optional<String> fieldValue, Optional<Integer> searchable, Optional<Integer> displayable, Optional<Integer> unique) {
+        super();
+        this.key = key;
+        this.fieldValue = fieldValue;
+        this.searchable = searchable;
+        this.displayable = displayable;
+        this.unique = unique;
+    }
+
     /**
      * @return the key
      */
