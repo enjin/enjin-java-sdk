@@ -57,7 +57,6 @@ public final class JsonUtils {
         try {
             LOGGER.fine(String.format("jsonString:%s", jsonString));
             responseObject = gson.fromJson(jsonString, responseClass);
-
         } catch (JsonSyntaxException e) {
             LOGGER.warning(String.format("A JsonSyntaxException has occured. Exception: %s", ExceptionUtils.exceptionToString(e)));
         }
@@ -166,6 +165,28 @@ public final class JsonUtils {
         jsonElement = gson.toJsonTree(jsonObject);
 
         return jsonElement;
+    }
+
+    /**
+     * Method to check if a json string is valid or not
+     * @param gson
+     * @return
+     */
+    public static boolean isJsonValid(final Gson gson, String jsonStr) {
+        boolean isJsonValid = false;
+        if (gson == null || StringUtils.isEmpty(jsonStr)) {
+            LOGGER.warning("gson or jsonObject passed in is null");
+            return isJsonValid;
+        }
+
+        try {
+            gson.fromJson(jsonStr, Object.class);
+            isJsonValid = true;
+        } catch(JsonSyntaxException ex) {
+            isJsonValid = false;
+        }
+
+        return isJsonValid;
     }
 
 }

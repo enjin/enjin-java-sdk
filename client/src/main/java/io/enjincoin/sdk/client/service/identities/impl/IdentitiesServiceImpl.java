@@ -3,6 +3,7 @@ package io.enjincoin.sdk.client.service.identities.impl;
 import java.util.concurrent.CompletableFuture;
 import java.util.logging.Logger;
 
+import com.enjin.java_commons.BooleanUtils;
 import com.enjin.java_commons.ObjectUtils;
 import com.enjin.java_commons.OptionalUtils;
 import com.enjin.java_commons.StringUtils;
@@ -74,6 +75,12 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
 
         if (StringUtils.isEmpty(filterJsonString)) {
             LOGGER.warning("Identities.get filterJsonString is null or empty.");
+            return getIdentitiesResponse;
+        }
+
+        boolean isJsonValid = JsonUtils.isJsonValid(GsonUtils.GSON, filterJsonString);
+        if (!BooleanUtils.isTrue(isJsonValid)) {
+            LOGGER.warning("Identities.get filterJsonString of '"+filterJsonString+"' is not valid json.");
             return getIdentitiesResponse;
         }
 
