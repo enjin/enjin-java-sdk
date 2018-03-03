@@ -16,7 +16,6 @@ sourceSets {
 }
 
 ext {
-    wiremock = '2.11.0'
     gson = '2.8.2'
     gsonJava8Datatype = '1.1.0'
     pusher = '1.6.0'
@@ -37,8 +36,4 @@ dependencies {
     compile group: 'com.pusher', name: 'pusher-java-client', version: pusher
     compile group: 'org.immutables', name: 'gson', version: immutables
     compile group: 'com.squareup.okhttp3', name: 'okhttp', version: okhttp
-
-    // testCompile dependencies
-    testCompile group: 'com.github.tomakehurst', name: 'wiremock-standalone', version: wiremock
-
 }
