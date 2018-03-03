@@ -32,7 +32,7 @@ public abstract class GetIdentityResponseVO {
      * @return Optional
      */
     @SerializedName("ethereum_address")
-    public abstract Optional<String> getEthereum_address();
+    public abstract Optional<String> getEthereumAddress();
 
     /**
      * Method to get the linkingCode.
@@ -78,7 +78,7 @@ public abstract class GetIdentityResponseVO {
 
     @Override
     public String toString() {
-        return "GetIdentityResponseVO [getId()=" + getId() + ", getEthereum_address()=" + getEthereum_address() + ", getLinking_code()=" + getLinking_code() + ", getUpdated_at()="
+        return "GetIdentityResponseVO [getId()=" + getId() + ", getEthereum_address()=" + getEthereumAddress() + ", getLinking_code()=" + getLinking_code() + ", getUpdated_at()="
                 + getUpdated_at() + ", getCreated_at()=" + getCreated_at() + ", getUser()=" + getUser() + ", getFields()=" + getFields() + "]";
     }
 

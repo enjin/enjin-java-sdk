@@ -1,30 +1,16 @@
 package io.enjincoin.sdk.client.service.identities;
 
-import io.enjincoin.sdk.client.BaseTestHelper;
-import io.enjincoin.sdk.client.config.Config;
-import io.enjincoin.sdk.client.service.identities.impl.IdentitiesServiceImpl;
-import io.enjincoin.sdk.client.util.JsonRpcUtils;
-import io.enjincoin.sdk.client.vo.identity.*;
-import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
-import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.CompletableFuture;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import io.enjincoin.sdk.client.service.identities.impl.IdentitiesServiceImpl;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(IdentitiesServiceImpl.class)
 public class IdentitiesServiceTest {
 
-    private IdentitiesServiceImpl service;
+    /* private IdentitiesServiceImpl service;
     private Config config;
 
     @Before
@@ -696,6 +682,6 @@ public class IdentitiesServiceTest {
 
         PowerMockito.verifyNew(JsonRpcUtils.class, Mockito.times(1)).withNoArguments();
         Mockito.verify(mockJsonRpcUtils, Mockito.times(1)).sendJsonRpcRequest(Mockito.anyString(), Mockito.any(), Mockito.anyString(), Mockito.isA(Map.class));
-    }
+    }*/
 
 }

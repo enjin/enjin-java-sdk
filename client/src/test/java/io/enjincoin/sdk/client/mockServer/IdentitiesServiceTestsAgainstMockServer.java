@@ -1,21 +1,8 @@
 package io.enjincoin.sdk.client.mockServer;
 
-import io.enjincoin.sdk.client.ClientImpl;
-import io.enjincoin.sdk.client.config.Config;
-import io.enjincoin.sdk.client.config.ImmutableConfig;
-import io.enjincoin.sdk.client.service.identities.SynchronousIdentitiesService;
-import io.enjincoin.sdk.client.vo.identity.*;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
 public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
 
-    private static final String IDENTITY_ID_KEY = "identity_id";
+    /*private static final String IDENTITY_ID_KEY = "identity_id";
     private static final String ETHEREUM_ADDRESS_KEY = "ethereum_address";
     private static final String UUID_KEY = "uuid";
 
@@ -125,6 +112,6 @@ public class IdentitiesServiceTestsAgainstMockServer extends BaseMockServer {
                         .satisfies(o2 -> assertThat(o2.toString()).isNotEmpty())
                         .satisfies(o2 -> assertThat(o2.getResult()).isPresent()
                                 .hasValueSatisfying(v -> assertThat(v).isTrue())));
-    }
+    }*/
 
 }
