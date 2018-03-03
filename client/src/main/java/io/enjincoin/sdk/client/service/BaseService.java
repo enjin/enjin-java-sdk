@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import com.enjin.java_commons.ObjectUtils;
 
+import com.enjin.java_commons.StringUtils;
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.config.Platform;
 import io.enjincoin.sdk.client.service.platform.SynchronousPlatformService;
@@ -19,7 +20,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import wiremock.org.apache.commons.lang3.StringUtils;
 
 /**
  * <p>Provides Services used by the main service classes.</p>
