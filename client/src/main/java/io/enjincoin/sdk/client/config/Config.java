@@ -1,12 +1,13 @@
 package io.enjincoin.sdk.client.config;
 
-import com.google.gson.annotations.SerializedName;
-import io.enjincoin.sdk.client.annotations.immutables.Nullable;
-import io.enjincoin.sdk.client.util.Constants;
+import java.io.File;
+
 import org.immutables.gson.Gson;
 import org.immutables.value.Value;
 
-import java.io.File;
+import com.google.gson.annotations.SerializedName;
+
+import io.enjincoin.sdk.client.util.Constants;
 
 /**
  * <p>
@@ -37,18 +38,6 @@ public class Config extends JsonConfig {
     @SerializedName("total-executors")
     public Integer getTotalExecutors() {
         return Constants.ONE;
-    }
-
-    /**
-     * Get whether in test mode or not.
-     *
-     * @return Boolean
-     */
-    @Nullable
-    @Value.Default
-    @SerializedName("test-mode")
-    public Boolean isInTestMode() {
-        return false;
     }
 
     /**

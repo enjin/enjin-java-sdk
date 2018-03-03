@@ -1,20 +1,20 @@
 package io.enjincoin.sdk.client.service.tokens.impl;
 
-import com.enjin.java_commons.ObjectUtils;
-import com.enjin.java_commons.OptionalUtils;
-import io.enjincoin.sdk.client.config.Config;
-import io.enjincoin.sdk.client.service.BaseService;
-import io.enjincoin.sdk.client.service.tokens.TokensService;
-import io.enjincoin.sdk.client.util.Constants;
-import io.enjincoin.sdk.client.vo.token.GetTokenBalanceRequestVO;
-import io.enjincoin.sdk.client.vo.token.GetTokenBalanceResponseVO;
-import io.enjincoin.sdk.client.vo.token.GetTokenRequestVO;
-import io.enjincoin.sdk.client.vo.token.GetTokenResponseVO;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.logging.Logger;
+
+import com.enjin.java_commons.ObjectUtils;
+import com.enjin.java_commons.OptionalUtils;
+
+import io.enjincoin.sdk.client.config.Config;
+import io.enjincoin.sdk.client.service.BaseService;
+import io.enjincoin.sdk.client.service.tokens.TokensService;
+import io.enjincoin.sdk.client.vo.token.GetTokenBalanceRequestVO;
+import io.enjincoin.sdk.client.vo.token.GetTokenBalanceResponseVO;
+import io.enjincoin.sdk.client.vo.token.GetTokenRequestVO;
+import io.enjincoin.sdk.client.vo.token.GetTokenResponseVO;
 
 /**
  * <p>
@@ -60,9 +60,9 @@ public class TokensServiceImpl extends BaseService implements TokensService {
         }
 
         // Construct new request
-        String method = Constants.METHOD_TOKENS_GET;
+       // String method = Constants.METHOD_TOKENS_GET;
 
-        getTokenResponseVO = (GetTokenResponseVO[]) this.getJsonRpcUtils().sendJsonRpcRequest(this.getTokensUrl(), GetTokenResponseVO[].class, method, params);
+       // getTokenResponseVO = (GetTokenResponseVO[]) this.getJsonRpcUtils().sendJsonRpcRequest(this.getTokensUrl(), GetTokenResponseVO[].class, method, params);
 
         return getTokenResponseVO;
     }
@@ -93,10 +93,10 @@ public class TokensServiceImpl extends BaseService implements TokensService {
         params.put("token_ids", getTokenBalanceRequestVO.getTokenIdsMap().get());
 
         // Construct new request
-        String method = Constants.METHOD_TOKENS_GET_BALANCE;
+       // String method = Constants.METHOD_TOKENS_GET_BALANCE;
 
-        getTokenBalanceResponseVO = (GetTokenBalanceResponseVO[])
-                this.getJsonRpcUtils().sendJsonRpcRequest(this.getTokensUrl(), GetTokenBalanceResponseVO[].class, method, params);
+        //getTokenBalanceResponseVO = (GetTokenBalanceResponseVO[])
+       //         this.getJsonRpcUtils().sendJsonRpcRequest(this.getTokensUrl(), GetTokenBalanceResponseVO[].class, method, params);
 
         return getTokenBalanceResponseVO;
     }

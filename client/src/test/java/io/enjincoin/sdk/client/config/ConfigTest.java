@@ -47,11 +47,6 @@ public class ConfigTest {
         Mockito.verify(mockFileWriter, Mockito.times(2)).close();
     }
 
-    @Test
-    public void testIsInTestMode() {
-        Config config = new Config();
-        assertThat(config.isInTestMode()).isFalse();
-    }
 
     @Test
     public void testGetTotalExecutors() {

@@ -11,7 +11,6 @@ import com.enjin.java_commons.OptionalUtils;
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.service.BaseService;
 import io.enjincoin.sdk.client.service.events.EventsService;
-import io.enjincoin.sdk.client.util.Constants;
 import io.enjincoin.sdk.client.vo.event.GetEventRequestVO;
 import io.enjincoin.sdk.client.vo.event.GetEventResponseVO;
 
@@ -72,8 +71,8 @@ public final class EventsServiceImpl extends BaseService implements EventsServic
         }
 
         // Construct new request
-        String method = Constants.METHOD_EVENTS_GET;
-        response = (GetEventResponseVO[]) this.getJsonRpcUtils().sendJsonRpcRequest(this.getEventsUrl(), GetEventResponseVO[].class, method, params);
+        //String method = Constants.METHOD_EVENTS_GET;
+        //response = (GetEventResponseVO[]) this.getJsonRpcUtils().sendJsonRpcRequest(this.getEventsUrl(), GetEventResponseVO[].class, method, params);
         return response;
     }
 

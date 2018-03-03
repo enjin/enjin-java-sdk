@@ -14,7 +14,6 @@ import io.enjincoin.sdk.client.service.platform.SynchronousPlatformService;
 import io.enjincoin.sdk.client.service.platform.impl.PlatformServiceImpl;
 import io.enjincoin.sdk.client.util.Constants;
 import io.enjincoin.sdk.client.util.HttpClient;
-import io.enjincoin.sdk.client.util.JsonRpcUtils;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -35,14 +34,6 @@ public abstract class BaseService {
      * Trusted Platform.
      */
     private Platform trustedPlatform;
-    /**
-     * Test mode toggle.
-     */
-    private boolean isInTestMode;
-    /**
-     * Json RPC Helper.
-     */
-    private JsonRpcUtils jsonRpcUtils;
     /**
      * Executor service.
      */
@@ -75,11 +66,8 @@ public abstract class BaseService {
         }
 
         this.trustedPlatform = config.getTrustedPlatform();
-        this.isInTestMode = config.isInTestMode();
         Integer totalExecutors = config.getTotalExecutors();
         this.executorService = Executors.newFixedThreadPool(totalExecutors);
-        this.jsonRpcUtils = new JsonRpcUtils();
-        this.jsonRpcUtils.setIsInTestMode(this.isInTestMode);
 
         okHttpClient = new OkHttpClient();
         okHttpClient = HttpClient.trustAllSslClient(okHttpClient);
@@ -302,15 +290,6 @@ public abstract class BaseService {
      */
     public void setTrustedPlatform(final Platform platform) {
         this.trustedPlatform = platform;
-    }
-
-    /**
-     * Method to get the JsonRpcUtils.
-     *
-     * @return - the JsonRpcUtils
-     */
-    public JsonRpcUtils getJsonRpcUtils() {
-        return this.jsonRpcUtils;
     }
 
     /**

@@ -11,14 +11,12 @@ import com.enjin.java_commons.OptionalUtils;
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.service.BaseService;
 import io.enjincoin.sdk.client.service.transactionrequests.TransactionRequestsService;
-import io.enjincoin.sdk.client.util.Constants;
 import io.enjincoin.sdk.client.vo.transactionrequest.CancelTransactionRequestRequestVO;
 import io.enjincoin.sdk.client.vo.transactionrequest.CancelTransactionRequestResponseVO;
 import io.enjincoin.sdk.client.vo.transactionrequest.CreateTransactionRequestRequestVO;
 import io.enjincoin.sdk.client.vo.transactionrequest.CreateTransactionRequestResponseVO;
 import io.enjincoin.sdk.client.vo.transactionrequest.GetTransactionRequestRequestVO;
 import io.enjincoin.sdk.client.vo.transactionrequest.GetTransactionRequestResponseVO;
-import io.enjincoin.sdk.client.vo.transactionrequest.ImmutableCancelTransactionRequestResponseVO;
 
 /**
  * <p>
@@ -75,10 +73,10 @@ public class TransactionRequestsServiceImpl extends BaseService implements Trans
         params.put("currency", request.getCurrency().get());
 
         // Construct new request
-        String method = Constants.METHOD_TRANSACTION_REQUESTS_GET;
+       // String method = Constants.METHOD_TRANSACTION_REQUESTS_GET;
 
-        response = (GetTransactionRequestResponseVO[]) this.getJsonRpcUtils().sendJsonRpcRequest(this.getTransactionRequestsUrl(),
-                GetTransactionRequestResponseVO[].class, method, params);
+       // response = (GetTransactionRequestResponseVO[]) this.getJsonRpcUtils().sendJsonRpcRequest(this.getTransactionRequestsUrl(),
+       //         GetTransactionRequestResponseVO[].class, method, params);
 
         return response;
     }
@@ -110,10 +108,10 @@ public class TransactionRequestsServiceImpl extends BaseService implements Trans
         params.put("value", request.getValueMap().get());
 
         // Construct new request
-        String method = Constants.METHOD_TRANSACTION_REQUESTS_CREATE;
+       // String method = Constants.METHOD_TRANSACTION_REQUESTS_CREATE;
 
-        response = (CreateTransactionRequestResponseVO) this.getJsonRpcUtils().sendJsonRpcRequest(this.getTransactionRequestsUrl(),
-                CreateTransactionRequestResponseVO.class, method, params);
+       // response = (CreateTransactionRequestResponseVO) this.getJsonRpcUtils().sendJsonRpcRequest(this.getTransactionRequestsUrl(),
+        //        CreateTransactionRequestResponseVO.class, method, params);
 
         return response;
     }
@@ -137,11 +135,11 @@ public class TransactionRequestsServiceImpl extends BaseService implements Trans
         params.put("txr_id", request.getTxrId().get());
 
         // Construct new request
-        String method = Constants.METHOD_TRANSACTION_REQUESTS_CANCEL;
+        //String method = Constants.METHOD_TRANSACTION_REQUESTS_CANCEL;
 
-        Boolean result = (Boolean) this.getJsonRpcUtils().sendJsonRpcRequest(this.getTransactionRequestsUrl(), Boolean.class, method, params);
+        //Boolean result = (Boolean) this.getJsonRpcUtils().sendJsonRpcRequest(this.getTransactionRequestsUrl(), Boolean.class, method, params);
 
-        response = ImmutableCancelTransactionRequestResponseVO.builder().setResult(result).build();
+        //response = ImmutableCancelTransactionRequestResponseVO.builder().setResult(result).build();
 
         return response;
     }

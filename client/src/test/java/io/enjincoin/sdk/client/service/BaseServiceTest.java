@@ -1,5 +1,12 @@
 package io.enjincoin.sdk.client.service;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.concurrent.ExecutorService;
+
+import org.junit.Before;
+import org.junit.Test;
+
 import io.enjincoin.sdk.client.BaseTestHelper;
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.config.ImmutableConfig;
@@ -7,14 +14,7 @@ import io.enjincoin.sdk.client.config.ImmutablePlatform;
 import io.enjincoin.sdk.client.config.Platform;
 import io.enjincoin.sdk.client.service.identities.impl.IdentitiesServiceImpl;
 import io.enjincoin.sdk.client.service.platform.SynchronousPlatformService;
-import io.enjincoin.sdk.client.util.JsonRpcUtils;
 import io.enjincoin.sdk.client.util.http.Protocol;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.concurrent.ExecutorService;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class BaseServiceTest {
 
@@ -248,12 +248,6 @@ public class BaseServiceTest {
                 .build());
         Platform trustedPlatform = this.baseAction.getTrustedPlatform();
         assertThat(trustedPlatform).isNotNull();
-    }
-
-    @Test
-    public void testGetJsonRpcUtils() {
-        JsonRpcUtils jsonRpcUtils = this.baseAction.getJsonRpcUtils();
-        assertThat(jsonRpcUtils).isNotNull();
     }
 
     @Test

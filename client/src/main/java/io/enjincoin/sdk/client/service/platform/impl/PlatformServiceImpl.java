@@ -1,18 +1,18 @@
 package io.enjincoin.sdk.client.service.platform.impl;
 
-import com.enjin.java_commons.ObjectUtils;
-import com.enjin.java_commons.OptionalUtils;
-import io.enjincoin.sdk.client.config.Config;
-import io.enjincoin.sdk.client.service.BaseService;
-import io.enjincoin.sdk.client.service.platform.PlatformService;
-import io.enjincoin.sdk.client.util.Constants;
-import io.enjincoin.sdk.client.vo.platform.GetPlatformAuthRequestVO;
-import io.enjincoin.sdk.client.vo.platform.GetPlatformAuthResponseVO;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.logging.Logger;
+
+import com.enjin.java_commons.ObjectUtils;
+import com.enjin.java_commons.OptionalUtils;
+
+import io.enjincoin.sdk.client.config.Config;
+import io.enjincoin.sdk.client.service.BaseService;
+import io.enjincoin.sdk.client.service.platform.PlatformService;
+import io.enjincoin.sdk.client.vo.platform.GetPlatformAuthRequestVO;
+import io.enjincoin.sdk.client.vo.platform.GetPlatformAuthResponseVO;
 
 /**
  * Platform service interface.
@@ -58,9 +58,9 @@ public class PlatformServiceImpl extends BaseService implements PlatformService 
         params.put("auth", platformAuthRequestVO.getAuth().get());
 
         // Construct new request
-        String method = Constants.METHOD_PLATFORM_AUTH;
+       // String method = Constants.METHOD_PLATFORM_AUTH;
 
-        response = (GetPlatformAuthResponseVO) this.getJsonRpcUtils().sendJsonRpcRequest(this.getPlatformUrl(), GetPlatformAuthResponseVO.class, method, params);
+        //response = (GetPlatformAuthResponseVO) this.getJsonRpcUtils().sendJsonRpcRequest(this.getPlatformUrl(), GetPlatformAuthResponseVO.class, method, params);
 
         return response;
     }
