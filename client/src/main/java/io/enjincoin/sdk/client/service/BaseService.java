@@ -147,6 +147,35 @@ public abstract class BaseService {
      * @param requestJsonString - the request to send
      * @return
      */
+    protected String performPutCall(String urlToCall) {
+        String responseJsonString = null;
+
+        if (StringUtils.isEmpty(urlToCall)) {
+            LOGGER.warning("performPutCall. urlToCall cannot be null or empty");
+            return responseJsonString;
+        }
+
+        try {
+            Request httpRequest = new Request.Builder().url(urlToCall).build();
+            Response httpResponse = getHttpClient().newCall(httpRequest).execute();
+            int responseCode = httpResponse.code();
+            if (responseCode != Constants.SUCCESS_HTTP_CODE) {
+                LOGGER.warning("performPutCall. responseCode returned '"+responseCode+"' from the url '"+urlToCall+"' is not valid");
+                return responseJsonString;
+            }
+
+            responseJsonString = httpResponse.body().string();
+        } catch (IOException e) {
+            LOGGER.warning("performPutCall. An IOException has occured calling the url "+urlToCall+". Exception:" + e);
+        }
+        return responseJsonString;
+    }
+    /**
+     * Method to perform a put call
+     * @param urlToCall - url to call
+     * @param requestJsonString - the request to send
+     * @return
+     */
     protected String performPutCall(String urlToCall, String requestJsonString) {
         String responseJsonString = null;
 
@@ -218,7 +247,22 @@ public abstract class BaseService {
         return this.getRestURL(Constants.LINK_WALLET_URL);
     }
 
-
+    /**
+     * Method to get the users url.
+     *
+     * @return - the users url
+     */
+    protected String getUsersUrl() {
+        return this.getRestURL(Constants.USERS_URL);
+    }
+    /**
+     * Method to get the user login url.
+     *
+     * @return - the user login url
+     */
+    protected String getUserLoginUrl() {
+        return this.getRestURL(Constants.USER_LOGIN_URL);
+    }
     /**
      * Method to get the tokens url.
      *

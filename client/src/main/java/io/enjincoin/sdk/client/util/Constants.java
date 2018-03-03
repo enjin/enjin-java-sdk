@@ -35,8 +35,14 @@ public class Constants {
      * the link wallet action.
      **/
     public static final String LINK_WALLET_URL = "identity/link-wallet";
-
-
+    /**
+     * the users action.
+     **/
+    public static final String USERS_URL = "users";
+    /**
+     * the users action.
+     **/
+    public static final String USER_LOGIN_URL = "user/login";
     /**
      * the tokens action.
      **/

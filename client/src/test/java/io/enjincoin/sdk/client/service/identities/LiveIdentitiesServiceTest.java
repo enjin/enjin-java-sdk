@@ -129,10 +129,16 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
         SynchronousIdentitiesService identitiesService = this.client.getIdentitiesService();
         assertThat(identitiesService).isNotNull();
 
-        GetIdentityResponseVO[] getIdentityResponseVOArray = identitiesService.getIdentitiesSync();
-        assertThat(getIdentityResponseVOArray).isNotNull();
+        Optional<String> ethereumAddress = Optional.of("TestEthereumAddress_"+System.currentTimeMillis());
+        CreateIdentityRequestVO createIdentityRequestVO = new CreateIdentityRequestVO(ethereumAddress, null);
+        CreateIdentityResponseVO createIdentityResponseVO = identitiesService.createIdentitySync(createIdentityRequestVO);
+        assertThat(createIdentityResponseVO).isNotNull();
+        assertThat(createIdentityResponseVO.getId()).isNotNull();
+        assertThat(createIdentityResponseVO.getEthereumAddress()).isNotNull();
+        assertThat(createIdentityResponseVO.getCreatedAt()).isNotNull();
+        assertThat(createIdentityResponseVO.getUpdatedAt()).isNotNull();
 
-        Integer identityId = getIdentityResponseVOArray[0].getId().get();
+        Integer identityId = createIdentityResponseVO.getId().get();
 
         GetIdentityResponseVO getIdentityByIdResponseVO = identitiesService.getIdentitySync(identityId);
         assertThat(getIdentityByIdResponseVO).isNotNull();
@@ -143,6 +149,9 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
                 assertThat(fieldVO).isNotNull();
             }
         }
+
+        Boolean deleteIdentityResult = identitiesService.deleteIdentitySync(identityId);
+        assertThat(deleteIdentityResult).isTrue();
     }
 
     @Test
@@ -150,24 +159,36 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
         AsynchronousIdentitiesService identitiesService = this.client.getIdentitiesService();
         assertThat(identitiesService).isNotNull();
 
-        CompletableFuture<GetIdentityResponseVO[]> getIdentityResponseVOArrayCf = identitiesService.getIdentitiesAsync();
-        assertThat(getIdentityResponseVOArrayCf).isNotNull();
-        assertThat(getIdentityResponseVOArrayCf.get()).isNotNull();
-        GetIdentityResponseVO[] getIdentityResponseVOArray = getIdentityResponseVOArrayCf.get();
+        Optional<String> ethereumAddress = Optional.of("TestEthereumAddress_"+System.currentTimeMillis());
+        CreateIdentityRequestVO createIdentityRequestVO = new CreateIdentityRequestVO(ethereumAddress, null);
+        CompletableFuture<CreateIdentityResponseVO> createIdentityResponseVOCf = identitiesService.createIdentityAsync(createIdentityRequestVO);
+        assertThat(createIdentityResponseVOCf).isNotNull();
+        assertThat(createIdentityResponseVOCf.get()).isNotNull();
 
-        Integer identityId = getIdentityResponseVOArray[0].getId().get();
+        CreateIdentityResponseVO createIdentityResponseVO = createIdentityResponseVOCf.get();
+        assertThat(createIdentityResponseVO.getId()).isNotNull();
+        assertThat(createIdentityResponseVO.getEthereumAddress()).isNotNull();
+        assertThat(createIdentityResponseVO.getCreatedAt()).isNotNull();
+        assertThat(createIdentityResponseVO.getUpdatedAt()).isNotNull();
 
-        CompletableFuture<GetIdentityResponseVO>  getIdentityByIdResponseVOCf = identitiesService.getIdentityAsync(identityId);
+        Integer identityId = createIdentityResponseVO.getId().get();
+
+        CompletableFuture<GetIdentityResponseVO> getIdentityByIdResponseVOCf = identitiesService.getIdentityAsync(identityId);
         assertThat(getIdentityByIdResponseVOCf).isNotNull();
         assertThat(getIdentityByIdResponseVOCf.get()).isNotNull();
-        GetIdentityResponseVO  getIdentityByIdResponseVO = getIdentityByIdResponseVOCf.get();
 
+        GetIdentityResponseVO getIdentityByIdResponseVO = getIdentityByIdResponseVOCf.get();
         if (getIdentityByIdResponseVO.getFields().isPresent()) {
 
             for (FieldVO fieldVO : getIdentityByIdResponseVO.getFields().get()) {
                 assertThat(fieldVO).isNotNull();
             }
         }
+
+        CompletableFuture<Boolean> deleteIdentityResult = identitiesService.deleteIdentityAsync(identityId);
+        assertThat(deleteIdentityResult).isNotNull();
+        assertThat(deleteIdentityResult.get()).isNotNull();
+        assertThat(deleteIdentityResult.get()).isTrue();
     }
 
     @Test

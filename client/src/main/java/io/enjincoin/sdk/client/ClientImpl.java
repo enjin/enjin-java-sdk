@@ -1,6 +1,9 @@
 package io.enjincoin.sdk.client;
 
+import java.util.logging.Logger;
+
 import com.enjin.java_commons.ObjectUtils;
+
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.service.events.EventsService;
 import io.enjincoin.sdk.client.service.events.impl.EventsServiceImpl;
@@ -14,8 +17,8 @@ import io.enjincoin.sdk.client.service.tokens.TokensService;
 import io.enjincoin.sdk.client.service.tokens.impl.TokensServiceImpl;
 import io.enjincoin.sdk.client.service.transactionrequests.TransactionRequestsService;
 import io.enjincoin.sdk.client.service.transactionrequests.impl.TransactionRequestsServiceImpl;
-
-import java.util.logging.Logger;
+import io.enjincoin.sdk.client.service.users.UsersService;
+import io.enjincoin.sdk.client.service.users.impl.UsersServiceImpl;
 
 /**
  * <p>Enjin Coin SyncClient - Synchronous.</p>
@@ -33,31 +36,37 @@ public class ClientImpl implements Client {
      */
     private Config config;
     /**
-     * Events create service.
+     * Events service.
      */
     private EventsService eventsService;
     /**
-     * Identities create service.
+     * Identities service.
      */
     private IdentitiesService identitiesService;
     /**
-     * Tokens create service.
+     * Tokens service.
      */
     private TokensService tokensService;
     /**
-     * TransactionRequests create service.
+     * TransactionRequests service.
      */
     private TransactionRequestsService transactionRequestsService;
 
     /**
-     * Notifications create service.
+     * Notifications service.
      */
     private NotificationsService notificationsService;
 
     /**
-     * Platform create service.
+     * Platform service.
      */
     private PlatformService platformService;
+
+    /**
+     * Users service.
+     */
+    private UsersService usersService;
+
 
     /**
      * Class constructor.
@@ -151,6 +160,17 @@ public class ClientImpl implements Client {
         return this.platformService;
     }
 
+    /**
+     * Method to get the users service
+     * @return
+     */
+    public UsersService getUsersService() {
+        if (this.usersService == null) {
+            this.usersService = new UsersServiceImpl(this.config);
+        }
+        return this.usersService;
+    }
+
     @Override
     public void close() {
         if (this.notificationsService != null) {
@@ -158,4 +178,6 @@ public class ClientImpl implements Client {
             this.notificationsService = null;
         }
     }
+
+
 }
