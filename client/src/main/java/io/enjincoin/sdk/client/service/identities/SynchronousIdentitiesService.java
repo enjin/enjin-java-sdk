@@ -1,5 +1,7 @@
 package io.enjincoin.sdk.client.service.identities;
 
+import java.util.Map;
+
 import io.enjincoin.sdk.client.vo.identity.CreateIdentityRequestVO;
 import io.enjincoin.sdk.client.vo.identity.CreateIdentityResponseVO;
 import io.enjincoin.sdk.client.vo.identity.GetIdentityResponseVO;
@@ -23,11 +25,11 @@ public interface SynchronousIdentitiesService {
 
     /**
      * Method to get all identities - supplying a filter also.
-     * @param filterJsonString - the json to use for filtering
+     * @param filterMap - the map with the data to use for filtering
      *
      * @return - GetIdentityResponseVO
      */
-    GetIdentityResponseVO[] getIdentitiesSync(String filterJsonString);
+    GetIdentityResponseVO[] getIdentitiesSync(Map<String, Object> filterMap);
 
     /**
      * Method to get an entity by identityId

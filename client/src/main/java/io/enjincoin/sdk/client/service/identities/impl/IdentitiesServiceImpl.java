@@ -1,9 +1,10 @@
 package io.enjincoin.sdk.client.service.identities.impl;
 
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.logging.Logger;
 
-import com.enjin.java_commons.BooleanUtils;
+import com.enjin.java_commons.MapUtils;
 import com.enjin.java_commons.ObjectUtils;
 import com.enjin.java_commons.OptionalUtils;
 import com.enjin.java_commons.StringUtils;
@@ -67,27 +68,23 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
 
     /**
      * Method to get all identities - supplying a filter also.
-     * @param filterJsonString - the json to use for filtering
+     *  @param filterMap - the map with the data to use for filtering
      *
      * @return - GetIdentityResponseVO
      */
     @Override
-    public GetIdentityResponseVO[] getIdentitiesSync(String filterJsonString) {
+    public GetIdentityResponseVO[] getIdentitiesSync(Map<String, Object> filterMap) {
         GetIdentityResponseVO[] getIdentitiesResponse = null;
 
-        if (StringUtils.isEmpty(filterJsonString)) {
-            LOGGER.warning("Identities.get filterJsonString is null or empty.");
+        if (MapUtils.isEmpty(filterMap)) {
+            LOGGER.warning("Identities.get filterMap is null or empty.");
             return getIdentitiesResponse;
         }
 
-        boolean isJsonValid = JsonUtils.isJsonValid(GsonUtils.GSON, filterJsonString);
-        if (!BooleanUtils.isTrue(isJsonValid)) {
-            LOGGER.warning("Identities.get filterJsonString of '"+filterJsonString+"' is not valid json.");
-            return getIdentitiesResponse;
-        }
+        String filterJsonString = JsonUtils.convertObjectToJson(GsonUtils.GSON, filterMap);
 
         // Get the identities url and append the filter
-        String getIdentitiesUrl = String.format("%s?q=%s", getIdentitiesUrl(), filterJsonString);
+        String getIdentitiesUrl = String.format("%s?q=[%s]", getIdentitiesUrl(), filterJsonString);
 
         String responseJsonString = performGetCall(getIdentitiesUrl);
         if (StringUtils.isEmpty(responseJsonString)) {
@@ -254,8 +251,8 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
         return CompletableFuture.supplyAsync(() -> this.getIdentitiesSync(), this.getExecutorService());
     }
     @Override
-    public CompletableFuture<GetIdentityResponseVO[]> getIdentitiesAsync(String filterJsonString) {
-        return CompletableFuture.supplyAsync(() -> this.getIdentitiesSync(filterJsonString), this.getExecutorService());
+    public CompletableFuture<GetIdentityResponseVO[]> getIdentitiesAsync(Map<String, Object> filterMap) {
+        return CompletableFuture.supplyAsync(() -> this.getIdentitiesSync(filterMap), this.getExecutorService());
     }
 
     @Override

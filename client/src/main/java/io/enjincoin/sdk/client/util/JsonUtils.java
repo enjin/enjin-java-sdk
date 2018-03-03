@@ -142,6 +142,7 @@ public final class JsonUtils {
         }
 
         jsonString = gson.toJson(jsonObject);
+
         LOGGER.fine(String.format("jsonString:%s", jsonString));
         return jsonString;
     }

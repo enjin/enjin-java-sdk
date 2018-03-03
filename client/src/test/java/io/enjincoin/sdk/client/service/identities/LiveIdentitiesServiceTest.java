@@ -2,6 +2,10 @@ package io.enjincoin.sdk.client.service.identities;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -69,9 +73,16 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
         SynchronousIdentitiesService identitiesService = this.client.getIdentitiesService();
         assertThat(identitiesService).isNotNull();
 
-        String filterJsonString = "[{\"key\":[\"player_name\"]}]";
+        List<String> keyList =  new LinkedList<String>();
+        keyList.add("player_name");
+        List<String> fieldValueList =  new LinkedList<String>();
+        fieldValueList.add("Player One");
 
-        GetIdentityResponseVO[] getIdentityResponseVOArray = identitiesService.getIdentitiesSync(filterJsonString);
+        Map<String, Object> filterMap = new HashMap<>();
+        filterMap.put("key", keyList);
+        filterMap.put("field_value", fieldValueList);
+
+        GetIdentityResponseVO[] getIdentityResponseVOArray = identitiesService.getIdentitiesSync(filterMap);
         assertThat(getIdentityResponseVOArray).isNotNull();
 
         for (GetIdentityResponseVO getIdentityResponseVO : getIdentityResponseVOArray) {
@@ -89,9 +100,16 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
         AsynchronousIdentitiesService identitiesService = this.client.getIdentitiesService();
         assertThat(identitiesService).isNotNull();
 
-        String filterJsonString = "[{\"key\":[\"player_name\"]}]";
+        List<String> keyList =  new LinkedList<String>();
+        keyList.add("player_name");
+        List<String> fieldValueList =  new LinkedList<String>();
+        fieldValueList.add("Player One");
 
-        CompletableFuture<GetIdentityResponseVO[]> getIdentityResponseVOArrayCf = identitiesService.getIdentitiesAsync(filterJsonString);
+        Map<String, Object> filterMap = new HashMap<>();
+        filterMap.put("key", keyList);
+        filterMap.put("field_value", fieldValueList);
+
+        CompletableFuture<GetIdentityResponseVO[]> getIdentityResponseVOArrayCf = identitiesService.getIdentitiesAsync(filterMap);
         assertThat(getIdentityResponseVOArrayCf).isNotNull();
         assertThat(getIdentityResponseVOArrayCf.get()).isNotNull();
         GetIdentityResponseVO[] getIdentityResponseVOArray = getIdentityResponseVOArrayCf.get();
