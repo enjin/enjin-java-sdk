@@ -1,9 +1,8 @@
 package io.enjincoin.sdk.client.service.tokens;
 
-import io.enjincoin.sdk.client.vo.token.GetTokenBalanceRequestVO;
-import io.enjincoin.sdk.client.vo.token.GetTokenBalanceResponseVO;
-import io.enjincoin.sdk.client.vo.token.GetTokenRequestVO;
-import io.enjincoin.sdk.client.vo.token.GetTokenResponseVO;
+import io.enjincoin.sdk.client.vo.token.CreateTokenRequestVO;
+import io.enjincoin.sdk.client.vo.token.CreateTokenResponseVO;
+import io.enjincoin.sdk.client.vo.token.TokenResponseVO;
 
 /**
  * Tokens service interface.
@@ -11,20 +10,23 @@ import io.enjincoin.sdk.client.vo.token.GetTokenResponseVO;
 public interface SynchronousTokensService {
 
     /**
-     * Method to get a token.
+     * Method to get all tokens.
      *
-     * @param getTokenRequestVO - token request object
-     *
-     * @return - GetTokenResponseVO
+     * @return - TokenResponseVO
      */
-    GetTokenResponseVO[] getTokensSync(GetTokenRequestVO getTokenRequestVO);
+    TokenResponseVO[] getTokensSync();
 
     /**
-     * Method to get the token balance.
-     *
-     * @param getTokenBalanceRequestVO - token balance request object
-     *
-     * @return - GetTokenBalanceResponseVO
+     * Method to get a token by id
+     * @param tokenId for the token to retrieve
+     * @return
      */
-    GetTokenBalanceResponseVO[] getTokenBalancesSync(GetTokenBalanceRequestVO getTokenBalanceRequestVO);
+    TokenResponseVO getTokenSync(Integer tokenId);
+
+    /**
+     * Method to create a token
+     * @param createTokenRequestVO
+     * @return
+     */
+    CreateTokenResponseVO createTokenSync(CreateTokenRequestVO createTokenRequestVO);
 }

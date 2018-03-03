@@ -47,7 +47,7 @@ public class UsersServiceImpl extends BaseService implements UsersService {
     public UserResponseVO[] getUsersSync() {
         UserResponseVO[] getUsersResponseArray = null;
 
-        // Get the identities url and append the filter
+        // Get the users url and append the filter
         String getUsersUrl = getUsersUrl();
 
         String responseJsonString = performGetCall(getUsersUrl);
@@ -107,7 +107,7 @@ public class UsersServiceImpl extends BaseService implements UsersService {
         if (StringUtils.isEmpty(requestJsonString)) {
             LOGGER.warning("Users.create failed to convert request object to json.");
         }
-         // Get the identities url
+         // Get the create user url
         String createUserUrl = getUsersUrl();
 
         String responseJsonString = performPostCall(createUserUrl, requestJsonString);

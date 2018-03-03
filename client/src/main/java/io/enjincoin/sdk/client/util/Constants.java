@@ -46,7 +46,7 @@ public class Constants {
     /**
      * the tokens action.
      **/
-    public static final String TOKENS_URL = "Tokens.php";
+    public static final String TOKENS_URL = "tokens";
     /**
      * the transactionRequests action.
      **/

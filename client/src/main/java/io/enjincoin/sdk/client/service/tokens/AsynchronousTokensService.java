@@ -1,11 +1,10 @@
 package io.enjincoin.sdk.client.service.tokens;
 
-import io.enjincoin.sdk.client.vo.token.GetTokenBalanceRequestVO;
-import io.enjincoin.sdk.client.vo.token.GetTokenBalanceResponseVO;
-import io.enjincoin.sdk.client.vo.token.GetTokenRequestVO;
-import io.enjincoin.sdk.client.vo.token.GetTokenResponseVO;
-
 import java.util.concurrent.CompletableFuture;
+
+import io.enjincoin.sdk.client.vo.token.CreateTokenRequestVO;
+import io.enjincoin.sdk.client.vo.token.CreateTokenResponseVO;
+import io.enjincoin.sdk.client.vo.token.TokenResponseVO;
 
 /**
  * Asynchronous Tokens service interface.
@@ -13,20 +12,24 @@ import java.util.concurrent.CompletableFuture;
 public interface AsynchronousTokensService {
 
     /**
-     * Method to get a token.
+     * Method to get all tokens.
      *
-     * @param getTokenRequestVO - token request object
      *
-     * @return - GetTokenResponseVO
+     * @return - TokenResponseVO
      */
-    CompletableFuture<GetTokenResponseVO[]> getTokensAsync(GetTokenRequestVO getTokenRequestVO);
+    CompletableFuture<TokenResponseVO[]> getTokensAsync();
 
     /**
-     * Method to get the token balance.
-     *
-     * @param getTokenBalanceRequestVO - token balance request object
-     *
-     * @return - GetTokenBalanceResponseVO
+     * Method to get a token by id
+     * @param tokenId for the token to retrieve
+     * @return
      */
-    CompletableFuture<GetTokenBalanceResponseVO[]> getTokenBalancesAsync(GetTokenBalanceRequestVO getTokenBalanceRequestVO);
+    CompletableFuture<TokenResponseVO> getTokenAsync(Integer tokenId);
+
+    /**
+     * Method to create a token
+     * @param createTokenRequestVO
+     * @return
+     */
+    CompletableFuture<CreateTokenResponseVO> createTokenAsync(CreateTokenRequestVO createTokenRequestVO);
 }
