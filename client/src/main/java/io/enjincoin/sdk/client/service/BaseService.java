@@ -6,8 +6,8 @@ import java.util.concurrent.Executors;
 import java.util.logging.Logger;
 
 import com.enjin.java_commons.ObjectUtils;
-
 import com.enjin.java_commons.StringUtils;
+
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.config.Platform;
 import io.enjincoin.sdk.client.service.platform.SynchronousPlatformService;
@@ -110,6 +110,12 @@ public abstract class BaseService {
         try {
             Request httpRequest = new Request.Builder().url(urlToCall).build();
             Response httpResponse = getHttpClient().newCall(httpRequest).execute();
+            int responseCode = httpResponse.code();
+            if (responseCode != Constants.SUCCESS_HTTP_CODE) {
+                LOGGER.warning("performGetCall. responseCode returned '"+responseCode+"' from the url '"+urlToCall+"' is not valid");
+                return responseJsonString;
+            }
+
             responseJsonString = httpResponse.body().string();
         } catch (IOException e) {
             LOGGER.warning("performGetCall. An IOException has occured calling the url "+urlToCall+". Exception:" + e);
@@ -135,6 +141,12 @@ public abstract class BaseService {
             RequestBody requestBody = RequestBody.create(MEDIATYPE_JSON, requestJsonString);
             Request httpRequest = new Request.Builder().url(urlToCall).post(requestBody).build();
             Response httpResponse = getHttpClient().newCall(httpRequest).execute();
+            int responseCode = httpResponse.code();
+            if (responseCode != Constants.SUCCESS_HTTP_CODE) {
+                LOGGER.warning("performPostCall. responseCode returned '"+responseCode+"' from the url '"+urlToCall+"' is not valid");
+                return responseJsonString;
+            }
+
             responseJsonString = httpResponse.body().string();
         } catch (IOException e) {
             LOGGER.warning("performPostCall. An IOException has occured calling the url "+urlToCall+". Exception:" + e);
@@ -159,6 +171,12 @@ public abstract class BaseService {
             RequestBody requestBody = RequestBody.create(MEDIATYPE_JSON, requestJsonString);
             Request httpRequest = new Request.Builder().url(urlToCall).put(requestBody).build();
             Response httpResponse = getHttpClient().newCall(httpRequest).execute();
+            int responseCode = httpResponse.code();
+            if (responseCode != Constants.SUCCESS_HTTP_CODE) {
+                LOGGER.warning("performPutCall. responseCode returned '"+responseCode+"' from the url '"+urlToCall+"' is not valid");
+                return responseJsonString;
+            }
+
             responseJsonString = httpResponse.body().string();
         } catch (IOException e) {
             LOGGER.warning("performPutCall. An IOException has occured calling the url "+urlToCall+". Exception:" + e);
@@ -181,6 +199,12 @@ public abstract class BaseService {
         try {
             Request httpRequest = new Request.Builder().url(urlToCall).delete().build();
             Response httpResponse = getHttpClient().newCall(httpRequest).execute();
+            int responseCode = httpResponse.code();
+            if (responseCode != Constants.SUCCESS_HTTP_CODE) {
+                LOGGER.warning("performDeleteCall. responseCode returned '"+responseCode+"' from the url '"+urlToCall+"' is not valid");
+                return responseJsonString;
+            }
+
             responseJsonString = httpResponse.body().string();
         } catch (IOException e) {
             LOGGER.warning("performDeleteCall. An IOException has occured calling the url "+urlToCall+". Exception:" + e);
@@ -196,6 +220,16 @@ public abstract class BaseService {
     protected String getIdentitiesUrl() {
         return this.getRestURL(Constants.IDENTITIES_URL);
     }
+
+    /**
+     * Method to get the link wallet url.
+     *
+     * @return - the link wallet url
+     */
+    protected String getLinkWalletUrl() {
+        return this.getRestURL(Constants.LINK_WALLET_URL);
+    }
+
 
     /**
      * Method to get the tokens url.

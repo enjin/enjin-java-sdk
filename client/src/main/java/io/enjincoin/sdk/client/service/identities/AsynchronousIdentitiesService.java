@@ -5,6 +5,8 @@ import java.util.concurrent.CompletableFuture;
 import io.enjincoin.sdk.client.vo.identity.CreateIdentityRequestVO;
 import io.enjincoin.sdk.client.vo.identity.CreateIdentityResponseVO;
 import io.enjincoin.sdk.client.vo.identity.GetIdentityResponseVO;
+import io.enjincoin.sdk.client.vo.identity.LinkIdentityRequestVO;
+import io.enjincoin.sdk.client.vo.identity.LinkIdentityResponseVO;
 import io.enjincoin.sdk.client.vo.identity.UpdateIdentityRequestVO;
 import io.enjincoin.sdk.client.vo.identity.UpdateIdentityResponseVO;
 
@@ -61,5 +63,14 @@ public interface AsynchronousIdentitiesService {
      * @return Boolean
      */
     CompletableFuture<Boolean> deleteIdentityAsync(final Integer identityId);
+
+    /**
+     * Method to link an identity.
+     *
+     * @param linkIdentityRequestVO - link identity request vo
+     * @param linkingCode - code to use
+     * @return - LinkIdentityResponseVO
+     */
+    CompletableFuture<LinkIdentityResponseVO> linkIdentityAsync(LinkIdentityRequestVO linkIdentityRequestVO, String linkingCode);
 
 }

@@ -3,6 +3,8 @@ package io.enjincoin.sdk.client.service.identities;
 import io.enjincoin.sdk.client.vo.identity.CreateIdentityRequestVO;
 import io.enjincoin.sdk.client.vo.identity.CreateIdentityResponseVO;
 import io.enjincoin.sdk.client.vo.identity.GetIdentityResponseVO;
+import io.enjincoin.sdk.client.vo.identity.LinkIdentityRequestVO;
+import io.enjincoin.sdk.client.vo.identity.LinkIdentityResponseVO;
 import io.enjincoin.sdk.client.vo.identity.UpdateIdentityRequestVO;
 import io.enjincoin.sdk.client.vo.identity.UpdateIdentityResponseVO;
 
@@ -59,4 +61,12 @@ public interface SynchronousIdentitiesService {
      */
     Boolean deleteIdentitySync(final Integer identityId);
 
+    /**
+     * Method to link an identity.
+     *
+     * @param linkIdentityRequestVO - link identity request vo
+     * @param linkingCode - code to use
+     * @return - LinkIdentityResponseVO
+     */
+    LinkIdentityResponseVO linkIdentitySync(LinkIdentityRequestVO linkIdentityRequestVO, String linkingCode);
 }

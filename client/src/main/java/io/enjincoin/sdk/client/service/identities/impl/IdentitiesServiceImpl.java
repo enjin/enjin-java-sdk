@@ -16,6 +16,8 @@ import io.enjincoin.sdk.client.util.JsonUtils;
 import io.enjincoin.sdk.client.vo.identity.CreateIdentityRequestVO;
 import io.enjincoin.sdk.client.vo.identity.CreateIdentityResponseVO;
 import io.enjincoin.sdk.client.vo.identity.GetIdentityResponseVO;
+import io.enjincoin.sdk.client.vo.identity.LinkIdentityRequestVO;
+import io.enjincoin.sdk.client.vo.identity.LinkIdentityResponseVO;
 import io.enjincoin.sdk.client.vo.identity.UpdateIdentityRequestVO;
 import io.enjincoin.sdk.client.vo.identity.UpdateIdentityResponseVO;
 
@@ -219,7 +221,33 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
         return updateIdentityResponseVO;
     }
 
+    @Override
+    public final LinkIdentityResponseVO linkIdentitySync(final LinkIdentityRequestVO linkIdentityRequestVO, String linkingCode) {
+        LinkIdentityResponseVO linkIdentityResponseVO = null;
 
+        if (ObjectUtils.isNull(linkIdentityRequestVO) || StringUtils.isEmpty(linkingCode)) {
+            LOGGER.warning("Identities.link linkIdentityRequestVO is null or linkingCode is null or empty.");
+            return linkIdentityResponseVO;
+        }
+
+        //Convert the request object to json
+        String requestJsonString = JsonUtils.convertObjectToJson(GsonUtils.GSON, linkIdentityRequestVO);
+        if (StringUtils.isEmpty(requestJsonString)) {
+            LOGGER.warning("Identities.link failed to convert request object to json.");
+        }
+
+        // Get the link wallet url and append the identityId
+        String linkWalletUrl = String.format("%s/%s", getLinkWalletUrl(), linkingCode);
+
+        String responseJsonString = performPutCall(linkWalletUrl, requestJsonString);
+        if (StringUtils.isEmpty(responseJsonString)) {
+            LOGGER.warning("No response returned from the linkIdentity call");
+            return linkIdentityResponseVO;
+        }
+        linkIdentityResponseVO = (LinkIdentityResponseVO) JsonUtils.convertJsonToObject(GsonUtils.GSON, responseJsonString, LinkIdentityResponseVO.class);
+
+        return linkIdentityResponseVO;
+    }
 
     @Override
     public CompletableFuture<GetIdentityResponseVO[]> getIdentitiesAsync() {
@@ -248,6 +276,11 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
     @Override
     public CompletableFuture<Boolean> deleteIdentityAsync(final Integer identityId) {
         return CompletableFuture.supplyAsync(() -> this.deleteIdentitySync(identityId), this.getExecutorService());
+    }
+
+    @Override
+    public CompletableFuture<LinkIdentityResponseVO> linkIdentityAsync(final LinkIdentityRequestVO request, final String linkingCode) {
+        return CompletableFuture.supplyAsync(() -> this.linkIdentitySync(request, linkingCode), this.getExecutorService());
     }
 
 }

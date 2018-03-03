@@ -30,6 +30,13 @@ public class Constants {
      * the identities action.
      **/
     public static final String IDENTITIES_URL = "identities";
+
+    /**
+     * the link wallet action.
+     **/
+    public static final String LINK_WALLET_URL = "identity/link-wallet";
+
+
     /**
      * the tokens action.
      **/
@@ -118,6 +125,11 @@ public class Constants {
      * Charset UTF-8.
      **/
     public static final String CHARSET_UTF_8 = "UTF-8";
+
+    /**
+     * Constants for the success http code
+     */
+    public static final int SUCCESS_HTTP_CODE = 200;
 
 
 }

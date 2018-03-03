@@ -13,6 +13,8 @@ import io.enjincoin.sdk.client.vo.identity.CreateIdentityRequestVO;
 import io.enjincoin.sdk.client.vo.identity.CreateIdentityResponseVO;
 import io.enjincoin.sdk.client.vo.identity.FieldVO;
 import io.enjincoin.sdk.client.vo.identity.GetIdentityResponseVO;
+import io.enjincoin.sdk.client.vo.identity.LinkIdentityRequestVO;
+import io.enjincoin.sdk.client.vo.identity.LinkIdentityResponseVO;
 import io.enjincoin.sdk.client.vo.identity.UpdateIdentityRequestVO;
 import io.enjincoin.sdk.client.vo.identity.UpdateIdentityResponseVO;
 
@@ -340,4 +342,48 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
         assertThat(deleteIdentityResultCf.get()).isTrue();
     }
 
+
+    @Test
+    public void testSychronousIdentitiesService_LinkIdentity() {
+        SynchronousIdentitiesService identitiesService = this.client.getIdentitiesService();
+        assertThat(identitiesService).isNotNull();
+
+        Optional<String> ethereumAddress = Optional.of("TestEthereumAddress_"+System.currentTimeMillis());
+
+
+        String linkingCode = "av"+System.currentTimeMillis();
+        LinkIdentityRequestVO linkIdentityRequestVO = new LinkIdentityRequestVO(ethereumAddress);
+        LinkIdentityResponseVO linkIdentityResponseVO = identitiesService.linkIdentitySync(linkIdentityRequestVO , linkingCode);
+        assertThat(linkIdentityResponseVO).isNotNull();
+        //assertThat(linkIdentityResponseVO.getId()).isNotNull();
+        //assertThat(linkIdentityResponseVO.getEthereumAddress()).isNotNull();
+        //assertThat(linkIdentityResponseVO.getCreatedAt()).isNotNull();
+        //assertThat(linkIdentityResponseVO.getUpdatedAt()).isNotNull();
+        //assertThat(linkIdentityResponseVO.getUserId()).isNotNull();
+        //assertThat(linkIdentityResponseVO.getLinkingCode()).isNotNull();
+    }
+
+    @Test
+    public void testAsychronousIdentitiesService_LinkIdentity() throws InterruptedException, ExecutionException {
+        AsynchronousIdentitiesService identitiesService = this.client.getIdentitiesService();
+        assertThat(identitiesService).isNotNull();
+
+        Optional<String> ethereumAddress = Optional.of("TestEthereumAddress_"+System.currentTimeMillis());
+
+
+        String linkingCode = "av"+System.currentTimeMillis();
+        LinkIdentityRequestVO linkIdentityRequestVO = new LinkIdentityRequestVO(ethereumAddress);
+        CompletableFuture<LinkIdentityResponseVO> linkIdentityResponseVOCf = identitiesService.linkIdentityAsync(linkIdentityRequestVO , linkingCode);
+        assertThat(linkIdentityResponseVOCf).isNotNull();
+        assertThat(linkIdentityResponseVOCf.get()).isNotNull();
+
+        LinkIdentityResponseVO linkIdentityResponseVO = linkIdentityResponseVOCf.get();
+        assertThat(linkIdentityResponseVO).isNotNull();
+        //assertThat(linkIdentityResponseVO.getId()).isNotNull();
+        //assertThat(linkIdentityResponseVO.getEthereumAddress()).isNotNull();
+        //assertThat(linkIdentityResponseVO.getCreatedAt()).isNotNull();
+        //assertThat(linkIdentityResponseVO.getUpdatedAt()).isNotNull();
+        //assertThat(linkIdentityResponseVO.getUserId()).isNotNull();
+        //assertThat(linkIdentityResponseVO.getLinkingCode()).isNotNull();
+    }
 }
