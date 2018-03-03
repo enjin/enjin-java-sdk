@@ -1,17 +1,23 @@
 package io.enjincoin.sdk.client.mockServer;
 
-import io.enjincoin.sdk.client.ClientImpl;
-import io.enjincoin.sdk.client.config.Config;
-import io.enjincoin.sdk.client.config.ImmutableConfig;
-import io.enjincoin.sdk.client.service.tokens.SynchronousTokensService;
-import io.enjincoin.sdk.client.vo.token.*;
-import org.junit.Before;
-import org.junit.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.Before;
+import org.junit.Test;
+
+import io.enjincoin.sdk.client.ClientImpl;
+import io.enjincoin.sdk.client.config.Config;
+import io.enjincoin.sdk.client.config.ImmutableConfig;
+import io.enjincoin.sdk.client.service.tokens.SynchronousTokensService;
+import io.enjincoin.sdk.client.vo.token.GetTokenBalanceRequestVO;
+import io.enjincoin.sdk.client.vo.token.GetTokenBalanceResponseVO;
+import io.enjincoin.sdk.client.vo.token.GetTokenRequestVO;
+import io.enjincoin.sdk.client.vo.token.GetTokenResponseVO;
+import io.enjincoin.sdk.client.vo.token.ImmutableGetTokenBalanceRequestVO;
+import io.enjincoin.sdk.client.vo.token.ImmutableGetTokenRequestVO;
 
 public class TokensServiceTestsAgainstMockServer extends BaseMockServer {
 
@@ -21,7 +27,6 @@ public class TokensServiceTestsAgainstMockServer extends BaseMockServer {
     public void init() {
         Config enjinConfig = ImmutableConfig.builder()
                 .setTrustedPlatform(this.getPlatform())
-                .setInTestMode(true)
                 .build();
         ClientImpl enjinService = new ClientImpl(enjinConfig);
         this.tokensService = enjinService.getTokensService();

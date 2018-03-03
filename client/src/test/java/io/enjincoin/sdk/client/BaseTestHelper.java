@@ -1,10 +1,11 @@
 package io.enjincoin.sdk.client;
 
+import org.junit.Ignore;
+
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.config.ImmutableConfig;
 import io.enjincoin.sdk.client.config.ImmutablePlatform;
 import io.enjincoin.sdk.client.config.Platform;
-import org.junit.Ignore;
 
 /**
  * <p>Utility class used when running test.</p>
@@ -25,7 +26,6 @@ public class BaseTestHelper {
                 .build();
 
         Config enjinConfig = ImmutableConfig.builder()
-                .setInTestMode(false)
                 .setTotalExecutors(1)
                 .setTrustedPlatform(trustedPlatform)
                 .build();

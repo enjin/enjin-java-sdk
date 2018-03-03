@@ -1,5 +1,10 @@
 package io.enjincoin.sdk.client.mockServer;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.Before;
+import org.junit.Test;
+
 import io.enjincoin.sdk.client.ClientImpl;
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.config.ImmutableConfig;
@@ -7,10 +12,6 @@ import io.enjincoin.sdk.client.service.platform.SynchronousPlatformService;
 import io.enjincoin.sdk.client.vo.platform.GetPlatformAuthRequestVO;
 import io.enjincoin.sdk.client.vo.platform.GetPlatformAuthResponseVO;
 import io.enjincoin.sdk.client.vo.platform.ImmutableGetPlatformAuthRequestVO;
-import org.junit.Before;
-import org.junit.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlatformServiceTestsAgainstMockServer extends BaseMockServer {
 
@@ -20,7 +21,6 @@ public class PlatformServiceTestsAgainstMockServer extends BaseMockServer {
     public void init() {
         Config enjinConfig = ImmutableConfig.builder()
                 .setTrustedPlatform(this.getPlatform())
-                .setInTestMode(true)
                 .build();
         ClientImpl enjinService = new ClientImpl(enjinConfig);
         this.platformService = enjinService.getPlatformService();

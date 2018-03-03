@@ -50,7 +50,6 @@ public class BaseServiceTest {
                         .setPort(8080)
                         .setProtocol(Protocol.HTTP)
                         .build())
-                .setInTestMode(true)
                 .build();
         this.baseAction = new IdentitiesServiceImpl(this.enjinConfig);
         assertThat(this.baseAction).isNotNull()

@@ -1,5 +1,13 @@
 package io.enjincoin.sdk.client.mockServer;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.junit.Before;
+import org.junit.Test;
+
 import io.enjincoin.sdk.client.ClientImpl;
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.config.ImmutableConfig;
@@ -8,13 +16,6 @@ import io.enjincoin.sdk.client.vo.event.GetEventDataVO;
 import io.enjincoin.sdk.client.vo.event.GetEventRequestVO;
 import io.enjincoin.sdk.client.vo.event.GetEventResponseVO;
 import io.enjincoin.sdk.client.vo.event.ImmutableGetEventRequestVO;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
 
@@ -29,7 +30,6 @@ public class EventsServiceTestsAgainstMockServer extends BaseMockServer {
     public void init() {
         Config enjinConfig = ImmutableConfig.builder()
                 .setTrustedPlatform(this.getPlatform())
-                .setInTestMode(true)
                 .build();
         ClientImpl enjinService = new ClientImpl(enjinConfig);
         this.eventsService = enjinService.getEventsService();

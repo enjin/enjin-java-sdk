@@ -31,7 +31,6 @@ public class ClientTest {
                 .setBaseApiEndpoint("api")
                 .build();
         this.config = ImmutableConfig.builder()
-                .setInTestMode(false)
                 .setTotalExecutors(1)
                 .setTrustedPlatform(trustedPlatform)
                 .build();

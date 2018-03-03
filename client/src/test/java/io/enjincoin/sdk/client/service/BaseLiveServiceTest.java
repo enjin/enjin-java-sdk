@@ -22,7 +22,6 @@ public class BaseLiveServiceTest {
                 .setBaseApiEndpoint("api/v1")
                 .build();
         this.config = ImmutableConfig.builder()
-                .setInTestMode(false)
                 .setTotalExecutors(1)
                 .setTrustedPlatform(trustedPlatform)
                 .build();

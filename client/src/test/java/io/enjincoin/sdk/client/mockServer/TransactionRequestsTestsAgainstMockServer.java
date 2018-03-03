@@ -1,17 +1,24 @@
 package io.enjincoin.sdk.client.mockServer;
 
-import io.enjincoin.sdk.client.ClientImpl;
-import io.enjincoin.sdk.client.config.Config;
-import io.enjincoin.sdk.client.config.ImmutableConfig;
-import io.enjincoin.sdk.client.service.transactionrequests.SynchronousTransactionRequestsService;
-import io.enjincoin.sdk.client.vo.transactionrequest.*;
-import org.junit.Before;
-import org.junit.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.Before;
+import org.junit.Test;
+
+import io.enjincoin.sdk.client.ClientImpl;
+import io.enjincoin.sdk.client.config.Config;
+import io.enjincoin.sdk.client.config.ImmutableConfig;
+import io.enjincoin.sdk.client.service.transactionrequests.SynchronousTransactionRequestsService;
+import io.enjincoin.sdk.client.vo.transactionrequest.CancelTransactionRequestRequestVO;
+import io.enjincoin.sdk.client.vo.transactionrequest.CreateTransactionRequestRequestVO;
+import io.enjincoin.sdk.client.vo.transactionrequest.GetTransactionRequestRequestVO;
+import io.enjincoin.sdk.client.vo.transactionrequest.GetTransactionRequestResponseVO;
+import io.enjincoin.sdk.client.vo.transactionrequest.ImmutableCancelTransactionRequestRequestVO;
+import io.enjincoin.sdk.client.vo.transactionrequest.ImmutableCreateTransactionRequestRequestVO;
+import io.enjincoin.sdk.client.vo.transactionrequest.ImmutableGetTransactionRequestRequestVO;
 
 public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
 
@@ -25,7 +32,6 @@ public class TransactionRequestsTestsAgainstMockServer extends BaseMockServer {
     public void init() {
         Config enjinConfig = ImmutableConfig.builder()
                 .setTrustedPlatform(this.getPlatform())
-                .setInTestMode(true)
                 .build();
         ClientImpl enjinService = new ClientImpl(enjinConfig);
         this.transactionRequestsService = enjinService.getTransactionRequestsService();
