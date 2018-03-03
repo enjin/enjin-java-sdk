@@ -2,13 +2,13 @@ package io.enjincoin.sdk.client.service.identities;
 
 import java.util.concurrent.CompletableFuture;
 
-import io.enjincoin.sdk.client.vo.identity.CreateIdentityRequestVO;
-import io.enjincoin.sdk.client.vo.identity.CreateIdentityResponseVO;
-import io.enjincoin.sdk.client.vo.identity.DeleteIdentityRequestVO;
-import io.enjincoin.sdk.client.vo.identity.DeleteIdentityResponseVO;
 import io.enjincoin.sdk.client.vo.identity.GetIdentityResponseVO;
-import io.enjincoin.sdk.client.vo.identity.UpdateIdentityRequestVO;
-import io.enjincoin.sdk.client.vo.identity.UpdateIdentityResponseVO;
+import io.enjincoin.sdk.client.vo.legacy.identity.CreateIdentityRequestVO;
+import io.enjincoin.sdk.client.vo.legacy.identity.CreateIdentityResponseVO;
+import io.enjincoin.sdk.client.vo.legacy.identity.DeleteIdentityRequestVO;
+import io.enjincoin.sdk.client.vo.legacy.identity.DeleteIdentityResponseVO;
+import io.enjincoin.sdk.client.vo.legacy.identity.UpdateIdentityRequestVO;
+import io.enjincoin.sdk.client.vo.legacy.identity.UpdateIdentityResponseVO;
 
 /**
  * Asynchronous Identities service interface.

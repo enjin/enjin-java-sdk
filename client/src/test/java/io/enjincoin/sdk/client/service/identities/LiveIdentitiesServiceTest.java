@@ -8,8 +8,8 @@ import java.util.concurrent.ExecutionException;
 import org.junit.Test;
 
 import io.enjincoin.sdk.client.service.BaseLiveServiceTest;
+import io.enjincoin.sdk.client.vo.identity.FieldVO;
 import io.enjincoin.sdk.client.vo.identity.GetIdentityResponseVO;
-import io.enjincoin.sdk.client.vo.identity.ImmutableFieldVO;
 
 /**
  * Calls out to the actual api
@@ -30,7 +30,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
         for (GetIdentityResponseVO getIdentityResponseVO : getIdentityResponseVOArray) {
             if (getIdentityResponseVO.getFields().isPresent()) {
 
-                for (ImmutableFieldVO fieldVO : getIdentityResponseVO.getFields().get()) {
+                for (FieldVO fieldVO : getIdentityResponseVO.getFields().get()) {
                     assertThat(fieldVO).isNotNull();
                 }
             }
@@ -50,7 +50,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
         for (GetIdentityResponseVO getIdentityResponseVO : getIdentityResponseVOArray) {
             if (getIdentityResponseVO.getFields().isPresent()) {
 
-                for (ImmutableFieldVO fieldVO : getIdentityResponseVO.getFields().get()) {
+                for (FieldVO fieldVO : getIdentityResponseVO.getFields().get()) {
                     assertThat(fieldVO).isNotNull();
                 }
             }
@@ -72,7 +72,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
 
         if (getIdentityByIdResponseVO.getFields().isPresent()) {
 
-            for (ImmutableFieldVO fieldVO : getIdentityByIdResponseVO.getFields().get()) {
+            for (FieldVO fieldVO : getIdentityByIdResponseVO.getFields().get()) {
                 assertThat(fieldVO).isNotNull();
             }
         }
@@ -97,7 +97,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
 
         if (getIdentityByIdResponseVO.getFields().isPresent()) {
 
-            for (ImmutableFieldVO fieldVO : getIdentityByIdResponseVO.getFields().get()) {
+            for (FieldVO fieldVO : getIdentityByIdResponseVO.getFields().get()) {
                 assertThat(fieldVO).isNotNull();
             }
         }

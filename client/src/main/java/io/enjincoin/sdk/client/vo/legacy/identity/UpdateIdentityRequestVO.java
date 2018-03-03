@@ -1,4 +1,4 @@
-package io.enjincoin.sdk.client.vo.identity;
+package io.enjincoin.sdk.client.vo.legacy.identity;
 
 import com.google.gson.annotations.SerializedName;
 import io.enjincoin.sdk.client.annotations.immutables.SkipNulls;
@@ -9,21 +9,21 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * <p>Update Identity Response class.
+ * <p>Update Identity Request class.
  * </p>
  */
 @Value.Immutable
 @Gson.TypeAdapters
-public abstract class UpdateIdentityResponseVO {
+public abstract class UpdateIdentityRequestVO extends BaseIdentityRequestVO {
 
     /**
-     * Method to get the identityMap.
+     * Method to get the updateMap.
      *
      * @return Optional
      */
     @SkipNulls
-    @SerializedName("identity")
-    public abstract Optional<Map<String, Object>> getIdentityMap();
+    @SerializedName("update")
+    public abstract Optional<Map<String, Object>> getUpdateMap();
 
     /**
      * Class toString method.
@@ -32,7 +32,7 @@ public abstract class UpdateIdentityResponseVO {
      */
     @Override
     public String toString() {
-        return "UpdateIdentityResponseVO [identityMap=" + this.getIdentityMap().orElse(null) + "]";
+        return "UpdateIdentityRequestVO [updateMap=" + this.getUpdateMap().orElse(null) + "]";
     }
 
 }

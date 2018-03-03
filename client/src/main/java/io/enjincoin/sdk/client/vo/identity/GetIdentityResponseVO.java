@@ -2,86 +2,103 @@ package io.enjincoin.sdk.client.vo.identity;
 
 import java.util.Optional;
 
-import org.immutables.gson.Gson;
-import org.immutables.value.Value;
-
 import com.google.gson.annotations.SerializedName;
-
-import io.enjincoin.sdk.client.annotations.immutables.SkipNulls;
 
 /**
  * <p>Get Identity Response class.
  * </p>
  */
-@Value.Immutable
-@Gson.TypeAdapters(emptyAsNulls = true)
-public abstract class GetIdentityResponseVO {
+public class GetIdentityResponseVO {
 
 
-    /**
-     * Method to get the identityId.
-     *
-     * @return Optional
-     */
     @SerializedName("id")
-    public abstract Optional<Integer> getId();
+    private Optional<Integer> id;
 
-    /**
-     * Method to get the ethereumAddress.
-     *
-     * @return Optional
-     */
     @SerializedName("ethereum_address")
-    public abstract Optional<String> getEthereumAddress();
+    private Optional<String> ethereumAddress;
 
-    /**
-     * Method to get the linkingCode.
-     *
-     * @return Optional
-     */
     @SerializedName("linking_code")
-    public abstract Optional<String> getLinking_code();
+    private Optional<String> linkingCode;
 
-    /**
-     * Method to get the updatedAt.
-     *
-     * @return Optional
-     */
     @SerializedName("updated_at")
-    public abstract Optional<String> getUpdated_at();
+    private Optional<String> updatedAt;
 
-    /**
-     * Method to get the createdAt.
-     *
-     * @return Optional
-     */
     @SerializedName("created_at")
-    public abstract String getCreated_at();
+    private String createdAt;
 
-    /**
-     * Method to get the user.
-     *
-     * @return Optional
-     */
     @SerializedName("user")
-    public abstract Optional<String> getUser();
+    private Optional<String> user;
 
-
-    /**
-     * Method to get the fields.
-     *
-     * @return Optional
-     */
-    @SkipNulls
     @SerializedName("fields")
-    public abstract Optional<ImmutableFieldVO[]> getFields();
+    private Optional<FieldVO[]> fields;
 
-    @Override
-    public String toString() {
-        return "GetIdentityResponseVO [getId()=" + getId() + ", getEthereum_address()=" + getEthereumAddress() + ", getLinking_code()=" + getLinking_code() + ", getUpdated_at()="
-                + getUpdated_at() + ", getCreated_at()=" + getCreated_at() + ", getUser()=" + getUser() + ", getFields()=" + getFields() + "]";
+    public GetIdentityResponseVO(Optional<Integer> id, Optional<String> ethereumAddress, Optional<String> linkingCode, Optional<String> updatedAt, String createdAt, Optional<String> user,
+            Optional<FieldVO[]> fields) {
+        super();
+        this.id = id;
+        this.ethereumAddress = ethereumAddress;
+        this.linkingCode = linkingCode;
+        this.updatedAt = updatedAt;
+        this.createdAt = createdAt;
+        this.user = user;
+        this.fields = fields;
     }
 
+    /**
+     * @return the id
+     */
+    public Optional<Integer> getId() {
+        return id;
+    }
 
+    /**
+     * @return the ethereumAddress
+     */
+    public Optional<String> getEthereumAddress() {
+        return ethereumAddress;
+    }
 
+    /**
+     * @return the linkingCode
+     */
+    public Optional<String> getLinkingCode() {
+        return linkingCode;
+    }
+
+    /**
+     * @return the updatedAt
+     */
+    public Optional<String> getUpdatedAt() {
+        return updatedAt;
+    }
+
+    /**
+     * @return the createdAt
+     */
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * @return the user
+     */
+    public Optional<String> getUser() {
+        return user;
+    }
+
+    /**
+     * @return the fields
+     */
+    public Optional<FieldVO[]> getFields() {
+        return fields;
+    }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        return "GetIdentityResponseVO [id=" + id + ", ethereumAddress=" + ethereumAddress + ", linkingCode=" + linkingCode + ", updatedAt=" + updatedAt + ", createdAt=" + createdAt
+                + ", user=" + user + ", fields=" + fields + "]";
+    }
 }

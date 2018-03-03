@@ -2,69 +2,69 @@ package io.enjincoin.sdk.client.vo.identity;
 
 import java.util.Optional;
 
-import org.immutables.gson.Gson;
-import org.immutables.value.Value;
-
 import com.google.gson.annotations.SerializedName;
 
 /**
  * <p>FieldVO class.
  * </p>
  */
-@Value.Immutable
-@Gson.TypeAdapters
-public abstract class FieldVO {
+public class FieldVO {
 
-    /**
-     * Method to get the key.
-     *
-     * @return Optional
-     */
     @SerializedName("key")
-    public abstract Optional<String> getKey();
+    private Optional<String> key;
 
-    /**
-     * Method to get the fieldValue.
-     *
-     * @return Optional
-     */
     @SerializedName("field_value")
-    public abstract Optional<String> getField_value();
+    private Optional<String> fieldValue;
 
-    /**
-     * Method to get the searchable.
-     *
-     * @return Optional
-     */
     @SerializedName("searchable")
-    public abstract Optional<Integer> getSearchable();
+    private Optional<Integer> searchable;
 
-    /**
-     * Method to get the displayable.
-     *
-     * @return Optional
-     */
     @SerializedName("displayable")
-    public abstract Optional<Integer> getDisplayable();
+    private Optional<Integer> displayable;
 
-    /**
-     * Method to get the unique.
-     *
-     * @return Optional
-     */
     @SerializedName("unique")
-    public abstract Optional<Integer> getUnique();
+    private Optional<Integer> unique;
 
     /**
-     * Class toString method.
-     *
-     * @return String
+     * @return the key
+     */
+    public Optional<String> getKey() {
+        return key;
+    }
+
+    /**
+     * @return the fieldValue
+     */
+    public Optional<String> getFieldValue() {
+        return fieldValue;
+    }
+
+    /**
+     * @return the searchable
+     */
+    public Optional<Integer> getSearchable() {
+        return searchable;
+    }
+
+    /**
+     * @return the displayable
+     */
+    public Optional<Integer> getDisplayable() {
+        return displayable;
+    }
+
+    /**
+     * @return the unique
+     */
+    public Optional<Integer> getUnique() {
+        return unique;
+    }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
-        return "FieldVO [getKey()=" + getKey() + ", getFieldValue()=" + getField_value() + ", getSearchable()=" + getSearchable() + ", getDisplayable()=" + getDisplayable() + ", getUnique()="
-                + getUnique() + "]";
+        return "FieldVO [key=" + key + ", fieldValue=" + fieldValue + ", searchable=" + searchable + ", displayable=" + displayable + ", unique=" + unique + "]";
     }
-
-
 }

@@ -15,15 +15,13 @@ import io.enjincoin.sdk.client.service.identities.IdentitiesService;
 import io.enjincoin.sdk.client.util.Constants;
 import io.enjincoin.sdk.client.util.GsonUtils;
 import io.enjincoin.sdk.client.util.JsonUtils;
-import io.enjincoin.sdk.client.vo.identity.CreateIdentityRequestVO;
-import io.enjincoin.sdk.client.vo.identity.CreateIdentityResponseVO;
-import io.enjincoin.sdk.client.vo.identity.DeleteIdentityRequestVO;
-import io.enjincoin.sdk.client.vo.identity.DeleteIdentityResponseVO;
 import io.enjincoin.sdk.client.vo.identity.GetIdentityResponseVO;
-import io.enjincoin.sdk.client.vo.identity.ImmutableDeleteIdentityResponseVO;
-import io.enjincoin.sdk.client.vo.identity.ImmutableGetIdentityResponseVO;
-import io.enjincoin.sdk.client.vo.identity.UpdateIdentityRequestVO;
-import io.enjincoin.sdk.client.vo.identity.UpdateIdentityResponseVO;
+import io.enjincoin.sdk.client.vo.legacy.identity.CreateIdentityRequestVO;
+import io.enjincoin.sdk.client.vo.legacy.identity.CreateIdentityResponseVO;
+import io.enjincoin.sdk.client.vo.legacy.identity.DeleteIdentityRequestVO;
+import io.enjincoin.sdk.client.vo.legacy.identity.DeleteIdentityResponseVO;
+import io.enjincoin.sdk.client.vo.legacy.identity.UpdateIdentityRequestVO;
+import io.enjincoin.sdk.client.vo.legacy.identity.UpdateIdentityResponseVO;
 import okhttp3.Request;
 import okhttp3.Response;
 
@@ -60,13 +58,12 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
 
         // Construct new request
         String getIdentitiesUrl = getIdentitiesUrl();
-        System.out.println("getIdentitiesUrl:"+getIdentitiesUrl);
-
         try {
             Request httpRequest = new Request.Builder().url(getIdentitiesUrl).build();
             Response httpResponse = getOkHttpClient().newCall(httpRequest).execute();
             String jsonString = httpResponse.body().string();
-            response = (GetIdentityResponseVO[]) JsonUtils.convertJsonToObject(GsonUtils.GSON, jsonString, ImmutableGetIdentityResponseVO[].class);
+            System.out.println(jsonString);
+            response = (GetIdentityResponseVO[]) JsonUtils.convertJsonToObject(GsonUtils.GSON, jsonString, GetIdentityResponseVO[].class);
 
         } catch (IOException e) {
             LOGGER.warning("An IOException has occured getting all identities. Exception:" + e);
@@ -91,13 +88,12 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
 
         // Construct new request
         String getIdentityByIdUrl = String.format("%s/%d", getIdentitiesUrl(), identityId);
-        System.out.println("getIdentityByIdUrl:"+getIdentityByIdUrl);
 
         try {
             Request httpRequest = new Request.Builder().url(getIdentityByIdUrl).build();
             Response httpResponse = getOkHttpClient().newCall(httpRequest).execute();
             String jsonString = httpResponse.body().string();
-            response = (GetIdentityResponseVO) JsonUtils.convertJsonToObject(GsonUtils.GSON, jsonString, ImmutableGetIdentityResponseVO.class);
+            response = (GetIdentityResponseVO) JsonUtils.convertJsonToObject(GsonUtils.GSON, jsonString, GetIdentityResponseVO.class);
 
         } catch (IOException e) {
             LOGGER.warning("An IOException has occured getting identities byId. Exception:" + e);
@@ -182,7 +178,7 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
 
         Boolean result = (Boolean) this.getJsonRpcUtils().sendJsonRpcRequest(this.getIdentitiesUrl(), Boolean.class, method, params);
 
-        response = ImmutableDeleteIdentityResponseVO.builder().setResult(result).build();
+       // response = ImmutableDeleteIdentityResponseVO.builder().setResult(result).build();
 
         return response;
     }

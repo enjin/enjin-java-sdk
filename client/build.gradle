@@ -19,6 +19,7 @@ ext {
     jsonrpc2client = '1.16.4'
     wiremock = '2.11.0'
     gson = '2.8.2'
+    gsonJava8Datatype = '1.1.0'
     pusher = '1.6.0'
     immutables = '2.5.5'
     okhttp = '3.10.0'
@@ -34,6 +35,7 @@ dependencies {
     // compile dependencies
     compile group: 'com.thetransactioncompany', name: 'jsonrpc2-client', version: jsonrpc2client
     compile group: 'com.google.code.gson', name: 'gson', version: gson
+    compile group: 'net.dongliu', name: 'gson-java8-datatype', version: gsonJava8Datatype
     compile group: 'com.pusher', name: 'pusher-java-client', version: pusher
     compile group: 'org.immutables', name: 'gson', version: immutables
     compile group: 'com.squareup.okhttp3', name: 'okhttp', version: okhttp

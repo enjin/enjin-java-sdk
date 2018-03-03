@@ -1,4 +1,4 @@
-package io.enjincoin.sdk.client.vo.identity;
+package io.enjincoin.sdk.client.vo.legacy.identity;
 
 import org.immutables.gson.Gson;
 import org.immutables.value.Value;

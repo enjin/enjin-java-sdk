@@ -1,13 +1,15 @@
 package io.enjincoin.sdk.client.util;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.TypeAdapterFactory;
-import io.enjincoin.sdk.client.Client;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ServiceLoader;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.TypeAdapterFactory;
+
+import io.enjincoin.sdk.client.Client;
+import net.dongliu.gson.GsonJava8TypeAdapterFactory;
 
 /**
  * <p>
@@ -28,12 +30,12 @@ public final class GsonUtils {
     static {
         GsonBuilder builder = new GsonBuilder();
         GsonUtils.registerAllTypeAdapterFactories(builder);
-        GSON = builder.create();
+        GSON = builder.registerTypeAdapterFactory(new GsonJava8TypeAdapterFactory()).create();
 
         GsonBuilder builderPrettyPrint = new GsonBuilder();
         GsonUtils.registerAllTypeAdapterFactories(builderPrettyPrint);
         builderPrettyPrint.setPrettyPrinting();
-        GSON_PRETTY_PRINT = builderPrettyPrint.create();
+        GSON_PRETTY_PRINT = builderPrettyPrint.registerTypeAdapterFactory(new GsonJava8TypeAdapterFactory()).create();
     }
 
     /**
