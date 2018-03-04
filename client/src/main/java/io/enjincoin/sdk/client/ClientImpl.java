@@ -8,6 +8,8 @@ import io.enjincoin.sdk.client.serialization.retrofit.JsonStringConverterFactory
 import io.enjincoin.sdk.client.service.identities.IdentitiesService;
 import io.enjincoin.sdk.client.service.identities.impl.IdentitiesServiceImpl;
 import io.enjincoin.sdk.client.service.identities.vo.IdentityFilter;
+import io.enjincoin.sdk.client.service.identity.IdentityService;
+import io.enjincoin.sdk.client.service.identity.impl.IdentityServiceImpl;
 import net.dongliu.gson.GsonJava8TypeAdapterFactory;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -22,6 +24,7 @@ public class ClientImpl implements Client {
     private OkHttpClient client;
     private Retrofit retrofit;
     private IdentitiesService identitiesService;
+    private IdentityService identityService;
 
     public ClientImpl(String url) {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -44,6 +47,13 @@ public class ClientImpl implements Client {
         if (identitiesService == null)
             identitiesService = new IdentitiesServiceImpl(retrofit);
         return identitiesService;
+    }
+
+    @Override
+    public IdentityService getIdentityService() {
+        if (identityService == null)
+            identityService = new IdentityServiceImpl(retrofit);
+        return identityService;
     }
 
     private Gson getGsonInstance() {

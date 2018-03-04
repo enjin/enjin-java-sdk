@@ -1,4 +1,4 @@
-package io.enjincoin.sdk.client.service.identities.vo;
+package io.enjincoin.sdk.client.service.identity.vo;
 
 import java.util.Optional;
 
