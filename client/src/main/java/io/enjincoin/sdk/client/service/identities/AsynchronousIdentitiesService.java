@@ -1,5 +1,6 @@
 package io.enjincoin.sdk.client.service.identities;
 
+
 import java.util.Map;
 
 import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityRequestBody;
@@ -17,15 +18,15 @@ public interface AsynchronousIdentitiesService {
 
     void getIdentitiesAsync(Map<String, Object> filter, Callback<GetIdentityResponseBody[]> callback);
 
-    void getIdentityAsync(int id, Callback<GetIdentityResponseBody> callback);
+    void getIdentityAsync(long id, Callback<GetIdentityResponseBody> callback);
 
     void createIdentityAsync(Callback<CreateIdentityResponseBody> callback);
 
     void createIdentityAsync(CreateIdentityRequestBody request, Callback<CreateIdentityResponseBody> callback);
 
-    void updateIdentityAsync(Integer identityId, UpdateIdentityRequestBody request, Callback<UpdateIdentityResponseBody> callback);
+    void updateIdentityAsync(long id, UpdateIdentityRequestBody request, Callback<UpdateIdentityResponseBody> callback);
 
-    void deleteIdentityAsync(final Integer identityId, Callback<Boolean> callback);
+    void deleteIdentityAsync(long id, Callback<Boolean> callback);
 
-    void linkIdentityAsync(String linkingCode, LinkIdentityRequestBody linkIdentityRequestVO, Callback<LinkIdentityResponseBody> callback);
+    void linkIdentityAsync(String linkingCode, LinkIdentityRequestBody request, Callback<LinkIdentityResponseBody> callback);
 }

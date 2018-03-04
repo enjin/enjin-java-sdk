@@ -1,7 +1,7 @@
 package io.enjincoin.sdk.client;
 
+import io.enjincoin.sdk.client.service.identities.IdentitiesService;
 import io.enjincoin.sdk.client.service.legacy.events.EventsService;
-import io.enjincoin.sdk.client.service.legacy.identities.IdentitiesService;
 import io.enjincoin.sdk.client.service.legacy.notifications.NotificationsService;
 import io.enjincoin.sdk.client.service.legacy.platform.PlatformService;
 import io.enjincoin.sdk.client.service.legacy.tokens.TokensService;

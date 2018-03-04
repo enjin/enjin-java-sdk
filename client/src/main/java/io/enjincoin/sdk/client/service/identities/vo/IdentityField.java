@@ -44,6 +44,11 @@ public class IdentityField {
         this.unique = unique;
     }
 
+    public IdentityField(String key, String value) {
+        this.key = Optional.of(key);
+        this.fieldValue = Optional.of(value);
+    }
+
     /**
      * @return the key
      */

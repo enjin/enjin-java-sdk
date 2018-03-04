@@ -5,7 +5,8 @@ import java.util.Optional;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * <p>Update Identity Response class.
+ * <p>
+ * Update Identity Response class.
  * </p>
  */
 public class UpdateIdentityResponseBody {
@@ -20,7 +21,7 @@ public class UpdateIdentityResponseBody {
     private Optional<String> ethereumAddress;
 
     @SerializedName("linking_code")
-    private Optional<Integer> linkingCode;
+    private Optional<String> linkingCode;
 
     @SerializedName("updated_at")
     private Optional<String> updatedAt;
@@ -28,9 +29,9 @@ public class UpdateIdentityResponseBody {
     @SerializedName("created_at")
     private String createdAt;
 
-
     /**
      * Class constructor.
+     *
      * @param id
      * @param userId
      * @param ethereumAddress
@@ -38,7 +39,7 @@ public class UpdateIdentityResponseBody {
      * @param updatedAt
      * @param createdAt
      */
-    public UpdateIdentityResponseBody(Optional<Integer> id, Optional<Integer> userId, Optional<String> ethereumAddress, Optional<Integer> linkingCode, Optional<String> updatedAt,
+    public UpdateIdentityResponseBody(Optional<Integer> id, Optional<Integer> userId, Optional<String> ethereumAddress, Optional<String> linkingCode, Optional<String> updatedAt,
             String createdAt) {
         super();
         this.id = id;
@@ -48,7 +49,6 @@ public class UpdateIdentityResponseBody {
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
     }
-
 
     /**
      * @return the id
@@ -85,16 +85,16 @@ public class UpdateIdentityResponseBody {
         return userId;
     }
 
-
     /**
      * @return the linkingCode
      */
-    public Optional<Integer> getLinkingCode() {
+    public Optional<String> getLinkingCode() {
         return linkingCode;
     }
 
-
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     *
      * @see java.lang.Object#toString()
      */
     @Override

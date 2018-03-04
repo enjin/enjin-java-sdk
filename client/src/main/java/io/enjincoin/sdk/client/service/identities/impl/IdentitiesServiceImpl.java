@@ -32,33 +32,15 @@ public class IdentitiesServiceImpl implements IdentitiesService {
     }
 
     @Override
-    public Response<GetIdentityResponseBody[]> getIdentitiesSync() throws IOException {
-        Call<GetIdentityResponseBody[]> call = this.service.getIdentities();
-        return call.execute();
-    }
-
-    @Override
     public void getIdentitiesAsync(Map<String, Object> filter, Callback<GetIdentityResponseBody[]> callback) {
         Call<GetIdentityResponseBody[]> call = this.service.getIdentities(new IdentityFilter(filter));
         call.enqueue(callback);
     }
 
     @Override
-    public Response<GetIdentityResponseBody[]> getIdentitiesSync(Map<String, Object> filter) throws IOException {
-        Call<GetIdentityResponseBody[]> call = this.service.getIdentities(new IdentityFilter(filter));
-        return call.execute();
-    }
-
-    @Override
-    public void getIdentityAsync(int id, Callback<GetIdentityResponseBody> callback) {
+    public void getIdentityAsync(long id, Callback<GetIdentityResponseBody> callback) {
         Call<GetIdentityResponseBody> call = this.service.getIdentity(id);
         call.enqueue(callback);
-    }
-
-    @Override
-    public Response<GetIdentityResponseBody> getIdentitySync(int id) throws IOException {
-        Call<GetIdentityResponseBody> call = this.service.getIdentity(id);
-        return call.execute();
     }
 
     @Override
@@ -68,15 +50,51 @@ public class IdentitiesServiceImpl implements IdentitiesService {
     }
 
     @Override
-    public Response<CreateIdentityResponseBody> createIdentitySync() throws IOException {
-        Call<CreateIdentityResponseBody> call = this.service.createIdentity(new CreateIdentityRequestBody());
+    public void createIdentityAsync(CreateIdentityRequestBody request, Callback<CreateIdentityResponseBody> callback) {
+        Call<CreateIdentityResponseBody> call = this.service.createIdentity(request);
+        call.enqueue(callback);
+    }
+
+    @Override
+    public void updateIdentityAsync(long id, UpdateIdentityRequestBody request, Callback<UpdateIdentityResponseBody> callback) {
+        Call<UpdateIdentityResponseBody> call = this.service.updateIdentity(id, request);
+        call.enqueue(callback);
+    }
+
+    @Override
+    public void deleteIdentityAsync(long id, Callback<Boolean> callback) {
+        Call<Boolean> call = this.service.deleteIdentity(id);
+        call.enqueue(callback);
+    }
+
+    @Override
+    public void linkIdentityAsync(String linkingCode, LinkIdentityRequestBody request, Callback<LinkIdentityResponseBody> callback) {
+        Call<LinkIdentityResponseBody> call = this.service.linkIdentity(linkingCode, request);
+        call.enqueue(callback);
+    }
+
+    @Override
+    public Response<GetIdentityResponseBody[]> getIdentitiesSync() throws IOException {
+        Call<GetIdentityResponseBody[]> call = this.service.getIdentities();
         return call.execute();
     }
 
     @Override
-    public void createIdentityAsync(CreateIdentityRequestBody request, Callback<CreateIdentityResponseBody> callback) {
-        Call<CreateIdentityResponseBody> call = this.service.createIdentity(request);
-        call.enqueue(callback);
+    public Response<GetIdentityResponseBody[]> getIdentitiesSync(Map<String, Object> filter) throws IOException {
+        Call<GetIdentityResponseBody[]> call = this.service.getIdentities(new IdentityFilter(filter));
+        return call.execute();
+    }
+
+    @Override
+    public Response<GetIdentityResponseBody> getIdentitySync(long id) throws IOException {
+        Call<GetIdentityResponseBody> call = this.service.getIdentity(id);
+        return call.execute();
+    }
+
+    @Override
+    public Response<CreateIdentityResponseBody> createIdentitySync() throws IOException {
+        Call<CreateIdentityResponseBody> call = this.service.createIdentity(new CreateIdentityRequestBody());
+        return call.execute();
     }
 
     @Override
@@ -86,27 +104,15 @@ public class IdentitiesServiceImpl implements IdentitiesService {
     }
 
     @Override
-    public Response<UpdateIdentityResponseBody> updateIdentitySync(Integer identityId, UpdateIdentityRequestBody request) throws IOException {
-        Call<UpdateIdentityResponseBody> call = this.service.updateIdentity(identityId, request);
+    public Response<UpdateIdentityResponseBody> updateIdentitySync(long id, UpdateIdentityRequestBody request) throws IOException {
+        Call<UpdateIdentityResponseBody> call = this.service.updateIdentity(id, request);
         return call.execute();
     }
 
     @Override
-    public void updateIdentityAsync(Integer identityId, UpdateIdentityRequestBody request, Callback<UpdateIdentityResponseBody> callback) {
-        Call<UpdateIdentityResponseBody> call = this.service.updateIdentity(identityId, request);
-        call.enqueue(callback);
-    }
-
-    @Override
-    public Response<Boolean> deleteIdentitySync(Integer identityId) throws IOException {
-        Call<Boolean> call = this.service.deleteIdentity(identityId);
+    public Response<Boolean> deleteIdentitySync(long id) throws IOException {
+        Call<Boolean> call = this.service.deleteIdentity(id);
         return call.execute();
-    }
-
-    @Override
-    public void deleteIdentityAsync(Integer identityId, Callback<Boolean> callback) {
-        Call<Boolean> call = this.service.deleteIdentity(identityId);
-        call.enqueue(callback);
     }
 
     @Override
@@ -114,11 +120,4 @@ public class IdentitiesServiceImpl implements IdentitiesService {
         Call<LinkIdentityResponseBody> call = this.service.linkIdentity(linkingCode, request);
         return call.execute();
     }
-
-    @Override
-    public void linkIdentityAsync(String linkingCode, LinkIdentityRequestBody request, Callback<LinkIdentityResponseBody> callback) {
-        Call<LinkIdentityResponseBody> call = this.service.linkIdentity(linkingCode, request);
-        call.enqueue(callback);
-    }
-
 }

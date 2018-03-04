@@ -5,10 +5,10 @@ import java.util.logging.Logger;
 import com.enjin.java_commons.ObjectUtils;
 
 import io.enjincoin.sdk.client.config.Config;
+import io.enjincoin.sdk.client.service.identities.IdentitiesService;
+import io.enjincoin.sdk.client.service.identities.impl.IdentitiesServiceImpl;
 import io.enjincoin.sdk.client.service.legacy.events.EventsService;
 import io.enjincoin.sdk.client.service.legacy.events.impl.EventsServiceImpl;
-import io.enjincoin.sdk.client.service.legacy.identities.IdentitiesService;
-import io.enjincoin.sdk.client.service.legacy.identities.impl.IdentitiesServiceImpl;
 import io.enjincoin.sdk.client.service.legacy.notifications.NotificationsService;
 import io.enjincoin.sdk.client.service.legacy.notifications.impl.NotificationsServiceImpl;
 import io.enjincoin.sdk.client.service.legacy.platform.PlatformService;
@@ -103,7 +103,7 @@ public class LegacyClientImpl implements LegacyClient {
     @Override
     public IdentitiesService getIdentitiesService() {
         if (this.identitiesService == null) {
-            this.identitiesService = new IdentitiesServiceImpl(this.config);
+            this.identitiesService = new IdentitiesServiceImpl(null);
         }
         return this.identitiesService;
     }

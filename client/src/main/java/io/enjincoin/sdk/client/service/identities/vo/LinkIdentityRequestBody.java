@@ -18,7 +18,6 @@ public class LinkIdentityRequestBody {
      * @param ethereumAddress
      */
     public LinkIdentityRequestBody(String ethereumAddress) {
-        super();
         this.ethereumAddress = Optional.of(ethereumAddress);
     }
 

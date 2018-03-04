@@ -41,7 +41,7 @@ public interface RetrofitIdentitiesService {
             "Cache-Control: no-cache"
     })
     @GET("api/v1/identities/{id}")
-    Call<GetIdentityResponseBody> getIdentity(@Path("id") int id);
+    Call<GetIdentityResponseBody> getIdentity(@Path("id") long id);
 
     @Headers(value = {
             "Content-Type: application/json",
@@ -55,19 +55,21 @@ public interface RetrofitIdentitiesService {
             "Cache-Control: no-cache"
     })
     @PUT("api/v1/identities/{id}")
-    Call<UpdateIdentityResponseBody> updateIdentity(@Path("id") int id, @Json @Body UpdateIdentityRequestBody request);
+    Call<UpdateIdentityResponseBody> updateIdentity(@Path("id") long id, @Json @Body UpdateIdentityRequestBody request);
+
 
     @Headers(value = {
             "Content-Type: application/json",
             "Cache-Control: no-cache"
     })
     @DELETE("api/v1/identities/{id}")
-    Call<Boolean> deleteIdentity(@Path("id") int id);
+    Call<Boolean> deleteIdentity(@Path("id") long id);
 
     @Headers(value = {
             "Content-Type: application/json",
             "Cache-Control: no-cache"
     })
+
     @PUT("api/v1/identity/link-wallet/(linking_code}")
     Call<LinkIdentityResponseBody> linkIdentity(@Path("linking_code") String linkingCode, @Json @Body LinkIdentityRequestBody request);
 }

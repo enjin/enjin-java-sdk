@@ -5,7 +5,8 @@ import java.util.Optional;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * <p>Link Identity Response class.
+ * <p>
+ * Link Identity Response class.
  * </p>
  */
 public class LinkIdentityResponseBody {
@@ -28,9 +29,9 @@ public class LinkIdentityResponseBody {
     @SerializedName("created_at")
     private String createdAt;
 
-
     /**
      * Class constructor.
+     *
      * @param id
      * @param userId
      * @param ethereumAddress
@@ -48,7 +49,6 @@ public class LinkIdentityResponseBody {
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
     }
-
 
     /**
      * @return the id
@@ -85,7 +85,6 @@ public class LinkIdentityResponseBody {
         return userId;
     }
 
-
     /**
      * @return the linkingCode
      */
@@ -93,8 +92,9 @@ public class LinkIdentityResponseBody {
         return linkingCode;
     }
 
-
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     *
      * @see java.lang.Object#toString()
      */
     @Override
