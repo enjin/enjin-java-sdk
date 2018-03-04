@@ -5,12 +5,12 @@ import io.enjincoin.sdk.client.config.Config;
 /**
  * <p> Method to return the necessary client.</p>
  */
-public class Clients {
+public class LegacyClients {
 
     /**
      * Class constructor.
      */
-    protected Clients() {
+    protected LegacyClients() {
 
     }
 
@@ -22,8 +22,8 @@ public class Clients {
      *
      * @return Client
      */
-    public static Client create(final Config config) {
-        return new ClientImpl(config);
+    public static LegacyClient create(final Config config) {
+        return new LegacyClientImpl(config);
     }
 
 }

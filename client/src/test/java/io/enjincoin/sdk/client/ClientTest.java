@@ -9,16 +9,16 @@ import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.config.ImmutableConfig;
 import io.enjincoin.sdk.client.config.ImmutablePlatform;
 import io.enjincoin.sdk.client.config.Platform;
-import io.enjincoin.sdk.client.service.events.SynchronousEventsService;
-import io.enjincoin.sdk.client.service.identities.SynchronousIdentitiesService;
-import io.enjincoin.sdk.client.service.notifications.NotificationsService;
-import io.enjincoin.sdk.client.service.platform.SynchronousPlatformService;
-import io.enjincoin.sdk.client.service.tokens.SynchronousTokensService;
-import io.enjincoin.sdk.client.service.transactionrequests.SynchronousTransactionRequestsService;
+import io.enjincoin.sdk.client.service.legacy.events.SynchronousEventsService;
+import io.enjincoin.sdk.client.service.legacy.identities.SynchronousIdentitiesService;
+import io.enjincoin.sdk.client.service.legacy.notifications.NotificationsService;
+import io.enjincoin.sdk.client.service.legacy.platform.SynchronousPlatformService;
+import io.enjincoin.sdk.client.service.legacy.tokens.SynchronousTokensService;
+import io.enjincoin.sdk.client.service.legacy.transactionrequests.SynchronousTransactionRequestsService;
 
 public class ClientTest {
 
-    private ClientImpl client;
+    private LegacyClientImpl client;
     private Config config;
 
     //TODO: Damien - temp details added for testing
@@ -35,19 +35,19 @@ public class ClientTest {
                 .setTrustedPlatform(trustedPlatform)
                 .build();
 
-        this.client = new ClientImpl(this.config);
+        this.client = new LegacyClientImpl(this.config);
     }
 
     @Test
     public void testContructor_EnjinConfigIsNull() {
         this.config = null;
-        this.client = new ClientImpl(this.config);
+        this.client = new LegacyClientImpl(this.config);
         assertThat(this.client).isNotNull();
     }
 
     @Test
     public void testContructor() {
-        this.client = new ClientImpl(this.config);
+        this.client = new LegacyClientImpl(this.config);
         assertThat(this.client).isNotNull();
     }
 

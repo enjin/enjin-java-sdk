@@ -8,7 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.TypeAdapterFactory;
 
-import io.enjincoin.sdk.client.Client;
+import io.enjincoin.sdk.client.LegacyClient;
 import net.dongliu.gson.GsonJava8TypeAdapterFactory;
 
 /**
@@ -72,7 +72,7 @@ public final class GsonUtils {
      * @return ServiceLoader
      */
     public static ServiceLoader<TypeAdapterFactory> getTypeAdapterFactoryServiceLoader() {
-        return getTypeAdapterFactoryServiceLoader(Client.class.getClassLoader());
+        return getTypeAdapterFactoryServiceLoader(LegacyClient.class.getClassLoader());
     }
 
     /**

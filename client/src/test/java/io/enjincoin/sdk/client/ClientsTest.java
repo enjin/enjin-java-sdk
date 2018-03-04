@@ -12,7 +12,7 @@ import io.enjincoin.sdk.client.config.Platform;
 
 public class ClientsTest {
 
-    private Clients clients;
+    private LegacyClients clients;
     private Config config;
 
     @Before
@@ -31,19 +31,19 @@ public class ClientsTest {
 
     @Test
     public void testContructor() {
-        this.clients = new Clients();
+        this.clients = new LegacyClients();
         assertThat(this.clients).isNotNull();
     }
 
     @Test
     public void testLoadSyncClient() {
-        Client client = Clients.create(this.config);
+        LegacyClient client = LegacyClients.create(this.config);
         assertThat(client).isNotNull();
     }
 
     @Test
     public void testLoadAsyncClient() {
-        Client enjinCoinAsync = Clients.create(this.config);
+        LegacyClient enjinCoinAsync = LegacyClients.create(this.config);
         assertThat(enjinCoinAsync).isNotNull();
     }
 }

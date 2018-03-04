@@ -10,8 +10,8 @@ import com.enjin.java_commons.StringUtils;
 
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.config.Platform;
-import io.enjincoin.sdk.client.service.platform.SynchronousPlatformService;
-import io.enjincoin.sdk.client.service.platform.impl.PlatformServiceImpl;
+import io.enjincoin.sdk.client.service.legacy.platform.SynchronousPlatformService;
+import io.enjincoin.sdk.client.service.legacy.platform.impl.PlatformServiceImpl;
 import io.enjincoin.sdk.client.util.Constants;
 import io.enjincoin.sdk.client.util.HttpClient;
 import okhttp3.MediaType;

@@ -1,5 +1,6 @@
 package io.enjincoin.sdk.client.vo.identity;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 import com.google.gson.annotations.SerializedName;
@@ -99,6 +100,6 @@ public class GetIdentityResponseVO {
     @Override
     public String toString() {
         return "GetIdentityResponseVO [id=" + id + ", ethereumAddress=" + ethereumAddress + ", linkingCode=" + linkingCode + ", updatedAt=" + updatedAt + ", createdAt=" + createdAt
-                + ", user=" + user + ", fields=" + fields + "]";
+                + ", user=" + user + ", fields=" + (fields.isPresent() ? Arrays.toString(fields.get()) : fields.toString()) + "]";
     }
 }
