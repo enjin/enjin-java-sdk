@@ -1,21 +1,24 @@
 package client.service.legacy.users;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.fail;
 
-import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
+import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 import org.junit.Test;
 
 import io.enjincoin.sdk.client.service.BaseLiveServiceTest;
-import io.enjincoin.sdk.client.service.legacy.users.AsynchronousUsersService;
-import io.enjincoin.sdk.client.service.legacy.users.SynchronousUsersService;
-import io.enjincoin.sdk.client.vo.user.CreateUserRequestVO;
-import io.enjincoin.sdk.client.vo.user.CreateUserResponseVO;
-import io.enjincoin.sdk.client.vo.user.LoginUserResponseVO;
-import io.enjincoin.sdk.client.vo.user.UpdateUserRequestVO;
-import io.enjincoin.sdk.client.vo.user.UserResponseVO;
+import io.enjincoin.sdk.client.service.users.AsynchronousUsersService;
+import io.enjincoin.sdk.client.service.users.SynchronousUsersService;
+import io.enjincoin.sdk.client.service.users.vo.CreateUserRequestBody;
+import io.enjincoin.sdk.client.service.users.vo.CreateUserResponseBody;
+import io.enjincoin.sdk.client.service.users.vo.LoginUserResponseBody;
+import io.enjincoin.sdk.client.service.users.vo.UpdateUserRequestBody;
+import io.enjincoin.sdk.client.service.users.vo.UserResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Calls out to the actual api Will have the disabled annotation in place
@@ -24,14 +27,15 @@ import io.enjincoin.sdk.client.vo.user.UserResponseVO;
 public class LiveUsersServiceTest extends BaseLiveServiceTest {
 
     @Test
-    public void testSynchronousUsersService_GetUsers() {
+    public void testSynchronousUsersService_GetUsers() throws IOException {
         SynchronousUsersService usersService = this.client.getUsersService();
         assertThat(usersService).isNotNull();
 
-        UserResponseVO[] usersArray = usersService.getUsersSync();
+        Response<UserResponseBody[]> usersArray = usersService.getUsersSync();
         assertThat(usersArray).isNotNull();
+        assertThat(usersArray.body()).isNotNull();
 
-        for (UserResponseVO user : usersArray) {
+        for (UserResponseBody user : usersArray.body()) {
             assertThat(user).isNotNull();
             assertThat(user.getId()).isNotNull();
             assertThat(user.getName()).isNotNull();
@@ -47,43 +51,55 @@ public class LiveUsersServiceTest extends BaseLiveServiceTest {
         AsynchronousUsersService usersService = this.client.getUsersService();
         assertThat(usersService).isNotNull();
 
-        CompletableFuture<UserResponseVO[]> usersArrayCf = usersService.getUsersAsync();
-        assertThat(usersArrayCf).isNotNull();
-        assertThat(usersArrayCf.get()).isNotNull();
+        usersService.getUsersAsync(new Callback<UserResponseBody[]>() {
 
-        UserResponseVO[] usersArray = usersArrayCf.get();
-        for (UserResponseVO user : usersArray) {
-            assertThat(user).isNotNull();
-            assertThat(user.getId()).isNotNull();
-            assertThat(user.getName()).isNotNull();
-            assertThat(user.getEmail()).isNotNull();
-            assertThat(user.getCreatedAt()).isNotNull();
-            assertThat(user.getUpdatedAt()).isNotNull();
-            assertThat(user.getIdentity()).isNotNull();
-        }
+            @Override
+            public void onResponse(Call<UserResponseBody[]> call, Response<UserResponseBody[]> response) {
+                assertThat(response).isNotNull();
+                assertThat(response.body()).isNotNull();
+
+                UserResponseBody[] usersArray = response.body();
+                for (UserResponseBody user : usersArray) {
+                    assertThat(user).isNotNull();
+                    assertThat(user.getId()).isNotNull();
+                    assertThat(user.getName()).isNotNull();
+                    assertThat(user.getEmail()).isNotNull();
+                    assertThat(user.getCreatedAt()).isNotNull();
+                    assertThat(user.getUpdatedAt()).isNotNull();
+                    assertThat(user.getIdentity()).isNotNull();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserResponseBody[]> call, Throwable t) {
+                fail("Test Failed");
+            }
+        });
     }
 
     @Test
-    public void testSynchronousUsersService_GetUser() {
+    public void testSynchronousUsersService_GetUser() throws IOException {
         SynchronousUsersService usersService = this.client.getUsersService();
         assertThat(usersService).isNotNull();
 
-        CreateUserRequestVO createUserRequestVO = new CreateUserRequestVO(Optional.of(1), Optional.of("SDK Testing"), Optional.of("email1" + System.currentTimeMillis() + "@test.com"), Optional.of("password1"));
-        CreateUserResponseVO createUserResponseVO = usersService.createUserSync(createUserRequestVO);
+        CreateUserRequestBody createUserRequestVO = new CreateUserRequestBody(1, "SDK Testing", "email1" + System.currentTimeMillis() + "@test.com", "password1");
+        Response<CreateUserResponseBody> createUserResponseVO = usersService.createUserSync(createUserRequestVO);
         assertThat(createUserResponseVO).isNotNull();
-        assertThat(createUserResponseVO.getUser()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getId()).isNotNull();
+        assertThat(createUserResponseVO.body()).isNotNull();
+        assertThat(createUserResponseVO.body().getUser()).isNotNull();
+        assertThat(createUserResponseVO.body().getUser().get().getId()).isNotNull();
 
-        Integer userId = createUserResponseVO.getUser().get().getId().get();
+        Integer userId = createUserResponseVO.body().getUser().get().getId().get();
 
-        UserResponseVO user = usersService.getUserSync(userId);
+        Response<UserResponseBody> user = usersService.getUserSync(userId);
         assertThat(user).isNotNull();
-        assertThat(user.getId()).isNotNull();
-        assertThat(user.getName()).isNotNull();
-        assertThat(user.getEmail()).isNotNull();
-        assertThat(user.getCreatedAt()).isNotNull();
-        assertThat(user.getUpdatedAt()).isNotNull();
-        assertThat(user.getIdentity()).isNotNull();
+        assertThat(user.body()).isNotNull();
+        assertThat(user.body().getId()).isNotNull();
+        assertThat(user.body().getName()).isNotNull();
+        assertThat(user.body().getEmail()).isNotNull();
+        assertThat(user.body().getCreatedAt()).isNotNull();
+        assertThat(user.body().getUpdatedAt()).isNotNull();
+        assertThat(user.body().getIdentity()).isNotNull();
     }
 
     @Test
@@ -91,46 +107,69 @@ public class LiveUsersServiceTest extends BaseLiveServiceTest {
         AsynchronousUsersService usersService = this.client.getUsersService();
         assertThat(usersService).isNotNull();
 
-        CreateUserRequestVO createUserRequestVO = new CreateUserRequestVO(Optional.of(1), Optional.of("SDK Testing"), Optional.of("email1" + System.currentTimeMillis() + "@test.com"), Optional.of("password1"));
-        CompletableFuture<CreateUserResponseVO> createUserResponseVOCf = usersService.createUserAsync(createUserRequestVO);
-        assertThat(createUserResponseVOCf).isNotNull();
-        assertThat(createUserResponseVOCf.get()).isNotNull();
-        assertThat(createUserResponseVOCf.get().getUser()).isNotNull();
-        assertThat(createUserResponseVOCf.get().getUser().get().getId()).isNotNull();
+        CreateUserRequestBody createUserRequestVO = new CreateUserRequestBody(1, "SDK Testing", "email1" + System.currentTimeMillis() + "@test.com", "password1");
+        usersService.createUserAsync(createUserRequestVO, new Callback<CreateUserResponseBody>() {
 
-        Integer userId = createUserResponseVOCf.get().getUser().get().getId().get();
+            @Override
+            public void onResponse(Call<CreateUserResponseBody> call, Response<CreateUserResponseBody> response) {
+                assertThat(response).isNotNull();
+                assertThat(response.body()).isNotNull();
+                assertThat(response.body().getUser()).isNotNull();
+                assertThat(response.body().getUser().get().getId()).isNotNull();
 
-        CompletableFuture<UserResponseVO> userCf = usersService.getUserAsync(userId);
-        UserResponseVO user = userCf.get();
+                Integer userId = response.body().getUser().get().getId().get();
 
-        assertThat(user).isNotNull();
-        assertThat(user.getId()).isNotNull();
-        assertThat(user.getName()).isNotNull();
-        assertThat(user.getEmail()).isNotNull();
-        assertThat(user.getCreatedAt()).isNotNull();
-        assertThat(user.getUpdatedAt()).isNotNull();
-        assertThat(user.getIdentity()).isNotNull();
+                usersService.getUserAsync(userId, new Callback<UserResponseBody>() {
 
+                    @Override
+                    public void onResponse(Call<UserResponseBody> call, Response<UserResponseBody> response) {
+                        UserResponseBody user = response.body();
+
+                        assertThat(user).isNotNull();
+                        assertThat(user.getId()).isNotNull();
+                        assertThat(user.getName()).isNotNull();
+                        assertThat(user.getEmail()).isNotNull();
+                        assertThat(user.getCreatedAt()).isNotNull();
+                        assertThat(user.getUpdatedAt()).isNotNull();
+                        assertThat(user.getIdentity()).isNotNull();
+                    }
+
+                    @Override
+                    public void onFailure(Call<UserResponseBody> call, Throwable t) {
+                        fail("Test Failed");
+                    }
+
+                });
+
+            }
+
+            @Override
+            public void onFailure(Call<CreateUserResponseBody> call, Throwable t) {
+                fail("Test Failed");
+            }
+
+        });
     }
 
     @Test
-    public void testSynchronousUsersService_CreateUser() {
+    public void testSynchronousUsersService_CreateUser() throws IOException {
         SynchronousUsersService usersService = this.client.getUsersService();
         assertThat(usersService).isNotNull();
 
-        CreateUserRequestVO createUserRequestVO = new CreateUserRequestVO(Optional.of(1), Optional.of("SDK Testing"), Optional.of("email1" + System.currentTimeMillis() + "@test.com"), Optional.of("password1"));
-        CreateUserResponseVO createUserResponseVO = usersService.createUserSync(createUserRequestVO);
+        CreateUserRequestBody createUserRequestVO = new CreateUserRequestBody(1, "SDK Testing", "email1" + System.currentTimeMillis() + "@test.com", "password1");
+        Response<CreateUserResponseBody> createUserResponseVO = usersService.createUserSync(createUserRequestVO);
         assertThat(createUserResponseVO).isNotNull();
+        assertThat(createUserResponseVO.body()).isNotNull();
 
-        assertThat(createUserResponseVO.getUser()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getId()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getName()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getEmail()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getCreatedAt()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getUpdatedAt()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getIdentity()).isNotNull();
+        assertThat(createUserResponseVO.body().getUser()).isNotNull();
+        assertThat(createUserResponseVO.body().getUser().get().getId()).isNotNull();
+        assertThat(createUserResponseVO.body().getUser().get().getName()).isNotNull();
+        assertThat(createUserResponseVO.body().getUser().get().getEmail()).isNotNull();
+        assertThat(createUserResponseVO.body().getUser().get().getCreatedAt()).isNotNull();
+        assertThat(createUserResponseVO.body().getUser().get().getUpdatedAt()).isNotNull();
+        assertThat(createUserResponseVO.body().getUser().get().getIdentity()).isNotNull();
 
-        assertThat(createUserResponseVO.getToken()).isNotNull();
+        assertThat(createUserResponseVO.body().getToken()).isNotNull();
     }
 
     @Test
@@ -138,53 +177,66 @@ public class LiveUsersServiceTest extends BaseLiveServiceTest {
         AsynchronousUsersService usersService = this.client.getUsersService();
         assertThat(usersService).isNotNull();
 
-        CreateUserRequestVO createUserRequestVO = new CreateUserRequestVO(Optional.of(1), Optional.of("SDK Testing"), Optional.of("email1" + System.currentTimeMillis() + "@test.com"),
-                Optional.of("password1"));
-        CompletableFuture<CreateUserResponseVO> createUserResponseVOCf = usersService.createUserAsync(createUserRequestVO);
-        assertThat(createUserResponseVOCf).isNotNull();
-        assertThat(createUserResponseVOCf.get()).isNotNull();
+        CreateUserRequestBody createUserRequestVO = new CreateUserRequestBody(1, "SDK Testing", "email1" + System.currentTimeMillis() + "@test.com", "password1");
+        usersService.createUserAsync(createUserRequestVO, new Callback<CreateUserResponseBody>() {
 
-        CreateUserResponseVO createUserResponseVO = createUserResponseVOCf.get();
-        assertThat(createUserResponseVO.getUser()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getId()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getName()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getEmail()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getCreatedAt()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getUpdatedAt()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getIdentity()).isNotNull();
+            @Override
+            public void onResponse(Call<CreateUserResponseBody> call, Response<CreateUserResponseBody> response) {
+                assertThat(response).isNotNull();
+                assertThat(response.body()).isNotNull();
 
-        assertThat(createUserResponseVO.getToken()).isNotNull();
+                CreateUserResponseBody createUserResponseVO = response.body();
+                assertThat(createUserResponseVO.getUser()).isNotNull();
+                assertThat(createUserResponseVO.getUser().get().getId()).isNotNull();
+                assertThat(createUserResponseVO.getUser().get().getName()).isNotNull();
+                assertThat(createUserResponseVO.getUser().get().getEmail()).isNotNull();
+                assertThat(createUserResponseVO.getUser().get().getCreatedAt()).isNotNull();
+                assertThat(createUserResponseVO.getUser().get().getUpdatedAt()).isNotNull();
+                assertThat(createUserResponseVO.getUser().get().getIdentity()).isNotNull();
+
+                assertThat(createUserResponseVO.getToken()).isNotNull();
+            }
+
+            @Override
+            public void onFailure(Call<CreateUserResponseBody> call, Throwable t) {
+                fail("Test Failed");
+
+            }
+        });
+
     }
 
     @Test
-    public void testSynchronousUsersService_UpdateUser() {
+    public void testSynchronousUsersService_UpdateUser() throws IOException {
         SynchronousUsersService usersService = this.client.getUsersService();
         assertThat(usersService).isNotNull();
 
-        CreateUserRequestVO createUserRequestVO = new CreateUserRequestVO(Optional.of(1), Optional.of("SDK Testing"), Optional.of("email1" + System.currentTimeMillis() + "@test.com"), Optional.of("password1"));
-        CreateUserResponseVO createUserResponseVO = usersService.createUserSync(createUserRequestVO);
+        CreateUserRequestBody createUserRequestVO = new CreateUserRequestBody(1, "SDK Testing", "email1" + System.currentTimeMillis() + "@test.com", "password1");
+        Response<CreateUserResponseBody> createUserResponseVO = usersService.createUserSync(createUserRequestVO);
         assertThat(createUserResponseVO).isNotNull();
+        assertThat(createUserResponseVO.body()).isNotNull();
 
-        assertThat(createUserResponseVO.getUser()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getId()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getName()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getEmail()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getCreatedAt()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getUpdatedAt()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getIdentity()).isNotNull();
-        assertThat(createUserResponseVO.getToken()).isNotNull();
+        assertThat(createUserResponseVO.body().getUser()).isNotNull();
+        assertThat(createUserResponseVO.body().getUser().get().getId()).isNotNull();
+        assertThat(createUserResponseVO.body().getUser().get().getName()).isNotNull();
+        assertThat(createUserResponseVO.body().getUser().get().getEmail()).isNotNull();
+        assertThat(createUserResponseVO.body().getUser().get().getCreatedAt()).isNotNull();
+        assertThat(createUserResponseVO.body().getUser().get().getUpdatedAt()).isNotNull();
+        assertThat(createUserResponseVO.body().getUser().get().getIdentity()).isNotNull();
+        assertThat(createUserResponseVO.body().getToken()).isNotNull();
 
-        Integer userId = createUserResponseVO.getUser().get().getId().get();
+        Integer userId = createUserResponseVO.body().getUser().get().getId().get();
 
-        UpdateUserRequestVO updateUserRequest = new UpdateUserRequestVO(Optional.of("UPDATED SDK Testing"), Optional.of("UPDATED email1" + System.currentTimeMillis() + "@test.com"), Optional.of("UPDATEDpassword1"));
-        UserResponseVO user = usersService.updateUserSync(updateUserRequest, userId);
+        UpdateUserRequestBody updateUserRequest = new UpdateUserRequestBody("UPDATED SDK Testing", "UPDATED email1" + System.currentTimeMillis() + "@test.com", "UPDATEDpassword1");
+        Response<UserResponseBody> user = usersService.updateUserSync(userId, updateUserRequest);
         assertThat(user).isNotNull();
-        assertThat(user.getId()).isNotNull();
-        assertThat(user.getName()).isNotNull();
-        assertThat(user.getEmail()).isNotNull();
-        assertThat(user.getCreatedAt()).isNotNull();
-        assertThat(user.getUpdatedAt()).isNotNull();
-        assertThat(user.getIdentity()).isNotNull();
+        assertThat(user.body()).isNotNull();
+        assertThat(user.body().getId()).isNotNull();
+        assertThat(user.body().getName()).isNotNull();
+        assertThat(user.body().getEmail()).isNotNull();
+        assertThat(user.body().getCreatedAt()).isNotNull();
+        assertThat(user.body().getUpdatedAt()).isNotNull();
+        assertThat(user.body().getIdentity()).isNotNull();
     }
 
     @Test
@@ -192,63 +244,85 @@ public class LiveUsersServiceTest extends BaseLiveServiceTest {
         AsynchronousUsersService usersService = this.client.getUsersService();
         assertThat(usersService).isNotNull();
 
-        CreateUserRequestVO createUserRequestVO = new CreateUserRequestVO(Optional.of(1), Optional.of("SDK Testing"), Optional.of("email1" + System.currentTimeMillis() + "@test.com"),
-                Optional.of("password1"));
-        CompletableFuture<CreateUserResponseVO> createUserResponseVOCf = usersService.createUserAsync(createUserRequestVO);
-        assertThat(createUserResponseVOCf).isNotNull();
-        assertThat(createUserResponseVOCf.get()).isNotNull();
+        CreateUserRequestBody createUserRequestVO = new CreateUserRequestBody(1, "SDK Testing", "email1" + System.currentTimeMillis() + "@test.com", "password1");
+        usersService.createUserAsync(createUserRequestVO, new Callback<CreateUserResponseBody>() {
 
-        CreateUserResponseVO createUserResponseVO = createUserResponseVOCf.get();
-        assertThat(createUserResponseVO.getUser()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getId()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getName()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getEmail()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getCreatedAt()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getUpdatedAt()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getIdentity()).isNotNull();
-        assertThat(createUserResponseVO.getToken()).isNotNull();
+            @Override
+            public void onResponse(Call<CreateUserResponseBody> call, Response<CreateUserResponseBody> response) {
+                assertThat(response).isNotNull();
+                assertThat(response.body()).isNotNull();
 
-        Integer userId = createUserResponseVO.getUser().get().getId().get();
+                CreateUserResponseBody createUserResponseVO = response.body();
+                assertThat(createUserResponseVO.getUser()).isNotNull();
+                assertThat(createUserResponseVO.getUser().get().getId()).isNotNull();
+                assertThat(createUserResponseVO.getUser().get().getName()).isNotNull();
+                assertThat(createUserResponseVO.getUser().get().getEmail()).isNotNull();
+                assertThat(createUserResponseVO.getUser().get().getCreatedAt()).isNotNull();
+                assertThat(createUserResponseVO.getUser().get().getUpdatedAt()).isNotNull();
+                assertThat(createUserResponseVO.getUser().get().getIdentity()).isNotNull();
+                assertThat(createUserResponseVO.getToken()).isNotNull();
 
-        UpdateUserRequestVO updateUserRequest = new UpdateUserRequestVO(Optional.of("UPDATED SDK Testing"), Optional.of("UPDATED email1" + System.currentTimeMillis() + "@test.com"), Optional.of("UPDATEDpassword1"));
-        CompletableFuture<UserResponseVO> userCf = usersService.updateUserAsync(updateUserRequest, userId);
-        UserResponseVO user = userCf.get();
+                Integer userId = createUserResponseVO.getUser().get().getId().get();
 
-        assertThat(user).isNotNull();
-        assertThat(user.getId()).isNotNull();
-        assertThat(user.getName()).isNotNull();
-        assertThat(user.getEmail()).isNotNull();
-        assertThat(user.getCreatedAt()).isNotNull();
-        assertThat(user.getUpdatedAt()).isNotNull();
-        assertThat(user.getIdentity()).isNotNull();
+                UpdateUserRequestBody updateUserRequest = new UpdateUserRequestBody("UPDATED SDK Testing", "UPDATED email1" + System.currentTimeMillis() + "@test.com", "UPDATEDpassword1");
+                usersService.updateUserAsync(userId, updateUserRequest, new Callback<UserResponseBody>() {
+
+                    @Override
+                    public void onResponse(Call<UserResponseBody> call, Response<UserResponseBody> response) {
+                        UserResponseBody user = response.body();
+
+                        assertThat(user).isNotNull();
+                        assertThat(user.getId()).isNotNull();
+                        assertThat(user.getName()).isNotNull();
+                        assertThat(user.getEmail()).isNotNull();
+                        assertThat(user.getCreatedAt()).isNotNull();
+                        assertThat(user.getUpdatedAt()).isNotNull();
+                        assertThat(user.getIdentity()).isNotNull();
+                    }
+
+                    @Override
+                    public void onFailure(Call<UserResponseBody> call, Throwable t) {
+                        fail("Test Failed");
+                    }
+
+                });
+
+            }
+
+            @Override
+            public void onFailure(Call<CreateUserResponseBody> call, Throwable t) {
+                fail("Test Failed");
+            }
+
+        });
     }
 
     @Test
-    public void testSynchronousUsersService_LoginUser() {
+    public void testSynchronousUsersService_LoginUser() throws IOException {
         SynchronousUsersService usersService = this.client.getUsersService();
         assertThat(usersService).isNotNull();
 
-        CreateUserRequestVO createUserRequestVO = new CreateUserRequestVO(Optional.of(1), Optional.of("SDK Testing"), Optional.of("email1" + System.currentTimeMillis() + "@test.com"), Optional.of("password1"));
-        CreateUserResponseVO createUserResponseVO = usersService.createUserSync(createUserRequestVO);
+        CreateUserRequestBody createUserRequestVO = new CreateUserRequestBody(1, "SDK Testing", "email1" + System.currentTimeMillis() + "@test.com", "password1");
+        Response<CreateUserResponseBody> createUserResponseVO = usersService.createUserSync(createUserRequestVO);
         assertThat(createUserResponseVO).isNotNull();
-        assertThat(createUserResponseVO.getUser()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getId()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getName()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getEmail()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getCreatedAt()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getUpdatedAt()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getIdentity()).isNotNull();
-        assertThat(createUserResponseVO.getToken()).isNotNull();
+        assertThat(createUserResponseVO.body().getUser()).isNotNull();
+        assertThat(createUserResponseVO.body().getUser().get().getId()).isNotNull();
+        assertThat(createUserResponseVO.body().getUser().get().getName()).isNotNull();
+        assertThat(createUserResponseVO.body().getUser().get().getEmail()).isNotNull();
+        assertThat(createUserResponseVO.body().getUser().get().getCreatedAt()).isNotNull();
+        assertThat(createUserResponseVO.body().getUser().get().getUpdatedAt()).isNotNull();
+        assertThat(createUserResponseVO.body().getUser().get().getIdentity()).isNotNull();
+        assertThat(createUserResponseVO.body().getToken()).isNotNull();
 
-        String email = createUserResponseVO.getUser().get().getEmail().get();
+        String email = createUserResponseVO.body().getUser().get().getEmail().get();
         String password = createUserRequestVO.getPassword().get();
-        Integer appId = createUserResponseVO.getUser().get().getId().get();
+        Integer appId = createUserResponseVO.body().getUser().get().getId().get();
 
-        LoginUserResponseVO loginUserResponseVO = usersService.loginUserSync(email, password, appId);
-
+        Response<LoginUserResponseBody> loginUserResponseVO = usersService.loginUserSync(email, password, appId);
         assertThat(loginUserResponseVO).isNotNull();
-        assertThat(loginUserResponseVO.getIdentity()).isNotNull();
-        assertThat(loginUserResponseVO.getToken()).isNotNull();
+        assertThat(loginUserResponseVO.body()).isNotNull();
+        assertThat(loginUserResponseVO.body().getIdentity()).isNotNull();
+        assertThat(loginUserResponseVO.body().getToken()).isNotNull();
     }
 
     @Test
@@ -256,37 +330,59 @@ public class LiveUsersServiceTest extends BaseLiveServiceTest {
         AsynchronousUsersService usersService = this.client.getUsersService();
         assertThat(usersService).isNotNull();
 
-        CreateUserRequestVO createUserRequestVO = new CreateUserRequestVO(Optional.of(1), Optional.of("SDK Testing"), Optional.of("email1" + System.currentTimeMillis() + "@test.com"), Optional.of("password1"));
-        CompletableFuture<CreateUserResponseVO> createUserResponseVOCf = usersService.createUserAsync(createUserRequestVO);
-        assertThat(createUserResponseVOCf).isNotNull();
-        assertThat(createUserResponseVOCf.get()).isNotNull();
+        CreateUserRequestBody createUserRequestVO = new CreateUserRequestBody(1, "SDK Testing", "email1" + System.currentTimeMillis() + "@test.com", "password1");
+        usersService.createUserAsync(createUserRequestVO, new Callback<CreateUserResponseBody>() {
 
-        CreateUserResponseVO createUserResponseVO = createUserResponseVOCf.get();
-        assertThat(createUserResponseVO.getUser()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getId()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getName()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getEmail()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getCreatedAt()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getUpdatedAt()).isNotNull();
-        assertThat(createUserResponseVO.getUser().get().getIdentity()).isNotNull();
-        assertThat(createUserResponseVO.getToken()).isNotNull();
+            @Override
+            public void onResponse(Call<CreateUserResponseBody> call, Response<CreateUserResponseBody> response) {
+                assertThat(response).isNotNull();
+                assertThat(response.body()).isNotNull();
 
-        String email = createUserResponseVO.getUser().get().getEmail().get();
-        String password = createUserRequestVO.getPassword().get();
-        Integer appId = createUserResponseVO.getUser().get().getId().get();
+                CreateUserResponseBody createUserResponseVO = response.body();
+                assertThat(createUserResponseVO.getUser()).isNotNull();
+                assertThat(createUserResponseVO.getUser().get().getId()).isNotNull();
+                assertThat(createUserResponseVO.getUser().get().getName()).isNotNull();
+                assertThat(createUserResponseVO.getUser().get().getEmail()).isNotNull();
+                assertThat(createUserResponseVO.getUser().get().getCreatedAt()).isNotNull();
+                assertThat(createUserResponseVO.getUser().get().getUpdatedAt()).isNotNull();
+                assertThat(createUserResponseVO.getUser().get().getIdentity()).isNotNull();
+                assertThat(createUserResponseVO.getToken()).isNotNull();
 
-        CompletableFuture<LoginUserResponseVO> loginUserResponseVOCf = usersService.loginUserAsync(email, password, appId);
-        assertThat(loginUserResponseVOCf).isNotNull();
-        assertThat(loginUserResponseVOCf.get()).isNotNull();
+                String email = createUserResponseVO.getUser().get().getEmail().get();
+                String password = createUserRequestVO.getPassword().get();
+                Integer appId = createUserResponseVO.getUser().get().getId().get();
 
-        LoginUserResponseVO loginUserResponseVO = loginUserResponseVOCf.get();
-        assertThat(loginUserResponseVO).isNotNull();
-        assertThat(loginUserResponseVO.getIdentity()).isNotNull();
-        assertThat(loginUserResponseVO.getToken()).isNotNull();
+                usersService.loginUserAsync(email, password, appId, new Callback<LoginUserResponseBody>() {
+
+                    @Override
+                    public void onResponse(Call<LoginUserResponseBody> call, Response<LoginUserResponseBody> response) {
+                        assertThat(response).isNotNull();
+                        assertThat(response.body()).isNotNull();
+
+                        LoginUserResponseBody loginUserResponseVO = response.body();
+                        assertThat(loginUserResponseVO).isNotNull();
+                        assertThat(loginUserResponseVO.getIdentity()).isNotNull();
+                        assertThat(loginUserResponseVO.getToken()).isNotNull();
+                    }
+
+                    @Override
+                    public void onFailure(Call<LoginUserResponseBody> call, Throwable t) {
+                        fail("Test Failed");
+                    }
+
+                });
+            }
+
+            @Override
+            public void onFailure(Call<CreateUserResponseBody> call, Throwable t) {
+                fail("Test Failed");
+            }
+
+        });
     }
 
     @Test
-    public void testSynchronousUsersService_LoginUserFailed() {
+    public void testSynchronousUsersService_LoginUserFailed() throws IOException {
         SynchronousUsersService usersService = this.client.getUsersService();
         assertThat(usersService).isNotNull();
 
@@ -294,8 +390,9 @@ public class LiveUsersServiceTest extends BaseLiveServiceTest {
         String password = System.currentTimeMillis() + "password" + System.currentTimeMillis();
         Integer appId = 1;
 
-        LoginUserResponseVO loginUserResponseVO = usersService.loginUserSync(email, password, appId);
-        assertThat(loginUserResponseVO).isNull();
+        Response<LoginUserResponseBody> loginUserResponseVO = usersService.loginUserSync(email, password, appId);
+        assertThat(loginUserResponseVO).isNotNull();
+        assertThat(loginUserResponseVO.body()).isNull();
     }
 
     @Test
@@ -307,11 +404,23 @@ public class LiveUsersServiceTest extends BaseLiveServiceTest {
         String password = System.currentTimeMillis() + "password" + System.currentTimeMillis();
         Integer appId = 1;
 
-        CompletableFuture<LoginUserResponseVO> loginUserResponseVOCf = usersService.loginUserAsync(email, password, appId);
-        assertThat(loginUserResponseVOCf).isNotNull();
-        assertThat(loginUserResponseVOCf.get()).isNull();
+        usersService.loginUserAsync(email, password, appId, new Callback<LoginUserResponseBody>() {
 
-        LoginUserResponseVO loginUserResponseVO = loginUserResponseVOCf.get();
-        assertThat(loginUserResponseVO).isNull();
+            @Override
+            public void onResponse(Call<LoginUserResponseBody> call, Response<LoginUserResponseBody> response) {
+                assertThat(response).isNotNull();
+                assertThat(response.body()).isNotNull();
+
+                LoginUserResponseBody loginUserResponseVO = response.body();
+                assertThat(loginUserResponseVO).isNull();
+            }
+
+            @Override
+            public void onFailure(Call<LoginUserResponseBody> call, Throwable t) {
+                fail("Test Failed");
+            }
+
+        });
+
     }
 }

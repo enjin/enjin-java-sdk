@@ -12,8 +12,7 @@ import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.config.ImmutableConfig;
 import io.enjincoin.sdk.client.config.ImmutablePlatform;
 import io.enjincoin.sdk.client.config.Platform;
-import io.enjincoin.sdk.client.service.legacy.BaseService;
-import io.enjincoin.sdk.client.service.legacy.identities.impl.IdentitiesServiceImpl;
+import io.enjincoin.sdk.client.service.identities.impl.IdentitiesServiceImpl;
 import io.enjincoin.sdk.client.service.legacy.platform.SynchronousPlatformService;
 import io.enjincoin.sdk.client.util.http.Protocol;
 

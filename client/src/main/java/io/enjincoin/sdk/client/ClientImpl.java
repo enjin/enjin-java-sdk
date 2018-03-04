@@ -12,6 +12,8 @@ import io.enjincoin.sdk.client.service.identities.impl.IdentitiesServiceImpl;
 import io.enjincoin.sdk.client.service.identities.vo.IdentityFilter;
 import io.enjincoin.sdk.client.service.identity.IdentityService;
 import io.enjincoin.sdk.client.service.identity.impl.IdentityServiceImpl;
+import io.enjincoin.sdk.client.service.users.UsersService;
+import io.enjincoin.sdk.client.service.users.impl.UsersServiceImpl;
 import net.dongliu.gson.GsonJava8TypeAdapterFactory;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -25,6 +27,7 @@ public class ClientImpl implements Client {
     private Retrofit retrofit;
     private IdentitiesService identitiesService;
     private IdentityService identityService;
+    private UsersService userService;
 
     public ClientImpl(String url) {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -44,18 +47,26 @@ public class ClientImpl implements Client {
 
     @Override
     public IdentitiesService getIdentitiesService() {
-        if (identitiesService == null)
+        if (identitiesService == null) {
             identitiesService = new IdentitiesServiceImpl(retrofit);
+        }
         return identitiesService;
     }
 
     @Override
     public IdentityService getIdentityService() {
-        if (identityService == null)
+        if (identityService == null) {
             identityService = new IdentityServiceImpl(retrofit);
+        }
         return identityService;
     }
-
+    @Override
+    public UsersService getUsersService() {
+        if (userService == null) {
+            userService = new UsersServiceImpl(retrofit);
+        }
+        return userService;
+    }
     private Gson getGsonInstance() {
         return new GsonBuilder()
                 .registerTypeAdapterFactory(new GsonJava8TypeAdapterFactory())

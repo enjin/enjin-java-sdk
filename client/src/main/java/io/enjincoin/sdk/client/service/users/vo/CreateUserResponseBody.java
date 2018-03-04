@@ -1,4 +1,4 @@
-package io.enjincoin.sdk.client.vo.user;
+package io.enjincoin.sdk.client.service.users.vo;
 
 import java.util.Optional;
 
@@ -7,10 +7,10 @@ import com.google.gson.annotations.SerializedName;
 /**
  * <p>Create User Response class.</p>
  */
-public class CreateUserResponseVO {
+public class CreateUserResponseBody {
 
     @SerializedName("user")
-    private Optional<UserResponseVO> user;
+    private Optional<UserResponseBody> user;
 
     @SerializedName("token")
     private Optional<String> token;
@@ -21,16 +21,16 @@ public class CreateUserResponseVO {
      * @param user
      * @param token
      */
-    public CreateUserResponseVO(Optional<UserResponseVO> user, Optional<String> token) {
+    public CreateUserResponseBody(UserResponseBody user, String token) {
         super();
-        this.user = user;
-        this.token = token;
+        this.user = Optional.of(user);
+        this.token = Optional.of(token);
     }
 
     /**
      * @return the user
      */
-    public Optional<UserResponseVO> getUser() {
+    public Optional<UserResponseBody> getUser() {
         return user;
     }
 
@@ -46,7 +46,7 @@ public class CreateUserResponseVO {
      */
     @Override
     public String toString() {
-        return "CreateUserResponseVO [user=" + user + ", token=" + token + "]";
+        return "CreateUserResponseBody [user=" + user + ", token=" + token + "]";
     }
 
 

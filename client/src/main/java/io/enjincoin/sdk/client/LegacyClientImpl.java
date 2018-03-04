@@ -17,8 +17,6 @@ import io.enjincoin.sdk.client.service.legacy.tokens.TokensService;
 import io.enjincoin.sdk.client.service.legacy.tokens.impl.TokensServiceImpl;
 import io.enjincoin.sdk.client.service.legacy.transactionrequests.TransactionRequestsService;
 import io.enjincoin.sdk.client.service.legacy.transactionrequests.impl.TransactionRequestsServiceImpl;
-import io.enjincoin.sdk.client.service.legacy.users.UsersService;
-import io.enjincoin.sdk.client.service.legacy.users.impl.UsersServiceImpl;
 
 /**
  * <p>Enjin Coin SyncClient - Synchronous.</p>
@@ -61,12 +59,6 @@ public class LegacyClientImpl implements LegacyClient {
      * Platform service.
      */
     private PlatformService platformService;
-
-    /**
-     * Users service.
-     */
-    private UsersService usersService;
-
 
     /**
      * Class constructor.
@@ -160,16 +152,6 @@ public class LegacyClientImpl implements LegacyClient {
         return this.platformService;
     }
 
-    /**
-     * Method to get the users service
-     * @return
-     */
-    public UsersService getUsersService() {
-        if (this.usersService == null) {
-            this.usersService = new UsersServiceImpl(this.config);
-        }
-        return this.usersService;
-    }
 
     @Override
     public void close() {

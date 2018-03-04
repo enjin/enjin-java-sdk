@@ -1,4 +1,4 @@
-package io.enjincoin.sdk.client.vo.user;
+package io.enjincoin.sdk.client.service.users.vo;
 
 import java.util.Optional;
 
@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * <p>User Response class.</p>
  */
-public class UserResponseVO {
+public class UserResponseBody {
 
     @SerializedName("id")
     private Optional<Integer> id;
@@ -27,14 +27,14 @@ public class UserResponseVO {
     @SerializedName("identity")
     private Optional<String> identity;
 
-    public UserResponseVO(Optional<Integer> id, Optional<String> name, Optional<String> email, Optional<String> updatedAt, Optional<String> createdAt, Optional<String> identity) {
+    public UserResponseBody(Integer id, String name, String email, String updatedAt, String createdAt, String identity) {
         super();
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.updatedAt = updatedAt;
-        this.createdAt = createdAt;
-        this.identity = identity;
+        this.id = Optional.of(id);
+        this.name = Optional.of(name);
+        this.email = Optional.of(email);
+        this.updatedAt = Optional.of(updatedAt);
+        this.createdAt = Optional.of(createdAt);
+        this.identity = Optional.of(identity);
     }
 
     /**
@@ -84,7 +84,7 @@ public class UserResponseVO {
      */
     @Override
     public String toString() {
-        return "UserResponseVO [id=" + id + ", name=" + name + ", email=" + email + ", updatedAt=" + updatedAt + ", createdAt=" + createdAt + ", identity=" + identity + "]";
+        return "UserResponseBody [id=" + id + ", name=" + name + ", email=" + email + ", updatedAt=" + updatedAt + ", createdAt=" + createdAt + ", identity=" + identity + "]";
     }
 
 

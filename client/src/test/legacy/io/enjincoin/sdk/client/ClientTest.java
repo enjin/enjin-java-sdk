@@ -10,7 +10,6 @@ import io.enjincoin.sdk.client.config.ImmutableConfig;
 import io.enjincoin.sdk.client.config.ImmutablePlatform;
 import io.enjincoin.sdk.client.config.Platform;
 import io.enjincoin.sdk.client.service.legacy.events.SynchronousEventsService;
-import io.enjincoin.sdk.client.service.legacy.identities.SynchronousIdentitiesService;
 import io.enjincoin.sdk.client.service.legacy.notifications.NotificationsService;
 import io.enjincoin.sdk.client.service.legacy.platform.SynchronousPlatformService;
 import io.enjincoin.sdk.client.service.legacy.tokens.SynchronousTokensService;
@@ -61,15 +60,6 @@ public class ClientTest {
         assertThat(eventsService2).isNotNull().isSameAs(eventsService);
     }
 
-    @Test
-    public void testGetIdentitiesService() {
-        SynchronousIdentitiesService identitiesService = this.client.getIdentitiesService();
-        assertThat(identitiesService).isNotNull();
-
-        //Second time around - the existing service should be returned
-        SynchronousIdentitiesService identitiesService2 = this.client.getIdentitiesService();
-        assertThat(identitiesService2).isNotNull().isSameAs(identitiesService);
-    }
 
     @Test
     public void testGetTokensService() {
