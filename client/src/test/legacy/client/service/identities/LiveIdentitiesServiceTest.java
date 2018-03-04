@@ -1,4 +1,4 @@
-package client.service.legacy.identities;
+package client.service.identities;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.fail;
