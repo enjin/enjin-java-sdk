@@ -4,9 +4,6 @@ import org.junit.Before;
 
 import io.enjincoin.sdk.client.ClientImpl;
 import io.enjincoin.sdk.client.config.Config;
-import io.enjincoin.sdk.client.config.ImmutableConfig;
-import io.enjincoin.sdk.client.config.ImmutablePlatform;
-import io.enjincoin.sdk.client.config.Platform;
 
 public class BaseLiveServiceTest {
 
@@ -16,20 +13,7 @@ public class BaseLiveServiceTest {
 
     @Before
     public void setUp() {
-        Platform trustedPlatform = ImmutablePlatform.builder()
-                .setHost("enjin.v16studios.co.uk")
-                .setPort(443)
-                .setProtocol("https")
-                .setBaseApiEndpoint("api/v1")
-                .build();
-        this.config = ImmutableConfig.builder()
-                .setTotalExecutors(1)
-                .setTrustedPlatform(trustedPlatform)
-                .build();
-
-        //this.client = new LegacyClientImpl(this.config);
-        //String url = "http://enjin.v16studios.co.uk/api/v1/";
-        String url = "http://enjin.v16studios.co.uk/";
+        String url = "https://enjin.v16studios.co.uk/";
         this.client = new ClientImpl(url);
     }
 
