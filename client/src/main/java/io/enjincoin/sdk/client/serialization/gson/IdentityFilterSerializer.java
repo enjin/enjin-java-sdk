@@ -1,7 +1,7 @@
 package io.enjincoin.sdk.client.serialization.gson;
 
 import com.google.gson.*;
-import io.enjincoin.sdk.client.service.identities.IdentityFilter;
+import io.enjincoin.sdk.client.service.identities.vo.IdentityFilter;
 
 import java.lang.reflect.Type;
 import java.util.Map;

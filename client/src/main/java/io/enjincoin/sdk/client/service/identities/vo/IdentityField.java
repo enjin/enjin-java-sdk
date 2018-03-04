@@ -1,4 +1,4 @@
-package io.enjincoin.sdk.client.vo.identity;
+package io.enjincoin.sdk.client.service.identities.vo;
 
 import java.util.Optional;
 
@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
  * <p>FieldVO class.
  * </p>
  */
-public class FieldVO {
+public class IdentityField {
 
     @SerializedName("key")
     private Optional<String> key;
@@ -34,7 +34,7 @@ public class FieldVO {
      * @param displayable
      * @param unique
      */
-    public FieldVO(Optional<String> key, Optional<String> fieldValue, Optional<Integer> searchable, Optional<Integer> displayable, Optional<Integer> unique) {
+    public IdentityField(Optional<String> key, Optional<String> fieldValue, Optional<Integer> searchable, Optional<Integer> displayable, Optional<Integer> unique) {
         super();
         this.key = key;
         this.fieldValue = fieldValue;

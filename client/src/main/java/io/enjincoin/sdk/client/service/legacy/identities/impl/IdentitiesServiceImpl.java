@@ -15,7 +15,7 @@ import io.enjincoin.sdk.client.service.legacy.identities.IdentitiesService;
 import io.enjincoin.sdk.client.util.GsonUtils;
 import io.enjincoin.sdk.client.util.JsonUtils;
 import io.enjincoin.sdk.client.vo.identity.CreateIdentityRequestVO;
-import io.enjincoin.sdk.client.vo.identity.CreateIdentityResponseVO;
+import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityResponseBody;
 import io.enjincoin.sdk.client.vo.identity.GetIdentityResponseVO;
 import io.enjincoin.sdk.client.vo.identity.LinkIdentityRequestVO;
 import io.enjincoin.sdk.client.vo.identity.LinkIdentityResponseVO;
@@ -125,8 +125,8 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
     }
 
     @Override
-    public final CreateIdentityResponseVO createIdentitySync(final CreateIdentityRequestVO createIdentityRequest) {
-        CreateIdentityResponseVO createIdentityResponseVO = null;
+    public final CreateIdentityResponseBody createIdentitySync(final CreateIdentityRequestVO createIdentityRequest) {
+        CreateIdentityResponseBody createIdentityResponseVO = null;
 
         if (ObjectUtils.isNull(createIdentityRequest)) {
             LOGGER.warning("Identities.create createIdentityRequest is null.");
@@ -151,7 +151,7 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
             LOGGER.warning("No response returned from the createIdentity call");
             return createIdentityResponseVO;
         }
-        createIdentityResponseVO = (CreateIdentityResponseVO) JsonUtils.convertJsonToObject(GsonUtils.GSON, responseJsonString, CreateIdentityResponseVO.class);
+        createIdentityResponseVO = (CreateIdentityResponseBody) JsonUtils.convertJsonToObject(GsonUtils.GSON, responseJsonString, CreateIdentityResponseBody.class);
 
         return createIdentityResponseVO;
     }
@@ -261,7 +261,7 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
     }
 
     @Override
-    public CompletableFuture<CreateIdentityResponseVO> createIdentityAsync(final CreateIdentityRequestVO request) {
+    public CompletableFuture<CreateIdentityResponseBody> createIdentityAsync(final CreateIdentityRequestVO request) {
         return CompletableFuture.supplyAsync(() -> this.createIdentitySync(request), this.getExecutorService());
     }
 

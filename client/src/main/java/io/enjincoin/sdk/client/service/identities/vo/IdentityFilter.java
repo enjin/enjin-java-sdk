@@ -1,4 +1,4 @@
-package io.enjincoin.sdk.client.service.identities;
+package io.enjincoin.sdk.client.service.identities.vo;
 
 import java.util.Map;
 

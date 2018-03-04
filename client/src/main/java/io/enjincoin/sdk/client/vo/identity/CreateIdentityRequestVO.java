@@ -3,6 +3,7 @@ package io.enjincoin.sdk.client.vo.identity;
 import java.util.Optional;
 
 import com.google.gson.annotations.SerializedName;
+import io.enjincoin.sdk.client.service.identities.vo.IdentityField;
 
 /**
  * <p>Create Identity Request class.
@@ -14,14 +15,14 @@ public class CreateIdentityRequestVO {
     private Optional<String> ethereumAddress;
 
     @SerializedName("fields")
-    private Optional<FieldVO[]> fields;
+    private Optional<IdentityField[]> fields;
 
     /**
      * Class constructor
      * @param ethereumAddress
      * @param fields
      */
-    public CreateIdentityRequestVO(Optional<String> ethereumAddress, Optional<FieldVO[]> fields) {
+    public CreateIdentityRequestVO(Optional<String> ethereumAddress, Optional<IdentityField[]> fields) {
         super();
         this.ethereumAddress = ethereumAddress;
         this.fields = fields;
@@ -37,7 +38,7 @@ public class CreateIdentityRequestVO {
     /**
      * @return the fields
      */
-    public Optional<FieldVO[]> getFields() {
+    public Optional<IdentityField[]> getFields() {
         return fields;
     }
 

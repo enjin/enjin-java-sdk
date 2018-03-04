@@ -3,7 +3,7 @@ package io.enjincoin.sdk.client.service.legacy.identities;
 import java.util.Map;
 
 import io.enjincoin.sdk.client.vo.identity.CreateIdentityRequestVO;
-import io.enjincoin.sdk.client.vo.identity.CreateIdentityResponseVO;
+import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityResponseBody;
 import io.enjincoin.sdk.client.vo.identity.GetIdentityResponseVO;
 import io.enjincoin.sdk.client.vo.identity.LinkIdentityRequestVO;
 import io.enjincoin.sdk.client.vo.identity.LinkIdentityResponseVO;
@@ -45,7 +45,7 @@ public interface SynchronousIdentitiesService {
      *
      * @return - CreateIdentityResponseVO
      */
-    CreateIdentityResponseVO createIdentitySync(CreateIdentityRequestVO request);
+    CreateIdentityResponseBody createIdentitySync(CreateIdentityRequestVO request);
 
     /**
      * Method to update an identity.

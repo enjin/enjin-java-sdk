@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Optional;
 
 import com.google.gson.annotations.SerializedName;
+import io.enjincoin.sdk.client.service.identities.vo.IdentityField;
 
 /**
  * <p>Get Identity Response class.
@@ -31,10 +32,10 @@ public class GetIdentityResponseVO {
     private Optional<String> user;
 
     @SerializedName("fields")
-    private Optional<FieldVO[]> fields;
+    private Optional<IdentityField[]> fields;
 
     public GetIdentityResponseVO(Optional<Integer> id, Optional<String> ethereumAddress, Optional<String> linkingCode, Optional<String> updatedAt, String createdAt, Optional<String> user,
-            Optional<FieldVO[]> fields) {
+            Optional<IdentityField[]> fields) {
         super();
         this.id = id;
         this.ethereumAddress = ethereumAddress;
@@ -90,7 +91,7 @@ public class GetIdentityResponseVO {
     /**
      * @return the fields
      */
-    public Optional<FieldVO[]> getFields() {
+    public Optional<IdentityField[]> getFields() {
         return fields;
     }
 

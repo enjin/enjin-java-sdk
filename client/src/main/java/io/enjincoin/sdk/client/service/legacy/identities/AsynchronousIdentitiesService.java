@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 import io.enjincoin.sdk.client.vo.identity.CreateIdentityRequestVO;
-import io.enjincoin.sdk.client.vo.identity.CreateIdentityResponseVO;
+import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityResponseBody;
 import io.enjincoin.sdk.client.vo.identity.GetIdentityResponseVO;
 import io.enjincoin.sdk.client.vo.identity.LinkIdentityRequestVO;
 import io.enjincoin.sdk.client.vo.identity.LinkIdentityResponseVO;
@@ -47,7 +47,7 @@ public interface AsynchronousIdentitiesService {
      *
      * @return - CreateIdentityResponseVO
      */
-    CompletableFuture<CreateIdentityResponseVO> createIdentityAsync(CreateIdentityRequestVO request);
+    CompletableFuture<CreateIdentityResponseBody> createIdentityAsync(CreateIdentityRequestVO request);
 
     /**
      * Method to update an identity.

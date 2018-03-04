@@ -1,4 +1,4 @@
-package io.enjincoin.sdk.client.vo.identity;
+package io.enjincoin.sdk.client.service.identities.vo;
 
 import java.util.Optional;
 
@@ -8,13 +8,16 @@ import com.google.gson.annotations.SerializedName;
  * <p>Create Identity Response class.
  * </p>
  */
-public class CreateIdentityResponseVO {
+public class CreateIdentityResponseBody {
 
     @SerializedName("id")
     private Optional<Integer> id;
 
     @SerializedName("ethereum_address")
     private Optional<String> ethereumAddress;
+
+    @SerializedName("linking_code")
+    private Optional<String> linkingCode;
 
     @SerializedName("updated_at")
     private Optional<String> updatedAt;
@@ -29,10 +32,11 @@ public class CreateIdentityResponseVO {
      * @param updatedAt
      * @param createdAt
      */
-    public CreateIdentityResponseVO(Optional<Integer> id, Optional<String> ethereumAddress, Optional<String> updatedAt, String createdAt) {
+    public CreateIdentityResponseBody(Optional<Integer> id, Optional<String> ethereumAddress, Optional<String> linkingCode, Optional<String> updatedAt, String createdAt) {
         super();
         this.id = id;
         this.ethereumAddress = ethereumAddress;
+        this.linkingCode = linkingCode;
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
     }
@@ -53,6 +57,13 @@ public class CreateIdentityResponseVO {
     }
 
     /**
+     * @return the linkingCode
+     */
+    public Optional<String> getLinkingCode() {
+        return linkingCode;
+    }
+
+    /**
      * @return the updatedAt
      */
     public Optional<String> getUpdatedAt() {
@@ -66,12 +77,14 @@ public class CreateIdentityResponseVO {
         return createdAt;
     }
 
-    /* (non-Javadoc)
-     * @see java.lang.Object#toString()
-     */
     @Override
     public String toString() {
-        return "CreateIdentityResponseVO [id=" + id + ", ethereumAddress=" + ethereumAddress + ", updatedAt=" + updatedAt + ", createdAt=" + createdAt + "]";
+        return "CreateIdentityResponseBody{" +
+                "id=" + id +
+                ", ethereumAddress=" + ethereumAddress +
+                ", linkingCode=" + linkingCode +
+                ", updatedAt=" + updatedAt +
+                ", createdAt='" + createdAt + '\'' +
+                '}';
     }
-
 }

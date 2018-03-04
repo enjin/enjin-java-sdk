@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder;
 import io.enjincoin.sdk.client.serialization.gson.IdentityFilterSerializer;
 import io.enjincoin.sdk.client.serialization.retrofit.JsonStringConverterFactory;
 import io.enjincoin.sdk.client.service.identities.IdentitiesService;
-import io.enjincoin.sdk.client.service.identities.IdentityFilter;
+import io.enjincoin.sdk.client.service.identities.vo.IdentityFilter;
 import io.enjincoin.sdk.client.service.identities.impl.IdentitiesServiceImpl;
 import net.dongliu.gson.GsonJava8TypeAdapterFactory;
 import okhttp3.OkHttpClient;
