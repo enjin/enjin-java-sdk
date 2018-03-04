@@ -1,8 +1,8 @@
 package io.enjincoin.sdk.client.service.identities.vo;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.util.Optional;
+
+import com.google.gson.annotations.SerializedName;
 
 /**
  * <p>Create Identity Response class.
@@ -12,9 +12,6 @@ public class CreateIdentityResponseBody {
 
     @SerializedName("id")
     private Optional<Integer> id;
-
-    @SerializedName("ethereum_address")
-    private Optional<String> ethereumAddress;
 
     @SerializedName("linking_code")
     private Optional<String> linkingCode;
@@ -33,10 +30,9 @@ public class CreateIdentityResponseBody {
      * @param updatedAt
      * @param createdAt
      */
-    public CreateIdentityResponseBody(Optional<Integer> id, Optional<String> ethereumAddress, Optional<String> linkingCode, Optional<String> updatedAt, String createdAt) {
+    public CreateIdentityResponseBody(Optional<Integer> id, Optional<String> linkingCode, Optional<String> updatedAt, String createdAt) {
         super();
         this.id = id;
-        this.ethereumAddress = ethereumAddress;
         this.linkingCode = linkingCode;
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
@@ -48,13 +44,6 @@ public class CreateIdentityResponseBody {
      */
     public Optional<Integer> getId() {
         return id;
-    }
-
-    /**
-     * @return the ethereumAddress
-     */
-    public Optional<String> getEthereumAddress() {
-        return ethereumAddress;
     }
 
     /**
@@ -82,7 +71,6 @@ public class CreateIdentityResponseBody {
     public String toString() {
         return "CreateIdentityResponseBody{" +
                 "id=" + id +
-                ", ethereumAddress=" + ethereumAddress +
                 ", linkingCode=" + linkingCode +
                 ", updatedAt=" + updatedAt +
                 ", createdAt='" + createdAt + '\'' +

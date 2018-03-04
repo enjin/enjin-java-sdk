@@ -168,7 +168,6 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
         assertThat(createIdentityResponseVO).isNotNull();
         assertThat(createIdentityResponseVO.body()).isNotNull();
         assertThat(createIdentityResponseVO.body().getId()).isNotNull();
-        assertThat(createIdentityResponseVO.body().getEthereumAddress()).isNotNull();
         assertThat(createIdentityResponseVO.body().getCreatedAt()).isNotNull();
         assertThat(createIdentityResponseVO.body().getUpdatedAt()).isNotNull();
 
@@ -206,7 +205,6 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
 
                 CreateIdentityResponseBody createIdentityResponseVO = response.body();
                 assertThat(createIdentityResponseVO.getId()).isNotNull();
-                assertThat(createIdentityResponseVO.getEthereumAddress()).isNotNull();
                 assertThat(createIdentityResponseVO.getCreatedAt()).isNotNull();
                 assertThat(createIdentityResponseVO.getUpdatedAt()).isNotNull();
 
@@ -270,7 +268,6 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
         assertThat(createIdentityResponseVO).isNotNull();
         assertThat(createIdentityResponseVO.body()).isNotNull();
         assertThat(createIdentityResponseVO.body().getId()).isNotNull();
-        assertThat(createIdentityResponseVO.body().getEthereumAddress()).isNotNull();
         assertThat(createIdentityResponseVO.body().getCreatedAt()).isNotNull();
         assertThat(createIdentityResponseVO.body().getUpdatedAt()).isNotNull();
 
@@ -308,7 +305,6 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
 
                 CreateIdentityResponseBody createIdentityResponseVO = response.body();
                 assertThat(createIdentityResponseVO.getId()).isNotNull();
-                assertThat(createIdentityResponseVO.getEthereumAddress()).isNotNull();
                 assertThat(createIdentityResponseVO.getCreatedAt()).isNotNull();
                 assertThat(createIdentityResponseVO.getUpdatedAt()).isNotNull();
 
@@ -371,7 +367,6 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
         assertThat(createIdentityResponseVO).isNotNull();
         assertThat(createIdentityResponseVO.body()).isNotNull();
         assertThat(createIdentityResponseVO.body().getId()).isNotNull();
-        assertThat(createIdentityResponseVO.body().getEthereumAddress()).isNotNull();
         assertThat(createIdentityResponseVO.body().getCreatedAt()).isNotNull();
         assertThat(createIdentityResponseVO.body().getUpdatedAt()).isNotNull();
 
@@ -398,7 +393,6 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
 
                 CreateIdentityResponseBody createIdentityResponseVO = response.body();
                 assertThat(createIdentityResponseVO.getId()).isNotNull();
-                assertThat(createIdentityResponseVO.getEthereumAddress()).isNotNull();
                 assertThat(createIdentityResponseVO.getCreatedAt()).isNotNull();
                 assertThat(createIdentityResponseVO.getUpdatedAt()).isNotNull();
 
@@ -438,7 +432,6 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
         assertThat(createIdentityResponseVO).isNotNull();
         assertThat(createIdentityResponseVO.body()).isNotNull();
         assertThat(createIdentityResponseVO.body().getId()).isNotNull();
-        assertThat(createIdentityResponseVO.body().getEthereumAddress()).isNotNull();
         assertThat(createIdentityResponseVO.body().getCreatedAt()).isNotNull();
         assertThat(createIdentityResponseVO.body().getUpdatedAt()).isNotNull();
 
@@ -481,7 +474,6 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
 
                 CreateIdentityResponseBody createIdentityResponseVO = response.body();
                 assertThat(createIdentityResponseVO.getId()).isNotNull();
-                assertThat(createIdentityResponseVO.getEthereumAddress()).isNotNull();
                 assertThat(createIdentityResponseVO.getCreatedAt()).isNotNull();
                 assertThat(createIdentityResponseVO.getUpdatedAt()).isNotNull();
 
