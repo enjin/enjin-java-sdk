@@ -21,6 +21,7 @@ ext {
     pusher = '1.6.0'
     immutables = '2.5.5'
     okhttp = '3.10.0'
+    retrofit = '2.3.0'
 }
 
 dependencies {
@@ -36,4 +37,5 @@ dependencies {
     compile group: 'com.pusher', name: 'pusher-java-client', version: pusher
     compile group: 'org.immutables', name: 'gson', version: immutables
     compile group: 'com.squareup.okhttp3', name: 'okhttp', version: okhttp
+    compile group: 'com.squareup.retrofit2', name: 'retrofit', version: retrofit
 }
