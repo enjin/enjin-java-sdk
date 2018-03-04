@@ -1,4 +1,4 @@
-package io.enjincoin.sdk.client.vo.identity;
+package io.enjincoin.sdk.client.service.identities.vo;
 
 import java.util.Optional;
 
@@ -9,7 +9,7 @@ import io.enjincoin.sdk.client.service.identities.vo.IdentityField;
  * <p>Update Identity Request class.
  * </p>
  */
-public class UpdateIdentityRequestVO {
+public class UpdateIdentityRequestBody {
 
     @SerializedName("fields")
     private Optional<IdentityField[]> fields;
@@ -18,7 +18,7 @@ public class UpdateIdentityRequestVO {
      * Class constructor
      * @param fields
      */
-    public UpdateIdentityRequestVO(Optional<IdentityField[]> fields) {
+    public UpdateIdentityRequestBody(Optional<IdentityField[]> fields) {
         super();
         this.fields = fields;
     }

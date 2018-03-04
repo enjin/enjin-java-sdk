@@ -1,7 +1,6 @@
 package io.enjincoin.sdk.client.service.legacy.identities;
 
-import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityResponseBody;
-import io.enjincoin.sdk.client.service.identities.vo.GetIdentityResponseBody;
+import io.enjincoin.sdk.client.service.identities.vo.*;
 import io.enjincoin.sdk.client.vo.identity.*;
 
 import java.util.Map;
@@ -53,7 +52,7 @@ public interface SynchronousIdentitiesService {
      *
      * @return - UpdateIdentityResponseVO
      */
-    UpdateIdentityResponseVO updateIdentitySync(UpdateIdentityRequestVO request, Integer identityId);
+    UpdateIdentityResponseBody updateIdentitySync(UpdateIdentityRequestBody request, Integer identityId);
 
     /**
      * Method to delete an identity
@@ -72,5 +71,5 @@ public interface SynchronousIdentitiesService {
      *
      * @return - LinkIdentityResponseVO
      */
-    LinkIdentityResponseVO linkIdentitySync(LinkIdentityRequestVO linkIdentityRequestVO, String linkingCode);
+    LinkIdentityResponseBody linkIdentitySync(LinkIdentityRequestBody linkIdentityRequestVO, String linkingCode);
 }

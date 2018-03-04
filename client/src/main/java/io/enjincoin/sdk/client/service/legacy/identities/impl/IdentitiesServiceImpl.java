@@ -5,8 +5,7 @@ import com.enjin.java_commons.ObjectUtils;
 import com.enjin.java_commons.OptionalUtils;
 import com.enjin.java_commons.StringUtils;
 import io.enjincoin.sdk.client.config.Config;
-import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityResponseBody;
-import io.enjincoin.sdk.client.service.identities.vo.GetIdentityResponseBody;
+import io.enjincoin.sdk.client.service.identities.vo.*;
 import io.enjincoin.sdk.client.service.legacy.BaseService;
 import io.enjincoin.sdk.client.service.legacy.identities.IdentitiesService;
 import io.enjincoin.sdk.client.util.GsonUtils;
@@ -185,8 +184,8 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
     }
 
     @Override
-    public final UpdateIdentityResponseVO updateIdentitySync(final UpdateIdentityRequestVO updateIdentityRequestVO, Integer identityId) {
-        UpdateIdentityResponseVO updateIdentityResponseVO = null;
+    public final UpdateIdentityResponseBody updateIdentitySync(final UpdateIdentityRequestBody updateIdentityRequestVO, Integer identityId) {
+        UpdateIdentityResponseBody updateIdentityResponseVO = null;
 
         if (ObjectUtils.isNull(updateIdentityRequestVO) || identityId == null) {
             LOGGER.warning("Identities.update updateIdentityRequestVO or identityId is null.");
@@ -212,14 +211,14 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
             LOGGER.warning("No response returned from the updateIdentity call");
             return updateIdentityResponseVO;
         }
-        updateIdentityResponseVO = (UpdateIdentityResponseVO) JsonUtils.convertJsonToObject(GsonUtils.GSON, responseJsonString, UpdateIdentityResponseVO.class);
+        updateIdentityResponseVO = (UpdateIdentityResponseBody) JsonUtils.convertJsonToObject(GsonUtils.GSON, responseJsonString, UpdateIdentityResponseBody.class);
 
         return updateIdentityResponseVO;
     }
 
     @Override
-    public final LinkIdentityResponseVO linkIdentitySync(final LinkIdentityRequestVO linkIdentityRequestVO, String linkingCode) {
-        LinkIdentityResponseVO linkIdentityResponseVO = null;
+    public final LinkIdentityResponseBody linkIdentitySync(final LinkIdentityRequestBody linkIdentityRequestVO, String linkingCode) {
+        LinkIdentityResponseBody linkIdentityResponseVO = null;
 
         if (ObjectUtils.isNull(linkIdentityRequestVO) || StringUtils.isEmpty(linkingCode)) {
             LOGGER.warning("Identities.link linkIdentityRequestVO is null or linkingCode is null or empty.");
@@ -240,7 +239,7 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
             LOGGER.warning("No response returned from the linkIdentity call");
             return linkIdentityResponseVO;
         }
-        linkIdentityResponseVO = (LinkIdentityResponseVO) JsonUtils.convertJsonToObject(GsonUtils.GSON, responseJsonString, LinkIdentityResponseVO.class);
+        linkIdentityResponseVO = (LinkIdentityResponseBody) JsonUtils.convertJsonToObject(GsonUtils.GSON, responseJsonString, LinkIdentityResponseBody.class);
 
         return linkIdentityResponseVO;
     }
@@ -266,7 +265,7 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
     }
 
     @Override
-    public CompletableFuture<UpdateIdentityResponseVO> updateIdentityAsync(final UpdateIdentityRequestVO request, final Integer identityId) {
+    public CompletableFuture<UpdateIdentityResponseBody> updateIdentityAsync(final UpdateIdentityRequestBody request, final Integer identityId) {
         return CompletableFuture.supplyAsync(() -> this.updateIdentitySync(request, identityId), this.getExecutorService());
     }
 
@@ -276,7 +275,7 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
     }
 
     @Override
-    public CompletableFuture<LinkIdentityResponseVO> linkIdentityAsync(final LinkIdentityRequestVO request, final String linkingCode) {
+    public CompletableFuture<LinkIdentityResponseBody> linkIdentityAsync(final LinkIdentityRequestBody request, final String linkingCode) {
         return CompletableFuture.supplyAsync(() -> this.linkIdentitySync(request, linkingCode), this.getExecutorService());
     }
 
