@@ -1,4 +1,4 @@
-package io.enjincoin.sdk.client.service.legacy.identities;
+package client.service.legacy.identities;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -12,11 +12,13 @@ import java.util.concurrent.ExecutionException;
 
 import org.junit.Test;
 
-import io.enjincoin.sdk.client.service.BaseLiveServiceTest;
-import io.enjincoin.sdk.client.vo.identity.CreateIdentityRequestVO;
 import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityResponseBody;
-import io.enjincoin.sdk.client.service.identities.vo.IdentityField;
 import io.enjincoin.sdk.client.service.identities.vo.GetIdentityResponseBody;
+import io.enjincoin.sdk.client.service.identities.vo.IdentityField;
+import io.enjincoin.sdk.client.service.legacy.BaseLiveServiceTest;
+import io.enjincoin.sdk.client.service.legacy.identities.AsynchronousIdentitiesService;
+import io.enjincoin.sdk.client.service.legacy.identities.SynchronousIdentitiesService;
+import io.enjincoin.sdk.client.vo.identity.CreateIdentityRequestVO;
 import io.enjincoin.sdk.client.vo.identity.LinkIdentityRequestVO;
 import io.enjincoin.sdk.client.vo.identity.LinkIdentityResponseVO;
 import io.enjincoin.sdk.client.vo.identity.UpdateIdentityRequestVO;

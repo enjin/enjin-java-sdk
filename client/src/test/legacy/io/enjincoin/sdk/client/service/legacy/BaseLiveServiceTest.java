@@ -1,4 +1,4 @@
-package io.enjincoin.sdk.client.service;
+package io.enjincoin.sdk.client.service.legacy;
 
 import org.junit.Before;
 
@@ -11,6 +11,7 @@ import io.enjincoin.sdk.client.config.Platform;
 public class BaseLiveServiceTest {
 
     protected LegacyClientImpl client;
+    //protected ClientImpl client;
     protected Config config;
 
     @Before
@@ -27,6 +28,8 @@ public class BaseLiveServiceTest {
                 .build();
 
         this.client = new LegacyClientImpl(this.config);
+        //String url = "http://enjin.v16studios.co.uk/api/v1";
+        //this.client = new ClientImpl(url);
     }
 
 }

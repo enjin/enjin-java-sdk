@@ -1,14 +1,19 @@
 package io.enjincoin.sdk.client.service.legacy.notifications;
 
-import io.enjincoin.sdk.client.enums.NotificationType;
-import io.enjincoin.sdk.client.service.legacy.notifications.NotificationListenerRegistration.RegistrationListenerConfiguration;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import io.enjincoin.sdk.client.enums.NotificationType;
+import io.enjincoin.sdk.client.service.legacy.notifications.EventMatcher;
+import io.enjincoin.sdk.client.service.legacy.notifications.NotificationListener;
+import io.enjincoin.sdk.client.service.legacy.notifications.NotificationListenerRegistration;
+import io.enjincoin.sdk.client.service.legacy.notifications.NotificationListenerRegistration.RegistrationListenerConfiguration;
+import io.enjincoin.sdk.client.service.legacy.notifications.NotificationsService;
 
 @RunWith(MockitoJUnitRunner.class)
 public class NotificationListenerRegistrationTest {

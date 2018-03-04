@@ -1,16 +1,12 @@
 package io.enjincoin.sdk.client.service.legacy.notifications;
 
-import com.pusher.client.Pusher;
-import com.pusher.client.PusherOptions;
-import com.pusher.client.channel.Channel;
-import com.pusher.client.channel.SubscriptionEventListener;
-import com.pusher.client.connection.ConnectionEventListener;
-import com.pusher.client.connection.ConnectionState;
-import io.enjincoin.sdk.client.config.ImmutableNotification;
-import io.enjincoin.sdk.client.config.Notification;
-import io.enjincoin.sdk.client.service.legacy.notifications.impl.PusherNotificationServiceImpl;
-import io.enjincoin.sdk.client.vo.platform.GetPlatformAuthDetailsResponseVO;
-import io.enjincoin.sdk.client.vo.platform.ImmutableGetPlatformAuthDetailsResponseVO;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,12 +17,20 @@ import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import com.pusher.client.Pusher;
+import com.pusher.client.PusherOptions;
+import com.pusher.client.channel.Channel;
+import com.pusher.client.channel.SubscriptionEventListener;
+import com.pusher.client.connection.ConnectionEventListener;
+import com.pusher.client.connection.ConnectionState;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import io.enjincoin.sdk.client.config.ImmutableNotification;
+import io.enjincoin.sdk.client.config.Notification;
+import io.enjincoin.sdk.client.service.legacy.notifications.NotificationListenerRegistration;
+import io.enjincoin.sdk.client.service.legacy.notifications.ThirdPartyNotificationService;
+import io.enjincoin.sdk.client.service.legacy.notifications.impl.PusherNotificationServiceImpl;
+import io.enjincoin.sdk.client.vo.platform.GetPlatformAuthDetailsResponseVO;
+import io.enjincoin.sdk.client.vo.platform.ImmutableGetPlatformAuthDetailsResponseVO;
 
 @RunWith(PowerMockRunner.class)
 @PowerMockIgnore("javax.net.ssl.*")

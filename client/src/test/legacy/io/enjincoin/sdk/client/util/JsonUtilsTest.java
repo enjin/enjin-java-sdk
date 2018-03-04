@@ -1,12 +1,15 @@
 package io.enjincoin.sdk.client.util;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonSyntaxException;
-import com.google.gson.stream.JsonReader;
-import io.enjincoin.sdk.client.vo.event.GetEventResponseVO;
-import io.enjincoin.sdk.client.vo.event.ImmutableGetEventResponseVO;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -14,9 +17,15 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import java.io.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.stream.JsonReader;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import io.enjincoin.sdk.client.util.JsonUtils;
+import io.enjincoin.sdk.client.vo.event.GetEventResponseVO;
+import io.enjincoin.sdk.client.vo.event.ImmutableGetEventResponseVO;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({JsonUtils.class, Gson.class, GsonBuilder.class, FileInputStream.class, InputStreamReader.class})

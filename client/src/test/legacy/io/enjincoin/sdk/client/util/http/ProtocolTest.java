@@ -1,8 +1,10 @@
 package io.enjincoin.sdk.client.util.http;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import io.enjincoin.sdk.client.util.http.Protocol;
 
 public class ProtocolTest {
 
