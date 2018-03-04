@@ -1,4 +1,4 @@
-package io.enjincoin.sdk.client.vo.identity;
+package io.enjincoin.sdk.client.service.identities.vo;
 
 import java.util.Optional;
 
@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
  * <p>Link Identity Request class.
  * </p>
  */
-public class LinkIdentityRequestVO {
+public class LinkIdentityRequestBody {
 
     @SerializedName("ethereum_address")
     private Optional<String> ethereumAddress;
@@ -17,9 +17,9 @@ public class LinkIdentityRequestVO {
      * Class constructor
      * @param ethereumAddress
      */
-    public LinkIdentityRequestVO(Optional<String> ethereumAddress) {
+    public LinkIdentityRequestBody(String ethereumAddress) {
         super();
-        this.ethereumAddress = ethereumAddress;
+        this.ethereumAddress = Optional.of(ethereumAddress);
     }
 
     /**

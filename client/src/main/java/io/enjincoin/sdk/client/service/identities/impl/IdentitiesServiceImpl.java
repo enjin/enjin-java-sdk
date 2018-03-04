@@ -1,17 +1,21 @@
 package io.enjincoin.sdk.client.service.identities.impl;
 
+import java.io.IOException;
+import java.util.Map;
+
 import io.enjincoin.sdk.client.service.identities.IdentitiesService;
 import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityRequestBody;
 import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityResponseBody;
 import io.enjincoin.sdk.client.service.identities.vo.GetIdentityResponseBody;
 import io.enjincoin.sdk.client.service.identities.vo.IdentityFilter;
+import io.enjincoin.sdk.client.service.identities.vo.LinkIdentityRequestBody;
+import io.enjincoin.sdk.client.service.identities.vo.LinkIdentityResponseBody;
+import io.enjincoin.sdk.client.service.identities.vo.UpdateIdentityRequestBody;
+import io.enjincoin.sdk.client.service.identities.vo.UpdateIdentityResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-
-import java.io.IOException;
-import java.util.Map;
 
 public class IdentitiesServiceImpl implements IdentitiesService {
 
@@ -79,6 +83,42 @@ public class IdentitiesServiceImpl implements IdentitiesService {
     public Response<CreateIdentityResponseBody> createIdentitySync(CreateIdentityRequestBody request) throws IOException {
         Call<CreateIdentityResponseBody> call = this.service.createIdentity(request);
         return call.execute();
+    }
+
+    @Override
+    public Response<UpdateIdentityResponseBody> updateIdentitySync(Integer identityId, UpdateIdentityRequestBody request) throws IOException {
+        Call<UpdateIdentityResponseBody> call = this.service.updateIdentity(identityId, request);
+        return call.execute();
+    }
+
+    @Override
+    public void updateIdentityAsync(Integer identityId, UpdateIdentityRequestBody request, Callback<UpdateIdentityResponseBody> callback) {
+        Call<UpdateIdentityResponseBody> call = this.service.updateIdentity(identityId, request);
+        call.enqueue(callback);
+    }
+
+    @Override
+    public Response<Boolean> deleteIdentitySync(Integer identityId) throws IOException {
+        Call<Boolean> call = this.service.deleteIdentity(identityId);
+        return call.execute();
+    }
+
+    @Override
+    public void deleteIdentityAsync(Integer identityId, Callback<Boolean> callback) {
+        Call<Boolean> call = this.service.deleteIdentity(identityId);
+        call.enqueue(callback);
+    }
+
+    @Override
+    public Response<LinkIdentityResponseBody> linkIdentitySync(String linkingCode, LinkIdentityRequestBody request) throws IOException {
+        Call<LinkIdentityResponseBody> call = this.service.linkIdentity(linkingCode, request);
+        return call.execute();
+    }
+
+    @Override
+    public void linkIdentityAsync(String linkingCode, LinkIdentityRequestBody request, Callback<LinkIdentityResponseBody> callback) {
+        Call<LinkIdentityResponseBody> call = this.service.linkIdentity(linkingCode, request);
+        call.enqueue(callback);
     }
 
 }

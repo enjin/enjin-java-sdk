@@ -1,14 +1,14 @@
-package io.enjincoin.sdk.client.vo.identity;
+package io.enjincoin.sdk.client.service.identities.vo;
 
 import java.util.Optional;
 
 import com.google.gson.annotations.SerializedName;
 
 /**
- * <p>Link Identity Response class.
+ * <p>Update Identity Response class.
  * </p>
  */
-public class LinkIdentityResponseVO {
+public class UpdateIdentityResponseBody {
 
     @SerializedName("id")
     private Optional<Integer> id;
@@ -38,7 +38,7 @@ public class LinkIdentityResponseVO {
      * @param updatedAt
      * @param createdAt
      */
-    public LinkIdentityResponseVO(Optional<Integer> id, Optional<Integer> userId, Optional<String> ethereumAddress, Optional<Integer> linkingCode, Optional<String> updatedAt,
+    public UpdateIdentityResponseBody(Optional<Integer> id, Optional<Integer> userId, Optional<String> ethereumAddress, Optional<Integer> linkingCode, Optional<String> updatedAt,
             String createdAt) {
         super();
         this.id = id;
