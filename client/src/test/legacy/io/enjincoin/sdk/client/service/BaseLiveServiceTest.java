@@ -1,8 +1,8 @@
-package io.enjincoin.sdk.client.service.legacy;
+package io.enjincoin.sdk.client.service;
 
 import org.junit.Before;
 
-import io.enjincoin.sdk.client.LegacyClientImpl;
+import io.enjincoin.sdk.client.ClientImpl;
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.config.ImmutableConfig;
 import io.enjincoin.sdk.client.config.ImmutablePlatform;
@@ -10,8 +10,8 @@ import io.enjincoin.sdk.client.config.Platform;
 
 public class BaseLiveServiceTest {
 
-    protected LegacyClientImpl client;
-    //protected ClientImpl client;
+    //protected LegacyClientImpl client;
+    protected ClientImpl client;
     protected Config config;
 
     @Before
@@ -27,9 +27,10 @@ public class BaseLiveServiceTest {
                 .setTrustedPlatform(trustedPlatform)
                 .build();
 
-        this.client = new LegacyClientImpl(this.config);
-        //String url = "http://enjin.v16studios.co.uk/api/v1";
-        //this.client = new ClientImpl(url);
+        //this.client = new LegacyClientImpl(this.config);
+        //String url = "http://enjin.v16studios.co.uk/api/v1/";
+        String url = "http://enjin.v16studios.co.uk/";
+        this.client = new ClientImpl(url);
     }
 
 }

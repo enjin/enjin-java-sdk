@@ -8,7 +8,7 @@ import java.util.concurrent.ExecutionException;
 
 import org.junit.Test;
 
-import io.enjincoin.sdk.client.service.legacy.BaseLiveServiceTest;
+import io.enjincoin.sdk.client.service.BaseLiveServiceTest;
 import io.enjincoin.sdk.client.service.legacy.users.AsynchronousUsersService;
 import io.enjincoin.sdk.client.service.legacy.users.SynchronousUsersService;
 import io.enjincoin.sdk.client.vo.user.CreateUserRequestVO;

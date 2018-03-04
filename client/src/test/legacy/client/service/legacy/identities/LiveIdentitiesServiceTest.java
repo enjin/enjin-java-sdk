@@ -2,6 +2,7 @@ package client.service.legacy.identities;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,17 +13,18 @@ import java.util.concurrent.ExecutionException;
 
 import org.junit.Test;
 
+import io.enjincoin.sdk.client.service.BaseLiveServiceTest;
+import io.enjincoin.sdk.client.service.identities.AsynchronousIdentitiesService;
+import io.enjincoin.sdk.client.service.identities.SynchronousIdentitiesService;
 import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityResponseBody;
 import io.enjincoin.sdk.client.service.identities.vo.GetIdentityResponseBody;
 import io.enjincoin.sdk.client.service.identities.vo.IdentityField;
-import io.enjincoin.sdk.client.service.legacy.BaseLiveServiceTest;
-import io.enjincoin.sdk.client.service.legacy.identities.AsynchronousIdentitiesService;
-import io.enjincoin.sdk.client.service.legacy.identities.SynchronousIdentitiesService;
 import io.enjincoin.sdk.client.vo.identity.CreateIdentityRequestVO;
 import io.enjincoin.sdk.client.vo.identity.LinkIdentityRequestVO;
 import io.enjincoin.sdk.client.vo.identity.LinkIdentityResponseVO;
 import io.enjincoin.sdk.client.vo.identity.UpdateIdentityRequestVO;
 import io.enjincoin.sdk.client.vo.identity.UpdateIdentityResponseVO;
+import retrofit2.Response;
 
 /**
  * Calls out to the actual api
@@ -33,14 +35,15 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
 
 
     @Test
-    public void testSynchronousIdentitiesService_GetIdentities() {
+    public void testSynchronousIdentitiesService_GetIdentities() throws IOException {
         SynchronousIdentitiesService identitiesService = this.client.getIdentitiesService();
         assertThat(identitiesService).isNotNull();
 
-        GetIdentityResponseBody[] getIdentityResponseVOArray = identitiesService.getIdentitiesSync();
+        Response<GetIdentityResponseBody[]> getIdentityResponseVOArray = identitiesService.getIdentitiesSync();
         assertThat(getIdentityResponseVOArray).isNotNull();
+        assertThat(getIdentityResponseVOArray.body()).isNotNull();
 
-        for (GetIdentityResponseBody getIdentityResponseVO : getIdentityResponseVOArray) {
+        for (GetIdentityResponseBody getIdentityResponseVO : getIdentityResponseVOArray.body()) {
             if (getIdentityResponseVO.getFields().isPresent()) {
 
                 for (IdentityField fieldVO : getIdentityResponseVO.getFields().get()) {
@@ -84,7 +87,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
         filterMap.put("key", keyList);
         filterMap.put("field_value", fieldValueList);
 
-        GetIdentityResponseBody[] getIdentityResponseVOArray = identitiesService.getIdentitiesSync(filterMap);
+        Response<GetIdentityResponseBody[]> getIdentityResponseVOArray = identitiesService.getIdentitiesSync(filterMap);
         assertThat(getIdentityResponseVOArray).isNotNull();
 
         for (GetIdentityResponseBody getIdentityResponseVO : getIdentityResponseVOArray) {
@@ -133,7 +136,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
 
         Optional<String> ethereumAddress = Optional.of("TestEthereumAddress_"+System.currentTimeMillis());
         CreateIdentityRequestVO createIdentityRequestVO = new CreateIdentityRequestVO(ethereumAddress, null);
-        CreateIdentityResponseBody createIdentityResponseVO = identitiesService.createIdentitySync(createIdentityRequestVO);
+        Response<CreateIdentityResponseBody> createIdentityResponseVO = identitiesService.createIdentitySync(createIdentityRequestVO);
         assertThat(createIdentityResponseVO).isNotNull();
         assertThat(createIdentityResponseVO.getId()).isNotNull();
         assertThat(createIdentityResponseVO.getEthereumAddress()).isNotNull();
@@ -142,7 +145,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
 
         Integer identityId = createIdentityResponseVO.getId().get();
 
-        GetIdentityResponseBody getIdentityByIdResponseVO = identitiesService.getIdentitySync(identityId);
+        Response<GetIdentityResponseBody> getIdentityByIdResponseVO = identitiesService.getIdentitySync(identityId);
         assertThat(getIdentityByIdResponseVO).isNotNull();
 
         if (getIdentityByIdResponseVO.getFields().isPresent()) {
@@ -200,7 +203,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
 
         Optional<String> ethereumAddress = Optional.of("TestEthereumAddress_"+System.currentTimeMillis());
         CreateIdentityRequestVO createIdentityRequestVO = new CreateIdentityRequestVO(ethereumAddress, null);
-        CreateIdentityResponseBody createIdentityResponseVO = identitiesService.createIdentitySync(createIdentityRequestVO);
+        Response<CreateIdentityResponseBody> createIdentityResponseVO = identitiesService.createIdentitySync(createIdentityRequestVO);
         assertThat(createIdentityResponseVO).isNotNull();
         assertThat(createIdentityResponseVO.getId()).isNotNull();
         assertThat(createIdentityResponseVO.getEthereumAddress()).isNotNull();
@@ -267,7 +270,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
 
         Optional<String> ethereumAddress = Optional.of("TestEthereumAddress_"+System.currentTimeMillis());
         CreateIdentityRequestVO createIdentityRequestVO = new CreateIdentityRequestVO(ethereumAddress, null);
-        CreateIdentityResponseBody createIdentityResponseVO = identitiesService.createIdentitySync(createIdentityRequestVO);
+        Response<CreateIdentityResponseBody> createIdentityResponseVO = identitiesService.createIdentitySync(createIdentityRequestVO);
         assertThat(createIdentityResponseVO).isNotNull();
         assertThat(createIdentityResponseVO.getId()).isNotNull();
         assertThat(createIdentityResponseVO.getEthereumAddress()).isNotNull();
@@ -312,7 +315,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
 
         Optional<String> ethereumAddress = Optional.of("TestEthereumAddress_"+System.currentTimeMillis());
         CreateIdentityRequestVO createIdentityRequestVO = new CreateIdentityRequestVO(ethereumAddress, null);
-        CreateIdentityResponseBody createIdentityResponseVO = identitiesService.createIdentitySync(createIdentityRequestVO);
+        Response< CreateIdentityResponseBody> createIdentityResponseVO = identitiesService.createIdentitySync(createIdentityRequestVO);
         assertThat(createIdentityResponseVO).isNotNull();
         assertThat(createIdentityResponseVO.getId()).isNotNull();
         assertThat(createIdentityResponseVO.getEthereumAddress()).isNotNull();
@@ -327,7 +330,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
         Optional<IdentityField[]> fields = Optional.of(fieldsArray);
 
         UpdateIdentityRequestVO updateIdentityRequestVO = new UpdateIdentityRequestVO(fields);
-        UpdateIdentityResponseVO updateIdentityResponseVO = identitiesService.updateIdentitySync(updateIdentityRequestVO , identityId);
+        Response<UpdateIdentityResponseVO> updateIdentityResponseVO = identitiesService.updateIdentitySync(updateIdentityRequestVO , identityId);
         assertThat(updateIdentityResponseVO).isNotNull();
         assertThat(updateIdentityResponseVO.getId()).isNotNull();
         assertThat(updateIdentityResponseVO.getEthereumAddress()).isNotNull();
@@ -394,7 +397,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
 
         String linkingCode = "av"+System.currentTimeMillis();
         LinkIdentityRequestVO linkIdentityRequestVO = new LinkIdentityRequestVO(ethereumAddress);
-        LinkIdentityResponseVO linkIdentityResponseVO = identitiesService.linkIdentitySync(linkIdentityRequestVO , linkingCode);
+        Response<LinkIdentityResponseVO> linkIdentityResponseVO = identitiesService.linkIdentitySync(linkIdentityRequestVO , linkingCode);
         assertThat(linkIdentityResponseVO).isNotNull();
         //assertThat(linkIdentityResponseVO.getId()).isNotNull();
         //assertThat(linkIdentityResponseVO.getEthereumAddress()).isNotNull();
