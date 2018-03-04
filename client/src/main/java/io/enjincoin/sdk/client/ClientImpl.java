@@ -14,17 +14,22 @@ import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.io.IOException;
+
 public class ClientImpl implements Client {
 
+    private OkHttpClient client;
     private Retrofit retrofit;
     private IdentitiesService identitiesService;
 
     public ClientImpl(String url) {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
         Converter.Factory gsonFactory = GsonConverterFactory.create(getGsonInstance());
 
+        this.client = new OkHttpClient.Builder()
+                .addInterceptor(interceptor)
+                .build();
         this.retrofit = new Retrofit.Builder()
                 .baseUrl(url)
                 .client(client)
@@ -45,5 +50,10 @@ public class ClientImpl implements Client {
                 .registerTypeAdapterFactory(new GsonJava8TypeAdapterFactory())
                 .registerTypeAdapter(IdentityFilter.class, new IdentityFilterSerializer())
                 .create();
+    }
+
+    @Override
+    public void close() throws IOException {
+        this.client.dispatcher().executorService().shutdown();
     }
 }
