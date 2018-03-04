@@ -1,21 +1,14 @@
 package io.enjincoin.sdk.client.service.identities.impl;
 
-import java.io.IOException;
-import java.util.Map;
-
 import io.enjincoin.sdk.client.service.identities.IdentitiesService;
-import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityRequestBody;
-import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityResponseBody;
-import io.enjincoin.sdk.client.service.identities.vo.GetIdentityResponseBody;
-import io.enjincoin.sdk.client.service.identities.vo.IdentityFilter;
-import io.enjincoin.sdk.client.service.identities.vo.LinkIdentityRequestBody;
-import io.enjincoin.sdk.client.service.identities.vo.LinkIdentityResponseBody;
-import io.enjincoin.sdk.client.service.identities.vo.UpdateIdentityRequestBody;
-import io.enjincoin.sdk.client.service.identities.vo.UpdateIdentityResponseBody;
+import io.enjincoin.sdk.client.service.identities.vo.*;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+
+import java.io.IOException;
+import java.util.Map;
 
 public class IdentitiesServiceImpl implements IdentitiesService {
 
@@ -68,12 +61,6 @@ public class IdentitiesServiceImpl implements IdentitiesService {
     }
 
     @Override
-    public void linkIdentityAsync(String linkingCode, LinkIdentityRequestBody request, Callback<LinkIdentityResponseBody> callback) {
-        Call<LinkIdentityResponseBody> call = this.service.linkIdentity(linkingCode, request);
-        call.enqueue(callback);
-    }
-
-    @Override
     public Response<GetIdentityResponseBody[]> getIdentitiesSync() throws IOException {
         Call<GetIdentityResponseBody[]> call = this.service.getIdentities();
         return call.execute();
@@ -115,9 +102,4 @@ public class IdentitiesServiceImpl implements IdentitiesService {
         return call.execute();
     }
 
-    @Override
-    public Response<LinkIdentityResponseBody> linkIdentitySync(String linkingCode, LinkIdentityRequestBody request) throws IOException {
-        Call<LinkIdentityResponseBody> call = this.service.linkIdentity(linkingCode, request);
-        return call.execute();
-    }
 }
