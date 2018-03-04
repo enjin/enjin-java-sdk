@@ -1,9 +1,21 @@
 package io.enjincoin.sdk.client.service.identities.impl;
 
 import io.enjincoin.sdk.client.annotations.serialization.Json;
-import io.enjincoin.sdk.client.service.identities.vo.*;
+import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityRequestBody;
+import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityResponseBody;
+import io.enjincoin.sdk.client.service.identities.vo.GetIdentityResponseBody;
+import io.enjincoin.sdk.client.service.identities.vo.IdentityFilter;
+import io.enjincoin.sdk.client.service.identities.vo.UpdateIdentityRequestBody;
+import io.enjincoin.sdk.client.service.identities.vo.UpdateIdentityResponseBody;
 import retrofit2.Call;
-import retrofit2.http.*;
+import retrofit2.http.Body;
+import retrofit2.http.DELETE;
+import retrofit2.http.GET;
+import retrofit2.http.Headers;
+import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface RetrofitIdentitiesService {
 

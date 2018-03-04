@@ -20,8 +20,6 @@ import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityRequestBody;
 import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityResponseBody;
 import io.enjincoin.sdk.client.service.identities.vo.GetIdentityResponseBody;
 import io.enjincoin.sdk.client.service.identities.vo.IdentityField;
-import io.enjincoin.sdk.client.service.identities.vo.LinkIdentityRequestBody;
-import io.enjincoin.sdk.client.service.identities.vo.LinkIdentityResponseBody;
 import io.enjincoin.sdk.client.service.identities.vo.UpdateIdentityRequestBody;
 import io.enjincoin.sdk.client.service.identities.vo.UpdateIdentityResponseBody;
 import retrofit2.Call;
@@ -264,6 +262,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
 
         String ethereumAddress = "TestEthereumAddress_"+System.currentTimeMillis();
         CreateIdentityRequestBody createIdentityRequestBody = new CreateIdentityRequestBody(ethereumAddress, null);
+
         Response<CreateIdentityResponseBody> createIdentityResponseVO = identitiesService.createIdentitySync(createIdentityRequestBody);
         assertThat(createIdentityResponseVO).isNotNull();
         assertThat(createIdentityResponseVO.body()).isNotNull();
@@ -530,64 +529,5 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
             }
 
         });
-
-
-    }
-
-
-    @Test
-    public void testSynchronousIdentitiesService_LinkIdentity() throws IOException {
-        SynchronousIdentitiesService identitiesService = this.client.getIdentitiesService();
-        assertThat(identitiesService).isNotNull();
-
-        String ethereumAddress = "TestEthereumAddress_"+System.currentTimeMillis();
-
-        String linkingCode = "av"+System.currentTimeMillis();
-        LinkIdentityRequestBody linkIdentityRequestVO = new LinkIdentityRequestBody(ethereumAddress);
-        Response<LinkIdentityResponseBody> linkIdentityResponseVO = identitiesService.linkIdentitySync(linkingCode, linkIdentityRequestVO);
-        assertThat(linkIdentityResponseVO).isNotNull();
-        assertThat(linkIdentityResponseVO.body()).isNotNull();
-        //assertThat(linkIdentityResponseVO.body().getId()).isNotNull();
-        //assertThat(linkIdentityResponseVO.body().getEthereumAddress()).isNotNull();
-        //assertThat(linkIdentityResponseVO.body().getCreatedAt()).isNotNull();
-        //assertThat(linkIdentityResponseVO.body().getUpdatedAt()).isNotNull();
-        //assertThat(linkIdentityResponseVO.body().getUserId()).isNotNull();
-        //assertThat(linkIdentityResponseVO.body().getLinkingCode()).isNotNull();
-    }
-
-    @Test
-    public void testAsychronousIdentitiesService_LinkIdentity() throws InterruptedException, ExecutionException {
-        AsynchronousIdentitiesService identitiesService = this.client.getIdentitiesService();
-        assertThat(identitiesService).isNotNull();
-
-        String ethereumAddress = "TestEthereumAddress_"+System.currentTimeMillis();
-
-
-        String linkingCode = "av"+System.currentTimeMillis();
-        LinkIdentityRequestBody linkIdentityRequestVO = new LinkIdentityRequestBody(ethereumAddress);
-        identitiesService.linkIdentityAsync(linkingCode, linkIdentityRequestVO, new Callback<LinkIdentityResponseBody>() {
-
-            @Override
-            public void onResponse(Call<LinkIdentityResponseBody> call, Response<LinkIdentityResponseBody> response) {
-                assertThat(response).isNotNull();
-                assertThat(response.body()).isNotNull();
-
-                LinkIdentityResponseBody linkIdentityResponseVO = response.body();
-                assertThat(linkIdentityResponseVO).isNotNull();
-                //assertThat(linkIdentityResponseVO.getId()).isNotNull();
-                //assertThat(linkIdentityResponseVO.getEthereumAddress()).isNotNull();
-                //assertThat(linkIdentityResponseVO.getCreatedAt()).isNotNull();
-                //assertThat(linkIdentityResponseVO.getUpdatedAt()).isNotNull();
-                //assertThat(linkIdentityResponseVO.getUserId()).isNotNull();
-                //assertThat(linkIdentityResponseVO.getLinkingCode()).isNotNull();
-            }
-
-            @Override
-            public void onFailure(Call<LinkIdentityResponseBody> call, Throwable t) {
-                fail("Test failed");
-            }
-        });
-
-
     }
 }
