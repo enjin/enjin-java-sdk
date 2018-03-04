@@ -7,7 +7,7 @@ import com.enjin.java_commons.ObjectUtils;
 import com.enjin.java_commons.StringUtils;
 
 import io.enjincoin.sdk.client.config.Config;
-import io.enjincoin.sdk.client.service.BaseService;
+import io.enjincoin.sdk.client.service.legacy.BaseService;
 import io.enjincoin.sdk.client.service.legacy.users.UsersService;
 import io.enjincoin.sdk.client.util.GsonUtils;
 import io.enjincoin.sdk.client.util.JsonUtils;

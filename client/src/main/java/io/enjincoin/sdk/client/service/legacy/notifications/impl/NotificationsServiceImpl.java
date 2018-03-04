@@ -13,7 +13,7 @@ import com.enjin.java_commons.StringUtils;
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.config.Notification;
 import io.enjincoin.sdk.client.enums.NotificationType;
-import io.enjincoin.sdk.client.service.BaseService;
+import io.enjincoin.sdk.client.service.legacy.BaseService;
 import io.enjincoin.sdk.client.service.legacy.notifications.EventMatcher;
 import io.enjincoin.sdk.client.service.legacy.notifications.NotificationListener;
 import io.enjincoin.sdk.client.service.legacy.notifications.NotificationListenerRegistration;

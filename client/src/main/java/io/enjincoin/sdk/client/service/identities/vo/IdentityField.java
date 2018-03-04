@@ -1,8 +1,8 @@
 package io.enjincoin.sdk.client.service.identities.vo;
 
-import java.util.Optional;
-
 import com.google.gson.annotations.SerializedName;
+
+import java.util.Optional;
 
 /**
  * <p>FieldVO class.
@@ -28,6 +28,7 @@ public class IdentityField {
 
     /**
      * Class constructor.
+     *
      * @param key
      * @param fieldValue
      * @param searchable

@@ -1,16 +1,15 @@
-package io.enjincoin.sdk.client.vo.identity;
+package io.enjincoin.sdk.client.service.identities.vo;
+
+import com.google.gson.annotations.SerializedName;
 
 import java.util.Arrays;
 import java.util.Optional;
-
-import com.google.gson.annotations.SerializedName;
-import io.enjincoin.sdk.client.service.identities.vo.IdentityField;
 
 /**
  * <p>Get Identity Response class.
  * </p>
  */
-public class GetIdentityResponseVO {
+public class GetIdentityResponseBody {
 
 
     @SerializedName("id")
@@ -34,8 +33,8 @@ public class GetIdentityResponseVO {
     @SerializedName("fields")
     private Optional<IdentityField[]> fields;
 
-    public GetIdentityResponseVO(Optional<Integer> id, Optional<String> ethereumAddress, Optional<String> linkingCode, Optional<String> updatedAt, String createdAt, Optional<String> user,
-            Optional<IdentityField[]> fields) {
+    public GetIdentityResponseBody(Optional<Integer> id, Optional<String> ethereumAddress, Optional<String> linkingCode, Optional<String> updatedAt, String createdAt, Optional<String> user,
+                                   Optional<IdentityField[]> fields) {
         super();
         this.id = id;
         this.ethereumAddress = ethereumAddress;

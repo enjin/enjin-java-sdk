@@ -1,14 +1,10 @@
 package io.enjincoin.sdk.client.service.legacy.identities;
 
-import java.util.Map;
-
-import io.enjincoin.sdk.client.vo.identity.CreateIdentityRequestVO;
 import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityResponseBody;
-import io.enjincoin.sdk.client.vo.identity.GetIdentityResponseVO;
-import io.enjincoin.sdk.client.vo.identity.LinkIdentityRequestVO;
-import io.enjincoin.sdk.client.vo.identity.LinkIdentityResponseVO;
-import io.enjincoin.sdk.client.vo.identity.UpdateIdentityRequestVO;
-import io.enjincoin.sdk.client.vo.identity.UpdateIdentityResponseVO;
+import io.enjincoin.sdk.client.service.identities.vo.GetIdentityResponseBody;
+import io.enjincoin.sdk.client.vo.identity.*;
+
+import java.util.Map;
 
 /**
  * Identities service interface.
@@ -18,25 +14,27 @@ public interface SynchronousIdentitiesService {
     /**
      * Method to get all identities.
      *
-     *
      * @return - GetIdentityResponseVO
      */
-    GetIdentityResponseVO[] getIdentitiesSync();
+    GetIdentityResponseBody[] getIdentitiesSync();
 
     /**
      * Method to get all identities - supplying a filter also.
+     *
      * @param filterMap - the map with the data to use for filtering
      *
      * @return - GetIdentityResponseVO
      */
-    GetIdentityResponseVO[] getIdentitiesSync(Map<String, Object> filterMap);
+    GetIdentityResponseBody[] getIdentitiesSync(Map<String, Object> filterMap);
 
     /**
      * Method to get an entity by identityId
+     *
      * @param identityId - identity to get
+     *
      * @return
      */
-    GetIdentityResponseVO getIdentitySync(Integer identityId);
+    GetIdentityResponseBody getIdentitySync(Integer identityId);
 
     /**
      * Method to create an identity.
@@ -50,15 +48,18 @@ public interface SynchronousIdentitiesService {
     /**
      * Method to update an identity.
      *
-     * @param request - update identity request vo
+     * @param request    - update identity request vo
      * @param identityId - identity to update
+     *
      * @return - UpdateIdentityResponseVO
      */
     UpdateIdentityResponseVO updateIdentitySync(UpdateIdentityRequestVO request, Integer identityId);
 
     /**
      * Method to delete an identity
+     *
      * @param identityId - the identity to delete
+     *
      * @return Boolean
      */
     Boolean deleteIdentitySync(final Integer identityId);
@@ -67,7 +68,8 @@ public interface SynchronousIdentitiesService {
      * Method to link an identity.
      *
      * @param linkIdentityRequestVO - link identity request vo
-     * @param linkingCode - code to use
+     * @param linkingCode           - code to use
+     *
      * @return - LinkIdentityResponseVO
      */
     LinkIdentityResponseVO linkIdentitySync(LinkIdentityRequestVO linkIdentityRequestVO, String linkingCode);

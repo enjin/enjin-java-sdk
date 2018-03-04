@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.concurrent.ExecutorService;
 
+import io.enjincoin.sdk.client.service.legacy.BaseService;
 import org.junit.Before;
 import org.junit.Test;
 

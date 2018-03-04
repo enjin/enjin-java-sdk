@@ -9,7 +9,7 @@ import com.enjin.java_commons.ObjectUtils;
 import com.enjin.java_commons.OptionalUtils;
 
 import io.enjincoin.sdk.client.config.Config;
-import io.enjincoin.sdk.client.service.BaseService;
+import io.enjincoin.sdk.client.service.legacy.BaseService;
 import io.enjincoin.sdk.client.service.legacy.events.EventsService;
 import io.enjincoin.sdk.client.vo.event.GetEventRequestVO;
 import io.enjincoin.sdk.client.vo.event.GetEventResponseVO;

@@ -1,24 +1,19 @@
-package io.enjincoin.sdk.client.service;
-
-import java.io.IOException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.logging.Logger;
+package io.enjincoin.sdk.client.service.legacy;
 
 import com.enjin.java_commons.ObjectUtils;
 import com.enjin.java_commons.StringUtils;
-
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.config.Platform;
 import io.enjincoin.sdk.client.service.legacy.platform.SynchronousPlatformService;
 import io.enjincoin.sdk.client.service.legacy.platform.impl.PlatformServiceImpl;
 import io.enjincoin.sdk.client.util.Constants;
 import io.enjincoin.sdk.client.util.HttpClient;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import okhttp3.*;
+
+import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.logging.Logger;
 
 /**
  * <p>Provides Services used by the main service classes.</p>
@@ -75,6 +70,7 @@ public abstract class BaseService {
 
     /**
      * Method to get the okHttpClient
+     *
      * @return
      */
     private OkHttpClient getHttpClient() {
@@ -84,7 +80,9 @@ public abstract class BaseService {
 
     /**
      * Method to perform a get call
+     *
      * @param urlToCall - url to call
+     *
      * @return
      */
     protected String performGetCall(String urlToCall) {
@@ -100,21 +98,23 @@ public abstract class BaseService {
             Response httpResponse = getHttpClient().newCall(httpRequest).execute();
             int responseCode = httpResponse.code();
             if (responseCode != Constants.SUCCESS_HTTP_CODE) {
-                LOGGER.warning("performGetCall. responseCode returned '"+responseCode+"' from the url '"+urlToCall+"' is not valid");
+                LOGGER.warning("performGetCall. responseCode returned '" + responseCode + "' from the url '" + urlToCall + "' is not valid");
                 return responseJsonString;
             }
 
             responseJsonString = httpResponse.body().string();
         } catch (IOException e) {
-            LOGGER.warning("performGetCall. An IOException has occured calling the url "+urlToCall+". Exception:" + e);
+            LOGGER.warning("performGetCall. An IOException has occured calling the url " + urlToCall + ". Exception:" + e);
         }
         return responseJsonString;
     }
 
     /**
      * Method to perform a post call
-     * @param urlToCall - url to call
+     *
+     * @param urlToCall         - url to call
      * @param requestJsonString - the request to send
+     *
      * @return
      */
     protected String performPostCall(String urlToCall, String requestJsonString) {
@@ -131,20 +131,23 @@ public abstract class BaseService {
             Response httpResponse = getHttpClient().newCall(httpRequest).execute();
             int responseCode = httpResponse.code();
             if (responseCode != Constants.SUCCESS_HTTP_CODE) {
-                LOGGER.warning("performPostCall. responseCode returned '"+responseCode+"' from the url '"+urlToCall+"' is not valid");
+                LOGGER.warning("performPostCall. responseCode returned '" + responseCode + "' from the url '" + urlToCall + "' is not valid");
                 return responseJsonString;
             }
 
             responseJsonString = httpResponse.body().string();
         } catch (IOException e) {
-            LOGGER.warning("performPostCall. An IOException has occured calling the url "+urlToCall+". Exception:" + e);
+            LOGGER.warning("performPostCall. An IOException has occured calling the url " + urlToCall + ". Exception:" + e);
         }
         return responseJsonString;
     }
+
     /**
      * Method to perform a put call
-     * @param urlToCall - url to call
+     *
+     * @param urlToCall         - url to call
      * @param requestJsonString - the request to send
+     *
      * @return
      */
     protected String performPutCall(String urlToCall) {
@@ -160,20 +163,23 @@ public abstract class BaseService {
             Response httpResponse = getHttpClient().newCall(httpRequest).execute();
             int responseCode = httpResponse.code();
             if (responseCode != Constants.SUCCESS_HTTP_CODE) {
-                LOGGER.warning("performPutCall. responseCode returned '"+responseCode+"' from the url '"+urlToCall+"' is not valid");
+                LOGGER.warning("performPutCall. responseCode returned '" + responseCode + "' from the url '" + urlToCall + "' is not valid");
                 return responseJsonString;
             }
 
             responseJsonString = httpResponse.body().string();
         } catch (IOException e) {
-            LOGGER.warning("performPutCall. An IOException has occured calling the url "+urlToCall+". Exception:" + e);
+            LOGGER.warning("performPutCall. An IOException has occured calling the url " + urlToCall + ". Exception:" + e);
         }
         return responseJsonString;
     }
+
     /**
      * Method to perform a put call
-     * @param urlToCall - url to call
+     *
+     * @param urlToCall         - url to call
      * @param requestJsonString - the request to send
+     *
      * @return
      */
     protected String performPutCall(String urlToCall, String requestJsonString) {
@@ -190,19 +196,22 @@ public abstract class BaseService {
             Response httpResponse = getHttpClient().newCall(httpRequest).execute();
             int responseCode = httpResponse.code();
             if (responseCode != Constants.SUCCESS_HTTP_CODE) {
-                LOGGER.warning("performPutCall. responseCode returned '"+responseCode+"' from the url '"+urlToCall+"' is not valid");
+                LOGGER.warning("performPutCall. responseCode returned '" + responseCode + "' from the url '" + urlToCall + "' is not valid");
                 return responseJsonString;
             }
 
             responseJsonString = httpResponse.body().string();
         } catch (IOException e) {
-            LOGGER.warning("performPutCall. An IOException has occured calling the url "+urlToCall+". Exception:" + e);
+            LOGGER.warning("performPutCall. An IOException has occured calling the url " + urlToCall + ". Exception:" + e);
         }
         return responseJsonString;
     }
+
     /**
      * Method to perform a delete call
+     *
      * @param urlToCall - url to call
+     *
      * @return
      */
     protected String performDeleteCall(String urlToCall) {
@@ -218,13 +227,13 @@ public abstract class BaseService {
             Response httpResponse = getHttpClient().newCall(httpRequest).execute();
             int responseCode = httpResponse.code();
             if (responseCode != Constants.SUCCESS_HTTP_CODE) {
-                LOGGER.warning("performDeleteCall. responseCode returned '"+responseCode+"' from the url '"+urlToCall+"' is not valid");
+                LOGGER.warning("performDeleteCall. responseCode returned '" + responseCode + "' from the url '" + urlToCall + "' is not valid");
                 return responseJsonString;
             }
 
             responseJsonString = httpResponse.body().string();
         } catch (IOException e) {
-            LOGGER.warning("performDeleteCall. An IOException has occured calling the url "+urlToCall+". Exception:" + e);
+            LOGGER.warning("performDeleteCall. An IOException has occured calling the url " + urlToCall + ". Exception:" + e);
         }
         return responseJsonString;
     }
@@ -255,6 +264,7 @@ public abstract class BaseService {
     protected String getUsersUrl() {
         return this.getRestURL(Constants.USERS_URL);
     }
+
     /**
      * Method to get the user login url.
      *
@@ -263,6 +273,7 @@ public abstract class BaseService {
     protected String getUserLoginUrl() {
         return this.getRestURL(Constants.USER_LOGIN_URL);
     }
+
     /**
      * Method to get the tokens url.
      *

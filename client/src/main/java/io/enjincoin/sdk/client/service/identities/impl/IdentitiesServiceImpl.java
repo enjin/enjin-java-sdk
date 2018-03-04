@@ -2,9 +2,9 @@ package io.enjincoin.sdk.client.service.identities.impl;
 
 import io.enjincoin.sdk.client.service.identities.IdentitiesService;
 import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityRequestBody;
-import io.enjincoin.sdk.client.service.identities.vo.IdentityFilter;
 import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityResponseBody;
-import io.enjincoin.sdk.client.vo.identity.GetIdentityResponseVO;
+import io.enjincoin.sdk.client.service.identities.vo.GetIdentityResponseBody;
+import io.enjincoin.sdk.client.service.identities.vo.IdentityFilter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -22,38 +22,38 @@ public class IdentitiesServiceImpl implements IdentitiesService {
     }
 
     @Override
-    public void getIdentitiesAsync(Callback<GetIdentityResponseVO[]> callback) {
-        Call<GetIdentityResponseVO[]> call = this.service.getIdentities();
+    public void getIdentitiesAsync(Callback<GetIdentityResponseBody[]> callback) {
+        Call<GetIdentityResponseBody[]> call = this.service.getIdentities();
         call.enqueue(callback);
     }
 
     @Override
-    public Response<GetIdentityResponseVO[]> getIdentitiesSync() throws IOException {
-        Call<GetIdentityResponseVO[]> call = this.service.getIdentities();
+    public Response<GetIdentityResponseBody[]> getIdentitiesSync() throws IOException {
+        Call<GetIdentityResponseBody[]> call = this.service.getIdentities();
         return call.execute();
     }
 
     @Override
-    public void getIdentitiesAsync(Map<String, Object> filter, Callback<GetIdentityResponseVO[]> callback) {
-        Call<GetIdentityResponseVO[]> call = this.service.getIdentities(new IdentityFilter(filter));
+    public void getIdentitiesAsync(Map<String, Object> filter, Callback<GetIdentityResponseBody[]> callback) {
+        Call<GetIdentityResponseBody[]> call = this.service.getIdentities(new IdentityFilter(filter));
         call.enqueue(callback);
     }
 
     @Override
-    public Response<GetIdentityResponseVO[]> getIdentitiesSync(Map<String, Object> filter) throws IOException {
-        Call<GetIdentityResponseVO[]> call = this.service.getIdentities(new IdentityFilter(filter));
+    public Response<GetIdentityResponseBody[]> getIdentitiesSync(Map<String, Object> filter) throws IOException {
+        Call<GetIdentityResponseBody[]> call = this.service.getIdentities(new IdentityFilter(filter));
         return call.execute();
     }
 
     @Override
-    public void getIdentityAsync(int id, Callback<GetIdentityResponseVO> callback) {
-        Call<GetIdentityResponseVO> call = this.service.getIdentity(id);
+    public void getIdentityAsync(int id, Callback<GetIdentityResponseBody> callback) {
+        Call<GetIdentityResponseBody> call = this.service.getIdentity(id);
         call.enqueue(callback);
     }
 
     @Override
-    public Response<GetIdentityResponseVO> getIdentitySync(int id) throws IOException {
-        Call<GetIdentityResponseVO> call = this.service.getIdentity(id);
+    public Response<GetIdentityResponseBody> getIdentitySync(int id) throws IOException {
+        Call<GetIdentityResponseBody> call = this.service.getIdentity(id);
         return call.execute();
     }
 

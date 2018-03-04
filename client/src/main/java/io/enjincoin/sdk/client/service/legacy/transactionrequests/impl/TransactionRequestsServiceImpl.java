@@ -9,7 +9,7 @@ import com.enjin.java_commons.ObjectUtils;
 import com.enjin.java_commons.OptionalUtils;
 
 import io.enjincoin.sdk.client.config.Config;
-import io.enjincoin.sdk.client.service.BaseService;
+import io.enjincoin.sdk.client.service.legacy.BaseService;
 import io.enjincoin.sdk.client.service.legacy.transactionrequests.TransactionRequestsService;
 import io.enjincoin.sdk.client.vo.transactionrequest.CancelTransactionRequestRequestVO;
 import io.enjincoin.sdk.client.vo.transactionrequest.CancelTransactionRequestResponseVO;

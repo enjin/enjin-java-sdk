@@ -1,14 +1,10 @@
 package io.enjincoin.sdk.client;
 
 import io.enjincoin.sdk.client.service.identities.IdentitiesService;
-import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityRequestBody;
 import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityResponseBody;
-import io.enjincoin.sdk.client.vo.identity.GetIdentityResponseVO;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import java.util.HashMap;
 
 public class Sample {
 

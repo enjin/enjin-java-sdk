@@ -1,26 +1,21 @@
 package io.enjincoin.sdk.client.service.legacy.identities.impl;
 
-import java.util.Map;
-import java.util.concurrent.CompletableFuture;
-import java.util.logging.Logger;
-
 import com.enjin.java_commons.MapUtils;
 import com.enjin.java_commons.ObjectUtils;
 import com.enjin.java_commons.OptionalUtils;
 import com.enjin.java_commons.StringUtils;
-
 import io.enjincoin.sdk.client.config.Config;
-import io.enjincoin.sdk.client.service.BaseService;
+import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityResponseBody;
+import io.enjincoin.sdk.client.service.identities.vo.GetIdentityResponseBody;
+import io.enjincoin.sdk.client.service.legacy.BaseService;
 import io.enjincoin.sdk.client.service.legacy.identities.IdentitiesService;
 import io.enjincoin.sdk.client.util.GsonUtils;
 import io.enjincoin.sdk.client.util.JsonUtils;
-import io.enjincoin.sdk.client.vo.identity.CreateIdentityRequestVO;
-import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityResponseBody;
-import io.enjincoin.sdk.client.vo.identity.GetIdentityResponseVO;
-import io.enjincoin.sdk.client.vo.identity.LinkIdentityRequestVO;
-import io.enjincoin.sdk.client.vo.identity.LinkIdentityResponseVO;
-import io.enjincoin.sdk.client.vo.identity.UpdateIdentityRequestVO;
-import io.enjincoin.sdk.client.vo.identity.UpdateIdentityResponseVO;
+import io.enjincoin.sdk.client.vo.identity.*;
+
+import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.logging.Logger;
 
 /**
  * <p>
@@ -46,12 +41,11 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
     /**
      * Method to get all identities.
      *
-     *
      * @return - GetIdentityResponseVO
      */
     @Override
-    public final GetIdentityResponseVO[] getIdentitiesSync() {
-        GetIdentityResponseVO[] getIdentitiesResponse = null;
+    public final GetIdentityResponseBody[] getIdentitiesSync() {
+        GetIdentityResponseBody[] getIdentitiesResponse = null;
 
         // Get the identities url
         String getIdentitiesUrl = getIdentitiesUrl();
@@ -61,20 +55,21 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
             LOGGER.warning("No response returned from the getIdentities call");
             return getIdentitiesResponse;
         }
-        getIdentitiesResponse = (GetIdentityResponseVO[]) JsonUtils.convertJsonToObject(GsonUtils.GSON, responseJsonString, GetIdentityResponseVO[].class);
+        getIdentitiesResponse = (GetIdentityResponseBody[]) JsonUtils.convertJsonToObject(GsonUtils.GSON, responseJsonString, GetIdentityResponseBody[].class);
 
         return getIdentitiesResponse;
     }
 
     /**
      * Method to get all identities - supplying a filter also.
-     *  @param filterMap - the map with the data to use for filtering
+     *
+     * @param filterMap - the map with the data to use for filtering
      *
      * @return - GetIdentityResponseVO
      */
     @Override
-    public GetIdentityResponseVO[] getIdentitiesSync(Map<String, Object> filterMap) {
-        GetIdentityResponseVO[] getIdentitiesResponse = null;
+    public GetIdentityResponseBody[] getIdentitiesSync(Map<String, Object> filterMap) {
+        GetIdentityResponseBody[] getIdentitiesResponse = null;
 
         if (MapUtils.isEmpty(filterMap)) {
             LOGGER.warning("Identities.get filterMap is null or empty.");
@@ -91,19 +86,21 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
             LOGGER.warning("No response returned from the getIdentities call");
             return getIdentitiesResponse;
         }
-        getIdentitiesResponse = (GetIdentityResponseVO[]) JsonUtils.convertJsonToObject(GsonUtils.GSON, responseJsonString, GetIdentityResponseVO[].class);
+        getIdentitiesResponse = (GetIdentityResponseBody[]) JsonUtils.convertJsonToObject(GsonUtils.GSON, responseJsonString, GetIdentityResponseBody[].class);
 
         return getIdentitiesResponse;
     }
 
     /**
      * Method to get an entity by identityId
+     *
      * @param identityId
+     *
      * @return
      */
     @Override
-    public GetIdentityResponseVO getIdentitySync(final Integer identityId) {
-        GetIdentityResponseVO getIdentityResponse = null;
+    public GetIdentityResponseBody getIdentitySync(final Integer identityId) {
+        GetIdentityResponseBody getIdentityResponse = null;
 
         if (identityId == null) {
             LOGGER.warning("Identities.get identityId is null.");
@@ -119,7 +116,7 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
             return getIdentityResponse;
         }
 
-        getIdentityResponse = (GetIdentityResponseVO) JsonUtils.convertJsonToObject(GsonUtils.GSON, responseJsonString, GetIdentityResponseVO.class);
+        getIdentityResponse = (GetIdentityResponseBody) JsonUtils.convertJsonToObject(GsonUtils.GSON, responseJsonString, GetIdentityResponseBody.class);
 
         return getIdentityResponse;
     }
@@ -143,7 +140,7 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
         if (StringUtils.isEmpty(requestJsonString)) {
             LOGGER.warning("Identities.create failed to convert request object to json.");
         }
-         // Get the identities url
+        // Get the identities url
         String createIdentitiesUrl = getIdentitiesUrl();
 
         String responseJsonString = performPostCall(createIdentitiesUrl, requestJsonString);
@@ -158,7 +155,9 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
 
     /**
      * Method to delete an identity
+     *
      * @param identityId - the identity to delete
+     *
      * @return
      */
     @Override
@@ -247,16 +246,17 @@ public class IdentitiesServiceImpl extends BaseService implements IdentitiesServ
     }
 
     @Override
-    public CompletableFuture<GetIdentityResponseVO[]> getIdentitiesAsync() {
+    public CompletableFuture<GetIdentityResponseBody[]> getIdentitiesAsync() {
         return CompletableFuture.supplyAsync(() -> this.getIdentitiesSync(), this.getExecutorService());
     }
+
     @Override
-    public CompletableFuture<GetIdentityResponseVO[]> getIdentitiesAsync(Map<String, Object> filterMap) {
+    public CompletableFuture<GetIdentityResponseBody[]> getIdentitiesAsync(Map<String, Object> filterMap) {
         return CompletableFuture.supplyAsync(() -> this.getIdentitiesSync(filterMap), this.getExecutorService());
     }
 
     @Override
-    public CompletableFuture<GetIdentityResponseVO> getIdentityAsync(final Integer identityId) {
+    public CompletableFuture<GetIdentityResponseBody> getIdentityAsync(final Integer identityId) {
         return CompletableFuture.supplyAsync(() -> this.getIdentitySync(identityId), this.getExecutorService());
     }
 

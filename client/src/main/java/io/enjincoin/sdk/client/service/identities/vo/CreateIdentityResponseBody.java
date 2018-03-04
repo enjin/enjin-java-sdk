@@ -1,8 +1,8 @@
 package io.enjincoin.sdk.client.service.identities.vo;
 
-import java.util.Optional;
-
 import com.google.gson.annotations.SerializedName;
+
+import java.util.Optional;
 
 /**
  * <p>Create Identity Response class.
@@ -27,6 +27,7 @@ public class CreateIdentityResponseBody {
 
     /**
      * Class constructor.
+     *
      * @param id
      * @param ethereumAddress
      * @param updatedAt
