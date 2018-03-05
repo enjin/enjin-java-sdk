@@ -2,9 +2,9 @@ package io.enjincoin.sdk.client.service.legacy.tokens;
 
 import java.util.concurrent.CompletableFuture;
 
+import io.enjincoin.sdk.client.service.tokens.vo.TokenResponseBody;
 import io.enjincoin.sdk.client.vo.token.CreateTokenRequestVO;
 import io.enjincoin.sdk.client.vo.token.CreateTokenResponseVO;
-import io.enjincoin.sdk.client.vo.token.TokenResponseVO;
 import io.enjincoin.sdk.client.vo.token.UpdateTokenRequestVO;
 
 /**
@@ -18,14 +18,14 @@ public interface AsynchronousTokensService {
      *
      * @return - TokenResponseVO
      */
-    CompletableFuture<TokenResponseVO[]> getTokensAsync();
+    CompletableFuture<TokenResponseBody[]> getTokensAsync();
 
     /**
      * Method to get a token by id
      * @param tokenId for the token to retrieve
      * @return
      */
-    CompletableFuture<TokenResponseVO> getTokenAsync(Integer tokenId);
+    CompletableFuture<TokenResponseBody> getTokenAsync(Integer tokenId);
 
     /**
      * Method to create a token
@@ -40,7 +40,7 @@ public interface AsynchronousTokensService {
      * @param tokenId the token to update
      * @return TokenResponseVO
      */
-    CompletableFuture<TokenResponseVO> updateTokenAsync(UpdateTokenRequestVO updateTokenRequestVO, Integer tokenId);
+    CompletableFuture<TokenResponseBody> updateTokenAsync(UpdateTokenRequestVO updateTokenRequestVO, Integer tokenId);
 
     /**
      * Method to delete a token

@@ -43,10 +43,10 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
         SynchronousTokensService tokensService = this.client.getTokensService();
         assertThat(tokensService).isNotNull();
 
-        TokenResponseVO[] tokensArray = tokensService.getTokensSync();
+        TokenResponseBody[] tokensArray = tokensService.getTokensSync();
         assertThat(tokensArray).isNotNull();
 
-        for (TokenResponseVO token : tokensArray) {
+        for (TokenResponseBody token : tokensArray) {
             assertThat(token).isNotNull();
             assertThat(token.getTokenId()).isNotNull();
             assertThat(token.getAppId()).isNotNull();
@@ -70,12 +70,12 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
         AsynchronousTokensService tokensService = this.client.getTokensService();
         assertThat(tokensService).isNotNull();
 
-        CompletableFuture<TokenResponseVO[]> tokensArrayCf = tokensService.getTokensAsync();
+        CompletableFuture<TokenResponseBody[]> tokensArrayCf = tokensService.getTokensAsync();
         assertThat(tokensArrayCf).isNotNull();
         assertThat(tokensArrayCf.get()).isNotNull();
 
-        TokenResponseVO[] tokensArray = tokensArrayCf.get();
-        for (TokenResponseVO token : tokensArray) {
+        TokenResponseBody[] tokensArray = tokensArrayCf.get();
+        for (TokenResponseBody token : tokensArray) {
             assertThat(token).isNotNull();
             assertThat(token.getTokenId()).isNotNull();
             assertThat(token.getAppId()).isNotNull();
@@ -109,7 +109,7 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
 
         Integer tokenId = createTokenResponseVO.getTokenId().get();
 
-        TokenResponseVO token = tokensService.getTokenSync(tokenId);
+        TokenResponseBody token = tokensService.getTokenSync(tokenId);
         assertThat(token).isNotNull();
         assertThat(token.getTokenId()).isNotNull();
         assertThat(token.getAppId()).isNotNull();
@@ -147,11 +147,11 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
         assertThat(createTokenResponseVO.getUpdatedAt()).isNotNull();
 
         Integer tokenId = createTokenResponseVO.getTokenId().get();
-        CompletableFuture<TokenResponseVO> tokenCf = tokensService.getTokenAsync(tokenId);
+        CompletableFuture<TokenResponseBody> tokenCf = tokensService.getTokenAsync(tokenId);
         assertThat(tokenCf).isNotNull();
         assertThat(tokenCf.get()).isNotNull();
 
-        TokenResponseVO token = tokenCf.get();
+        TokenResponseBody token = tokenCf.get();
         assertThat(token).isNotNull();
         assertThat(token.getTokenId()).isNotNull();
         assertThat(token.getAppId()).isNotNull();
@@ -233,7 +233,7 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
         Integer tokenId = createTokenResponseVO.getTokenId().get();
 
         UpdateTokenRequestVO updateTokenRequestVO = new UpdateTokenRequestVO(createTokenResponseVO.getTokenId(), createTokenResponseVO.getAppId(), Optional.of("Updated Name"), Optional.of("Updated Icon"));
-        TokenResponseVO token = tokensService.updateTokenSync(updateTokenRequestVO , tokenId);
+        TokenResponseBody token = tokensService.updateTokenSync(updateTokenRequestVO , tokenId);
 
         assertThat(token).isNotNull();
         assertThat(token.getTokenId()).isNotNull();
@@ -274,9 +274,9 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
         Integer tokenId = createTokenResponseVO.getTokenId().get();
 
         UpdateTokenRequestVO updateTokenRequestVO = new UpdateTokenRequestVO(createTokenResponseVO.getTokenId(), createTokenResponseVO.getAppId(), Optional.of("Updated Name"), Optional.of("Updated Icon"));
-        CompletableFuture<TokenResponseVO> tokenCf = tokensService.updateTokenAsync(updateTokenRequestVO , tokenId);
+        CompletableFuture<TokenResponseBody> tokenCf = tokensService.updateTokenAsync(updateTokenRequestVO , tokenId);
 
-        TokenResponseVO token = tokenCf.get();
+        TokenResponseBody token = tokenCf.get();
         assertThat(token).isNotNull();
         assertThat(token.getTokenId()).isNotNull();
         assertThat(token.getAppId()).isNotNull();

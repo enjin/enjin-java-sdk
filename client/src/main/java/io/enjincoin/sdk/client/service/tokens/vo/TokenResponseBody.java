@@ -1,4 +1,4 @@
-package io.enjincoin.sdk.client.vo.token;
+package io.enjincoin.sdk.client.service.tokens.vo;
 
 import java.math.BigDecimal;
 import java.util.Optional;
@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
  * <p>Token Response class.
  * </p>
  */
-public class TokenResponseVO {
+public class TokenResponseBody {
 
     @SerializedName("token_id")
     private Optional<Integer> tokenId;
@@ -70,24 +70,24 @@ public class TokenResponseVO {
      * @param updatedAt
      * @param createdAt
      */
-    public TokenResponseVO(Optional<Integer> tokenId, Optional<Integer> appId, Optional<String> creator, Optional<String> adapter, Optional<String> name, Optional<String> icon,
-            Optional<Integer> totalSupply, Optional<String> exchangeRate, Optional<Integer> decimals, Optional<BigDecimal> maxMeltFee, Optional<BigDecimal> meltFee,
-            Optional<Integer> transferable, Optional<String> updatedAt, Optional<String> createdAt) {
+    public TokenResponseBody(Integer tokenId, Integer appId, String creator, String adapter, String name, String icon,
+            Integer totalSupply, String exchangeRate, Integer decimals, BigDecimal maxMeltFee, BigDecimal meltFee,
+            Integer transferable, String updatedAt, String createdAt) {
         super();
-        this.tokenId = tokenId;
-        this.appId = appId;
-        this.creator = creator;
-        this.adapter = adapter;
-        this.name = name;
-        this.icon = icon;
-        this.totalSupply = totalSupply;
-        this.exchangeRate = exchangeRate;
-        this.decimals = decimals;
-        this.maxMeltFee = maxMeltFee;
-        this.meltFee = meltFee;
-        this.transferable = transferable;
-        this.updatedAt = updatedAt;
-        this.createdAt = createdAt;
+        this.tokenId = Optional.of(tokenId);
+        this.appId = Optional.of(appId);
+        this.creator = Optional.of(creator);
+        this.adapter = Optional.of(adapter);
+        this.name = Optional.of(name);
+        this.icon = Optional.of(icon);
+        this.totalSupply = Optional.of(totalSupply);
+        this.exchangeRate = Optional.of(exchangeRate);
+        this.decimals = Optional.of(decimals);
+        this.maxMeltFee = Optional.of(maxMeltFee);
+        this.meltFee = Optional.of(meltFee);
+        this.transferable = Optional.of(transferable);
+        this.updatedAt = Optional.of(updatedAt);
+        this.createdAt = Optional.of(createdAt);
     }
 
     /**
@@ -193,7 +193,7 @@ public class TokenResponseVO {
      */
     @Override
     public String toString() {
-        return "TokenResponseVO [tokenId=" + tokenId + ", appId=" + appId + ", creator=" + creator + ", adapter=" + adapter + ", name=" + name + ", icon=" + icon + ", totalSupply="
+        return "TokenResponseBody [tokenId=" + tokenId + ", appId=" + appId + ", creator=" + creator + ", adapter=" + adapter + ", name=" + name + ", icon=" + icon + ", totalSupply="
                 + totalSupply + ", exchangeRate=" + exchangeRate + ", decimals=" + decimals + ", maxMeltFee=" + maxMeltFee + ", meltFee=" + meltFee + ", transferable=" + transferable
                 + ", updatedAt=" + updatedAt + ", createdAt=" + createdAt + "]";
     }

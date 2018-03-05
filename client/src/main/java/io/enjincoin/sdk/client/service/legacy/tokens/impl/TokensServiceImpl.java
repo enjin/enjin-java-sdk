@@ -9,11 +9,11 @@ import com.enjin.java_commons.StringUtils;
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.service.legacy.BaseService;
 import io.enjincoin.sdk.client.service.legacy.tokens.TokensService;
+import io.enjincoin.sdk.client.service.tokens.vo.TokenResponseBody;
 import io.enjincoin.sdk.client.util.GsonUtils;
 import io.enjincoin.sdk.client.util.JsonUtils;
 import io.enjincoin.sdk.client.vo.token.CreateTokenRequestVO;
 import io.enjincoin.sdk.client.vo.token.CreateTokenResponseVO;
-import io.enjincoin.sdk.client.vo.token.TokenResponseVO;
 import io.enjincoin.sdk.client.vo.token.UpdateTokenRequestVO;
 
 /**
@@ -41,8 +41,8 @@ public class TokensServiceImpl extends BaseService implements TokensService {
      * Method to get all tokens
      */
     @Override
-    public final TokenResponseVO[] getTokensSync() {
-        TokenResponseVO[] getTokensResponseVO = null;
+    public final TokenResponseBody[] getTokensSync() {
+        TokenResponseBody[] getTokensResponseVO = null;
 
         // Get the tokens url
         String getTokensUrl = getTokensUrl();
@@ -53,7 +53,7 @@ public class TokensServiceImpl extends BaseService implements TokensService {
             LOGGER.warning("No response returned from the getTokens call");
             return getTokensResponseVO;
         }
-        getTokensResponseVO = (TokenResponseVO[]) JsonUtils.convertJsonToObject(GsonUtils.GSON, responseJsonString, TokenResponseVO[].class);
+        getTokensResponseVO = (TokenResponseBody[]) JsonUtils.convertJsonToObject(GsonUtils.GSON, responseJsonString, TokenResponseBody[].class);
         return getTokensResponseVO;
     }
 
@@ -63,8 +63,8 @@ public class TokensServiceImpl extends BaseService implements TokensService {
      * @return
      */
     @Override
-    public final TokenResponseVO getTokenSync(Integer tokenId) {
-        TokenResponseVO getTokenResponseVO = null;
+    public final TokenResponseBody getTokenSync(Integer tokenId) {
+        TokenResponseBody getTokenResponseVO = null;
 
         if (ObjectUtils.isNull(tokenId)) {
             LOGGER.warning("Tokens.getToken tokenId cannot be null");
@@ -80,7 +80,7 @@ public class TokensServiceImpl extends BaseService implements TokensService {
             LOGGER.warning("No response returned from the getTokens call");
             return getTokenResponseVO;
         }
-        getTokenResponseVO = (TokenResponseVO) JsonUtils.convertJsonToObject(GsonUtils.GSON, responseJsonString, TokenResponseVO.class);
+        getTokenResponseVO = (TokenResponseBody) JsonUtils.convertJsonToObject(GsonUtils.GSON, responseJsonString, TokenResponseBody.class);
         return getTokenResponseVO;
     }
 
@@ -122,8 +122,8 @@ public class TokensServiceImpl extends BaseService implements TokensService {
      * @return TokenResponseVO
      */
     @Override
-    public TokenResponseVO updateTokenSync(UpdateTokenRequestVO updateTokenRequestVO, Integer tokenId) {
-        TokenResponseVO updateTokenResponseVO = null;
+    public TokenResponseBody updateTokenSync(UpdateTokenRequestVO updateTokenRequestVO, Integer tokenId) {
+        TokenResponseBody updateTokenResponseVO = null;
 
         if (ObjectUtils.isNull(updateTokenRequestVO) || ObjectUtils.isNull(tokenId)) {
             LOGGER.warning("Tokens.update createTokenRequestVO or tokenId cannot be null");
@@ -144,7 +144,7 @@ public class TokensServiceImpl extends BaseService implements TokensService {
             LOGGER.warning("No response returned from the updateToken call");
             return updateTokenResponseVO;
         }
-        updateTokenResponseVO = (TokenResponseVO) JsonUtils.convertJsonToObject(GsonUtils.GSON, responseJsonString, TokenResponseVO.class);
+        updateTokenResponseVO = (TokenResponseBody) JsonUtils.convertJsonToObject(GsonUtils.GSON, responseJsonString, TokenResponseBody.class);
         return updateTokenResponseVO;
     }
 
@@ -188,7 +188,7 @@ public class TokensServiceImpl extends BaseService implements TokensService {
      * @return - GetTokenResponseVO
      */
     @Override
-    public CompletableFuture<TokenResponseVO[]> getTokensAsync() {
+    public CompletableFuture<TokenResponseBody[]> getTokensAsync() {
         return CompletableFuture.supplyAsync(() -> this.getTokensSync(), this.getExecutorService());
     }
     /**
@@ -197,7 +197,7 @@ public class TokensServiceImpl extends BaseService implements TokensService {
      * @return
      */
     @Override
-    public CompletableFuture<TokenResponseVO> getTokenAsync(Integer tokenId) {
+    public CompletableFuture<TokenResponseBody> getTokenAsync(Integer tokenId) {
         return CompletableFuture.supplyAsync(() -> this.getTokenSync(tokenId), this.getExecutorService());
     }
     /**
@@ -217,7 +217,7 @@ public class TokensServiceImpl extends BaseService implements TokensService {
      * @return TokenResponseVO
      */
     @Override
-    public CompletableFuture<TokenResponseVO> updateTokenAsync(UpdateTokenRequestVO updateTokenRequestVO, Integer tokenId) {
+    public CompletableFuture<TokenResponseBody> updateTokenAsync(UpdateTokenRequestVO updateTokenRequestVO, Integer tokenId) {
         return CompletableFuture.supplyAsync(() -> this.updateTokenSync(updateTokenRequestVO, tokenId), this.getExecutorService());
     }
 
