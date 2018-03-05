@@ -6,9 +6,9 @@ import static org.junit.Assert.fail;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
+import client.service.BaseLiveServiceTest;
 import org.junit.Test;
 
-import io.enjincoin.sdk.client.service.BaseLiveServiceTest;
 import io.enjincoin.sdk.client.service.identity.AsynchronousIdentityService;
 import io.enjincoin.sdk.client.service.identity.SynchronousIdentityService;
 import io.enjincoin.sdk.client.service.identity.vo.LinkIdentityRequestBody;
@@ -22,7 +22,7 @@ import retrofit2.Response;
  * Will have the disabled annotation in place usually but will be useful for testing the actual api
  *
  */
-public class LiveIdentityServiceTest extends BaseLiveServiceTest{
+public class LiveIdentityServiceTest extends BaseLiveServiceTest {
 
     @Test
     public void testSynchronousIdentitiesService_LinkIdentity() throws IOException {

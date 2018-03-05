@@ -11,17 +11,12 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 
+import client.service.BaseLiveServiceTest;
+import io.enjincoin.sdk.client.service.identities.vo.*;
 import org.junit.Test;
 
-import io.enjincoin.sdk.client.service.BaseLiveServiceTest;
 import io.enjincoin.sdk.client.service.identities.AsynchronousIdentitiesService;
 import io.enjincoin.sdk.client.service.identities.SynchronousIdentitiesService;
-import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityRequestBody;
-import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityResponseBody;
-import io.enjincoin.sdk.client.service.identities.vo.GetIdentityResponseBody;
-import io.enjincoin.sdk.client.service.identities.vo.IdentityField;
-import io.enjincoin.sdk.client.service.identities.vo.UpdateIdentityRequestBody;
-import io.enjincoin.sdk.client.service.identities.vo.UpdateIdentityResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,7 +26,7 @@ import retrofit2.Response;
  * Will have the disabled annotation in place usually but will be useful for testing the actual api
  *
  */
-public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
+public class LiveIdentitiesServiceTest extends BaseLiveServiceTest {
 
 
     @Test
@@ -39,11 +34,11 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
         SynchronousIdentitiesService identitiesService = this.client.getIdentitiesService();
         assertThat(identitiesService).isNotNull();
 
-        Response<GetIdentityResponseBody[]> getIdentityResponseVOArray = identitiesService.getIdentitiesSync();
+        Response<Identity[]> getIdentityResponseVOArray = identitiesService.getIdentitiesSync();
         assertThat(getIdentityResponseVOArray).isNotNull();
         assertThat(getIdentityResponseVOArray.body()).isNotNull();
 
-        for (GetIdentityResponseBody getIdentityResponseVO : getIdentityResponseVOArray.body()) {
+        for (Identity getIdentityResponseVO : getIdentityResponseVOArray.body()) {
             if (getIdentityResponseVO.getFields().isPresent()) {
 
                 for (IdentityField fieldVO : getIdentityResponseVO.getFields().get()) {
@@ -58,16 +53,16 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
         AsynchronousIdentitiesService identitiesService = this.client.getIdentitiesService();
         assertThat(identitiesService).isNotNull();
 
-        //CompletableFuture<GetIdentityResponseBody[]> getIdentityResponseVOArrayCf =
-        identitiesService.getIdentitiesAsync(new Callback<GetIdentityResponseBody[]>() {
+        //CompletableFuture<Identity[]> getIdentityResponseVOArrayCf =
+        identitiesService.getIdentitiesAsync(new Callback<Identity[]>() {
 
             @Override
-            public void onResponse(Call<GetIdentityResponseBody[]> call, Response<GetIdentityResponseBody[]> getIdentityResponseVOArrayR) {
+            public void onResponse(Call<Identity[]> call, Response<Identity[]> getIdentityResponseVOArrayR) {
                 assertThat(getIdentityResponseVOArrayR).isNotNull();
                 assertThat(getIdentityResponseVOArrayR.body()).isNotNull();
-                GetIdentityResponseBody[] getIdentityResponseVOArray = getIdentityResponseVOArrayR.body();
+                Identity[] getIdentityResponseVOArray = getIdentityResponseVOArrayR.body();
 
-                for (GetIdentityResponseBody getIdentityResponseVO : getIdentityResponseVOArray) {
+                for (Identity getIdentityResponseVO : getIdentityResponseVOArray) {
                     if (getIdentityResponseVO.getFields().isPresent()) {
 
                         for (IdentityField fieldVO : getIdentityResponseVO.getFields().get()) {
@@ -79,7 +74,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
             }
 
             @Override
-            public void onFailure(Call<GetIdentityResponseBody[]> call, Throwable t) {
+            public void onFailure(Call<Identity[]> call, Throwable t) {
                     fail("Test Failed");
             }
         });
@@ -100,11 +95,11 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
         filterMap.put("key", keyList);
         filterMap.put("field_value", fieldValueList);
 
-        Response<GetIdentityResponseBody[]> getIdentityResponseVOArray = identitiesService.getIdentitiesSync(filterMap);
+        Response<Identity[]> getIdentityResponseVOArray = identitiesService.getIdentitiesSync(filterMap);
         assertThat(getIdentityResponseVOArray).isNotNull();
         assertThat(getIdentityResponseVOArray.body()).isNotNull();
 
-        for (GetIdentityResponseBody getIdentityResponseVO : getIdentityResponseVOArray.body()) {
+        for (Identity getIdentityResponseVO : getIdentityResponseVOArray.body()) {
             if (getIdentityResponseVO.getFields().isPresent()) {
 
                 for (IdentityField fieldVO : getIdentityResponseVO.getFields().get()) {
@@ -128,16 +123,16 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
         filterMap.put("key", keyList);
         filterMap.put("field_value", fieldValueList);
 
-        //CompletableFuture<GetIdentityResponseBody[]> getIdentityResponseVOArrayCf = identitiesService.getIdentitiesAsync(filterMap);
-        identitiesService.getIdentitiesAsync(filterMap, new Callback<GetIdentityResponseBody[]>() {
+        //CompletableFuture<Identity[]> getIdentityResponseVOArrayCf = identitiesService.getIdentitiesAsync(filterMap);
+        identitiesService.getIdentitiesAsync(filterMap, new Callback<Identity[]>() {
 
             @Override
-            public void onResponse(Call<GetIdentityResponseBody[]> call, Response<GetIdentityResponseBody[]> response) {
+            public void onResponse(Call<Identity[]> call, Response<Identity[]> response) {
                 assertThat(response).isNotNull();
                 assertThat(response.body()).isNotNull();
-                GetIdentityResponseBody[] getIdentityResponseVOArray = response.body();
+                Identity[] getIdentityResponseVOArray = response.body();
 
-                for (GetIdentityResponseBody getIdentityResponseVO : getIdentityResponseVOArray) {
+                for (Identity getIdentityResponseVO : getIdentityResponseVOArray) {
                     if (getIdentityResponseVO.getFields().isPresent()) {
 
                         for (IdentityField fieldVO : getIdentityResponseVO.getFields().get()) {
@@ -148,7 +143,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
             }
 
             @Override
-            public void onFailure(Call<GetIdentityResponseBody[]> call, Throwable t) {
+            public void onFailure(Call<Identity[]> call, Throwable t) {
                 fail("Test Failed");
             }
         });
@@ -171,7 +166,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
 
         Integer identityId = createIdentityResponseVO.body().getId().get();
 
-        Response<GetIdentityResponseBody> getIdentityByIdResponseVO = identitiesService.getIdentitySync(identityId);
+        Response<Identity> getIdentityByIdResponseVO = identitiesService.getIdentitySync(identityId);
         assertThat(getIdentityByIdResponseVO).isNotNull();
         assertThat(getIdentityByIdResponseVO.body()).isNotNull();
 
@@ -208,14 +203,14 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
 
                 Integer identityId = createIdentityResponseVO.getId().get();
 
-                identitiesService.getIdentityAsync(identityId, new Callback<GetIdentityResponseBody>() {
+                identitiesService.getIdentityAsync(identityId, new Callback<Identity>() {
 
                     @Override
-                    public void onResponse(Call<GetIdentityResponseBody> call, Response<GetIdentityResponseBody> response) {
+                    public void onResponse(Call<Identity> call, Response<Identity> response) {
                         assertThat(response).isNotNull();
                         assertThat(response.body()).isNotNull();
 
-                        GetIdentityResponseBody getIdentityByIdResponseVO = response.body();
+                        Identity getIdentityByIdResponseVO = response.body();
                         if (getIdentityByIdResponseVO.getFields().isPresent()) {
 
                             for (IdentityField fieldVO : getIdentityByIdResponseVO.getFields().get()) {
@@ -239,7 +234,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
                     }
 
                     @Override
-                    public void onFailure(Call<GetIdentityResponseBody> call, Throwable t) {
+                    public void onFailure(Call<Identity> call, Throwable t) {
                         fail("Test Failed");
                     }
 
@@ -272,7 +267,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
 
         Integer identityId = createIdentityResponseVO.body().getId().get();
 
-        Response<GetIdentityResponseBody> getIdentityByIdResponseVO = identitiesService.getIdentitySync(identityId);
+        Response<Identity> getIdentityByIdResponseVO = identitiesService.getIdentitySync(identityId);
         assertThat(getIdentityByIdResponseVO).isNotNull();
         assertThat(getIdentityByIdResponseVO.body()).isNotNull();
 
@@ -309,14 +304,14 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
 
                 Integer identityId = createIdentityResponseVO.getId().get();
 
-                identitiesService.getIdentityAsync(identityId, new Callback<GetIdentityResponseBody>() {
+                identitiesService.getIdentityAsync(identityId, new Callback<Identity>() {
 
                     @Override
-                    public void onResponse(Call<GetIdentityResponseBody> call, Response<GetIdentityResponseBody> response) {
+                    public void onResponse(Call<Identity> call, Response<Identity> response) {
                         assertThat(response).isNotNull();
                         assertThat(response.body()).isNotNull();
 
-                        GetIdentityResponseBody getIdentityByIdResponseVO = response.body();
+                        Identity getIdentityByIdResponseVO = response.body();
                         if (getIdentityByIdResponseVO.getFields().isPresent()) {
 
                             for (IdentityField fieldVO : getIdentityByIdResponseVO.getFields().get()) {
@@ -340,7 +335,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest{
                     }
 
                     @Override
-                    public void onFailure(Call<GetIdentityResponseBody> call, Throwable t) {
+                    public void onFailure(Call<Identity> call, Throwable t) {
                         fail("Test Failed");
                     }
                 });

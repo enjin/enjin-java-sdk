@@ -1,4 +1,4 @@
-package io.enjincoin.sdk.client.service;
+package client.service;
 
 import org.junit.Before;
 

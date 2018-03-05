@@ -6,9 +6,9 @@ import static org.junit.Assert.fail;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
+import client.service.BaseLiveServiceTest;
 import org.junit.Test;
 
-import io.enjincoin.sdk.client.service.BaseLiveServiceTest;
 import io.enjincoin.sdk.client.service.requests.AsynchronousRequestsService;
 import io.enjincoin.sdk.client.service.requests.SynchronousRequestsService;
 import io.enjincoin.sdk.client.service.requests.vo.CreateRequestRequestBody;

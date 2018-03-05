@@ -5,18 +5,12 @@ import java.util.logging.Logger;
 import com.enjin.java_commons.ObjectUtils;
 
 import io.enjincoin.sdk.client.config.Config;
-import io.enjincoin.sdk.client.service.identities.IdentitiesService;
-import io.enjincoin.sdk.client.service.identities.impl.IdentitiesServiceImpl;
 import io.enjincoin.sdk.client.service.legacy.events.EventsService;
 import io.enjincoin.sdk.client.service.legacy.events.impl.EventsServiceImpl;
 import io.enjincoin.sdk.client.service.legacy.notifications.NotificationsService;
 import io.enjincoin.sdk.client.service.legacy.notifications.impl.NotificationsServiceImpl;
 import io.enjincoin.sdk.client.service.legacy.platform.PlatformService;
 import io.enjincoin.sdk.client.service.legacy.platform.impl.PlatformServiceImpl;
-import io.enjincoin.sdk.client.service.legacy.tokens.TokensService;
-import io.enjincoin.sdk.client.service.legacy.tokens.impl.TokensServiceImpl;
-import io.enjincoin.sdk.client.service.legacy.transactionrequests.TransactionRequestsService;
-import io.enjincoin.sdk.client.service.legacy.transactionrequests.impl.TransactionRequestsServiceImpl;
 
 /**
  * <p>Enjin Coin SyncClient - Synchronous.</p>
@@ -37,18 +31,6 @@ public class LegacyClientImpl implements LegacyClient {
      * Events service.
      */
     private EventsService eventsService;
-    /**
-     * Identities service.
-     */
-    private IdentitiesService identitiesService;
-    /**
-     * Tokens service.
-     */
-    private TokensService tokensService;
-    /**
-     * TransactionRequests service.
-     */
-    private TransactionRequestsService transactionRequestsService;
 
     /**
      * Notifications service.
@@ -85,45 +67,6 @@ public class LegacyClientImpl implements LegacyClient {
             this.eventsService = new EventsServiceImpl(this.config);
         }
         return this.eventsService;
-    }
-
-    /**
-     * Method to get the IdentitiesService.
-     *
-     * @return - IdentitiesService
-     */
-    @Override
-    public IdentitiesService getIdentitiesService() {
-        if (this.identitiesService == null) {
-            this.identitiesService = new IdentitiesServiceImpl(null);
-        }
-        return this.identitiesService;
-    }
-
-    /**
-     * Method to get the TokensService.
-     *
-     * @return - TokensService
-     */
-    @Override
-    public TokensService getTokensService() {
-        if (this.tokensService == null) {
-            this.tokensService = new TokensServiceImpl(this.config);
-        }
-        return this.tokensService;
-    }
-
-    /**
-     * Method to get the TransactionRequestsService.
-     *
-     * @return - TransactionRequestsService
-     */
-    @Override
-    public TransactionRequestsService getTransactionRequestsService() {
-        if (this.transactionRequestsService == null) {
-            this.transactionRequestsService = new TransactionRequestsServiceImpl(this.config);
-        }
-        return this.transactionRequestsService;
     }
 
     /**

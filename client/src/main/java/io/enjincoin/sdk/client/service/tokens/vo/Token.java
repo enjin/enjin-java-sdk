@@ -12,10 +12,10 @@ import com.google.gson.annotations.SerializedName;
 public class Token {
 
     @SerializedName("token_id")
-    private Optional<Integer> tokenId;
+    private Optional<Long> tokenId;
 
     @SerializedName("app_id")
-    private Optional<Integer> appId;
+    private Optional<Long> appId;
 
     @SerializedName("creator")
     private Optional<String> creator;
@@ -70,37 +70,41 @@ public class Token {
      * @param updatedAt
      * @param createdAt
      */
-    public Token(Integer tokenId, Integer appId, String creator, String adapter, String name, String icon,
+    public Token(Long tokenId, Long appId, String creator, String adapter, String name, String icon,
                  Integer totalSupply, String exchangeRate, Integer decimals, BigDecimal maxMeltFee, BigDecimal meltFee,
                  Integer transferable, String updatedAt, String createdAt) {
         super();
-        this.tokenId = Optional.of(tokenId);
-        this.appId = Optional.of(appId);
-        this.creator = Optional.of(creator);
-        this.adapter = Optional.of(adapter);
-        this.name = Optional.of(name);
-        this.icon = Optional.of(icon);
-        this.totalSupply = Optional.of(totalSupply);
-        this.exchangeRate = Optional.of(exchangeRate);
-        this.decimals = Optional.of(decimals);
-        this.maxMeltFee = Optional.of(maxMeltFee);
-        this.meltFee = Optional.of(meltFee);
-        this.transferable = Optional.of(transferable);
-        this.updatedAt = Optional.of(updatedAt);
-        this.createdAt = Optional.of(createdAt);
+        this.tokenId = Optional.ofNullable(tokenId);
+        this.appId = Optional.ofNullable(appId);
+        this.creator = Optional.ofNullable(creator);
+        this.adapter = Optional.ofNullable(adapter);
+        this.name = Optional.ofNullable(name);
+        this.icon = Optional.ofNullable(icon);
+        this.totalSupply = Optional.ofNullable(totalSupply);
+        this.exchangeRate = Optional.ofNullable(exchangeRate);
+        this.decimals = Optional.ofNullable(decimals);
+        this.maxMeltFee = Optional.ofNullable(maxMeltFee);
+        this.meltFee = Optional.ofNullable(meltFee);
+        this.transferable = Optional.ofNullable(transferable);
+        this.updatedAt = Optional.ofNullable(updatedAt);
+        this.createdAt = Optional.ofNullable(createdAt);
+    }
+
+    public Token(Long tokenId, Long appId) {
+        this(tokenId, appId, null, null, null, null, null, null, null, null, null, null, null, null);
     }
 
     /**
      * @return the tokenId
      */
-    public Optional<Integer> getTokenId() {
+    public Optional<Long> getTokenId() {
         return tokenId;
     }
 
     /**
      * @return the appId
      */
-    public Optional<Integer> getAppId() {
+    public Optional<Long> getAppId() {
         return appId;
     }
 

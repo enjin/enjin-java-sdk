@@ -1,24 +1,19 @@
 package client.service.users;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.fail;
+import client.service.BaseLiveServiceTest;
+import io.enjincoin.sdk.client.service.users.AsynchronousUsersService;
+import io.enjincoin.sdk.client.service.users.SynchronousUsersService;
+import io.enjincoin.sdk.client.service.users.vo.*;
+import org.junit.Test;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
-import org.junit.Test;
-
-import io.enjincoin.sdk.client.service.BaseLiveServiceTest;
-import io.enjincoin.sdk.client.service.users.AsynchronousUsersService;
-import io.enjincoin.sdk.client.service.users.SynchronousUsersService;
-import io.enjincoin.sdk.client.service.users.vo.CreateUserRequestBody;
-import io.enjincoin.sdk.client.service.users.vo.CreateUserResponseBody;
-import io.enjincoin.sdk.client.service.users.vo.LoginUserResponseBody;
-import io.enjincoin.sdk.client.service.users.vo.UpdateUserRequestBody;
-import io.enjincoin.sdk.client.service.users.vo.UserResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.fail;
 
 /**
  * Calls out to the actual api Will have the disabled annotation in place
