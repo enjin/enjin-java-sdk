@@ -13,7 +13,6 @@ import io.enjincoin.sdk.client.service.legacy.events.SynchronousEventsService;
 import io.enjincoin.sdk.client.service.legacy.notifications.NotificationsService;
 import io.enjincoin.sdk.client.service.legacy.platform.SynchronousPlatformService;
 import io.enjincoin.sdk.client.service.legacy.tokens.SynchronousTokensService;
-import io.enjincoin.sdk.client.service.legacy.transactionrequests.SynchronousTransactionRequestsService;
 
 public class ClientTest {
 
@@ -70,17 +69,6 @@ public class ClientTest {
         SynchronousTokensService tokensService2 = this.client.getTokensService();
         assertThat(tokensService2).isNotNull().isSameAs(tokensService);
     }
-
-    @Test
-    public void testGetTransactionRequestsService() {
-        SynchronousTransactionRequestsService transactionRequestsService = this.client.getTransactionRequestsService();
-        assertThat(transactionRequestsService).isNotNull();
-
-        //Second time around - the existing service should be returned
-        SynchronousTransactionRequestsService transactionRequestsService2 = this.client.getTransactionRequestsService();
-        assertThat(transactionRequestsService2).isNotNull().isSameAs(transactionRequestsService);
-    }
-
 
     @Test
     public void testGetNotificationsService() {

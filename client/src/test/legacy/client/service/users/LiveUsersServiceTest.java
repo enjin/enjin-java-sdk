@@ -1,4 +1,4 @@
-package client.service.legacy.users;
+package client.service.users;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.fail;

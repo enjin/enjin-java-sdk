@@ -13,9 +13,9 @@ import org.junit.Test;
 import io.enjincoin.sdk.client.service.BaseLiveServiceTest;
 import io.enjincoin.sdk.client.service.legacy.tokens.AsynchronousTokensService;
 import io.enjincoin.sdk.client.service.legacy.tokens.SynchronousTokensService;
+import io.enjincoin.sdk.client.service.tokens.vo.TokenResponseBody;
 import io.enjincoin.sdk.client.vo.token.CreateTokenRequestVO;
 import io.enjincoin.sdk.client.vo.token.CreateTokenResponseVO;
-import io.enjincoin.sdk.client.vo.token.TokenResponseVO;
 import io.enjincoin.sdk.client.vo.token.UpdateTokenRequestVO;
 
 /**
