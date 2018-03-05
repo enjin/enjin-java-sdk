@@ -1,4 +1,4 @@
-package io.enjincoin.sdk.client.service.transactions.vo;
+package io.enjincoin.sdk.client.service.requests.vo;
 
 import java.util.Optional;
 

@@ -1,13 +1,13 @@
-package io.enjincoin.sdk.client.service.transactions.vo;
+package io.enjincoin.sdk.client.service.requests.vo;
 
 import java.util.Optional;
 
 import com.google.gson.annotations.SerializedName;
 
 /**
- * <p>Update Transaction Response class.</p>
+ * <p>Update Request Response class.</p>
  */
-public class UpdateTransactionRequestBody {
+public class UpdateRequestRequestBody {
 
     @SerializedName("value")
     private Optional<String> value;
@@ -21,7 +21,7 @@ public class UpdateTransactionRequestBody {
      * @param value
      * @param recipientId
      */
-    public UpdateTransactionRequestBody(String value, Integer recipientId) {
+    public UpdateRequestRequestBody(String value, Integer recipientId) {
         super();
         this.value = Optional.of(value);
         this.recipientId = Optional.of(recipientId);
@@ -46,7 +46,7 @@ public class UpdateTransactionRequestBody {
      */
     @Override
     public String toString() {
-        return "CreateTransactionRequestBody [value=" + value + ", recipientId=" + recipientId + "]";
+        return "CreateRequestRequestBody [value=" + value + ", recipientId=" + recipientId + "]";
     }
 }
 

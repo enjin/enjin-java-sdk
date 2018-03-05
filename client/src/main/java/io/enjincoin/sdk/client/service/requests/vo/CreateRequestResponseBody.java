@@ -1,4 +1,4 @@
-package io.enjincoin.sdk.client.service.transactions.vo;
+package io.enjincoin.sdk.client.service.requests.vo;
 
 import java.util.Optional;
 
@@ -8,9 +8,9 @@ import io.enjincoin.sdk.client.service.tokens.vo.TokenResponseBody;
 import io.enjincoin.sdk.client.service.users.vo.UserResponseBody;
 
 /**
- * <p>Transaction Response class.</p>
+ * <p>Request Response class.</p>
  */
-public class CreateTransactionResponseBody {
+public class CreateRequestResponseBody {
 
     @SerializedName("app_id")
     private Optional<Integer> appId;
@@ -52,7 +52,7 @@ public class CreateTransactionResponseBody {
      * @param recipient
      * @param token
      */
-    public CreateTransactionResponseBody(Integer appId, TransactionType type, String value, String updatedAt, String createdAt,
+    public CreateRequestResponseBody(Integer appId, TransactionType type, String value, String updatedAt, String createdAt,
             Integer id, UserResponseBody identity, UserResponseBody recipient, TokenResponseBody token) {
         super();
         this.appId = Optional.of(appId);
@@ -134,7 +134,7 @@ public class CreateTransactionResponseBody {
      */
     @Override
     public String toString() {
-        return "CreateTransactionResponseBody [appId=" + appId + ", type=" + type + ", value=" + value + ", updatedAt=" + updatedAt + ", createdAt=" + createdAt + ", id=" + id
+        return "CreateRequestResponseBody [appId=" + appId + ", type=" + type + ", value=" + value + ", updatedAt=" + updatedAt + ", createdAt=" + createdAt + ", id=" + id
                 + ", identity=" + identity + ", recipient=" + recipient + ", token=" + token + "]";
     }
 }
