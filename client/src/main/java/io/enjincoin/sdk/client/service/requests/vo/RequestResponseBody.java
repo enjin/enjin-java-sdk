@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import com.google.gson.annotations.SerializedName;
 
-import io.enjincoin.sdk.client.service.tokens.vo.TokenResponseBody;
+import io.enjincoin.sdk.client.service.tokens.vo.Token;
 import io.enjincoin.sdk.client.service.users.vo.UserResponseBody;
 
 /**
@@ -52,7 +52,7 @@ public class RequestResponseBody {
     private Optional<UserResponseBody> recipient;
 
     @SerializedName("token")
-    private Optional<TokenResponseBody> token;
+    private Optional<Token> token;
 
 
     /**
@@ -74,7 +74,7 @@ public class RequestResponseBody {
      */
     public RequestResponseBody(Integer id, Integer transactionId, Integer appId, String type, String icon, String title,
             String value, String state, Integer accepted, String updatedAt, String createdAt, UserResponseBody identity,
-            UserResponseBody recipient, TokenResponseBody token) {
+            UserResponseBody recipient, Token token) {
         super();
         this.id = Optional.of(id);
         this.transactionId = Optional.of(transactionId);
@@ -186,7 +186,7 @@ public class RequestResponseBody {
     /**
      * @return the token
      */
-    public Optional<TokenResponseBody> getToken() {
+    public Optional<Token> getToken() {
         return token;
     }
 

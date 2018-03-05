@@ -1,12 +1,7 @@
 package io.enjincoin.sdk.client.service.identities.impl;
 
 import io.enjincoin.sdk.client.annotations.serialization.Json;
-import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityRequestBody;
-import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityResponseBody;
-import io.enjincoin.sdk.client.service.identities.vo.GetIdentityResponseBody;
-import io.enjincoin.sdk.client.service.identities.vo.IdentityFilter;
-import io.enjincoin.sdk.client.service.identities.vo.UpdateIdentityRequestBody;
-import io.enjincoin.sdk.client.service.identities.vo.UpdateIdentityResponseBody;
+import io.enjincoin.sdk.client.service.identities.vo.*;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -24,21 +19,21 @@ public interface RetrofitIdentitiesService {
             "Cache-Control: no-cache"
     })
     @GET("api/v1/identities")
-    Call<GetIdentityResponseBody[]> getIdentities();
+    Call<Identity[]> getIdentities();
 
     @Headers(value = {
             "Content-Type: application/json",
             "Cache-Control: no-cache"
     })
     @GET("api/v1/identities")
-    Call<GetIdentityResponseBody[]> getIdentities(@Json @Query("q") IdentityFilter filter);
+    Call<Identity[]> getIdentities(@Json @Query("q") IdentityFilter filter);
 
     @Headers(value = {
             "Content-Type: application/json",
             "Cache-Control: no-cache"
     })
     @GET("api/v1/identities/{id}")
-    Call<GetIdentityResponseBody> getIdentity(@Path("id") long id);
+    Call<Identity> getIdentity(@Path("id") long id);
 
     @Headers(value = {
             "Content-Type: application/json",

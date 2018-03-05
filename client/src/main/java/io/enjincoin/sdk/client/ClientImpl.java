@@ -14,6 +14,8 @@ import io.enjincoin.sdk.client.service.identity.IdentityService;
 import io.enjincoin.sdk.client.service.identity.impl.IdentityServiceImpl;
 import io.enjincoin.sdk.client.service.requests.RequestsService;
 import io.enjincoin.sdk.client.service.requests.impl.RequestsServiceImpl;
+import io.enjincoin.sdk.client.service.tokens.TokensService;
+import io.enjincoin.sdk.client.service.tokens.impl.TokensServiceImpl;
 import io.enjincoin.sdk.client.service.users.UsersService;
 import io.enjincoin.sdk.client.service.users.impl.UsersServiceImpl;
 import net.dongliu.gson.GsonJava8TypeAdapterFactory;
@@ -31,6 +33,7 @@ public class ClientImpl implements Client {
     private IdentityService identityService;
     private UsersService userService;
     private RequestsService requestsService;
+    private TokensService tokensService;
 
     public ClientImpl(String url) {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -76,6 +79,14 @@ public class ClientImpl implements Client {
             requestsService = new RequestsServiceImpl(retrofit);
         }
         return requestsService;
+    }
+
+    @Override
+    public TokensService getTokensService() {
+        if (tokensService == null) {
+            tokensService = new TokensServiceImpl(retrofit);
+        }
+        return tokensService;
     }
 
 

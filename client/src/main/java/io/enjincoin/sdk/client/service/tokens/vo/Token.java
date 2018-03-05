@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
  * <p>Token Response class.
  * </p>
  */
-public class TokenResponseBody {
+public class Token {
 
     @SerializedName("token_id")
     private Optional<Integer> tokenId;
@@ -70,9 +70,9 @@ public class TokenResponseBody {
      * @param updatedAt
      * @param createdAt
      */
-    public TokenResponseBody(Integer tokenId, Integer appId, String creator, String adapter, String name, String icon,
-            Integer totalSupply, String exchangeRate, Integer decimals, BigDecimal maxMeltFee, BigDecimal meltFee,
-            Integer transferable, String updatedAt, String createdAt) {
+    public Token(Integer tokenId, Integer appId, String creator, String adapter, String name, String icon,
+                 Integer totalSupply, String exchangeRate, Integer decimals, BigDecimal maxMeltFee, BigDecimal meltFee,
+                 Integer transferable, String updatedAt, String createdAt) {
         super();
         this.tokenId = Optional.of(tokenId);
         this.appId = Optional.of(appId);

@@ -4,12 +4,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import io.enjincoin.sdk.client.service.identities.IdentitiesService;
-import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityRequestBody;
-import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityResponseBody;
-import io.enjincoin.sdk.client.service.identities.vo.GetIdentityResponseBody;
-import io.enjincoin.sdk.client.service.identities.vo.IdentityFilter;
-import io.enjincoin.sdk.client.service.identities.vo.UpdateIdentityRequestBody;
-import io.enjincoin.sdk.client.service.identities.vo.UpdateIdentityResponseBody;
+import io.enjincoin.sdk.client.service.identities.vo.*;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,20 +19,20 @@ public class IdentitiesServiceImpl implements IdentitiesService {
     }
 
     @Override
-    public void getIdentitiesAsync(Callback<GetIdentityResponseBody[]> callback) {
-        Call<GetIdentityResponseBody[]> call = this.service.getIdentities();
+    public void getIdentitiesAsync(Callback<Identity[]> callback) {
+        Call<Identity[]> call = this.service.getIdentities();
         call.enqueue(callback);
     }
 
     @Override
-    public void getIdentitiesAsync(Map<String, Object> filter, Callback<GetIdentityResponseBody[]> callback) {
-        Call<GetIdentityResponseBody[]> call = this.service.getIdentities(new IdentityFilter(filter));
+    public void getIdentitiesAsync(Map<String, Object> filter, Callback<Identity[]> callback) {
+        Call<Identity[]> call = this.service.getIdentities(new IdentityFilter(filter));
         call.enqueue(callback);
     }
 
     @Override
-    public void getIdentityAsync(long id, Callback<GetIdentityResponseBody> callback) {
-        Call<GetIdentityResponseBody> call = this.service.getIdentity(id);
+    public void getIdentityAsync(long id, Callback<Identity> callback) {
+        Call<Identity> call = this.service.getIdentity(id);
         call.enqueue(callback);
     }
 
@@ -66,20 +61,20 @@ public class IdentitiesServiceImpl implements IdentitiesService {
     }
 
     @Override
-    public Response<GetIdentityResponseBody[]> getIdentitiesSync() throws IOException {
-        Call<GetIdentityResponseBody[]> call = this.service.getIdentities();
+    public Response<Identity[]> getIdentitiesSync() throws IOException {
+        Call<Identity[]> call = this.service.getIdentities();
         return call.execute();
     }
 
     @Override
-    public Response<GetIdentityResponseBody[]> getIdentitiesSync(Map<String, Object> filter) throws IOException {
-        Call<GetIdentityResponseBody[]> call = this.service.getIdentities(new IdentityFilter(filter));
+    public Response<Identity[]> getIdentitiesSync(Map<String, Object> filter) throws IOException {
+        Call<Identity[]> call = this.service.getIdentities(new IdentityFilter(filter));
         return call.execute();
     }
 
     @Override
-    public Response<GetIdentityResponseBody> getIdentitySync(long id) throws IOException {
-        Call<GetIdentityResponseBody> call = this.service.getIdentity(id);
+    public Response<Identity> getIdentitySync(long id) throws IOException {
+        Call<Identity> call = this.service.getIdentity(id);
         return call.execute();
     }
 

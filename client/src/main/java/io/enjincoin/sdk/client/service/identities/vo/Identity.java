@@ -9,7 +9,7 @@ import java.util.Optional;
  * <p>Get Identity Response class.
  * </p>
  */
-public class GetIdentityResponseBody {
+public class Identity {
 
 
     @SerializedName("id")
@@ -33,8 +33,8 @@ public class GetIdentityResponseBody {
     @SerializedName("fields")
     private Optional<IdentityField[]> fields;
 
-    public GetIdentityResponseBody(Optional<Integer> id, Optional<String> ethereumAddress, Optional<String> linkingCode, Optional<String> updatedAt, String createdAt, Optional<String> user,
-                                   Optional<IdentityField[]> fields) {
+    public Identity(Optional<Integer> id, Optional<String> ethereumAddress, Optional<String> linkingCode, Optional<String> updatedAt, String createdAt, Optional<String> user,
+                    Optional<IdentityField[]> fields) {
         super();
         this.id = id;
         this.ethereumAddress = ethereumAddress;

@@ -8,11 +8,11 @@ import java.util.Map;
 
 public interface SynchronousIdentitiesService {
 
-    Response<GetIdentityResponseBody[]> getIdentitiesSync() throws IOException;
+    Response<Identity[]> getIdentitiesSync() throws IOException;
 
-    Response<GetIdentityResponseBody[]> getIdentitiesSync(Map<String, Object> filter) throws IOException;
+    Response<Identity[]> getIdentitiesSync(Map<String, Object> filter) throws IOException;
 
-    Response<GetIdentityResponseBody> getIdentitySync(long id) throws IOException;
+    Response<Identity> getIdentitySync(long id) throws IOException;
 
     Response<CreateIdentityResponseBody> createIdentitySync() throws IOException;
 

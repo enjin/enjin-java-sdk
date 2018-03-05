@@ -7,11 +7,11 @@ import java.util.Map;
 
 public interface AsynchronousIdentitiesService {
 
-    void getIdentitiesAsync(Callback<GetIdentityResponseBody[]> callback);
+    void getIdentitiesAsync(Callback<Identity[]> callback);
 
-    void getIdentitiesAsync(Map<String, Object> filter, Callback<GetIdentityResponseBody[]> callback);
+    void getIdentitiesAsync(Map<String, Object> filter, Callback<Identity[]> callback);
 
-    void getIdentityAsync(long id, Callback<GetIdentityResponseBody> callback);
+    void getIdentityAsync(long id, Callback<Identity> callback);
 
     void createIdentityAsync(Callback<CreateIdentityResponseBody> callback);
 
