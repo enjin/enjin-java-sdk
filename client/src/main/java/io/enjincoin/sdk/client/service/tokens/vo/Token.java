@@ -12,10 +12,10 @@ import com.google.gson.annotations.SerializedName;
 public class Token {
 
     @SerializedName("token_id")
-    private Optional<Long> tokenId;
+    private Optional<Integer> tokenId;
 
     @SerializedName("app_id")
-    private Optional<Long> appId;
+    private Optional<Integer> appId;
 
     @SerializedName("creator")
     private Optional<String> creator;
@@ -70,7 +70,7 @@ public class Token {
      * @param updatedAt
      * @param createdAt
      */
-    public Token(Long tokenId, Long appId, String creator, String adapter, String name, String icon,
+    public Token(Integer tokenId, Integer appId, String creator, String adapter, String name, String icon,
                  Integer totalSupply, String exchangeRate, Integer decimals, BigDecimal maxMeltFee, BigDecimal meltFee,
                  Integer transferable, String updatedAt, String createdAt) {
         super();
@@ -90,21 +90,21 @@ public class Token {
         this.createdAt = Optional.ofNullable(createdAt);
     }
 
-    public Token(Long tokenId, Long appId) {
+    public Token(Integer tokenId, Integer appId) {
         this(tokenId, appId, null, null, null, null, null, null, null, null, null, null, null, null);
     }
 
     /**
      * @return the tokenId
      */
-    public Optional<Long> getTokenId() {
+    public Optional<Integer> getTokenId() {
         return tokenId;
     }
 
     /**
      * @return the appId
      */
-    public Optional<Long> getAppId() {
+    public Optional<Integer> getAppId() {
         return appId;
     }
 

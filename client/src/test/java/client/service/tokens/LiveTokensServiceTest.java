@@ -4,6 +4,7 @@ import client.service.BaseLiveServiceTest;
 import io.enjincoin.sdk.client.service.tokens.AsynchronousTokensService;
 import io.enjincoin.sdk.client.service.tokens.SynchronousTokensService;
 import io.enjincoin.sdk.client.service.tokens.vo.Token;
+import io.enjincoin.sdk.client.util.Utils;
 import org.junit.Test;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -74,7 +75,7 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
         SynchronousTokensService service = this.client.getTokensService();
         assertThat(service).isNotNull();
 
-        Token Token = new Token(System.currentTimeMillis(), 1l);
+        Token Token = new Token(Utils.generateRandomInt(0, Integer.MAX_VALUE - 1), 1);
         Response<Token> createResponse = service.createTokenSync(Token);
         assertThat(createResponse).isNotNull();
         assertThat(createResponse.body()).isNotNull();
@@ -83,7 +84,7 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
         assertThat(createResponse.body().getCreatedAt()).isNotNull();
         assertThat(createResponse.body().getUpdatedAt()).isNotNull();
 
-        Long tokenId = createResponse.body().getTokenId().get();
+        Integer tokenId = createResponse.body().getTokenId().get();
 
         Response<Token> getResponse = service.getTokenSync(tokenId);
         assertThat(getResponse).isNotNull();
@@ -104,7 +105,7 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
         AsynchronousTokensService service = this.client.getTokensService();
         assertThat(service).isNotNull();
 
-        Token token = new Token(System.currentTimeMillis(), 1l);
+        Token token = new Token(Utils.generateRandomInt(0, Integer.MAX_VALUE - 1), 1);
         service.createTokenAsync(token, new Callback<Token>() {
 
             @Override
@@ -116,7 +117,7 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
                 assertThat(createResponse.body().getCreatedAt()).isNotNull();
                 assertThat(createResponse.body().getUpdatedAt()).isNotNull();
 
-                Long tokenId = createResponse.body().getTokenId().get();
+                Integer tokenId = createResponse.body().getTokenId().get();
 
                 service.getTokenAsync(tokenId, new Callback<Token>() {
 
@@ -164,7 +165,7 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
         SynchronousTokensService service = this.client.getTokensService();
         assertThat(service).isNotNull();
 
-        Token Token = new Token(System.currentTimeMillis(), 1l);
+        Token Token = new Token(Utils.generateRandomInt(0, Integer.MAX_VALUE - 1), 1);
 
         Response<Token> createResponse = service.createTokenSync(Token);
         assertThat(createResponse).isNotNull();
@@ -174,7 +175,7 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
         assertThat(createResponse.body().getCreatedAt()).isNotNull();
         assertThat(createResponse.body().getUpdatedAt()).isNotNull();
 
-        Long tokenId = createResponse.body().getTokenId().get();
+        Integer tokenId = createResponse.body().getTokenId().get();
 
         Response<Boolean> deleteResponse = service.deleteTokenSync(tokenId);
         assertThat(deleteResponse).isNotNull();
@@ -187,7 +188,7 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
         AsynchronousTokensService service = this.client.getTokensService();
         assertThat(service).isNotNull();
 
-        Token token = new Token(System.currentTimeMillis(), 1l);
+        Token token = new Token(Utils.generateRandomInt(0, Integer.MAX_VALUE - 1), 1);
         service.createTokenAsync(token, new Callback<Token>() {
 
             @Override
@@ -199,7 +200,7 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
                 assertThat(createResponse.body().getCreatedAt()).isNotNull();
                 assertThat(createResponse.body().getUpdatedAt()).isNotNull();
 
-                Long tokenId = createResponse.body().getTokenId().get();
+                Integer tokenId = createResponse.body().getTokenId().get();
 
                 service.deleteTokenAsync(tokenId, new Callback<Boolean>() {
                     @Override
@@ -230,7 +231,7 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
         SynchronousTokensService service = this.client.getTokensService();
         assertThat(service).isNotNull();
 
-        Token Token = new Token(System.currentTimeMillis(), 1l);
+        Token Token = new Token(Utils.generateRandomInt(0, Integer.MAX_VALUE - 1), 1);
         Response<Token> createResponse = service.createTokenSync(Token);
         assertThat(createResponse).isNotNull();
         assertThat(createResponse.body()).isNotNull();
@@ -239,7 +240,7 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
         assertThat(createResponse.body().getCreatedAt()).isNotNull();
         assertThat(createResponse.body().getUpdatedAt()).isNotNull();
 
-        Long tokenId = createResponse.body().getTokenId().get();
+        Integer tokenId = createResponse.body().getTokenId().get();
 
         Response<Boolean> deleteResponse = service.deleteTokenSync(tokenId);
         assertThat(deleteResponse).isNotNull();
@@ -252,7 +253,7 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
         AsynchronousTokensService service = this.client.getTokensService();
         assertThat(service).isNotNull();
 
-        Token token = new Token(System.currentTimeMillis(), 1l);
+        Token token = new Token(Utils.generateRandomInt(0, Integer.MAX_VALUE - 1), 1);
         service.createTokenAsync(token, new Callback<Token>( ) {
 
             @Override
@@ -264,7 +265,7 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
                 assertThat(createResponse.body().getCreatedAt()).isNotNull();
                 assertThat(createResponse.body().getUpdatedAt()).isNotNull();
 
-                Long tokenId = createResponse.body().getTokenId().get();
+                Integer tokenId = createResponse.body().getTokenId().get();
 
                 service.deleteTokenAsync(tokenId, new Callback<Boolean>() {
                     @Override
@@ -294,7 +295,7 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
         SynchronousTokensService service = this.client.getTokensService();
         assertThat(service).isNotNull();
 
-        Token token = new Token(System.currentTimeMillis(), 1l);
+        Token token = new Token(Utils.generateRandomInt(0, Integer.MAX_VALUE - 1), 1);
         Response<Token> createResponse = service.createTokenSync(token);
         assertThat(createResponse).isNotNull();
         assertThat(createResponse.body()).isNotNull();
@@ -303,8 +304,8 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
         assertThat(createResponse.body().getCreatedAt()).isNotNull();
         assertThat(createResponse.body().getUpdatedAt()).isNotNull();
 
-        Long tokenId = createResponse.body().getTokenId().get();
-        Long appId = createResponse.body().getAppId().get();
+        Integer tokenId = createResponse.body().getTokenId().get();
+        Integer appId = createResponse.body().getAppId().get();
 
         Token updateToken = new Token(tokenId, appId, "Enjin Coin", null, null, null, null, null, null, null, null, null, null, null);
         Response<Token> updateResponse = service.updateTokenSync(tokenId, updateToken);
@@ -324,7 +325,7 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
         AsynchronousTokensService service = this.client.getTokensService();
         assertThat(service).isNotNull();
 
-        Token token = new Token(System.currentTimeMillis(), 1l);
+        Token token = new Token(Utils.generateRandomInt(0, Integer.MAX_VALUE - 1), 1);
         service.createTokenAsync(token, new Callback<Token>() {
 
             @Override
@@ -336,8 +337,8 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
                 assertThat(createResponse.body().getCreatedAt()).isNotNull();
                 assertThat(createResponse.body().getUpdatedAt()).isNotNull();
 
-                Long tokenId = createResponse.body().getTokenId().get();
-                Long appId = createResponse.body().getAppId().get();
+                Integer tokenId = createResponse.body().getTokenId().get();
+                Integer appId = createResponse.body().getAppId().get();
 
                 Token updateToken = new Token(tokenId, appId, "Enjin Coin", null, null, null, null, null, null, null, null, null, null, null);
                 service.updateTokenAsync(tokenId, updateToken, new Callback<Token>() {
