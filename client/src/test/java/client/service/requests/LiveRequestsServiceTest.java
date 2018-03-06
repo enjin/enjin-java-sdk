@@ -6,14 +6,17 @@ import static org.junit.Assert.fail;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
-import client.service.BaseLiveServiceTest;
 import org.junit.Test;
 
+import client.service.BaseLiveServiceTest;
 import io.enjincoin.sdk.client.service.requests.AsynchronousRequestsService;
 import io.enjincoin.sdk.client.service.requests.SynchronousRequestsService;
 import io.enjincoin.sdk.client.service.requests.vo.CreateRequestRequestBody;
 import io.enjincoin.sdk.client.service.requests.vo.CreateRequestResponseBody;
+import io.enjincoin.sdk.client.service.requests.vo.ExecuteRequestRequestBody;
 import io.enjincoin.sdk.client.service.requests.vo.RequestResponseBody;
+import io.enjincoin.sdk.client.service.requests.vo.UpdateRequestRequestBody;
+import io.enjincoin.sdk.client.service.requests.vo.UpdateRequestResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -247,6 +250,102 @@ public class LiveRequestsServiceTest extends BaseLiveServiceTest {
         });
      }
 
+
+    @Test
+    public void testSynchronousRequestsService_UpdateRequest() throws IOException {
+        SynchronousRequestsService requestsService = this.client.getRequestsService();
+        assertThat(requestsService).isNotNull();
+
+        Integer identityId = 1;
+        Integer tokenId = 1;
+        Integer appId = 1;
+        String value = "10.2";
+        Integer recipientId = 1;
+        CreateRequestRequestBody createRequestRequestVO = new CreateRequestRequestBody(identityId, tokenId, appId, value, recipientId);
+        Response<CreateRequestResponseBody> createRequestResponseBody = requestsService.createRequestSync(createRequestRequestVO);
+        assertThat(createRequestResponseBody).isNotNull();
+        assertThat(createRequestResponseBody.body()).isNotNull();
+        assertThat(createRequestResponseBody.body().getId().get()).isNotNull();
+
+        Integer requestId = createRequestResponseBody.body().getId().get();
+
+        UpdateRequestRequestBody updateRequestRequest = new UpdateRequestRequestBody("value", 1);
+        Response<UpdateRequestResponseBody> updateRequestResponseBody = requestsService.updateRequestSync(requestId, updateRequestRequest );
+        assertThat(updateRequestResponseBody).isNotNull();
+        assertThat(updateRequestResponseBody.body()).isNotNull();
+        assertThat(updateRequestResponseBody.body().getId().get()).isNotNull();
+
+        Response<Boolean> deleteResponse = requestsService.deleteRequestSync(requestId);
+        assertThat(deleteResponse).isNotNull();
+        assertThat(deleteResponse.body()).isNotNull();
+        assertThat(deleteResponse.body()).isTrue();
+    }
+
+
+    @Test
+    public void testAsychronousRequestsService_UpdateRequest() throws InterruptedException, ExecutionException {
+        AsynchronousRequestsService requestsService = this.client.getRequestsService();
+        assertThat(requestsService).isNotNull();
+
+        Integer identityId = 1;
+        Integer tokenId = 1;
+        Integer appId = 1;
+        String value = "10.2";
+        Integer recipientId = 1;
+        CreateRequestRequestBody createRequestRequestVO = new CreateRequestRequestBody(identityId, tokenId, appId, value, recipientId);
+        requestsService.createRequestAsync(createRequestRequestVO, new Callback<CreateRequestResponseBody>() {
+
+            @Override
+            public void onResponse(Call<CreateRequestResponseBody> call, Response<CreateRequestResponseBody> response) {
+                assertThat(response).isNotNull();
+                assertThat(response.body()).isNotNull();
+                assertThat(response.body().getId().get()).isNotNull();
+
+                Integer requestId = response.body().getId().get();
+
+
+                UpdateRequestRequestBody updateRequestRequest = new UpdateRequestRequestBody("value", 1);
+                requestsService.updateRequestAsync(requestId, updateRequestRequest, new Callback<UpdateRequestResponseBody>() {
+
+                    @Override
+                    public void onResponse(Call<UpdateRequestResponseBody> call, Response<UpdateRequestResponseBody> updateRequestResponseBody) {
+                        assertThat(updateRequestResponseBody).isNotNull();
+                        assertThat(updateRequestResponseBody.body()).isNotNull();
+                        assertThat(updateRequestResponseBody.body().getId().get()).isNotNull();
+                    }
+
+                    @Override
+                    public void onFailure(Call<UpdateRequestResponseBody> call, Throwable t) {
+                        fail("Test Failed");
+                    }
+
+                });
+
+                requestsService.deleteRequestAsync(requestId, new Callback<Boolean>() {
+
+                    @Override
+                    public void onResponse(Call<Boolean> call, Response<Boolean> deleteResponse) {
+                        assertThat(deleteResponse).isNotNull();
+                        assertThat(deleteResponse.body()).isNotNull();
+                        assertThat(deleteResponse.body()).isTrue();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Boolean> call, Throwable t) {
+                        fail("Test Failed");
+                    }
+
+                });
+            }
+
+            @Override
+            public void onFailure(Call<CreateRequestResponseBody> call, Throwable t) {
+                fail("Test Failed");
+            }
+
+        });
+     }
+
     @Test
     public void testSynchronousRequestsService_DeleteRequest() throws IOException {
         SynchronousRequestsService requestsService = this.client.getRequestsService();
@@ -291,6 +390,193 @@ public class LiveRequestsServiceTest extends BaseLiveServiceTest {
                 assertThat(response.body().getId().get()).isNotNull();
 
                 Integer requestId = response.body().getId().get();
+
+                requestsService.deleteRequestAsync(requestId, new Callback<Boolean>() {
+
+                    @Override
+                    public void onResponse(Call<Boolean> call, Response<Boolean> deleteResponse) {
+                        assertThat(deleteResponse).isNotNull();
+                        assertThat(deleteResponse.body()).isNotNull();
+                        assertThat(deleteResponse.body()).isTrue();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Boolean> call, Throwable t) {
+                        fail("Test Failed");
+                    }
+
+                });
+            }
+
+            @Override
+            public void onFailure(Call<CreateRequestResponseBody> call, Throwable t) {
+                fail("Test Failed");
+            }
+
+        });
+     }
+
+
+    @Test
+    public void testSynchronousRequestsService_ExecuteRequest() throws IOException {
+        SynchronousRequestsService requestsService = this.client.getRequestsService();
+        assertThat(requestsService).isNotNull();
+
+        Integer identityId = 1;
+        Integer tokenId = 1;
+        Integer appId = 1;
+        String value = "10.2";
+        Integer recipientId = 1;
+        CreateRequestRequestBody createRequestRequestVO = new CreateRequestRequestBody(identityId, tokenId, appId, value, recipientId);
+        Response<CreateRequestResponseBody> createRequestResponseBody = requestsService.createRequestSync(createRequestRequestVO);
+        assertThat(createRequestResponseBody).isNotNull();
+        assertThat(createRequestResponseBody.body()).isNotNull();
+        assertThat(createRequestResponseBody.body().getId().get()).isNotNull();
+
+        Integer requestId = createRequestResponseBody.body().getId().get();
+
+        String data = createRequestRequestVO.getValue().get();
+        ExecuteRequestRequestBody executeRequestRequest = new ExecuteRequestRequestBody(data);
+        Response<Boolean> executeRequestResponseBody = requestsService.executeRequestSync(requestId, executeRequestRequest);
+        assertThat(executeRequestResponseBody).isNotNull();
+        assertThat(executeRequestResponseBody.body()).isTrue();
+
+        Response<Boolean> deleteResponse = requestsService.deleteRequestSync(requestId);
+        assertThat(deleteResponse).isNotNull();
+        assertThat(deleteResponse.body()).isNotNull();
+        assertThat(deleteResponse.body()).isTrue();
+    }
+
+
+    @Test
+    public void testAsychronousRequestsService_ExecuteRequest() throws InterruptedException, ExecutionException {
+        AsynchronousRequestsService requestsService = this.client.getRequestsService();
+        assertThat(requestsService).isNotNull();
+
+        Integer identityId = 1;
+        Integer tokenId = 1;
+        Integer appId = 1;
+        String value = "10.2";
+        Integer recipientId = 1;
+        CreateRequestRequestBody createRequestRequestVO = new CreateRequestRequestBody(identityId, tokenId, appId, value, recipientId);
+        requestsService.createRequestAsync(createRequestRequestVO, new Callback<CreateRequestResponseBody>() {
+
+            @Override
+            public void onResponse(Call<CreateRequestResponseBody> call, Response<CreateRequestResponseBody> response) {
+                assertThat(response).isNotNull();
+                assertThat(response.body()).isNotNull();
+                assertThat(response.body().getId().get()).isNotNull();
+
+                Integer requestId = response.body().getId().get();
+
+
+                String data = createRequestRequestVO.getValue().get();
+                ExecuteRequestRequestBody executeRequestRequest = new ExecuteRequestRequestBody(data);
+
+                requestsService.executeRequestAsync(requestId, executeRequestRequest, new Callback<Boolean>() {
+
+                    @Override
+                    public void onResponse(Call<Boolean> call, Response<Boolean> executeRequestResponseBody) {
+                        assertThat(executeRequestResponseBody).isNotNull();
+                        assertThat(executeRequestResponseBody.body()).isTrue();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Boolean> call, Throwable t) {
+                        fail("Test Failed");
+                    }
+
+                });
+
+                requestsService.deleteRequestAsync(requestId, new Callback<Boolean>() {
+
+                    @Override
+                    public void onResponse(Call<Boolean> call, Response<Boolean> deleteResponse) {
+                        assertThat(deleteResponse).isNotNull();
+                        assertThat(deleteResponse.body()).isNotNull();
+                        assertThat(deleteResponse.body()).isTrue();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Boolean> call, Throwable t) {
+                        fail("Test Failed");
+                    }
+
+                });
+            }
+
+            @Override
+            public void onFailure(Call<CreateRequestResponseBody> call, Throwable t) {
+                fail("Test Failed");
+            }
+
+        });
+     }
+
+    @Test
+    public void testSynchronousRequestsService_CancelRequest() throws IOException {
+        SynchronousRequestsService requestsService = this.client.getRequestsService();
+        assertThat(requestsService).isNotNull();
+
+        Integer identityId = 1;
+        Integer tokenId = 1;
+        Integer appId = 1;
+        String value = "10.2";
+        Integer recipientId = 1;
+        CreateRequestRequestBody createRequestRequestVO = new CreateRequestRequestBody(identityId, tokenId, appId, value, recipientId);
+        Response<CreateRequestResponseBody> createRequestResponseBody = requestsService.createRequestSync(createRequestRequestVO);
+        assertThat(createRequestResponseBody).isNotNull();
+        assertThat(createRequestResponseBody.body()).isNotNull();
+        assertThat(createRequestResponseBody.body().getId().get()).isNotNull();
+
+        Integer requestId = createRequestResponseBody.body().getId().get();
+
+        Response<Boolean> cancelRequestResponseBody = requestsService.cancelRequestSync(requestId);
+        assertThat(cancelRequestResponseBody).isNotNull();
+        assertThat(cancelRequestResponseBody.body()).isTrue();
+
+        Response<Boolean> deleteResponse = requestsService.deleteRequestSync(requestId);
+        assertThat(deleteResponse).isNotNull();
+        assertThat(deleteResponse.body()).isNotNull();
+        assertThat(deleteResponse.body()).isTrue();
+    }
+
+
+    @Test
+    public void testAsychronousRequestsService_CancelRequest() throws InterruptedException, ExecutionException {
+        AsynchronousRequestsService requestsService = this.client.getRequestsService();
+        assertThat(requestsService).isNotNull();
+
+        Integer identityId = 1;
+        Integer tokenId = 1;
+        Integer appId = 1;
+        String value = "10.2";
+        Integer recipientId = 1;
+        CreateRequestRequestBody createRequestRequestVO = new CreateRequestRequestBody(identityId, tokenId, appId, value, recipientId);
+        requestsService.createRequestAsync(createRequestRequestVO, new Callback<CreateRequestResponseBody>() {
+
+            @Override
+            public void onResponse(Call<CreateRequestResponseBody> call, Response<CreateRequestResponseBody> response) {
+                assertThat(response).isNotNull();
+                assertThat(response.body()).isNotNull();
+                assertThat(response.body().getId().get()).isNotNull();
+
+                Integer requestId = response.body().getId().get();
+
+                requestsService.cancelRequestAsync(requestId, new Callback<Boolean>() {
+
+                    @Override
+                    public void onResponse(Call<Boolean> call, Response<Boolean> cancelRequestResponseBody) {
+                        assertThat(cancelRequestResponseBody).isNotNull();
+                        assertThat(cancelRequestResponseBody.body()).isTrue();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Boolean> call, Throwable t) {
+                        fail("Test Failed");
+                    }
+
+                });
 
                 requestsService.deleteRequestAsync(requestId, new Callback<Boolean>() {
 
