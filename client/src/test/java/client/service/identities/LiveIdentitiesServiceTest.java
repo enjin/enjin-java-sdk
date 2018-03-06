@@ -11,12 +11,17 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 
-import client.service.BaseLiveServiceTest;
-import io.enjincoin.sdk.client.service.identities.vo.*;
 import org.junit.Test;
 
+import client.service.BaseLiveServiceTest;
 import io.enjincoin.sdk.client.service.identities.AsynchronousIdentitiesService;
 import io.enjincoin.sdk.client.service.identities.SynchronousIdentitiesService;
+import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityRequestBody;
+import io.enjincoin.sdk.client.service.identities.vo.CreateIdentityResponseBody;
+import io.enjincoin.sdk.client.service.identities.vo.Identity;
+import io.enjincoin.sdk.client.service.identities.vo.IdentityField;
+import io.enjincoin.sdk.client.service.identities.vo.UpdateIdentityRequestBody;
+import io.enjincoin.sdk.client.service.identities.vo.UpdateIdentityResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -156,7 +161,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest {
         assertThat(identitiesService).isNotNull();
 
         String ethereumAddress = "TestEthereumAddress_"+System.currentTimeMillis();
-        CreateIdentityRequestBody createIdentityRequestBody = new CreateIdentityRequestBody(ethereumAddress, null);
+        CreateIdentityRequestBody createIdentityRequestBody = new CreateIdentityRequestBody(1, ethereumAddress, null);
         Response<CreateIdentityResponseBody> createIdentityResponseVO = identitiesService.createIdentitySync(createIdentityRequestBody);
         assertThat(createIdentityResponseVO).isNotNull();
         assertThat(createIdentityResponseVO.body()).isNotNull();
@@ -188,7 +193,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest {
         assertThat(identitiesService).isNotNull();
 
         String ethereumAddress = "TestEthereumAddress_"+System.currentTimeMillis();
-        CreateIdentityRequestBody createIdentityRequestVO = new CreateIdentityRequestBody(ethereumAddress, null);
+        CreateIdentityRequestBody createIdentityRequestVO = new CreateIdentityRequestBody(1, ethereumAddress, null);
         identitiesService.createIdentityAsync(createIdentityRequestVO, new Callback<CreateIdentityResponseBody>() {
 
             @Override
@@ -256,7 +261,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest {
         assertThat(identitiesService).isNotNull();
 
         String ethereumAddress = "TestEthereumAddress_"+System.currentTimeMillis();
-        CreateIdentityRequestBody createIdentityRequestBody = new CreateIdentityRequestBody(ethereumAddress, null);
+        CreateIdentityRequestBody createIdentityRequestBody = new CreateIdentityRequestBody(1, ethereumAddress, null);
 
         Response<CreateIdentityResponseBody> createIdentityResponseVO = identitiesService.createIdentitySync(createIdentityRequestBody);
         assertThat(createIdentityResponseVO).isNotNull();
@@ -289,7 +294,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest {
         assertThat(identitiesService).isNotNull();
 
         String ethereumAddress = "TestEthereumAddress_"+System.currentTimeMillis();
-        CreateIdentityRequestBody createIdentityRequestVO = new CreateIdentityRequestBody(ethereumAddress, null);
+        CreateIdentityRequestBody createIdentityRequestVO = new CreateIdentityRequestBody(1, ethereumAddress, null);
         identitiesService.createIdentityAsync(createIdentityRequestVO, new Callback<CreateIdentityResponseBody>() {
 
             @Override
@@ -356,7 +361,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest {
         assertThat(identitiesService).isNotNull();
 
         String ethereumAddress = "TestEthereumAddress_"+System.currentTimeMillis();
-        CreateIdentityRequestBody createIdentityRequestBody = new CreateIdentityRequestBody(ethereumAddress, null);
+        CreateIdentityRequestBody createIdentityRequestBody = new CreateIdentityRequestBody(1, ethereumAddress, null);
         Response<CreateIdentityResponseBody> createIdentityResponseVO = identitiesService.createIdentitySync(createIdentityRequestBody);
         assertThat(createIdentityResponseVO).isNotNull();
         assertThat(createIdentityResponseVO.body()).isNotNull();
@@ -377,7 +382,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest {
         assertThat(identitiesService).isNotNull();
 
         String ethereumAddress = "TestEthereumAddress_"+System.currentTimeMillis();
-        CreateIdentityRequestBody createIdentityRequestVO = new CreateIdentityRequestBody(ethereumAddress, null);
+        CreateIdentityRequestBody createIdentityRequestVO = new CreateIdentityRequestBody(1, ethereumAddress, null);
         identitiesService.createIdentityAsync(createIdentityRequestVO, new Callback<CreateIdentityResponseBody>( ) {
 
             @Override
@@ -421,7 +426,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest {
         assertThat(identitiesService).isNotNull();
 
         String ethereumAddress = "TestEthereumAddress_"+System.currentTimeMillis();
-        CreateIdentityRequestBody createIdentityRequestBody = new CreateIdentityRequestBody(ethereumAddress, null);
+        CreateIdentityRequestBody createIdentityRequestBody = new CreateIdentityRequestBody(1, ethereumAddress, null);
         Response<CreateIdentityResponseBody> createIdentityResponseVO = identitiesService.createIdentitySync(createIdentityRequestBody);
         assertThat(createIdentityResponseVO).isNotNull();
         assertThat(createIdentityResponseVO.body()).isNotNull();
@@ -458,7 +463,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest {
         assertThat(identitiesService).isNotNull();
 
         String ethereumAddress = "TestEthereumAddress_"+System.currentTimeMillis();
-        CreateIdentityRequestBody createIdentityRequestVO = new CreateIdentityRequestBody(ethereumAddress, null);
+        CreateIdentityRequestBody createIdentityRequestVO = new CreateIdentityRequestBody(1, ethereumAddress, null);
         identitiesService.createIdentityAsync(createIdentityRequestVO, new Callback<CreateIdentityResponseBody>() {
 
             @Override

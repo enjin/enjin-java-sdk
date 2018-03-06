@@ -6,9 +6,9 @@ import static org.junit.Assert.fail;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
-import client.service.BaseLiveServiceTest;
 import org.junit.Test;
 
+import client.service.BaseLiveServiceTest;
 import io.enjincoin.sdk.client.service.identity.AsynchronousIdentityService;
 import io.enjincoin.sdk.client.service.identity.SynchronousIdentityService;
 import io.enjincoin.sdk.client.service.identity.vo.LinkIdentityRequestBody;
@@ -53,6 +53,7 @@ public class LiveIdentityServiceTest extends BaseLiveServiceTest {
 
         String linkingCode = "av"+System.currentTimeMillis();
         LinkIdentityRequestBody linkIdentityRequestVO = new LinkIdentityRequestBody(ethereumAddress);
+
         identityService.linkIdentityAsync(linkingCode, linkIdentityRequestVO, new Callback<LinkIdentityResponseBody>() {
 
             @Override
