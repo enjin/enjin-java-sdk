@@ -1,7 +1,5 @@
 package io.enjincoin.sdk.client.service.users.vo;
 
-import java.util.Optional;
-
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -11,13 +9,13 @@ public class UpdateUserRequestBody {
 
 
     @SerializedName("name")
-    private Optional<String> name;
+    private String name;
 
     @SerializedName("email")
-    private Optional<String> email;
+    private String email;
 
     @SerializedName("password")
-    private Optional<String> password;
+    private String password;
 
     /**
      * Class constructor.
@@ -27,15 +25,15 @@ public class UpdateUserRequestBody {
      */
     public UpdateUserRequestBody(String name, String email, String password) {
         super();
-        this.name = Optional.of(name);
-        this.email = Optional.of(email);
-        this.password = Optional.of(password);
+        this.name = name;
+        this.email = email;
+        this.password = password;
     }
 
     /**
      * @return the name
      */
-    public Optional<String> getName() {
+    public String getName() {
         return name;
     }
 
@@ -43,7 +41,7 @@ public class UpdateUserRequestBody {
     /**
      * @return the email
      */
-    public Optional<String> getEmail() {
+    public String getEmail() {
         return email;
     }
 
@@ -51,7 +49,7 @@ public class UpdateUserRequestBody {
     /**
      * @return the password
      */
-    public Optional<String> getPassword() {
+    public String getPassword() {
         return password;
     }
 

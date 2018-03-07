@@ -1,9 +1,6 @@
 package io.enjincoin.sdk.client.service.identities.vo;
 
-import java.util.Optional;
-
 import com.google.gson.annotations.SerializedName;
-import io.enjincoin.sdk.client.service.identities.vo.IdentityField;
 
 /**
  * <p>Update Identity Request class.
@@ -12,13 +9,13 @@ import io.enjincoin.sdk.client.service.identities.vo.IdentityField;
 public class UpdateIdentityRequestBody {
 
     @SerializedName("fields")
-    private Optional<IdentityField[]> fields;
+    private IdentityField[] fields;
 
     /**
      * Class constructor
      * @param fields
      */
-    public UpdateIdentityRequestBody(Optional<IdentityField[]> fields) {
+    public UpdateIdentityRequestBody(IdentityField[] fields) {
         super();
         this.fields = fields;
     }
@@ -26,7 +23,7 @@ public class UpdateIdentityRequestBody {
     /**
      * @return the fields
      */
-    public Optional<IdentityField[]> getFields() {
+    public IdentityField[] getFields() {
         return fields;
     }
 

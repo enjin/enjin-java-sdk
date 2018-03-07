@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 
 import org.junit.Test;
@@ -44,9 +43,9 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest {
         assertThat(getIdentityResponseVOArray.body()).isNotNull();
 
         for (Identity getIdentityResponseVO : getIdentityResponseVOArray.body()) {
-            if (getIdentityResponseVO.getFields().isPresent()) {
+            if (getIdentityResponseVO.getFields() != null) {
 
-                for (IdentityField fieldVO : getIdentityResponseVO.getFields().get()) {
+                for (IdentityField fieldVO : getIdentityResponseVO.getFields()) {
                     assertThat(fieldVO).isNotNull();
                 }
             }
@@ -68,9 +67,9 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest {
                 Identity[] getIdentityResponseVOArray = getIdentityResponseVOArrayR.body();
 
                 for (Identity getIdentityResponseVO : getIdentityResponseVOArray) {
-                    if (getIdentityResponseVO.getFields().isPresent()) {
+                    if (getIdentityResponseVO.getFields() != null) {
 
-                        for (IdentityField fieldVO : getIdentityResponseVO.getFields().get()) {
+                        for (IdentityField fieldVO : getIdentityResponseVO.getFields()) {
                             assertThat(fieldVO).isNotNull();
                         }
                     }
@@ -105,9 +104,9 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest {
         assertThat(getIdentityResponseVOArray.body()).isNotNull();
 
         for (Identity getIdentityResponseVO : getIdentityResponseVOArray.body()) {
-            if (getIdentityResponseVO.getFields().isPresent()) {
+            if (getIdentityResponseVO.getFields() != null) {
 
-                for (IdentityField fieldVO : getIdentityResponseVO.getFields().get()) {
+                for (IdentityField fieldVO : getIdentityResponseVO.getFields()) {
                     assertThat(fieldVO).isNotNull();
                 }
             }
@@ -138,9 +137,9 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest {
                 Identity[] getIdentityResponseVOArray = response.body();
 
                 for (Identity getIdentityResponseVO : getIdentityResponseVOArray) {
-                    if (getIdentityResponseVO.getFields().isPresent()) {
+                    if (getIdentityResponseVO.getFields() != null) {
 
-                        for (IdentityField fieldVO : getIdentityResponseVO.getFields().get()) {
+                        for (IdentityField fieldVO : getIdentityResponseVO.getFields()) {
                             assertThat(fieldVO).isNotNull();
                         }
                     }
@@ -169,15 +168,15 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest {
         assertThat(createIdentityResponseVO.body().getCreatedAt()).isNotNull();
         assertThat(createIdentityResponseVO.body().getUpdatedAt()).isNotNull();
 
-        Integer identityId = createIdentityResponseVO.body().getId().get();
+        Integer identityId = createIdentityResponseVO.body().getId();
 
         Response<Identity> getIdentityByIdResponseVO = identitiesService.getIdentitySync(identityId);
         assertThat(getIdentityByIdResponseVO).isNotNull();
         assertThat(getIdentityByIdResponseVO.body()).isNotNull();
 
-        if (getIdentityByIdResponseVO.body().getFields().isPresent()) {
+        if (getIdentityByIdResponseVO.body().getFields() != null) {
 
-            for (IdentityField fieldVO : getIdentityByIdResponseVO.body().getFields().get()) {
+            for (IdentityField fieldVO : getIdentityByIdResponseVO.body().getFields()) {
                 assertThat(fieldVO).isNotNull();
             }
         }
@@ -206,7 +205,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest {
                 assertThat(createIdentityResponseVO.getCreatedAt()).isNotNull();
                 assertThat(createIdentityResponseVO.getUpdatedAt()).isNotNull();
 
-                Integer identityId = createIdentityResponseVO.getId().get();
+                Integer identityId = createIdentityResponseVO.getId();
 
                 identitiesService.getIdentityAsync(identityId, new Callback<Identity>() {
 
@@ -216,9 +215,9 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest {
                         assertThat(response.body()).isNotNull();
 
                         Identity getIdentityByIdResponseVO = response.body();
-                        if (getIdentityByIdResponseVO.getFields().isPresent()) {
+                        if (getIdentityByIdResponseVO.getFields() != null) {
 
-                            for (IdentityField fieldVO : getIdentityByIdResponseVO.getFields().get()) {
+                            for (IdentityField fieldVO : getIdentityByIdResponseVO.getFields()) {
                                 assertThat(fieldVO).isNotNull();
                             }
                         }
@@ -270,15 +269,15 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest {
         assertThat(createIdentityResponseVO.body().getCreatedAt()).isNotNull();
         assertThat(createIdentityResponseVO.body().getUpdatedAt()).isNotNull();
 
-        Integer identityId = createIdentityResponseVO.body().getId().get();
+        Integer identityId = createIdentityResponseVO.body().getId();
 
         Response<Identity> getIdentityByIdResponseVO = identitiesService.getIdentitySync(identityId);
         assertThat(getIdentityByIdResponseVO).isNotNull();
         assertThat(getIdentityByIdResponseVO.body()).isNotNull();
 
-        if (getIdentityByIdResponseVO.body().getFields().isPresent()) {
+        if (getIdentityByIdResponseVO.body().getFields() != null) {
 
-            for (IdentityField fieldVO : getIdentityByIdResponseVO.body().getFields().get()) {
+            for (IdentityField fieldVO : getIdentityByIdResponseVO.body().getFields()) {
                 assertThat(fieldVO).isNotNull();
             }
         }
@@ -307,7 +306,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest {
                 assertThat(createIdentityResponseVO.getCreatedAt()).isNotNull();
                 assertThat(createIdentityResponseVO.getUpdatedAt()).isNotNull();
 
-                Integer identityId = createIdentityResponseVO.getId().get();
+                Integer identityId = createIdentityResponseVO.getId();
 
                 identitiesService.getIdentityAsync(identityId, new Callback<Identity>() {
 
@@ -317,9 +316,9 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest {
                         assertThat(response.body()).isNotNull();
 
                         Identity getIdentityByIdResponseVO = response.body();
-                        if (getIdentityByIdResponseVO.getFields().isPresent()) {
+                        if (getIdentityByIdResponseVO.getFields() != null) {
 
-                            for (IdentityField fieldVO : getIdentityByIdResponseVO.getFields().get()) {
+                            for (IdentityField fieldVO : getIdentityByIdResponseVO.getFields()) {
                                 assertThat(fieldVO).isNotNull();
                             }
                         }
@@ -369,7 +368,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest {
         assertThat(createIdentityResponseVO.body().getCreatedAt()).isNotNull();
         assertThat(createIdentityResponseVO.body().getUpdatedAt()).isNotNull();
 
-        Integer identityId = createIdentityResponseVO.body().getId().get();
+        Integer identityId = createIdentityResponseVO.body().getId();
 
         Response<Boolean> deleteIdentityResult = identitiesService.deleteIdentitySync(identityId);
         assertThat(deleteIdentityResult).isNotNull();
@@ -395,7 +394,7 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest {
                 assertThat(createIdentityResponseVO.getCreatedAt()).isNotNull();
                 assertThat(createIdentityResponseVO.getUpdatedAt()).isNotNull();
 
-                Integer identityId = createIdentityResponseVO.getId().get();
+                Integer identityId = createIdentityResponseVO.getId();
 
                 identitiesService.deleteIdentityAsync(identityId, new Callback<Boolean>() {
                     @Override
@@ -434,12 +433,12 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest {
         assertThat(createIdentityResponseVO.body().getCreatedAt()).isNotNull();
         assertThat(createIdentityResponseVO.body().getUpdatedAt()).isNotNull();
 
-        Integer identityId = createIdentityResponseVO.body().getId().get();
+        Integer identityId = createIdentityResponseVO.body().getId();
 
-        IdentityField field1 = new IdentityField(Optional.of("player_name"), Optional.of("Player Ten"), Optional.of(1), Optional.of(1), Optional.of(1));
-        IdentityField field2 = new IdentityField(Optional.of("New Field"), Optional.of("New Field Data"), Optional.of(1), Optional.of(1), Optional.of(1));
+        IdentityField field1 = new IdentityField("player_name", "Player Ten", 1, 1, 1);
+        IdentityField field2 = new IdentityField("New Field", "New Field Data", 1, 1, 1);
         IdentityField[] fieldsArray = new IdentityField[] {field1, field2};
-        Optional<IdentityField[]> fields = Optional.of(fieldsArray);
+        IdentityField[] fields = fieldsArray;
 
         UpdateIdentityRequestBody updateIdentityRequestBody = new UpdateIdentityRequestBody(fields);
         Response<UpdateIdentityResponseBody> updateIdentityResponseVO = identitiesService.updateIdentitySync(identityId, updateIdentityRequestBody);
@@ -476,12 +475,12 @@ public class LiveIdentitiesServiceTest extends BaseLiveServiceTest {
                 assertThat(createIdentityResponseVO.getCreatedAt()).isNotNull();
                 assertThat(createIdentityResponseVO.getUpdatedAt()).isNotNull();
 
-                Integer identityId = createIdentityResponseVO.getId().get();
+                Integer identityId = createIdentityResponseVO.getId();
 
-                IdentityField field1 = new IdentityField(Optional.of("player_name"), Optional.of("Player Ten"), Optional.of(1), Optional.of(1), Optional.of(1));
-                IdentityField field2 = new IdentityField(Optional.of("New Field"), Optional.of("New Field Data"), Optional.of(1), Optional.of(1), Optional.of(1));
+                IdentityField field1 = new IdentityField("player_name", "Player Ten", 1, 1, 1);
+                IdentityField field2 = new IdentityField("New Field", "New Field Data", 1, 1, 1);
                 IdentityField[] fieldsArray = new IdentityField[] {field1, field2};
-                Optional<IdentityField[]> fields = Optional.of(fieldsArray);
+                IdentityField[] fields = fieldsArray;
 
                 UpdateIdentityRequestBody updateIdentityRequestVO = new UpdateIdentityRequestBody(fields);
                 identitiesService.updateIdentityAsync(identityId, updateIdentityRequestVO, new Callback<UpdateIdentityResponseBody>() {

@@ -1,9 +1,8 @@
 package io.enjincoin.sdk.client.service.identities.vo;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.util.Arrays;
-import java.util.Optional;
+
+import com.google.gson.annotations.SerializedName;
 
 /**
  * <p>Get Identity Response class.
@@ -13,28 +12,28 @@ public class Identity {
 
 
     @SerializedName("id")
-    private Optional<Integer> id;
+    private Integer id;
 
     @SerializedName("ethereum_address")
-    private Optional<String> ethereumAddress;
+    private String ethereumAddress;
 
     @SerializedName("linking_code")
-    private Optional<String> linkingCode;
+    private String linkingCode;
 
     @SerializedName("updated_at")
-    private Optional<String> updatedAt;
+    private String updatedAt;
 
     @SerializedName("created_at")
     private String createdAt;
 
     @SerializedName("user")
-    private Optional<String> user;
+    private String user;
 
     @SerializedName("fields")
-    private Optional<IdentityField[]> fields;
+    private IdentityField[] fields;
 
-    public Identity(Optional<Integer> id, Optional<String> ethereumAddress, Optional<String> linkingCode, Optional<String> updatedAt, String createdAt, Optional<String> user,
-                    Optional<IdentityField[]> fields) {
+    public Identity(Integer id, String ethereumAddress, String linkingCode, String updatedAt, String createdAt, String user,
+                    IdentityField[] fields) {
         super();
         this.id = id;
         this.ethereumAddress = ethereumAddress;
@@ -48,28 +47,28 @@ public class Identity {
     /**
      * @return the id
      */
-    public Optional<Integer> getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * @return the ethereumAddress
      */
-    public Optional<String> getEthereumAddress() {
+    public String getEthereumAddress() {
         return ethereumAddress;
     }
 
     /**
      * @return the linkingCode
      */
-    public Optional<String> getLinkingCode() {
+    public String getLinkingCode() {
         return linkingCode;
     }
 
     /**
      * @return the updatedAt
      */
-    public Optional<String> getUpdatedAt() {
+    public String getUpdatedAt() {
         return updatedAt;
     }
 
@@ -83,14 +82,14 @@ public class Identity {
     /**
      * @return the user
      */
-    public Optional<String> getUser() {
+    public String getUser() {
         return user;
     }
 
     /**
      * @return the fields
      */
-    public Optional<IdentityField[]> getFields() {
+    public IdentityField[] getFields() {
         return fields;
     }
 
@@ -99,7 +98,7 @@ public class Identity {
      */
     @Override
     public String toString() {
-        return "GetIdentityResponseVO [id=" + id + ", ethereumAddress=" + ethereumAddress + ", linkingCode=" + linkingCode + ", updatedAt=" + updatedAt + ", createdAt=" + createdAt
-                + ", user=" + user + ", fields=" + (fields.isPresent() ? Arrays.toString(fields.get()) : fields.toString()) + "]";
+        return "Identity [id=" + id + ", ethereumAddress=" + ethereumAddress + ", linkingCode=" + linkingCode + ", updatedAt=" + updatedAt + ", createdAt=" + createdAt + ", user=" + user
+                + ", fields=" + Arrays.toString(fields) + "]";
     }
 }

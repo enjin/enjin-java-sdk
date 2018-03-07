@@ -1,7 +1,5 @@
 package io.enjincoin.sdk.client.service.identity.vo;
 
-import java.util.Optional;
-
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -12,19 +10,19 @@ import com.google.gson.annotations.SerializedName;
 public class LinkIdentityResponseBody {
 
     @SerializedName("id")
-    private Optional<Integer> id;
+    private Integer id;
 
     @SerializedName("user_id")
-    private Optional<Integer> userId;
+    private Integer userId;
 
     @SerializedName("ethereum_address")
-    private Optional<String> ethereumAddress;
+    private String ethereumAddress;
 
     @SerializedName("linking_code")
-    private Optional<Integer> linkingCode;
+    private Integer linkingCode;
 
     @SerializedName("updated_at")
-    private Optional<String> updatedAt;
+    private String updatedAt;
 
     @SerializedName("created_at")
     private String createdAt;
@@ -39,7 +37,7 @@ public class LinkIdentityResponseBody {
      * @param updatedAt
      * @param createdAt
      */
-    public LinkIdentityResponseBody(Optional<Integer> id, Optional<Integer> userId, Optional<String> ethereumAddress, Optional<Integer> linkingCode, Optional<String> updatedAt,
+    public LinkIdentityResponseBody(Integer id, Integer userId, String ethereumAddress, Integer linkingCode, String updatedAt,
             String createdAt) {
         super();
         this.id = id;
@@ -53,21 +51,21 @@ public class LinkIdentityResponseBody {
     /**
      * @return the id
      */
-    public Optional<Integer> getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * @return the ethereumAddress
      */
-    public Optional<String> getEthereumAddress() {
+    public String getEthereumAddress() {
         return ethereumAddress;
     }
 
     /**
      * @return the updatedAt
      */
-    public Optional<String> getUpdatedAt() {
+    public String getUpdatedAt() {
         return updatedAt;
     }
 
@@ -81,14 +79,14 @@ public class LinkIdentityResponseBody {
     /**
      * @return the userId
      */
-    public Optional<Integer> getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
     /**
      * @return the linkingCode
      */
-    public Optional<Integer> getLinkingCode() {
+    public Integer getLinkingCode() {
         return linkingCode;
     }
 

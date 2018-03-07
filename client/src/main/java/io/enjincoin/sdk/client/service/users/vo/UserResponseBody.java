@@ -1,7 +1,5 @@
 package io.enjincoin.sdk.client.service.users.vo;
 
-import java.util.Optional;
-
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -10,72 +8,72 @@ import com.google.gson.annotations.SerializedName;
 public class UserResponseBody {
 
     @SerializedName("id")
-    private Optional<Integer> id;
+    private Integer id;
 
     @SerializedName("name")
-    private Optional<String> name;
+    private String name;
 
     @SerializedName("email")
-    private Optional<String> email;
+    private String email;
 
     @SerializedName("updated_at")
-    private Optional<String> updatedAt;
+    private String updatedAt;
 
     @SerializedName("created_at")
-    private Optional<String> createdAt;
+    private String createdAt;
 
     @SerializedName("identity")
-    private Optional<String> identity;
+    private String identity;
 
     public UserResponseBody(Integer id, String name, String email, String updatedAt, String createdAt, String identity) {
         super();
-        this.id = Optional.of(id);
-        this.name = Optional.of(name);
-        this.email = Optional.of(email);
-        this.updatedAt = Optional.of(updatedAt);
-        this.createdAt = Optional.of(createdAt);
-        this.identity = Optional.of(identity);
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.updatedAt = updatedAt;
+        this.createdAt = createdAt;
+        this.identity = identity;
     }
 
     /**
      * @return the id
      */
-    public Optional<Integer> getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * @return the name
      */
-    public Optional<String> getName() {
+    public String getName() {
         return name;
     }
 
     /**
      * @return the email
      */
-    public Optional<String> getEmail() {
+    public String getEmail() {
         return email;
     }
 
     /**
      * @return the updatedAt
      */
-    public Optional<String> getUpdatedAt() {
+    public String getUpdatedAt() {
         return updatedAt;
     }
 
     /**
      * @return the createdAt
      */
-    public Optional<String> getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 
     /**
      * @return the identity
      */
-    public Optional<String> getIdentity() {
+    public String getIdentity() {
         return identity;
     }
 

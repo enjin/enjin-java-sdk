@@ -1,7 +1,5 @@
 package io.enjincoin.sdk.client.service.users.vo;
 
-import java.util.Optional;
-
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -10,10 +8,10 @@ import com.google.gson.annotations.SerializedName;
 public class LoginUserResponseBody {
 
     @SerializedName("identity")
-    private Optional<UserResponseBody> identity;
+    private UserResponseBody identity;
 
     @SerializedName("token")
-    private Optional<String> token;
+    private String token;
 
 
     /**
@@ -23,21 +21,21 @@ public class LoginUserResponseBody {
      */
     public LoginUserResponseBody(UserResponseBody identity, String token) {
         super();
-        this.identity = Optional.of(identity);
-        this.token = Optional.of(token);
+        this.identity = identity;
+        this.token = token;
     }
 
     /**
      * @return the identity
      */
-    public Optional<UserResponseBody> getIdentity() {
+    public UserResponseBody getIdentity() {
         return identity;
     }
 
     /**
      * @return the token
      */
-    public Optional<String> getToken() {
+    public String getToken() {
         return token;
     }
 
