@@ -7,6 +7,7 @@ import org.immutables.value.Value;
 
 import com.google.gson.annotations.SerializedName;
 
+import io.enjincoin.sdk.client.service.platform.vo.PlatformResponseBody;
 import io.enjincoin.sdk.client.util.Constants;
 
 /**
@@ -25,7 +26,7 @@ public class Config extends JsonConfig {
      */
     @Value.Default
     @SerializedName("platform")
-    public Platform getTrustedPlatform() {
+    public PlatformResponseBody getTrustedPlatform() {
         return ImmutablePlatform.builder().build();
     }
 

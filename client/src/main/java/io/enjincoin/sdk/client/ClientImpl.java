@@ -12,6 +12,8 @@ import io.enjincoin.sdk.client.service.identities.impl.IdentitiesServiceImpl;
 import io.enjincoin.sdk.client.service.identities.vo.IdentityFilter;
 import io.enjincoin.sdk.client.service.identity.IdentityService;
 import io.enjincoin.sdk.client.service.identity.impl.IdentityServiceImpl;
+import io.enjincoin.sdk.client.service.platform.PlatformService;
+import io.enjincoin.sdk.client.service.platform.impl.PlatformServiceImpl;
 import io.enjincoin.sdk.client.service.requests.RequestsService;
 import io.enjincoin.sdk.client.service.requests.impl.RequestsServiceImpl;
 import io.enjincoin.sdk.client.service.tokens.TokensService;
@@ -34,6 +36,7 @@ public class ClientImpl implements Client {
     private UsersService userService;
     private RequestsService requestsService;
     private TokensService tokensService;
+    private PlatformService platformService;
 
     public ClientImpl(String url) {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -89,6 +92,13 @@ public class ClientImpl implements Client {
         return tokensService;
     }
 
+    @Override
+    public PlatformService getPlatformService() {
+        if (platformService == null) {
+            platformService = new PlatformServiceImpl(retrofit);
+        }
+        return platformService;
+    }
 
     private Gson getGsonInstance() {
         return new GsonBuilder()

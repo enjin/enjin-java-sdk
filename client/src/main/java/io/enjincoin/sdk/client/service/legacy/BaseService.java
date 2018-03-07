@@ -3,9 +3,9 @@ package io.enjincoin.sdk.client.service.legacy;
 import com.enjin.java_commons.ObjectUtils;
 import com.enjin.java_commons.StringUtils;
 import io.enjincoin.sdk.client.config.Config;
-import io.enjincoin.sdk.client.config.Platform;
 import io.enjincoin.sdk.client.service.legacy.platform.SynchronousPlatformService;
 import io.enjincoin.sdk.client.service.legacy.platform.impl.PlatformServiceImpl;
+import io.enjincoin.sdk.client.service.platform.vo.PlatformResponseBody;
 import io.enjincoin.sdk.client.util.Constants;
 import io.enjincoin.sdk.client.util.HttpClient;
 import okhttp3.*;
@@ -28,7 +28,7 @@ public abstract class BaseService {
     /**
      * Trusted Platform.
      */
-    private Platform trustedPlatform;
+    private PlatformResponseBody trustedPlatform;
     /**
      * Executor service.
      */
@@ -334,7 +334,7 @@ public abstract class BaseService {
      *
      * @return - the trusted platform
      */
-    public Platform getTrustedPlatform() {
+    public PlatformResponseBody getTrustedPlatform() {
         return this.trustedPlatform;
     }
 
@@ -343,7 +343,7 @@ public abstract class BaseService {
      *
      * @param platform the platform
      */
-    public void setTrustedPlatform(final Platform platform) {
+    public void setTrustedPlatform(final PlatformResponseBody platform) {
         this.trustedPlatform = platform;
     }
 
