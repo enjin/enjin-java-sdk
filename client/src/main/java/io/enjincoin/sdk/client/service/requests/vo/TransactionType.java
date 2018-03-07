@@ -1,7 +1,5 @@
 package io.enjincoin.sdk.client.service.requests.vo;
 
-import java.util.Optional;
-
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -10,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 public class TransactionType {
 
     @SerializedName("value")
-    private Optional<String> value;
+    private String value;
 
     /**
      * Class constructor.
@@ -18,22 +16,16 @@ public class TransactionType {
      */
     public TransactionType(String value) {
         super();
-        this.value = Optional.of(value);
+        this.value = value;
     }
 
     /**
      * @return the value
      */
-    public Optional<String> getValue() {
+    public String getValue() {
         return value;
     }
 
-    /**
-     * @param value the value to set
-     */
-    public void setValue(Optional<String> value) {
-        this.value = value;
-    }
 
     /* (non-Javadoc)
      * @see java.lang.Object#toString()

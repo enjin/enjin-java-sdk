@@ -1,7 +1,5 @@
 package io.enjincoin.sdk.client.service.requests.vo;
 
-import java.util.Optional;
-
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -10,19 +8,19 @@ import com.google.gson.annotations.SerializedName;
 public class CreateRequestRequestBody {
 
     @SerializedName("identity_id")
-    private Optional<Integer> identityId;
+    private Integer identityId;
 
     @SerializedName("token_id")
-    private Optional<Integer> tokenId;
+    private Integer tokenId;
 
     @SerializedName("app_id")
-    private Optional<Integer> appId;
+    private Integer appId;
 
     @SerializedName("value")
-    private Optional<String> value;
+    private String value;
 
     @SerializedName("recipient_id")
-    private Optional<Integer> recipientId;
+    private Integer recipientId;
 
 
     /**
@@ -35,45 +33,45 @@ public class CreateRequestRequestBody {
      */
     public CreateRequestRequestBody(Integer identityId, Integer tokenId, Integer appId, String value, Integer recipientId) {
         super();
-        this.identityId = Optional.of(identityId);
-        this.tokenId = Optional.of(tokenId);
-        this.appId = Optional.of(appId);
-        this.value = Optional.of(value);
-        this.recipientId = Optional.of(recipientId);
+        this.identityId = identityId;
+        this.tokenId = tokenId;
+        this.appId = appId;
+        this.value = value;
+        this.recipientId = recipientId;
     }
 
     /**
      * @return the identityId
      */
-    public Optional<Integer> getIdentityId() {
+    public Integer getIdentityId() {
         return identityId;
     }
 
     /**
      * @return the tokenId
      */
-    public Optional<Integer> getTokenId() {
+    public Integer getTokenId() {
         return tokenId;
     }
 
     /**
      * @return the appId
      */
-    public Optional<Integer> getAppId() {
+    public Integer getAppId() {
         return appId;
     }
 
     /**
      * @return the value
      */
-    public Optional<String> getValue() {
+    public String getValue() {
         return value;
     }
 
     /**
      * @return the recipientId
      */
-    public Optional<Integer> getRecipientId() {
+    public Integer getRecipientId() {
         return recipientId;
     }
 

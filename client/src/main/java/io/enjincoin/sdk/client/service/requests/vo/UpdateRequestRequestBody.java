@@ -1,7 +1,5 @@
 package io.enjincoin.sdk.client.service.requests.vo;
 
-import java.util.Optional;
-
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -10,10 +8,10 @@ import com.google.gson.annotations.SerializedName;
 public class UpdateRequestRequestBody {
 
     @SerializedName("value")
-    private Optional<String> value;
+    private String value;
 
     @SerializedName("recipient_id")
-    private Optional<Integer> recipientId;
+    private Integer recipientId;
 
 
     /**
@@ -23,21 +21,21 @@ public class UpdateRequestRequestBody {
      */
     public UpdateRequestRequestBody(String value, Integer recipientId) {
         super();
-        this.value = Optional.of(value);
-        this.recipientId = Optional.of(recipientId);
+        this.value = value;
+        this.recipientId = recipientId;
     }
 
     /**
      * @return the value
      */
-    public Optional<String> getValue() {
+    public String getValue() {
         return value;
     }
 
     /**
      * @return the recipientId
      */
-    public Optional<Integer> getRecipientId() {
+    public Integer getRecipientId() {
         return recipientId;
     }
 

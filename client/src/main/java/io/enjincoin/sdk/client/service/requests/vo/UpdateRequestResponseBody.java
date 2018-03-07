@@ -1,7 +1,5 @@
 package io.enjincoin.sdk.client.service.requests.vo;
 
-import java.util.Optional;
-
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -10,28 +8,28 @@ import com.google.gson.annotations.SerializedName;
 public class UpdateRequestResponseBody {
 
     @SerializedName("id")
-    private Optional<Integer> id;
+    private Integer id;
 
     @SerializedName("transaction_id")
-    private Optional<Integer> transactionId;
+    private Integer transactionId;
 
     @SerializedName("app_id")
-    private Optional<Integer> appId;
+    private Integer appId;
 
     @SerializedName("type")
-    private Optional<String> type;
+    private String type;
 
     @SerializedName("value")
-    private Optional<String> value;
+    private String value;
 
     @SerializedName("accepted")
-    private Optional<Integer> accepted;
+    private Integer accepted;
 
     @SerializedName("updated_at")
-    private Optional<String> updatedAt;
+    private String updatedAt;
 
     @SerializedName("created_at")
-    private Optional<String> createdAt;
+    private String createdAt;
 
 
     /**
@@ -48,69 +46,69 @@ public class UpdateRequestResponseBody {
     public UpdateRequestResponseBody(Integer id, Integer transactionId, Integer appId, String type, String value,
             Integer accepted, String updatedAt, String createdAt) {
         super();
-        this.id = Optional.of(id);
-        this.transactionId = Optional.of(transactionId);
-        this.appId = Optional.of(appId);
-        this.type = Optional.of(type);
-        this.value = Optional.of(value);
-        this.accepted = Optional.of(accepted);
-        this.updatedAt = Optional.of(updatedAt);
-        this.createdAt = Optional.of(createdAt);
+        this.id = id;
+        this.transactionId = transactionId;
+        this.appId = appId;
+        this.type = type;
+        this.value = value;
+        this.accepted = accepted;
+        this.updatedAt = updatedAt;
+        this.createdAt = createdAt;
     }
 
     /**
      * @return the id
      */
-    public Optional<Integer> getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * @return the transactionId
      */
-    public Optional<Integer> getTransactionId() {
+    public Integer getTransactionId() {
         return transactionId;
     }
 
     /**
      * @return the appId
      */
-    public Optional<Integer> getAppId() {
+    public Integer getAppId() {
         return appId;
     }
 
     /**
      * @return the type
      */
-    public Optional<String> getType() {
+    public String getType() {
         return type;
     }
 
     /**
      * @return the value
      */
-    public Optional<String> getValue() {
+    public String getValue() {
         return value;
     }
 
     /**
      * @return the accepted
      */
-    public Optional<Integer> getAccepted() {
+    public Integer getAccepted() {
         return accepted;
     }
 
     /**
      * @return the updatedAt
      */
-    public Optional<String> getUpdatedAt() {
+    public String getUpdatedAt() {
         return updatedAt;
     }
 
     /**
      * @return the createdAt
      */
-    public Optional<String> getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 

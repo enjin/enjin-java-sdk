@@ -1,7 +1,5 @@
 package io.enjincoin.sdk.client.service.requests.vo;
 
-import java.util.Optional;
-
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -11,7 +9,7 @@ public class ExecuteRequestRequestBody {
 
 
     @SerializedName("data")
-    private Optional<String> data;
+    private String data;
 
 
     /**
@@ -20,13 +18,13 @@ public class ExecuteRequestRequestBody {
      */
     public ExecuteRequestRequestBody(String data) {
         super();
-        this.data = Optional.of(data);
+        this.data = data;
     }
 
     /**
      * @return the data
      */
-    public Optional<String> getData() {
+    public String getData() {
         return data;
     }
 

@@ -1,7 +1,5 @@
 package io.enjincoin.sdk.client.service.requests.vo;
 
-import java.util.Optional;
-
 import com.google.gson.annotations.SerializedName;
 
 import io.enjincoin.sdk.client.service.tokens.vo.Token;
@@ -13,31 +11,31 @@ import io.enjincoin.sdk.client.service.users.vo.UserResponseBody;
 public class CreateRequestResponseBody {
 
     @SerializedName("app_id")
-    private Optional<Integer> appId;
+    private Integer appId;
 
     @SerializedName("type")
-    private Optional<TransactionType> type;
+    private TransactionType type;
 
     @SerializedName("value")
-    private Optional<String> value;
+    private String value;
 
     @SerializedName("updated_at")
-    private Optional<String> updatedAt;
+    private String updatedAt;
 
     @SerializedName("created_at")
-    private Optional<String> createdAt;
+    private String createdAt;
 
     @SerializedName("id")
-    private Optional<Integer> id;
+    private Integer id;
 
     @SerializedName("identity")
-    private Optional<UserResponseBody> identity;
+    private UserResponseBody identity;
 
     @SerializedName("recipient")
-    private Optional<UserResponseBody> recipient;
+    private UserResponseBody recipient;
 
     @SerializedName("token")
-    private Optional<Token> token;
+    private Token token;
 
 
     /**
@@ -55,77 +53,77 @@ public class CreateRequestResponseBody {
     public CreateRequestResponseBody(Integer appId, TransactionType type, String value, String updatedAt, String createdAt,
             Integer id, UserResponseBody identity, UserResponseBody recipient, Token token) {
         super();
-        this.appId = Optional.of(appId);
-        this.type = Optional.of(type);
-        this.value = Optional.of(value);
-        this.updatedAt = Optional.of(updatedAt);
-        this.createdAt = Optional.of(createdAt);
-        this.id = Optional.of(id);
-        this.identity = Optional.of(identity);
-        this.recipient = Optional.of(recipient);
-        this.token = Optional.of(token);
+        this.appId = appId;
+        this.type = type;
+        this.value = value;
+        this.updatedAt = updatedAt;
+        this.createdAt = createdAt;
+        this.id = id;
+        this.identity = identity;
+        this.recipient = recipient;
+        this.token = token;
     }
 
     /**
      * @return the appId
      */
-    public Optional<Integer> getAppId() {
+    public Integer getAppId() {
         return appId;
     }
 
     /**
      * @return the type
      */
-    public Optional<TransactionType> getType() {
+    public TransactionType getType() {
         return type;
     }
 
     /**
      * @return the value
      */
-    public Optional<String> getValue() {
+    public String getValue() {
         return value;
     }
 
     /**
      * @return the updatedAt
      */
-    public Optional<String> getUpdatedAt() {
+    public String getUpdatedAt() {
         return updatedAt;
     }
 
     /**
      * @return the createdAt
      */
-    public Optional<String> getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 
     /**
      * @return the id
      */
-    public Optional<Integer> getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * @return the identity
      */
-    public Optional<UserResponseBody> getIdentity() {
+    public UserResponseBody getIdentity() {
         return identity;
     }
 
     /**
      * @return the recipient
      */
-    public Optional<UserResponseBody> getRecipient() {
+    public UserResponseBody getRecipient() {
         return recipient;
     }
 
     /**
      * @return the token
      */
-    public Optional<Token> getToken() {
+    public Token getToken() {
         return token;
     }
 

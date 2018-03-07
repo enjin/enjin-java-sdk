@@ -89,9 +89,9 @@ public class LiveRequestsServiceTest extends BaseLiveServiceTest {
         Response<CreateRequestResponseBody> createRequestResponseBody = requestsService.createRequestSync(createRequestRequestVO);
         assertThat(createRequestResponseBody).isNotNull();
         assertThat(createRequestResponseBody.body()).isNotNull();
-        assertThat(createRequestResponseBody.body().getId().get()).isNotNull();
+        assertThat(createRequestResponseBody.body().getId()).isNotNull();
 
-        Integer requestId = createRequestResponseBody.body().getId().get();
+        Integer requestId = createRequestResponseBody.body().getId();
 
         Response<RequestResponseBody> request = requestsService.getRequestSync(requestId);
         assertThat(request).isNotNull();
@@ -129,9 +129,9 @@ public class LiveRequestsServiceTest extends BaseLiveServiceTest {
             public void onResponse(Call<CreateRequestResponseBody> call, Response<CreateRequestResponseBody> response) {
                 assertThat(response).isNotNull();
                 assertThat(response.body()).isNotNull();
-                assertThat(response.body().getId().get()).isNotNull();
+                assertThat(response.body().getId()).isNotNull();
 
-                Integer requestId = response.body().getId().get();
+                Integer requestId = response.body().getId();
 
                 requestsService.getRequestAsync(requestId, new Callback<RequestResponseBody>() {
                     @Override
@@ -194,9 +194,9 @@ public class LiveRequestsServiceTest extends BaseLiveServiceTest {
         Response<CreateRequestResponseBody> createRequestResponseBody = requestsService.createRequestSync(createRequestRequestVO);
         assertThat(createRequestResponseBody).isNotNull();
         assertThat(createRequestResponseBody.body()).isNotNull();
-        assertThat(createRequestResponseBody.body().getId().get()).isNotNull();
+        assertThat(createRequestResponseBody.body().getId()).isNotNull();
 
-        Integer requestId = createRequestResponseBody.body().getId().get();
+        Integer requestId = createRequestResponseBody.body().getId();
 
         Response<Boolean> deleteResponse = requestsService.deleteRequestSync(requestId);
         assertThat(deleteResponse).isNotNull();
@@ -221,9 +221,9 @@ public class LiveRequestsServiceTest extends BaseLiveServiceTest {
             public void onResponse(Call<CreateRequestResponseBody> call, Response<CreateRequestResponseBody> response) {
                 assertThat(response).isNotNull();
                 assertThat(response.body()).isNotNull();
-                assertThat(response.body().getId().get()).isNotNull();
+                assertThat(response.body().getId()).isNotNull();
 
-                Integer requestId = response.body().getId().get();
+                Integer requestId = response.body().getId();
 
                 requestsService.deleteRequestAsync(requestId, new Callback<Boolean>() {
 
@@ -265,15 +265,15 @@ public class LiveRequestsServiceTest extends BaseLiveServiceTest {
         Response<CreateRequestResponseBody> createRequestResponseBody = requestsService.createRequestSync(createRequestRequestVO);
         assertThat(createRequestResponseBody).isNotNull();
         assertThat(createRequestResponseBody.body()).isNotNull();
-        assertThat(createRequestResponseBody.body().getId().get()).isNotNull();
+        assertThat(createRequestResponseBody.body().getId()).isNotNull();
 
-        Integer requestId = createRequestResponseBody.body().getId().get();
+        Integer requestId = createRequestResponseBody.body().getId();
 
         UpdateRequestRequestBody updateRequestRequest = new UpdateRequestRequestBody("value", 1);
         Response<UpdateRequestResponseBody> updateRequestResponseBody = requestsService.updateRequestSync(requestId, updateRequestRequest );
         assertThat(updateRequestResponseBody).isNotNull();
         assertThat(updateRequestResponseBody.body()).isNotNull();
-        assertThat(updateRequestResponseBody.body().getId().get()).isNotNull();
+        assertThat(updateRequestResponseBody.body().getId()).isNotNull();
 
         Response<Boolean> deleteResponse = requestsService.deleteRequestSync(requestId);
         assertThat(deleteResponse).isNotNull();
@@ -299,9 +299,9 @@ public class LiveRequestsServiceTest extends BaseLiveServiceTest {
             public void onResponse(Call<CreateRequestResponseBody> call, Response<CreateRequestResponseBody> response) {
                 assertThat(response).isNotNull();
                 assertThat(response.body()).isNotNull();
-                assertThat(response.body().getId().get()).isNotNull();
+                assertThat(response.body().getId()).isNotNull();
 
-                Integer requestId = response.body().getId().get();
+                Integer requestId = response.body().getId();
 
 
                 UpdateRequestRequestBody updateRequestRequest = new UpdateRequestRequestBody("value", 1);
@@ -311,7 +311,7 @@ public class LiveRequestsServiceTest extends BaseLiveServiceTest {
                     public void onResponse(Call<UpdateRequestResponseBody> call, Response<UpdateRequestResponseBody> updateRequestResponseBody) {
                         assertThat(updateRequestResponseBody).isNotNull();
                         assertThat(updateRequestResponseBody.body()).isNotNull();
-                        assertThat(updateRequestResponseBody.body().getId().get()).isNotNull();
+                        assertThat(updateRequestResponseBody.body().getId()).isNotNull();
                     }
 
                     @Override
@@ -360,9 +360,9 @@ public class LiveRequestsServiceTest extends BaseLiveServiceTest {
         Response<CreateRequestResponseBody> createRequestResponseBody = requestsService.createRequestSync(createRequestRequestVO);
         assertThat(createRequestResponseBody).isNotNull();
         assertThat(createRequestResponseBody.body()).isNotNull();
-        assertThat(createRequestResponseBody.body().getId().get()).isNotNull();
+        assertThat(createRequestResponseBody.body().getId()).isNotNull();
 
-        Integer requestId = createRequestResponseBody.body().getId().get();
+        Integer requestId = createRequestResponseBody.body().getId();
 
         Response<Boolean> deleteResponse = requestsService.deleteRequestSync(requestId);
         assertThat(deleteResponse).isNotNull();
@@ -387,9 +387,9 @@ public class LiveRequestsServiceTest extends BaseLiveServiceTest {
             public void onResponse(Call<CreateRequestResponseBody> call, Response<CreateRequestResponseBody> response) {
                 assertThat(response).isNotNull();
                 assertThat(response.body()).isNotNull();
-                assertThat(response.body().getId().get()).isNotNull();
+                assertThat(response.body().getId()).isNotNull();
 
-                Integer requestId = response.body().getId().get();
+                Integer requestId = response.body().getId();
 
                 requestsService.deleteRequestAsync(requestId, new Callback<Boolean>() {
 
@@ -431,11 +431,11 @@ public class LiveRequestsServiceTest extends BaseLiveServiceTest {
         Response<CreateRequestResponseBody> createRequestResponseBody = requestsService.createRequestSync(createRequestRequestVO);
         assertThat(createRequestResponseBody).isNotNull();
         assertThat(createRequestResponseBody.body()).isNotNull();
-        assertThat(createRequestResponseBody.body().getId().get()).isNotNull();
+        assertThat(createRequestResponseBody.body().getId()).isNotNull();
 
-        Integer requestId = createRequestResponseBody.body().getId().get();
+        Integer requestId = createRequestResponseBody.body().getId();
 
-        String data = createRequestRequestVO.getValue().get();
+        String data = createRequestRequestVO.getValue();
         ExecuteRequestRequestBody executeRequestRequest = new ExecuteRequestRequestBody(data);
         Response<Boolean> executeRequestResponseBody = requestsService.executeRequestSync(requestId, executeRequestRequest);
         assertThat(executeRequestResponseBody).isNotNull();
@@ -465,12 +465,12 @@ public class LiveRequestsServiceTest extends BaseLiveServiceTest {
             public void onResponse(Call<CreateRequestResponseBody> call, Response<CreateRequestResponseBody> response) {
                 assertThat(response).isNotNull();
                 assertThat(response.body()).isNotNull();
-                assertThat(response.body().getId().get()).isNotNull();
+                assertThat(response.body().getId()).isNotNull();
 
-                Integer requestId = response.body().getId().get();
+                Integer requestId = response.body().getId();
 
 
-                String data = createRequestRequestVO.getValue().get();
+                String data = createRequestRequestVO.getValue();
                 ExecuteRequestRequestBody executeRequestRequest = new ExecuteRequestRequestBody(data);
 
                 requestsService.executeRequestAsync(requestId, executeRequestRequest, new Callback<Boolean>() {
@@ -527,9 +527,9 @@ public class LiveRequestsServiceTest extends BaseLiveServiceTest {
         Response<CreateRequestResponseBody> createRequestResponseBody = requestsService.createRequestSync(createRequestRequestVO);
         assertThat(createRequestResponseBody).isNotNull();
         assertThat(createRequestResponseBody.body()).isNotNull();
-        assertThat(createRequestResponseBody.body().getId().get()).isNotNull();
+        assertThat(createRequestResponseBody.body().getId()).isNotNull();
 
-        Integer requestId = createRequestResponseBody.body().getId().get();
+        Integer requestId = createRequestResponseBody.body().getId();
 
         Response<Boolean> cancelRequestResponseBody = requestsService.cancelRequestSync(requestId);
         assertThat(cancelRequestResponseBody).isNotNull();
@@ -559,9 +559,9 @@ public class LiveRequestsServiceTest extends BaseLiveServiceTest {
             public void onResponse(Call<CreateRequestResponseBody> call, Response<CreateRequestResponseBody> response) {
                 assertThat(response).isNotNull();
                 assertThat(response.body()).isNotNull();
-                assertThat(response.body().getId().get()).isNotNull();
+                assertThat(response.body().getId()).isNotNull();
 
-                Integer requestId = response.body().getId().get();
+                Integer requestId = response.body().getId();
 
                 requestsService.cancelRequestAsync(requestId, new Callback<Boolean>() {
 
