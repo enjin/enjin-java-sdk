@@ -19,16 +19,9 @@ import io.enjincoin.sdk.client.util.Constants;
 @Gson.TypeAdapters
 public class Config extends JsonConfig {
 
-    /**
-     * Get the trusted platform config.
-     *
-     * @return Platform
-     */
-    @Value.Default
+
     @SerializedName("platform")
-    public PlatformResponseBody getTrustedPlatform() {
-        return ImmutablePlatform.builder().build();
-    }
+    private PlatformResponseBody trustedPlatform;
 
     /**
      * Get the total executors.
@@ -40,6 +33,21 @@ public class Config extends JsonConfig {
     public Integer getTotalExecutors() {
         return Constants.ONE;
     }
+
+    /**
+     * @return the trustedPlatform
+     */
+    public PlatformResponseBody getTrustedPlatform() {
+        return trustedPlatform;
+    }
+
+    /**
+     * @param trustedPlatform the trustedPlatform to set
+     */
+    public void setTrustedPlatform(PlatformResponseBody trustedPlatform) {
+        this.trustedPlatform = trustedPlatform;
+    }
+
 
     /**
      * Loads a config if it exists or creates a new config with default values.

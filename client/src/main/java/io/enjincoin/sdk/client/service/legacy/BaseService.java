@@ -1,19 +1,24 @@
 package io.enjincoin.sdk.client.service.legacy;
 
+import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.logging.Logger;
+
 import com.enjin.java_commons.ObjectUtils;
 import com.enjin.java_commons.StringUtils;
+
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.service.legacy.platform.SynchronousPlatformService;
 import io.enjincoin.sdk.client.service.legacy.platform.impl.PlatformServiceImpl;
 import io.enjincoin.sdk.client.service.platform.vo.PlatformResponseBody;
 import io.enjincoin.sdk.client.util.Constants;
 import io.enjincoin.sdk.client.util.HttpClient;
-import okhttp3.*;
-
-import java.io.IOException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.logging.Logger;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 /**
  * <p>Provides Services used by the main service classes.</p>
@@ -61,7 +66,7 @@ public abstract class BaseService {
         }
 
         this.trustedPlatform = config.getTrustedPlatform();
-        Integer totalExecutors = config.getTotalExecutors();
+        Integer totalExecutors = 1;
         this.executorService = Executors.newFixedThreadPool(totalExecutors);
 
         okHttpClient = new OkHttpClient();
@@ -236,97 +241,6 @@ public abstract class BaseService {
             LOGGER.warning("performDeleteCall. An IOException has occured calling the url " + urlToCall + ". Exception:" + e);
         }
         return responseJsonString;
-    }
-
-    /**
-     * Method to get the identities url.
-     *
-     * @return - the identities url
-     */
-    protected String getIdentitiesUrl() {
-        return this.getRestURL(Constants.IDENTITIES_URL);
-    }
-
-    /**
-     * Method to get the link wallet url.
-     *
-     * @return - the link wallet url
-     */
-    protected String getLinkWalletUrl() {
-        return this.getRestURL(Constants.LINK_WALLET_URL);
-    }
-
-    /**
-     * Method to get the users url.
-     *
-     * @return - the users url
-     */
-    protected String getUsersUrl() {
-        return this.getRestURL(Constants.USERS_URL);
-    }
-
-    /**
-     * Method to get the user login url.
-     *
-     * @return - the user login url
-     */
-    protected String getUserLoginUrl() {
-        return this.getRestURL(Constants.USER_LOGIN_URL);
-    }
-
-    /**
-     * Method to get the tokens url.
-     *
-     * @return - the tokens url
-     */
-    protected String getTokensUrl() {
-        return this.getRestURL(Constants.TOKENS_URL);
-    }
-
-    /**
-     * Method to get the Transaction Requests url.
-     *
-     * @return - the transaction requests url
-     */
-    protected String getTransactionRequestsUrl() {
-        return this.getRestURL(Constants.TRANSACTION_REQUESTS_URL);
-    }
-
-    /**
-     * Method to get the Events url.
-     *
-     * @return - the events url
-     */
-    protected String getEventsUrl() {
-        return this.getRestURL(Constants.EVENTS_URL);
-    }
-
-    /**
-     * Method to get the platform url.
-     *
-     * @return - the platform url
-     */
-    protected String getPlatformUrl() {
-        return this.getRestURL(Constants.PLATFORM_URL);
-    }
-
-    /**
-     * Method to get the rest url to use.
-     *
-     * @param endpoint - the base endpoint
-     *
-     * @return - the final base endpoint to use
-     */
-    private String getRestURL(final String endpoint) {
-        String restUrl = null;
-        if (ObjectUtils.isNull(this.trustedPlatform)) {
-            LOGGER.warning("TraustedPlatform is not set");
-            return restUrl;
-        }
-
-        restUrl = String.format("%s://%s:%d/api/v1/%s", trustedPlatform.getProtocol(), trustedPlatform.getHost(), trustedPlatform.getPort(), endpoint);
-
-        return restUrl;
     }
 
     /**
