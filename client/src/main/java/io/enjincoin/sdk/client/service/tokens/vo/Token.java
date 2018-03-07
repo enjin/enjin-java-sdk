@@ -1,7 +1,6 @@
 package io.enjincoin.sdk.client.service.tokens.vo;
 
 import java.math.BigDecimal;
-import java.util.Optional;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -12,46 +11,46 @@ import com.google.gson.annotations.SerializedName;
 public class Token {
 
     @SerializedName("token_id")
-    private Optional<Integer> tokenId;
+    private Integer tokenId;
 
     @SerializedName("app_id")
-    private Optional<Integer> appId;
+    private Integer appId;
 
     @SerializedName("creator")
-    private Optional<String> creator;
+    private String creator;
 
     @SerializedName("adapter")
-    private Optional<String> adapter;
+    private String adapter;
 
     @SerializedName("name")
-    private Optional<String> name;
+    private String name;
 
     @SerializedName("icon")
-    private Optional<String> icon;
+    private String icon;
 
     @SerializedName("totalSupply")
-    private Optional<Integer> totalSupply;
+    private Integer totalSupply;
 
     @SerializedName("exchangeRate")
-    private Optional<String> exchangeRate;
+    private String exchangeRate;
 
     @SerializedName("decimals")
-    private Optional<Integer> decimals;
+    private Integer decimals;
 
     @SerializedName("maxMeltFee")
-    private Optional<BigDecimal> maxMeltFee;
+    private BigDecimal maxMeltFee;
 
     @SerializedName("meltFee")
-    private Optional<BigDecimal> meltFee;
+    private BigDecimal meltFee;
 
     @SerializedName("transferable")
-    private Optional<Integer> transferable;
+    private Integer transferable;
 
     @SerializedName("updated_at")
-    private Optional<String> updatedAt;
+    private String updatedAt;
 
     @SerializedName("created_at")
-    private Optional<String> createdAt;
+    private String createdAt;
 
     /**
      * Class constructor.
@@ -74,20 +73,20 @@ public class Token {
                  Integer totalSupply, String exchangeRate, Integer decimals, BigDecimal maxMeltFee, BigDecimal meltFee,
                  Integer transferable, String updatedAt, String createdAt) {
         super();
-        this.tokenId = Optional.ofNullable(tokenId);
-        this.appId = Optional.ofNullable(appId);
-        this.creator = Optional.ofNullable(creator);
-        this.adapter = Optional.ofNullable(adapter);
-        this.name = Optional.ofNullable(name);
-        this.icon = Optional.ofNullable(icon);
-        this.totalSupply = Optional.ofNullable(totalSupply);
-        this.exchangeRate = Optional.ofNullable(exchangeRate);
-        this.decimals = Optional.ofNullable(decimals);
-        this.maxMeltFee = Optional.ofNullable(maxMeltFee);
-        this.meltFee = Optional.ofNullable(meltFee);
-        this.transferable = Optional.ofNullable(transferable);
-        this.updatedAt = Optional.ofNullable(updatedAt);
-        this.createdAt = Optional.ofNullable(createdAt);
+        this.tokenId = tokenId;
+        this.appId = appId;
+        this.creator = creator;
+        this.adapter = adapter;
+        this.name = name;
+        this.icon = icon;
+        this.totalSupply = totalSupply;
+        this.exchangeRate = exchangeRate;
+        this.decimals = decimals;
+        this.maxMeltFee = maxMeltFee;
+        this.meltFee = meltFee;
+        this.transferable = transferable;
+        this.updatedAt = updatedAt;
+        this.createdAt = createdAt;
     }
 
     public Token(Integer tokenId, Integer appId) {
@@ -97,98 +96,98 @@ public class Token {
     /**
      * @return the tokenId
      */
-    public Optional<Integer> getTokenId() {
+    public Integer getTokenId() {
         return tokenId;
     }
 
     /**
      * @return the appId
      */
-    public Optional<Integer> getAppId() {
+    public Integer getAppId() {
         return appId;
     }
 
     /**
      * @return the creator
      */
-    public Optional<String> getCreator() {
+    public String getCreator() {
         return creator;
     }
 
     /**
      * @return the adapter
      */
-    public Optional<String> getAdapter() {
+    public String getAdapter() {
         return adapter;
     }
 
     /**
      * @return the name
      */
-    public Optional<String> getName() {
+    public String getName() {
         return name;
     }
 
     /**
      * @return the icon
      */
-    public Optional<String> getIcon() {
+    public String getIcon() {
         return icon;
     }
 
     /**
      * @return the totalSupply
      */
-    public Optional<Integer> getTotalSupply() {
+    public Integer getTotalSupply() {
         return totalSupply;
     }
 
     /**
      * @return the exchangeRate
      */
-    public Optional<String> getExchangeRate() {
+    public String getExchangeRate() {
         return exchangeRate;
     }
 
     /**
      * @return the decimals
      */
-    public Optional<Integer> getDecimals() {
+    public Integer getDecimals() {
         return decimals;
     }
 
     /**
      * @return the maxMeltFee
      */
-    public Optional<BigDecimal> getMaxMeltFee() {
+    public BigDecimal getMaxMeltFee() {
         return maxMeltFee;
     }
 
     /**
      * @return the meltFee
      */
-    public Optional<BigDecimal> getMeltFee() {
+    public BigDecimal getMeltFee() {
         return meltFee;
     }
 
     /**
      * @return the transferable
      */
-    public Optional<Integer> getTransferable() {
+    public Integer getTransferable() {
         return transferable;
     }
 
     /**
      * @return the updatedAt
      */
-    public Optional<String> getUpdatedAt() {
+    public String getUpdatedAt() {
         return updatedAt;
     }
 
     /**
      * @return the createdAt
      */
-    public Optional<String> getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 

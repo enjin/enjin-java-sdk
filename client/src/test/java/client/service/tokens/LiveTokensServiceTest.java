@@ -1,20 +1,21 @@
 package client.service.tokens;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.fail;
+
+import java.io.IOException;
+import java.util.concurrent.ExecutionException;
+
+import org.junit.Test;
+
 import client.service.BaseLiveServiceTest;
 import io.enjincoin.sdk.client.service.tokens.AsynchronousTokensService;
 import io.enjincoin.sdk.client.service.tokens.SynchronousTokensService;
 import io.enjincoin.sdk.client.service.tokens.vo.Token;
 import io.enjincoin.sdk.client.util.Utils;
-import org.junit.Test;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import java.io.IOException;
-import java.util.concurrent.ExecutionException;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.fail;
 
 /**
  * Calls out to the actual api
@@ -36,9 +37,7 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
 
         for (Token token : response.body()) {
             assertThat(token.getTokenId()).isNotNull();
-            assertThat(token.getTokenId().isPresent()).isTrue();
             assertThat(token.getAppId()).isNotNull();
-            assertThat(token.getAppId().isPresent()).isTrue();
         }
     }
 
@@ -56,9 +55,7 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
 
                 for (Token token : response.body()) {
                     assertThat(token.getTokenId()).isNotNull();
-                    assertThat(token.getTokenId().isPresent()).isTrue();
                     assertThat(token.getAppId()).isNotNull();
-                    assertThat(token.getAppId().isPresent()).isTrue();
                 }
             }
 
@@ -84,15 +81,13 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
         assertThat(createResponse.body().getCreatedAt()).isNotNull();
         assertThat(createResponse.body().getUpdatedAt()).isNotNull();
 
-        Integer tokenId = createResponse.body().getTokenId().get();
+        Integer tokenId = createResponse.body().getTokenId();
 
         Response<Token> getResponse = service.getTokenSync(tokenId);
         assertThat(getResponse).isNotNull();
         assertThat(getResponse.body()).isNotNull();
         assertThat(getResponse.body().getTokenId()).isNotNull();
-        assertThat(getResponse.body().getTokenId().isPresent()).isTrue();
         assertThat(getResponse.body().getAppId()).isNotNull();
-        assertThat(getResponse.body().getAppId().isPresent()).isTrue();
 
         Response<Boolean> deleteResponse = service.deleteTokenSync(tokenId);
         assertThat(deleteResponse).isNotNull();
@@ -117,7 +112,7 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
                 assertThat(createResponse.body().getCreatedAt()).isNotNull();
                 assertThat(createResponse.body().getUpdatedAt()).isNotNull();
 
-                Integer tokenId = createResponse.body().getTokenId().get();
+                Integer tokenId = createResponse.body().getTokenId();
 
                 service.getTokenAsync(tokenId, new Callback<Token>() {
 
@@ -126,9 +121,7 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
                         assertThat(getResponse).isNotNull();
                         assertThat(getResponse.body()).isNotNull();
                         assertThat(getResponse.body().getTokenId()).isNotNull();
-                        assertThat(getResponse.body().getTokenId().isPresent()).isTrue();
                         assertThat(getResponse.body().getAppId()).isNotNull();
-                        assertThat(getResponse.body().getAppId().isPresent()).isTrue();
 
                         service.deleteTokenAsync(tokenId, new Callback<Boolean>() {
                             @Override
@@ -175,7 +168,7 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
         assertThat(createResponse.body().getCreatedAt()).isNotNull();
         assertThat(createResponse.body().getUpdatedAt()).isNotNull();
 
-        Integer tokenId = createResponse.body().getTokenId().get();
+        Integer tokenId = createResponse.body().getTokenId();
 
         Response<Boolean> deleteResponse = service.deleteTokenSync(tokenId);
         assertThat(deleteResponse).isNotNull();
@@ -200,7 +193,7 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
                 assertThat(createResponse.body().getCreatedAt()).isNotNull();
                 assertThat(createResponse.body().getUpdatedAt()).isNotNull();
 
-                Integer tokenId = createResponse.body().getTokenId().get();
+                Integer tokenId = createResponse.body().getTokenId();
 
                 service.deleteTokenAsync(tokenId, new Callback<Boolean>() {
                     @Override
@@ -240,7 +233,7 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
         assertThat(createResponse.body().getCreatedAt()).isNotNull();
         assertThat(createResponse.body().getUpdatedAt()).isNotNull();
 
-        Integer tokenId = createResponse.body().getTokenId().get();
+        Integer tokenId = createResponse.body().getTokenId();
 
         Response<Boolean> deleteResponse = service.deleteTokenSync(tokenId);
         assertThat(deleteResponse).isNotNull();
@@ -265,7 +258,7 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
                 assertThat(createResponse.body().getCreatedAt()).isNotNull();
                 assertThat(createResponse.body().getUpdatedAt()).isNotNull();
 
-                Integer tokenId = createResponse.body().getTokenId().get();
+                Integer tokenId = createResponse.body().getTokenId();
 
                 service.deleteTokenAsync(tokenId, new Callback<Boolean>() {
                     @Override
@@ -304,15 +297,14 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
         assertThat(createResponse.body().getCreatedAt()).isNotNull();
         assertThat(createResponse.body().getUpdatedAt()).isNotNull();
 
-        Integer tokenId = createResponse.body().getTokenId().get();
-        Integer appId = createResponse.body().getAppId().get();
+        Integer tokenId = createResponse.body().getTokenId();
+        Integer appId = createResponse.body().getAppId();
 
         Token updateToken = new Token(tokenId, appId, "Enjin Coin", null, null, null, null, null, null, null, null, null, null, null);
         Response<Token> updateResponse = service.updateTokenSync(tokenId, updateToken);
         assertThat(updateResponse).isNotNull();
         assertThat(updateResponse.body()).isNotNull();
-        assertThat(updateResponse.body().getCreator().isPresent()).isTrue();
-        assertThat(updateResponse.body().getCreator().get()).isEqualToIgnoringCase(updateToken.getCreator().get());
+        assertThat(updateResponse.body().getCreator()).isEqualToIgnoringCase(updateToken.getCreator());
 
         Response<Boolean> deleteResponse = service.deleteTokenSync(tokenId);
         assertThat(deleteResponse).isNotNull();
@@ -337,8 +329,8 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
                 assertThat(createResponse.body().getCreatedAt()).isNotNull();
                 assertThat(createResponse.body().getUpdatedAt()).isNotNull();
 
-                Integer tokenId = createResponse.body().getTokenId().get();
-                Integer appId = createResponse.body().getAppId().get();
+                Integer tokenId = createResponse.body().getTokenId();
+                Integer appId = createResponse.body().getAppId();
 
                 Token updateToken = new Token(tokenId, appId, "Enjin Coin", null, null, null, null, null, null, null, null, null, null, null);
                 service.updateTokenAsync(tokenId, updateToken, new Callback<Token>() {
@@ -347,8 +339,7 @@ public class LiveTokensServiceTest extends BaseLiveServiceTest {
                     public void onResponse(Call<Token> call, Response<Token> updateResponse) {
                         assertThat(updateResponse).isNotNull();
                         assertThat(updateResponse.body()).isNotNull();
-                        assertThat(updateResponse.body().getCreator().isPresent()).isTrue();
-                        assertThat(updateResponse.body().getCreator().get()).isEqualToIgnoringCase(updateToken.getCreator().get());
+                        assertThat(updateResponse.body().getCreator()).isEqualToIgnoringCase(updateToken.getCreator());
 
                         service.deleteTokenAsync(tokenId, new Callback<Boolean>() {
                             @Override
