@@ -13,13 +13,12 @@ import com.enjin.java_commons.StringUtils;
 import io.enjincoin.sdk.client.config.Config;
 import io.enjincoin.sdk.client.config.Notification;
 import io.enjincoin.sdk.client.enums.NotificationType;
-import io.enjincoin.sdk.client.service.legacy.BaseService;
 import io.enjincoin.sdk.client.service.legacy.notifications.EventMatcher;
 import io.enjincoin.sdk.client.service.legacy.notifications.NotificationListener;
 import io.enjincoin.sdk.client.service.legacy.notifications.NotificationListenerRegistration;
 import io.enjincoin.sdk.client.service.legacy.notifications.NotificationsService;
 import io.enjincoin.sdk.client.service.legacy.notifications.ThirdPartyNotificationService;
-import io.enjincoin.sdk.client.service.legacy.platform.SynchronousPlatformService;
+import io.enjincoin.sdk.client.service.platform.SynchronousPlatformService;
 import io.enjincoin.sdk.client.vo.platform.GetPlatformAuthDetailsResponseVO;
 import io.enjincoin.sdk.client.vo.platform.GetPlatformAuthRequestVO;
 import io.enjincoin.sdk.client.vo.platform.GetPlatformAuthResponseVO;
@@ -30,7 +29,7 @@ import io.enjincoin.sdk.client.vo.platform.ImmutableGetPlatformAuthRequestVO;
  * NotificationsService - Synchronous.
  * </p>
  */
-public class NotificationsServiceImpl extends BaseService implements NotificationsService {
+public class NotificationsServiceImpl implements NotificationsService {
 
     /**
      * Logger used by this class.
@@ -68,8 +67,7 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
      * @param config - the config to use
      */
     public NotificationsServiceImpl(final Config config) {
-        super(config);
-        this.config = config;
+       this.config = config;
     }
 
     /**
@@ -101,13 +99,13 @@ public class NotificationsServiceImpl extends BaseService implements Notificatio
             return initResult;
         }
 
-        this.platformService = this.getPlatformService(this.config);
+       // this.platformService = this.getPlatformService(this.config);
 
         GetPlatformAuthRequestVO platformAuthRequestVO = ImmutableGetPlatformAuthRequestVO.builder()
                 .setAuth(this.auth)
                 .build();
 
-        GetPlatformAuthResponseVO platformAuthResponseVO = this.platformService.getAuthSync(platformAuthRequestVO);
+        GetPlatformAuthResponseVO platformAuthResponseVO = null;//this.platformService.getAuthSync(platformAuthRequestVO);
         if (platformAuthResponseVO == null || BooleanUtils.isFalse(platformAuthResponseVO.getPlatformAuthNotificationDetails().isPresent())) {
             LOGGER.warning("Returned getPlatformAuthResponseVO is null or notificationDetails is not present");
             return initResult;
