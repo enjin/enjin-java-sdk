@@ -2,7 +2,6 @@ package io.enjincoin.sdk.client.service.legacy.notifications.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -19,10 +18,6 @@ import io.enjincoin.sdk.client.service.legacy.notifications.NotificationListener
 import io.enjincoin.sdk.client.service.legacy.notifications.NotificationsService;
 import io.enjincoin.sdk.client.service.legacy.notifications.ThirdPartyNotificationService;
 import io.enjincoin.sdk.client.service.platform.SynchronousPlatformService;
-import io.enjincoin.sdk.client.vo.platform.GetPlatformAuthDetailsResponseVO;
-import io.enjincoin.sdk.client.vo.platform.GetPlatformAuthRequestVO;
-import io.enjincoin.sdk.client.vo.platform.GetPlatformAuthResponseVO;
-import io.enjincoin.sdk.client.vo.platform.ImmutableGetPlatformAuthRequestVO;
 
 /**
  * <p>
@@ -101,7 +96,7 @@ public class NotificationsServiceImpl implements NotificationsService {
 
        // this.platformService = this.getPlatformService(this.config);
 
-        GetPlatformAuthRequestVO platformAuthRequestVO = ImmutableGetPlatformAuthRequestVO.builder()
+        /*GetPlatformAuthRequestVO platformAuthRequestVO = ImmutableGetPlatformAuthRequestVO.builder()
                 .setAuth(this.auth)
                 .build();
 
@@ -112,14 +107,15 @@ public class NotificationsServiceImpl implements NotificationsService {
         }
 
         Optional<GetPlatformAuthDetailsResponseVO> platformAuthDetailsResponseVOOptional = platformAuthResponseVO.getPlatformAuthNotificationDetails();
-        GetPlatformAuthDetailsResponseVO platformAuthDetailsResponseVO = platformAuthDetailsResponseVOOptional.get();
+        GetPlatformAuthDetailsResponseVO platformAuthDetailsResponseVO = platformAuthDetailsResponseVOOptional.get();*/
 
         // Setup the thirdPartyNotificationService to use the pusher service.
         if (this.thirdPartyNotificationService == null) {
             this.thirdPartyNotificationService = new PusherNotificationServiceImpl(new Notification());
         }
 
-        boolean initPusherResult = this.thirdPartyNotificationService.init(platformAuthDetailsResponseVO);
+        //boolean initPusherResult = this.thirdPartyNotificationService.init(platformAuthDetailsResponseVO);
+        boolean initPusherResult = this.thirdPartyNotificationService.init();
         if (BooleanUtils.isFalse(initPusherResult)) {
             LOGGER.warning("A problem occured initializing the pusher library");
             return initResult;

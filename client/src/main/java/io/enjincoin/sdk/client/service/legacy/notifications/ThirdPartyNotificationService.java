@@ -1,7 +1,5 @@
 package io.enjincoin.sdk.client.service.legacy.notifications;
 
-import io.enjincoin.sdk.client.vo.platform.GetPlatformAuthDetailsResponseVO;
-
 import java.util.List;
 
 /**
@@ -16,7 +14,7 @@ public interface ThirdPartyNotificationService {
      *
      * @return boolean
      */
-    boolean init(GetPlatformAuthDetailsResponseVO getPlatformAuthDetailsResponseVO);
+    boolean init();
 
     /**
      * Method to shut down the notification service.

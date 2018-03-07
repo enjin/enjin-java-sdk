@@ -1,6 +1,15 @@
 package io.enjincoin.sdk.client.service.legacy.notifications.impl;
 
-import com.enjin.java_commons.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Logger;
+
+import com.enjin.java_commons.CollectionUtils;
+import com.enjin.java_commons.ExceptionUtils;
+import com.enjin.java_commons.MapUtils;
+import com.enjin.java_commons.StringUtils;
 import com.pusher.client.Pusher;
 import com.pusher.client.PusherOptions;
 import com.pusher.client.channel.Channel;
@@ -8,18 +17,13 @@ import com.pusher.client.channel.SubscriptionEventListener;
 import com.pusher.client.connection.ConnectionEventListener;
 import com.pusher.client.connection.ConnectionState;
 import com.pusher.client.connection.ConnectionStateChange;
+
 import io.enjincoin.sdk.client.config.Notification;
 import io.enjincoin.sdk.client.enums.NotificationType;
 import io.enjincoin.sdk.client.service.legacy.notifications.NotificationListenerRegistration;
 import io.enjincoin.sdk.client.service.legacy.notifications.ThirdPartyNotificationService;
 import io.enjincoin.sdk.client.vo.notifications.ImmutableNotificationEvent;
 import io.enjincoin.sdk.client.vo.notifications.NotificationEvent;
-import io.enjincoin.sdk.client.vo.platform.GetPlatformAuthDetailsResponseVO;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.Logger;
 
 /**
  * <p>Service to implement methods that interact with the pusher library.</p>
@@ -63,15 +67,13 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
     /**
      * Method to initialize the notification service.
      *
-     * @param getPlatformAuthDetailsResponseVO notification details config
-     *
      * @return boolean
      */
     @Override
-    public boolean init(final GetPlatformAuthDetailsResponseVO getPlatformAuthDetailsResponseVO) {
+    public boolean init() {
         boolean initializeResult = false;
 
-        if (getPlatformAuthDetailsResponseVO == null) {
+        /*if (getPlatformAuthDetailsResponseVO == null) {
             LOGGER.warning("getPlatformAuthDetailsResponseVO passed in is null");
             return initializeResult;
         }
@@ -92,8 +94,9 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
         if (MapUtils.isEmpty(clientInfoMap) || MapUtils.isEmpty(channelsMap)) {
             LOGGER.warning("clientInfoMap or channelsMap are null or empty");
             return initializeResult;
-        }
-
+        }*/
+        Map<String, Object> clientInfoMap = new HashMap<>();
+        Map<String, Object> channelsMap = new HashMap<>();
         String appKey = MapUtils.mapKeyValueToString(clientInfoMap, "app_key");
         String cluster = MapUtils.mapKeyValueToString(clientInfoMap, "cluster");
         String appChannel = MapUtils.mapKeyValueToString(channelsMap, "server");
