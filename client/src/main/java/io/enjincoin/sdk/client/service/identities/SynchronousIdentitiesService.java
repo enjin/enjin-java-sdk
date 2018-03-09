@@ -14,7 +14,7 @@ public interface SynchronousIdentitiesService {
 
     Response<Identity> getIdentitySync(long id) throws IOException;
 
-    Response<CreateIdentityResponseBody> createIdentitySync() throws IOException;
+    Response<CreateIdentityResponseBody> createIdentitySync(int appId) throws IOException;
 
     Response<CreateIdentityResponseBody> createIdentitySync(CreateIdentityRequestBody request) throws IOException;
 

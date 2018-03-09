@@ -13,10 +13,15 @@ public class CreateIdentityRequestBody {
     @SerializedName("fields")
     public IdentityField[] fields;
 
-    public CreateIdentityRequestBody() {
+    public CreateIdentityRequestBody(int appId) {
+        this(appId, null);
     }
 
-    public CreateIdentityRequestBody(Integer appId, String ethereumAddress, IdentityField[] fields) {
+    public CreateIdentityRequestBody(int appId, IdentityField[] fields) {
+        this(appId, null, fields);
+    }
+
+    public CreateIdentityRequestBody(int appId, String ethereumAddress, IdentityField[] fields) {
         this.appId = appId;
         this.ethereumAddress = ethereumAddress;
         this.fields = fields;

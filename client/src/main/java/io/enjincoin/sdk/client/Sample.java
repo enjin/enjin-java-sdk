@@ -22,7 +22,7 @@ public class Sample {
             IdentityService identityService = client.getIdentityService();
 
             System.out.println(String.format("%s...", "creating"));
-            Response<CreateIdentityResponseBody> create = identitiesService.createIdentitySync();
+            Response<CreateIdentityResponseBody> create = identitiesService.createIdentitySync(1);
             if (create.isSuccessful()) {
                 System.out.println(String.format("%s was successful", "creating"));
                 System.out.println(String.format("%s...", "updating"));

@@ -37,8 +37,8 @@ public class IdentitiesServiceImpl implements IdentitiesService {
     }
 
     @Override
-    public void createIdentityAsync(Callback<CreateIdentityResponseBody> callback) {
-        Call<CreateIdentityResponseBody> call = this.service.createIdentity(new CreateIdentityRequestBody());
+    public void createIdentityAsync(int appId, Callback<CreateIdentityResponseBody> callback) {
+        Call<CreateIdentityResponseBody> call = this.service.createIdentity(new CreateIdentityRequestBody(appId));
         call.enqueue(callback);
     }
 
@@ -79,8 +79,8 @@ public class IdentitiesServiceImpl implements IdentitiesService {
     }
 
     @Override
-    public Response<CreateIdentityResponseBody> createIdentitySync() throws IOException {
-        Call<CreateIdentityResponseBody> call = this.service.createIdentity(new CreateIdentityRequestBody());
+    public Response<CreateIdentityResponseBody> createIdentitySync(int appId) throws IOException {
+        Call<CreateIdentityResponseBody> call = this.service.createIdentity(new CreateIdentityRequestBody(appId));
         return call.execute();
     }
 

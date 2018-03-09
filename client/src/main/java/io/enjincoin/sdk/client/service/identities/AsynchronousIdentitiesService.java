@@ -13,7 +13,7 @@ public interface AsynchronousIdentitiesService {
 
     void getIdentityAsync(long id, Callback<Identity> callback);
 
-    void createIdentityAsync(Callback<CreateIdentityResponseBody> callback);
+    void createIdentityAsync(int appId, Callback<CreateIdentityResponseBody> callback);
 
     void createIdentityAsync(CreateIdentityRequestBody request, Callback<CreateIdentityResponseBody> callback);
 
