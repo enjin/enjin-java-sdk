@@ -1,5 +1,6 @@
-package io.enjincoin.sdk.client.service.legacy.notifications.impl;
+package io.enjincoin.sdk.client.service.notifications.impl;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -7,17 +8,18 @@ import java.util.stream.Collectors;
 
 import com.enjin.java_commons.BooleanUtils;
 import com.enjin.java_commons.ObjectUtils;
-import com.enjin.java_commons.StringUtils;
 
-import io.enjincoin.sdk.client.config.Config;
-import io.enjincoin.sdk.client.config.Notification;
 import io.enjincoin.sdk.client.enums.NotificationType;
-import io.enjincoin.sdk.client.service.legacy.notifications.EventMatcher;
-import io.enjincoin.sdk.client.service.legacy.notifications.NotificationListener;
-import io.enjincoin.sdk.client.service.legacy.notifications.NotificationListenerRegistration;
-import io.enjincoin.sdk.client.service.legacy.notifications.NotificationsService;
-import io.enjincoin.sdk.client.service.legacy.notifications.ThirdPartyNotificationService;
+import io.enjincoin.sdk.client.service.notifications.EventMatcher;
+import io.enjincoin.sdk.client.service.notifications.NotificationListener;
+import io.enjincoin.sdk.client.service.notifications.NotificationListenerRegistration;
+import io.enjincoin.sdk.client.service.notifications.NotificationsService;
+import io.enjincoin.sdk.client.service.notifications.ThirdPartyNotificationService;
 import io.enjincoin.sdk.client.service.platform.SynchronousPlatformService;
+import io.enjincoin.sdk.client.service.platform.impl.PlatformServiceImpl;
+import io.enjincoin.sdk.client.service.platform.vo.PlatformResponseBody;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * <p>
@@ -47,22 +49,12 @@ public class NotificationsServiceImpl implements NotificationsService {
     private SynchronousPlatformService platformService;
 
     /**
-     * Local config variable.
-     */
-    private Config config;
-
-    /**
-     * Local auth variable.
-     */
-    private String auth;
-
-    /**
      * Class constructor.
      *
-     * @param config - the config to use
+     * @param retrofit - the config to use
      */
-    public NotificationsServiceImpl(final Config config) {
-       this.config = config;
+    public NotificationsServiceImpl(final Retrofit retrofit) {
+       platformService = new PlatformServiceImpl(retrofit);
     }
 
     /**
@@ -71,8 +63,7 @@ public class NotificationsServiceImpl implements NotificationsService {
      * @return boolean
      */
     @Override
-    public boolean start(final String auth) {
-        this.auth = auth;
+    public boolean start() {
 
         //Call out to the reinitialize method in order to initialize the pusher notifications
         return this.restart();
@@ -88,40 +79,36 @@ public class NotificationsServiceImpl implements NotificationsService {
     public boolean restart() {
         boolean initResult = false;
 
+        Response<PlatformResponseBody> platformDetails;
+        try {
+            platformDetails = platformService.getPlatformSync();
+            if (platformDetails == null || platformDetails.body() == null) {
+                LOGGER.warning("Failed to get platform details");
+                return initResult;
+            }
+            PlatformResponseBody platformResponseBody = platformDetails.body();
+            if (platformResponseBody == null) {
+                LOGGER.warning("Failed to get platform details");
+                return initResult;
+            }
+            // Setup the thirdPartyNotificationService to use the pusher service.
+            if (this.thirdPartyNotificationService == null) {
+                this.thirdPartyNotificationService = new PusherNotificationServiceImpl(platformResponseBody);
+            }
 
-        if (StringUtils.isEmpty(this.auth)) {
-            LOGGER.warning("auth cannot be null or empty");
-            return initResult;
+            //boolean initPusherResult = this.thirdPartyNotificationService.init(platformAuthDetailsResponseVO);
+            boolean initPusherResult = this.thirdPartyNotificationService.init();
+            if (BooleanUtils.isFalse(initPusherResult)) {
+                LOGGER.warning("A problem occured initializing the pusher library");
+                return initResult;
+            }
+            initResult = initPusherResult;
+        } catch (IOException e) {
+            LOGGER.warning(String.format("An IOException has occured. Exception: %s.", e.getMessage()));
         }
 
-       // this.platformService = this.getPlatformService(this.config);
 
-        /*GetPlatformAuthRequestVO platformAuthRequestVO = ImmutableGetPlatformAuthRequestVO.builder()
-                .setAuth(this.auth)
-                .build();
-
-        GetPlatformAuthResponseVO platformAuthResponseVO = null;//this.platformService.getAuthSync(platformAuthRequestVO);
-        if (platformAuthResponseVO == null || BooleanUtils.isFalse(platformAuthResponseVO.getPlatformAuthNotificationDetails().isPresent())) {
-            LOGGER.warning("Returned getPlatformAuthResponseVO is null or notificationDetails is not present");
-            return initResult;
-        }
-
-        Optional<GetPlatformAuthDetailsResponseVO> platformAuthDetailsResponseVOOptional = platformAuthResponseVO.getPlatformAuthNotificationDetails();
-        GetPlatformAuthDetailsResponseVO platformAuthDetailsResponseVO = platformAuthDetailsResponseVOOptional.get();*/
-
-        // Setup the thirdPartyNotificationService to use the pusher service.
-        if (this.thirdPartyNotificationService == null) {
-            this.thirdPartyNotificationService = new PusherNotificationServiceImpl(new Notification());
-        }
-
-        //boolean initPusherResult = this.thirdPartyNotificationService.init(platformAuthDetailsResponseVO);
-        boolean initPusherResult = this.thirdPartyNotificationService.init();
-        if (BooleanUtils.isFalse(initPusherResult)) {
-            LOGGER.warning("A problem occured initializing the pusher library");
-            return initResult;
-        }
-
-        return initPusherResult;
+        return initResult;
     }
 
     @Override

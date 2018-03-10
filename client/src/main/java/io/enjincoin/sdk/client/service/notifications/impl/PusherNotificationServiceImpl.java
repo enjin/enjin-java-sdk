@@ -1,14 +1,11 @@
-package io.enjincoin.sdk.client.service.legacy.notifications.impl;
+package io.enjincoin.sdk.client.service.notifications.impl;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
 
 import com.enjin.java_commons.CollectionUtils;
 import com.enjin.java_commons.ExceptionUtils;
-import com.enjin.java_commons.MapUtils;
 import com.enjin.java_commons.StringUtils;
 import com.pusher.client.Pusher;
 import com.pusher.client.PusherOptions;
@@ -18,10 +15,14 @@ import com.pusher.client.connection.ConnectionEventListener;
 import com.pusher.client.connection.ConnectionState;
 import com.pusher.client.connection.ConnectionStateChange;
 
-import io.enjincoin.sdk.client.config.Notification;
 import io.enjincoin.sdk.client.enums.NotificationType;
-import io.enjincoin.sdk.client.service.legacy.notifications.NotificationListenerRegistration;
-import io.enjincoin.sdk.client.service.legacy.notifications.ThirdPartyNotificationService;
+import io.enjincoin.sdk.client.service.notifications.NotificationListenerRegistration;
+import io.enjincoin.sdk.client.service.notifications.ThirdPartyNotificationService;
+import io.enjincoin.sdk.client.service.platform.vo.NotificationDetails;
+import io.enjincoin.sdk.client.service.platform.vo.PlatformDetails;
+import io.enjincoin.sdk.client.service.platform.vo.PlatformResponseBody;
+import io.enjincoin.sdk.client.service.platform.vo.SdkDetails;
+import io.enjincoin.sdk.client.util.Constants;
 import io.enjincoin.sdk.client.vo.notifications.ImmutableNotificationEvent;
 import io.enjincoin.sdk.client.vo.notifications.NotificationEvent;
 
@@ -51,17 +52,17 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
     private List<NotificationListenerRegistration> notificationListenerRegistrations = new ArrayList<>();
 
     /**
-     * Local notificationConfig variable.
+     * Local notification details method
      */
-    private Notification notificationConfig;
+    private PlatformResponseBody platformResponseBody;
 
     /**
      * Class constructor.
      *
      * @param notificationConfig to use
      */
-    public PusherNotificationServiceImpl(final Notification notificationConfig) {
-        this.notificationConfig = notificationConfig;
+    public PusherNotificationServiceImpl(final PlatformResponseBody platformResponseBody) {
+        this.platformResponseBody = platformResponseBody;
     }
 
     /**
@@ -73,34 +74,30 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
     public boolean init() {
         boolean initializeResult = false;
 
-        /*if (getPlatformAuthDetailsResponseVO == null) {
-            LOGGER.warning("getPlatformAuthDetailsResponseVO passed in is null");
+        if (platformResponseBody == null || platformResponseBody.getNotificationDetails() == null) {
+            LOGGER.warning("platformResponseBody or notificationDetails are null");
             return initializeResult;
         }
 
-        if (getPlatformAuthDetailsResponseVO.getClientInfoMap() == null
-                || BooleanUtils.isFalse(getPlatformAuthDetailsResponseVO.getClientInfoMap().isPresent())) {
-            LOGGER.warning("clientInfoMap passed in is null or not present");
-            return initializeResult;
-        }
-        if (getPlatformAuthDetailsResponseVO.getChannelsMap() == null || BooleanUtils.isFalse(getPlatformAuthDetailsResponseVO.getChannelsMap().isPresent())) {
-            LOGGER.warning("channelsMap passed in is null or not present");
+        PlatformDetails platformDetails = platformResponseBody.getPlatformDetails();
+        if (platformDetails == null ) {
+            LOGGER.warning("platformDetails are null");
             return initializeResult;
         }
 
-        Map<String, Object> clientInfoMap = getPlatformAuthDetailsResponseVO.getClientInfoMap().get();
-        Map<String, Object> channelsMap = getPlatformAuthDetailsResponseVO.getChannelsMap().get();
-
-        if (MapUtils.isEmpty(clientInfoMap) || MapUtils.isEmpty(channelsMap)) {
-            LOGGER.warning("clientInfoMap or channelsMap are null or empty");
+        NotificationDetails notificationDetails = platformResponseBody.getNotificationDetails();
+        if (notificationDetails == null ||notificationDetails.getSdkDetails() == null || notificationDetails.getSdkDetails().getOptions() == null) {
+            LOGGER.warning("notificationDetails,the sdk details or the options are null");
             return initializeResult;
-        }*/
-        Map<String, Object> clientInfoMap = new HashMap<>();
-        Map<String, Object> channelsMap = new HashMap<>();
-        String appKey = MapUtils.mapKeyValueToString(clientInfoMap, "app_key");
-        String cluster = MapUtils.mapKeyValueToString(clientInfoMap, "cluster");
-        String appChannel = MapUtils.mapKeyValueToString(channelsMap, "server");
-        Long activityTimeout = this.notificationConfig.getActivityTimeout();
+        }
+
+        SdkDetails sdkDetails = notificationDetails.getSdkDetails();
+        String appKey = sdkDetails.getKey();
+        String cluster = sdkDetails.getOptions().getCluster();
+        String appChannel = getAppChannel(platformDetails, sdkDetails);
+        boolean encrypted = sdkDetails.getOptions().getEncrypted();
+        System.out.println("appChannel:"+appChannel);
+        Long activityTimeout = Constants.FOUR_THOUSAND;
 
         if (StringUtils.isEmpty(appKey) ||StringUtils.isEmpty(cluster)) {
             LOGGER.warning("appId, appKey, appSecret or cluster is null or empty");
@@ -115,7 +112,8 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
         // Create a new Pusher instance
         PusherOptions options = new PusherOptions()
                 .setCluster(cluster)
-                .setActivityTimeout(activityTimeout);
+                .setActivityTimeout(activityTimeout)
+                .setEncrypted(encrypted);
         this.pusher = new Pusher(appKey, options);
 
         //Connect to pusher
@@ -169,6 +167,20 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
 
         initializeResult = true;
         return initializeResult;
+    }
+
+    /**
+     * Method to get the app channel
+     * @param platformDetails
+     * @param sdkDetails
+     * @return
+     */
+    private String getAppChannel(PlatformDetails platformDetails, SdkDetails sdkDetails) {
+        String platformId = platformDetails.getId();
+        String appId = sdkDetails.getAppId();
+
+        String appChannel = String.format("enjin.server.%s.%s", platformId, appId);
+        return appChannel;
     }
 
     @Override

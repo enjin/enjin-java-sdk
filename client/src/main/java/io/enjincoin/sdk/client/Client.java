@@ -4,6 +4,7 @@ import java.io.Closeable;
 
 import io.enjincoin.sdk.client.service.identities.IdentitiesService;
 import io.enjincoin.sdk.client.service.identity.IdentityService;
+import io.enjincoin.sdk.client.service.notifications.NotificationsService;
 import io.enjincoin.sdk.client.service.platform.PlatformService;
 import io.enjincoin.sdk.client.service.requests.RequestsService;
 import io.enjincoin.sdk.client.service.tokens.TokensService;
@@ -22,4 +23,6 @@ public interface Client extends Closeable {
     TokensService getTokensService();
 
     PlatformService getPlatformService();
+
+    NotificationsService getNotificationsService();
 }

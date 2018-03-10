@@ -1,4 +1,4 @@
-package io.enjincoin.sdk.client.service.legacy.notifications;
+package io.enjincoin.sdk.client.service.notifications;
 
 import io.enjincoin.sdk.client.annotations.notifications.EventFilter;
 import io.enjincoin.sdk.client.enums.NotificationType;

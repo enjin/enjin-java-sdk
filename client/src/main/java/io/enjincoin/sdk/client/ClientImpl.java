@@ -12,6 +12,8 @@ import io.enjincoin.sdk.client.service.identities.impl.IdentitiesServiceImpl;
 import io.enjincoin.sdk.client.service.identities.vo.IdentityFilter;
 import io.enjincoin.sdk.client.service.identity.IdentityService;
 import io.enjincoin.sdk.client.service.identity.impl.IdentityServiceImpl;
+import io.enjincoin.sdk.client.service.notifications.NotificationsService;
+import io.enjincoin.sdk.client.service.notifications.impl.NotificationsServiceImpl;
 import io.enjincoin.sdk.client.service.platform.PlatformService;
 import io.enjincoin.sdk.client.service.platform.impl.PlatformServiceImpl;
 import io.enjincoin.sdk.client.service.requests.RequestsService;
@@ -37,23 +39,16 @@ public class ClientImpl implements Client {
     private RequestsService requestsService;
     private TokensService tokensService;
     private PlatformService platformService;
+    private NotificationsService notificationsService;
 
     public ClientImpl(String url) {
-        this(url, false);
-    }
-
-    public ClientImpl(String url, boolean log) {
-        OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
-
-        if (log) {
-            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-            clientBuilder.addInterceptor(interceptor);
-        }
-
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         Converter.Factory gsonFactory = GsonConverterFactory.create(getGsonInstance());
 
-        this.client = clientBuilder.build();
+        this.client = new OkHttpClient.Builder()
+                .addInterceptor(interceptor)
+                .build();
         this.retrofit = new Retrofit.Builder()
                 .baseUrl(url)
                 .client(client)
@@ -106,6 +101,16 @@ public class ClientImpl implements Client {
             platformService = new PlatformServiceImpl(retrofit);
         }
         return platformService;
+    }
+
+
+    @Override
+    public NotificationsService getNotificationsService() {
+        if (notificationsService == null) {
+            notificationsService = new NotificationsServiceImpl(retrofit);
+        }
+
+        return notificationsService;
     }
 
     private Gson getGsonInstance() {

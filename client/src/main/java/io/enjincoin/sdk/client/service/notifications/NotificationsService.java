@@ -1,7 +1,7 @@
-package io.enjincoin.sdk.client.service.legacy.notifications;
+package io.enjincoin.sdk.client.service.notifications;
 
 import io.enjincoin.sdk.client.enums.NotificationType;
-import io.enjincoin.sdk.client.service.legacy.notifications.NotificationListenerRegistration.RegistrationListenerConfiguration;
+import io.enjincoin.sdk.client.service.notifications.NotificationListenerRegistration.RegistrationListenerConfiguration;
 
 /**
  * <p>
@@ -13,11 +13,9 @@ public interface NotificationsService {
     /**
      * Method to initialize the notifications service.
      *
-     * @param auth to use
-     *
      * @return boolean
      */
-    boolean start(String auth);
+    boolean start();
 
     /**
      * Method to re-initialize the notifications service.
