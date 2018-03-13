@@ -107,7 +107,7 @@ public class ClientImpl implements Client {
     @Override
     public NotificationsService getNotificationsService() {
         if (notificationsService == null) {
-            notificationsService = new NotificationsServiceImpl(retrofit);
+            notificationsService = new NotificationsServiceImpl(getPlatformService());
         }
 
         return notificationsService;
@@ -123,5 +123,7 @@ public class ClientImpl implements Client {
     @Override
     public void close() throws IOException {
         this.client.dispatcher().executorService().shutdown();
+        if (this.notificationsService != null)
+            this.notificationsService.shutdown();
     }
 }

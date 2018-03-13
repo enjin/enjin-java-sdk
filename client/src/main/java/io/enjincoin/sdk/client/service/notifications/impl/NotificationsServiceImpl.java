@@ -3,6 +3,7 @@ package io.enjincoin.sdk.client.service.notifications.impl;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -15,11 +16,11 @@ import io.enjincoin.sdk.client.service.notifications.NotificationListener;
 import io.enjincoin.sdk.client.service.notifications.NotificationListenerRegistration;
 import io.enjincoin.sdk.client.service.notifications.NotificationsService;
 import io.enjincoin.sdk.client.service.notifications.ThirdPartyNotificationService;
-import io.enjincoin.sdk.client.service.platform.SynchronousPlatformService;
-import io.enjincoin.sdk.client.service.platform.impl.PlatformServiceImpl;
+import io.enjincoin.sdk.client.service.platform.PlatformService;
 import io.enjincoin.sdk.client.service.platform.vo.PlatformResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 /**
  * <p>
@@ -46,15 +47,15 @@ public class NotificationsServiceImpl implements NotificationsService {
     /**
      * Local variable for the platformService.
      */
-    private SynchronousPlatformService platformService;
+    private PlatformService service;
 
     /**
      * Class constructor.
      *
-     * @param retrofit - the config to use
+     * @param service - the platform service to use
      */
-    public NotificationsServiceImpl(final Retrofit retrofit) {
-       platformService = new PlatformServiceImpl(retrofit);
+    public NotificationsServiceImpl(PlatformService service) {
+       this.service = service;
     }
 
     /**
@@ -81,7 +82,7 @@ public class NotificationsServiceImpl implements NotificationsService {
 
         Response<PlatformResponseBody> platformDetails;
         try {
-            platformDetails = platformService.getPlatformSync();
+            platformDetails = service.getPlatformSync();
             if (platformDetails == null || platformDetails.body() == null) {
                 LOGGER.warning("Failed to get platform details");
                 return initResult;
@@ -245,5 +246,34 @@ public class NotificationsServiceImpl implements NotificationsService {
         } else {
             LOGGER.warning("Could not add a NotificationListenerRegistration because it was null.");
         }
+    }
+
+    @Override
+    public void startAsync(CompletableFuture<Boolean> future) {
+        this.restartAsync(future);
+    }
+
+    @Override
+    public void restartAsync(CompletableFuture<Boolean> future) {
+        this.service.getPlatformAsync(new Callback<PlatformResponseBody>() {
+            @Override
+            public void onResponse(Call<PlatformResponseBody> call, Response<PlatformResponseBody> response) {
+                if (response.isSuccessful()) {
+                    PlatformResponseBody body = response.body();
+
+                    shutdown();
+
+                    thirdPartyNotificationService = new PusherNotificationServiceImpl(body);
+                    boolean result = thirdPartyNotificationService.init();
+
+                    future.complete(result);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PlatformResponseBody> call, Throwable t) {
+                LOGGER.warning("An error occurred while retrieving platform details.");
+            }
+        });
     }
 }

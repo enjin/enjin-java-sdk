@@ -8,7 +8,7 @@ import io.enjincoin.sdk.client.service.notifications.NotificationListenerRegistr
  * NotificationsService - Synchronous.
  * </p>
  */
-public interface NotificationsService {
+public interface NotificationsService extends AsynchronousNotificationsService {
 
     /**
      * Method to initialize the notifications service.
