@@ -42,4 +42,10 @@ public class TokenEntry {
                 ", value=" + value +
                 '}';
     }
+
+    public void setValue(double value) {
+        this.value += value;
+        if (this.value < 0)
+            this.value = 0;
+    }
 }
