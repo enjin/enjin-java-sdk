@@ -24,7 +24,7 @@ public class TokenEntry {
     /**
      * @return the token id
      */
-    public long getTokenId() {
+    public int getTokenId() {
         return this.tokenId;
     }
 
