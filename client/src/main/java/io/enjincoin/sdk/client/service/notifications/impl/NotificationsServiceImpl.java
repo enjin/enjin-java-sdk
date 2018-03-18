@@ -58,6 +58,7 @@ public class NotificationsServiceImpl implements NotificationsService {
      */
     public NotificationsServiceImpl(PlatformService service, int appId) {
        this.service = service;
+       this.appId = appId;
     }
 
     /**
