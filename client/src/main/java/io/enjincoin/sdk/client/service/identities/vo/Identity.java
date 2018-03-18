@@ -3,6 +3,8 @@ package io.enjincoin.sdk.client.service.identities.vo;
 import java.util.Arrays;
 
 import com.google.gson.annotations.SerializedName;
+import io.enjincoin.sdk.client.service.identity.vo.TokenEntry;
+import io.enjincoin.sdk.client.service.platform.vo.AppDetail;
 
 /**
  * <p>Get Identity Response class.
@@ -32,8 +34,14 @@ public class Identity {
     @SerializedName("fields")
     private IdentityField[] fields;
 
+    @SerializedName("app")
+    private AppDetail app;
+
+    @SerializedName("tokens")
+    private TokenEntry[] tokens;
+
     public Identity(Integer id, String ethereumAddress, String linkingCode, String updatedAt, String createdAt, String user,
-                    IdentityField[] fields) {
+                    IdentityField[] fields, AppDetail app, TokenEntry[] tokens) {
         super();
         this.id = id;
         this.ethereumAddress = ethereumAddress;
@@ -42,6 +50,8 @@ public class Identity {
         this.createdAt = createdAt;
         this.user = user;
         this.fields = fields;
+        this.app = app;
+        this.tokens = tokens;
     }
 
     /**
@@ -91,6 +101,20 @@ public class Identity {
      */
     public IdentityField[] getFields() {
         return fields;
+    }
+
+    /**
+     * @return the app
+     */
+    public AppDetail getApp() {
+        return this.app;
+    }
+
+    /**
+     * @return the tokens
+     */
+    public TokenEntry[] getTokens() {
+        return this.tokens;
     }
 
     /* (non-Javadoc)
