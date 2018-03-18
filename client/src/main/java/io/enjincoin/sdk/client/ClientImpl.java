@@ -31,6 +31,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ClientImpl implements Client {
 
+    private int appId;
     private OkHttpClient client;
     private Retrofit retrofit;
     private IdentitiesService identitiesService;
@@ -41,7 +42,8 @@ public class ClientImpl implements Client {
     private PlatformService platformService;
     private NotificationsService notificationsService;
 
-    public ClientImpl(String url) {
+    public ClientImpl(String url, int appId) {
+        this.appId = appId;
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         Converter.Factory gsonFactory = GsonConverterFactory.create(getGsonInstance());
@@ -55,6 +57,11 @@ public class ClientImpl implements Client {
                 .addConverterFactory(new JsonStringConverterFactory(gsonFactory))
                 .addConverterFactory(gsonFactory)
                 .build();
+    }
+
+    @Override
+    public int getAppId() {
+        return this.appId;
     }
 
     @Override
@@ -107,7 +114,7 @@ public class ClientImpl implements Client {
     @Override
     public NotificationsService getNotificationsService() {
         if (notificationsService == null) {
-            notificationsService = new NotificationsServiceImpl(getPlatformService());
+            notificationsService = new NotificationsServiceImpl(getPlatformService(), appId);
         }
 
         return notificationsService;

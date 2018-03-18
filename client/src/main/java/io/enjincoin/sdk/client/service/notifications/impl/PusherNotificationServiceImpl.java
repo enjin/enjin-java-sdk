@@ -36,6 +36,8 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
      */
     private static final Logger LOGGER = Logger.getLogger(PusherNotificationServiceImpl.class.getName());
 
+    private int appId;
+
     /**
      * Local pusher variable.
      **/
@@ -61,8 +63,9 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
      *
      * @param platformResponseBody to use
      */
-    public PusherNotificationServiceImpl(final PlatformResponseBody platformResponseBody) {
+    public PusherNotificationServiceImpl(final PlatformResponseBody platformResponseBody, int appId) {
         this.platformResponseBody = platformResponseBody;
+        this.appId = appId;
     }
 
     /**
@@ -94,7 +97,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
         SdkDetails sdkDetails = notificationDetails.getSdkDetails();
         String appKey = sdkDetails.getKey();
         String cluster = sdkDetails.getOptions().getCluster();
-        String appChannel = getAppChannel(platformDetails, sdkDetails);
+        String appChannel = getAppChannel(platformDetails);
         boolean encrypted = sdkDetails.getOptions().getEncrypted();
         System.out.println("appChannel:"+appChannel);
         Long activityTimeout = Constants.FOUR_THOUSAND;
@@ -172,12 +175,10 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
     /**
      * Method to get the app channel
      * @param platformDetails
-     * @param sdkDetails
      * @return
      */
-    private String getAppChannel(PlatformDetails platformDetails, SdkDetails sdkDetails) {
+    private String getAppChannel(PlatformDetails platformDetails) {
         String platformId = platformDetails.getId();
-        String appId = sdkDetails.getAppId();
 
         String appChannel = String.format("enjin.server.%s.%s", platformId, appId);
         return appChannel;

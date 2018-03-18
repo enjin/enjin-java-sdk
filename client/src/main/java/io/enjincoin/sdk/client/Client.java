@@ -12,6 +12,8 @@ import io.enjincoin.sdk.client.service.users.UsersService;
 
 public interface Client extends Closeable {
 
+    int getAppId();
+
     IdentitiesService getIdentitiesService();
 
     IdentityService getIdentityService();
