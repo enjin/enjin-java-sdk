@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public class TokenEntry {
 
     @SerializedName("token_id")
-    private long tokenId;
+    private int tokenId;
 
     @SerializedName("value")
     private double value;
@@ -16,7 +16,7 @@ public class TokenEntry {
      * @param tokenId
      * @param value
      */
-    public TokenEntry(long tokenId, double value) {
+    public TokenEntry(int tokenId, double value) {
         this.tokenId = tokenId;
         this.value = value;
     }
