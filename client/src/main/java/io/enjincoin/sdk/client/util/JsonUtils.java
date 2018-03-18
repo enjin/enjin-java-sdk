@@ -58,7 +58,7 @@ public final class JsonUtils {
             LOGGER.fine(String.format("jsonString:%s", jsonString));
             responseObject = gson.fromJson(jsonString, responseClass);
         } catch (JsonSyntaxException e) {
-            LOGGER.warning(String.format("A JsonSyntaxException has occured. Exception: %s", ExceptionUtils.exceptionToString(e)));
+            LOGGER.warning(String.format("A JsonSyntaxException has occured. Exception: %s", ExceptionUtils.throwableToString(e)));
         }
 
         return responseObject;
@@ -89,9 +89,9 @@ public final class JsonUtils {
             JsonReader jsonReader = new JsonReader(fileReader);
             responseObject = gson.fromJson(jsonReader, responseClass);
         } catch (FileNotFoundException e) {
-            LOGGER.warning(String.format("A FileNotFoundException has occured. Exception: %s", ExceptionUtils.exceptionToString(e)));
+            LOGGER.warning(String.format("A FileNotFoundException has occured. Exception: %s", ExceptionUtils.throwableToString(e)));
         } catch (UnsupportedEncodingException e) {
-            LOGGER.warning(String.format("An UnsupportedEncodingException has occured. Exception: %s", ExceptionUtils.exceptionToString(e)));
+            LOGGER.warning(String.format("An UnsupportedEncodingException has occured. Exception: %s", ExceptionUtils.throwableToString(e)));
         }
 
         return responseObject;
@@ -119,7 +119,7 @@ public final class JsonUtils {
             JsonReader jsonReader = new JsonReader(fileReader);
             responseObject = gson.fromJson(jsonReader, responseClass);
         } catch (JsonSyntaxException e) {
-            LOGGER.warning(String.format("A JsonSyntaxException has occured. Exception: %s", ExceptionUtils.exceptionToString(e)));
+            LOGGER.warning(String.format("A JsonSyntaxException has occured. Exception: %s", ExceptionUtils.throwableToString(e)));
         }
 
         return responseObject;

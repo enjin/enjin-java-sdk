@@ -59,7 +59,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
     /**
      * Class constructor.
      *
-     * @param notificationConfig to use
+     * @param platformResponseBody to use
      */
     public PusherNotificationServiceImpl(final PlatformResponseBody platformResponseBody) {
         this.platformResponseBody = platformResponseBody;
@@ -135,7 +135,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
              */
             @Override
             public void onError(final String message, final String code, final Exception exception) {
-                LOGGER.warning(String.format("There was a problem connecting!. Exception: %s", ExceptionUtils.exceptionToString(exception)));
+                LOGGER.warning(String.format("There was a problem connecting!. Exception: %s", ExceptionUtils.throwableToString(exception)));
             }
         }, ConnectionState.ALL);
 
