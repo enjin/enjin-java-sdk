@@ -42,15 +42,19 @@ public class ClientImpl implements Client {
     private PlatformService platformService;
     private NotificationsService notificationsService;
 
-    public ClientImpl(String url, int appId) {
+    public ClientImpl(String url, int appId, boolean log) {
         this.appId = appId;
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
+
+        if (log) {
+            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            clientBuilder.addInterceptor(interceptor);
+        }
+
         Converter.Factory gsonFactory = GsonConverterFactory.create(getGsonInstance());
 
-        this.client = new OkHttpClient.Builder()
-                .addInterceptor(interceptor)
-                .build();
+        this.client = clientBuilder.build();
         this.retrofit = new Retrofit.Builder()
                 .baseUrl(url)
                 .client(client)
