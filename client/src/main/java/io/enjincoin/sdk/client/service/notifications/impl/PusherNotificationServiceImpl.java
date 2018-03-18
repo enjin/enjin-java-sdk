@@ -1,7 +1,9 @@
 package io.enjincoin.sdk.client.service.notifications.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import com.enjin.java_commons.CollectionUtils;
@@ -35,6 +37,11 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
      * Logger used by this class.
      */
     private static final Logger LOGGER = Logger.getLogger(PusherNotificationServiceImpl.class.getName());
+
+    private static final Map<String, NotificationType> notificationTypeMapping = new HashMap<String, NotificationType>(){{
+        put("EnjinCoin\\Events\\EnjinEventTransaction", NotificationType.TX_EXECUTED);
+        put("EnjinCoin\\Events\\EnjinEventTokenEvent", NotificationType.TX_EXECUTED);
+    }};
 
     private int appId;
 
@@ -149,22 +156,12 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
         //Convert an enum to an array of strings
         //String[] eventTypes = Arrays.stream(NotificationTypeEnum.values()).map(NotificationTypeEnum::name).toArray(String[]::new);
 
-        for (NotificationType notificationTypeEnum : NotificationType.values()) {
-            String eventType = notificationTypeEnum.getEventType();
+        for (Map.Entry<String, NotificationType> entry : notificationTypeMapping.entrySet()) {
+            String eventType = entry.getKey();
 
-            // Bind to listen for events that match the eventType and appChannel
-            this.channel.bind(eventType, new SubscriptionEventListener() {
-                /**
-                 * Method called on new events from the channel.
-                 * @param channel
-                 * @param event
-                 * @param data
-                 */
-                @Override
-                public void onEvent(final String channel, final String event, final String data) {
-                    PusherNotificationServiceImpl.this.fireNotification(data, channel, event);
-                    LOGGER.fine(String.format("Received eventType %s, event %s with data %s ", eventType, event, data));
-                }
+            this.channel.bind(eventType, (channel, event, data) -> {
+                LOGGER.fine(String.format("Received eventType %s, event %s with data %s ", eventType, event, data));
+                PusherNotificationServiceImpl.this.fireNotification(data, channel, event);
             });
         }
 
@@ -204,7 +201,11 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
             return;
         }
 
-        NotificationType notificationTypeEnum = NotificationType.valueOfEnum(eventType.toUpperCase());
+        NotificationType notificationTypeEnum = notificationTypeMapping.entrySet().stream()
+                .filter(entry -> entry.getKey().equalsIgnoreCase(eventType))
+                .map(Map.Entry::getValue)
+                .findFirst().orElse(NotificationType.UNKNOWN_EVENT);
+
         if (notificationTypeEnum == NotificationType.UNKNOWN_EVENT) {
             LOGGER.warning(String.format("UNKNOWN_EVENT NotificationType returned for the eventType of %s", eventType));
             return;
