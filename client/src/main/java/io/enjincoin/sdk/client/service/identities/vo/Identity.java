@@ -117,6 +117,14 @@ public class Identity {
         return this.tokens;
     }
 
+    /**
+     * set the tokens
+     * @param tokens the tokens
+     */
+    public void setTokens(TokenEntry[] tokens) {
+        this.tokens = tokens;
+    }
+
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
      */
