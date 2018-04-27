@@ -1,0 +1,29 @@
+{
+
+  "schema": {
+    "request": {
+      "url" : "https://enjin.v16studios.co.uk/graphql",
+      "method" : "POST",
+      "postIntrospectionQuery" : true,
+      "options" : {
+        "headers": {
+          "user-agent" : "JS GraphQL"
+        }
+      }
+    }
+
+  },
+
+  "endpoints" : [
+    {
+      "name": "V16 Studios",
+      "url": "https://enjin.v16studios.co.uk/graphql",
+      "options" : {
+        "headers": {
+          "user-agent" : "JS GraphQL"
+        }
+      }
+    }
+  ]
+
+}
