@@ -210,13 +210,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
             return;
         }
 
-        // TODO:
-        NotificationEvent notificationEvent = null;
-//                ImmutableNotificationEvent.builder()
-//                .setSourceData(sourceData)
-//                .setChannel(channel)
-//                .setNotificationType(notificationTypeEnum)
-//                .build();
+        NotificationEvent notificationEvent = new NotificationEvent(notificationTypeEnum, channel, sourceData);
 
         for (NotificationListenerRegistration registration : this.notificationListenerRegistrations) {
             if (registration.getEventMatcher().matches(notificationEvent)) {

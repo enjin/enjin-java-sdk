@@ -5,28 +5,46 @@ import io.enjincoin.sdk.client.enums.NotificationType;
 /**
  * <p> Bean used when a notification event is triggered.</p>
  */
-public abstract class NotificationEvent {
+public class NotificationEvent {
+
+    private NotificationType notificationType;
+
+    private String channel;
+
+    private String sourceData;
+
+    public NotificationEvent(NotificationType notificationType, String channel, String sourceData) {
+        this.notificationType = notificationType;
+        this.channel = channel;
+        this.sourceData = sourceData;
+    }
 
     /**
      * Method to get the notification type.
      *
      * @return NotificationType
      */
-    public abstract NotificationType getNotificationType();
+    public NotificationType getNotificationType() {
+        return this.notificationType;
+    }
 
     /**
      * Method to get the channel.
      *
      * @return String
      */
-    public abstract String getChannel();
+    public String getChannel() {
+        return this.channel;
+    }
 
     /**
      * Method to return the sourceData.
      *
      * @return String
      */
-    public abstract String getSourceData();
+    public String getSourceData() {
+        return this.sourceData;
+    }
 
 
 }
