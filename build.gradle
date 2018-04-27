@@ -31,7 +31,7 @@ subprojects {
 		toolVersion "3.0.1"
 	}
 
-    group = 'io.enjincoin'
+    group = 'com.enjin.enjincoin'
     version = '0.2.0-SNAPSHOT'
 
     idea {
