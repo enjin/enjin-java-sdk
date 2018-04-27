@@ -25,7 +25,6 @@ import io.enjincoin.sdk.client.service.platform.vo.PlatformDetails;
 import io.enjincoin.sdk.client.service.platform.vo.PlatformResponseBody;
 import io.enjincoin.sdk.client.service.platform.vo.SdkDetails;
 import io.enjincoin.sdk.client.util.Constants;
-import io.enjincoin.sdk.client.vo.notifications.ImmutableNotificationEvent;
 import io.enjincoin.sdk.client.vo.notifications.NotificationEvent;
 
 /**
@@ -211,11 +210,13 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
             return;
         }
 
-        NotificationEvent notificationEvent = ImmutableNotificationEvent.builder()
-                .setSourceData(sourceData)
-                .setChannel(channel)
-                .setNotificationType(notificationTypeEnum)
-                .build();
+        // TODO:
+        NotificationEvent notificationEvent = null;
+//                ImmutableNotificationEvent.builder()
+//                .setSourceData(sourceData)
+//                .setChannel(channel)
+//                .setNotificationType(notificationTypeEnum)
+//                .build();
 
         for (NotificationListenerRegistration registration : this.notificationListenerRegistrations) {
             if (registration.getEventMatcher().matches(notificationEvent)) {

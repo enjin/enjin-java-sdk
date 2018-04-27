@@ -1,13 +1,10 @@
 package io.enjincoin.sdk.client.vo.notifications;
 
-import io.enjincoin.sdk.client.annotations.immutables.Nullable;
 import io.enjincoin.sdk.client.enums.NotificationType;
-import org.immutables.value.Value;
 
 /**
  * <p> Bean used when a notification event is triggered.</p>
  */
-@Value.Immutable
 public abstract class NotificationEvent {
 
     /**
@@ -15,7 +12,6 @@ public abstract class NotificationEvent {
      *
      * @return NotificationType
      */
-    @Nullable
     public abstract NotificationType getNotificationType();
 
     /**
@@ -23,7 +19,6 @@ public abstract class NotificationEvent {
      *
      * @return String
      */
-    @Nullable
     public abstract String getChannel();
 
     /**
@@ -31,7 +26,6 @@ public abstract class NotificationEvent {
      *
      * @return String
      */
-    @Nullable
     public abstract String getSourceData();
 
 
