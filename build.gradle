@@ -9,7 +9,6 @@ buildscript {
 plugins {
     id 'com.github.johnrengelman.shadow' version '1.2.4'
     id 'com.bmuschko.clover' version '2.1.3'
-    id 'net.ltgt.apt' version '0.13'
 }
 
 apply from: 'gradle/util.gradle'
@@ -27,6 +26,7 @@ subprojects {
 	checkstyle {
 	    toolVersion "8.4"
 	}
+
 	findbugs {
 		toolVersion "3.0.1"
 	}
@@ -92,8 +92,6 @@ subprojects {
 
     //Documentation https://github.com/bmuschko/gradle-clover-plugin
     clover {
-        excludes = ['**/GsonAdapters*.java', '**/Immutable*.java']
-
         testIncludes = ['**/*Test.java']
 
         report {
@@ -106,9 +104,6 @@ subprojects {
     //See http://checkstyle.sourceforge.net/config_sizes.html#LineLength for configuring config/checkstyle/checkstyle.xml
     //Config properties: https://docs.gradle.org/current/dsl/org.gradle.api.plugins.quality.Checkstyle.html
     tasks.withType(Checkstyle) {
-    	exclude '**/Immutable**'
-    	exclude '**/GsonAdapters**'
-
 	    reports {
 	        xml.enabled true
 	        html.enabled true
@@ -121,8 +116,6 @@ subprojects {
 	//Config properties: https://docs.gradle.org/current/dsl/org.gradle.api.plugins.quality.FindBugs.html#org.gradle.api.plugins.quality.FindBugs
 	//Filter documentation http://findbugs.sourceforge.net/manual/filter.html 
 	tasks.withType(FindBugs) {
-    	excludeFilter = rootProject.file('projectConfig/findbugs/excludeFilter.xml')
-
 	    reports {
 	        xml.enabled true
 	        html.enabled false

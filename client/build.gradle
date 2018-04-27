@@ -5,37 +5,19 @@ For example, projects that build with Java 7 should have environment variable JA
 apply from: scriptFile('env.gradle')
 configureJavaCompilers(8)
 
-apply plugin: 'net.ltgt.apt'
-
-sourceSets {
-    main {
-        java {
-            srcDir "${buildDir.absolutePath}/generated/source/apt/main"
-        }
-    }
-}
-
 ext {
     gson = '2.8.2'
     gsonJava8Datatype = '1.1.0'
     pusher = '1.8.0'
-    immutables = '2.5.5'
     okhttp = '3.10.0'
     retrofit = '2.3.0'
 }
 
 dependencies {
-    // apt dependencies
-    apt group: 'org.immutables', name: 'value', version: immutables
-
-    // compileOnly dependencies
-    compileOnly group: 'org.immutables', name: 'value', version: immutables, classifier: 'annotations'
-
     // compile dependencies
     compile group: 'com.google.code.gson', name: 'gson', version: gson
     compile group: 'net.dongliu', name: 'gson-java8-datatype', version: gsonJava8Datatype
     compile group: 'com.pusher', name: 'pusher-java-client', version: pusher
-    compile group: 'org.immutables', name: 'gson', version: immutables
     compile group: 'com.squareup.okhttp3', name: 'okhttp', version: okhttp
     compile group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: okhttp
     compile group: 'com.squareup.retrofit2', name: 'retrofit', version: retrofit
