@@ -2,7 +2,7 @@ package client.service;
 
 import org.junit.Before;
 
-import io.enjincoin.sdk.client.ClientImpl;
+import com.enjin.enjincoin.sdk.client.ClientImpl;
 
 public class BaseLiveServiceTest {
 

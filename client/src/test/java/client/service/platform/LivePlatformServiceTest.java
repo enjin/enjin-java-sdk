@@ -9,12 +9,12 @@ import java.util.concurrent.ExecutionException;
 import org.junit.Test;
 
 import client.service.BaseLiveServiceTest;
-import io.enjincoin.sdk.client.service.platform.AsynchronousPlatformService;
-import io.enjincoin.sdk.client.service.platform.SynchronousPlatformService;
-import io.enjincoin.sdk.client.service.platform.vo.AppDetail;
-import io.enjincoin.sdk.client.service.platform.vo.NotificationDetails;
-import io.enjincoin.sdk.client.service.platform.vo.PlatformDetails;
-import io.enjincoin.sdk.client.service.platform.vo.PlatformResponseBody;
+import com.enjin.enjincoin.sdk.client.service.platform.AsynchronousPlatformService;
+import com.enjin.enjincoin.sdk.client.service.platform.SynchronousPlatformService;
+import com.enjin.enjincoin.sdk.client.service.platform.vo.AppDetail;
+import com.enjin.enjincoin.sdk.client.service.platform.vo.NotificationDetails;
+import com.enjin.enjincoin.sdk.client.service.platform.vo.PlatformDetails;
+import com.enjin.enjincoin.sdk.client.service.platform.vo.PlatformResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

@@ -7,7 +7,7 @@ import java.io.IOException;
 import org.junit.Test;
 
 import client.service.BaseLiveServiceTest;
-import io.enjincoin.sdk.client.service.notifications.NotificationsService;
+import com.enjin.enjincoin.sdk.client.service.notifications.NotificationsService;
 
 /**
  * Calls out to the actual api Will have the disabled annotation in place

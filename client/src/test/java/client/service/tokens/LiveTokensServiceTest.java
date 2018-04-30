@@ -9,10 +9,10 @@ import java.util.concurrent.ExecutionException;
 import org.junit.Test;
 
 import client.service.BaseLiveServiceTest;
-import io.enjincoin.sdk.client.service.tokens.AsynchronousTokensService;
-import io.enjincoin.sdk.client.service.tokens.SynchronousTokensService;
-import io.enjincoin.sdk.client.service.tokens.vo.Token;
-import io.enjincoin.sdk.client.util.Utils;
+import com.enjin.enjincoin.sdk.client.service.tokens.AsynchronousTokensService;
+import com.enjin.enjincoin.sdk.client.service.tokens.SynchronousTokensService;
+import com.enjin.enjincoin.sdk.client.service.tokens.vo.Token;
+import com.enjin.enjincoin.sdk.client.util.Utils;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

@@ -9,10 +9,10 @@ import java.util.concurrent.ExecutionException;
 import org.junit.Test;
 
 import client.service.BaseLiveServiceTest;
-import io.enjincoin.sdk.client.service.identity.AsynchronousIdentityService;
-import io.enjincoin.sdk.client.service.identity.SynchronousIdentityService;
-import io.enjincoin.sdk.client.service.identity.vo.LinkIdentityRequestBody;
-import io.enjincoin.sdk.client.service.identity.vo.LinkIdentityResponseBody;
+import com.enjin.enjincoin.sdk.client.service.identity.AsynchronousIdentityService;
+import com.enjin.enjincoin.sdk.client.service.identity.SynchronousIdentityService;
+import com.enjin.enjincoin.sdk.client.service.identity.vo.LinkIdentityRequestBody;
+import com.enjin.enjincoin.sdk.client.service.identity.vo.LinkIdentityResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

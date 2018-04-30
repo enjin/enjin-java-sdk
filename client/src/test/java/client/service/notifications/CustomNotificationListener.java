@@ -2,8 +2,8 @@ package client.service.notifications;
 
 import java.util.logging.Logger;
 
-import io.enjincoin.sdk.client.service.notifications.NotificationListener;
-import io.enjincoin.sdk.client.vo.notifications.NotificationEvent;
+import com.enjin.enjincoin.sdk.client.service.notifications.NotificationListener;
+import com.enjin.enjincoin.sdk.client.vo.notifications.NotificationEvent;
 
 public class CustomNotificationListener implements NotificationListener{
 
