@@ -1,6 +1,6 @@
 package com.enjin.enjincoin.sdk.client.service.notifications;
 
-import com.enjin.enjincoin.sdk.client.vo.notifications.NotificationEvent;
+import com.enjin.enjincoin.sdk.client.service.notifications.vo.NotificationEvent;
 
 /**
  * <p>Listener for listening to notifications.</p>

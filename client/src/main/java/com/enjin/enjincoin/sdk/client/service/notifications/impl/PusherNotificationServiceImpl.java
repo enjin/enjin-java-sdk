@@ -24,7 +24,7 @@ import com.enjin.enjincoin.sdk.client.service.platform.vo.PlatformDetails;
 import com.enjin.enjincoin.sdk.client.service.platform.vo.PlatformResponseBody;
 import com.enjin.enjincoin.sdk.client.service.platform.vo.SdkDetails;
 import com.enjin.enjincoin.sdk.client.util.Constants;
-import com.enjin.enjincoin.sdk.client.vo.notifications.NotificationEvent;
+import com.enjin.enjincoin.sdk.client.service.notifications.vo.NotificationEvent;
 
 /**
  * <p>Service to implement methods that interact with the pusher library.</p>
