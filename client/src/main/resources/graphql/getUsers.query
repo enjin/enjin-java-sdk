@@ -1,0 +1,14 @@
+query getAllUsers {
+    EnjinUsers(%s) {
+        id,
+        name,
+        email,
+        roles {
+            id,
+            name,
+            app_id
+        },
+        created_at,
+        updated_at
+    }
+}
