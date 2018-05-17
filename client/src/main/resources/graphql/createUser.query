@@ -1,0 +1,15 @@
+mutation createUser {
+    CreateEnjinUser(%s) {
+        id,
+        name,
+        email,
+        roles {
+            id,
+            name,
+            app_id
+        },
+        access_tokens,
+        created_at,
+        updated_at
+    }
+}

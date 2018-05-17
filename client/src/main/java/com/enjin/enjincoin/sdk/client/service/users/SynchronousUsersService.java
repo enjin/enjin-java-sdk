@@ -7,5 +7,7 @@ import retrofit2.Response;
 
 public interface SynchronousUsersService {
 
+    Response<JsonElement> createUserSync(String name, String email, String password) throws IOException;
+
     Response<JsonElement> loginUserSync(String name, String email, String password) throws IOException;
 }
