@@ -20,6 +20,7 @@ dependencies {
     compile group: 'com.pusher', name: 'pusher-java-client', version: pusher
     compile group: 'com.squareup.okhttp3', name: 'okhttp', version: okhttp
     compile group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: okhttp
+    compile group: 'com.squareup.okhttp3', name: 'okhttp-urlconnection', version: okhttp
     compile group: 'com.squareup.retrofit2', name: 'retrofit', version: retrofit
     compile group: 'com.squareup.retrofit2', name: 'converter-gson', version: retrofit
 }
