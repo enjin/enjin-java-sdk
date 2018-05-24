@@ -24,6 +24,11 @@ import com.enjin.enjincoin.sdk.client.service.notifications.NotificationsService
 import com.enjin.enjincoin.sdk.client.service.notifications.ThirdPartyNotificationService;
 import com.enjin.enjincoin.sdk.client.service.platform.PlatformService;
 import com.enjin.enjincoin.sdk.client.service.platform.vo.PlatformResponseBody;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import net.dongliu.gson.GsonJava8TypeAdapterFactory;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -89,21 +94,23 @@ public class NotificationsServiceImpl implements NotificationsService {
     public boolean restart() {
         boolean initResult = false;
 
-        Response<PlatformResponseBody> platformDetails;
+        Response<JsonElement> platformDetails;
         try {
             platformDetails = this.service.getPlatformSync();
             if (platformDetails == null || platformDetails.body() == null) {
                 LOGGER.warning("Failed to get platform details");
                 return initResult;
             }
-            PlatformResponseBody platformResponseBody = platformDetails.body();
-            if (platformResponseBody == null) {
+
+            PlatformResponseBody body = parseJsonElement(platformDetails.body());
+            if (body == null) {
                 LOGGER.warning("Failed to get platform details");
                 return initResult;
             }
+
             // Setup the thirdPartyNotificationService to use the pusher service.
             if (this.thirdPartyNotificationService == null) {
-                this.thirdPartyNotificationService = new PusherNotificationServiceImpl(platformResponseBody, this.appId);
+                this.thirdPartyNotificationService = new PusherNotificationServiceImpl(body, this.appId);
             }
 
             //boolean initPusherResult = this.thirdPartyNotificationService.init(platformAuthDetailsResponseVO);
@@ -264,25 +271,43 @@ public class NotificationsServiceImpl implements NotificationsService {
 
     @Override
     public void restartAsync(CompletableFuture<Boolean> future) {
-        this.service.getPlatformAsync(new Callback<PlatformResponseBody>() {
+        this.service.getPlatformAsync(new Callback<JsonElement>() {
             @Override
-            public void onResponse(Call<PlatformResponseBody> call, Response<PlatformResponseBody> response) {
+            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                boolean result = false;
                 if (response.isSuccessful()) {
-                    PlatformResponseBody body = response.body();
+                    JsonElement body = response.body();
 
                     shutdown();
 
-                    NotificationsServiceImpl.this.thirdPartyNotificationService = new PusherNotificationServiceImpl(body, NotificationsServiceImpl.this.appId);
-                    boolean result = NotificationsServiceImpl.this.thirdPartyNotificationService.init();
-
-                    future.complete(result);
+                    PlatformResponseBody platformResponseBody = parseJsonElement(body);
+                    NotificationsServiceImpl.this.thirdPartyNotificationService = new PusherNotificationServiceImpl(platformResponseBody, NotificationsServiceImpl.this.appId);
+                    result = NotificationsServiceImpl.this.thirdPartyNotificationService.init();
                 }
+                future.complete(result);
             }
 
             @Override
-            public void onFailure(Call<PlatformResponseBody> call, Throwable t) {
+            public void onFailure(Call<JsonElement> call, Throwable t) {
                 LOGGER.warning("An error occurred while retrieving platform details.");
             }
         });
+    }
+
+    private PlatformResponseBody parseJsonElement(JsonElement element) {
+        PlatformResponseBody body = null;
+        if (element != null && element.isJsonObject()) {
+            JsonObject object = element.getAsJsonObject();
+            if (object.has("data") && object.get("data").isJsonObject()) {
+                JsonObject data = object.getAsJsonObject("data");
+                if (data.has("EnjinPlatform") && data.get("EnjinPlatform").isJsonObject()) {
+                    Gson gson = new GsonBuilder()
+                            .registerTypeAdapterFactory(new GsonJava8TypeAdapterFactory())
+                            .create();
+                    body = gson.fromJson(data.get("EnjinPlatform"), PlatformResponseBody.class);
+                }
+            }
+        }
+        return body;
     }
 }

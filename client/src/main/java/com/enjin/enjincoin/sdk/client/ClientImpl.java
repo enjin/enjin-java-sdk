@@ -2,13 +2,12 @@ package com.enjin.enjincoin.sdk.client;
 
 import java.io.IOException;
 
-import com.enjin.enjincoin.sdk.client.serialization.gson.IdentityFilterSerializer;
 import com.enjin.enjincoin.sdk.client.serialization.retrofit.JsonStringConverterFactory;
 import com.enjin.enjincoin.sdk.client.service.GraphQLRetrofitService;
 import com.enjin.enjincoin.sdk.client.service.identities.IdentitiesService;
 import com.enjin.enjincoin.sdk.client.service.identities.impl.IdentitiesServiceImpl;
-import com.enjin.enjincoin.sdk.client.service.identities.vo.IdentityFilter;
 import com.enjin.enjincoin.sdk.client.service.platform.PlatformService;
+import com.enjin.enjincoin.sdk.client.service.platform.impl.PlatformServiceImpl;
 import com.enjin.enjincoin.sdk.client.service.requests.RequestsService;
 import com.enjin.enjincoin.sdk.client.service.tokens.TokensService;
 import com.enjin.enjincoin.sdk.client.service.users.UsersService;
@@ -105,7 +104,7 @@ public class ClientImpl implements Client {
     @Override
     public PlatformService getPlatformService() {
         if (this.platformService == null) {
-            this.platformService = null;
+            this.platformService = new PlatformServiceImpl(this.graphQLService);
         }
         return this.platformService;
     }
@@ -123,7 +122,6 @@ public class ClientImpl implements Client {
     private Gson getGsonInstance() {
         return new GsonBuilder()
                 .registerTypeAdapterFactory(new GsonJava8TypeAdapterFactory())
-                .registerTypeAdapter(IdentityFilter.class, new IdentityFilterSerializer())
                 .create();
     }
 

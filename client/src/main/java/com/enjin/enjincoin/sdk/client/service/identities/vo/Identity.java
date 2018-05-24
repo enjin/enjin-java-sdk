@@ -3,7 +3,6 @@ package com.enjin.enjincoin.sdk.client.service.identities.vo;
 import java.util.Arrays;
 
 import com.google.gson.annotations.SerializedName;
-import com.enjin.enjincoin.sdk.client.service.identity.vo.TokenEntry;
 import com.enjin.enjincoin.sdk.client.service.platform.vo.AppDetail;
 
 /**
