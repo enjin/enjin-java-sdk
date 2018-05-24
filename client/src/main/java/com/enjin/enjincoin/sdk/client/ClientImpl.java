@@ -8,7 +8,6 @@ import com.enjin.enjincoin.sdk.client.service.GraphQLRetrofitService;
 import com.enjin.enjincoin.sdk.client.service.identities.IdentitiesService;
 import com.enjin.enjincoin.sdk.client.service.identities.impl.IdentitiesServiceImpl;
 import com.enjin.enjincoin.sdk.client.service.identities.vo.IdentityFilter;
-import com.enjin.enjincoin.sdk.client.service.identity.IdentityService;
 import com.enjin.enjincoin.sdk.client.service.platform.PlatformService;
 import com.enjin.enjincoin.sdk.client.service.requests.RequestsService;
 import com.enjin.enjincoin.sdk.client.service.tokens.TokensService;
@@ -33,7 +32,6 @@ public class ClientImpl implements Client {
     private Retrofit retrofit;
     private GraphQLRetrofitService graphQLService;
     private IdentitiesService identitiesService;
-    private IdentityService identityService;
     private UsersService userService;
     private RequestsService requestsService;
     private TokensService tokensService;
@@ -79,14 +77,6 @@ public class ClientImpl implements Client {
             this.identitiesService = new IdentitiesServiceImpl(getGraphQLService());
         }
         return this.identitiesService;
-    }
-
-    @Override
-    public IdentityService getIdentityService() {
-        if (this.identityService == null) {
-            this.identityService = null;
-        }
-        return this.identityService;
     }
 
     @Override
