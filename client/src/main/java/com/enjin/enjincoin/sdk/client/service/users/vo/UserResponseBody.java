@@ -39,42 +39,42 @@ public class UserResponseBody {
      * @return the id
      */
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
     /**
      * @return the name
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
      * @return the email
      */
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     /**
      * @return the updatedAt
      */
     public String getUpdatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     /**
      * @return the createdAt
      */
     public String getCreatedAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     /**
      * @return the identity
      */
     public String getIdentity() {
-        return identity;
+        return this.identity;
     }
 
     /* (non-Javadoc)
@@ -82,7 +82,7 @@ public class UserResponseBody {
      */
     @Override
     public String toString() {
-        return "UserResponseBody [id=" + id + ", name=" + name + ", email=" + email + ", updatedAt=" + updatedAt + ", createdAt=" + createdAt + ", identity=" + identity + "]";
+        return "UserResponseBody [id=" + this.id + ", name=" + this.name + ", email=" + this.email + ", updatedAt=" + this.updatedAt + ", createdAt=" + this.createdAt + ", identity=" + this.identity + "]";
     }
 
 

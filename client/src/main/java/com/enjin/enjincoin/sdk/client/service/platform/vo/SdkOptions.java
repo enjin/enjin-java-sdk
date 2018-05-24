@@ -30,14 +30,14 @@ public class SdkOptions {
      * @return the cluster
      */
     public String getCluster() {
-        return cluster;
+        return this.cluster;
     }
 
     /**
      * @return the encrypted
      */
     public Boolean getEncrypted() {
-        return encrypted;
+        return this.encrypted;
     }
 
     /* (non-Javadoc)
@@ -45,6 +45,6 @@ public class SdkOptions {
      */
     @Override
     public String toString() {
-        return "SdkOptions [cluster=" + cluster + ", encrypted=" + encrypted + "]";
+        return "SdkOptions [cluster=" + this.cluster + ", encrypted=" + this.encrypted + "]";
     }
 }

@@ -51,35 +51,35 @@ public class IdentityField {
      * @return the key
      */
     public String getKey() {
-        return key;
+        return this.key;
     }
 
     /**
      * @return the fieldValue
      */
     public String getFieldValue() {
-        return fieldValue;
+        return this.fieldValue;
     }
 
     /**
      * @return the searchable
      */
     public Integer getSearchable() {
-        return searchable;
+        return this.searchable;
     }
 
     /**
      * @return the displayable
      */
     public Integer getDisplayable() {
-        return displayable;
+        return this.displayable;
     }
 
     /**
      * @return the unique
      */
     public Integer getUnique() {
-        return unique;
+        return this.unique;
     }
 
     /* (non-Javadoc)
@@ -87,6 +87,6 @@ public class IdentityField {
      */
     @Override
     public String toString() {
-        return "FieldVO [key=" + key + ", fieldValue=" + fieldValue + ", searchable=" + searchable + ", displayable=" + displayable + ", unique=" + unique + "]";
+        return "FieldVO [key=" + this.key + ", fieldValue=" + this.fieldValue + ", searchable=" + this.searchable + ", displayable=" + this.displayable + ", unique=" + this.unique + "]";
     }
 }

@@ -34,7 +34,7 @@ public class UpdateUserRequestBody {
      * @return the name
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
 
@@ -42,7 +42,7 @@ public class UpdateUserRequestBody {
      * @return the email
      */
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
 
@@ -50,7 +50,7 @@ public class UpdateUserRequestBody {
      * @return the password
      */
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
 
@@ -59,6 +59,6 @@ public class UpdateUserRequestBody {
      */
     @Override
     public String toString() {
-        return "UpdateUserRequestBody [name=" + name + ", email=" + email + ", password=" + password + "]";
+        return "UpdateUserRequestBody [name=" + this.name + ", email=" + this.email + ", password=" + this.password + "]";
     }
 }

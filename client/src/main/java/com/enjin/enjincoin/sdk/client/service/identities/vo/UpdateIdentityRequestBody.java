@@ -24,7 +24,7 @@ public class UpdateIdentityRequestBody {
      * @return the fields
      */
     public IdentityField[] getFields() {
-        return fields;
+        return this.fields;
     }
 
     /* (non-Javadoc)
@@ -32,7 +32,7 @@ public class UpdateIdentityRequestBody {
      */
     @Override
     public String toString() {
-        return "UpdateIdentityRequestVO [fields=" + fields + "]";
+        return "UpdateIdentityRequestVO [fields=" + this.fields + "]";
     }
 
 

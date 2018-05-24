@@ -91,7 +91,7 @@ public class NotificationsServiceImpl implements NotificationsService {
 
         Response<PlatformResponseBody> platformDetails;
         try {
-            platformDetails = service.getPlatformSync();
+            platformDetails = this.service.getPlatformSync();
             if (platformDetails == null || platformDetails.body() == null) {
                 LOGGER.warning("Failed to get platform details");
                 return initResult;
@@ -103,7 +103,7 @@ public class NotificationsServiceImpl implements NotificationsService {
             }
             // Setup the thirdPartyNotificationService to use the pusher service.
             if (this.thirdPartyNotificationService == null) {
-                this.thirdPartyNotificationService = new PusherNotificationServiceImpl(platformResponseBody, appId);
+                this.thirdPartyNotificationService = new PusherNotificationServiceImpl(platformResponseBody, this.appId);
             }
 
             //boolean initPusherResult = this.thirdPartyNotificationService.init(platformAuthDetailsResponseVO);
@@ -272,8 +272,8 @@ public class NotificationsServiceImpl implements NotificationsService {
 
                     shutdown();
 
-                    thirdPartyNotificationService = new PusherNotificationServiceImpl(body, appId);
-                    boolean result = thirdPartyNotificationService.init();
+                    NotificationsServiceImpl.this.thirdPartyNotificationService = new PusherNotificationServiceImpl(body, NotificationsServiceImpl.this.appId);
+                    boolean result = NotificationsServiceImpl.this.thirdPartyNotificationService.init();
 
                     future.complete(result);
                 }

@@ -23,7 +23,7 @@ public class TransactionType {
      * @return the value
      */
     public String getValue() {
-        return value;
+        return this.value;
     }
 
 
@@ -32,7 +32,7 @@ public class TransactionType {
      */
     @Override
     public String toString() {
-        return "TransactionType [value=" + value + "]";
+        return "TransactionType [value=" + this.value + "]";
     }
 
 

@@ -31,14 +31,14 @@ public class NotificationDetails {
      * @return the sdkDetails
      */
     public SdkDetails getSdkDetails() {
-        return sdkDetails;
+        return this.sdkDetails;
     }
 
     /**
      * @return the mobileDetails
      */
     public MobileDetails getMobileDetails() {
-        return mobileDetails;
+        return this.mobileDetails;
     }
 
     /* (non-Javadoc)
@@ -46,7 +46,7 @@ public class NotificationDetails {
      */
     @Override
     public String toString() {
-        return "NotificationsDetails [sdkDetails=" + sdkDetails + ", mobileDetails=" + mobileDetails + "]";
+        return "NotificationsDetails [sdkDetails=" + this.sdkDetails + ", mobileDetails=" + this.mobileDetails + "]";
     }
 
 

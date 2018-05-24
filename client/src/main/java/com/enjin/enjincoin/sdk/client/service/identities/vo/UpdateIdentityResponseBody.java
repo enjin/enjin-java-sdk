@@ -52,42 +52,42 @@ public class UpdateIdentityResponseBody {
      * @return the id
      */
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
     /**
      * @return the ethereumAddress
      */
     public String getEthereumAddress() {
-        return ethereumAddress;
+        return this.ethereumAddress;
     }
 
     /**
      * @return the updatedAt
      */
     public String getUpdatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     /**
      * @return the createdAt
      */
     public String getCreatedAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     /**
      * @return the userId
      */
     public Integer getUserId() {
-        return userId;
+        return this.userId;
     }
 
     /**
      * @return the linkingCode
      */
     public String getLinkingCode() {
-        return linkingCode;
+        return this.linkingCode;
     }
 
     /*
@@ -97,8 +97,8 @@ public class UpdateIdentityResponseBody {
      */
     @Override
     public String toString() {
-        return "UpdateIdentityResponseVO [id=" + id + ", userId=" + userId + ", ethereumAddress=" + ethereumAddress + ", linkingCode=" + linkingCode + ", updatedAt=" + updatedAt
-                + ", createdAt=" + createdAt + "]";
+        return "UpdateIdentityResponseVO [id=" + this.id + ", userId=" + this.userId + ", ethereumAddress=" + this.ethereumAddress + ", linkingCode=" + this.linkingCode + ", updatedAt=" + this.updatedAt
+                + ", createdAt=" + this.createdAt + "]";
     }
 
 }

@@ -37,21 +37,21 @@ public class PlatformResponseBody {
      * @return the platformDetails
      */
     public PlatformDetails getPlatformDetails() {
-        return platformDetails;
+        return this.platformDetails;
     }
 
     /**
      * @return the notificationDetails
      */
     public NotificationDetails getNotificationDetails() {
-        return notificationDetails;
+        return this.notificationDetails;
     }
 
     /**
      * @return the appDetails
      */
     public AppDetail[] getAppDetails() {
-        return appDetails;
+        return this.appDetails;
     }
 
     /* (non-Javadoc)
@@ -59,7 +59,7 @@ public class PlatformResponseBody {
      */
     @Override
     public String toString() {
-        return "PlatformResponseBody [platformDetails=" + platformDetails + ", notificationDetails=" + notificationDetails + ", appDetails=" + Arrays.toString(appDetails) + "]";
+        return "PlatformResponseBody [platformDetails=" + this.platformDetails + ", notificationDetails=" + this.notificationDetails + ", appDetails=" + Arrays.toString(this.appDetails) + "]";
     }
 
 

@@ -25,7 +25,7 @@ public class MobileDetails {
      * @return the type
      */
     public String getType() {
-        return type;
+        return this.type;
     }
 
     /* (non-Javadoc)
@@ -33,6 +33,6 @@ public class MobileDetails {
      */
     @Override
     public String toString() {
-        return "MobileDetails [type=" + type + "]";
+        return "MobileDetails [type=" + this.type + "]";
     }
 }

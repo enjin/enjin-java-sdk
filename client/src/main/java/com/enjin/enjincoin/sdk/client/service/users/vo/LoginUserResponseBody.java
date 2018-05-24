@@ -29,14 +29,14 @@ public class LoginUserResponseBody {
      * @return the identity
      */
     public UserResponseBody getIdentity() {
-        return identity;
+        return this.identity;
     }
 
     /**
      * @return the token
      */
     public String getToken() {
-        return token;
+        return this.token;
     }
 
     /* (non-Javadoc)
@@ -44,7 +44,7 @@ public class LoginUserResponseBody {
      */
     @Override
     public String toString() {
-        return "CreateUserResponseBody [identity=" + identity + ", token=" + token + "]";
+        return "CreateUserResponseBody [identity=" + this.identity + ", token=" + this.token + "]";
     }
 
 

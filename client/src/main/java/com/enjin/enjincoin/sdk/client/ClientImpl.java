@@ -4,39 +4,21 @@ import java.io.IOException;
 
 import com.enjin.enjincoin.sdk.client.serialization.gson.IdentityFilterSerializer;
 import com.enjin.enjincoin.sdk.client.serialization.retrofit.JsonStringConverterFactory;
+import com.enjin.enjincoin.sdk.client.service.GraphQLRetrofitService;
 import com.enjin.enjincoin.sdk.client.service.identities.IdentitiesService;
 import com.enjin.enjincoin.sdk.client.service.identities.impl.IdentitiesServiceImpl;
 import com.enjin.enjincoin.sdk.client.service.identities.vo.IdentityFilter;
 import com.enjin.enjincoin.sdk.client.service.identity.IdentityService;
-import com.enjin.enjincoin.sdk.client.service.identity.impl.IdentityServiceImpl;
 import com.enjin.enjincoin.sdk.client.service.platform.PlatformService;
-import com.enjin.enjincoin.sdk.client.service.platform.impl.PlatformServiceImpl;
 import com.enjin.enjincoin.sdk.client.service.requests.RequestsService;
-import com.enjin.enjincoin.sdk.client.service.requests.impl.RequestsServiceImpl;
 import com.enjin.enjincoin.sdk.client.service.tokens.TokensService;
-import com.enjin.enjincoin.sdk.client.service.tokens.impl.TokensServiceImpl;
 import com.enjin.enjincoin.sdk.client.service.users.UsersService;
 import com.enjin.enjincoin.sdk.client.service.users.impl.UsersServiceImpl;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import com.enjin.enjincoin.sdk.client.serialization.gson.IdentityFilterSerializer;
-import com.enjin.enjincoin.sdk.client.serialization.retrofit.JsonStringConverterFactory;
-import com.enjin.enjincoin.sdk.client.service.identities.IdentitiesService;
-import com.enjin.enjincoin.sdk.client.service.identities.impl.IdentitiesServiceImpl;
-import com.enjin.enjincoin.sdk.client.service.identities.vo.IdentityFilter;
-import com.enjin.enjincoin.sdk.client.service.identity.IdentityService;
-import com.enjin.enjincoin.sdk.client.service.identity.impl.IdentityServiceImpl;
 import com.enjin.enjincoin.sdk.client.service.notifications.NotificationsService;
 import com.enjin.enjincoin.sdk.client.service.notifications.impl.NotificationsServiceImpl;
-import com.enjin.enjincoin.sdk.client.service.platform.PlatformService;
-import com.enjin.enjincoin.sdk.client.service.platform.impl.PlatformServiceImpl;
-import com.enjin.enjincoin.sdk.client.service.requests.RequestsService;
-import com.enjin.enjincoin.sdk.client.service.requests.impl.RequestsServiceImpl;
-import com.enjin.enjincoin.sdk.client.service.tokens.TokensService;
-import com.enjin.enjincoin.sdk.client.service.tokens.impl.TokensServiceImpl;
-import com.enjin.enjincoin.sdk.client.service.users.UsersService;
-import com.enjin.enjincoin.sdk.client.service.users.impl.UsersServiceImpl;
 import net.dongliu.gson.GsonJava8TypeAdapterFactory;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -49,6 +31,7 @@ public class ClientImpl implements Client {
     private int appId;
     private OkHttpClient client;
     private Retrofit retrofit;
+    private GraphQLRetrofitService graphQLService;
     private IdentitiesService identitiesService;
     private IdentityService identityService;
     private UsersService userService;
@@ -72,7 +55,7 @@ public class ClientImpl implements Client {
         this.client = clientBuilder.build();
         this.retrofit = new Retrofit.Builder()
                 .baseUrl(url)
-                .client(client)
+                .client(this.client)
                 .addConverterFactory(new JsonStringConverterFactory(gsonFactory))
                 .addConverterFactory(gsonFactory)
                 .build();
@@ -83,60 +66,68 @@ public class ClientImpl implements Client {
         return this.appId;
     }
 
+    public GraphQLRetrofitService getGraphQLService() {
+        if (this.graphQLService == null) {
+            this.graphQLService = this.retrofit.create(GraphQLRetrofitService.class);
+        }
+        return this.graphQLService;
+    }
+
     @Override
     public IdentitiesService getIdentitiesService() {
-        if (identitiesService == null) {
-            identitiesService = new IdentitiesServiceImpl(retrofit);
+        if (this.identitiesService == null) {
+            this.identitiesService = new IdentitiesServiceImpl(getGraphQLService());
         }
-        return identitiesService;
+        return this.identitiesService;
     }
 
     @Override
     public IdentityService getIdentityService() {
-        if (identityService == null) {
-            identityService = new IdentityServiceImpl(retrofit);
+        if (this.identityService == null) {
+            this.identityService = null;
         }
-        return identityService;
+        return this.identityService;
     }
+
     @Override
     public UsersService getUsersService() {
-        if (userService == null) {
-            userService = new UsersServiceImpl(retrofit);
+        if (this.userService == null) {
+            this.userService = new UsersServiceImpl(getGraphQLService());
         }
-        return userService;
+        return this.userService;
     }
     @Override
     public RequestsService getRequestsService() {
-        if (requestsService == null) {
-            requestsService = new RequestsServiceImpl(retrofit);
+        if (this.requestsService == null) {
+            this.requestsService = null;
         }
-        return requestsService;
+        return this.requestsService;
     }
 
     @Override
     public TokensService getTokensService() {
-        if (tokensService == null) {
-            tokensService = new TokensServiceImpl(retrofit);
+        if (this.tokensService == null) {
+            this.tokensService = null;
         }
-        return tokensService;
+        return this.tokensService;
     }
 
     @Override
     public PlatformService getPlatformService() {
-        if (platformService == null) {
-            platformService = new PlatformServiceImpl(retrofit);
+        if (this.platformService == null) {
+            this.platformService = null;
         }
-        return platformService;
+        return this.platformService;
     }
 
 
     @Override
     public NotificationsService getNotificationsService() {
-        if (notificationsService == null) {
-            notificationsService = new NotificationsServiceImpl(getPlatformService(), appId);
+        if (this.notificationsService == null) {
+            this.notificationsService = new NotificationsServiceImpl(getPlatformService(), this.appId);
         }
 
-        return notificationsService;
+        return this.notificationsService;
     }
 
     private Gson getGsonInstance() {

@@ -25,7 +25,7 @@ public class ExecuteRequestRequestBody {
      * @return the data
      */
     public String getData() {
-        return data;
+        return this.data;
     }
 
 
@@ -34,7 +34,7 @@ public class ExecuteRequestRequestBody {
      */
     @Override
     public String toString() {
-        return "ExecuteRequestRequestBody [data=" + data + "]";
+        return "ExecuteRequestRequestBody [data=" + this.data + "]";
     }
 }
 

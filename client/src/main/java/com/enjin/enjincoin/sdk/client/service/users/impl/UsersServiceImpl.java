@@ -9,14 +9,13 @@ import com.google.gson.JsonElement;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class UsersServiceImpl implements UsersService {
 
     private GraphQLRetrofitService service;
 
-    public UsersServiceImpl(Retrofit retrofit) {
-        this.service = retrofit.create(GraphQLRetrofitService.class);
+    public UsersServiceImpl(GraphQLRetrofitService service) {
+        this.service = service;
     }
 
     @Override
@@ -61,7 +60,7 @@ public class UsersServiceImpl implements UsersService {
 
     private Call<JsonElement> getCreateCall(String name, String email, String password) {
         return GraphQLRequest.builder(this.service)
-                .fromResource("/graphql/createUser.mutation")
+                .fromResource("/graphql/users/createUser.mutation")
                 .withParameter("name", name)
                 .withParameter("email", email)
                 .withParameter("password", password)
@@ -70,7 +69,7 @@ public class UsersServiceImpl implements UsersService {
 
     private Call<JsonElement> getLoginCall(String name, String email, String password) {
         return GraphQLRequest.builder(this.service)
-                .fromResource("/graphql/loginUser.query")
+                .fromResource("/graphql/users/loginUser.query")
                 .withParameter("name", name)
                 .withParameter("email", email)
                 .withParameter("password", password)
@@ -79,13 +78,13 @@ public class UsersServiceImpl implements UsersService {
 
     private Call<JsonElement> getAllUsersCall() {
         return GraphQLRequest.builder(this.service)
-                .fromResource("/graphql/getAllUsers.query")
+                .fromResource("/graphql/users/getAllUsers.query")
                 .build().call();
     }
 
     private Call<JsonElement> getUsersCall(Integer id, String name, String email) {
         return GraphQLRequest.builder(this.service)
-                .fromResource("/graphql/getUsers.query")
+                .fromResource("/graphql/users/getUsers.query")
                 .withParameter("id", id)
                 .withParameter("name", name)
                 .withParameter("email", email)

@@ -94,98 +94,98 @@ public class RequestResponseBody {
      * @return the id
      */
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
     /**
      * @return the transactionId
      */
     public Integer getTransactionId() {
-        return transactionId;
+        return this.transactionId;
     }
 
     /**
      * @return the appId
      */
     public Integer getAppId() {
-        return appId;
+        return this.appId;
     }
 
     /**
      * @return the type
      */
     public String getType() {
-        return type;
+        return this.type;
     }
 
     /**
      * @return the icon
      */
     public String getIcon() {
-        return icon;
+        return this.icon;
     }
 
     /**
      * @return the title
      */
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
     /**
      * @return the value
      */
     public String getValue() {
-        return value;
+        return this.value;
     }
 
     /**
      * @return the state
      */
     public String getState() {
-        return state;
+        return this.state;
     }
 
     /**
      * @return the accepted
      */
     public Integer getAccepted() {
-        return accepted;
+        return this.accepted;
     }
 
     /**
      * @return the updatedAt
      */
     public String getUpdatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     /**
      * @return the createdAt
      */
     public String getCreatedAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     /**
      * @return the identity
      */
     public UserResponseBody getIdentity() {
-        return identity;
+        return this.identity;
     }
 
     /**
      * @return the recipient
      */
     public UserResponseBody getRecipient() {
-        return recipient;
+        return this.recipient;
     }
 
     /**
      * @return the token
      */
     public Token getToken() {
-        return token;
+        return this.token;
     }
 
     /* (non-Javadoc)
@@ -193,9 +193,9 @@ public class RequestResponseBody {
      */
     @Override
     public String toString() {
-        return "RequestResponseBody [id=" + id + ", transactionId=" + transactionId + ", appId=" + appId + ", type=" + type + ", icon=" + icon + ", title=" + title + ", value=" + value
-                + ", state=" + state + ", accepted=" + accepted + ", updatedAt=" + updatedAt + ", createdAt=" + createdAt + ", identity=" + identity + ", recipient=" + recipient + ", token="
-                + token + "]";
+        return "RequestResponseBody [id=" + this.id + ", transactionId=" + this.transactionId + ", appId=" + this.appId + ", type=" + this.type + ", icon=" + this.icon + ", title=" + this.title + ", value=" + this.value
+                + ", state=" + this.state + ", accepted=" + this.accepted + ", updatedAt=" + this.updatedAt + ", createdAt=" + this.createdAt + ", identity=" + this.identity + ", recipient=" + this.recipient + ", token="
+                + this.token + "]";
     }
 }
 

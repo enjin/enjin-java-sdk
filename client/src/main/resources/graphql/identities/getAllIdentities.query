@@ -1,0 +1,12 @@
+query getAllIdentities {
+    EnjinIdentities {
+        id,
+        app_id,
+        ethereum_address,
+        linking_code,
+        fields {
+            key,
+            value
+        }
+    }
+}

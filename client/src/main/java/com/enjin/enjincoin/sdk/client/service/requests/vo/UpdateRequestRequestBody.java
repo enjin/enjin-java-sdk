@@ -29,14 +29,14 @@ public class UpdateRequestRequestBody {
      * @return the value
      */
     public String getValue() {
-        return value;
+        return this.value;
     }
 
     /**
      * @return the recipientId
      */
     public Integer getRecipientId() {
-        return recipientId;
+        return this.recipientId;
     }
 
     /* (non-Javadoc)
@@ -44,7 +44,7 @@ public class UpdateRequestRequestBody {
      */
     @Override
     public String toString() {
-        return "CreateRequestRequestBody [value=" + value + ", recipientId=" + recipientId + "]";
+        return "CreateRequestRequestBody [value=" + this.value + ", recipientId=" + this.recipientId + "]";
     }
 }
 

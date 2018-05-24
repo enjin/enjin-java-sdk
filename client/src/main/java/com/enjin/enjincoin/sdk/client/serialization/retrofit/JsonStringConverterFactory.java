@@ -23,7 +23,7 @@ public class JsonStringConverterFactory extends Converter.Factory {
         for (Annotation annotation : annotations) {
             if (annotation instanceof Json) {
                 Converter<?, RequestBody> converter =
-                        delegate.requestBodyConverter(type, annotations, new Annotation[0], retrofit);
+                        this.delegate.requestBodyConverter(type, annotations, new Annotation[0], retrofit);
                 return new DelegateToStringConverter<>(converter);
             }
         }
@@ -41,7 +41,7 @@ public class JsonStringConverterFactory extends Converter.Factory {
         @Override
         public String convert(T value) throws IOException {
             Buffer buffer = new Buffer();
-            delegate.convert(value).writeTo(buffer);
+            this.delegate.convert(value).writeTo(buffer);
             return buffer.readUtf8();
         }
     }

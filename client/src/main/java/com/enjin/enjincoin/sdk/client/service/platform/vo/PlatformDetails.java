@@ -31,14 +31,14 @@ public class PlatformDetails {
      * @return the name
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
      * @return the id
      */
     public String getId() {
-        return id;
+        return this.id;
     }
 
     /**
@@ -60,6 +60,6 @@ public class PlatformDetails {
      */
     @Override
     public String toString() {
-        return "PlatformDetails [name=" + name + ", id=" + id + "]";
+        return "PlatformDetails [name=" + this.name + ", id=" + this.id + "]";
     }
 }

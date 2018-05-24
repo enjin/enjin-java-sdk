@@ -40,28 +40,28 @@ public class AppDetail {
      * @return the id
      */
     public String getId() {
-        return id;
+        return this.id;
     }
 
     /**
      * @return the name
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
      * @return the description
      */
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     /**
      * @return the image
      */
     public String getImage() {
-        return image;
+        return this.image;
     }
 
     /* (non-Javadoc)
@@ -69,6 +69,6 @@ public class AppDetail {
      */
     @Override
     public String toString() {
-        return "AppDetail [id=" + id + ", name=" + name + ", description=" + description + ", image=" + image + "]";
+        return "AppDetail [id=" + this.id + ", name=" + this.name + ", description=" + this.description + ", image=" + this.image + "]";
     }
 }

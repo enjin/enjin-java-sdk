@@ -24,7 +24,7 @@ public class LinkIdentityRequestBody {
      * @return the ethereumAddress
      */
     public String getEthereumAddress() {
-        return ethereumAddress;
+        return this.ethereumAddress;
     }
 
     /* (non-Javadoc)
@@ -32,7 +32,7 @@ public class LinkIdentityRequestBody {
      */
     @Override
     public String toString() {
-        return "LinkIdentityRequestVO [ethereumAddress=" + ethereumAddress + "]";
+        return "LinkIdentityRequestVO [ethereumAddress=" + this.ethereumAddress + "]";
     }
 
 

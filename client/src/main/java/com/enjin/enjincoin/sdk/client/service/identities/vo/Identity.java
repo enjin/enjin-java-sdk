@@ -28,7 +28,7 @@ public class Identity {
     @SerializedName("created_at")
     private String createdAt;
 
-    @SerializedName("user")
+    @SerializedName("users")
     private String user;
 
     @SerializedName("fields")
@@ -58,49 +58,49 @@ public class Identity {
      * @return the id
      */
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
     /**
      * @return the ethereumAddress
      */
     public String getEthereumAddress() {
-        return ethereumAddress;
+        return this.ethereumAddress;
     }
 
     /**
      * @return the linkingCode
      */
     public String getLinkingCode() {
-        return linkingCode;
+        return this.linkingCode;
     }
 
     /**
      * @return the updatedAt
      */
     public String getUpdatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     /**
      * @return the createdAt
      */
     public String getCreatedAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     /**
-     * @return the user
+     * @return the users
      */
     public String getUser() {
-        return user;
+        return this.user;
     }
 
     /**
      * @return the fields
      */
     public IdentityField[] getFields() {
-        return fields;
+        return this.fields;
     }
 
     /**
@@ -130,7 +130,7 @@ public class Identity {
      */
     @Override
     public String toString() {
-        return "Identity [id=" + id + ", ethereumAddress=" + ethereumAddress + ", linkingCode=" + linkingCode + ", updatedAt=" + updatedAt + ", createdAt=" + createdAt + ", user=" + user
-                + ", fields=" + Arrays.toString(fields) + "]";
+        return "Identity [id=" + this.id + ", ethereumAddress=" + this.ethereumAddress + ", linkingCode=" + this.linkingCode + ", updatedAt=" + this.updatedAt + ", createdAt=" + this.createdAt + ", users=" + this.user
+                + ", fields=" + Arrays.toString(this.fields) + "]";
     }
 }

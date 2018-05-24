@@ -60,56 +60,56 @@ public class UpdateRequestResponseBody {
      * @return the id
      */
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
     /**
      * @return the transactionId
      */
     public Integer getTransactionId() {
-        return transactionId;
+        return this.transactionId;
     }
 
     /**
      * @return the appId
      */
     public Integer getAppId() {
-        return appId;
+        return this.appId;
     }
 
     /**
      * @return the type
      */
     public String getType() {
-        return type;
+        return this.type;
     }
 
     /**
      * @return the value
      */
     public String getValue() {
-        return value;
+        return this.value;
     }
 
     /**
      * @return the accepted
      */
     public Integer getAccepted() {
-        return accepted;
+        return this.accepted;
     }
 
     /**
      * @return the updatedAt
      */
     public String getUpdatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     /**
      * @return the createdAt
      */
     public String getCreatedAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     /* (non-Javadoc)
@@ -117,8 +117,8 @@ public class UpdateRequestResponseBody {
      */
     @Override
     public String toString() {
-        return "UpdateRequestResponseBody [id=" + id + ", transactionId=" + transactionId + ", appId=" + appId + ", type=" + type + ", value=" + value + ", accepted=" + accepted
-                + ", updatedAt=" + updatedAt + ", createdAt=" + createdAt + "]";
+        return "UpdateRequestResponseBody [id=" + this.id + ", transactionId=" + this.transactionId + ", appId=" + this.appId + ", type=" + this.type + ", value=" + this.value + ", accepted=" + this.accepted
+                + ", updatedAt=" + this.updatedAt + ", createdAt=" + this.createdAt + "]";
     }
 }
 

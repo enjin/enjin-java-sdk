@@ -44,35 +44,35 @@ public class CreateRequestRequestBody {
      * @return the identityId
      */
     public Integer getIdentityId() {
-        return identityId;
+        return this.identityId;
     }
 
     /**
      * @return the tokenId
      */
     public Integer getTokenId() {
-        return tokenId;
+        return this.tokenId;
     }
 
     /**
      * @return the appId
      */
     public Integer getAppId() {
-        return appId;
+        return this.appId;
     }
 
     /**
      * @return the value
      */
     public String getValue() {
-        return value;
+        return this.value;
     }
 
     /**
      * @return the recipientId
      */
     public Integer getRecipientId() {
-        return recipientId;
+        return this.recipientId;
     }
 
     /* (non-Javadoc)
@@ -80,7 +80,7 @@ public class CreateRequestRequestBody {
      */
     @Override
     public String toString() {
-        return "CreateRequestRequestBody [identityId=" + identityId + ", tokenId=" + tokenId + ", appId=" + appId + ", value=" + value + ", recipientId=" + recipientId + "]";
+        return "CreateRequestRequestBody [identityId=" + this.identityId + ", tokenId=" + this.tokenId + ", appId=" + this.appId + ", value=" + this.value + ", recipientId=" + this.recipientId + "]";
     }
 }
 

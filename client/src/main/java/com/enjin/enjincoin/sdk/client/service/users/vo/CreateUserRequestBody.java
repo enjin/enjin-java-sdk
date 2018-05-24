@@ -39,7 +39,7 @@ public class CreateUserRequestBody {
      * @return the appId
      */
     public Integer getAppId() {
-        return appId;
+        return this.appId;
     }
 
 
@@ -47,7 +47,7 @@ public class CreateUserRequestBody {
      * @return the name
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
 
@@ -55,7 +55,7 @@ public class CreateUserRequestBody {
      * @return the email
      */
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
 
@@ -63,7 +63,7 @@ public class CreateUserRequestBody {
      * @return the password
      */
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
 
@@ -72,6 +72,6 @@ public class CreateUserRequestBody {
      */
     @Override
     public String toString() {
-        return "CreateUserRequestBody [appId=" + appId + ", name=" + name + ", email=" + email + ", password=" + password + "]";
+        return "CreateUserRequestBody [appId=" + this.appId + ", name=" + this.name + ", email=" + this.email + ", password=" + this.password + "]";
     }
 }

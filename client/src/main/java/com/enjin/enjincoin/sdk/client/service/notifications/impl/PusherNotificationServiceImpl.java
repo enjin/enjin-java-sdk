@@ -82,18 +82,18 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
     public boolean init() {
         boolean initializeResult = false;
 
-        if (platformResponseBody == null || platformResponseBody.getNotificationDetails() == null) {
+        if (this.platformResponseBody == null || this.platformResponseBody.getNotificationDetails() == null) {
             LOGGER.warning("platformResponseBody or notificationDetails are null");
             return initializeResult;
         }
 
-        PlatformDetails platformDetails = platformResponseBody.getPlatformDetails();
+        PlatformDetails platformDetails = this.platformResponseBody.getPlatformDetails();
         if (platformDetails == null ) {
             LOGGER.warning("platformDetails are null");
             return initializeResult;
         }
 
-        NotificationDetails notificationDetails = platformResponseBody.getNotificationDetails();
+        NotificationDetails notificationDetails = this.platformResponseBody.getNotificationDetails();
         if (notificationDetails == null ||notificationDetails.getSdkDetails() == null || notificationDetails.getSdkDetails().getOptions() == null) {
             LOGGER.warning("notificationDetails,the sdk details or the options are null");
             return initializeResult;
@@ -175,7 +175,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
     private String getAppChannel(PlatformDetails platformDetails) {
         String platformId = platformDetails.getId();
 
-        String appChannel = String.format("enjin.server.%s.%s", platformId, appId);
+        String appChannel = String.format("enjin.server.%s.%s", platformId, this.appId);
         return appChannel;
     }
 

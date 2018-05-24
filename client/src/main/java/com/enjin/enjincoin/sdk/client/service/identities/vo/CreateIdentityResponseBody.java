@@ -45,45 +45,45 @@ public class CreateIdentityResponseBody {
      * @return the id
      */
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
     /**
      * @return the ethereumAddress
      */
     public String getEthereumAddress() {
-        return ethereumAddress;
+        return this.ethereumAddress;
     }
 
     /**
      * @return the linkingCode
      */
     public String getLinkingCode() {
-        return linkingCode;
+        return this.linkingCode;
     }
 
     /**
      * @return the updatedAt
      */
     public String getUpdatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     /**
      * @return the createdAt
      */
     public String getCreatedAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     @Override
     public String toString() {
         return "CreateIdentityResponseBody{" +
-                "id=" + id +
-                ", ethereumAddress=" + ethereumAddress +
-                ", linkingCode=" + linkingCode +
-                ", updatedAt=" + updatedAt +
-                ", createdAt='" + createdAt + '\'' +
+                "id=" + this.id +
+                ", ethereumAddress=" + this.ethereumAddress +
+                ", linkingCode=" + this.linkingCode +
+                ", updatedAt=" + this.updatedAt +
+                ", createdAt='" + this.createdAt + '\'' +
                 '}';
     }
 }

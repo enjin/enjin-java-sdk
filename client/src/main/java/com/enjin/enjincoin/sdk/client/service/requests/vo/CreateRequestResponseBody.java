@@ -68,63 +68,63 @@ public class CreateRequestResponseBody {
      * @return the appId
      */
     public Integer getAppId() {
-        return appId;
+        return this.appId;
     }
 
     /**
      * @return the type
      */
     public TransactionType getType() {
-        return type;
+        return this.type;
     }
 
     /**
      * @return the value
      */
     public String getValue() {
-        return value;
+        return this.value;
     }
 
     /**
      * @return the updatedAt
      */
     public String getUpdatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     /**
      * @return the createdAt
      */
     public String getCreatedAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     /**
      * @return the id
      */
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
     /**
      * @return the identity
      */
     public UserResponseBody getIdentity() {
-        return identity;
+        return this.identity;
     }
 
     /**
      * @return the recipient
      */
     public UserResponseBody getRecipient() {
-        return recipient;
+        return this.recipient;
     }
 
     /**
      * @return the token
      */
     public Token getToken() {
-        return token;
+        return this.token;
     }
 
     /* (non-Javadoc)
@@ -132,8 +132,8 @@ public class CreateRequestResponseBody {
      */
     @Override
     public String toString() {
-        return "CreateRequestResponseBody [appId=" + appId + ", type=" + type + ", value=" + value + ", updatedAt=" + updatedAt + ", createdAt=" + createdAt + ", id=" + id
-                + ", identity=" + identity + ", recipient=" + recipient + ", token=" + token + "]";
+        return "CreateRequestResponseBody [appId=" + this.appId + ", type=" + this.type + ", value=" + this.value + ", updatedAt=" + this.updatedAt + ", createdAt=" + this.createdAt + ", id=" + this.id
+                + ", identity=" + this.identity + ", recipient=" + this.recipient + ", token=" + this.token + "]";
     }
 }
 

@@ -38,8 +38,8 @@ public class TokenEntry {
     @Override
     public String toString() {
         return "TokenEntry{" +
-                "tokenId=" + tokenId +
-                ", value=" + value +
+                "tokenId=" + this.tokenId +
+                ", value=" + this.value +
                 '}';
     }
 

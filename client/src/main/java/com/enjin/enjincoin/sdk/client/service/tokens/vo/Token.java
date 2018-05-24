@@ -97,98 +97,98 @@ public class Token {
      * @return the tokenId
      */
     public Integer getTokenId() {
-        return tokenId;
+        return this.tokenId;
     }
 
     /**
      * @return the appId
      */
     public Integer getAppId() {
-        return appId;
+        return this.appId;
     }
 
     /**
      * @return the creator
      */
     public String getCreator() {
-        return creator;
+        return this.creator;
     }
 
     /**
      * @return the adapter
      */
     public String getAdapter() {
-        return adapter;
+        return this.adapter;
     }
 
     /**
      * @return the name
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
      * @return the icon
      */
     public String getIcon() {
-        return icon;
+        return this.icon;
     }
 
     /**
      * @return the totalSupply
      */
     public Integer getTotalSupply() {
-        return totalSupply;
+        return this.totalSupply;
     }
 
     /**
      * @return the exchangeRate
      */
     public String getExchangeRate() {
-        return exchangeRate;
+        return this.exchangeRate;
     }
 
     /**
      * @return the decimals
      */
     public Integer getDecimals() {
-        return decimals;
+        return this.decimals;
     }
 
     /**
      * @return the maxMeltFee
      */
     public BigDecimal getMaxMeltFee() {
-        return maxMeltFee;
+        return this.maxMeltFee;
     }
 
     /**
      * @return the meltFee
      */
     public BigDecimal getMeltFee() {
-        return meltFee;
+        return this.meltFee;
     }
 
     /**
      * @return the transferable
      */
     public Integer getTransferable() {
-        return transferable;
+        return this.transferable;
     }
 
     /**
      * @return the updatedAt
      */
     public String getUpdatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     /**
      * @return the createdAt
      */
     public String getCreatedAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     /* (non-Javadoc)
@@ -196,8 +196,8 @@ public class Token {
      */
     @Override
     public String toString() {
-        return "TokenResponseBody [tokenId=" + tokenId + ", appId=" + appId + ", creator=" + creator + ", adapter=" + adapter + ", name=" + name + ", icon=" + icon + ", totalSupply="
-                + totalSupply + ", exchangeRate=" + exchangeRate + ", decimals=" + decimals + ", maxMeltFee=" + maxMeltFee + ", meltFee=" + meltFee + ", transferable=" + transferable
-                + ", updatedAt=" + updatedAt + ", createdAt=" + createdAt + "]";
+        return "TokenResponseBody [tokenId=" + this.tokenId + ", appId=" + this.appId + ", creator=" + this.creator + ", adapter=" + this.adapter + ", name=" + this.name + ", icon=" + this.icon + ", totalSupply="
+                + this.totalSupply + ", exchangeRate=" + this.exchangeRate + ", decimals=" + this.decimals + ", maxMeltFee=" + this.maxMeltFee + ", meltFee=" + this.meltFee + ", transferable=" + this.transferable
+                + ", updatedAt=" + this.updatedAt + ", createdAt=" + this.createdAt + "]";
     }
 }

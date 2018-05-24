@@ -40,28 +40,28 @@ public class SdkDetails {
      * @return the driver
      */
     public String getDriver() {
-        return driver;
+        return this.driver;
     }
 
     /**
      * @return the key
      */
     public String getKey() {
-        return key;
+        return this.key;
     }
 
     /**
      * @return the appId
      */
     public String getAppId() {
-        return appId;
+        return this.appId;
     }
 
     /**
      * @return the options
      */
     public SdkOptions getOptions() {
-        return options;
+        return this.options;
     }
 
     /* (non-Javadoc)
@@ -69,6 +69,6 @@ public class SdkDetails {
      */
     @Override
     public String toString() {
-        return "SdkDetails [driver=" + driver + ", key=" + key + ", appId=" + appId + ", options=" + options + "]";
+        return "SdkDetails [driver=" + this.driver + ", key=" + this.key + ", appId=" + this.appId + ", options=" + this.options + "]";
     }
 }

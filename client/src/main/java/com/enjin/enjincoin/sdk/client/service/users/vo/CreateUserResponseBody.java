@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  */
 public class CreateUserResponseBody {
 
-    @SerializedName("user")
+    @SerializedName("users")
     private UserResponseBody user;
 
     @SerializedName("token")
@@ -26,17 +26,17 @@ public class CreateUserResponseBody {
     }
 
     /**
-     * @return the user
+     * @return the users
      */
     public UserResponseBody getUser() {
-        return user;
+        return this.user;
     }
 
     /**
      * @return the token
      */
     public String getToken() {
-        return token;
+        return this.token;
     }
 
     /* (non-Javadoc)
@@ -44,7 +44,7 @@ public class CreateUserResponseBody {
      */
     @Override
     public String toString() {
-        return "CreateUserResponseBody [user=" + user + ", token=" + token + "]";
+        return "CreateUserResponseBody [users=" + this.user + ", token=" + this.token + "]";
     }
 
 

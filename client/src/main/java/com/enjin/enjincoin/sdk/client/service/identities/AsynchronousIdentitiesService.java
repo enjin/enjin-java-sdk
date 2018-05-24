@@ -1,25 +1,20 @@
 package com.enjin.enjincoin.sdk.client.service.identities;
 
-import com.enjin.enjincoin.sdk.client.service.identities.vo.*;
-import com.enjin.enjincoin.sdk.client.service.identities.vo.*;
+import com.enjin.enjincoin.sdk.client.service.identities.vo.IdentityField;
+import com.google.gson.JsonElement;
 import retrofit2.Callback;
 
-import java.util.Map;
+import java.util.List;
 
 public interface AsynchronousIdentitiesService {
 
-    void getIdentitiesAsync(Callback<Identity[]> callback);
+    void getAllIdentitiesAsync(Callback<JsonElement> callback);
 
-    void getIdentitiesAsync(Map<String, Object> filter, Callback<Identity[]> callback);
+    void getIdentitiesAsync(Integer id, String ethereumAddress, Callback<JsonElement> callback);
 
-    void getIdentityAsync(long id, Callback<Identity> callback);
+    void createIdentityAsync(Integer id, String ethereumAddress, List<IdentityField> fields, Callback<JsonElement> callback);
 
-    void createIdentityAsync(int appId, Callback<CreateIdentityResponseBody> callback);
-
-    void createIdentityAsync(CreateIdentityRequestBody request, Callback<CreateIdentityResponseBody> callback);
-
-    void updateIdentityAsync(long id, UpdateIdentityRequestBody request, Callback<UpdateIdentityResponseBody> callback);
-
-    void deleteIdentityAsync(long id, Callback<Boolean> callback);
-
+    void updateIdentityAsync(Integer id, Integer appId, Integer userId,
+                             String ethereumAddress,
+                             List<IdentityField> fields, Callback<JsonElement> callback);
 }

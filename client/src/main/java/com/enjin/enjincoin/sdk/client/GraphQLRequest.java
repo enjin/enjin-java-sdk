@@ -45,7 +45,7 @@ public class GraphQLRequest {
         String query = "";
 
         try {
-            URL url = getClass().getResource(path);
+            URL url = getClass().getResource(this.path);
             Path path = Paths.get(url.toURI());
             byte[] data = Files.readAllBytes(path);
             query = new String(data).trim();
