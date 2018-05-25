@@ -1,0 +1,17 @@
+query getAllTokens {
+  	EnjinTokens {
+        token_id
+        creator
+        adapter
+        name
+        icon
+        totalSupply
+        exchangeRate
+        decimals
+        maxMeltFee
+        meltFee
+        transferable
+        firstBlock
+        blockHeight
+    }
+}

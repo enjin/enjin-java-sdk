@@ -10,6 +10,7 @@ import com.enjin.enjincoin.sdk.client.service.platform.PlatformService;
 import com.enjin.enjincoin.sdk.client.service.platform.impl.PlatformServiceImpl;
 import com.enjin.enjincoin.sdk.client.service.requests.RequestsService;
 import com.enjin.enjincoin.sdk.client.service.tokens.TokensService;
+import com.enjin.enjincoin.sdk.client.service.tokens.impl.TokensServiceImpl;
 import com.enjin.enjincoin.sdk.client.service.users.UsersService;
 import com.enjin.enjincoin.sdk.client.service.users.impl.UsersServiceImpl;
 import com.google.gson.Gson;
@@ -96,7 +97,7 @@ public class ClientImpl implements Client {
     @Override
     public TokensService getTokensService() {
         if (this.tokensService == null) {
-            this.tokensService = null;
+            this.tokensService = new TokensServiceImpl(this.graphQLService);
         }
         return this.tokensService;
     }

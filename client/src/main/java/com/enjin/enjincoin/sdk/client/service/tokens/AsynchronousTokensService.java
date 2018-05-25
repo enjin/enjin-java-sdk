@@ -1,19 +1,17 @@
 package com.enjin.enjincoin.sdk.client.service.tokens;
 
-import com.enjin.enjincoin.sdk.client.service.tokens.vo.Token;
-import com.enjin.enjincoin.sdk.client.service.tokens.vo.Token;
+import com.google.gson.JsonElement;
 import retrofit2.Callback;
 
 public interface AsynchronousTokensService {
 
-    void getTokensAsync(Callback<Token[]> callback);
+    void getAllTokensAsync(Callback<JsonElement> callback);
 
-    void getTokenAsync(long id, Callback<Token> callback);
+    void getTokensAsync(Integer id,
+                           String creator,
+                           String name,
+                           Integer firstBlock,
+                           Integer blockHeight,
+                           Callback<JsonElement> callback);
 
-    void createTokenAsync(Token request, Callback<Token> callback);
-
-    void updateTokenAsync(long id, Token request, Callback<Token> callback);
-
-    void deleteTokenAsync(long id, Callback<Boolean> callback);
-    
 }
