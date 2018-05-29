@@ -3,7 +3,6 @@ buildscript {
         mavenCentral()
         maven { url 'https://plugins.gradle.org/m2/' }
         jcenter()
-        maven { url "https://jitpack.io" }
     }
 }
 
@@ -60,7 +59,6 @@ subprojects {
     repositories {
         mavenLocal()
         mavenCentral()
-        maven { url "https://jitpack.io" }
     }
 
     dependencies {
@@ -76,8 +74,6 @@ subprojects {
 
         // clover dependencies
         clover group: 'org.openclover', name: 'clover', version: clover
-
-        compile group: 'com.github.franmontiel', name: 'PersistentCookieJar', version: 'v1.0.1'
     }
 
     jar {

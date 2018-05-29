@@ -1,7 +1,15 @@
 package com.enjin.enjincoin.sdk.client;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.List;
 
+import com.enjin.enjincoin.sdk.client.cookiejar.ClearableCookieJar;
+import com.enjin.enjincoin.sdk.client.cookiejar.PersistentCookieJar;
+import com.enjin.enjincoin.sdk.client.cookiejar.cache.SetCookieCache;
+//import com.enjin.enjincoin.sdk.client.cookiejar.persistence.SharedPrefsCookiePersistor;
+import com.enjin.enjincoin.sdk.client.cookiejar.persistence.CookiePersistor;
+import com.enjin.enjincoin.sdk.client.cookiejar.persistence.MemoryCookiePersistor;
 import com.enjin.enjincoin.sdk.client.serialization.retrofit.JsonStringConverterFactory;
 import com.enjin.enjincoin.sdk.client.service.GraphQLRetrofitService;
 import com.enjin.enjincoin.sdk.client.service.identities.IdentitiesService;
@@ -19,6 +27,7 @@ import com.google.gson.GsonBuilder;
 import com.enjin.enjincoin.sdk.client.service.notifications.NotificationsService;
 import com.enjin.enjincoin.sdk.client.service.notifications.impl.NotificationsServiceImpl;
 import net.dongliu.gson.GsonJava8TypeAdapterFactory;
+import okhttp3.Cookie;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Converter;
@@ -38,9 +47,15 @@ public class ClientImpl implements Client {
     private PlatformService platformService;
     private NotificationsService notificationsService;
 
+    private ClearableCookieJar cookieJar;
+
     public ClientImpl(String url, int appId, boolean log) {
         this.appId = appId;
+
+        cookieJar = new PersistentCookieJar(new SetCookieCache(), new MemoryCookiePersistor());
+
         OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
+        clientBuilder.cookieJar(cookieJar).build();
 
         if (log) {
             HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
