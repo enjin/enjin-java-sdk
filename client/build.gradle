@@ -29,5 +29,6 @@ dependencies {
     compile group: 'com.squareup.okhttp3', name: 'okhttp-urlconnection', version: okhttp
     compile group: 'com.squareup.retrofit2', name: 'retrofit', version: retrofit
     compile group: 'com.squareup.retrofit2', name: 'converter-gson', version: retrofit
-    compile 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
+
+    compile group: 'com.github.franmontiel', name: 'PersistentCookieJar', version: 'v1.0.1'
 }

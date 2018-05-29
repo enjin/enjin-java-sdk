@@ -65,7 +65,7 @@ subprojects {
 
     dependencies {
         // compile dependencies
-        compile group: 'com.enjin', name: 'java_commons', version: enjinCommons;
+        compile group: 'com.enjin', name: 'java_commons', version: enjinCommons
 
         // testCompile dependencies
         testCompile group: 'org.mockito', name: 'mockito-core', version: mockito
@@ -77,7 +77,7 @@ subprojects {
         // clover dependencies
         clover group: 'org.openclover', name: 'clover', version: clover
 
-        compile 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
+        compile group: 'com.github.franmontiel', name: 'PersistentCookieJar', version: 'v1.0.1'
     }
 
     jar {
