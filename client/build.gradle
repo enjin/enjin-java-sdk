@@ -5,6 +5,12 @@ For example, projects that build with Java 7 should have environment variable JA
 apply from: scriptFile('env.gradle')
 configureJavaCompilers(8)
 
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
+}
+
 ext {
     gson = '2.8.2'
     gsonJava8Datatype = '1.1.0'
@@ -23,4 +29,5 @@ dependencies {
     compile group: 'com.squareup.okhttp3', name: 'okhttp-urlconnection', version: okhttp
     compile group: 'com.squareup.retrofit2', name: 'retrofit', version: retrofit
     compile group: 'com.squareup.retrofit2', name: 'converter-gson', version: retrofit
+    compile 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
 }
