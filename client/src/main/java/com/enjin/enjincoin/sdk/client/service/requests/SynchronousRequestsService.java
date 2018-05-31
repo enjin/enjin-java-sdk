@@ -1,29 +1,44 @@
 package com.enjin.enjincoin.sdk.client.service.requests;
 
-import java.io.IOException;
-
-import com.enjin.enjincoin.sdk.client.service.requests.vo.*;
-import com.enjin.enjincoin.sdk.client.service.requests.vo.CreateRequestRequestBody;
-import com.enjin.enjincoin.sdk.client.service.requests.vo.CreateRequestResponseBody;
-import com.enjin.enjincoin.sdk.client.service.requests.vo.ExecuteRequestRequestBody;
-import com.enjin.enjincoin.sdk.client.service.requests.vo.RequestResponseBody;
-import com.enjin.enjincoin.sdk.client.service.requests.vo.UpdateRequestRequestBody;
-import com.enjin.enjincoin.sdk.client.service.requests.vo.UpdateRequestResponseBody;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import retrofit2.Response;
+
+import java.io.IOException;
 
 public interface SynchronousRequestsService {
 
-    Response<RequestResponseBody[]> getRequestsSync() throws IOException;
+    Response<JsonElement> getAllRequestsSync() throws IOException;
 
-    Response<RequestResponseBody> getRequestSync(long requestId) throws IOException;
+    Response<JsonElement> getRequestsSync(Integer id,
+                          String transactionId,
+                          Integer identityId,
+                          String type,
+                          Integer recipientId,
+                          String recipientAddress,
+                          Integer tokenId,
+                          Integer value,
+                          String encodedData,
+                          String state,
+                          Integer accepted) throws IOException;
 
-    Response<CreateRequestResponseBody> createRequestSync(CreateRequestRequestBody createRequestRequestVO) throws IOException;
+    Response<JsonElement> createRequestSync(Integer identityId,
+                            Integer appId,
+                            String type,
+                            String title,
+                            String icon,
+                            Float value,
+                            JsonObject createTokenData,
+                            JsonObject mintTokenData,
+                            JsonObject meltTokenData,
+                            JsonObject sendTokenData) throws IOException;
 
-    Response<UpdateRequestResponseBody> updateRequestSync(long requestId, UpdateRequestRequestBody updateRequestRequest) throws IOException;
+    Response<JsonElement> updateRequestSync(Integer id,
+                            Integer appId,
+                            Integer recipientId,
+                            String type,
+                            String title,
+                            String icon,
+                            Float value) throws IOException;
 
-    Response<Boolean> deleteRequestSync(long requestId) throws IOException;
-
-    Response<Boolean> executeRequestSync(long requestId, ExecuteRequestRequestBody executeRequestRequest) throws IOException;
-
-    Response<Boolean> cancelRequestSync(long requestId) throws IOException;
 }

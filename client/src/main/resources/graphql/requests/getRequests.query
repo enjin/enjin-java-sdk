@@ -1,0 +1,15 @@
+query getAllRequests {
+    EnjinTransactions(%s) {
+        id,
+        transaction_id,
+        identity_id,
+        type,
+        recipient_id,
+        recipient_address,
+        token_id,
+        value,
+        encoded_data,
+        state,
+        accepted
+    }
+}

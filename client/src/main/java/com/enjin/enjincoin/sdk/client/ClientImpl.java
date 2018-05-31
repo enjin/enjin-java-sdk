@@ -9,6 +9,7 @@ import com.enjin.enjincoin.sdk.client.service.identities.impl.IdentitiesServiceI
 import com.enjin.enjincoin.sdk.client.service.platform.PlatformService;
 import com.enjin.enjincoin.sdk.client.service.platform.impl.PlatformServiceImpl;
 import com.enjin.enjincoin.sdk.client.service.requests.RequestsService;
+import com.enjin.enjincoin.sdk.client.service.requests.impl.RequestsServiceImpl;
 import com.enjin.enjincoin.sdk.client.service.tokens.TokensService;
 import com.enjin.enjincoin.sdk.client.service.tokens.impl.TokensServiceImpl;
 import com.enjin.enjincoin.sdk.client.service.users.UsersService;
@@ -89,7 +90,7 @@ public class ClientImpl implements Client {
     @Override
     public RequestsService getRequestsService() {
         if (this.requestsService == null) {
-            this.requestsService = null;
+            this.requestsService = new RequestsServiceImpl(this.graphQLService);
         }
         return this.requestsService;
     }

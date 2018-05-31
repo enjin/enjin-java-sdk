@@ -1,27 +1,45 @@
 package com.enjin.enjincoin.sdk.client.service.requests;
 
-import com.enjin.enjincoin.sdk.client.service.requests.vo.*;
-import com.enjin.enjincoin.sdk.client.service.requests.vo.CreateRequestRequestBody;
-import com.enjin.enjincoin.sdk.client.service.requests.vo.CreateRequestResponseBody;
-import com.enjin.enjincoin.sdk.client.service.requests.vo.ExecuteRequestRequestBody;
-import com.enjin.enjincoin.sdk.client.service.requests.vo.RequestResponseBody;
-import com.enjin.enjincoin.sdk.client.service.requests.vo.UpdateRequestRequestBody;
-import com.enjin.enjincoin.sdk.client.service.requests.vo.UpdateRequestResponseBody;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import retrofit2.Callback;
 
 public interface AsynchronousRequestsService {
 
-    void getRequestsAsync(Callback<RequestResponseBody[]> callback);
+    void getAllRequestsAsync(Callback<JsonElement> callback);
 
-    void getRequestAsync(long requestId, Callback<RequestResponseBody> callback);
+    void getRequestsAsync(Integer id,
+                          String transactionId,
+                          Integer identityId,
+                          String type,
+                          Integer recipientId,
+                          String recipientAddress,
+                          Integer tokenId,
+                          Integer value,
+                          String encodedData,
+                          String state,
+                          Integer accepted,
+                          Callback<JsonElement> callback);
 
-    void createRequestAsync(CreateRequestRequestBody createRequestRequestVO, Callback<CreateRequestResponseBody> callback);
+    void createRequestAsync(Integer identityId,
+                            Integer appId,
+                            String type,
+                            String title,
+                            String icon,
+                            Float value,
+                            JsonObject createTokenData,
+                            JsonObject mintTokenData,
+                            JsonObject meltTokenData,
+                            JsonObject sendTokenData,
+                            Callback<JsonElement> callback);
 
-    void updateRequestAsync(long requestId, UpdateRequestRequestBody updateRequestRequest, Callback<UpdateRequestResponseBody> callback);
+    void updateRequestAsync(Integer id,
+                            Integer appId,
+                            Integer recipientId,
+                            String type,
+                            String title,
+                            String icon,
+                            Float value,
+                            Callback<JsonElement> callback);
 
-    void deleteRequestAsync(long requestId, Callback<Boolean> callback);
-
-    void executeRequestAsync(long requestId, ExecuteRequestRequestBody executeRequestRequest, Callback<Boolean> callback);
-
-    void cancelRequestAsync(long requestId, Callback<Boolean> callback);
 }
