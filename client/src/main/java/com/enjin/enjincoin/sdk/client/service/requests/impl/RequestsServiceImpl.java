@@ -15,30 +15,30 @@ public class RequestsServiceImpl implements RequestsService {
 
     private GraphQLRetrofitService service;
 
-    public RequestsServiceImpl(GraphQLRetrofitService service) {
+    public RequestsServiceImpl(final GraphQLRetrofitService service) {
         this.service = service;
     }
 
     @Override
-    public void getAllRequestsAsync(Callback<JsonElement> callback) {
-        Call<JsonElement> call = getGetAllRequestsCall();
+    public void getAllRequestsAsync(final Callback<JsonElement> callback) {
+        final Call<JsonElement> call = getGetAllRequestsCall();
         call.enqueue(callback);
     }
 
     @Override
-    public void getRequestsAsync(Integer id,
-                                 String transactionId,
-                                 Integer identityId,
-                                 String type,
-                                 Integer recipientId,
-                                 String recipientAddress,
-                                 Integer tokenId,
-                                 Integer value,
-                                 String encodedData,
-                                 String state,
-                                 Integer accepted,
-                                 Callback<JsonElement> callback) {
-        Call<JsonElement> call = getGetRequestsCall(id,
+    public void getRequestsAsync(final Integer id,
+                                 final String transactionId,
+                                 final Integer identityId,
+                                 final String type,
+                                 final Integer recipientId,
+                                 final String recipientAddress,
+                                 final Integer tokenId,
+                                 final Integer value,
+                                 final String encodedData,
+                                 final String state,
+                                 final Integer accepted,
+                                 final Callback<JsonElement> callback) {
+        final Call<JsonElement> call = getGetRequestsCall(id,
                 transactionId,
                 identityId,
                 type,
@@ -53,18 +53,18 @@ public class RequestsServiceImpl implements RequestsService {
     }
 
     @Override
-    public void createRequestAsync(Integer identityId,
-                                   Integer appId,
-                                   String type,
-                                   String title,
-                                   String icon,
-                                   Float value,
-                                   JsonObject createTokenData,
-                                   JsonObject mintTokenData,
-                                   JsonObject meltTokenData,
-                                   JsonObject sendTokenData,
-                                   Callback<JsonElement> callback) {
-        Call<JsonElement> call = getCreateRequestCall(identityId,
+    public void createRequestAsync(final Integer identityId,
+                                   final Integer appId,
+                                   final String type,
+                                   final String title,
+                                   final String icon,
+                                   final Float value,
+                                   final JsonObject createTokenData,
+                                   final JsonObject mintTokenData,
+                                   final JsonObject meltTokenData,
+                                   final JsonObject sendTokenData,
+                                   final Callback<JsonElement> callback) {
+        final Call<JsonElement> call = getCreateRequestCall(identityId,
                 appId,
                 type,
                 title,
@@ -78,15 +78,15 @@ public class RequestsServiceImpl implements RequestsService {
     }
 
     @Override
-    public void updateRequestAsync(Integer id,
-                                   Integer appId,
-                                   Integer recipientId,
-                                   String type,
-                                   String title,
-                                   String icon,
-                                   Float value,
-                                   Callback<JsonElement> callback) {
-        Call<JsonElement> call = getUpdateRequestCall(id,
+    public void updateRequestAsync(final Integer id,
+                                   final Integer appId,
+                                   final Integer recipientId,
+                                   final String type,
+                                   final String title,
+                                   final String icon,
+                                   final Float value,
+                                   final Callback<JsonElement> callback) {
+        final Call<JsonElement> call = getUpdateRequestCall(id,
                 appId,
                 recipientId,
                 type,
@@ -98,23 +98,23 @@ public class RequestsServiceImpl implements RequestsService {
 
     @Override
     public Response<JsonElement> getAllRequestsSync() throws IOException {
-        Call<JsonElement> call = getGetAllRequestsCall();
+        final Call<JsonElement> call = getGetAllRequestsCall();
         return call.execute();
     }
 
     @Override
-    public Response<JsonElement> getRequestsSync(Integer id,
-                                                 String transactionId,
-                                                 Integer identityId,
-                                                 String type,
-                                                 Integer recipientId,
-                                                 String recipientAddress,
-                                                 Integer tokenId,
-                                                 Integer value,
-                                                 String encodedData,
-                                                 String state,
-                                                 Integer accepted) throws IOException {
-        Call<JsonElement> call = getGetRequestsCall(id,
+    public Response<JsonElement> getRequestsSync(final Integer id,
+                                                 final String transactionId,
+                                                 final Integer identityId,
+                                                 final String type,
+                                                 final Integer recipientId,
+                                                 final String recipientAddress,
+                                                 final Integer tokenId,
+                                                 final Integer value,
+                                                 final String encodedData,
+                                                 final String state,
+                                                 final Integer accepted) throws IOException {
+        final Call<JsonElement> call = getGetRequestsCall(id,
                 transactionId,
                 identityId,
                 type,
@@ -129,17 +129,17 @@ public class RequestsServiceImpl implements RequestsService {
     }
 
     @Override
-    public Response<JsonElement> createRequestSync(Integer identityId,
-                                                   Integer appId,
-                                                   String type,
-                                                   String title,
-                                                   String icon,
-                                                   Float value,
-                                                   JsonObject createTokenData,
-                                                   JsonObject mintTokenData,
-                                                   JsonObject meltTokenData,
-                                                   JsonObject sendTokenData) throws IOException {
-        Call<JsonElement> call = getCreateRequestCall(identityId,
+    public Response<JsonElement> createRequestSync(final Integer identityId,
+                                                   final Integer appId,
+                                                   final String type,
+                                                   final String title,
+                                                   final String icon,
+                                                   final Float value,
+                                                   final JsonObject createTokenData,
+                                                   final JsonObject mintTokenData,
+                                                   final JsonObject meltTokenData,
+                                                   final JsonObject sendTokenData) throws IOException {
+        final Call<JsonElement> call = getCreateRequestCall(identityId,
                 appId,
                 type,
                 title,
@@ -153,14 +153,14 @@ public class RequestsServiceImpl implements RequestsService {
     }
 
     @Override
-    public Response<JsonElement> updateRequestSync(Integer id,
-                                                   Integer appId,
-                                                   Integer recipientId,
-                                                   String type,
-                                                   String title,
-                                                   String icon,
-                                                   Float value) throws IOException {
-        Call<JsonElement> call = getUpdateRequestCall(id,
+    public Response<JsonElement> updateRequestSync(final Integer id,
+                                                   final Integer appId,
+                                                   final Integer recipientId,
+                                                   final String type,
+                                                   final String title,
+                                                   final String icon,
+                                                   final Float value) throws IOException {
+        final Call<JsonElement> call = getUpdateRequestCall(id,
                 appId,
                 recipientId,
                 type,
@@ -176,17 +176,17 @@ public class RequestsServiceImpl implements RequestsService {
                 .build().call();
     }
 
-    private Call<JsonElement> getGetRequestsCall(Integer id,
-                                                 String transactionId,
-                                                 Integer identityId,
-                                                 String type,
-                                                 Integer recipientId,
-                                                 String recipientAddress,
-                                                 Integer tokenId,
-                                                 Integer value,
-                                                 String encodedData,
-                                                 String state,
-                                                 Integer accepted) {
+    private Call<JsonElement> getGetRequestsCall(final Integer id,
+                                                 final String transactionId,
+                                                 final Integer identityId,
+                                                 final String type,
+                                                 final Integer recipientId,
+                                                 final String recipientAddress,
+                                                 final Integer tokenId,
+                                                 final Integer value,
+                                                 final String encodedData,
+                                                 final String state,
+                                                 final Integer accepted) {
         return GraphQLRequest.builder(this.service)
                 .fromResource("/graphql/requests/getRequests.query")
                 .withParameter("id", id)
@@ -203,16 +203,16 @@ public class RequestsServiceImpl implements RequestsService {
                 .build().call();
     }
 
-    private Call<JsonElement> getCreateRequestCall(Integer identityId,
-                                                   Integer appId,
-                                                   String type,
-                                                   String title,
-                                                   String icon,
-                                                   Float value,
-                                                   JsonObject createTokenData,
-                                                   JsonObject mintTokenData,
-                                                   JsonObject meltTokenData,
-                                                   JsonObject sendTokenData) {
+    private Call<JsonElement> getCreateRequestCall(final Integer identityId,
+                                                   final Integer appId,
+                                                   final String type,
+                                                   final String title,
+                                                   final String icon,
+                                                   final Float value,
+                                                   final JsonObject createTokenData,
+                                                   final JsonObject mintTokenData,
+                                                   final JsonObject meltTokenData,
+                                                   final JsonObject sendTokenData) {
         return GraphQLRequest.builder(this.service)
                 .fromResource("/graphql/requests/createRequest.mutation")
                 .withParameter("identity_id", identityId)
@@ -228,13 +228,13 @@ public class RequestsServiceImpl implements RequestsService {
                 .build().call();
     }
 
-    private Call<JsonElement> getUpdateRequestCall(Integer id,
-                                                   Integer appId,
-                                                   Integer recipientId,
-                                                   String type,
-                                                   String title,
-                                                   String icon,
-                                                   Float value) {
+    private Call<JsonElement> getUpdateRequestCall(final Integer id,
+                                                   final Integer appId,
+                                                   final Integer recipientId,
+                                                   final String type,
+                                                   final String title,
+                                                   final String icon,
+                                                   final Float value) {
         return GraphQLRequest.builder(this.service)
                 .fromResource("/graphql/requests/updateRequest.mutation")
                 .withParameter("id", id)

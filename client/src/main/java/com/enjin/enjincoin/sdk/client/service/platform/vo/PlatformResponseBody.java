@@ -1,8 +1,8 @@
 package com.enjin.enjincoin.sdk.client.service.platform.vo;
 
-import java.util.Arrays;
-
 import com.google.gson.annotations.SerializedName;
+
+import java.util.Arrays;
 
 /**
  * <p>
@@ -20,13 +20,9 @@ public class PlatformResponseBody {
     @SerializedName("apps")
     private AppDetail[] appDetails;
 
-    /**
-     * Class constructor.
-     * @param platformDetails
-     * @param notificationDetails
-     * @param appDetails
-     */
-    public PlatformResponseBody(PlatformDetails platformDetails, NotificationDetails notificationDetails, AppDetail[] appDetails) {
+    public PlatformResponseBody(final PlatformDetails platformDetails,
+                                final NotificationDetails notificationDetails,
+                                final AppDetail[] appDetails) {
         super();
         this.platformDetails = platformDetails;
         this.notificationDetails = notificationDetails;
@@ -59,7 +55,9 @@ public class PlatformResponseBody {
      */
     @Override
     public String toString() {
-        return "PlatformResponseBody [platformDetails=" + this.platformDetails + ", notificationDetails=" + this.notificationDetails + ", appDetails=" + Arrays.toString(this.appDetails) + "]";
+        return "PlatformResponseBody [platformDetails=" + this.platformDetails
+                + ", notificationDetails=" + this.notificationDetails
+                + ", appDetails=" + Arrays.toString(this.appDetails) + "]";
     }
 
 

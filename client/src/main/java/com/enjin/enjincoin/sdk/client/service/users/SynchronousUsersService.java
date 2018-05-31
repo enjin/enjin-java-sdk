@@ -1,9 +1,9 @@
 package com.enjin.enjincoin.sdk.client.service.users;
 
-import java.io.IOException;
-
 import com.google.gson.JsonElement;
 import retrofit2.Response;
+
+import java.io.IOException;
 
 public interface SynchronousUsersService {
 

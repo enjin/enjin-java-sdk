@@ -2,8 +2,6 @@ package com.enjin.enjincoin.sdk.client.service.notifications;
 
 import com.enjin.enjincoin.sdk.client.annotations.notifications.EventFilter;
 import com.enjin.enjincoin.sdk.client.enums.NotificationType;
-import com.enjin.enjincoin.sdk.client.annotations.notifications.EventFilter;
-import com.enjin.enjincoin.sdk.client.enums.NotificationType;
 
 /**
  * Registration wrapper for notification listeners that extracts any metadata
@@ -154,9 +152,9 @@ public class NotificationListenerRegistration {
          */
         private void detectAndApplyListenerAnnotations() {
             if (this.listener != null) {
-                Class<?> clazz = this.listener.getClass();
+                final Class<?> clazz = this.listener.getClass();
                 if (clazz.isAnnotationPresent(EventFilter.class)) {
-                    EventFilter filter = clazz.getAnnotation(EventFilter.class);
+                    final EventFilter filter = clazz.getAnnotation(EventFilter.class);
                     if (filter.allow()) {
                         this.withAllowedEvents(filter.value());
                     } else {

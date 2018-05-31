@@ -1,11 +1,11 @@
 package com.enjin.enjincoin.sdk.client;
 
-import java.io.IOException;
-
 import com.enjin.enjincoin.sdk.client.serialization.retrofit.JsonStringConverterFactory;
 import com.enjin.enjincoin.sdk.client.service.GraphQLRetrofitService;
 import com.enjin.enjincoin.sdk.client.service.identities.IdentitiesService;
 import com.enjin.enjincoin.sdk.client.service.identities.impl.IdentitiesServiceImpl;
+import com.enjin.enjincoin.sdk.client.service.notifications.NotificationsService;
+import com.enjin.enjincoin.sdk.client.service.notifications.impl.NotificationsServiceImpl;
 import com.enjin.enjincoin.sdk.client.service.platform.PlatformService;
 import com.enjin.enjincoin.sdk.client.service.platform.impl.PlatformServiceImpl;
 import com.enjin.enjincoin.sdk.client.service.requests.RequestsService;
@@ -16,15 +16,14 @@ import com.enjin.enjincoin.sdk.client.service.users.UsersService;
 import com.enjin.enjincoin.sdk.client.service.users.impl.UsersServiceImpl;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import com.enjin.enjincoin.sdk.client.service.notifications.NotificationsService;
-import com.enjin.enjincoin.sdk.client.service.notifications.impl.NotificationsServiceImpl;
 import net.dongliu.gson.GsonJava8TypeAdapterFactory;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import java.io.IOException;
 
 public class ClientImpl implements Client {
 
@@ -39,17 +38,17 @@ public class ClientImpl implements Client {
     private PlatformService platformService;
     private NotificationsService notificationsService;
 
-    public ClientImpl(String url, int appId, boolean log) {
+    public ClientImpl(final String url, final int appId, final boolean log) {
         this.appId = appId;
-        OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
+        final OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
 
         if (log) {
-            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+            final HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
             clientBuilder.addInterceptor(interceptor);
         }
 
-        Converter.Factory gsonFactory = GsonConverterFactory.create(getGsonInstance());
+        final Converter.Factory gsonFactory = GsonConverterFactory.create(getGsonInstance());
 
         this.client = clientBuilder.build();
         this.retrofit = new Retrofit.Builder()
@@ -130,7 +129,8 @@ public class ClientImpl implements Client {
     @Override
     public void close() throws IOException {
         this.client.dispatcher().executorService().shutdown();
-        if (this.notificationsService != null)
+        if (this.notificationsService != null) {
             this.notificationsService.shutdown();
+        }
     }
 }

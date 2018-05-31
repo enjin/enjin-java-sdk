@@ -23,17 +23,7 @@ public class IdentityField {
     @SerializedName("unique")
     private Integer unique;
 
-
-    /**
-     * Class constructor.
-     *
-     * @param key
-     * @param fieldValue
-     * @param searchable
-     * @param displayable
-     * @param unique
-     */
-    public IdentityField(String key, String fieldValue, Integer searchable, Integer displayable, Integer unique) {
+    public IdentityField(final String key, final String fieldValue, final Integer searchable, final Integer displayable, final Integer unique) {
         super();
         this.key = key;
         this.fieldValue = fieldValue;
@@ -42,7 +32,7 @@ public class IdentityField {
         this.unique = unique;
     }
 
-    public IdentityField(String key, String value) {
+    public IdentityField(final String key, final String value) {
         this.key = key;
         this.fieldValue = value;
     }
@@ -87,6 +77,10 @@ public class IdentityField {
      */
     @Override
     public String toString() {
-        return "FieldVO [key=" + this.key + ", fieldValue=" + this.fieldValue + ", searchable=" + this.searchable + ", displayable=" + this.displayable + ", unique=" + this.unique + "]";
+        return "FieldVO [key=" + this.key
+                + ", fieldValue=" + this.fieldValue
+                + ", searchable=" + this.searchable
+                + ", displayable=" + this.displayable
+                + ", unique=" + this.unique + "]";
     }
 }

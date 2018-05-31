@@ -15,7 +15,7 @@ public interface AsynchronousTokensService {
                         Callback<JsonElement> callback);
 
     void createTokenAsync(Integer tokenId,
-                          Integer app_id,
+                          Integer appId,
                           String creator,
                           String adapter,
                           String name,
@@ -32,7 +32,7 @@ public interface AsynchronousTokensService {
                           Callback<JsonElement> callback);
 
     void updateTokenAsync(Integer tokenId,
-                          Integer app_id,
+                          Integer appId,
                           String creator,
                           String adapter,
                           String name,

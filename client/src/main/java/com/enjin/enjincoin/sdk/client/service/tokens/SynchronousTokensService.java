@@ -16,7 +16,7 @@ public interface SynchronousTokensService {
                                         Integer blockHeight) throws IOException;
 
     Response<JsonElement> createTokenSync(Integer tokenId,
-                                          Integer app_id,
+                                          Integer appId,
                                           String creator,
                                           String adapter,
                                           String name,
@@ -32,7 +32,7 @@ public interface SynchronousTokensService {
                                           Boolean fromBlockchain) throws IOException;
 
     Response<JsonElement> updateTokenSync(Integer tokenId,
-                                          Integer app_id,
+                                          Integer appId,
                                           String creator,
                                           String adapter,
                                           String name,

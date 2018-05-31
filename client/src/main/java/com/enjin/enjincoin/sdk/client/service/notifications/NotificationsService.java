@@ -1,7 +1,6 @@
 package com.enjin.enjincoin.sdk.client.service.notifications;
 
 import com.enjin.enjincoin.sdk.client.enums.NotificationType;
-import com.enjin.enjincoin.sdk.client.enums.NotificationType;
 import com.enjin.enjincoin.sdk.client.service.notifications.NotificationListenerRegistration.RegistrationListenerConfiguration;
 
 /**

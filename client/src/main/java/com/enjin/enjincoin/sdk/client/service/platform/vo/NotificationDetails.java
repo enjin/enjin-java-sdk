@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * <p>
- * Notification Details class
+ * Notification Details class.
  * </p>
  */
 public class NotificationDetails {
@@ -16,12 +16,7 @@ public class NotificationDetails {
     private MobileDetails mobileDetails;
 
 
-    /**
-     * Class constructor.
-     * @param sdkDetails
-     * @param mobileDetails
-     */
-    public NotificationDetails(SdkDetails sdkDetails, MobileDetails mobileDetails) {
+    public NotificationDetails(final SdkDetails sdkDetails, final MobileDetails mobileDetails) {
         super();
         this.sdkDetails = sdkDetails;
         this.mobileDetails = mobileDetails;

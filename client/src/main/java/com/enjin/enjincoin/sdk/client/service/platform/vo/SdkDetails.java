@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * <p>
- * Sdk Details class
+ * Sdk Details class.
  * </p>
  */
 public class SdkDetails {
@@ -21,14 +21,7 @@ public class SdkDetails {
     @SerializedName("options")
     private SdkOptions options;
 
-    /**
-     * Class constructor.
-     * @param driver
-     * @param key
-     * @param appId
-     * @param options
-     */
-    public SdkDetails(String driver, String key, String appId, SdkOptions options) {
+    public SdkDetails(final String driver, final String key, final String appId, final SdkOptions options) {
         super();
         this.driver = driver;
         this.key = key;

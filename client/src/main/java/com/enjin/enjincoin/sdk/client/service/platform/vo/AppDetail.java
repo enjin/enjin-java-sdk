@@ -21,14 +21,7 @@ public class AppDetail {
     @SerializedName("image")
     private String image;
 
-    /**
-     * Class constructor.
-     * @param id
-     * @param name
-     * @param description
-     * @param image
-     */
-    public AppDetail(String id, String name, String description, String image) {
+    public AppDetail(final String id, final String name, final String description, final String image) {
         super();
         this.id = id;
         this.name = name;
