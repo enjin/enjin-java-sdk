@@ -16,9 +16,9 @@
 
 package com.enjin.enjincoin.sdk.client.cookiejar.cache;
 
-import java.util.Collection;
-
 import okhttp3.Cookie;
+
+import java.util.Collection;
 
 /**
  * A CookieCache handles the volatile cookie session storage.
@@ -31,6 +31,8 @@ public interface CookieCache extends Iterable<Cookie> {
      * @param cookies  a collection of http cookies
      */
     void addAll(Collection<Cookie> cookies);
+
+    void add(Cookie cookie);
 
     /**
      * Clear all the cookies from the session.

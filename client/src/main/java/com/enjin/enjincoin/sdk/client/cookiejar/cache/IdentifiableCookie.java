@@ -16,11 +16,11 @@
 
 package com.enjin.enjincoin.sdk.client.cookiejar.cache;
 
+import okhttp3.Cookie;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
-import okhttp3.Cookie;
 
 /**
  * This class decorates a Cookie to re-implements equals() and hashcode() methods in order to identify
@@ -35,9 +35,13 @@ class IdentifiableCookie {
     static List<IdentifiableCookie> decorateAll(Collection<Cookie> cookies) {
         List<IdentifiableCookie> identifiableCookies = new ArrayList<>(cookies.size());
         for (Cookie cookie : cookies) {
-            identifiableCookies.add(new IdentifiableCookie(cookie));
+            identifiableCookies.add(decorate(cookie));
         }
         return identifiableCookies;
+    }
+
+    static IdentifiableCookie decorate(Cookie cookie) {
+        return new IdentifiableCookie(cookie);
     }
 
     private IdentifiableCookie(Cookie cookie) {

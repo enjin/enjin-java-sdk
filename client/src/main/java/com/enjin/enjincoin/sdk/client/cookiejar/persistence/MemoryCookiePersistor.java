@@ -16,6 +16,11 @@ public class MemoryCookiePersistor implements CookiePersistor {
     }
 
     @Override
+    public void save(Cookie cookie) {
+        storage.add(cookie);
+    }
+
+    @Override
     public void saveAll(Collection<Cookie> cookies) {
         storage.addAll(cookies);
     }

@@ -1,17 +1,14 @@
 package com.enjin.enjincoin.sdk.client;
 
-import java.io.IOException;
-import java.util.Collection;
-import java.util.List;
-
 import com.enjin.enjincoin.sdk.client.cookiejar.ClearableCookieJar;
 import com.enjin.enjincoin.sdk.client.cookiejar.PersistentCookieJar;
 import com.enjin.enjincoin.sdk.client.cookiejar.cache.SetCookieCache;
-//import com.enjin.enjincoin.sdk.client.cookiejar.persistence.SharedPrefsCookiePersistor;
-import com.enjin.enjincoin.sdk.client.cookiejar.persistence.CookiePersistor;
 import com.enjin.enjincoin.sdk.client.cookiejar.persistence.MemoryCookiePersistor;
 import com.enjin.enjincoin.sdk.client.serialization.retrofit.JsonStringConverterFactory;
 import com.enjin.enjincoin.sdk.client.service.GraphQLRetrofitService;
+import com.enjin.enjincoin.sdk.client.service.auth.AuthRetrofitService;
+import com.enjin.enjincoin.sdk.client.service.auth.vo.AuthBody;
+import com.enjin.enjincoin.sdk.client.service.auth.vo.AuthData;
 import com.enjin.enjincoin.sdk.client.service.identities.IdentitiesService;
 import com.enjin.enjincoin.sdk.client.service.identities.impl.IdentitiesServiceImpl;
 import com.enjin.enjincoin.sdk.client.service.notifications.NotificationsService;
@@ -27,9 +24,12 @@ import com.enjin.enjincoin.sdk.client.service.users.impl.UsersServiceImpl;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.dongliu.gson.GsonJava8TypeAdapterFactory;
+import okhttp3.Cookie;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
 import retrofit2.Converter;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -37,9 +37,11 @@ import java.io.IOException;
 
 public class ClientImpl implements Client {
 
-    private int appId;
+    private String url;
+    private String clientId;
     private OkHttpClient client;
     private Retrofit retrofit;
+    private AuthRetrofitService authRetrofitService;
     private GraphQLRetrofitService graphQLService;
     private IdentitiesService identitiesService;
     private UsersService userService;
@@ -50,13 +52,13 @@ public class ClientImpl implements Client {
 
     private ClearableCookieJar cookieJar;
 
-    public ClientImpl(final String url, final int appId, final boolean log) {
-        this.appId = appId;
-
-        cookieJar = new PersistentCookieJar(new SetCookieCache(), new MemoryCookiePersistor());
+    public ClientImpl(final String url, final String clientId, final boolean log) {
+        this.url = url;
+        this.clientId = clientId;
+        this.cookieJar = new PersistentCookieJar(new SetCookieCache(), new MemoryCookiePersistor());
 
         final OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
-        clientBuilder.cookieJar(cookieJar).build();
+        clientBuilder.cookieJar(this.cookieJar);
 
         if (log) {
             final HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -75,9 +77,30 @@ public class ClientImpl implements Client {
                 .build();
     }
 
-    @Override
-    public int getAppId() {
-        return this.appId;
+    public Response<AuthData> auth(String clientSecret) throws IOException {
+        Call<AuthData> call = getAuthRetrofitService()
+                .auth(new AuthBody("client_credentials", this.clientId, clientSecret));
+        // Failure needs to be handled by the callee.
+        Response<AuthData> response = call.execute();
+
+        if (response.isSuccessful()) {
+            AuthData data = response.body();
+            Cookie cookie = new Cookie.Builder()
+                    .domain(this.retrofit.baseUrl().host())
+                    .name("laravel_session")
+                    .value(String.format("%s@%s", this.clientId, data.getAccessToken()))
+                    .build();
+            this.cookieJar.addCookie(cookie);
+        }
+
+        return response;
+    }
+
+    public AuthRetrofitService getAuthRetrofitService() {
+        if (this.authRetrofitService == null) {
+            this.authRetrofitService = this.retrofit.create(AuthRetrofitService.class);
+        }
+        return this.authRetrofitService;
     }
 
     public GraphQLRetrofitService getGraphQLService() {
@@ -85,6 +108,11 @@ public class ClientImpl implements Client {
             this.graphQLService = this.retrofit.create(GraphQLRetrofitService.class);
         }
         return this.graphQLService;
+    }
+
+    @Override
+    public String getClientId() {
+        return this.clientId;
     }
 
     @Override
@@ -130,7 +158,7 @@ public class ClientImpl implements Client {
     @Override
     public NotificationsService getNotificationsService() {
         if (this.notificationsService == null) {
-            this.notificationsService = new NotificationsServiceImpl(getPlatformService(), this.appId);
+            this.notificationsService = new NotificationsServiceImpl(getPlatformService(), this.clientId);
         }
 
         return this.notificationsService;

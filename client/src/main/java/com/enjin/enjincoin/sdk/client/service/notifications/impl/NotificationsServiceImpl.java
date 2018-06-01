@@ -53,17 +53,17 @@ public class NotificationsServiceImpl implements NotificationsService {
      */
     private PlatformService service;
 
-    private int appId;
+    private int clientId;
 
     /**
      * Class constructor.
      *
      * @param service - the platform service to use
-     * @param appId - the app id to use
+     * @param clientId - the app id to use
      */
-    public NotificationsServiceImpl(final PlatformService service, final int appId) {
+    public NotificationsServiceImpl(final PlatformService service, final String clientId) {
        this.service = service;
-       this.appId = appId;
+       this.clientId = Integer.parseInt(clientId);
     }
 
     /**
@@ -104,7 +104,7 @@ public class NotificationsServiceImpl implements NotificationsService {
 
             // Setup the thirdPartyNotificationService to use the pusher service.
             if (this.thirdPartyNotificationService == null) {
-                this.thirdPartyNotificationService = new PusherNotificationServiceImpl(body, this.appId);
+                this.thirdPartyNotificationService = new PusherNotificationServiceImpl(body, this.clientId);
             }
 
             //boolean initPusherResult = this.thirdPartyNotificationService.init(platformAuthDetailsResponseVO);
@@ -281,7 +281,7 @@ public class NotificationsServiceImpl implements NotificationsService {
                     final PlatformResponseBody platformResponseBody = parseJsonElement(body);
                     NotificationsServiceImpl.this.thirdPartyNotificationService =
                             new PusherNotificationServiceImpl(platformResponseBody,
-                                    NotificationsServiceImpl.this.appId);
+                                    NotificationsServiceImpl.this.clientId);
                     result = NotificationsServiceImpl.this.thirdPartyNotificationService.init();
                 }
                 future.complete(result);

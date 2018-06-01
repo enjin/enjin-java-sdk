@@ -16,12 +16,12 @@
 
 package com.enjin.enjincoin.sdk.client.cookiejar.cache;
 
+import okhttp3.Cookie;
+
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
-
-import okhttp3.Cookie;
 
 public class SetCookieCache implements CookieCache {
 
@@ -33,10 +33,16 @@ public class SetCookieCache implements CookieCache {
 
     @Override
     public void addAll(Collection<Cookie> newCookies) {
-        for (IdentifiableCookie cookie : IdentifiableCookie.decorateAll(newCookies)) {
-            this.cookies.remove(cookie);
-            this.cookies.add(cookie);
+        for (Cookie cookie : newCookies) {
+            add(cookie);
         }
+    }
+
+    @Override
+    public void add(Cookie cookie) {
+        IdentifiableCookie identifiableCookie = IdentifiableCookie.decorate(cookie);
+        this.cookies.remove(identifiableCookie);
+        this.cookies.add(identifiableCookie);
     }
 
     @Override

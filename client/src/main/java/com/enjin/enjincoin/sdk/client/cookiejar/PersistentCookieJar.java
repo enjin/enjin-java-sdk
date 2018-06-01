@@ -22,13 +22,12 @@ package com.enjin.enjincoin.sdk.client.cookiejar;
 
 import com.enjin.enjincoin.sdk.client.cookiejar.cache.CookieCache;
 import com.enjin.enjincoin.sdk.client.cookiejar.persistence.CookiePersistor;
+import okhttp3.Cookie;
+import okhttp3.HttpUrl;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import okhttp3.Cookie;
-import okhttp3.HttpUrl;
 
 public class PersistentCookieJar  implements ClearableCookieJar {
 
@@ -95,5 +94,13 @@ public class PersistentCookieJar  implements ClearableCookieJar {
     synchronized public void clear() {
         cache.clear();
         persistor.clear();
+    }
+
+    @Override
+    public void addCookie(Cookie cookie) {
+        cache.add(cookie);
+        if (cookie.persistent()) {
+            persistor.save(cookie);
+        }
     }
 }

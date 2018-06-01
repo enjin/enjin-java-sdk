@@ -16,10 +16,10 @@
 
 package com.enjin.enjincoin.sdk.client.cookiejar.persistence;
 
+import okhttp3.Cookie;
+
 import java.util.Collection;
 import java.util.List;
-
-import okhttp3.Cookie;
 
 /**
  * A CookiePersistor handles the persistent cookie storage.
@@ -27,6 +27,8 @@ import okhttp3.Cookie;
 public interface CookiePersistor {
 
     List<Cookie> loadAll();
+
+    void save(Cookie cookie);
 
     /**
      * Persist all cookies, existing cookies will be overwritten.

@@ -16,6 +16,7 @@
 
 package com.enjin.enjincoin.sdk.client.cookiejar;
 
+import okhttp3.Cookie;
 import okhttp3.CookieJar;
 
 /**
@@ -32,4 +33,11 @@ public interface ClearableCookieJar extends CookieJar {
      * Clear all the cookies from persistence and from the cache.
      */
     void clear();
+
+    /**
+     * Adds a cookie to the cache.
+     *
+     * @param cookie to add
+     */
+    void addCookie(Cookie cookie);
 }
