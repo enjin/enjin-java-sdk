@@ -10,8 +10,6 @@ public interface ThirdPartyNotificationService {
     /**
      * Method to initialize the notification service.
      *
-     * @param getPlatformAuthDetailsResponseVO notification details config
-     *
      * @return boolean
      */
     boolean init();

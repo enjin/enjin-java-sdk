@@ -15,4 +15,36 @@ public interface SynchronousTokensService {
                                         Integer firstBlock,
                                         Integer blockHeight) throws IOException;
 
+    Response<JsonElement> createTokenSync(Integer tokenId,
+                                          Integer appId,
+                                          String creator,
+                                          String adapter,
+                                          String name,
+                                          String icon,
+                                          String totalSupply,
+                                          String exchangeRate,
+                                          Integer decimals,
+                                          String maxMeltFee,
+                                          String meltFee,
+                                          Integer transferable,
+                                          Integer firstBlock,
+                                          Integer blockHeight,
+                                          Boolean fromBlockchain) throws IOException;
+
+    Response<JsonElement> updateTokenSync(Integer tokenId,
+                                          Integer appId,
+                                          String creator,
+                                          String adapter,
+                                          String name,
+                                          String icon,
+                                          String totalSupply,
+                                          String exchangeRate,
+                                          Integer decimals,
+                                          String maxMeltFee,
+                                          String meltFee,
+                                          Integer transferable,
+                                          Integer firstBlock,
+                                          Integer blockHeight,
+                                          Boolean fromBlockchain) throws IOException;
+
 }

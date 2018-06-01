@@ -1,7 +1,6 @@
 package com.enjin.enjincoin.sdk.client.annotations.notifications;
 
 import com.enjin.enjincoin.sdk.client.enums.NotificationType;
-import com.enjin.enjincoin.sdk.client.enums.NotificationType;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

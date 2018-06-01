@@ -13,13 +13,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class GraphQLRequest {
+public final class GraphQLRequest {
 
     private GraphQLRetrofitService service;
     private GraphQLParameters parameters;
     private String path;
 
-    private GraphQLRequest(GraphQLRetrofitService service) {
+    private GraphQLRequest(final GraphQLRetrofitService service) {
         this.service = service;
         this.parameters = new GraphQLParameters();
     }
@@ -32,12 +32,12 @@ public class GraphQLRequest {
         return call().execute();
     }
 
-    public void enqueue(Callback<JsonElement> callback) {
+    public void enqueue(final Callback<JsonElement> callback) {
         call().enqueue(callback);
     }
 
     private String getFormattedQuery() {
-        String query = getQuery();
+        final String query = getQuery();
         return String.format(query, this.parameters.getFormattedParameters());
     }
 
@@ -45,13 +45,11 @@ public class GraphQLRequest {
         String query = "";
 
         try {
-            URL url = getClass().getResource(this.path);
-            Path path = Paths.get(url.toURI());
-            byte[] data = Files.readAllBytes(path);
+            final URL url = getClass().getResource(this.path);
+            final Path path = Paths.get(url.toURI());
+            final byte[] data = Files.readAllBytes(path);
             query = new String(data).trim();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (final URISyntaxException | IOException e) {
             e.printStackTrace();
         }
 
@@ -60,20 +58,20 @@ public class GraphQLRequest {
 
     public static class Builder {
 
-        private GraphQLRequest request;
+        private final GraphQLRequest request;
 
-        public Builder(GraphQLRetrofitService service) {
+        public Builder(final GraphQLRetrofitService service) {
             this.request = new GraphQLRequest(service);
         }
 
-        public Builder withParameter(String key, Object value) {
+        public Builder withParameter(final String key, final Object value) {
             if (key != null && !key.isEmpty() && value != null) {
                 this.request.parameters.getParameters().put(key, value);
             }
             return this;
         }
 
-        public Builder fromResource(String path) {
+        public Builder fromResource(final String path) {
             this.request.path = path;
             return this;
         }
@@ -84,7 +82,7 @@ public class GraphQLRequest {
 
     }
 
-    public static Builder builder(GraphQLRetrofitService service) {
+    public static Builder builder(final GraphQLRetrofitService service) {
         return new Builder(service);
     }
 

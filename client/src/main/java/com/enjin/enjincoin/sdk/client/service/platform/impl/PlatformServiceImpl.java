@@ -14,19 +14,19 @@ public class PlatformServiceImpl implements PlatformService {
 
     private GraphQLRetrofitService service;
 
-    public PlatformServiceImpl(GraphQLRetrofitService service) {
+    public PlatformServiceImpl(final GraphQLRetrofitService service) {
         this.service = service;
     }
 
     @Override
-    public void getPlatformAsync(Callback<JsonElement> callback) {
-        Call<JsonElement> call = getPlatform();
+    public void getPlatformAsync(final Callback<JsonElement> callback) {
+        final Call<JsonElement> call = getPlatform();
         call.enqueue(callback);
     }
 
     @Override
     public Response<JsonElement> getPlatformSync() throws IOException {
-        Call<JsonElement> call = getPlatform();
+        final Call<JsonElement> call = getPlatform();
         return call.execute();
     }
 

@@ -1,12 +1,13 @@
 package com.enjin.enjincoin.sdk.client.service.notifications.impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.Logger;
-
+import com.enjin.enjincoin.sdk.client.enums.NotificationType;
+import com.enjin.enjincoin.sdk.client.service.notifications.NotificationListenerRegistration;
 import com.enjin.enjincoin.sdk.client.service.notifications.ThirdPartyNotificationService;
+import com.enjin.enjincoin.sdk.client.service.notifications.vo.NotificationEvent;
+import com.enjin.enjincoin.sdk.client.service.platform.vo.NotificationDetails;
+import com.enjin.enjincoin.sdk.client.service.platform.vo.PlatformDetails;
+import com.enjin.enjincoin.sdk.client.service.platform.vo.PlatformResponseBody;
+import com.enjin.enjincoin.sdk.client.service.platform.vo.SdkDetails;
 import com.enjin.java_commons.CollectionUtils;
 import com.enjin.java_commons.ExceptionUtils;
 import com.enjin.java_commons.StringUtils;
@@ -17,14 +18,11 @@ import com.pusher.client.connection.ConnectionEventListener;
 import com.pusher.client.connection.ConnectionState;
 import com.pusher.client.connection.ConnectionStateChange;
 
-import com.enjin.enjincoin.sdk.client.enums.NotificationType;
-import com.enjin.enjincoin.sdk.client.service.notifications.NotificationListenerRegistration;
-import com.enjin.enjincoin.sdk.client.service.platform.vo.NotificationDetails;
-import com.enjin.enjincoin.sdk.client.service.platform.vo.PlatformDetails;
-import com.enjin.enjincoin.sdk.client.service.platform.vo.PlatformResponseBody;
-import com.enjin.enjincoin.sdk.client.service.platform.vo.SdkDetails;
-import com.enjin.enjincoin.sdk.client.util.Constants;
-import com.enjin.enjincoin.sdk.client.service.notifications.vo.NotificationEvent;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Logger;
 
 /**
  * <p>Service to implement methods that interact with the pusher library.</p>
@@ -36,7 +34,9 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
      */
     private static final Logger LOGGER = Logger.getLogger(PusherNotificationServiceImpl.class.getName());
 
-    private static final Map<String, NotificationType> notificationTypeMapping = new HashMap<String, NotificationType>(){{
+    private static final Long ACTIVITY_TIMEOUT = 4000L;
+
+    private static final Map<String, NotificationType> notificationTypeMapping = new HashMap<String, NotificationType>() {{
         put("EnjinCoin\\Events\\EnjinEventTransaction", NotificationType.TX_EXECUTED);
         put("EnjinCoin\\Events\\EnjinEventTokenEvent", NotificationType.TX_EXECUTED);
     }};
@@ -59,7 +59,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
     private List<NotificationListenerRegistration> notificationListenerRegistrations = new ArrayList<>();
 
     /**
-     * Local notification details method
+     * Local notification details method.
      */
     private PlatformResponseBody platformResponseBody;
 
@@ -67,8 +67,9 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
      * Class constructor.
      *
      * @param platformResponseBody to use
+     * @param appId                to use
      */
-    public PusherNotificationServiceImpl(final PlatformResponseBody platformResponseBody, int appId) {
+    public PusherNotificationServiceImpl(final PlatformResponseBody platformResponseBody, final int appId) {
         this.platformResponseBody = platformResponseBody;
         this.appId = appId;
     }
@@ -87,27 +88,27 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
             return initializeResult;
         }
 
-        PlatformDetails platformDetails = this.platformResponseBody.getPlatformDetails();
-        if (platformDetails == null ) {
+        final PlatformDetails platformDetails = this.platformResponseBody.getPlatformDetails();
+        if (platformDetails == null) {
             LOGGER.warning("platformDetails are null");
             return initializeResult;
         }
 
-        NotificationDetails notificationDetails = this.platformResponseBody.getNotificationDetails();
-        if (notificationDetails == null ||notificationDetails.getSdkDetails() == null || notificationDetails.getSdkDetails().getOptions() == null) {
+        final NotificationDetails notificationDetails = this.platformResponseBody.getNotificationDetails();
+        if (notificationDetails == null || notificationDetails.getSdkDetails() == null || notificationDetails.getSdkDetails().getOptions() == null) {
             LOGGER.warning("notificationDetails,the sdk details or the options are null");
             return initializeResult;
         }
 
-        SdkDetails sdkDetails = notificationDetails.getSdkDetails();
-        String appKey = sdkDetails.getKey();
-        String cluster = sdkDetails.getOptions().getCluster();
-        String appChannel = getAppChannel(platformDetails);
-        boolean encrypted = sdkDetails.getOptions().getEncrypted();
-        System.out.println("appChannel:"+appChannel);
-        Long activityTimeout = Constants.FOUR_THOUSAND;
+        final SdkDetails sdkDetails = notificationDetails.getSdkDetails();
+        final String appKey = sdkDetails.getKey();
+        final String cluster = sdkDetails.getOptions().getCluster();
+        final String appChannel = getAppChannel(platformDetails);
+        final boolean encrypted = sdkDetails.getOptions().getEncrypted();
+        System.out.println("appChannel:" + appChannel);
+        final Long activityTimeout = ACTIVITY_TIMEOUT;
 
-        if (StringUtils.isEmpty(appKey) ||StringUtils.isEmpty(cluster)) {
+        if (StringUtils.isEmpty(appKey) || StringUtils.isEmpty(cluster)) {
             LOGGER.warning("appId, appKey, appSecret or cluster is null or empty");
             return initializeResult;
         }
@@ -118,7 +119,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
         }
 
         // Create a new Pusher instance
-        PusherOptions options = new PusherOptions()
+        final PusherOptions options = new PusherOptions()
                 .setCluster(cluster)
                 .setActivityTimeout(activityTimeout)
                 .setEncrypted(encrypted);
@@ -154,8 +155,8 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
         //Convert an enum to an array of strings
         //String[] eventTypes = Arrays.stream(NotificationTypeEnum.values()).map(NotificationTypeEnum::name).toArray(String[]::new);
 
-        for (Map.Entry<String, NotificationType> entry : notificationTypeMapping.entrySet()) {
-            String eventType = entry.getKey();
+        for (final Map.Entry<String, NotificationType> entry : notificationTypeMapping.entrySet()) {
+            final String eventType = entry.getKey();
 
             this.channel.bind(eventType, (channel, event, data) -> {
                 LOGGER.fine(String.format("Received eventType %s, event %s with data %s ", eventType, event, data));
@@ -167,22 +168,17 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
         return initializeResult;
     }
 
-    /**
-     * Method to get the app channel
-     * @param platformDetails
-     * @return
-     */
-    private String getAppChannel(PlatformDetails platformDetails) {
-        String platformId = platformDetails.getId();
+    private String getAppChannel(final PlatformDetails platformDetails) {
+        final String platformId = platformDetails.getId();
 
-        String appChannel = String.format("enjin.server.%s.%s", platformId, this.appId);
-        return appChannel;
+        return String.format("enjin.server.%s.%s", platformId, this.appId);
     }
 
     @Override
     public void shutdown() {
-        if (this.pusher != null)
+        if (this.pusher != null) {
             this.pusher.disconnect();
+        }
     }
 
     /**
@@ -199,7 +195,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
             return;
         }
 
-        NotificationType notificationTypeEnum = notificationTypeMapping.entrySet().stream()
+        final NotificationType notificationTypeEnum = notificationTypeMapping.entrySet().stream()
                 .filter(entry -> entry.getKey().equalsIgnoreCase(eventType))
                 .map(Map.Entry::getValue)
                 .findFirst().orElse(NotificationType.UNKNOWN_EVENT);
@@ -209,9 +205,9 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
             return;
         }
 
-        NotificationEvent notificationEvent = new NotificationEvent(notificationTypeEnum, channel, sourceData);
+        final NotificationEvent notificationEvent = new NotificationEvent(notificationTypeEnum, channel, sourceData);
 
-        for (NotificationListenerRegistration registration : this.notificationListenerRegistrations) {
+        for (final NotificationListenerRegistration registration : this.notificationListenerRegistrations) {
             if (registration.getEventMatcher().matches(notificationEvent)) {
                 registration.getListener().notificationReceived(notificationEvent);
             }

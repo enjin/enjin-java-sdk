@@ -1,7 +1,6 @@
 package com.enjin.enjincoin.sdk.client.service.notifications.vo;
 
 import com.enjin.enjincoin.sdk.client.enums.NotificationType;
-import com.enjin.enjincoin.sdk.client.enums.NotificationType;
 
 /**
  * <p> Bean used when a notification event is triggered.</p>
@@ -14,7 +13,7 @@ public class NotificationEvent {
 
     private String sourceData;
 
-    public NotificationEvent(NotificationType notificationType, String channel, String sourceData) {
+    public NotificationEvent(final NotificationType notificationType, final String channel, final String sourceData) {
         this.notificationType = notificationType;
         this.channel = channel;
         this.sourceData = sourceData;

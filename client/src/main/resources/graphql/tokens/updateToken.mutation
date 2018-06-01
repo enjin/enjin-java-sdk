@@ -1,0 +1,22 @@
+mutation updateToken {
+    UpdateEnjinToken(%s) {
+        token_id,
+        app_id,
+        creator,
+        adapter,
+        name,
+        icon,
+        totalSupply,
+        exchangeRate,
+        decimals,
+        maxMeltFee,
+        meltFee,
+        transferable,
+        firstBlock,
+        blockHeight,
+        created_at,
+        updated_at,
+        balance,
+        availableToMint
+    }
+}

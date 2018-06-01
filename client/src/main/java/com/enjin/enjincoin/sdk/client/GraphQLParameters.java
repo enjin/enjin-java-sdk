@@ -11,7 +11,7 @@ public class GraphQLParameters {
         this(new HashMap<>());
     }
 
-    public GraphQLParameters(Map<String, Object> parameters) {
+    public GraphQLParameters(final Map<String, Object> parameters) {
         this.parameters = parameters;
     }
 
@@ -20,8 +20,8 @@ public class GraphQLParameters {
     }
 
     public String getFormattedParameters() {
-        StringBuilder builder = new StringBuilder();
-        for (Map.Entry<String, Object> parameter : this.parameters.entrySet()) {
+        final StringBuilder builder = new StringBuilder();
+        for (final Map.Entry<String, Object> parameter : this.parameters.entrySet()) {
             if (builder.length() > 0) {
                 builder.append(", ");
             }

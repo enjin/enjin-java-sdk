@@ -14,15 +14,15 @@ public class JsonStringConverterFactory extends Converter.Factory {
 
     private final Converter.Factory delegate;
 
-    public JsonStringConverterFactory(Converter.Factory delegate) {
+    public JsonStringConverterFactory(final Converter.Factory delegate) {
         this.delegate = delegate;
     }
 
     @Override
-    public Converter<?, String> stringConverter(Type type, Annotation[] annotations, Retrofit retrofit) {
-        for (Annotation annotation : annotations) {
+    public Converter<?, String> stringConverter(final Type type, final Annotation[] annotations, final Retrofit retrofit) {
+        for (final Annotation annotation : annotations) {
             if (annotation instanceof Json) {
-                Converter<?, RequestBody> converter =
+                final Converter<?, RequestBody> converter =
                         this.delegate.requestBodyConverter(type, annotations, new Annotation[0], retrofit);
                 return new DelegateToStringConverter<>(converter);
             }
@@ -34,13 +34,13 @@ public class JsonStringConverterFactory extends Converter.Factory {
 
         private final Converter<T, RequestBody> delegate;
 
-        public DelegateToStringConverter(Converter<T, RequestBody> delegate) {
+        public DelegateToStringConverter(final Converter<T, RequestBody> delegate) {
             this.delegate = delegate;
         }
 
         @Override
-        public String convert(T value) throws IOException {
-            Buffer buffer = new Buffer();
+        public String convert(final T value) throws IOException {
+            final Buffer buffer = new Buffer();
             this.delegate.convert(value).writeTo(buffer);
             return buffer.readUtf8();
         }

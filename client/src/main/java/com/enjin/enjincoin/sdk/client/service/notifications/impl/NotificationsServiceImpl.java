@@ -1,21 +1,5 @@
 package com.enjin.enjincoin.sdk.client.service.notifications.impl;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.logging.Logger;
-import java.util.stream.Collectors;
-
-import com.enjin.enjincoin.sdk.client.enums.NotificationType;
-import com.enjin.enjincoin.sdk.client.service.notifications.EventMatcher;
-import com.enjin.enjincoin.sdk.client.service.notifications.NotificationListener;
-import com.enjin.enjincoin.sdk.client.service.notifications.ThirdPartyNotificationService;
-import com.enjin.enjincoin.sdk.client.service.platform.PlatformService;
-import com.enjin.enjincoin.sdk.client.service.platform.vo.PlatformResponseBody;
-import com.enjin.java_commons.BooleanUtils;
-import com.enjin.java_commons.ObjectUtils;
-
 import com.enjin.enjincoin.sdk.client.enums.NotificationType;
 import com.enjin.enjincoin.sdk.client.service.notifications.EventMatcher;
 import com.enjin.enjincoin.sdk.client.service.notifications.NotificationListener;
@@ -24,6 +8,8 @@ import com.enjin.enjincoin.sdk.client.service.notifications.NotificationsService
 import com.enjin.enjincoin.sdk.client.service.notifications.ThirdPartyNotificationService;
 import com.enjin.enjincoin.sdk.client.service.platform.PlatformService;
 import com.enjin.enjincoin.sdk.client.service.platform.vo.PlatformResponseBody;
+import com.enjin.java_commons.BooleanUtils;
+import com.enjin.java_commons.ObjectUtils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -32,6 +18,13 @@ import net.dongliu.gson.GsonJava8TypeAdapterFactory;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -66,8 +59,9 @@ public class NotificationsServiceImpl implements NotificationsService {
      * Class constructor.
      *
      * @param service - the platform service to use
+     * @param appId - the app id to use
      */
-    public NotificationsServiceImpl(PlatformService service, int appId) {
+    public NotificationsServiceImpl(final PlatformService service, final int appId) {
        this.service = service;
        this.appId = appId;
     }
@@ -94,7 +88,7 @@ public class NotificationsServiceImpl implements NotificationsService {
     public boolean restart() {
         boolean initResult = false;
 
-        Response<JsonElement> platformDetails;
+        final Response<JsonElement> platformDetails;
         try {
             platformDetails = this.service.getPlatformSync();
             if (platformDetails == null || platformDetails.body() == null) {
@@ -102,7 +96,7 @@ public class NotificationsServiceImpl implements NotificationsService {
                 return initResult;
             }
 
-            PlatformResponseBody body = parseJsonElement(platformDetails.body());
+            final PlatformResponseBody body = parseJsonElement(platformDetails.body());
             if (body == null) {
                 LOGGER.warning("Failed to get platform details");
                 return initResult;
@@ -114,13 +108,13 @@ public class NotificationsServiceImpl implements NotificationsService {
             }
 
             //boolean initPusherResult = this.thirdPartyNotificationService.init(platformAuthDetailsResponseVO);
-            boolean initPusherResult = this.thirdPartyNotificationService.init();
+            final boolean initPusherResult = this.thirdPartyNotificationService.init();
             if (BooleanUtils.isFalse(initPusherResult)) {
                 LOGGER.warning("A problem occured initializing the pusher library");
                 return initResult;
             }
             initResult = initPusherResult;
-        } catch (IOException e) {
+        } catch (final IOException e) {
             LOGGER.warning(String.format("An IOException has occured. Exception: %s.", e.getMessage()));
         }
 
@@ -130,8 +124,9 @@ public class NotificationsServiceImpl implements NotificationsService {
 
     @Override
     public void shutdown() {
-        if (this.thirdPartyNotificationService != null)
+        if (this.thirdPartyNotificationService != null) {
             this.thirdPartyNotificationService.shutdown();
+        }
     }
 
     /**
@@ -161,7 +156,7 @@ public class NotificationsServiceImpl implements NotificationsService {
             LOGGER.warning("Could not add a NotificationListener because it was null.");
             return null;
         } else {
-            long count = this.notificationListeners.stream().filter(r -> r.getListener() == listener).count();
+            final long count = this.notificationListeners.stream().filter(r -> r.getListener() == listener).count();
 
             if (count == 0) {
                 registration = NotificationListenerRegistration.configure(this, listener).register();
@@ -194,7 +189,8 @@ public class NotificationsServiceImpl implements NotificationsService {
      * @return NotificationListenerRegistration
      */
     @Override
-    public NotificationListenerRegistration addAllowedTypesNotificationListener(final NotificationListener listener, final NotificationType... allowed) {
+    public NotificationListenerRegistration addAllowedTypesNotificationListener(final NotificationListener listener,
+                                                                                final NotificationType... allowed) {
         return this.configureListener(listener).withAllowedEvents(allowed).register();
     }
 
@@ -207,7 +203,8 @@ public class NotificationsServiceImpl implements NotificationsService {
      * @return NotificationListenerRegistration
      */
     @Override
-    public NotificationListenerRegistration addIgnoredTypesNotificationListener(final NotificationListener listener, final NotificationType... ignored) {
+    public NotificationListenerRegistration addIgnoredTypesNotificationListener(final NotificationListener listener,
+                                                                                final NotificationType... ignored) {
         return this.configureListener(listener).withIgnoredEvents(ignored).register();
     }
 
@@ -223,11 +220,12 @@ public class NotificationsServiceImpl implements NotificationsService {
             return;
         }
 
-        List<NotificationListenerRegistration> matching = this.notificationListeners.stream().filter(registration -> registration.getListener() == listener)
+        final List<NotificationListenerRegistration> matching = this.notificationListeners.stream()
+                .filter(registration -> registration.getListener() == listener)
                 .collect(Collectors.toList());
 
         if (matching.size() > 0) {
-            matching.forEach(registration -> this.removeNotificationListenerRegistration(registration));
+            matching.forEach(this::removeNotificationListenerRegistration);
             // thirdPartyNotificationService.setNotificationListeners(notificationListeners);
         } else {
             LOGGER.warning("Could not remove a NotificationListener because it wasn't already registered.");
@@ -265,43 +263,45 @@ public class NotificationsServiceImpl implements NotificationsService {
     }
 
     @Override
-    public void startAsync(CompletableFuture<Boolean> future) {
+    public void startAsync(final CompletableFuture<Boolean> future) {
         this.restartAsync(future);
     }
 
     @Override
-    public void restartAsync(CompletableFuture<Boolean> future) {
+    public void restartAsync(final CompletableFuture<Boolean> future) {
         this.service.getPlatformAsync(new Callback<JsonElement>() {
             @Override
-            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+            public void onResponse(final Call<JsonElement> call, final Response<JsonElement> response) {
                 boolean result = false;
                 if (response.isSuccessful()) {
-                    JsonElement body = response.body();
+                    final JsonElement body = response.body();
 
                     shutdown();
 
-                    PlatformResponseBody platformResponseBody = parseJsonElement(body);
-                    NotificationsServiceImpl.this.thirdPartyNotificationService = new PusherNotificationServiceImpl(platformResponseBody, NotificationsServiceImpl.this.appId);
+                    final PlatformResponseBody platformResponseBody = parseJsonElement(body);
+                    NotificationsServiceImpl.this.thirdPartyNotificationService =
+                            new PusherNotificationServiceImpl(platformResponseBody,
+                                    NotificationsServiceImpl.this.appId);
                     result = NotificationsServiceImpl.this.thirdPartyNotificationService.init();
                 }
                 future.complete(result);
             }
 
             @Override
-            public void onFailure(Call<JsonElement> call, Throwable t) {
+            public void onFailure(final Call<JsonElement> call, final Throwable t) {
                 LOGGER.warning("An error occurred while retrieving platform details.");
             }
         });
     }
 
-    private PlatformResponseBody parseJsonElement(JsonElement element) {
+    private PlatformResponseBody parseJsonElement(final JsonElement element) {
         PlatformResponseBody body = null;
         if (element != null && element.isJsonObject()) {
-            JsonObject object = element.getAsJsonObject();
+            final JsonObject object = element.getAsJsonObject();
             if (object.has("data") && object.get("data").isJsonObject()) {
-                JsonObject data = object.getAsJsonObject("data");
+                final JsonObject data = object.getAsJsonObject("data");
                 if (data.has("EnjinPlatform") && data.get("EnjinPlatform").isJsonObject()) {
-                    Gson gson = new GsonBuilder()
+                    final Gson gson = new GsonBuilder()
                             .registerTypeAdapterFactory(new GsonJava8TypeAdapterFactory())
                             .create();
                     body = gson.fromJson(data.get("EnjinPlatform"), PlatformResponseBody.class);

@@ -1,0 +1,20 @@
+mutation createRequest {
+    CreateEnjinRequest(%s) {
+        id,
+        transaction_id,
+        app_id,
+        identity_id,
+        type,
+        recipient_id,
+        recipient_address,
+        token_id,
+        title,
+        icon,
+        value,
+        encoded_data,
+        state,
+        accepted,
+        created_at,
+        updated_at
+    }
+}

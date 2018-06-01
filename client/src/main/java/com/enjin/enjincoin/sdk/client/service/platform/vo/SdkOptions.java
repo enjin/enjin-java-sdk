@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * <p>
- * Sdk Options class
+ * Sdk Options class.
  * </p>
  */
 public class SdkOptions {
@@ -15,12 +15,7 @@ public class SdkOptions {
     @SerializedName("encrypted")
     private Boolean encrypted;
 
-    /**
-     * Class constructor.
-     * @param cluster
-     * @param encrypted
-     */
-    public SdkOptions(String cluster, Boolean encrypted) {
+    public SdkOptions(final String cluster, final Boolean encrypted) {
         super();
         this.cluster = cluster;
         this.encrypted = encrypted;

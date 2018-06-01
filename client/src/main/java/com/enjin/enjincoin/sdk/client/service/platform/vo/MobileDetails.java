@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * <p>
- * Mobile Details class
+ * Mobile Details class.
  * </p>
  */
 public class MobileDetails {
@@ -12,11 +12,7 @@ public class MobileDetails {
     @SerializedName("type")
     private String type;
 
-    /**
-     * Class constructor.
-     * @param type
-     */
-    public MobileDetails(String type) {
+    public MobileDetails(final String type) {
         super();
         this.type = type;
     }

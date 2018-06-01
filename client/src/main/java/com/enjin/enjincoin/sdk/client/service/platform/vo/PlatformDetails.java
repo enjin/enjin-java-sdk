@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * <p>
- * Platform Details class
+ * Platform Details class.
  * </p>
  */
 public class PlatformDetails {
@@ -15,13 +15,7 @@ public class PlatformDetails {
     @SerializedName("id")
     private String id;
 
-
-    /**
-     * Class constructor.
-     * @param name
-     * @param id
-     */
-    public PlatformDetails(String name, String id) {
+    public PlatformDetails(final String name, final String id) {
         super();
         this.name = name;
         this.id = id;
@@ -44,14 +38,14 @@ public class PlatformDetails {
     /**
      * @param name the name to set
      */
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(String id) {
+    public void setId(final String id) {
         this.id = id;
     }
 

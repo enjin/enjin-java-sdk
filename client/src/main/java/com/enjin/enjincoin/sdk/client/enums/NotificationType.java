@@ -118,7 +118,7 @@ public enum NotificationType {
      * @return boolean
      */
     public boolean in(final NotificationType... types) {
-        for (NotificationType type : types) {
+        for (final NotificationType type : types) {
             if (this == type) {
                 return true;
             }
@@ -139,7 +139,7 @@ public enum NotificationType {
 
         try {
             type = valueOf(name);
-        } catch (IllegalArgumentException e) {
+        } catch (final IllegalArgumentException e) {
             type = UNKNOWN_EVENT;
         }
 

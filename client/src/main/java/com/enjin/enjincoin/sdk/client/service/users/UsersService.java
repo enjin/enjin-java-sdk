@@ -1,5 +1,5 @@
 package com.enjin.enjincoin.sdk.client.service.users;
 
-public interface UsersService extends AsynchronousUsersService, SynchronousUsersService{
+public interface UsersService extends AsynchronousUsersService, SynchronousUsersService {
 
 }

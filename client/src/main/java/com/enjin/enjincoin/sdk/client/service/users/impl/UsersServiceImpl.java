@@ -1,7 +1,5 @@
 package com.enjin.enjincoin.sdk.client.service.users.impl;
 
-import java.io.IOException;
-
 import com.enjin.enjincoin.sdk.client.GraphQLRequest;
 import com.enjin.enjincoin.sdk.client.service.GraphQLRetrofitService;
 import com.enjin.enjincoin.sdk.client.service.users.UsersService;
@@ -10,41 +8,43 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import java.io.IOException;
+
 public class UsersServiceImpl implements UsersService {
 
     private GraphQLRetrofitService service;
 
-    public UsersServiceImpl(GraphQLRetrofitService service) {
+    public UsersServiceImpl(final GraphQLRetrofitService service) {
         this.service = service;
     }
 
     @Override
-    public void createUserAsync(String name, String email, String password, Callback<JsonElement> callback) {
+    public void createUserAsync(final String name, final String email, final String password, final Callback<JsonElement> callback) {
         getCreateCall(name, email, password).enqueue(callback);
     }
 
     @Override
-    public void loginUserAsync(String name, String email, String password, Callback<JsonElement> callback) {
+    public void loginUserAsync(final String name, final String email, final String password, final Callback<JsonElement> callback) {
         getLoginCall(name, email, password).enqueue(callback);
     }
 
     @Override
-    public void getAllUsersAsync(Callback<JsonElement> callback) {
+    public void getAllUsersAsync(final Callback<JsonElement> callback) {
         getAllUsersCall().enqueue(callback);
     }
 
     @Override
-    public void getUsersAsync(Integer id, String name, String email, Callback<JsonElement> callback) {
+    public void getUsersAsync(final Integer id, final String name, final String email, final Callback<JsonElement> callback) {
         getUsersCall(id, name, email).enqueue(callback);
     }
 
     @Override
-    public Response<JsonElement> createUserSync(String name, String email, String password) throws IOException {
+    public Response<JsonElement> createUserSync(final String name, final String email, final String password) throws IOException {
         return getCreateCall(name, email, password).execute();
     }
 
     @Override
-    public Response<JsonElement> loginUserSync(String name, String email, String password) throws IOException {
+    public Response<JsonElement> loginUserSync(final String name, final String email, final String password) throws IOException {
         return getLoginCall(name, email, password).execute();
     }
 
@@ -54,11 +54,11 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public Response<JsonElement> getUsersSync(Integer id, String name, String email) throws IOException {
+    public Response<JsonElement> getUsersSync(final Integer id, final String name, final String email) throws IOException {
         return getUsersCall(id, name, email).execute();
     }
 
-    private Call<JsonElement> getCreateCall(String name, String email, String password) {
+    private Call<JsonElement> getCreateCall(final String name, final String email, final String password) {
         return GraphQLRequest.builder(this.service)
                 .fromResource("/graphql/users/createUser.mutation")
                 .withParameter("name", name)
@@ -67,7 +67,7 @@ public class UsersServiceImpl implements UsersService {
                 .build().call();
     }
 
-    private Call<JsonElement> getLoginCall(String name, String email, String password) {
+    private Call<JsonElement> getLoginCall(final String name, final String email, final String password) {
         return GraphQLRequest.builder(this.service)
                 .fromResource("/graphql/users/loginUser.query")
                 .withParameter("name", name)
@@ -82,7 +82,7 @@ public class UsersServiceImpl implements UsersService {
                 .build().call();
     }
 
-    private Call<JsonElement> getUsersCall(Integer id, String name, String email) {
+    private Call<JsonElement> getUsersCall(final Integer id, final String name, final String email) {
         return GraphQLRequest.builder(this.service)
                 .fromResource("/graphql/users/getUsers.query")
                 .withParameter("id", id)
