@@ -27,7 +27,6 @@ import com.google.gson.GsonBuilder;
 import com.enjin.enjincoin.sdk.client.service.notifications.NotificationsService;
 import com.enjin.enjincoin.sdk.client.service.notifications.impl.NotificationsServiceImpl;
 import net.dongliu.gson.GsonJava8TypeAdapterFactory;
-import okhttp3.Cookie;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Converter;

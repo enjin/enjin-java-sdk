@@ -42,24 +42,6 @@ public class SerializableCookie implements Serializable {
         } catch (IOException e) {
             return null;
         }
-        /* above replaces this...
-         * TODO remove this commented block after testing above try->resource logic.
-         try {
-            objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
-            objectOutputStream.writeObject(this);
-        } catch (IOException e) {
-            return null;
-        } finally {
-            if (objectOutputStream != null) {
-                try {
-                    // Closing a ByteArrayOutputStream has no effect, it can be used later (and is used in the return statement)
-                    objectOutputStream.close();
-                } catch (IOException e) {
-                    // log here.
-                }
-            }
-        }
-         */
 
         // Closing a ByteArrayOutputStream has no effect, it can be used later (and is used in the return statement)
         //                    Log.d(TAG, "Stream not closed in encodeCookie", e);
@@ -101,26 +83,6 @@ public class SerializableCookie implements Serializable {
         } catch (ClassNotFoundException e) {
             // noop
         }
-        /**
-         * TODO remove block after testing above replacement
-         *
-         * try {
-         *             objectInputStream = new ObjectInputStream(byteArrayInputStream);
-         *             cookie = ((SerializableCookie) objectInputStream.readObject()).cookie;
-         *         } catch (IOException e) {
-         * //            Log.d(TAG, "IOException in decodeCookie", e);
-         *         } catch (ClassNotFoundException e) {
-         * //            Log.d(TAG, "ClassNotFoundException in decodeCookie", e);
-         *         } finally {
-         *             if (objectInputStream != null) {
-         *                 try {
-         *                     objectInputStream.close();
-         *                 } catch (IOException e) {
-         * //                    Log.d(TAG, "Stream not closed in decodeCookie", e);
-         *                 }
-         *             }
-         *         }
-         */
 
         return cookie;
     }
