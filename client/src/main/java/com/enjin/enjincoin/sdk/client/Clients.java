@@ -10,7 +10,7 @@ public final class Clients {
         if (appId < 2) {
             throw new IllegalStateException("App ID must have a value greater than 2.");
         }
-        return new ClientImpl(baseUrl, appId, log);
+        return new ClientImpl(baseUrl, String.valueOf(appId), log);
     }
 
 }
