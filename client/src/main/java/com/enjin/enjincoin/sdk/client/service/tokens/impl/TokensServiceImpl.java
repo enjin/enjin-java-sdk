@@ -1,9 +1,9 @@
 package com.enjin.enjincoin.sdk.client.service.tokens.impl;
 
 import com.enjin.enjincoin.sdk.client.GraphQLRequest;
+import com.enjin.enjincoin.sdk.client.service.GraphQLResponse;
 import com.enjin.enjincoin.sdk.client.service.GraphQLRetrofitService;
 import com.enjin.enjincoin.sdk.client.service.tokens.TokensService;
-import com.google.gson.JsonElement;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -19,8 +19,8 @@ public class TokensServiceImpl implements TokensService {
     }
 
     @Override
-    public void getAllTokensAsync(final Callback<JsonElement> callback) {
-        final Call<JsonElement> call = getAllTokensCall();
+    public void getAllTokensAsync(final Callback<GraphQLResponse> callback) {
+        final Call<GraphQLResponse> call = getAllTokensCall();
         call.enqueue(callback);
     }
 
@@ -30,8 +30,8 @@ public class TokensServiceImpl implements TokensService {
                                final String name,
                                final Integer firstBlock,
                                final Integer blockHeight,
-                               final Callback<JsonElement> callback) {
-        final Call<JsonElement> call = getTokensCall(id, creator, name, firstBlock, blockHeight);
+                               final Callback<GraphQLResponse> callback) {
+        final Call<GraphQLResponse> call = getTokensCall(id, creator, name, firstBlock, blockHeight);
         call.enqueue(callback);
     }
 
@@ -50,8 +50,8 @@ public class TokensServiceImpl implements TokensService {
                                  final Integer transferable,
                                  final Integer firstBlock,
                                  final Integer blockHeight,
-                                 final Boolean fromBlockchain, final Callback<JsonElement> callback) {
-        final Call<JsonElement> call = getCreateTokenCall(tokenId,
+                                 final Boolean fromBlockchain, final Callback<GraphQLResponse> callback) {
+        final Call<GraphQLResponse> call = getCreateTokenCall(tokenId,
                 appId,
                 creator,
                 adapter,
@@ -84,8 +84,8 @@ public class TokensServiceImpl implements TokensService {
                                  final Integer transferable,
                                  final Integer firstBlock,
                                  final Integer blockHeight,
-                                 final Boolean fromBlockchain, final Callback<JsonElement> callback) {
-        final Call<JsonElement> call = getUpdateTokenCall(tokenId,
+                                 final Boolean fromBlockchain, final Callback<GraphQLResponse> callback) {
+        final Call<GraphQLResponse> call = getUpdateTokenCall(tokenId,
                 appId,
                 creator,
                 adapter,
@@ -104,23 +104,23 @@ public class TokensServiceImpl implements TokensService {
     }
 
     @Override
-    public Response<JsonElement> getAllTokensSync() throws IOException {
-        final Call<JsonElement> call = getAllTokensCall();
+    public Response<GraphQLResponse> getAllTokensSync() throws IOException {
+        final Call<GraphQLResponse> call = getAllTokensCall();
         return call.execute();
     }
 
     @Override
-    public Response<JsonElement> getTokensSync(final Integer id,
+    public Response<GraphQLResponse> getTokensSync(final Integer id,
                                                final String creator,
                                                final String name,
                                                final Integer firstBlock,
                                                final Integer blockHeight) throws IOException {
-        final Call<JsonElement> call = getTokensCall(id, creator, name, firstBlock, blockHeight);
+        final Call<GraphQLResponse> call = getTokensCall(id, creator, name, firstBlock, blockHeight);
         return call.execute();
     }
 
     @Override
-    public Response<JsonElement> createTokenSync(final Integer tokenId,
+    public Response<GraphQLResponse> createTokenSync(final Integer tokenId,
                                                  final Integer appId,
                                                  final String creator,
                                                  final String adapter,
@@ -135,7 +135,7 @@ public class TokensServiceImpl implements TokensService {
                                                  final Integer firstBlock,
                                                  final Integer blockHeight,
                                                  final Boolean fromBlockchain) throws IOException {
-        final Call<JsonElement> call = getCreateTokenCall(tokenId,
+        final Call<GraphQLResponse> call = getCreateTokenCall(tokenId,
                 appId,
                 creator,
                 adapter,
@@ -154,7 +154,7 @@ public class TokensServiceImpl implements TokensService {
     }
 
     @Override
-    public Response<JsonElement> updateTokenSync(final Integer tokenId,
+    public Response<GraphQLResponse> updateTokenSync(final Integer tokenId,
                                                  final Integer appId,
                                                  final String creator,
                                                  final String adapter,
@@ -169,7 +169,7 @@ public class TokensServiceImpl implements TokensService {
                                                  final Integer firstBlock,
                                                  final Integer blockHeight,
                                                  final Boolean fromBlockchain) throws IOException {
-        final Call<JsonElement> call = getUpdateTokenCall(tokenId,
+        final Call<GraphQLResponse> call = getUpdateTokenCall(tokenId,
                 appId,
                 creator,
                 adapter,
@@ -187,13 +187,13 @@ public class TokensServiceImpl implements TokensService {
         return call.execute();
     }
 
-    private Call<JsonElement> getAllTokensCall() {
+    private Call<GraphQLResponse> getAllTokensCall() {
         return GraphQLRequest.builder(this.service)
                 .fromResource("/graphql/tokens/getAllTokens.query")
                 .build().call();
     }
 
-    private Call<JsonElement> getTokensCall(final Integer id,
+    private Call<GraphQLResponse> getTokensCall(final Integer id,
                                             final String creator,
                                             final String name,
                                             final Integer firstBlock,
@@ -208,7 +208,7 @@ public class TokensServiceImpl implements TokensService {
                 .build().call();
     }
 
-    private Call<JsonElement> getCreateTokenCall(final Integer tokenId,
+    private Call<GraphQLResponse> getCreateTokenCall(final Integer tokenId,
                                                  final Integer appId,
                                                  final String creator,
                                                  final String adapter,
@@ -243,7 +243,7 @@ public class TokensServiceImpl implements TokensService {
                 .build().call();
     }
 
-    private Call<JsonElement> getUpdateTokenCall(final Integer tokenId,
+    private Call<GraphQLResponse> getUpdateTokenCall(final Integer tokenId,
                                                  final Integer appId,
                                                  final String creator,
                                                  final String adapter,

@@ -1,6 +1,6 @@
 package com.enjin.enjincoin.sdk.client.service.requests;
 
-import com.google.gson.JsonElement;
+import com.enjin.enjincoin.sdk.client.service.GraphQLResponse;
 import com.google.gson.JsonObject;
 import retrofit2.Response;
 
@@ -8,9 +8,9 @@ import java.io.IOException;
 
 public interface SynchronousRequestsService {
 
-    Response<JsonElement> getAllRequestsSync() throws IOException;
+    Response<GraphQLResponse> getAllRequestsSync() throws IOException;
 
-    Response<JsonElement> getRequestsSync(Integer id,
+    Response<GraphQLResponse> getRequestsSync(Integer id,
                           String transactionId,
                           Integer identityId,
                           String type,
@@ -22,7 +22,7 @@ public interface SynchronousRequestsService {
                           String state,
                           Integer accepted) throws IOException;
 
-    Response<JsonElement> createRequestSync(Integer identityId,
+    Response<GraphQLResponse> createRequestSync(Integer identityId,
                             Integer appId,
                             String type,
                             String title,
@@ -33,7 +33,7 @@ public interface SynchronousRequestsService {
                             JsonObject meltTokenData,
                             JsonObject sendTokenData) throws IOException;
 
-    Response<JsonElement> updateRequestSync(Integer id,
+    Response<GraphQLResponse> updateRequestSync(Integer id,
                             Integer appId,
                             Integer recipientId,
                             String type,

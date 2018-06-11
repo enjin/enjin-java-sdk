@@ -1,21 +1,21 @@
 package com.enjin.enjincoin.sdk.client.service.tokens;
 
-import com.google.gson.JsonElement;
+import com.enjin.enjincoin.sdk.client.service.GraphQLResponse;
 import retrofit2.Response;
 
 import java.io.IOException;
 
 public interface SynchronousTokensService {
 
-    Response<JsonElement> getAllTokensSync() throws IOException;
+    Response<GraphQLResponse> getAllTokensSync() throws IOException;
 
-    Response<JsonElement> getTokensSync(Integer id,
+    Response<GraphQLResponse> getTokensSync(Integer id,
                                         String creator,
                                         String name,
                                         Integer firstBlock,
                                         Integer blockHeight) throws IOException;
 
-    Response<JsonElement> createTokenSync(Integer tokenId,
+    Response<GraphQLResponse> createTokenSync(Integer tokenId,
                                           Integer appId,
                                           String creator,
                                           String adapter,
@@ -31,7 +31,7 @@ public interface SynchronousTokensService {
                                           Integer blockHeight,
                                           Boolean fromBlockchain) throws IOException;
 
-    Response<JsonElement> updateTokenSync(Integer tokenId,
+    Response<GraphQLResponse> updateTokenSync(Integer tokenId,
                                           Integer appId,
                                           String creator,
                                           String adapter,

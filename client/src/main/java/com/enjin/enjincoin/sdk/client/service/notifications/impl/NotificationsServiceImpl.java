@@ -1,6 +1,8 @@
 package com.enjin.enjincoin.sdk.client.service.notifications.impl;
 
 import com.enjin.enjincoin.sdk.client.enums.NotificationType;
+import com.enjin.enjincoin.sdk.client.service.GraphQLKeys;
+import com.enjin.enjincoin.sdk.client.service.GraphQLResponse;
 import com.enjin.enjincoin.sdk.client.service.notifications.EventMatcher;
 import com.enjin.enjincoin.sdk.client.service.notifications.NotificationListener;
 import com.enjin.enjincoin.sdk.client.service.notifications.NotificationListenerRegistration;
@@ -12,7 +14,6 @@ import com.enjin.java_commons.BooleanUtils;
 import com.enjin.java_commons.ObjectUtils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.dongliu.gson.GsonJava8TypeAdapterFactory;
 import retrofit2.Call;
@@ -88,7 +89,7 @@ public class NotificationsServiceImpl implements NotificationsService {
     public boolean restart() {
         boolean initResult = false;
 
-        final Response<JsonElement> platformDetails;
+        final Response<GraphQLResponse> platformDetails;
         try {
             platformDetails = this.service.getPlatformSync();
             if (platformDetails == null || platformDetails.body() == null) {
@@ -269,12 +270,12 @@ public class NotificationsServiceImpl implements NotificationsService {
 
     @Override
     public void restartAsync(final CompletableFuture<Boolean> future) {
-        this.service.getPlatformAsync(new Callback<JsonElement>() {
+        this.service.getPlatformAsync(new Callback<GraphQLResponse>() {
             @Override
-            public void onResponse(final Call<JsonElement> call, final Response<JsonElement> response) {
+            public void onResponse(final Call<GraphQLResponse> call, final Response<GraphQLResponse> response) {
                 boolean result = false;
                 if (response.isSuccessful()) {
-                    final JsonElement body = response.body();
+                    final GraphQLResponse body = response.body();
 
                     shutdown();
 
@@ -288,24 +289,21 @@ public class NotificationsServiceImpl implements NotificationsService {
             }
 
             @Override
-            public void onFailure(final Call<JsonElement> call, final Throwable t) {
+            public void onFailure(final Call<GraphQLResponse> call, final Throwable t) {
                 LOGGER.warning("An error occurred while retrieving platform details.");
             }
         });
     }
 
-    private PlatformResponseBody parseJsonElement(final JsonElement element) {
+    private PlatformResponseBody parseJsonElement(final GraphQLResponse response) {
         PlatformResponseBody body = null;
-        if (element != null && element.isJsonObject()) {
-            final JsonObject object = element.getAsJsonObject();
-            if (object.has("data") && object.get("data").isJsonObject()) {
-                final JsonObject data = object.getAsJsonObject("data");
-                if (data.has("EnjinPlatform") && data.get("EnjinPlatform").isJsonObject()) {
-                    final Gson gson = new GsonBuilder()
-                            .registerTypeAdapterFactory(new GsonJava8TypeAdapterFactory())
-                            .create();
-                    body = gson.fromJson(data.get("EnjinPlatform"), PlatformResponseBody.class);
-                }
+        if (response.isSuccessful()) {
+            JsonObject data = response.data();
+            if (data != null && data.has(GraphQLKeys.PLATFORM_QUERY_KEY)) {
+                final Gson gson = new GsonBuilder()
+                        .registerTypeAdapterFactory(new GsonJava8TypeAdapterFactory())
+                        .create();
+                body = gson.fromJson(data.get(GraphQLKeys.PLATFORM_QUERY_KEY), PlatformResponseBody.class);
             }
         }
         return body;

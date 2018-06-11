@@ -1,12 +1,12 @@
 package com.enjin.enjincoin.sdk.client.service.requests;
 
-import com.google.gson.JsonElement;
+import com.enjin.enjincoin.sdk.client.service.GraphQLResponse;
 import com.google.gson.JsonObject;
 import retrofit2.Callback;
 
 public interface AsynchronousRequestsService {
 
-    void getAllRequestsAsync(Callback<JsonElement> callback);
+    void getAllRequestsAsync(Callback<GraphQLResponse> callback);
 
     void getRequestsAsync(Integer id,
                           String transactionId,
@@ -19,7 +19,7 @@ public interface AsynchronousRequestsService {
                           String encodedData,
                           String state,
                           Integer accepted,
-                          Callback<JsonElement> callback);
+                          Callback<GraphQLResponse> callback);
 
     void createRequestAsync(Integer identityId,
                             Integer appId,
@@ -31,7 +31,7 @@ public interface AsynchronousRequestsService {
                             JsonObject mintTokenData,
                             JsonObject meltTokenData,
                             JsonObject sendTokenData,
-                            Callback<JsonElement> callback);
+                            Callback<GraphQLResponse> callback);
 
     void updateRequestAsync(Integer id,
                             Integer appId,
@@ -40,6 +40,6 @@ public interface AsynchronousRequestsService {
                             String title,
                             String icon,
                             Float value,
-                            Callback<JsonElement> callback);
+                            Callback<GraphQLResponse> callback);
 
 }

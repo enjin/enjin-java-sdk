@@ -1,9 +1,9 @@
 package com.enjin.enjincoin.sdk.client.service.requests.impl;
 
 import com.enjin.enjincoin.sdk.client.GraphQLRequest;
+import com.enjin.enjincoin.sdk.client.service.GraphQLResponse;
 import com.enjin.enjincoin.sdk.client.service.GraphQLRetrofitService;
 import com.enjin.enjincoin.sdk.client.service.requests.RequestsService;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,8 +20,8 @@ public class RequestsServiceImpl implements RequestsService {
     }
 
     @Override
-    public void getAllRequestsAsync(final Callback<JsonElement> callback) {
-        final Call<JsonElement> call = getGetAllRequestsCall();
+    public void getAllRequestsAsync(final Callback<GraphQLResponse> callback) {
+        final Call<GraphQLResponse> call = getGetAllRequestsCall();
         call.enqueue(callback);
     }
 
@@ -37,8 +37,8 @@ public class RequestsServiceImpl implements RequestsService {
                                  final String encodedData,
                                  final String state,
                                  final Integer accepted,
-                                 final Callback<JsonElement> callback) {
-        final Call<JsonElement> call = getGetRequestsCall(id,
+                                 final Callback<GraphQLResponse> callback) {
+        final Call<GraphQLResponse> call = getGetRequestsCall(id,
                 transactionId,
                 identityId,
                 type,
@@ -63,8 +63,8 @@ public class RequestsServiceImpl implements RequestsService {
                                    final JsonObject mintTokenData,
                                    final JsonObject meltTokenData,
                                    final JsonObject sendTokenData,
-                                   final Callback<JsonElement> callback) {
-        final Call<JsonElement> call = getCreateRequestCall(identityId,
+                                   final Callback<GraphQLResponse> callback) {
+        final Call<GraphQLResponse> call = getCreateRequestCall(identityId,
                 appId,
                 type,
                 title,
@@ -85,8 +85,8 @@ public class RequestsServiceImpl implements RequestsService {
                                    final String title,
                                    final String icon,
                                    final Float value,
-                                   final Callback<JsonElement> callback) {
-        final Call<JsonElement> call = getUpdateRequestCall(id,
+                                   final Callback<GraphQLResponse> callback) {
+        final Call<GraphQLResponse> call = getUpdateRequestCall(id,
                 appId,
                 recipientId,
                 type,
@@ -97,13 +97,13 @@ public class RequestsServiceImpl implements RequestsService {
     }
 
     @Override
-    public Response<JsonElement> getAllRequestsSync() throws IOException {
-        final Call<JsonElement> call = getGetAllRequestsCall();
+    public Response<GraphQLResponse> getAllRequestsSync() throws IOException {
+        final Call<GraphQLResponse> call = getGetAllRequestsCall();
         return call.execute();
     }
 
     @Override
-    public Response<JsonElement> getRequestsSync(final Integer id,
+    public Response<GraphQLResponse> getRequestsSync(final Integer id,
                                                  final String transactionId,
                                                  final Integer identityId,
                                                  final String type,
@@ -114,7 +114,7 @@ public class RequestsServiceImpl implements RequestsService {
                                                  final String encodedData,
                                                  final String state,
                                                  final Integer accepted) throws IOException {
-        final Call<JsonElement> call = getGetRequestsCall(id,
+        final Call<GraphQLResponse> call = getGetRequestsCall(id,
                 transactionId,
                 identityId,
                 type,
@@ -129,7 +129,7 @@ public class RequestsServiceImpl implements RequestsService {
     }
 
     @Override
-    public Response<JsonElement> createRequestSync(final Integer identityId,
+    public Response<GraphQLResponse> createRequestSync(final Integer identityId,
                                                    final Integer appId,
                                                    final String type,
                                                    final String title,
@@ -139,7 +139,7 @@ public class RequestsServiceImpl implements RequestsService {
                                                    final JsonObject mintTokenData,
                                                    final JsonObject meltTokenData,
                                                    final JsonObject sendTokenData) throws IOException {
-        final Call<JsonElement> call = getCreateRequestCall(identityId,
+        final Call<GraphQLResponse> call = getCreateRequestCall(identityId,
                 appId,
                 type,
                 title,
@@ -153,14 +153,14 @@ public class RequestsServiceImpl implements RequestsService {
     }
 
     @Override
-    public Response<JsonElement> updateRequestSync(final Integer id,
+    public Response<GraphQLResponse> updateRequestSync(final Integer id,
                                                    final Integer appId,
                                                    final Integer recipientId,
                                                    final String type,
                                                    final String title,
                                                    final String icon,
                                                    final Float value) throws IOException {
-        final Call<JsonElement> call = getUpdateRequestCall(id,
+        final Call<GraphQLResponse> call = getUpdateRequestCall(id,
                 appId,
                 recipientId,
                 type,
@@ -170,13 +170,13 @@ public class RequestsServiceImpl implements RequestsService {
         return call.execute();
     }
 
-    private Call<JsonElement> getGetAllRequestsCall() {
+    private Call<GraphQLResponse> getGetAllRequestsCall() {
         return GraphQLRequest.builder(this.service)
                 .fromResource("/graphql/requests/getAllRequests.query")
                 .build().call();
     }
 
-    private Call<JsonElement> getGetRequestsCall(final Integer id,
+    private Call<GraphQLResponse> getGetRequestsCall(final Integer id,
                                                  final String transactionId,
                                                  final Integer identityId,
                                                  final String type,
@@ -203,7 +203,7 @@ public class RequestsServiceImpl implements RequestsService {
                 .build().call();
     }
 
-    private Call<JsonElement> getCreateRequestCall(final Integer identityId,
+    private Call<GraphQLResponse> getCreateRequestCall(final Integer identityId,
                                                    final Integer appId,
                                                    final String type,
                                                    final String title,
@@ -228,7 +228,7 @@ public class RequestsServiceImpl implements RequestsService {
                 .build().call();
     }
 
-    private Call<JsonElement> getUpdateRequestCall(final Integer id,
+    private Call<GraphQLResponse> getUpdateRequestCall(final Integer id,
                                                    final Integer appId,
                                                    final Integer recipientId,
                                                    final String type,

@@ -1,7 +1,7 @@
 package com.enjin.enjincoin.sdk.client;
 
+import com.enjin.enjincoin.sdk.client.service.GraphQLResponse;
 import com.enjin.enjincoin.sdk.client.service.GraphQLRetrofitService;
-import com.google.gson.JsonElement;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,15 +24,15 @@ public final class GraphQLRequest {
         this.parameters = new GraphQLParameters();
     }
 
-    public Call<JsonElement> call() {
+    public Call<GraphQLResponse> call() {
         return this.service.query(getFormattedQuery());
     }
 
-    public Response<JsonElement> execute() throws IOException {
+    public Response<GraphQLResponse> execute() throws IOException {
         return call().execute();
     }
 
-    public void enqueue(final Callback<JsonElement> callback) {
+    public void enqueue(final Callback<GraphQLResponse> callback) {
         call().enqueue(callback);
     }
 

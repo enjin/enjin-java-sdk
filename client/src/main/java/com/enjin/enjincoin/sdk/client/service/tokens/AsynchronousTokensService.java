@@ -1,18 +1,18 @@
 package com.enjin.enjincoin.sdk.client.service.tokens;
 
-import com.google.gson.JsonElement;
+import com.enjin.enjincoin.sdk.client.service.GraphQLResponse;
 import retrofit2.Callback;
 
 public interface AsynchronousTokensService {
 
-    void getAllTokensAsync(Callback<JsonElement> callback);
+    void getAllTokensAsync(Callback<GraphQLResponse> callback);
 
     void getTokensAsync(Integer id,
                         String creator,
                         String name,
                         Integer firstBlock,
                         Integer blockHeight,
-                        Callback<JsonElement> callback);
+                        Callback<GraphQLResponse> callback);
 
     void createTokenAsync(Integer tokenId,
                           Integer appId,
@@ -29,7 +29,7 @@ public interface AsynchronousTokensService {
                           Integer firstBlock,
                           Integer blockHeight,
                           Boolean fromBlockchain,
-                          Callback<JsonElement> callback);
+                          Callback<GraphQLResponse> callback);
 
     void updateTokenAsync(Integer tokenId,
                           Integer appId,
@@ -46,6 +46,6 @@ public interface AsynchronousTokensService {
                           Integer firstBlock,
                           Integer blockHeight,
                           Boolean fromBlockchain,
-                          Callback<JsonElement> callback);
+                          Callback<GraphQLResponse> callback);
 
 }
