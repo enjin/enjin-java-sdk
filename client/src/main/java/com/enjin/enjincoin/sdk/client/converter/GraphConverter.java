@@ -14,6 +14,7 @@ import retrofit2.Retrofit;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
+import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 /**
@@ -53,8 +54,12 @@ public class GraphConverter extends Converter.Factory {
      */
     @Override
     public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations, Retrofit retrofit) {
-        if (type instanceof GraphQLResponse) {
-             return new GraphResponseConverter<>(type);
+        if (type instanceof ParameterizedType) {
+            ParameterizedType parameterizedType = (ParameterizedType) type;
+            Type rawType = parameterizedType.getRawType();
+            if (rawType == GraphQLResponse.class) {
+                return new GraphResponseConverter<>(type);
+            }
         }
 
         return null;
@@ -73,7 +78,7 @@ public class GraphConverter extends Converter.Factory {
      */
     @Override
     public Converter<GraphQLRequest.Builder, RequestBody> requestBodyConverter(Type type, Annotation[] parameterAnnotations, Annotation[] methodAnnotations, Retrofit retrofit) {
-        if (type instanceof GraphQLRequest.Builder) {
+        if (GraphQLRequest.Builder.class.isAssignableFrom((Class<?>) type)) {
             return new GraphRequestConverter(methodAnnotations);
         }
 
