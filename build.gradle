@@ -48,7 +48,7 @@ subprojects {
     }
 
     ext {
-        enjinCommons = '0.2.0-SNAPSHOT'
+        enjinCommons = '0.3.0-SNAPSHOT'
         mockito = '2.9.0'
         junit = '4.12'
         powermock = '1.7.3'

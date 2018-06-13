@@ -1,27 +1,30 @@
 package com.enjin.enjincoin.sdk.client.service.requests.impl;
 
-import com.enjin.enjincoin.sdk.client.GraphQLRequest;
-import com.enjin.enjincoin.sdk.client.service.GraphQLResponse;
-import com.enjin.enjincoin.sdk.client.service.GraphQLRetrofitService;
+import com.enjin.enjincoin.sdk.client.model.body.GraphQLResponse;
+import com.enjin.enjincoin.sdk.client.model.request.GraphQLRequest;
 import com.enjin.enjincoin.sdk.client.service.requests.RequestsService;
+import com.enjin.enjincoin.sdk.client.service.requests.vo.data.CreateRequestData;
+import com.enjin.enjincoin.sdk.client.service.requests.vo.data.RequestsData;
+import com.enjin.enjincoin.sdk.client.service.requests.vo.data.UpdateRequestData;
 import com.google.gson.JsonObject;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 
 import java.io.IOException;
 
 public class RequestsServiceImpl implements RequestsService {
 
-    private GraphQLRetrofitService service;
+    private RequestsRetrofitService service;
 
-    public RequestsServiceImpl(final GraphQLRetrofitService service) {
-        this.service = service;
+    public RequestsServiceImpl(final Retrofit retrofit) {
+        this.service = retrofit.create(RequestsRetrofitService.class);
     }
 
     @Override
-    public void getAllRequestsAsync(final Callback<GraphQLResponse> callback) {
-        final Call<GraphQLResponse> call = getGetAllRequestsCall();
+    public void getAllRequestsAsync(final Callback<GraphQLResponse<RequestsData>> callback) {
+        final Call<GraphQLResponse<RequestsData>> call = getGetAllRequestsCall();
         call.enqueue(callback);
     }
 
@@ -37,8 +40,8 @@ public class RequestsServiceImpl implements RequestsService {
                                  final String encodedData,
                                  final String state,
                                  final Integer accepted,
-                                 final Callback<GraphQLResponse> callback) {
-        final Call<GraphQLResponse> call = getGetRequestsCall(id,
+                                 final Callback<GraphQLResponse<RequestsData>> callback) {
+        final Call<GraphQLResponse<RequestsData>> call = getGetRequestsCall(id,
                 transactionId,
                 identityId,
                 type,
@@ -63,8 +66,8 @@ public class RequestsServiceImpl implements RequestsService {
                                    final JsonObject mintTokenData,
                                    final JsonObject meltTokenData,
                                    final JsonObject sendTokenData,
-                                   final Callback<GraphQLResponse> callback) {
-        final Call<GraphQLResponse> call = getCreateRequestCall(identityId,
+                                   final Callback<GraphQLResponse<CreateRequestData>> callback) {
+        final Call<GraphQLResponse<CreateRequestData>> call = getCreateRequestCall(identityId,
                 appId,
                 type,
                 title,
@@ -85,8 +88,8 @@ public class RequestsServiceImpl implements RequestsService {
                                    final String title,
                                    final String icon,
                                    final Float value,
-                                   final Callback<GraphQLResponse> callback) {
-        final Call<GraphQLResponse> call = getUpdateRequestCall(id,
+                                   final Callback<GraphQLResponse<UpdateRequestData>> callback) {
+        final Call<GraphQLResponse<UpdateRequestData>> call = getUpdateRequestCall(id,
                 appId,
                 recipientId,
                 type,
@@ -97,24 +100,24 @@ public class RequestsServiceImpl implements RequestsService {
     }
 
     @Override
-    public Response<GraphQLResponse> getAllRequestsSync() throws IOException {
-        final Call<GraphQLResponse> call = getGetAllRequestsCall();
+    public Response<GraphQLResponse<RequestsData>> getAllRequestsSync() throws IOException {
+        final Call<GraphQLResponse<RequestsData>> call = getGetAllRequestsCall();
         return call.execute();
     }
 
     @Override
-    public Response<GraphQLResponse> getRequestsSync(final Integer id,
-                                                 final String transactionId,
-                                                 final Integer identityId,
-                                                 final String type,
-                                                 final Integer recipientId,
-                                                 final String recipientAddress,
-                                                 final Integer tokenId,
-                                                 final Integer value,
-                                                 final String encodedData,
-                                                 final String state,
-                                                 final Integer accepted) throws IOException {
-        final Call<GraphQLResponse> call = getGetRequestsCall(id,
+    public Response<GraphQLResponse<RequestsData>> getRequestsSync(final Integer id,
+                                                                   final String transactionId,
+                                                                   final Integer identityId,
+                                                                   final String type,
+                                                                   final Integer recipientId,
+                                                                   final String recipientAddress,
+                                                                   final Integer tokenId,
+                                                                   final Integer value,
+                                                                   final String encodedData,
+                                                                   final String state,
+                                                                   final Integer accepted) throws IOException {
+        final Call<GraphQLResponse<RequestsData>> call = getGetRequestsCall(id,
                 transactionId,
                 identityId,
                 type,
@@ -129,17 +132,17 @@ public class RequestsServiceImpl implements RequestsService {
     }
 
     @Override
-    public Response<GraphQLResponse> createRequestSync(final Integer identityId,
-                                                   final Integer appId,
-                                                   final String type,
-                                                   final String title,
-                                                   final String icon,
-                                                   final Float value,
-                                                   final JsonObject createTokenData,
-                                                   final JsonObject mintTokenData,
-                                                   final JsonObject meltTokenData,
-                                                   final JsonObject sendTokenData) throws IOException {
-        final Call<GraphQLResponse> call = getCreateRequestCall(identityId,
+    public Response<GraphQLResponse<CreateRequestData>> createRequestSync(final Integer identityId,
+                                                                          final Integer appId,
+                                                                          final String type,
+                                                                          final String title,
+                                                                          final String icon,
+                                                                          final Float value,
+                                                                          final JsonObject createTokenData,
+                                                                          final JsonObject mintTokenData,
+                                                                          final JsonObject meltTokenData,
+                                                                          final JsonObject sendTokenData) throws IOException {
+        final Call<GraphQLResponse<CreateRequestData>> call = getCreateRequestCall(identityId,
                 appId,
                 type,
                 title,
@@ -153,14 +156,14 @@ public class RequestsServiceImpl implements RequestsService {
     }
 
     @Override
-    public Response<GraphQLResponse> updateRequestSync(final Integer id,
-                                                   final Integer appId,
-                                                   final Integer recipientId,
-                                                   final String type,
-                                                   final String title,
-                                                   final String icon,
-                                                   final Float value) throws IOException {
-        final Call<GraphQLResponse> call = getUpdateRequestCall(id,
+    public Response<GraphQLResponse<UpdateRequestData>> updateRequestSync(final Integer id,
+                                                                          final Integer appId,
+                                                                          final Integer recipientId,
+                                                                          final String type,
+                                                                          final String title,
+                                                                          final String icon,
+                                                                          final Float value) throws IOException {
+        final Call<GraphQLResponse<UpdateRequestData>> call = getUpdateRequestCall(id,
                 appId,
                 recipientId,
                 type,
@@ -170,25 +173,22 @@ public class RequestsServiceImpl implements RequestsService {
         return call.execute();
     }
 
-    private Call<GraphQLResponse> getGetAllRequestsCall() {
-        return GraphQLRequest.builder(this.service)
-                .fromResource("/graphql/requests/getAllRequests.query")
-                .build().call();
+    private Call<GraphQLResponse<RequestsData>> getGetAllRequestsCall() {
+        return this.service.getAllRequests(GraphQLRequest.builder());
     }
 
-    private Call<GraphQLResponse> getGetRequestsCall(final Integer id,
-                                                 final String transactionId,
-                                                 final Integer identityId,
-                                                 final String type,
-                                                 final Integer recipientId,
-                                                 final String recipientAddress,
-                                                 final Integer tokenId,
-                                                 final Integer value,
-                                                 final String encodedData,
-                                                 final String state,
-                                                 final Integer accepted) {
-        return GraphQLRequest.builder(this.service)
-                .fromResource("/graphql/requests/getRequests.query")
+    private Call<GraphQLResponse<RequestsData>> getGetRequestsCall(final Integer id,
+                                                                   final String transactionId,
+                                                                   final Integer identityId,
+                                                                   final String type,
+                                                                   final Integer recipientId,
+                                                                   final String recipientAddress,
+                                                                   final Integer tokenId,
+                                                                   final Integer value,
+                                                                   final String encodedData,
+                                                                   final String state,
+                                                                   final Integer accepted) {
+        return this.service.getRequests(GraphQLRequest.builder()
                 .withParameter("id", id)
                 .withParameter("transaction_id", transactionId)
                 .withParameter("identity_id", identityId)
@@ -199,22 +199,20 @@ public class RequestsServiceImpl implements RequestsService {
                 .withParameter("value", value)
                 .withParameter("encoded_data", encodedData)
                 .withParameter("state", state)
-                .withParameter("accepted", accepted)
-                .build().call();
+                .withParameter("accepted", accepted));
     }
 
-    private Call<GraphQLResponse> getCreateRequestCall(final Integer identityId,
-                                                   final Integer appId,
-                                                   final String type,
-                                                   final String title,
-                                                   final String icon,
-                                                   final Float value,
-                                                   final JsonObject createTokenData,
-                                                   final JsonObject mintTokenData,
-                                                   final JsonObject meltTokenData,
-                                                   final JsonObject sendTokenData) {
-        return GraphQLRequest.builder(this.service)
-                .fromResource("/graphql/requests/createRequest.mutation")
+    private Call<GraphQLResponse<CreateRequestData>> getCreateRequestCall(final Integer identityId,
+                                                                          final Integer appId,
+                                                                          final String type,
+                                                                          final String title,
+                                                                          final String icon,
+                                                                          final Float value,
+                                                                          final JsonObject createTokenData,
+                                                                          final JsonObject mintTokenData,
+                                                                          final JsonObject meltTokenData,
+                                                                          final JsonObject sendTokenData) {
+        return this.service.createRequest(GraphQLRequest.builder()
                 .withParameter("identity_id", identityId)
                 .withParameter("app_id", appId)
                 .withParameter("type", type)
@@ -224,27 +222,24 @@ public class RequestsServiceImpl implements RequestsService {
                 .withParameter("create_token_data", createTokenData)
                 .withParameter("mint_token_data", mintTokenData)
                 .withParameter("melt_token_data", meltTokenData)
-                .withParameter("send_token_data", sendTokenData)
-                .build().call();
+                .withParameter("send_token_data", sendTokenData));
     }
 
-    private Call<GraphQLResponse> getUpdateRequestCall(final Integer id,
-                                                   final Integer appId,
-                                                   final Integer recipientId,
-                                                   final String type,
-                                                   final String title,
-                                                   final String icon,
-                                                   final Float value) {
-        return GraphQLRequest.builder(this.service)
-                .fromResource("/graphql/requests/updateRequest.mutation")
+    private Call<GraphQLResponse<UpdateRequestData>> getUpdateRequestCall(final Integer id,
+                                                                          final Integer appId,
+                                                                          final Integer recipientId,
+                                                                          final String type,
+                                                                          final String title,
+                                                                          final String icon,
+                                                                          final Float value) {
+        return this.service.updateRequest(GraphQLRequest.builder()
                 .withParameter("id", id)
                 .withParameter("app_id", appId)
                 .withParameter("recipient_id", recipientId)
                 .withParameter("type", type)
                 .withParameter("title", title)
                 .withParameter("icon", icon)
-                .withParameter("value", value)
-                .build().call();
+                .withParameter("value", value));
     }
 
 }

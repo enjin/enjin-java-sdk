@@ -21,14 +21,6 @@ public class AppDetail {
     @SerializedName("image")
     private String image;
 
-    public AppDetail(final String id, final String name, final String description, final String image) {
-        super();
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.image = image;
-    }
-
     /**
      * @return the id
      */

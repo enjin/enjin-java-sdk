@@ -1,4 +1,4 @@
-package com.enjin.enjincoin.sdk.client;
+package com.enjin.enjincoin.sdk.client.model.request;
 
 import java.util.HashMap;
 import java.util.Map;

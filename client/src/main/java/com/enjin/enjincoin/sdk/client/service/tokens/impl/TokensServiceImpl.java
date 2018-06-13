@@ -1,26 +1,29 @@
 package com.enjin.enjincoin.sdk.client.service.tokens.impl;
 
-import com.enjin.enjincoin.sdk.client.GraphQLRequest;
-import com.enjin.enjincoin.sdk.client.service.GraphQLResponse;
-import com.enjin.enjincoin.sdk.client.service.GraphQLRetrofitService;
+import com.enjin.enjincoin.sdk.client.model.body.GraphQLResponse;
+import com.enjin.enjincoin.sdk.client.model.request.GraphQLRequest;
 import com.enjin.enjincoin.sdk.client.service.tokens.TokensService;
+import com.enjin.enjincoin.sdk.client.service.tokens.vo.data.CreateTokenData;
+import com.enjin.enjincoin.sdk.client.service.tokens.vo.data.TokensData;
+import com.enjin.enjincoin.sdk.client.service.tokens.vo.data.UpdateTokenData;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 
 import java.io.IOException;
 
 public class TokensServiceImpl implements TokensService {
 
-    private final GraphQLRetrofitService service;
+    private final TokensRetrofitService service;
 
-    public TokensServiceImpl(final GraphQLRetrofitService service) {
-        this.service = service;
+    public TokensServiceImpl(final Retrofit retrofit) {
+        this.service = retrofit.create(TokensRetrofitService.class);
     }
 
     @Override
-    public void getAllTokensAsync(final Callback<GraphQLResponse> callback) {
-        final Call<GraphQLResponse> call = getAllTokensCall();
+    public void getAllTokensAsync(final Callback<GraphQLResponse<TokensData>> callback) {
+        final Call<GraphQLResponse<TokensData>> call = getAllTokensCall();
         call.enqueue(callback);
     }
 
@@ -30,8 +33,8 @@ public class TokensServiceImpl implements TokensService {
                                final String name,
                                final Integer firstBlock,
                                final Integer blockHeight,
-                               final Callback<GraphQLResponse> callback) {
-        final Call<GraphQLResponse> call = getTokensCall(id, creator, name, firstBlock, blockHeight);
+                               final Callback<GraphQLResponse<TokensData>> callback) {
+        final Call<GraphQLResponse<TokensData>> call = getTokensCall(id, creator, name, firstBlock, blockHeight);
         call.enqueue(callback);
     }
 
@@ -50,8 +53,8 @@ public class TokensServiceImpl implements TokensService {
                                  final Integer transferable,
                                  final Integer firstBlock,
                                  final Integer blockHeight,
-                                 final Boolean fromBlockchain, final Callback<GraphQLResponse> callback) {
-        final Call<GraphQLResponse> call = getCreateTokenCall(tokenId,
+                                 final Boolean fromBlockchain, final Callback<GraphQLResponse<CreateTokenData>> callback) {
+        final Call<GraphQLResponse<CreateTokenData>> call = getCreateTokenCall(tokenId,
                 appId,
                 creator,
                 adapter,
@@ -84,8 +87,8 @@ public class TokensServiceImpl implements TokensService {
                                  final Integer transferable,
                                  final Integer firstBlock,
                                  final Integer blockHeight,
-                                 final Boolean fromBlockchain, final Callback<GraphQLResponse> callback) {
-        final Call<GraphQLResponse> call = getUpdateTokenCall(tokenId,
+                                 final Boolean fromBlockchain, final Callback<GraphQLResponse<UpdateTokenData>> callback) {
+        final Call<GraphQLResponse<UpdateTokenData>> call = getUpdateTokenCall(tokenId,
                 appId,
                 creator,
                 adapter,
@@ -104,38 +107,38 @@ public class TokensServiceImpl implements TokensService {
     }
 
     @Override
-    public Response<GraphQLResponse> getAllTokensSync() throws IOException {
-        final Call<GraphQLResponse> call = getAllTokensCall();
+    public Response<GraphQLResponse<TokensData>> getAllTokensSync() throws IOException {
+        final Call<GraphQLResponse<TokensData>> call = getAllTokensCall();
         return call.execute();
     }
 
     @Override
-    public Response<GraphQLResponse> getTokensSync(final Integer id,
-                                               final String creator,
-                                               final String name,
-                                               final Integer firstBlock,
-                                               final Integer blockHeight) throws IOException {
-        final Call<GraphQLResponse> call = getTokensCall(id, creator, name, firstBlock, blockHeight);
+    public Response<GraphQLResponse<TokensData>> getTokensSync(final Integer id,
+                                                               final String creator,
+                                                               final String name,
+                                                               final Integer firstBlock,
+                                                               final Integer blockHeight) throws IOException {
+        final Call<GraphQLResponse<TokensData>> call = getTokensCall(id, creator, name, firstBlock, blockHeight);
         return call.execute();
     }
 
     @Override
-    public Response<GraphQLResponse> createTokenSync(final Integer tokenId,
-                                                 final Integer appId,
-                                                 final String creator,
-                                                 final String adapter,
-                                                 final String name,
-                                                 final String icon,
-                                                 final String totalSupply,
-                                                 final String exchangeRate,
-                                                 final Integer decimals,
-                                                 final String maxMeltFee,
-                                                 final String meltFee,
-                                                 final Integer transferable,
-                                                 final Integer firstBlock,
-                                                 final Integer blockHeight,
-                                                 final Boolean fromBlockchain) throws IOException {
-        final Call<GraphQLResponse> call = getCreateTokenCall(tokenId,
+    public Response<GraphQLResponse<CreateTokenData>> createTokenSync(final Integer tokenId,
+                                                                      final Integer appId,
+                                                                      final String creator,
+                                                                      final String adapter,
+                                                                      final String name,
+                                                                      final String icon,
+                                                                      final String totalSupply,
+                                                                      final String exchangeRate,
+                                                                      final Integer decimals,
+                                                                      final String maxMeltFee,
+                                                                      final String meltFee,
+                                                                      final Integer transferable,
+                                                                      final Integer firstBlock,
+                                                                      final Integer blockHeight,
+                                                                      final Boolean fromBlockchain) throws IOException {
+        final Call<GraphQLResponse<CreateTokenData>> call = getCreateTokenCall(tokenId,
                 appId,
                 creator,
                 adapter,
@@ -154,22 +157,22 @@ public class TokensServiceImpl implements TokensService {
     }
 
     @Override
-    public Response<GraphQLResponse> updateTokenSync(final Integer tokenId,
-                                                 final Integer appId,
-                                                 final String creator,
-                                                 final String adapter,
-                                                 final String name,
-                                                 final String icon,
-                                                 final String totalSupply,
-                                                 final String exchangeRate,
-                                                 final Integer decimals,
-                                                 final String maxMeltFee,
-                                                 final String meltFee,
-                                                 final Integer transferable,
-                                                 final Integer firstBlock,
-                                                 final Integer blockHeight,
-                                                 final Boolean fromBlockchain) throws IOException {
-        final Call<GraphQLResponse> call = getUpdateTokenCall(tokenId,
+    public Response<GraphQLResponse<UpdateTokenData>> updateTokenSync(final Integer tokenId,
+                                                                      final Integer appId,
+                                                                      final String creator,
+                                                                      final String adapter,
+                                                                      final String name,
+                                                                      final String icon,
+                                                                      final String totalSupply,
+                                                                      final String exchangeRate,
+                                                                      final Integer decimals,
+                                                                      final String maxMeltFee,
+                                                                      final String meltFee,
+                                                                      final Integer transferable,
+                                                                      final Integer firstBlock,
+                                                                      final Integer blockHeight,
+                                                                      final Boolean fromBlockchain) throws IOException {
+        final Call<GraphQLResponse<UpdateTokenData>> call = getUpdateTokenCall(tokenId,
                 appId,
                 creator,
                 adapter,
@@ -187,44 +190,39 @@ public class TokensServiceImpl implements TokensService {
         return call.execute();
     }
 
-    private Call<GraphQLResponse> getAllTokensCall() {
-        return GraphQLRequest.builder(this.service)
-                .fromResource("/graphql/tokens/getAllTokens.query")
-                .build().call();
+    private Call<GraphQLResponse<TokensData>> getAllTokensCall() {
+        return this.service.getAllTokens(GraphQLRequest.builder());
     }
 
-    private Call<GraphQLResponse> getTokensCall(final Integer id,
-                                            final String creator,
-                                            final String name,
-                                            final Integer firstBlock,
-                                            final Integer blockHeight) {
-        return GraphQLRequest.builder(this.service)
-                .fromResource("/graphql/tokens/getAllTokens.query")
+    private Call<GraphQLResponse<TokensData>> getTokensCall(final Integer id,
+                                                            final String creator,
+                                                            final String name,
+                                                            final Integer firstBlock,
+                                                            final Integer blockHeight) {
+        return this.service.getTokens(GraphQLRequest.builder()
                 .withParameter("id", id)
                 .withParameter("creator", creator)
                 .withParameter("name", name)
                 .withParameter("firstBlock", firstBlock)
-                .withParameter("blockHeight", blockHeight)
-                .build().call();
+                .withParameter("blockHeight", blockHeight));
     }
 
-    private Call<GraphQLResponse> getCreateTokenCall(final Integer tokenId,
-                                                 final Integer appId,
-                                                 final String creator,
-                                                 final String adapter,
-                                                 final String name,
-                                                 final String icon,
-                                                 final String totalSupply,
-                                                 final String exchangeRate,
-                                                 final Integer decimals,
-                                                 final String maxMeltFee,
-                                                 final String meltFee,
-                                                 final Integer transferable,
-                                                 final Integer firstBlock,
-                                                 final Integer blockHeight,
-                                                 final Boolean fromBlockchain) {
-        return GraphQLRequest.builder(this.service)
-                .fromResource("/graphql/tokens/createToken.mutation")
+    private Call<GraphQLResponse<CreateTokenData>> getCreateTokenCall(final Integer tokenId,
+                                                                      final Integer appId,
+                                                                      final String creator,
+                                                                      final String adapter,
+                                                                      final String name,
+                                                                      final String icon,
+                                                                      final String totalSupply,
+                                                                      final String exchangeRate,
+                                                                      final Integer decimals,
+                                                                      final String maxMeltFee,
+                                                                      final String meltFee,
+                                                                      final Integer transferable,
+                                                                      final Integer firstBlock,
+                                                                      final Integer blockHeight,
+                                                                      final Boolean fromBlockchain) {
+        return this.service.createToken(GraphQLRequest.builder()
                 .withParameter("token_id", tokenId)
                 .withParameter("app_id", appId)
                 .withParameter("creator", creator)
@@ -239,27 +237,25 @@ public class TokensServiceImpl implements TokensService {
                 .withParameter("transferable", transferable)
                 .withParameter("firstBlock", firstBlock)
                 .withParameter("blockHeight", blockHeight)
-                .withParameter("fromBlockchain", fromBlockchain)
-                .build().call();
+                .withParameter("fromBlockchain", fromBlockchain));
     }
 
-    private Call<GraphQLResponse> getUpdateTokenCall(final Integer tokenId,
-                                                 final Integer appId,
-                                                 final String creator,
-                                                 final String adapter,
-                                                 final String name,
-                                                 final String icon,
-                                                 final String totalSupply,
-                                                 final String exchangeRate,
-                                                 final Integer decimals,
-                                                 final String maxMeltFee,
-                                                 final String meltFee,
-                                                 final Integer transferable,
-                                                 final Integer firstBlock,
-                                                 final Integer blockHeight,
-                                                 final Boolean fromBlockchain) {
-        return GraphQLRequest.builder(this.service)
-                .fromResource("/graphql/tokens/updateToken.mutation")
+    private Call<GraphQLResponse<UpdateTokenData>> getUpdateTokenCall(final Integer tokenId,
+                                                                      final Integer appId,
+                                                                      final String creator,
+                                                                      final String adapter,
+                                                                      final String name,
+                                                                      final String icon,
+                                                                      final String totalSupply,
+                                                                      final String exchangeRate,
+                                                                      final Integer decimals,
+                                                                      final String maxMeltFee,
+                                                                      final String meltFee,
+                                                                      final Integer transferable,
+                                                                      final Integer firstBlock,
+                                                                      final Integer blockHeight,
+                                                                      final Boolean fromBlockchain) {
+        return this.service.updateToken(GraphQLRequest.builder()
                 .withParameter("token_id", tokenId)
                 .withParameter("app_id", appId)
                 .withParameter("creator", creator)
@@ -274,8 +270,7 @@ public class TokensServiceImpl implements TokensService {
                 .withParameter("transferable", transferable)
                 .withParameter("firstBlock", firstBlock)
                 .withParameter("blockHeight", blockHeight)
-                .withParameter("fromBlockchain", fromBlockchain)
-                .build().call();
+                .withParameter("fromBlockchain", fromBlockchain));
     }
 
 }

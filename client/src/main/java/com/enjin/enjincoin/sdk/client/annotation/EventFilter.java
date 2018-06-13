@@ -1,4 +1,4 @@
-package com.enjin.enjincoin.sdk.client.annotations.notifications;
+package com.enjin.enjincoin.sdk.client.annotation;
 
 import com.enjin.enjincoin.sdk.client.enums.NotificationType;
 

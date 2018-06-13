@@ -2,9 +2,11 @@ package com.enjin.enjincoin.sdk.client.service.platform.vo;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * <p>
- * Platform Details class.
+ * Platform Config used throughout the sdk.
  * </p>
  */
 public class PlatformDetails {
@@ -15,45 +17,24 @@ public class PlatformDetails {
     @SerializedName("id")
     private String id;
 
-    public PlatformDetails(final String name, final String id) {
-        super();
-        this.name = name;
-        this.id = id;
-    }
+    @SerializedName("notifications")
+    private NotificationDetails notificationDetails;
 
-    /**
-     * @return the name
-     */
+    private List<AppDetail> apps;
+
     public String getName() {
         return this.name;
     }
 
-    /**
-     * @return the id
-     */
     public String getId() {
         return this.id;
     }
 
-    /**
-     * @param name the name to set
-     */
-    public void setName(final String name) {
-        this.name = name;
+    public NotificationDetails getNotificationDetails() {
+        return this.notificationDetails;
     }
 
-    /**
-     * @param id the id to set
-     */
-    public void setId(final String id) {
-        this.id = id;
-    }
-
-    /* (non-Javadoc)
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString() {
-        return "PlatformDetails [name=" + this.name + ", id=" + this.id + "]";
+    public List<AppDetail> getApps() {
+        return this.apps;
     }
 }

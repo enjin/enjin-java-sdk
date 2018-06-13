@@ -1,6 +1,6 @@
 package com.enjin.enjincoin.sdk.client.enums;
 
-import com.enjin.enjincoin.sdk.client.annotations.notifications.EventFilter;
+import com.enjin.enjincoin.sdk.client.annotation.EventFilter;
 
 /**
  * <p> Notification types which can be received from the ThirdPartyNotificationService.</p>

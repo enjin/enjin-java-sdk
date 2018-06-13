@@ -1,6 +1,6 @@
 package com.enjin.enjincoin.sdk.client.service.notifications;
 
-import com.enjin.enjincoin.sdk.client.annotations.notifications.EventFilter;
+import com.enjin.enjincoin.sdk.client.annotation.EventFilter;
 import com.enjin.enjincoin.sdk.client.enums.NotificationType;
 
 /**

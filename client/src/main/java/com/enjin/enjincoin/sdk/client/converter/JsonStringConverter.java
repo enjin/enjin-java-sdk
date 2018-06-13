@@ -1,6 +1,6 @@
-package com.enjin.enjincoin.sdk.client.serialization.retrofit;
+package com.enjin.enjincoin.sdk.client.converter;
 
-import com.enjin.enjincoin.sdk.client.annotations.serialization.Json;
+import com.enjin.enjincoin.sdk.client.annotation.Json;
 import okhttp3.RequestBody;
 import okio.Buffer;
 import retrofit2.Converter;
@@ -10,11 +10,11 @@ import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
-public class JsonStringConverterFactory extends Converter.Factory {
+public class JsonStringConverter extends Converter.Factory {
 
     private final Converter.Factory delegate;
 
-    public JsonStringConverterFactory(final Converter.Factory delegate) {
+    public JsonStringConverter(final Converter.Factory delegate) {
         this.delegate = delegate;
     }
 

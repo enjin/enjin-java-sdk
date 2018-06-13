@@ -1,11 +1,11 @@
 package com.enjin.enjincoin.sdk.client;
 
+import com.enjin.enjincoin.sdk.client.converter.GraphConverter;
+import com.enjin.enjincoin.sdk.client.converter.JsonStringConverter;
 import com.enjin.enjincoin.sdk.client.cookiejar.ClearableCookieJar;
 import com.enjin.enjincoin.sdk.client.cookiejar.PersistentCookieJar;
 import com.enjin.enjincoin.sdk.client.cookiejar.cache.SetCookieCache;
 import com.enjin.enjincoin.sdk.client.cookiejar.persistence.MemoryCookiePersistor;
-import com.enjin.enjincoin.sdk.client.serialization.retrofit.JsonStringConverterFactory;
-import com.enjin.enjincoin.sdk.client.service.GraphQLRetrofitService;
 import com.enjin.enjincoin.sdk.client.service.auth.AuthRetrofitService;
 import com.enjin.enjincoin.sdk.client.service.auth.vo.AuthBody;
 import com.enjin.enjincoin.sdk.client.service.auth.vo.AuthData;
@@ -42,7 +42,6 @@ public class ClientImpl implements Client {
     private OkHttpClient client;
     private Retrofit retrofit;
     private AuthRetrofitService authRetrofitService;
-    private GraphQLRetrofitService graphQLService;
     private IdentitiesService identitiesService;
     private UsersService userService;
     private RequestsService requestsService;
@@ -72,7 +71,8 @@ public class ClientImpl implements Client {
         this.retrofit = new Retrofit.Builder()
                 .baseUrl(url)
                 .client(this.client)
-                .addConverterFactory(new JsonStringConverterFactory(gsonFactory))
+                .addConverterFactory(GraphConverter.create())
+                .addConverterFactory(new JsonStringConverter(gsonFactory))
                 .addConverterFactory(gsonFactory)
                 .build();
     }
@@ -103,13 +103,6 @@ public class ClientImpl implements Client {
         return this.authRetrofitService;
     }
 
-    public GraphQLRetrofitService getGraphQLService() {
-        if (this.graphQLService == null) {
-            this.graphQLService = this.retrofit.create(GraphQLRetrofitService.class);
-        }
-        return this.graphQLService;
-    }
-
     @Override
     public String getClientId() {
         return this.clientId;
@@ -118,7 +111,7 @@ public class ClientImpl implements Client {
     @Override
     public IdentitiesService getIdentitiesService() {
         if (this.identitiesService == null) {
-            this.identitiesService = new IdentitiesServiceImpl(getGraphQLService());
+            this.identitiesService = new IdentitiesServiceImpl(retrofit);
         }
         return this.identitiesService;
     }
@@ -126,14 +119,14 @@ public class ClientImpl implements Client {
     @Override
     public UsersService getUsersService() {
         if (this.userService == null) {
-            this.userService = new UsersServiceImpl(getGraphQLService());
+            this.userService = new UsersServiceImpl(retrofit);
         }
         return this.userService;
     }
     @Override
     public RequestsService getRequestsService() {
         if (this.requestsService == null) {
-            this.requestsService = new RequestsServiceImpl(this.graphQLService);
+            this.requestsService = new RequestsServiceImpl(retrofit);
         }
         return this.requestsService;
     }
@@ -141,7 +134,7 @@ public class ClientImpl implements Client {
     @Override
     public TokensService getTokensService() {
         if (this.tokensService == null) {
-            this.tokensService = new TokensServiceImpl(this.graphQLService);
+            this.tokensService = new TokensServiceImpl(retrofit);
         }
         return this.tokensService;
     }
@@ -149,7 +142,7 @@ public class ClientImpl implements Client {
     @Override
     public PlatformService getPlatformService() {
         if (this.platformService == null) {
-            this.platformService = new PlatformServiceImpl(this.graphQLService);
+            this.platformService = new PlatformServiceImpl(retrofit);
         }
         return this.platformService;
     }

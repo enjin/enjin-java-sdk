@@ -6,7 +6,6 @@ import com.enjin.enjincoin.sdk.client.service.notifications.ThirdPartyNotificati
 import com.enjin.enjincoin.sdk.client.service.notifications.vo.NotificationEvent;
 import com.enjin.enjincoin.sdk.client.service.platform.vo.NotificationDetails;
 import com.enjin.enjincoin.sdk.client.service.platform.vo.PlatformDetails;
-import com.enjin.enjincoin.sdk.client.service.platform.vo.PlatformResponseBody;
 import com.enjin.enjincoin.sdk.client.service.platform.vo.SdkDetails;
 import com.enjin.java_commons.CollectionUtils;
 import com.enjin.java_commons.ExceptionUtils;
@@ -61,16 +60,16 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
     /**
      * Local notification details method.
      */
-    private PlatformResponseBody platformResponseBody;
+    private PlatformDetails platformDetails;
 
     /**
      * Class constructor.
      *
-     * @param platformResponseBody to use
+     * @param platformDetails to use
      * @param appId                to use
      */
-    public PusherNotificationServiceImpl(final PlatformResponseBody platformResponseBody, final int appId) {
-        this.platformResponseBody = platformResponseBody;
+    public PusherNotificationServiceImpl(final PlatformDetails platformDetails, final int appId) {
+        this.platformDetails = platformDetails;
         this.appId = appId;
     }
 
@@ -83,20 +82,14 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
     public boolean init() {
         boolean initializeResult = false;
 
-        if (this.platformResponseBody == null || this.platformResponseBody.getNotificationDetails() == null) {
-            LOGGER.warning("platformResponseBody or notificationDetails are null");
+        if (this.platformDetails == null || this.platformDetails.getNotificationDetails() == null) {
+            LOGGER.warning("platformDetails or notificationDetails are null");
             return initializeResult;
         }
 
-        final PlatformDetails platformDetails = this.platformResponseBody.getPlatformDetails();
-        if (platformDetails == null) {
-            LOGGER.warning("platformDetails are null");
-            return initializeResult;
-        }
-
-        final NotificationDetails notificationDetails = this.platformResponseBody.getNotificationDetails();
-        if (notificationDetails == null || notificationDetails.getSdkDetails() == null || notificationDetails.getSdkDetails().getOptions() == null) {
-            LOGGER.warning("notificationDetails,the sdk details or the options are null");
+        final NotificationDetails notificationDetails = this.platformDetails.getNotificationDetails();
+        if (notificationDetails.getSdkDetails() == null || notificationDetails.getSdkDetails().getOptions() == null) {
+            LOGGER.warning("the sdk details or the options are null");
             return initializeResult;
         }
 
