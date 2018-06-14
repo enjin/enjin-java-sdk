@@ -1,17 +1,22 @@
 query getAllTokens {
-  	EnjinTokens {
-        token_id
-        creator
-        adapter
-        name
-        icon
-        totalSupply
-        exchangeRate
-        decimals
-        maxMeltFee
-        meltFee
-        transferable
-        firstBlock
-        blockHeight
+    EnjinTokens {
+        token_id,
+        creator,
+        adapter,
+        name,
+        icon,
+        totalSupply,
+        exchangeRate,
+        decimals,
+        maxMeltFee,
+        meltFee,
+        transferable,
+        firstBlock,
+        blockHeight,
+        markedForDelete,
+        created_at,
+        updated_at,
+        balance,
+        availableToMint,
     }
 }

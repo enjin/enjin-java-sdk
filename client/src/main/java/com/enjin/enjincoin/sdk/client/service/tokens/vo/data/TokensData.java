@@ -1,6 +1,6 @@
 package com.enjin.enjincoin.sdk.client.service.tokens.vo.data;
 
-import com.google.gson.JsonObject;
+import com.enjin.enjincoin.sdk.client.service.tokens.vo.Token;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -8,9 +8,9 @@ import java.util.List;
 public class TokensData {
 
     @SerializedName("EnjinTokens")
-    private List<JsonObject> tokens;
+    private List<Token> tokens;
 
-    public List<JsonObject> getTokens() {
+    public List<Token> getTokens() {
         return this.tokens;
     }
 }
