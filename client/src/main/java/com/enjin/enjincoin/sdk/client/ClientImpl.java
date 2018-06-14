@@ -1,5 +1,6 @@
 package com.enjin.enjincoin.sdk.client;
 
+import com.enjin.enjincoin.sdk.client.authentication.AuthenticationInterceptor;
 import com.enjin.enjincoin.sdk.client.converter.GraphConverter;
 import com.enjin.enjincoin.sdk.client.converter.JsonStringConverter;
 import com.enjin.enjincoin.sdk.client.cookiejar.ClearableCookieJar;
@@ -58,6 +59,7 @@ public class ClientImpl implements Client {
 
         final OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
         clientBuilder.cookieJar(this.cookieJar);
+        clientBuilder.addInterceptor(new AuthenticationInterceptor(this.cookieJar));
 
         if (log) {
             final HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -85,12 +87,14 @@ public class ClientImpl implements Client {
 
         if (response.isSuccessful()) {
             AuthData data = response.body();
-            Cookie cookie = new Cookie.Builder()
-                    .domain(this.retrofit.baseUrl().host())
-                    .name("laravel_session")
+            this.cookieJar.addCookie(new Cookie.Builder()
+                    .domain(this.retrofit.baseUrl().host()).name("laravel_session_type")
+                    .value(data.getTokenType())
+                    .build());
+            this.cookieJar.addCookie(new Cookie.Builder()
+                    .domain(this.retrofit.baseUrl().host()).name("laravel_session")
                     .value(String.format("%s@%s", this.clientId, data.getAccessToken()))
-                    .build();
-            this.cookieJar.addCookie(cookie);
+                    .build());
         }
 
         return response;
