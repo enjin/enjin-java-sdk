@@ -1,6 +1,6 @@
 package com.enjin.enjincoin.sdk.client.service.requests.vo.data;
 
-import com.google.gson.JsonObject;
+import com.enjin.enjincoin.sdk.client.service.requests.vo.Transaction;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -8,9 +8,9 @@ import java.util.List;
 public class RequestsData {
 
     @SerializedName("EnjinTransactions")
-    private List<JsonObject> requests;
+    private List<Transaction> requests;
 
-    public List<JsonObject> getRequests() {
+    public List<Transaction> getRequests() {
         return this.requests;
     }
 }
