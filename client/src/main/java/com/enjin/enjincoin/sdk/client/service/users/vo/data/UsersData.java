@@ -1,6 +1,6 @@
 package com.enjin.enjincoin.sdk.client.service.users.vo.data;
 
-import com.google.gson.JsonObject;
+import com.enjin.enjincoin.sdk.client.service.users.vo.User;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -8,9 +8,9 @@ import java.util.List;
 public class UsersData {
 
     @SerializedName("EnjinUsers")
-    private List<JsonObject> users;
+    private List<User> users;
 
-    public List<JsonObject> getUsers() {
+    public List<User> getUsers() {
         return this.users;
     }
 }
