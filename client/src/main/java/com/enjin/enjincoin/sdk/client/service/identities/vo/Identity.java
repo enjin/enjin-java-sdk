@@ -32,4 +32,39 @@ public class Identity {
     @SerializedName("enj_balance")
     private Double enjBalance;
 
+    public Long getId() {
+        return this.id;
+    }
+
+    public Long getAppId() {
+        return this.appId;
+    }
+
+    public String getEthereumAddress() {
+        return this.ethereumAddress;
+    }
+
+    public String getLinkingCode() {
+        return this.linkingCode;
+    }
+
+    public JsonObject getCreatedAt() {
+        return this.createdAt;
+    }
+
+    public JsonObject getUpdatedAt() {
+        return this.updatedAt;
+    }
+
+    public List<IdentityField> getFields() {
+        return this.fields;
+    }
+
+    public Double getEthBalance() {
+        return this.ethBalance;
+    }
+
+    public Double getEnjBalance() {
+        return this.enjBalance;
+    }
 }
