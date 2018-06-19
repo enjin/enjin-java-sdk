@@ -15,7 +15,7 @@ public interface AsynchronousIdentitiesService {
 
     void getIdentitiesAsync(Integer id, String ethereumAddress, Callback<GraphQLResponse<IdentitiesData>> callback);
 
-    void createIdentityAsync(Integer id, String ethereumAddress, List<IdentityField> fields, Callback<GraphQLResponse<CreateIdentityData>> callback);
+    void createIdentityAsync(Integer userId, String ethereumAddress, List<IdentityField> fields, Callback<GraphQLResponse<CreateIdentityData>> callback);
 
     void updateIdentityAsync(Integer id, Integer appId, Integer userId,
                              String ethereumAddress,

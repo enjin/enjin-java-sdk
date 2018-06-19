@@ -36,8 +36,8 @@ public class IdentitiesServiceImpl implements IdentitiesService {
     }
 
     @Override
-    public void createIdentityAsync(final Integer id, final String ethereumAddress, final List<IdentityField> fields, final Callback<GraphQLResponse<CreateIdentityData>> callback) {
-        final Call<GraphQLResponse<CreateIdentityData>> call = createIdentity(id, ethereumAddress, fields);
+    public void createIdentityAsync(final Integer userId, final String ethereumAddress, final List<IdentityField> fields, final Callback<GraphQLResponse<CreateIdentityData>> callback) {
+        final Call<GraphQLResponse<CreateIdentityData>> call = createIdentity(userId, ethereumAddress, fields);
         call.enqueue(callback);
     }
 
@@ -62,8 +62,8 @@ public class IdentitiesServiceImpl implements IdentitiesService {
     }
 
     @Override
-    public Response<GraphQLResponse<CreateIdentityData>> createIdentitySync(final Integer id, final String ethereumAddress, final List<IdentityField> fields) throws IOException {
-        final Call<GraphQLResponse<CreateIdentityData>> call = createIdentity(id, ethereumAddress, fields);
+    public Response<GraphQLResponse<CreateIdentityData>> createIdentitySync(final Integer userId, final String ethereumAddress, final List<IdentityField> fields) throws IOException {
+        final Call<GraphQLResponse<CreateIdentityData>> call = createIdentity(userId, ethereumAddress, fields);
         return call.execute();
     }
 
@@ -85,9 +85,9 @@ public class IdentitiesServiceImpl implements IdentitiesService {
                 .withParameter("ethereum_address", ethereumAddress));
     }
 
-    private Call<GraphQLResponse<CreateIdentityData>> createIdentity(final Integer id, final String ethereumAddress, final List<IdentityField> fields) {
+    private Call<GraphQLResponse<CreateIdentityData>> createIdentity(final Integer userId, final String ethereumAddress, final List<IdentityField> fields) {
         return this.service.createIdentity(GraphQLRequest.builder()
-                .withParameter("id", id)
+                .withParameter("user_id", userId)
                 .withParameter("ethereum_address", ethereumAddress)
                 .withParameter("fields", fields));
     }

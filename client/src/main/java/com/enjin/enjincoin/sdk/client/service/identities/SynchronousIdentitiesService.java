@@ -16,7 +16,7 @@ public interface SynchronousIdentitiesService {
 
     Response<GraphQLResponse<IdentitiesData>> getIdentitiesSync(Integer id, String ethereumAddress) throws IOException;
 
-    Response<GraphQLResponse<CreateIdentityData>> createIdentitySync(Integer id, String ethereumAddress, List<IdentityField> fields) throws IOException;
+    Response<GraphQLResponse<CreateIdentityData>> createIdentitySync(Integer userId, String ethereumAddress, List<IdentityField> fields) throws IOException;
 
     Response<GraphQLResponse<UpdateIdentityData>> updateIdentitySync(Integer id, Integer appId, Integer userId,
                                                                      String ethereumAddress,
