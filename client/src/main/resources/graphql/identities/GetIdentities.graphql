@@ -8,5 +8,14 @@ query getAllIdentities {
             key,
             value
         }
+        created_at,
+        updated_at,
+        tokens {
+            token_id,
+            balance
+        },
+        eth_balance,
+        enj_balance,
+        all_tokens_balance
     }
 }

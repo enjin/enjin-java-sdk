@@ -1,15 +1,21 @@
 mutation createIdentity {
     CreateEnjinIdentity(%s) {
         id,
-        name,
-        email,
-        roles {
-            id,
-            name,
-            app_id
-        },
-        access_tokens,
+        app_id,
+        ethereum_address,
+        linking_code,
+        fields {
+            key,
+            value
+        }
         created_at,
-        updated_at
+        updated_at,
+        tokens {
+            token_id,
+            balance
+        },
+        eth_balance,
+        enj_balance,
+        all_tokens_balance
     }
 }

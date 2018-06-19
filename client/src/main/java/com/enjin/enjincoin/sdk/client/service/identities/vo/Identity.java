@@ -1,5 +1,6 @@
 package com.enjin.enjincoin.sdk.client.service.identities.vo;
 
+import com.enjin.enjincoin.sdk.client.service.tokens.vo.Token;
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
 
@@ -26,11 +27,16 @@ public class Identity {
 
     private List<IdentityField> fields;
 
+    private List<Token> tokens;
+
     @SerializedName("eth_balance")
     private Double ethBalance;
 
     @SerializedName("enj_balance")
     private Double enjBalance;
+
+    @SerializedName("all_tokens_balance")
+    private JsonObject allTokensBalance;
 
     public Long getId() {
         return this.id;
