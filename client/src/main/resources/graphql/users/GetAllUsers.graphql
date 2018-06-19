@@ -10,6 +10,16 @@ query getAllUsers {
             app_id
         },
         created_at,
-        updated_at
+        updated_at,
+        identities {
+            id,
+            app_id,
+            ethereum_address,
+            linking_code,
+            fields {
+                key,
+                value
+            }
+        }
     }
 }

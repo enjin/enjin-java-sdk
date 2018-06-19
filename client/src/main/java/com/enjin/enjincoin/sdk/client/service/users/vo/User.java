@@ -1,5 +1,6 @@
 package com.enjin.enjincoin.sdk.client.service.users.vo;
 
+import com.enjin.enjincoin.sdk.client.service.identities.vo.Identity;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
@@ -24,6 +25,8 @@ public class User {
     private List<JsonElement> accessTokens;
 
     private List<Role> roles;
+
+    private List<Identity> identities;
 
     public Integer getId() {
         return this.id;
@@ -51,5 +54,9 @@ public class User {
 
     public List<Role> getRoles() {
         return this.roles;
+    }
+
+    public List<Identity> getIdentities() {
+        return this.identities;
     }
 }
