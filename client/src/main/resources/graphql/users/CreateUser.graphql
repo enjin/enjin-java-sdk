@@ -6,7 +6,10 @@ mutation createUser {
         roles {
             id,
             name,
-            permissions,
+            permissions {
+                id,
+                name
+            },
             app_id
         },
         access_tokens,

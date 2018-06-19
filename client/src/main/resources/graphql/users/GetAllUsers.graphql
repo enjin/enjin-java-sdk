@@ -6,7 +6,10 @@ query getAllUsers {
         roles {
             id,
             name,
-            permissions,
+            permissions {
+                id,
+                name
+            },
             app_id
         },
         created_at,
