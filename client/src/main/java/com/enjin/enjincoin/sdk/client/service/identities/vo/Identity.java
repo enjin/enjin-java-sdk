@@ -66,6 +66,8 @@ public class Identity {
         return this.fields;
     }
 
+    public List<Token> getTokens() { return this.tokens; }
+
     public Double getEthBalance() {
         return this.ethBalance;
     }

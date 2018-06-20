@@ -1,6 +1,9 @@
 package com.enjin.enjincoin.sdk.client.service.identities.vo;
 
+import com.enjin.enjincoin.sdk.client.service.tokens.vo.Token;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 /**
  * <p>FieldVO class.
@@ -22,6 +25,7 @@ public class IdentityField {
 
     @SerializedName("unique")
     private Integer unique;
+
 
     public IdentityField(final String key, final String fieldValue, final Integer searchable, final Integer displayable, final Integer unique) {
         super();
