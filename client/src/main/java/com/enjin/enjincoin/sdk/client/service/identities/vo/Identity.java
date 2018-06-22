@@ -75,4 +75,8 @@ public class Identity {
     public Double getEnjBalance() {
         return this.enjBalance;
     }
+
+    public JsonObject getAllTokensBalance() {
+        return this.allTokensBalance;
+    }
 }
