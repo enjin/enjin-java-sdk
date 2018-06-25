@@ -8,10 +8,10 @@ import java.util.List;
 
 public class Identity {
 
-    private Long id;
+    private Integer id;
 
     @SerializedName("app_id")
-    private Long appId;
+    private Integer appId;
 
     @SerializedName("ethereum_address")
     private String ethereumAddress;
@@ -38,11 +38,11 @@ public class Identity {
     @SerializedName("all_tokens_balance")
     private JsonObject allTokensBalance;
 
-    public Long getId() {
+    public Integer getId() {
         return this.id;
     }
 
-    public Long getAppId() {
+    public Integer getAppId() {
         return this.appId;
     }
 
