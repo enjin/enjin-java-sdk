@@ -89,8 +89,14 @@ subprojects {
         from javadoc
     }
 
+    task sourcesJar(type: Jar) {
+        classifier = 'sources'
+        from sourceSets.main.allJava
+    }
+
     artifacts {
         archives javadocJar
+        archives sourcesJar
     }
 
     install {
