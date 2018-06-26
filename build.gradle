@@ -84,6 +84,15 @@ subprojects {
         archiveName = "${project.name}.jar"
     }
 
+    task javadocJar(type: Jar) {
+        classifier = 'javadoc'
+        from javadoc
+    }
+
+    artifacts {
+        archives javadocJar
+    }
+
     install {
         repositories.mavenInstaller {
             pom.artifactId = "java-sdk-${project.name}"
