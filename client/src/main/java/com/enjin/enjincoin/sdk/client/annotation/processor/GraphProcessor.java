@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.FileSystemNotFoundException;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -21,11 +23,7 @@ public class GraphProcessor {
     private final static String defaultExtension = ".graphql";
     private final static String defaultDirectory = "graphql";
 
-    public static GraphProcessor getInstance() {
-        if(ourInstance == null)
-            ourInstance = new GraphProcessor();
-        return ourInstance;
-    }
+    private volatile Map<String, String> graphFiles;
 
     private GraphProcessor() {
         synchronized (lock) {
@@ -36,8 +34,6 @@ public class GraphProcessor {
             }
         }
     }
-
-    private volatile Map<String, String> graphFiles;
 
     public String getQuery(Annotation[] annotations) {
         GraphQuery graphQuery = null;
@@ -62,16 +58,28 @@ public class GraphProcessor {
 
     private synchronized void initialize() {
         try {
-            Set<URL> urls = ResourceUtils.getResourceURLs(getClass().getClassLoader(), defaultDirectory,
+            Set<URL> urls = ResourceUtils.getResourceURLs(getClass(),
                     url -> url.getFile().endsWith(defaultExtension));
 
             for (URL url : urls) {
+                try {
+                    FileSystems.getFileSystem(url.toURI());
+                } catch (FileSystemNotFoundException ex) {
+                    FileSystems.newFileSystem(url.toURI(), new HashMap<>());
+                }
+
                 Path path = Paths.get(url.toURI());
                 byte[] data = Files.readAllBytes(path);
-                graphFiles.put(path.getFileName().toString(), new String(data));
+                this.graphFiles.put(path.getFileName().toString(), new String(data));
             }
         } catch (URISyntaxException | IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static GraphProcessor getInstance() {
+        if(ourInstance == null)
+            ourInstance = new GraphProcessor();
+        return ourInstance;
     }
 }
