@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 public class Token {
 
     @SerializedName("token_id")
-    private Integer tokenId;
+    private String tokenId;
 
     @SerializedName("app_id")
     private Integer appId;
@@ -15,21 +15,25 @@ public class Token {
 
     private String name;
 
-    private String icon;
+    private Integer decimals;
+
+    private String symbol;
 
     private String totalSupply;
 
-    private String exchangeRate;
+    private String initialSupply;
 
-    private Integer decimals;
+    private TokenSupplyModel supplyModel;
 
-    private String maxMeltFee;
+    private String meltValue;
 
-    private String meltFee;
+    private String meltFeePercentage;
 
-    private Integer transferable;
+    private TokenTransferable transferable;
 
-    private String supplyModel;
+    private TokenTransferFeeSettings transferFeeSettings;
+
+    private Boolean nonFungible;
 
     private Integer firstBlock;
 
@@ -48,7 +52,7 @@ public class Token {
 
     private Double availableToMint;
 
-    public Integer getTokenId() {
+    public String getTokenId() {
         return this.tokenId;
     }
 
@@ -64,36 +68,44 @@ public class Token {
         return this.name;
     }
 
-    public String getIcon() {
-        return this.icon;
+    public Integer getDecimals() {
+        return this.decimals;
+    }
+
+    public String getSymbol() {
+        return this.symbol;
     }
 
     public String getTotalSupply() {
         return this.totalSupply;
     }
 
-    public String getExchangeRate() {
-        return this.exchangeRate;
+    public String getInitialSupply() {
+        return this.initialSupply;
     }
 
-    public Integer getDecimals() {
-        return this.decimals;
+    public TokenSupplyModel getSupplyModel() {
+        return this.supplyModel;
     }
 
-    public String getMaxMeltFee() {
-        return this.maxMeltFee;
+    public String getMeltValue() {
+        return this.meltValue;
     }
 
-    public String getMeltFee() {
-        return this.meltFee;
+    public String getMeltFeePercentage() {
+        return this.meltFeePercentage;
     }
 
-    public Integer getTransferable() {
+    public TokenTransferable getTransferable() {
         return this.transferable;
     }
 
-    public String getSupplyModel() {
-        return this.supplyModel;
+    public TokenTransferFeeSettings getTransferFeeSettings() {
+        return this.transferFeeSettings;
+    }
+
+    public Boolean getNonFungible() {
+        return this.nonFungible;
     }
 
     public Integer getFirstBlock() {
