@@ -13,4 +13,8 @@ public class UsersData {
     public List<User> getUsers() {
         return this.users;
     }
+
+    public boolean isEmpty() {
+        return this.users == null || this.users.isEmpty();
+    }
 }

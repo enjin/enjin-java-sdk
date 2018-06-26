@@ -13,4 +13,8 @@ public class IdentitiesData {
     public List<Identity> getIdentities() {
         return this.identities;
     }
+
+    public boolean isEmpty() {
+        return this.identities == null || this.identities.isEmpty();
+    }
 }

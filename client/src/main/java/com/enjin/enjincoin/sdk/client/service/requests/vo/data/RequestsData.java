@@ -13,4 +13,8 @@ public class RequestsData {
     public List<Transaction> getRequests() {
         return this.requests;
     }
+
+    public boolean isEmpty() {
+        return this.requests == null || this.requests.isEmpty();
+    }
 }

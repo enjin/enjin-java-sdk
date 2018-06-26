@@ -13,4 +13,8 @@ public class TokensData {
     public List<Token> getTokens() {
         return this.tokens;
     }
+
+    public boolean isEmpty() {
+        return this.tokens == null || this.tokens.isEmpty();
+    }
 }
