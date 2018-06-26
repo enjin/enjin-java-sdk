@@ -29,7 +29,7 @@ public class RequestsServiceImpl implements RequestsService {
     }
 
     @Override
-    public void getRequestsAsync(final Integer id,
+    public void getRequestsAsync(final Integer requestId,
                                  final String transactionId,
                                  final Integer identityId,
                                  final String type,
@@ -41,7 +41,7 @@ public class RequestsServiceImpl implements RequestsService {
                                  final String state,
                                  final Integer accepted,
                                  final Callback<GraphQLResponse<RequestsData>> callback) {
-        final Call<GraphQLResponse<RequestsData>> call = getGetRequestsCall(id,
+        final Call<GraphQLResponse<RequestsData>> call = getGetRequestsCall(requestId,
                 transactionId,
                 identityId,
                 type,
@@ -81,7 +81,7 @@ public class RequestsServiceImpl implements RequestsService {
     }
 
     @Override
-    public void updateRequestAsync(final Integer id,
+    public void updateRequestAsync(final Integer requestId,
                                    final Integer appId,
                                    final Integer recipientId,
                                    final String type,
@@ -89,7 +89,7 @@ public class RequestsServiceImpl implements RequestsService {
                                    final String icon,
                                    final Float value,
                                    final Callback<GraphQLResponse<UpdateRequestData>> callback) {
-        final Call<GraphQLResponse<UpdateRequestData>> call = getUpdateRequestCall(id,
+        final Call<GraphQLResponse<UpdateRequestData>> call = getUpdateRequestCall(requestId,
                 appId,
                 recipientId,
                 type,
@@ -106,7 +106,7 @@ public class RequestsServiceImpl implements RequestsService {
     }
 
     @Override
-    public Response<GraphQLResponse<RequestsData>> getRequestsSync(final Integer id,
+    public Response<GraphQLResponse<RequestsData>> getRequestsSync(final Integer requestId,
                                                                    final String transactionId,
                                                                    final Integer identityId,
                                                                    final String type,
@@ -117,7 +117,7 @@ public class RequestsServiceImpl implements RequestsService {
                                                                    final String encodedData,
                                                                    final String state,
                                                                    final Integer accepted) throws IOException {
-        final Call<GraphQLResponse<RequestsData>> call = getGetRequestsCall(id,
+        final Call<GraphQLResponse<RequestsData>> call = getGetRequestsCall(requestId,
                 transactionId,
                 identityId,
                 type,
@@ -156,14 +156,14 @@ public class RequestsServiceImpl implements RequestsService {
     }
 
     @Override
-    public Response<GraphQLResponse<UpdateRequestData>> updateRequestSync(final Integer id,
+    public Response<GraphQLResponse<UpdateRequestData>> updateRequestSync(final Integer requestId,
                                                                           final Integer appId,
                                                                           final Integer recipientId,
                                                                           final String type,
                                                                           final String title,
                                                                           final String icon,
                                                                           final Float value) throws IOException {
-        final Call<GraphQLResponse<UpdateRequestData>> call = getUpdateRequestCall(id,
+        final Call<GraphQLResponse<UpdateRequestData>> call = getUpdateRequestCall(requestId,
                 appId,
                 recipientId,
                 type,

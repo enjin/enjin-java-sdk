@@ -8,12 +8,37 @@ import retrofit2.Callback;
 
 public interface AsynchronousUsersService {
 
+    /**
+     *
+     * @param name
+     * @param email
+     * @param password
+     * @param callback
+     */
     void createUserAsync(String name, String email, String password, Callback<GraphQLResponse<CreateUserData>> callback);
 
+    /**
+     *
+     * @param name
+     * @param email
+     * @param password
+     * @param callback
+     */
     void loginUserAsync(String name, String email, String password, Callback<GraphQLResponse<LoginUserData>> callback);
 
+    /**
+     *
+     * @param callback
+     */
     void getAllUsersAsync(Callback<GraphQLResponse<UsersData>> callback);
 
-    void getUsersAsync(Integer id, String name, String email, Callback<GraphQLResponse<UsersData>> callback);
+    /**
+     *
+     * @param userId
+     * @param name
+     * @param email
+     * @param callback
+     */
+    void getUsersAsync(Integer userId, String name, String email, Callback<GraphQLResponse<UsersData>> callback);
 
 }

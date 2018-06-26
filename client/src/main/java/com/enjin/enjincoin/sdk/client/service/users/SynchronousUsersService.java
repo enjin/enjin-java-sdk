@@ -10,11 +10,40 @@ import java.io.IOException;
 
 public interface SynchronousUsersService {
 
+    /**
+     *
+     * @param name
+     * @param email
+     * @param password
+     * @return
+     * @throws IOException
+     */
     Response<GraphQLResponse<CreateUserData>> createUserSync(String name, String email, String password) throws IOException;
 
+    /**
+     *
+     * @param name
+     * @param email
+     * @param password
+     * @return
+     * @throws IOException
+     */
     Response<GraphQLResponse<LoginUserData>> loginUserSync(String name, String email, String password) throws IOException;
 
+    /**
+     *
+     * @return
+     * @throws IOException
+     */
     Response<GraphQLResponse<UsersData>> getAllUsersSync() throws IOException;
 
-    Response<GraphQLResponse<UsersData>> getUsersSync(Integer id, String name, String email) throws IOException;
+    /**
+     *
+     * @param userId
+     * @param name
+     * @param email
+     * @return
+     * @throws IOException
+     */
+    Response<GraphQLResponse<UsersData>> getUsersSync(Integer userId, String name, String email) throws IOException;
 }

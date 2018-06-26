@@ -30,8 +30,8 @@ public class IdentitiesServiceImpl implements IdentitiesService {
     }
 
     @Override
-    public void getIdentitiesAsync(final Integer id, final String ethereumAddress, final Callback<GraphQLResponse<IdentitiesData>> callback) {
-        final Call<GraphQLResponse<IdentitiesData>> call = getIdentities(id, ethereumAddress);
+    public void getIdentitiesAsync(final Integer identityId, final String ethereumAddress, final Callback<GraphQLResponse<IdentitiesData>> callback) {
+        final Call<GraphQLResponse<IdentitiesData>> call = getIdentities(identityId, ethereumAddress);
         call.enqueue(callback);
     }
 
@@ -42,10 +42,10 @@ public class IdentitiesServiceImpl implements IdentitiesService {
     }
 
     @Override
-    public void updateIdentityAsync(final Integer id, final Integer appId, final Integer userId,
+    public void updateIdentityAsync(final Integer identityId, final Integer appId, final Integer userId,
                                     final String ethereumAddress,
                                     final List<IdentityField> fields, final Callback<GraphQLResponse<UpdateIdentityData>> callback) {
-        final Call<GraphQLResponse<UpdateIdentityData>> call = updateIdentity(id, appId, userId, ethereumAddress, fields);
+        final Call<GraphQLResponse<UpdateIdentityData>> call = updateIdentity(identityId, appId, userId, ethereumAddress, fields);
         call.enqueue(callback);
     }
 
@@ -56,8 +56,8 @@ public class IdentitiesServiceImpl implements IdentitiesService {
     }
 
     @Override
-    public Response<GraphQLResponse<IdentitiesData>> getIdentitiesSync(final Integer id, final String ethereumAddress) throws IOException {
-        final Call<GraphQLResponse<IdentitiesData>> call = getIdentities(id, ethereumAddress);
+    public Response<GraphQLResponse<IdentitiesData>> getIdentitiesSync(final Integer identityId, final String ethereumAddress) throws IOException {
+        final Call<GraphQLResponse<IdentitiesData>> call = getIdentities(identityId, ethereumAddress);
         return call.execute();
     }
 
@@ -68,10 +68,10 @@ public class IdentitiesServiceImpl implements IdentitiesService {
     }
 
     @Override
-    public Response<GraphQLResponse<UpdateIdentityData>> updateIdentitySync(final Integer id, final Integer appId, final Integer userId,
+    public Response<GraphQLResponse<UpdateIdentityData>> updateIdentitySync(final Integer identityId, final Integer appId, final Integer userId,
                                                                             final String ethereumAddress,
                                                                             final List<IdentityField> fields) throws IOException {
-        final Call<GraphQLResponse<UpdateIdentityData>> call = updateIdentity(id, appId, userId, ethereumAddress, fields);
+        final Call<GraphQLResponse<UpdateIdentityData>> call = updateIdentity(identityId, appId, userId, ethereumAddress, fields);
         return call.execute();
     }
 

@@ -10,14 +10,49 @@ import java.io.IOException;
 
 public interface SynchronousTokensService {
 
+    /**
+     *
+     * @return
+     * @throws IOException
+     */
     Response<GraphQLResponse<TokensData>> getAllTokensSync() throws IOException;
 
-    Response<GraphQLResponse<TokensData>> getTokensSync(Integer id,
+    /**
+     *
+     * @param tokenId
+     * @param creator
+     * @param name
+     * @param firstBlock
+     * @param blockHeight
+     * @return
+     * @throws IOException
+     */
+    Response<GraphQLResponse<TokensData>> getTokensSync(Integer tokenId,
                                                         String creator,
                                                         String name,
                                                         Integer firstBlock,
                                                         Integer blockHeight) throws IOException;
 
+    /**
+     *
+     * @param tokenId
+     * @param appId
+     * @param creator
+     * @param adapter
+     * @param name
+     * @param icon
+     * @param totalSupply
+     * @param exchangeRate
+     * @param decimals
+     * @param maxMeltFee
+     * @param meltFee
+     * @param transferable
+     * @param firstBlock
+     * @param blockHeight
+     * @param fromBlockchain
+     * @return
+     * @throws IOException
+     */
     Response<GraphQLResponse<CreateTokenData>> createTokenSync(Integer tokenId,
                                                                Integer appId,
                                                                String creator,
@@ -34,6 +69,26 @@ public interface SynchronousTokensService {
                                                                Integer blockHeight,
                                                                Boolean fromBlockchain) throws IOException;
 
+    /**
+     * 
+     * @param tokenId
+     * @param appId
+     * @param creator
+     * @param adapter
+     * @param name
+     * @param icon
+     * @param totalSupply
+     * @param exchangeRate
+     * @param decimals
+     * @param maxMeltFee
+     * @param meltFee
+     * @param transferable
+     * @param firstBlock
+     * @param blockHeight
+     * @param fromBlockchain
+     * @return
+     * @throws IOException
+     */
     Response<GraphQLResponse<UpdateTokenData>> updateTokenSync(Integer tokenId,
                                                                Integer appId,
                                                                String creator,

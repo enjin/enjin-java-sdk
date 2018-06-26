@@ -13,21 +13,41 @@ import retrofit2.http.POST;
 
 public interface RequestsRetrofitService {
 
+    /**
+     *
+     * @param request
+     * @return
+     */
     @POST("graphql")
     @GraphQuery("GetAllRequests")
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<RequestsData>> getAllRequests(@Body GraphQLRequest.Builder request);
 
+    /**
+     *
+     * @param request
+     * @return
+     */
     @POST("graphql")
     @GraphQuery("GetRequests")
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<RequestsData>> getRequests(@Body GraphQLRequest.Builder request);
 
+    /**
+     *
+     * @param request
+     * @return
+     */
     @POST("graphql")
     @GraphQuery("CreateRequest")
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<CreateRequestData>> createRequest(@Body GraphQLRequest.Builder request);
 
+    /**
+     * 
+     * @param request
+     * @return
+     */
     @POST("graphql")
     @GraphQuery("UpdateRequest")
     @Headers("Content-Type: application/json")

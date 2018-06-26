@@ -28,13 +28,13 @@ public class TokensServiceImpl implements TokensService {
     }
 
     @Override
-    public void getTokensAsync(final Integer id,
+    public void getTokensAsync(final Integer tokenId,
                                final String creator,
                                final String name,
                                final Integer firstBlock,
                                final Integer blockHeight,
                                final Callback<GraphQLResponse<TokensData>> callback) {
-        final Call<GraphQLResponse<TokensData>> call = getTokensCall(id, creator, name, firstBlock, blockHeight);
+        final Call<GraphQLResponse<TokensData>> call = getTokensCall(tokenId, creator, name, firstBlock, blockHeight);
         call.enqueue(callback);
     }
 
@@ -113,12 +113,12 @@ public class TokensServiceImpl implements TokensService {
     }
 
     @Override
-    public Response<GraphQLResponse<TokensData>> getTokensSync(final Integer id,
+    public Response<GraphQLResponse<TokensData>> getTokensSync(final Integer tokenId,
                                                                final String creator,
                                                                final String name,
                                                                final Integer firstBlock,
                                                                final Integer blockHeight) throws IOException {
-        final Call<GraphQLResponse<TokensData>> call = getTokensCall(id, creator, name, firstBlock, blockHeight);
+        final Call<GraphQLResponse<TokensData>> call = getTokensCall(tokenId, creator, name, firstBlock, blockHeight);
         return call.execute();
     }
 

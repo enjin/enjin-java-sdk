@@ -37,8 +37,8 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public void getUsersAsync(final Integer id, final String name, final String email, final Callback<GraphQLResponse<UsersData>> callback) {
-        getUsersCall(id, name, email).enqueue(callback);
+    public void getUsersAsync(final Integer userId, final String name, final String email, final Callback<GraphQLResponse<UsersData>> callback) {
+        getUsersCall(userId, name, email).enqueue(callback);
     }
 
     @Override
@@ -57,8 +57,8 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public Response<GraphQLResponse<UsersData>> getUsersSync(final Integer id, final String name, final String email) throws IOException {
-        return getUsersCall(id, name, email).execute();
+    public Response<GraphQLResponse<UsersData>> getUsersSync(final Integer userId, final String name, final String email) throws IOException {
+        return getUsersCall(userId, name, email).execute();
     }
 
     private Call<GraphQLResponse<CreateUserData>> getCreateCall(final String name, final String email, final String password) {

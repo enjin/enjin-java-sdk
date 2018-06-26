@@ -11,9 +11,30 @@ import java.io.IOException;
 
 public interface SynchronousRequestsService {
 
+    /**
+     *
+     * @return
+     * @throws IOException
+     */
     Response<GraphQLResponse<RequestsData>> getAllRequestsSync() throws IOException;
 
-    Response<GraphQLResponse<RequestsData>> getRequestsSync(Integer id,
+    /**
+     *
+     * @param requestId
+     * @param transactionId
+     * @param identityId
+     * @param type
+     * @param recipientId
+     * @param recipientAddress
+     * @param tokenId
+     * @param value
+     * @param encodedData
+     * @param state
+     * @param accepted
+     * @return
+     * @throws IOException
+     */
+    Response<GraphQLResponse<RequestsData>> getRequestsSync(Integer requestId,
                                                             String transactionId,
                                                             Integer identityId,
                                                             String type,
@@ -25,6 +46,21 @@ public interface SynchronousRequestsService {
                                                             String state,
                                                             Integer accepted) throws IOException;
 
+    /**
+     *
+     * @param identityId
+     * @param appId
+     * @param type
+     * @param title
+     * @param icon
+     * @param value
+     * @param createTokenData
+     * @param mintTokenData
+     * @param meltTokenData
+     * @param sendTokenData
+     * @return
+     * @throws IOException
+     */
     Response<GraphQLResponse<CreateRequestData>> createRequestSync(Integer identityId,
                                                                    Integer appId,
                                                                    String type,
@@ -36,7 +72,19 @@ public interface SynchronousRequestsService {
                                                                    JsonObject meltTokenData,
                                                                    JsonObject sendTokenData) throws IOException;
 
-    Response<GraphQLResponse<UpdateRequestData>> updateRequestSync(Integer id,
+    /**
+     * 
+     * @param requestId
+     * @param appId
+     * @param recipientId
+     * @param type
+     * @param title
+     * @param icon
+     * @param value
+     * @return
+     * @throws IOException
+     */
+    Response<GraphQLResponse<UpdateRequestData>> updateRequestSync(Integer requestId,
                                                                    Integer appId,
                                                                    Integer recipientId,
                                                                    String type,

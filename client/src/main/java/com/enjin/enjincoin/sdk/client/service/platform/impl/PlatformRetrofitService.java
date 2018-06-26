@@ -11,6 +11,11 @@ import retrofit2.http.POST;
 
 public interface PlatformRetrofitService {
 
+    /**
+     * 
+     * @param request
+     * @return
+     */
     @POST("graphql")
     @GraphQuery("GetPlatform")
     @Headers("Content-Type: application/json")

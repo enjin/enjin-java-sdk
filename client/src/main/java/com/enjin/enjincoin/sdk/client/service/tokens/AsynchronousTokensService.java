@@ -8,15 +8,47 @@ import retrofit2.Callback;
 
 public interface AsynchronousTokensService {
 
+    /**
+     *
+     * @param callback
+     */
     void getAllTokensAsync(Callback<GraphQLResponse<TokensData>> callback);
 
-    void getTokensAsync(Integer id,
+    /**
+     *
+     * @param tokenId
+     * @param creator
+     * @param name
+     * @param firstBlock
+     * @param blockHeight
+     * @param callback
+     */
+    void getTokensAsync(Integer tokenId,
                         String creator,
                         String name,
                         Integer firstBlock,
                         Integer blockHeight,
                         Callback<GraphQLResponse<TokensData>> callback);
 
+    /**
+     *
+     * @param tokenId
+     * @param appId
+     * @param creator
+     * @param adapter
+     * @param name
+     * @param icon
+     * @param totalSupply
+     * @param exchangeRate
+     * @param decimals
+     * @param maxMeltFee
+     * @param meltFee
+     * @param transferable
+     * @param firstBlock
+     * @param blockHeight
+     * @param fromBlockchain
+     * @param callback
+     */
     void createTokenAsync(Integer tokenId,
                           Integer appId,
                           String creator,
@@ -34,6 +66,25 @@ public interface AsynchronousTokensService {
                           Boolean fromBlockchain,
                           Callback<GraphQLResponse<CreateTokenData>> callback);
 
+    /**
+     *
+     * @param tokenId
+     * @param appId
+     * @param creator
+     * @param adapter
+     * @param name
+     * @param icon
+     * @param totalSupply
+     * @param exchangeRate
+     * @param decimals
+     * @param maxMeltFee
+     * @param meltFee
+     * @param transferable
+     * @param firstBlock
+     * @param blockHeight
+     * @param fromBlockchain
+     * @param callback
+     */
     void updateTokenAsync(Integer tokenId,
                           Integer appId,
                           String creator,

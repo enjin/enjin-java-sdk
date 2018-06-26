@@ -9,9 +9,28 @@ import retrofit2.Callback;
 
 public interface AsynchronousRequestsService {
 
+    /**
+     *
+     * @param callback
+     */
     void getAllRequestsAsync(Callback<GraphQLResponse<RequestsData>> callback);
 
-    void getRequestsAsync(Integer id,
+    /**
+     *
+     * @param requestId
+     * @param transactionId
+     * @param identityId
+     * @param type
+     * @param recipientId
+     * @param recipientAddress
+     * @param tokenId
+     * @param value
+     * @param encodedData
+     * @param state
+     * @param accepted
+     * @param callback
+     */
+    void getRequestsAsync(Integer requestId,
                           String transactionId,
                           Integer identityId,
                           String type,
@@ -24,6 +43,20 @@ public interface AsynchronousRequestsService {
                           Integer accepted,
                           Callback<GraphQLResponse<RequestsData>> callback);
 
+    /**
+     *
+     * @param identityId
+     * @param appId
+     * @param type
+     * @param title
+     * @param icon
+     * @param value
+     * @param createTokenData
+     * @param mintTokenData
+     * @param meltTokenData
+     * @param sendTokenData
+     * @param callback
+     */
     void createRequestAsync(Integer identityId,
                             Integer appId,
                             String type,
@@ -36,7 +69,18 @@ public interface AsynchronousRequestsService {
                             JsonObject sendTokenData,
                             Callback<GraphQLResponse<CreateRequestData>> callback);
 
-    void updateRequestAsync(Integer id,
+    /**
+     *
+     * @param requestId
+     * @param appId
+     * @param recipientId
+     * @param type
+     * @param title
+     * @param icon
+     * @param value
+     * @param callback
+     */
+    void updateRequestAsync(Integer requestId,
                             Integer appId,
                             Integer recipientId,
                             String type,

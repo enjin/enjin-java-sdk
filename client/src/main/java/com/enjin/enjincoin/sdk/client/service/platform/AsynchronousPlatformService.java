@@ -6,5 +6,9 @@ import retrofit2.Callback;
 
 public interface AsynchronousPlatformService {
 
+    /**
+     *
+     * @param callback
+     */
     void getPlatformAsync(Callback<GraphQLResponse<PlatformData>> callback);
 }

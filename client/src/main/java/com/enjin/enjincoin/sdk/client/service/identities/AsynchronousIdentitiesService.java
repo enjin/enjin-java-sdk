@@ -11,13 +11,39 @@ import java.util.List;
 
 public interface AsynchronousIdentitiesService {
 
+    /**
+     *
+     * @param callback
+     */
     void getAllIdentitiesAsync(Callback<GraphQLResponse<IdentitiesData>> callback);
 
-    void getIdentitiesAsync(Integer id, String ethereumAddress, Callback<GraphQLResponse<IdentitiesData>> callback);
+    /**
+     *
+     * @param identityId
+     * @param ethereumAddress
+     * @param callback
+     */
+    void getIdentitiesAsync(Integer identityId, String ethereumAddress, Callback<GraphQLResponse<IdentitiesData>> callback);
 
+    /**
+     *
+     * @param userId
+     * @param ethereumAddress
+     * @param fields
+     * @param callback
+     */
     void createIdentityAsync(Integer userId, String ethereumAddress, List<IdentityField> fields, Callback<GraphQLResponse<CreateIdentityData>> callback);
 
-    void updateIdentityAsync(Integer id, Integer appId, Integer userId,
+    /**
+     *
+     * @param identityId
+     * @param appId
+     * @param userId
+     * @param ethereumAddress
+     * @param fields
+     * @param callback
+     */
+    void updateIdentityAsync(Integer identityId, Integer appId, Integer userId,
                              String ethereumAddress,
                              List<IdentityField> fields, Callback<GraphQLResponse<UpdateIdentityData>> callback);
 }
