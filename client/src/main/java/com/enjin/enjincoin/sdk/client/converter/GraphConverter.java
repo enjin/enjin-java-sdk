@@ -35,7 +35,7 @@ public class GraphConverter extends Converter.Factory {
     /**
      * Protected constructor because we want to make use of the
      * Factory Pattern to create our converter
-     * <br/>
+     * <br>
      */
     protected GraphConverter() {
         this.graphProcessor = GraphProcessor.getInstance();
@@ -45,7 +45,7 @@ public class GraphConverter extends Converter.Factory {
      * Response body converter delegates logic processing to a child class that handles
      * wrapping and deserialization of the json response data.
      * @see GraphResponseConverter
-     * <br/>
+     * <br>
      *
      * @param annotations All the annotation applied to the requesting Call method
      *                    @see retrofit2.Call
@@ -69,7 +69,7 @@ public class GraphConverter extends Converter.Factory {
      * Response body converter delegates logic processing to a child class that handles
      * wrapping and deserialization of the json response data.
      * @see GraphRequestConverter
-     * <br/>
+     * <br>
      *
      * @param parameterAnnotations All the annotation applied to request parameters
      * @param methodAnnotations All the annotation applied to the requesting method
@@ -104,7 +104,7 @@ public class GraphConverter extends Converter.Factory {
          * Converter contains logic on how to handle responses, since GraphQL responses follow
          * the JsonAPI spec it makes sense to wrap our base query response data and errors response
          * in here, the logic remains open to the implementation
-         * <br/>
+         * <br>
          *
          * @param responseBody The retrofit response body received from the network
          * @return The type declared in the Call of the request
@@ -135,7 +135,7 @@ public class GraphConverter extends Converter.Factory {
         /**
          * Converter for the request body, gets the GraphQL query from the method annotation
          * and constructs a GraphQL request body to send over the network.
-         * <br/>
+         * <br>
          *
          * @param containerBuilder The constructed builder method of your query with variables
          * @return Request body
