@@ -4,14 +4,14 @@ import com.google.gson.annotations.SerializedName;
 
 public class TokenTransferFeeSettings {
 
-    private String type;
+    private TokenTransferFeeType type;
 
     @SerializedName("token_id")
     private String tokenId;
 
     private Integer value;
 
-    public String getType() {
+    public TokenTransferFeeType getType() {
         return this.type;
     }
 
