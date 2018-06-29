@@ -23,6 +23,10 @@ query login {
             fields {
                 key,
                 value
+            },
+            tokens {
+                token_id,
+                balance
             }
         }
     }

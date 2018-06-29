@@ -1,4 +1,4 @@
-query getAllRequests {
+query getRequests {
     EnjinTransactions(%s) {
         id,
         transaction_id,

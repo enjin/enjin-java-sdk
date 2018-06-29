@@ -22,6 +22,10 @@ query getAllUsers {
             fields {
                 key,
                 value
+            },
+            tokens {
+                token_id,
+                balance
             }
         }
     }

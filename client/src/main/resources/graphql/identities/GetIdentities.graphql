@@ -1,4 +1,4 @@
-query getAllIdentities {
+query getIdentities {
     EnjinIdentities(%s) {
         id,
         app_id,
