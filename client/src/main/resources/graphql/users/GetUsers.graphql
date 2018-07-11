@@ -18,6 +18,8 @@ query getUsers {
             id,
             app_id,
             ethereum_address,
+            eth_balance,
+            enj_balance,
             linking_code,
             fields {
                 key,
