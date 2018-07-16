@@ -5,7 +5,6 @@ import com.enjin.enjincoin.sdk.client.service.identities.vo.Identity;
 import com.enjin.enjincoin.sdk.client.service.identities.vo.IdentityField;
 import com.enjin.enjincoin.sdk.client.service.identities.vo.data.CreateIdentityData;
 import com.enjin.enjincoin.sdk.client.service.identities.vo.data.IdentitiesData;
-import com.enjin.enjincoin.sdk.client.service.identities.vo.data.IdentityData;
 import com.enjin.enjincoin.sdk.client.service.identities.vo.data.UpdateIdentityData;
 import retrofit2.Response;
 
