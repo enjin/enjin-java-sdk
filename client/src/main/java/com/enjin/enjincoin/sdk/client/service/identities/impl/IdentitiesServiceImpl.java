@@ -3,9 +3,11 @@ package com.enjin.enjincoin.sdk.client.service.identities.impl;
 import com.enjin.enjincoin.sdk.client.model.body.GraphQLResponse;
 import com.enjin.enjincoin.sdk.client.model.request.GraphQLRequest;
 import com.enjin.enjincoin.sdk.client.service.identities.IdentitiesService;
+import com.enjin.enjincoin.sdk.client.service.identities.vo.Identity;
 import com.enjin.enjincoin.sdk.client.service.identities.vo.IdentityField;
 import com.enjin.enjincoin.sdk.client.service.identities.vo.data.CreateIdentityData;
 import com.enjin.enjincoin.sdk.client.service.identities.vo.data.IdentitiesData;
+import com.enjin.enjincoin.sdk.client.service.identities.vo.data.IdentityData;
 import com.enjin.enjincoin.sdk.client.service.identities.vo.data.UpdateIdentityData;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,8 +44,8 @@ public class IdentitiesServiceImpl implements IdentitiesService {
     }
 
     @Override
-    public void unlinkIdentityAsync(final Integer identityId, final Boolean unlink, final Callback<GraphQLResponse<IdentitiesData>> callback) {
-        final Call<GraphQLResponse<IdentitiesData>> call = unlinkIdentity(identityId, unlink);
+    public void unlinkIdentityAsync(final Integer identityId, final Boolean unlink, final Callback<GraphQLResponse<Identity>> callback) {
+        final Call<GraphQLResponse<Identity>> call = unlinkIdentity(identityId, unlink);
         call.enqueue(callback);
     }
 
@@ -73,8 +75,8 @@ public class IdentitiesServiceImpl implements IdentitiesService {
         return call.execute();
     }
 
-    public Response<GraphQLResponse<IdentitiesData>> unlinkIdentitySync(final Integer identityId, final Boolean unlink) throws IOException {
-        final Call<GraphQLResponse<IdentitiesData>> call = unlinkIdentity(identityId, unlink);
+    public Response<GraphQLResponse<Identity>> unlinkIdentitySync(final Integer identityId, final Boolean unlink) throws IOException {
+        final Call<GraphQLResponse<Identity>> call = unlinkIdentity(identityId, unlink);
         return call.execute();
     }
 
@@ -103,7 +105,7 @@ public class IdentitiesServiceImpl implements IdentitiesService {
                 .withParameter("fields", fields));
     }
 
-    private Call<GraphQLResponse<IdentitiesData>> unlinkIdentity(final Integer identityId, final Boolean unlink) {
+    private Call<GraphQLResponse<Identity>> unlinkIdentity(final Integer identityId, final Boolean unlink) {
         return this.service.unlinkIdentity(GraphQLRequest.builder()
                 .withParameter("id", identityId)
                 .withParameter("unlink", unlink));

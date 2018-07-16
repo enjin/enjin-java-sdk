@@ -3,8 +3,10 @@ package com.enjin.enjincoin.sdk.client.service.identities.impl;
 import com.enjin.enjincoin.sdk.client.annotation.GraphQuery;
 import com.enjin.enjincoin.sdk.client.model.body.GraphQLResponse;
 import com.enjin.enjincoin.sdk.client.model.request.GraphQLRequest;
+import com.enjin.enjincoin.sdk.client.service.identities.vo.Identity;
 import com.enjin.enjincoin.sdk.client.service.identities.vo.data.CreateIdentityData;
 import com.enjin.enjincoin.sdk.client.service.identities.vo.data.IdentitiesData;
+import com.enjin.enjincoin.sdk.client.service.identities.vo.data.IdentityData;
 import com.enjin.enjincoin.sdk.client.service.identities.vo.data.UpdateIdentityData;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -51,7 +53,7 @@ public interface IdentitiesRetrofitService {
     @POST("graphql")
     @GraphQuery("UnlinkIdentity")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<IdentitiesData>> unlinkIdentity(@Body GraphQLRequest.Builder request);
+    Call<GraphQLResponse<Identity>> unlinkIdentity(@Body GraphQLRequest.Builder request);
 
     /**
      *

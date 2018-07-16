@@ -1,9 +1,11 @@
 package com.enjin.enjincoin.sdk.client.service.identities;
 
 import com.enjin.enjincoin.sdk.client.model.body.GraphQLResponse;
+import com.enjin.enjincoin.sdk.client.service.identities.vo.Identity;
 import com.enjin.enjincoin.sdk.client.service.identities.vo.IdentityField;
 import com.enjin.enjincoin.sdk.client.service.identities.vo.data.CreateIdentityData;
 import com.enjin.enjincoin.sdk.client.service.identities.vo.data.IdentitiesData;
+import com.enjin.enjincoin.sdk.client.service.identities.vo.data.IdentityData;
 import com.enjin.enjincoin.sdk.client.service.identities.vo.data.UpdateIdentityData;
 import retrofit2.Callback;
 
@@ -39,7 +41,7 @@ public interface AsynchronousIdentitiesService {
      * @param identityId
      * @param unlink
      */
-    void unlinkIdentityAsync(Integer identityId, Boolean unlink, Callback<GraphQLResponse<IdentitiesData>> callback);
+    void unlinkIdentityAsync(Integer identityId, Boolean unlink, Callback<GraphQLResponse<Identity>> callback);
 
     /**
      *

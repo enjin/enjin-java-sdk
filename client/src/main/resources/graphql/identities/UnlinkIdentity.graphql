@@ -1,5 +1,21 @@
 mutation unlinkIdentity {
-  DeleteEnjinIdentity(%s, unlink: true){
-    linking_code
+  DeleteEnjinIdentity(%s){
+    id,
+    app_id,
+    ethereum_address,
+    linking_code,
+    fields {
+        key,
+        value
+    }
+    created_at,
+    updated_at,
+    tokens {
+        token_id,
+        balance
+    },
+    eth_balance,
+    enj_balance,
+    all_tokens_balance
   }
 }
