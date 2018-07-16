@@ -41,6 +41,15 @@ public interface SynchronousIdentitiesService {
     /**
      *
      * @param identityId
+     * @param unlink
+     * @return
+     * @throws IOException
+     */
+    Response<GraphQLResponse<IdentitiesData>> unlinkIdentitySync(Integer identityId, Boolean unlink) throws IOException;
+
+    /**
+     *
+     * @param identityId
      * @param appId
      * @param userId
      * @param ethereumAddress

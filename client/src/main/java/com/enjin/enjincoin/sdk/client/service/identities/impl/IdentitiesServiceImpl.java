@@ -42,6 +42,12 @@ public class IdentitiesServiceImpl implements IdentitiesService {
     }
 
     @Override
+    public void unlinkIdentityAsync(final Integer identityId, final Boolean unlink, final Callback<GraphQLResponse<IdentitiesData>> callback) {
+        final Call<GraphQLResponse<IdentitiesData>> call = unlinkIdentity(identityId, unlink);
+        call.enqueue(callback);
+    }
+
+    @Override
     public void updateIdentityAsync(final Integer identityId, final Integer appId, final Integer userId,
                                     final String ethereumAddress,
                                     final List<IdentityField> fields, final Callback<GraphQLResponse<UpdateIdentityData>> callback) {
@@ -64,6 +70,11 @@ public class IdentitiesServiceImpl implements IdentitiesService {
     @Override
     public Response<GraphQLResponse<CreateIdentityData>> createIdentitySync(final Integer userId, final String ethereumAddress, final List<IdentityField> fields) throws IOException {
         final Call<GraphQLResponse<CreateIdentityData>> call = createIdentity(userId, ethereumAddress, fields);
+        return call.execute();
+    }
+
+    public Response<GraphQLResponse<IdentitiesData>> unlinkIdentitySync(final Integer identityId, final Boolean unlink) throws IOException {
+        final Call<GraphQLResponse<IdentitiesData>> call = unlinkIdentity(identityId, unlink);
         return call.execute();
     }
 
@@ -90,6 +101,12 @@ public class IdentitiesServiceImpl implements IdentitiesService {
                 .withParameter("user_id", userId)
                 .withParameter("ethereum_address", ethereumAddress)
                 .withParameter("fields", fields));
+    }
+
+    private Call<GraphQLResponse<IdentitiesData>> unlinkIdentity(final Integer identityId, final Boolean unlink) {
+        return this.service.unlinkIdentity(GraphQLRequest.builder()
+                .withParameter("id", identityId)
+                .withParameter("unlink", unlink));
     }
 
     private Call<GraphQLResponse<UpdateIdentityData>> updateIdentity(final Integer id, final Integer appId, final Integer userId,

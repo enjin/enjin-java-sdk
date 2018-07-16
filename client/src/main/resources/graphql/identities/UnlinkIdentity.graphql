@@ -1,0 +1,5 @@
+mutation unlinkIdentity {
+  DeleteEnjinIdentity(%s, unlink: true){
+    linking_code
+  }
+}

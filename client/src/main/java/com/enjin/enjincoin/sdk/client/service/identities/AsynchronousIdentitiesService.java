@@ -37,6 +37,13 @@ public interface AsynchronousIdentitiesService {
     /**
      *
      * @param identityId
+     * @param unlink
+     */
+    void unlinkIdentityAsync(Integer identityId, Boolean unlink, Callback<GraphQLResponse<IdentitiesData>> callback);
+
+    /**
+     *
+     * @param identityId
      * @param appId
      * @param userId
      * @param ethereumAddress
