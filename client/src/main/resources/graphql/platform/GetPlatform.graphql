@@ -2,6 +2,12 @@ query getPlatform {
     EnjinPlatform {
         name,
         id,
-        notifications
+        notifications,
+        apps {
+            id,
+            name,
+            description,
+            image
+        }
     }
 }
