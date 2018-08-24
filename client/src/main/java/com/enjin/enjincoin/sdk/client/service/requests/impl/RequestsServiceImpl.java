@@ -63,6 +63,7 @@ public class RequestsServiceImpl implements RequestsService {
                                    final String icon,
                                    final Float value,
                                    final JsonObject createTokenData,
+                                   final JsonObject createTradeData,
                                    final JsonObject mintTokenData,
                                    final JsonObject meltTokenData,
                                    final JsonObject sendTokenData,
@@ -74,6 +75,7 @@ public class RequestsServiceImpl implements RequestsService {
                 icon,
                 value,
                 createTokenData,
+                createTradeData,
                 mintTokenData,
                 meltTokenData,
                 sendTokenData);
@@ -139,16 +141,19 @@ public class RequestsServiceImpl implements RequestsService {
                                                                           final String icon,
                                                                           final Float value,
                                                                           final JsonObject createTokenData,
+                                                                          final JsonObject createTradeData,
                                                                           final JsonObject mintTokenData,
                                                                           final JsonObject meltTokenData,
                                                                           final JsonObject sendTokenData) throws IOException {
-        final Call<GraphQLResponse<CreateRequestData>> call = getCreateRequestCall(identityId,
+        final Call<GraphQLResponse<CreateRequestData>> call = getCreateRequestCall(
+                identityId,
                 appId,
                 type,
                 title,
                 icon,
                 value,
                 createTokenData,
+                createTradeData,
                 mintTokenData,
                 meltTokenData,
                 sendTokenData);
@@ -209,6 +214,7 @@ public class RequestsServiceImpl implements RequestsService {
                                                                           final String icon,
                                                                           final Float value,
                                                                           final JsonObject createTokenData,
+                                                                          final JsonObject createTradeData,
                                                                           final JsonObject mintTokenData,
                                                                           final JsonObject meltTokenData,
                                                                           final JsonObject sendTokenData) {
@@ -220,6 +226,7 @@ public class RequestsServiceImpl implements RequestsService {
                 .withParameter("icon", icon)
                 .withParameter("value", value)
                 .withParameter("create_token_data", createTokenData)
+                .withParameter("create_trade_data", createTradeData)
                 .withParameter("mint_token_data", mintTokenData)
                 .withParameter("melt_token_data", meltTokenData)
                 .withParameter("send_token_data", sendTokenData));

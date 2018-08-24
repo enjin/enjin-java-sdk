@@ -64,6 +64,7 @@ public interface AsynchronousRequestsService {
                             String icon,
                             Float value,
                             JsonObject createTokenData,
+                            JsonObject createTradeData,
                             JsonObject mintTokenData,
                             JsonObject meltTokenData,
                             JsonObject sendTokenData,
