@@ -5,10 +5,11 @@ mutation updateToken {
         creator
         name
         totalSupply
-        initialSupply
+        circulatingSupply
+        reserve
         supplyModel
         meltValue
-        meltFeePercentage
+        meltFeeRatio
         transferable
         transferFeeSettings {
             type

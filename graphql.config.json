@@ -2,7 +2,7 @@
 
   "schema": {
     "request": {
-      "url" : "https://enjin.v16studios.co.uk/graphql",
+      "url" : "https://master.tp-enj.in/graphql",
       "method" : "POST",
       "postIntrospectionQuery" : true,
       "options" : {
@@ -17,7 +17,7 @@
   "endpoints" : [
     {
       "name": "V16 Studios",
-      "url": "https://enjin.v16studios.co.uk/graphql",
+      "url": "https://master.tp-enj.in/graphql",
       "options" : {
         "headers": {
           "user-agent" : "JS GraphQL"
