@@ -3,6 +3,7 @@ package com.enjin.enjincoin.sdk.client.service.requests.impl;
 import com.enjin.enjincoin.sdk.client.model.body.GraphQLResponse;
 import com.enjin.enjincoin.sdk.client.model.request.GraphQLRequest;
 import com.enjin.enjincoin.sdk.client.service.requests.RequestsService;
+import com.enjin.enjincoin.sdk.client.service.requests.vo.TransactionType;
 import com.enjin.enjincoin.sdk.client.service.requests.vo.data.CreateRequestData;
 import com.enjin.enjincoin.sdk.client.service.requests.vo.data.RequestsData;
 import com.enjin.enjincoin.sdk.client.service.requests.vo.data.UpdateRequestData;
@@ -32,7 +33,7 @@ public class RequestsServiceImpl implements RequestsService {
     public void getRequestsAsync(final Integer requestId,
                                  final String transactionId,
                                  final Integer identityId,
-                                 final String type,
+                                 final TransactionType type,
                                  final Integer recipientId,
                                  final String recipientAddress,
                                  final Integer tokenId,
@@ -58,7 +59,7 @@ public class RequestsServiceImpl implements RequestsService {
     @Override
     public void createRequestAsync(final Integer identityId,
                                    final Integer appId,
-                                   final String type,
+                                   final TransactionType type,
                                    final String title,
                                    final String icon,
                                    final Float value,
@@ -86,7 +87,7 @@ public class RequestsServiceImpl implements RequestsService {
     public void updateRequestAsync(final Integer requestId,
                                    final Integer appId,
                                    final Integer recipientId,
-                                   final String type,
+                                   final TransactionType type,
                                    final String title,
                                    final String icon,
                                    final Float value,
@@ -111,7 +112,7 @@ public class RequestsServiceImpl implements RequestsService {
     public Response<GraphQLResponse<RequestsData>> getRequestsSync(final Integer requestId,
                                                                    final String transactionId,
                                                                    final Integer identityId,
-                                                                   final String type,
+                                                                   final TransactionType type,
                                                                    final Integer recipientId,
                                                                    final String recipientAddress,
                                                                    final Integer tokenId,
@@ -136,7 +137,7 @@ public class RequestsServiceImpl implements RequestsService {
     @Override
     public Response<GraphQLResponse<CreateRequestData>> createRequestSync(final Integer identityId,
                                                                           final Integer appId,
-                                                                          final String type,
+                                                                          final TransactionType type,
                                                                           final String title,
                                                                           final String icon,
                                                                           final Float value,
@@ -164,7 +165,7 @@ public class RequestsServiceImpl implements RequestsService {
     public Response<GraphQLResponse<UpdateRequestData>> updateRequestSync(final Integer requestId,
                                                                           final Integer appId,
                                                                           final Integer recipientId,
-                                                                          final String type,
+                                                                          final TransactionType type,
                                                                           final String title,
                                                                           final String icon,
                                                                           final Float value) throws IOException {
@@ -185,7 +186,7 @@ public class RequestsServiceImpl implements RequestsService {
     private Call<GraphQLResponse<RequestsData>> getGetRequestsCall(final Integer id,
                                                                    final String transactionId,
                                                                    final Integer identityId,
-                                                                   final String type,
+                                                                   final TransactionType type,
                                                                    final Integer recipientId,
                                                                    final String recipientAddress,
                                                                    final Integer tokenId,
@@ -209,7 +210,7 @@ public class RequestsServiceImpl implements RequestsService {
 
     private Call<GraphQLResponse<CreateRequestData>> getCreateRequestCall(final Integer identityId,
                                                                           final Integer appId,
-                                                                          final String type,
+                                                                          final TransactionType type,
                                                                           final String title,
                                                                           final String icon,
                                                                           final Float value,
@@ -235,7 +236,7 @@ public class RequestsServiceImpl implements RequestsService {
     private Call<GraphQLResponse<UpdateRequestData>> getUpdateRequestCall(final Integer id,
                                                                           final Integer appId,
                                                                           final Integer recipientId,
-                                                                          final String type,
+                                                                          final TransactionType type,
                                                                           final String title,
                                                                           final String icon,
                                                                           final Float value) {
