@@ -1,6 +1,7 @@
 package com.enjin.enjincoin.sdk.client.service.notifications.impl;
 
 import com.enjin.enjincoin.sdk.client.enums.NotificationType;
+import com.enjin.enjincoin.sdk.client.service.notifications.ChannelEvent;
 import com.enjin.enjincoin.sdk.client.service.notifications.NotificationListenerRegistration;
 import com.enjin.enjincoin.sdk.client.service.notifications.ThirdPartyNotificationService;
 import com.enjin.enjincoin.sdk.client.service.notifications.vo.NotificationEvent;
@@ -10,6 +11,10 @@ import com.enjin.enjincoin.sdk.client.service.platform.vo.SdkDetails;
 import com.enjin.java_commons.CollectionUtils;
 import com.enjin.java_commons.ExceptionUtils;
 import com.enjin.java_commons.StringUtils;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.pusher.client.Pusher;
 import com.pusher.client.PusherOptions;
 import com.pusher.client.channel.Channel;
@@ -18,9 +23,7 @@ import com.pusher.client.connection.ConnectionState;
 import com.pusher.client.connection.ConnectionStateChange;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
 
 /**
@@ -35,10 +38,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
 
     private static final Long ACTIVITY_TIMEOUT = 4000L;
 
-    private static final Map<String, NotificationType> notificationTypeMapping = new HashMap<String, NotificationType>() {{
-        put("EnjinCoin\\Events\\EnjinEventTransaction", NotificationType.TX_EXECUTED);
-        put("EnjinCoin\\Events\\EnjinEventTokenEvent", NotificationType.TX_EXECUTED);
-    }};
+    private Gson gson = new GsonBuilder().create();
 
     private int appId;
 
@@ -148,11 +148,9 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
         //Convert an enum to an array of strings
         //String[] eventTypes = Arrays.stream(NotificationTypeEnum.values()).map(NotificationTypeEnum::name).toArray(String[]::new);
 
-        for (final Map.Entry<String, NotificationType> entry : notificationTypeMapping.entrySet()) {
-            final String eventType = entry.getKey();
-
-            this.channel.bind(eventType, (channel, event, data) -> {
-                LOGGER.fine(String.format("Received eventType %s, event %s with data %s ", eventType, event, data));
+        for (ChannelEvent channelEvent : ChannelEvent.values()) {
+            this.channel.bind(channelEvent.getKey(), (channel, event, data) -> {
+                LOGGER.fine(String.format("Received eventType %s, event %s with data %s ", channelEvent.getKey(), event, data));
                 PusherNotificationServiceImpl.this.fireNotification(data, channel, event);
             });
         }
@@ -188,17 +186,28 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
             return;
         }
 
-        final NotificationType notificationTypeEnum = notificationTypeMapping.entrySet().stream()
-                .filter(entry -> entry.getKey().equalsIgnoreCase(eventType))
-                .map(Map.Entry::getValue)
-                .findFirst().orElse(NotificationType.UNKNOWN_EVENT);
+        JsonElement dataElement = gson.fromJson(sourceData, JsonElement.class);
+        NotificationType notificationType = NotificationType.UNKNOWN_EVENT;
 
-        if (notificationTypeEnum == NotificationType.UNKNOWN_EVENT) {
+        if (dataElement != null && dataElement.isJsonObject()) {
+            JsonObject dataObject = dataElement.getAsJsonObject();
+            if (dataObject.has("event_type")) {
+                JsonElement eventTypeElement = dataObject.get("event_type");
+                String eventTypeString = eventTypeElement.getAsString();
+                for (NotificationType type : NotificationType.values()) {
+                    if (type.getEventType().equalsIgnoreCase(eventTypeString)) {
+                        notificationType = type;
+                    }
+                }
+            }
+        }
+
+        if (notificationType == NotificationType.UNKNOWN_EVENT) {
             LOGGER.warning(String.format("UNKNOWN_EVENT NotificationType returned for the eventType of %s", eventType));
             return;
         }
 
-        final NotificationEvent notificationEvent = new NotificationEvent(notificationTypeEnum, channel, sourceData);
+        final NotificationEvent notificationEvent = new NotificationEvent(notificationType, channel, sourceData);
 
         for (final NotificationListenerRegistration registration : this.notificationListenerRegistrations) {
             if (registration.getEventMatcher().matches(notificationEvent)) {
