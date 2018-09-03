@@ -65,6 +65,7 @@ public class RequestsServiceImpl implements RequestsService {
                                    final Float value,
                                    final JsonObject createTokenData,
                                    final JsonObject createTradeData,
+                                   final JsonObject completeTradeData,
                                    final JsonObject mintTokenData,
                                    final JsonObject meltTokenData,
                                    final JsonObject sendTokenData,
@@ -77,6 +78,7 @@ public class RequestsServiceImpl implements RequestsService {
                 value,
                 createTokenData,
                 createTradeData,
+                completeTradeData,
                 mintTokenData,
                 meltTokenData,
                 sendTokenData);
@@ -143,6 +145,7 @@ public class RequestsServiceImpl implements RequestsService {
                                                                           final Float value,
                                                                           final JsonObject createTokenData,
                                                                           final JsonObject createTradeData,
+                                                                          final JsonObject completeTradeData,
                                                                           final JsonObject mintTokenData,
                                                                           final JsonObject meltTokenData,
                                                                           final JsonObject sendTokenData) throws IOException {
@@ -155,6 +158,7 @@ public class RequestsServiceImpl implements RequestsService {
                 value,
                 createTokenData,
                 createTradeData,
+                completeTradeData,
                 mintTokenData,
                 meltTokenData,
                 sendTokenData);
@@ -216,6 +220,7 @@ public class RequestsServiceImpl implements RequestsService {
                                                                           final Float value,
                                                                           final JsonObject createTokenData,
                                                                           final JsonObject createTradeData,
+                                                                          final JsonObject completeTradeData,
                                                                           final JsonObject mintTokenData,
                                                                           final JsonObject meltTokenData,
                                                                           final JsonObject sendTokenData) {

@@ -70,6 +70,7 @@ public interface SynchronousRequestsService {
                                                                    Float value,
                                                                    JsonObject createTokenData,
                                                                    JsonObject createTradeData,
+                                                                   JsonObject completeTradeData,
                                                                    JsonObject mintTokenData,
                                                                    JsonObject meltTokenData,
                                                                    JsonObject sendTokenData) throws IOException;

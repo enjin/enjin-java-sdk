@@ -66,6 +66,7 @@ public interface AsynchronousRequestsService {
                             Float value,
                             JsonObject createTokenData,
                             JsonObject createTradeData,
+                            JsonObject completeTradeData,
                             JsonObject mintTokenData,
                             JsonObject meltTokenData,
                             JsonObject sendTokenData,
