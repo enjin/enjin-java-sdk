@@ -233,6 +233,7 @@ public class RequestsServiceImpl implements RequestsService {
                 .withParameter("value", value)
                 .withParameter("create_token_data", createTokenData)
                 .withParameter("create_trade_data", createTradeData)
+                .withParameter("complete_trade_data", completeTradeData)
                 .withParameter("mint_token_data", mintTokenData)
                 .withParameter("melt_token_data", meltTokenData)
                 .withParameter("send_token_data", sendTokenData));
