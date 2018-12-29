@@ -16,7 +16,7 @@ public interface Client extends Closeable {
 
     Response<AuthData> auth(String clientSecret) throws IOException;
 
-    String getClientId();
+    String getAppId();
 
     IdentitiesService getIdentitiesService();
 

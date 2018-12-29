@@ -38,23 +38,23 @@ import java.io.IOException;
 
 public class ClientImpl implements Client {
 
-    private String url;
-    private String clientId;
-    private OkHttpClient client;
-    private Retrofit retrofit;
-    private AuthRetrofitService authRetrofitService;
-    private IdentitiesService identitiesService;
-    private UsersService userService;
-    private RequestsService requestsService;
-    private TokensService tokensService;
-    private PlatformService platformService;
+    private String               url;
+    private String               appId;
+    private OkHttpClient         client;
+    private Retrofit             retrofit;
+    private AuthRetrofitService  authRetrofitService;
+    private IdentitiesService    identitiesService;
+    private UsersService         userService;
+    private RequestsService      requestsService;
+    private TokensService        tokensService;
+    private PlatformService      platformService;
     private NotificationsService notificationsService;
 
     private ClearableCookieJar cookieJar;
 
-    public ClientImpl(final String url, final String clientId, final boolean log) {
+    public ClientImpl(final String url, final String appId, final boolean log) {
         this.url = url;
-        this.clientId = clientId;
+        this.appId = appId;
         this.cookieJar = new PersistentCookieJar(new SetCookieCache(), new MemoryCookiePersistor());
 
         final OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
@@ -81,20 +81,20 @@ public class ClientImpl implements Client {
 
     public Response<AuthData> auth(String clientSecret) throws IOException {
         Call<AuthData> call = getAuthRetrofitService()
-                .auth(new AuthBody("client_credentials", this.clientId, clientSecret));
+                .auth(new AuthBody("client_credentials", this.appId, clientSecret));
         // Failure needs to be handled by the callee.
         Response<AuthData> response = call.execute();
 
         if (response.isSuccessful()) {
             AuthData data = response.body();
             this.cookieJar.addCookie(new Cookie.Builder()
-                    .domain(this.retrofit.baseUrl().host()).name("laravel_session_type")
-                    .value(data.getTokenType())
-                    .build());
+                                             .domain(this.retrofit.baseUrl().host()).name("laravel_session_type")
+                                             .value(data.getTokenType())
+                                             .build());
             this.cookieJar.addCookie(new Cookie.Builder()
-                    .domain(this.retrofit.baseUrl().host()).name("laravel_session")
-                    .value(String.format("%s@%s", this.clientId, data.getAccessToken()))
-                    .build());
+                                             .domain(this.retrofit.baseUrl().host()).name("laravel_session")
+                                             .value(String.format("%s@%s", this.appId, data.getAccessToken()))
+                                             .build());
         }
 
         return response;
@@ -108,8 +108,8 @@ public class ClientImpl implements Client {
     }
 
     @Override
-    public String getClientId() {
-        return this.clientId;
+    public String getAppId() {
+        return this.appId;
     }
 
     @Override
@@ -127,6 +127,7 @@ public class ClientImpl implements Client {
         }
         return this.userService;
     }
+
     @Override
     public RequestsService getRequestsService() {
         if (this.requestsService == null) {
@@ -155,7 +156,7 @@ public class ClientImpl implements Client {
     @Override
     public NotificationsService getNotificationsService() {
         if (this.notificationsService == null) {
-            this.notificationsService = new NotificationsServiceImpl(getPlatformService(), this.clientId);
+            this.notificationsService = new NotificationsServiceImpl(getPlatformService(), this.appId);
         }
 
         return this.notificationsService;
