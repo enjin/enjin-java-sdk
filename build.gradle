@@ -39,9 +39,8 @@ subprojects {
         enjinCommons = '0.3.0-SNAPSHOT'
         mockito = '2.9.0'
         junit = '4.12'
-        powermock = '1.7.3'
-        clover = '4.2.0'
-        assertj = '3.8.0'
+        powermock = '1.7.4'
+        assertj = '3.11.1'
     }
 
     repositories {

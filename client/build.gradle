@@ -6,11 +6,11 @@ apply from: scriptFile('env.gradle')
 configureJavaCompilers(8)
 
 ext {
-    gson = '2.8.2'
+    gson = '2.8.5'
     gsonJava8Datatype = '1.1.0'
     pusher = '1.8.0'
-    okhttp = '3.10.0'
-    retrofit = '2.3.0'
+    okhttp = '3.12.1'
+    retrofit = '2.5.0'
 }
 
 dependencies {
