@@ -1,2 +1,2 @@
-# Enjin-Coin-Java-SDK
-Java SDK for Enjin Coin Platform
+# Enjin Coin Java SDK
+Build applications and games utilizing Enjin Coin technology in Java.
