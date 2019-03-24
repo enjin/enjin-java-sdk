@@ -12,9 +12,9 @@ plugins {
 
 apply from: 'gradle/util.gradle'
 
-apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'java'
+apply plugin: 'java-library'
 apply plugin: 'maven'
 apply plugin: 'com.github.johnrengelman.shadow'
 
@@ -56,23 +56,23 @@ repositories {
 }
 
 dependencies {
-    // compile dependencies
-    compile group: 'com.enjin', name: 'java_commons', version: enjinCommons
-    compile group: 'com.google.code.gson', name: 'gson', version: gson
-    compile group: 'net.dongliu', name: 'gson-java8-datatype', version: gsonJava8Datatype
-    compile group: 'com.pusher', name: 'pusher-java-client', version: pusher
-    compile group: 'com.squareup.okhttp3', name: 'okhttp', version: okhttp
-    compile group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: okhttp
-    compile group: 'com.squareup.okhttp3', name: 'okhttp-urlconnection', version: okhttp
-    compile group: 'com.squareup.retrofit2', name: 'retrofit', version: retrofit
-    compile group: 'com.squareup.retrofit2', name: 'converter-gson', version: retrofit
+    // implementation dependencies
+    implementation group: 'com.enjin', name: 'java_commons', version: enjinCommons
+    implementation group: 'com.google.code.gson', name: 'gson', version: gson
+    implementation group: 'net.dongliu', name: 'gson-java8-datatype', version: gsonJava8Datatype
+    implementation group: 'com.pusher', name: 'pusher-java-client', version: pusher
+    implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: okhttp
+    implementation group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: okhttp
+    implementation group: 'com.squareup.okhttp3', name: 'okhttp-urlconnection', version: okhttp
+    implementation group: 'com.squareup.retrofit2', name: 'retrofit', version: retrofit
+    implementation group: 'com.squareup.retrofit2', name: 'converter-gson', version: retrofit
 
-    // testCompile dependencies
-    testCompile group: 'org.mockito', name: 'mockito-core', version: mockito
-    testCompile group: 'junit', name: 'junit', version: junit
-    testCompile group: 'org.powermock', name: 'powermock-api-mockito2', version: powermock
-    testCompile group: 'org.powermock', name: 'powermock-module-junit4', version: powermock
-    testCompile group: 'org.assertj', name: 'assertj-core', version: assertj
+    // testImplementation dependencies
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: mockito
+    testImplementation group: 'junit', name: 'junit', version: junit
+    testImplementation group: 'org.powermock', name: 'powermock-api-mockito2', version: powermock
+    testImplementation group: 'org.powermock', name: 'powermock-module-junit4', version: powermock
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: assertj
 }
 
 jar {
