@@ -7,7 +7,6 @@ import com.enjin.enjincoin.sdk.client.service.platform.PlatformService;
 import com.enjin.enjincoin.sdk.client.service.requests.RequestsService;
 import com.enjin.enjincoin.sdk.client.service.tokens.TokensService;
 import com.enjin.enjincoin.sdk.client.service.users.UsersService;
-import retrofit2.Response;
 
 import java.io.Closeable;
 import java.io.IOException;

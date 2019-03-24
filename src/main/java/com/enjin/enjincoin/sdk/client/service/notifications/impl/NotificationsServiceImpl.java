@@ -1,5 +1,7 @@
 package com.enjin.enjincoin.sdk.client.service.notifications.impl;
 
+import com.enjin.enjincoin.sdk.client.Callback;
+import com.enjin.enjincoin.sdk.client.Response;
 import com.enjin.enjincoin.sdk.client.enums.NotificationType;
 import com.enjin.enjincoin.sdk.client.model.body.GraphQLResponse;
 import com.enjin.enjincoin.sdk.client.service.notifications.EventMatcher;
@@ -13,8 +15,6 @@ import com.enjin.enjincoin.sdk.client.service.platform.vo.data.PlatformData;
 import com.enjin.java_commons.BooleanUtils;
 import com.enjin.java_commons.ObjectUtils;
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -270,30 +270,23 @@ public class NotificationsServiceImpl implements NotificationsService {
 
     @Override
     public void restartAsync(final CompletableFuture<Boolean> future) {
-        this.service.getPlatformAsync(new Callback<GraphQLResponse<PlatformData>>() {
-            @Override
-            public void onResponse(Call<GraphQLResponse<PlatformData>> call,
-                                   Response<GraphQLResponse<PlatformData>> response) {
-                boolean result = false;
-                if (response.isSuccessful()) {
-                    final GraphQLResponse<PlatformData> body = response.body();
+        this.service.getPlatformAsync(response -> {
+            boolean result = false;
+            if (response.body() != null) {
+                final GraphQLResponse<PlatformData> body = response.body();
 
-                    shutdown();
+                shutdown();
 
-                    final PlatformData    data    = body.getData();
-                    final PlatformDetails details = data.getPlatform();
-                    NotificationsServiceImpl.this.thirdPartyNotificationService =
-                            new PusherNotificationServiceImpl(details,
-                                                              NotificationsServiceImpl.this.clientId);
-                    result = NotificationsServiceImpl.this.thirdPartyNotificationService.init();
-                }
-                future.complete(result);
-            }
-
-            @Override
-            public void onFailure(Call<GraphQLResponse<PlatformData>> call, Throwable t) {
+                final PlatformData    data    = body.getData();
+                final PlatformDetails details = data.getPlatform();
+                NotificationsServiceImpl.this.thirdPartyNotificationService =
+                        new PusherNotificationServiceImpl(details,
+                                                          NotificationsServiceImpl.this.clientId);
+                result = NotificationsServiceImpl.this.thirdPartyNotificationService.init();
+            } else {
                 LOGGER.warning("An error occurred while retrieving platform details.");
             }
+            future.complete(result);
         });
     }
 }

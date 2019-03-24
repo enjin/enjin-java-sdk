@@ -1,5 +1,6 @@
 package com.enjin.enjincoin.sdk.client.service.tokens;
 
+import com.enjin.enjincoin.sdk.client.Callback;
 import com.enjin.enjincoin.sdk.client.model.body.GraphQLResponse;
 import com.enjin.enjincoin.sdk.client.service.tokens.vo.TokenSupplyModel;
 import com.enjin.enjincoin.sdk.client.service.tokens.vo.TokenTransferFeeSettings;
@@ -7,7 +8,6 @@ import com.enjin.enjincoin.sdk.client.service.tokens.vo.TokenTransferable;
 import com.enjin.enjincoin.sdk.client.service.tokens.vo.data.CreateTokenData;
 import com.enjin.enjincoin.sdk.client.service.tokens.vo.data.TokensData;
 import com.enjin.enjincoin.sdk.client.service.tokens.vo.data.UpdateTokenData;
-import retrofit2.Callback;
 
 public interface AsynchronousTokensService {
 

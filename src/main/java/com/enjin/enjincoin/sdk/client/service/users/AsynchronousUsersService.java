@@ -1,10 +1,10 @@
 package com.enjin.enjincoin.sdk.client.service.users;
 
+import com.enjin.enjincoin.sdk.client.Callback;
 import com.enjin.enjincoin.sdk.client.model.body.GraphQLResponse;
 import com.enjin.enjincoin.sdk.client.service.users.vo.data.CreateUserData;
 import com.enjin.enjincoin.sdk.client.service.users.vo.data.LoginUserData;
 import com.enjin.enjincoin.sdk.client.service.users.vo.data.UsersData;
-import retrofit2.Callback;
 
 public interface AsynchronousUsersService {
 

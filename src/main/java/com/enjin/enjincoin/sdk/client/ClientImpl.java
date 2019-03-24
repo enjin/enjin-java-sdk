@@ -30,7 +30,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Converter;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -83,7 +82,11 @@ public class ClientImpl implements Client {
         Call<AuthData> call = getAuthRetrofitService()
                 .auth(new AuthBody("client_credentials", this.appId, clientSecret));
         // Failure needs to be handled by the callee.
-        Response<AuthData> response = call.execute();
+        retrofit2.Response<AuthData> response = call.execute();
+
+        if (response == null) {
+            return null;
+        }
 
         if (response.isSuccessful()) {
             AuthData data = response.body();
@@ -97,10 +100,10 @@ public class ClientImpl implements Client {
                                              .build());
         }
 
-        return response;
+        return new Response<>(response.code(), response.body());
     }
 
-    public AuthRetrofitService getAuthRetrofitService() {
+    private AuthRetrofitService getAuthRetrofitService() {
         if (this.authRetrofitService == null) {
             this.authRetrofitService = this.retrofit.create(AuthRetrofitService.class);
         }

@@ -1,12 +1,12 @@
 package com.enjin.enjincoin.sdk.client.service.requests;
 
+import com.enjin.enjincoin.sdk.client.Callback;
 import com.enjin.enjincoin.sdk.client.model.body.GraphQLResponse;
 import com.enjin.enjincoin.sdk.client.service.requests.vo.TransactionType;
 import com.enjin.enjincoin.sdk.client.service.requests.vo.data.CreateRequestData;
 import com.enjin.enjincoin.sdk.client.service.requests.vo.data.RequestsData;
 import com.enjin.enjincoin.sdk.client.service.requests.vo.data.UpdateRequestData;
 import com.google.gson.JsonObject;
-import retrofit2.Callback;
 
 public interface AsynchronousRequestsService {
 

@@ -26,8 +26,6 @@ import java.io.Serializable;
 import okhttp3.Cookie;
 
 public class SerializableCookie implements Serializable {
-    private static final String TAG = SerializableCookie.class.getSimpleName();
-
     private static final long serialVersionUID = -8594045714036645534L;
 
     private transient Cookie cookie;
