@@ -1,41 +1,25 @@
 buildscript {
     repositories {
+        jcenter()
         mavenCentral()
         maven { url 'https://plugins.gradle.org/m2/' }
-        jcenter()
     }
 }
 
 plugins {
-    id 'com.github.johnrengelman.shadow' version '4.0.3'
+    id 'com.github.johnrengelman.shadow' version '5.0.0'
+    id 'java'
+    id 'java-library'
+    id 'maven'
 }
 
 apply from: 'gradle/util.gradle'
 
-apply plugin: 'idea'
-apply plugin: 'java'
-apply plugin: 'java-library'
-apply plugin: 'maven'
-apply plugin: 'com.github.johnrengelman.shadow'
-
 apply from: scriptFile('env.gradle')
 configureJavaCompilers(8)
 
-group = 'com.enjin.enjincoin'
+group = 'com.enjin'
 version = '0.3.1-SNAPSHOT'
-
-idea {
-    module {
-        scopes.PROVIDED.plus += [configurations.shadow]
-    }
-}
-
-tasks.build.dependsOn(shadowJar)
-artifacts.archives shadowJar
-
-tasks.withType(AbstractCompile) {
-    classpath += configurations.shadow
-}
 
 ext {
     enjinCommons = '0.3.0-SNAPSHOT'
@@ -75,14 +59,6 @@ dependencies {
     testImplementation group: 'org.assertj', name: 'assertj-core', version: assertj
 }
 
-jar {
-    archiveName = "${project.name}-slim.jar"
-}
-
-shadowJar {
-    archiveName = "${project.name}.jar"
-}
-
 task javadocJar(type: Jar) {
     classifier = 'javadoc'
     from javadoc
@@ -96,10 +72,5 @@ task sourcesJar(type: Jar) {
 artifacts {
     archives javadocJar
     archives sourcesJar
-}
-
-install {
-    repositories.mavenInstaller {
-        pom.artifactId = "java-sdk-${project.name}"
-    }
+    archives shadowJar
 }
