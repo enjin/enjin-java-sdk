@@ -55,6 +55,7 @@ public class SerializableCookie implements Serializable {
      * like!
      *
      * @param bytes byte array to be converted
+     *
      * @return string containing hex values
      */
     private static String byteArrayToHexString(byte[] bytes) {
@@ -91,10 +92,11 @@ public class SerializableCookie implements Serializable {
      * Converts hex values from strings to byte array
      *
      * @param hexString string of hex-encoded values
+     *
      * @return decoded byte array
      */
     private static byte[] hexStringToByteArray(String hexString) {
-        int len = hexString.length();
+        int    len  = hexString.length();
         byte[] data = new byte[len / 2];
         for (int i = 0; i < len; i += 2) {
             data[i / 2] = (byte) ((Character.digit(hexString.charAt(i), 16) << 4) + Character
@@ -133,14 +135,17 @@ public class SerializableCookie implements Serializable {
 
         builder.path((String) in.readObject());
 
-        if (in.readBoolean())
+        if (in.readBoolean()) {
             builder.secure();
+        }
 
-        if (in.readBoolean())
+        if (in.readBoolean()) {
             builder.httpOnly();
+        }
 
-        if (in.readBoolean())
+        if (in.readBoolean()) {
             builder.hostOnlyDomain(domain);
+        }
 
         cookie = builder.build();
     }

@@ -31,28 +31,42 @@ public class IdentitiesServiceImpl implements IdentitiesService {
     }
 
     @Override
-    public void getIdentitiesAsync(final Integer identityId, final String ethereumAddress, final Callback<GraphQLResponse<IdentitiesData>> callback) {
+    public void getIdentitiesAsync(final Integer identityId,
+                                   final String ethereumAddress,
+                                   final Callback<GraphQLResponse<IdentitiesData>> callback) {
         final Call<GraphQLResponse<IdentitiesData>> call = getIdentities(identityId, ethereumAddress);
         call.enqueue(callback);
     }
 
     @Override
-    public void createIdentityAsync(final Integer userId, final String ethereumAddress, final List<IdentityField> fields, final Callback<GraphQLResponse<CreateIdentityData>> callback) {
+    public void createIdentityAsync(final Integer userId,
+                                    final String ethereumAddress,
+                                    final List<IdentityField> fields,
+                                    final Callback<GraphQLResponse<CreateIdentityData>> callback) {
         final Call<GraphQLResponse<CreateIdentityData>> call = createIdentity(userId, ethereumAddress, fields);
         call.enqueue(callback);
     }
 
     @Override
-    public void unlinkIdentityAsync(final Integer identityId, final Boolean unlink, final Callback<GraphQLResponse<Identity>> callback) {
+    public void unlinkIdentityAsync(final Integer identityId,
+                                    final Boolean unlink,
+                                    final Callback<GraphQLResponse<Identity>> callback) {
         final Call<GraphQLResponse<Identity>> call = unlinkIdentity(identityId, unlink);
         call.enqueue(callback);
     }
 
     @Override
-    public void updateIdentityAsync(final Integer identityId, final Integer appId, final Integer userId,
+    public void updateIdentityAsync(final Integer identityId,
+                                    final Integer appId,
+                                    final Integer userId,
                                     final String ethereumAddress,
-                                    final List<IdentityField> fields, final Callback<GraphQLResponse<UpdateIdentityData>> callback) {
-        final Call<GraphQLResponse<UpdateIdentityData>> call = updateIdentity(identityId, appId, userId, ethereumAddress, fields);
+                                    final List<IdentityField> fields,
+                                    final Callback<GraphQLResponse<UpdateIdentityData>> callback) {
+        final Call<GraphQLResponse<UpdateIdentityData>> call = updateIdentity(identityId,
+                                                                              appId,
+                                                                              userId,
+                                                                              ethereumAddress,
+                                                                              fields);
         call.enqueue(callback);
     }
 
@@ -63,27 +77,37 @@ public class IdentitiesServiceImpl implements IdentitiesService {
     }
 
     @Override
-    public Response<GraphQLResponse<IdentitiesData>> getIdentitiesSync(final Integer identityId, final String ethereumAddress) throws IOException {
+    public Response<GraphQLResponse<IdentitiesData>> getIdentitiesSync(final Integer identityId,
+                                                                       final String ethereumAddress) throws IOException {
         final Call<GraphQLResponse<IdentitiesData>> call = getIdentities(identityId, ethereumAddress);
         return call.execute();
     }
 
     @Override
-    public Response<GraphQLResponse<CreateIdentityData>> createIdentitySync(final Integer userId, final String ethereumAddress, final List<IdentityField> fields) throws IOException {
+    public Response<GraphQLResponse<CreateIdentityData>> createIdentitySync(final Integer userId,
+                                                                            final String ethereumAddress,
+                                                                            final List<IdentityField> fields) throws IOException {
         final Call<GraphQLResponse<CreateIdentityData>> call = createIdentity(userId, ethereumAddress, fields);
         return call.execute();
     }
 
-    public Response<GraphQLResponse<Identity>> unlinkIdentitySync(final Integer identityId, final Boolean unlink) throws IOException {
+    public Response<GraphQLResponse<Identity>> unlinkIdentitySync(final Integer identityId,
+                                                                  final Boolean unlink) throws IOException {
         final Call<GraphQLResponse<Identity>> call = unlinkIdentity(identityId, unlink);
         return call.execute();
     }
 
     @Override
-    public Response<GraphQLResponse<UpdateIdentityData>> updateIdentitySync(final Integer identityId, final Integer appId, final Integer userId,
+    public Response<GraphQLResponse<UpdateIdentityData>> updateIdentitySync(final Integer identityId,
+                                                                            final Integer appId,
+                                                                            final Integer userId,
                                                                             final String ethereumAddress,
                                                                             final List<IdentityField> fields) throws IOException {
-        final Call<GraphQLResponse<UpdateIdentityData>> call = updateIdentity(identityId, appId, userId, ethereumAddress, fields);
+        final Call<GraphQLResponse<UpdateIdentityData>> call = updateIdentity(identityId,
+                                                                              appId,
+                                                                              userId,
+                                                                              ethereumAddress,
+                                                                              fields);
         return call.execute();
     }
 
@@ -93,32 +117,36 @@ public class IdentitiesServiceImpl implements IdentitiesService {
 
     private Call<GraphQLResponse<IdentitiesData>> getIdentities(final Integer id, final String ethereumAddress) {
         return this.service.getIdentities(GraphQLRequest.builder()
-                .withParameter("id", id)
-                .withParameter("ethereum_address", ethereumAddress));
+                                                        .withParameter("id", id)
+                                                        .withParameter("ethereum_address", ethereumAddress));
     }
 
-    private Call<GraphQLResponse<CreateIdentityData>> createIdentity(final Integer userId, final String ethereumAddress, final List<IdentityField> fields) {
+    private Call<GraphQLResponse<CreateIdentityData>> createIdentity(final Integer userId,
+                                                                     final String ethereumAddress,
+                                                                     final List<IdentityField> fields) {
         return this.service.createIdentity(GraphQLRequest.builder()
-                .withParameter("user_id", userId)
-                .withParameter("ethereum_address", ethereumAddress)
-                .withParameter("fields", fields));
+                                                         .withParameter("user_id", userId)
+                                                         .withParameter("ethereum_address", ethereumAddress)
+                                                         .withParameter("fields", fields));
     }
 
     private Call<GraphQLResponse<Identity>> unlinkIdentity(final Integer identityId, final Boolean unlink) {
         return this.service.unlinkIdentity(GraphQLRequest.builder()
-                .withParameter("id", identityId)
-                .withParameter("unlink", unlink));
+                                                         .withParameter("id", identityId)
+                                                         .withParameter("unlink", unlink));
     }
 
-    private Call<GraphQLResponse<UpdateIdentityData>> updateIdentity(final Integer id, final Integer appId, final Integer userId,
+    private Call<GraphQLResponse<UpdateIdentityData>> updateIdentity(final Integer id,
+                                                                     final Integer appId,
+                                                                     final Integer userId,
                                                                      final String ethereumAddress,
                                                                      final List<IdentityField> fields) {
         return this.service.updateIdentity(GraphQLRequest.builder()
-                .withParameter("id", id)
-                .withParameter("app_id", appId)
-                .withParameter("user_id", userId)
-                .withParameter("ethereum_address", ethereumAddress)
-                .withParameter("fields", fields));
+                                                         .withParameter("id", id)
+                                                         .withParameter("app_id", appId)
+                                                         .withParameter("user_id", userId)
+                                                         .withParameter("ethereum_address", ethereumAddress)
+                                                         .withParameter("fields", fields));
     }
 
 }

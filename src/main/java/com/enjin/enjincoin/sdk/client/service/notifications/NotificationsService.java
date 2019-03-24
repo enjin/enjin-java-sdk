@@ -66,7 +66,8 @@ public interface NotificationsService extends AsynchronousNotificationsService {
      *
      * @return NotificationListenerRegistration
      */
-    NotificationListenerRegistration addAllowedTypesNotificationListener(NotificationListener listener, NotificationType... allowed);
+    NotificationListenerRegistration addAllowedTypesNotificationListener(NotificationListener listener,
+                                                                         NotificationType... allowed);
 
     /**
      * Method to configure a listener for ignore types.
@@ -76,7 +77,8 @@ public interface NotificationsService extends AsynchronousNotificationsService {
      *
      * @return NotificationListenerRegistration
      */
-    NotificationListenerRegistration addIgnoredTypesNotificationListener(NotificationListener listener, NotificationType... ignored);
+    NotificationListenerRegistration addIgnoredTypesNotificationListener(NotificationListener listener,
+                                                                         NotificationType... ignored);
 
     /**
      * Method to remove a notification listener.

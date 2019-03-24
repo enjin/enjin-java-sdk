@@ -66,7 +66,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
      * Class constructor.
      *
      * @param platformDetails to use
-     * @param appId                to use
+     * @param appId           to use
      */
     public PusherNotificationServiceImpl(final PlatformDetails platformDetails, final int appId) {
         this.platformDetails = platformDetails;
@@ -94,10 +94,10 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
         }
 
         final SdkDetails sdkDetails = notificationDetails.getSdkDetails();
-        final String appKey = sdkDetails.getKey();
-        final String cluster = sdkDetails.getOptions().getCluster();
-        final String appChannel = getAppChannel(platformDetails);
-        final boolean encrypted = sdkDetails.getOptions().getEncrypted();
+        final String     appKey     = sdkDetails.getKey();
+        final String     cluster    = sdkDetails.getOptions().getCluster();
+        final String     appChannel = getAppChannel(platformDetails);
+        final boolean    encrypted  = sdkDetails.getOptions().getEncrypted();
         System.out.println("appChannel:" + appChannel);
         final Long activityTimeout = ACTIVITY_TIMEOUT;
 
@@ -126,7 +126,9 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
              */
             @Override
             public void onConnectionStateChange(final ConnectionStateChange change) {
-                LOGGER.fine(String.format("State changed to %s from %s ", change.getCurrentState(), change.getPreviousState()));
+                LOGGER.fine(String.format("State changed to %s from %s ",
+                                          change.getCurrentState(),
+                                          change.getPreviousState()));
             }
 
             /**
@@ -137,7 +139,8 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
              */
             @Override
             public void onError(final String message, final String code, final Exception exception) {
-                LOGGER.warning(String.format("There was a problem connecting!. Exception: %s", ExceptionUtils.throwableToString(exception)));
+                LOGGER.warning(String.format("There was a problem connecting!. Exception: %s",
+                                             ExceptionUtils.throwableToString(exception)));
             }
         }, ConnectionState.ALL);
 
@@ -150,7 +153,10 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
 
         for (ChannelEvent channelEvent : ChannelEvent.values()) {
             this.channel.bind(channelEvent.getKey(), (channel, event, data) -> {
-                LOGGER.fine(String.format("Received eventType %s, event %s with data %s ", channelEvent.getKey(), event, data));
+                LOGGER.fine(String.format("Received eventType %s, event %s with data %s ",
+                                          channelEvent.getKey(),
+                                          event,
+                                          data));
                 PusherNotificationServiceImpl.this.fireNotification(data, channel, event);
             });
         }
@@ -186,14 +192,14 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
             return;
         }
 
-        JsonElement dataElement = gson.fromJson(sourceData, JsonElement.class);
+        JsonElement      dataElement      = gson.fromJson(sourceData, JsonElement.class);
         NotificationType notificationType = NotificationType.UNKNOWN_EVENT;
 
         if (dataElement != null && dataElement.isJsonObject()) {
             JsonObject dataObject = dataElement.getAsJsonObject();
             if (dataObject.has("event_type")) {
                 JsonElement eventTypeElement = dataObject.get("event_type");
-                String eventTypeString = eventTypeElement.getAsString();
+                String      eventTypeString  = eventTypeElement.getAsString();
                 for (NotificationType type : NotificationType.values()) {
                     if (type.getEventType().equalsIgnoreCase(eventTypeString)) {
                         notificationType = type;

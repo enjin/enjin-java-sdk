@@ -19,17 +19,20 @@ public class GraphErrorUtil {
      * Converts the response error response into an object.
      *
      * @return The error object, or null if an exception was encountered
+     *
      * @see Error
      */
     public static List<GraphError> getError(Response response) {
         try {
-            if(response != null) {
-                ResponseBody responseBody = response.errorBody();
-                String message;
+            if (response != null) {
+                ResponseBody     responseBody = response.errorBody();
+                String           message;
                 List<GraphError> graphErrors;
-                if (responseBody != null && !StringUtils.isEmpty(message = responseBody.string()))
-                    if((graphErrors = getGraphQLError(message)) != null)
+                if (responseBody != null && !StringUtils.isEmpty(message = responseBody.string())) {
+                    if ((graphErrors = getGraphQLError(message)) != null) {
                         return graphErrors;
+                    }
+                }
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -38,8 +41,8 @@ public class GraphErrorUtil {
     }
 
     private static List<GraphError> getGraphQLError(String errorJson) {
-        Gson gson = new Gson();
-        Type tokenType = new TypeToken<GraphQLResponse<?>>(){}.getType();
+        Gson               gson           = new Gson();
+        Type               tokenType      = new TypeToken<GraphQLResponse<?>>() {}.getType();
         GraphQLResponse<?> graphContainer = gson.fromJson(errorJson, tokenType);
         return graphContainer.getErrors();
     }

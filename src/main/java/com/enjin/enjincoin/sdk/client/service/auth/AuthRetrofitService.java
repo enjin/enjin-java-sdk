@@ -10,8 +10,8 @@ import retrofit2.http.POST;
 public interface AuthRetrofitService {
 
     /**
-     *
      * @param body
+     *
      * @return
      */
     @POST("oauth/token")

@@ -19,7 +19,9 @@ public class JsonStringConverter extends Converter.Factory {
     }
 
     @Override
-    public Converter<?, String> stringConverter(final Type type, final Annotation[] annotations, final Retrofit retrofit) {
+    public Converter<?, String> stringConverter(final Type type,
+                                                final Annotation[] annotations,
+                                                final Retrofit retrofit) {
         for (final Annotation annotation : annotations) {
             if (annotation instanceof Json) {
                 final Converter<?, RequestBody> converter =

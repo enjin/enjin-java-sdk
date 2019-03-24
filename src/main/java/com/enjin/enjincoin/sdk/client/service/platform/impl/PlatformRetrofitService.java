@@ -12,8 +12,8 @@ import retrofit2.http.POST;
 public interface PlatformRetrofitService {
 
     /**
-     * 
      * @param request
+     *
      * @return
      */
     @POST("graphql")

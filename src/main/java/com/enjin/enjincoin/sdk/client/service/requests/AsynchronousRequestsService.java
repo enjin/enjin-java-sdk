@@ -11,13 +11,11 @@ import retrofit2.Callback;
 public interface AsynchronousRequestsService {
 
     /**
-     *
      * @param callback
      */
     void getAllRequestsAsync(Callback<GraphQLResponse<RequestsData>> callback);
 
     /**
-     *
      * @param requestId
      * @param transactionId
      * @param identityId
@@ -45,7 +43,6 @@ public interface AsynchronousRequestsService {
                           Callback<GraphQLResponse<RequestsData>> callback);
 
     /**
-     *
      * @param identityId
      * @param appId
      * @param type
@@ -73,7 +70,6 @@ public interface AsynchronousRequestsService {
                             Callback<GraphQLResponse<CreateRequestData>> callback);
 
     /**
-     *
      * @param requestId
      * @param appId
      * @param recipientId

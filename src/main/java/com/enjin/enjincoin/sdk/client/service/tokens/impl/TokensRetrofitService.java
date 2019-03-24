@@ -14,8 +14,8 @@ import retrofit2.http.POST;
 public interface TokensRetrofitService {
 
     /**
-     *
      * @param Token
+     *
      * @return
      */
     @POST("graphql")
@@ -24,8 +24,8 @@ public interface TokensRetrofitService {
     Call<GraphQLResponse<TokensData>> getAllTokens(@Body GraphQLRequest.Builder Token);
 
     /**
-     *
      * @param Token
+     *
      * @return
      */
     @POST("graphql")
@@ -34,8 +34,8 @@ public interface TokensRetrofitService {
     Call<GraphQLResponse<TokensData>> getTokens(@Body GraphQLRequest.Builder Token);
 
     /**
-     *
      * @param Token
+     *
      * @return
      */
     @POST("graphql")
@@ -44,8 +44,8 @@ public interface TokensRetrofitService {
     Call<GraphQLResponse<CreateTokenData>> createToken(@Body GraphQLRequest.Builder Token);
 
     /**
-     *
      * @param Token
+     *
      * @return
      */
     @POST("graphql")

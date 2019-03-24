@@ -27,7 +27,11 @@ public class IdentityField {
     private Integer unique;
 
 
-    public IdentityField(final String key, final String fieldValue, final Integer searchable, final Integer displayable, final Integer unique) {
+    public IdentityField(final String key,
+                         final String fieldValue,
+                         final Integer searchable,
+                         final Integer displayable,
+                         final Integer unique) {
         super();
         this.key = key;
         this.fieldValue = fieldValue;

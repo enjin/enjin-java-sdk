@@ -12,13 +12,11 @@ import retrofit2.Callback;
 public interface AsynchronousTokensService {
 
     /**
-     *
      * @param callback
      */
     void getAllTokensAsync(Callback<GraphQLResponse<TokensData>> callback);
 
     /**
-     *
      * @param tokenId
      * @param creator
      * @param name
@@ -56,7 +54,6 @@ public interface AsynchronousTokensService {
                         Callback<GraphQLResponse<TokensData>> callback);
 
     /**
-     *
      * @param tokenId
      * @param creator
      * @param name
@@ -86,7 +83,6 @@ public interface AsynchronousTokensService {
                           Callback<GraphQLResponse<CreateTokenData>> callback);
 
     /**
-     *
      * @param tokenId
      * @param creator
      * @param name

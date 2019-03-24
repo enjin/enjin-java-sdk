@@ -14,15 +14,14 @@ import java.io.IOException;
 public interface SynchronousTokensService {
 
     /**
-     *
      * @return
+     *
      * @throws IOException
      */
     Response<GraphQLResponse<TokensData>> getAllTokensSync() throws IOException;
 
 
     /**
-     *
      * @param tokenId
      * @param creator
      * @param name
@@ -39,7 +38,9 @@ public interface SynchronousTokensService {
      * @param blockHeight
      * @param tokenIdAsInt
      * @param markedForDelete
+     *
      * @return
+     *
      * @throws IOException
      */
     Response<GraphQLResponse<TokensData>> getTokensSync(String tokenId,
@@ -60,7 +61,6 @@ public interface SynchronousTokensService {
                                                         Boolean markedForDelete) throws IOException;
 
     /**
-     *
      * @param tokenId
      * @param creator
      * @param name
@@ -73,7 +73,9 @@ public interface SynchronousTokensService {
      * @param transferFeeSettings
      * @param nonFungible
      * @param fromBlockchain
+     *
      * @return
+     *
      * @throws IOException
      */
     Response<GraphQLResponse<CreateTokenData>> createTokenSync(String tokenId,
@@ -91,7 +93,6 @@ public interface SynchronousTokensService {
 
 
     /**
-     *
      * @param tokenId
      * @param creator
      * @param name
@@ -104,7 +105,9 @@ public interface SynchronousTokensService {
      * @param transferFeeSettings
      * @param nonFungible
      * @param fromBlockchain
+     *
      * @return
+     *
      * @throws IOException
      */
     Response<GraphQLResponse<UpdateTokenData>> updateTokenSync(String tokenId,

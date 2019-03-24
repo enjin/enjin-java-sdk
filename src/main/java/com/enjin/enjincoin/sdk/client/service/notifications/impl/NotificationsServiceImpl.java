@@ -55,12 +55,12 @@ public class NotificationsServiceImpl implements NotificationsService {
     /**
      * Class constructor.
      *
-     * @param service - the platform service to use
+     * @param service  - the platform service to use
      * @param clientId - the app id to use
      */
     public NotificationsServiceImpl(final PlatformService service, final String clientId) {
-       this.service = service;
-       this.clientId = Integer.parseInt(clientId);
+        this.service = service;
+        this.clientId = Integer.parseInt(clientId);
     }
 
     /**
@@ -99,7 +99,7 @@ public class NotificationsServiceImpl implements NotificationsService {
                 return initResult;
             }
 
-            final PlatformData data = body.getData();
+            final PlatformData    data    = body.getData();
             final PlatformDetails details = data.getPlatform();
             // Setup the thirdPartyNotificationService to use the pusher service.
             if (this.thirdPartyNotificationService == null) {
@@ -175,7 +175,8 @@ public class NotificationsServiceImpl implements NotificationsService {
      * @return NotificationListenerRegistration
      */
     @Override
-    public NotificationListenerRegistration addNotificationListener(final NotificationListener listener, final EventMatcher eventMatcher) {
+    public NotificationListenerRegistration addNotificationListener(final NotificationListener listener,
+                                                                    final EventMatcher eventMatcher) {
         return this.configureListener(listener).withMatcher(eventMatcher).register();
     }
 
@@ -220,8 +221,9 @@ public class NotificationsServiceImpl implements NotificationsService {
         }
 
         final List<NotificationListenerRegistration> matching = this.notificationListeners.stream()
-                .filter(registration -> registration.getListener() == listener)
-                .collect(Collectors.toList());
+                                                                                          .filter(registration -> registration
+                                                                                                  .getListener() == listener)
+                                                                                          .collect(Collectors.toList());
 
         if (matching.size() > 0) {
             matching.forEach(this::removeNotificationListenerRegistration);
@@ -270,18 +272,19 @@ public class NotificationsServiceImpl implements NotificationsService {
     public void restartAsync(final CompletableFuture<Boolean> future) {
         this.service.getPlatformAsync(new Callback<GraphQLResponse<PlatformData>>() {
             @Override
-            public void onResponse(Call<GraphQLResponse<PlatformData>> call, Response<GraphQLResponse<PlatformData>> response) {
+            public void onResponse(Call<GraphQLResponse<PlatformData>> call,
+                                   Response<GraphQLResponse<PlatformData>> response) {
                 boolean result = false;
                 if (response.isSuccessful()) {
                     final GraphQLResponse<PlatformData> body = response.body();
 
                     shutdown();
 
-                    final PlatformData data = body.getData();
+                    final PlatformData    data    = body.getData();
                     final PlatformDetails details = data.getPlatform();
                     NotificationsServiceImpl.this.thirdPartyNotificationService =
                             new PusherNotificationServiceImpl(details,
-                                    NotificationsServiceImpl.this.clientId);
+                                                              NotificationsServiceImpl.this.clientId);
                     result = NotificationsServiceImpl.this.thirdPartyNotificationService.init();
                 }
                 future.complete(result);

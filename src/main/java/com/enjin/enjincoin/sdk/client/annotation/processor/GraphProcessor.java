@@ -18,18 +18,19 @@ import java.util.Set;
 
 public class GraphProcessor {
 
-    private static GraphProcessor ourInstance;
-    private final static Object lock = new Object();
-    private final static String defaultExtension = ".graphql";
-    private final static String defaultDirectory = "graphql";
+    private static       GraphProcessor ourInstance;
+    private final static Object         lock             = new Object();
+    private final static String         defaultExtension = ".graphql";
+    private final static String         defaultDirectory = "graphql";
 
     private volatile Map<String, String> graphFiles;
 
     private GraphProcessor() {
         synchronized (lock) {
-            if(this.graphFiles == null)
+            if (this.graphFiles == null) {
                 this.graphFiles = new HashMap<>();
-            if(isEmpty()) {
+            }
+            if (isEmpty()) {
                 initialize();
             }
         }
@@ -38,16 +39,18 @@ public class GraphProcessor {
     public String getQuery(Annotation[] annotations) {
         GraphQuery graphQuery = null;
 
-        for (Annotation annotation: annotations)
-            if(annotation instanceof GraphQuery) {
+        for (Annotation annotation : annotations) {
+            if (annotation instanceof GraphQuery) {
                 graphQuery = (GraphQuery) annotation;
                 break;
             }
+        }
 
-        if(graphFiles != null && graphQuery != null) {
+        if (graphFiles != null && graphQuery != null) {
             String fileName = String.format("%s%s", graphQuery.value(), defaultExtension);
-            if(graphFiles.containsKey(fileName))
+            if (graphFiles.containsKey(fileName)) {
                 return graphFiles.get(fileName);
+            }
         }
         return null;
     }
@@ -59,7 +62,7 @@ public class GraphProcessor {
     private synchronized void initialize() {
         try {
             Set<URL> urls = ResourceUtils.getResourceURLs(getClass(),
-                    url -> url.getFile().endsWith(defaultExtension));
+                                                          url -> url.getFile().endsWith(defaultExtension));
 
             for (URL url : urls) {
                 try {
@@ -68,7 +71,7 @@ public class GraphProcessor {
                     FileSystems.newFileSystem(url.toURI(), new HashMap<>());
                 }
 
-                Path path = Paths.get(url.toURI());
+                Path   path = Paths.get(url.toURI());
                 byte[] data = Files.readAllBytes(path);
                 this.graphFiles.put(path.getFileName().toString(), new String(data));
             }
@@ -78,8 +81,9 @@ public class GraphProcessor {
     }
 
     public static GraphProcessor getInstance() {
-        if(ourInstance == null)
+        if (ourInstance == null) {
             ourInstance = new GraphProcessor();
+        }
         return ourInstance;
     }
 }

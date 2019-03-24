@@ -14,48 +14,55 @@ import java.util.List;
 public interface SynchronousIdentitiesService {
 
     /**
-     *
      * @return
+     *
      * @throws IOException
      */
     Response<GraphQLResponse<IdentitiesData>> getAllIdentitiesSync() throws IOException;
 
     /**
-     *
      * @param identityId
      * @param ethereumAddress
+     *
      * @return
+     *
      * @throws IOException
      */
-    Response<GraphQLResponse<IdentitiesData>> getIdentitiesSync(Integer identityId, String ethereumAddress) throws IOException;
+    Response<GraphQLResponse<IdentitiesData>> getIdentitiesSync(Integer identityId,
+                                                                String ethereumAddress) throws IOException;
 
     /**
-     *
      * @param userId
      * @param ethereumAddress
      * @param fields
+     *
      * @return
+     *
      * @throws IOException
      */
-    Response<GraphQLResponse<CreateIdentityData>> createIdentitySync(Integer userId, String ethereumAddress, List<IdentityField> fields) throws IOException;
+    Response<GraphQLResponse<CreateIdentityData>> createIdentitySync(Integer userId,
+                                                                     String ethereumAddress,
+                                                                     List<IdentityField> fields) throws IOException;
 
     /**
-     *
      * @param identityId
      * @param unlink
+     *
      * @return
+     *
      * @throws IOException
      */
     Response<GraphQLResponse<Identity>> unlinkIdentitySync(Integer identityId, Boolean unlink) throws IOException;
 
     /**
-     *
      * @param identityId
      * @param appId
      * @param userId
      * @param ethereumAddress
      * @param fields
+     *
      * @return
+     *
      * @throws IOException
      */
     Response<GraphQLResponse<UpdateIdentityData>> updateIdentitySync(Integer identityId, Integer appId, Integer userId,

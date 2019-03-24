@@ -44,19 +44,20 @@ public class GraphConverter extends Converter.Factory {
     /**
      * Response body converter delegates logic processing to a child class that handles
      * wrapping and deserialization of the json response data.
-     * @see GraphResponseConverter
-     * <br>
      *
      * @param annotations All the annotation applied to the requesting Call method
-     *                    @see retrofit2.Call
-     * @param retrofit The retrofit object representing the response
-     * @param type The generic type declared on the Call method
+     * @param retrofit    The retrofit object representing the response
+     * @param type        The generic type declared on the Call method
+     *
+     * @see GraphResponseConverter
+     * <br>
+     * @see retrofit2.Call
      */
     @Override
     public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations, Retrofit retrofit) {
         if (type instanceof ParameterizedType) {
             ParameterizedType parameterizedType = (ParameterizedType) type;
-            Type rawType = parameterizedType.getRawType();
+            Type              rawType           = parameterizedType.getRawType();
             if (rawType == GraphQLResponse.class) {
                 return new GraphResponseConverter<>(type);
             }
@@ -68,16 +69,20 @@ public class GraphConverter extends Converter.Factory {
     /**
      * Response body converter delegates logic processing to a child class that handles
      * wrapping and deserialization of the json response data.
-     * @see GraphRequestConverter
-     * <br>
      *
      * @param parameterAnnotations All the annotation applied to request parameters
-     * @param methodAnnotations All the annotation applied to the requesting method
-     * @param retrofit The retrofit object representing the response
-     * @param type The type of the parameter of the request
+     * @param methodAnnotations    All the annotation applied to the requesting method
+     * @param retrofit             The retrofit object representing the response
+     * @param type                 The type of the parameter of the request
+     *
+     * @see GraphRequestConverter
+     * <br>
      */
     @Override
-    public Converter<GraphQLRequest.Builder, RequestBody> requestBodyConverter(Type type, Annotation[] parameterAnnotations, Annotation[] methodAnnotations, Retrofit retrofit) {
+    public Converter<GraphQLRequest.Builder, RequestBody> requestBodyConverter(Type type,
+                                                                               Annotation[] parameterAnnotations,
+                                                                               Annotation[] methodAnnotations,
+                                                                               Retrofit retrofit) {
         if (GraphQLRequest.Builder.class.isAssignableFrom((Class<?>) type)) {
             return new GraphRequestConverter(methodAnnotations);
         }
@@ -107,6 +112,7 @@ public class GraphConverter extends Converter.Factory {
          * <br>
          *
          * @param responseBody The retrofit response body received from the network
+         *
          * @return The type declared in the Call of the request
          */
         @Override
@@ -138,6 +144,7 @@ public class GraphConverter extends Converter.Factory {
          * <br>
          *
          * @param containerBuilder The constructed builder method of your query with variables
+         *
          * @return Request body
          */
         @Override

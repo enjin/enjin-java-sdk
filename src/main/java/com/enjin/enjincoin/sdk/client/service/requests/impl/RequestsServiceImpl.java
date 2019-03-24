@@ -43,16 +43,16 @@ public class RequestsServiceImpl implements RequestsService {
                                  final Integer accepted,
                                  final Callback<GraphQLResponse<RequestsData>> callback) {
         final Call<GraphQLResponse<RequestsData>> call = getGetRequestsCall(requestId,
-                transactionId,
-                identityId,
-                type,
-                recipientId,
-                recipientAddress,
-                tokenId,
-                value,
-                encodedData,
-                state,
-                accepted);
+                                                                            transactionId,
+                                                                            identityId,
+                                                                            type,
+                                                                            recipientId,
+                                                                            recipientAddress,
+                                                                            tokenId,
+                                                                            value,
+                                                                            encodedData,
+                                                                            state,
+                                                                            accepted);
         call.enqueue(callback);
     }
 
@@ -71,17 +71,17 @@ public class RequestsServiceImpl implements RequestsService {
                                    final JsonObject sendTokenData,
                                    final Callback<GraphQLResponse<CreateRequestData>> callback) {
         final Call<GraphQLResponse<CreateRequestData>> call = getCreateRequestCall(identityId,
-                appId,
-                type,
-                title,
-                icon,
-                value,
-                createTokenData,
-                createTradeData,
-                completeTradeData,
-                mintTokenData,
-                meltTokenData,
-                sendTokenData);
+                                                                                   appId,
+                                                                                   type,
+                                                                                   title,
+                                                                                   icon,
+                                                                                   value,
+                                                                                   createTokenData,
+                                                                                   createTradeData,
+                                                                                   completeTradeData,
+                                                                                   mintTokenData,
+                                                                                   meltTokenData,
+                                                                                   sendTokenData);
         call.enqueue(callback);
     }
 
@@ -95,12 +95,12 @@ public class RequestsServiceImpl implements RequestsService {
                                    final Float value,
                                    final Callback<GraphQLResponse<UpdateRequestData>> callback) {
         final Call<GraphQLResponse<UpdateRequestData>> call = getUpdateRequestCall(requestId,
-                appId,
-                recipientId,
-                type,
-                title,
-                icon,
-                value);
+                                                                                   appId,
+                                                                                   recipientId,
+                                                                                   type,
+                                                                                   title,
+                                                                                   icon,
+                                                                                   value);
         call.enqueue(callback);
     }
 
@@ -123,16 +123,16 @@ public class RequestsServiceImpl implements RequestsService {
                                                                    final String state,
                                                                    final Integer accepted) throws IOException {
         final Call<GraphQLResponse<RequestsData>> call = getGetRequestsCall(requestId,
-                transactionId,
-                identityId,
-                type,
-                recipientId,
-                recipientAddress,
-                tokenId,
-                value,
-                encodedData,
-                state,
-                accepted);
+                                                                            transactionId,
+                                                                            identityId,
+                                                                            type,
+                                                                            recipientId,
+                                                                            recipientAddress,
+                                                                            tokenId,
+                                                                            value,
+                                                                            encodedData,
+                                                                            state,
+                                                                            accepted);
         return call.execute();
     }
 
@@ -174,12 +174,12 @@ public class RequestsServiceImpl implements RequestsService {
                                                                           final String icon,
                                                                           final Float value) throws IOException {
         final Call<GraphQLResponse<UpdateRequestData>> call = getUpdateRequestCall(requestId,
-                appId,
-                recipientId,
-                type,
-                title,
-                icon,
-                value);
+                                                                                   appId,
+                                                                                   recipientId,
+                                                                                   type,
+                                                                                   title,
+                                                                                   icon,
+                                                                                   value);
         return call.execute();
     }
 
@@ -199,17 +199,17 @@ public class RequestsServiceImpl implements RequestsService {
                                                                    final String state,
                                                                    final Integer accepted) {
         return this.service.getRequests(GraphQLRequest.builder()
-                .withParameter("id", id)
-                .withParameter("transaction_id", transactionId)
-                .withParameter("identity_id", identityId)
-                .withParameter("type", type)
-                .withParameter("recipient_id", recipientId)
-                .withParameter("recipient_address", recipientAddress)
-                .withParameter("token_id", tokenId)
-                .withParameter("value", value)
-                .withParameter("encoded_data", encodedData)
-                .withParameter("state", state)
-                .withParameter("accepted", accepted));
+                                                      .withParameter("id", id)
+                                                      .withParameter("transaction_id", transactionId)
+                                                      .withParameter("identity_id", identityId)
+                                                      .withParameter("type", type)
+                                                      .withParameter("recipient_id", recipientId)
+                                                      .withParameter("recipient_address", recipientAddress)
+                                                      .withParameter("token_id", tokenId)
+                                                      .withParameter("value", value)
+                                                      .withParameter("encoded_data", encodedData)
+                                                      .withParameter("state", state)
+                                                      .withParameter("accepted", accepted));
     }
 
     private Call<GraphQLResponse<CreateRequestData>> getCreateRequestCall(final Integer identityId,
@@ -225,18 +225,18 @@ public class RequestsServiceImpl implements RequestsService {
                                                                           final JsonObject meltTokenData,
                                                                           final JsonObject sendTokenData) {
         return this.service.createRequest(GraphQLRequest.builder()
-                .withParameter("identity_id", identityId)
-                .withParameter("app_id", appId)
-                .withParameter("type", type)
-                .withParameter("title", title)
-                .withParameter("icon", icon)
-                .withParameter("value", value)
-                .withParameter("create_token_data", createTokenData)
-                .withParameter("create_trade_data", createTradeData)
-                .withParameter("complete_trade_data", completeTradeData)
-                .withParameter("mint_token_data", mintTokenData)
-                .withParameter("melt_token_data", meltTokenData)
-                .withParameter("send_token_data", sendTokenData));
+                                                        .withParameter("identity_id", identityId)
+                                                        .withParameter("app_id", appId)
+                                                        .withParameter("type", type)
+                                                        .withParameter("title", title)
+                                                        .withParameter("icon", icon)
+                                                        .withParameter("value", value)
+                                                        .withParameter("create_token_data", createTokenData)
+                                                        .withParameter("create_trade_data", createTradeData)
+                                                        .withParameter("complete_trade_data", completeTradeData)
+                                                        .withParameter("mint_token_data", mintTokenData)
+                                                        .withParameter("melt_token_data", meltTokenData)
+                                                        .withParameter("send_token_data", sendTokenData));
     }
 
     private Call<GraphQLResponse<UpdateRequestData>> getUpdateRequestCall(final Integer id,
@@ -247,13 +247,13 @@ public class RequestsServiceImpl implements RequestsService {
                                                                           final String icon,
                                                                           final Float value) {
         return this.service.updateRequest(GraphQLRequest.builder()
-                .withParameter("id", id)
-                .withParameter("app_id", appId)
-                .withParameter("recipient_id", recipientId)
-                .withParameter("type", type)
-                .withParameter("title", title)
-                .withParameter("icon", icon)
-                .withParameter("value", value));
+                                                        .withParameter("id", id)
+                                                        .withParameter("app_id", appId)
+                                                        .withParameter("recipient_id", recipientId)
+                                                        .withParameter("type", type)
+                                                        .withParameter("title", title)
+                                                        .withParameter("icon", icon)
+                                                        .withParameter("value", value));
     }
 
 }

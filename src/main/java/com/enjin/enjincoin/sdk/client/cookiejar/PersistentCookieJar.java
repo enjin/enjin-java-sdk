@@ -29,9 +29,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class PersistentCookieJar  implements ClearableCookieJar {
+public class PersistentCookieJar implements ClearableCookieJar {
 
-    private CookieCache cache;
+    private CookieCache     cache;
     private CookiePersistor persistor;
 
     public PersistentCookieJar(CookieCache cache, CookiePersistor persistor) {
@@ -61,7 +61,7 @@ public class PersistentCookieJar  implements ClearableCookieJar {
     @Override
     synchronized public List<Cookie> loadForRequest(HttpUrl url) {
         List<Cookie> cookiesToRemove = new ArrayList<>();
-        List<Cookie> validCookies = new ArrayList<>();
+        List<Cookie> validCookies    = new ArrayList<>();
 
         for (Iterator<Cookie> it = cache.iterator(); it.hasNext(); ) {
             Cookie currentCookie = it.next();

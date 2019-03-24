@@ -14,8 +14,8 @@ import retrofit2.http.POST;
 public interface RequestsRetrofitService {
 
     /**
-     *
      * @param request
+     *
      * @return
      */
     @POST("graphql")
@@ -24,8 +24,8 @@ public interface RequestsRetrofitService {
     Call<GraphQLResponse<RequestsData>> getAllRequests(@Body GraphQLRequest.Builder request);
 
     /**
-     *
      * @param request
+     *
      * @return
      */
     @POST("graphql")
@@ -34,8 +34,8 @@ public interface RequestsRetrofitService {
     Call<GraphQLResponse<RequestsData>> getRequests(@Body GraphQLRequest.Builder request);
 
     /**
-     *
      * @param request
+     *
      * @return
      */
     @POST("graphql")
@@ -44,8 +44,8 @@ public interface RequestsRetrofitService {
     Call<GraphQLResponse<CreateRequestData>> createRequest(@Body GraphQLRequest.Builder request);
 
     /**
-     * 
      * @param request
+     *
      * @return
      */
     @POST("graphql")

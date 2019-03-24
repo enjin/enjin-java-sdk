@@ -9,8 +9,8 @@ import java.io.IOException;
 public interface SynchronousPlatformService {
 
     /**
-     *
      * @return
+     *
      * @throws IOException
      */
     Response<GraphQLResponse<PlatformData>> getPlatformSync() throws IOException;

@@ -15,8 +15,8 @@ import retrofit2.http.POST;
 public interface IdentitiesRetrofitService {
 
     /**
-     *
      * @param request
+     *
      * @return
      */
     @POST("graphql")
@@ -25,8 +25,8 @@ public interface IdentitiesRetrofitService {
     Call<GraphQLResponse<IdentitiesData>> getAllIdentities(@Body GraphQLRequest.Builder request);
 
     /**
-     *
      * @param request
+     *
      * @return
      */
     @POST("graphql")
@@ -35,8 +35,8 @@ public interface IdentitiesRetrofitService {
     Call<GraphQLResponse<IdentitiesData>> getIdentities(@Body GraphQLRequest.Builder request);
 
     /**
-     *
      * @param request
+     *
      * @return
      */
     @POST("graphql")
@@ -45,8 +45,8 @@ public interface IdentitiesRetrofitService {
     Call<GraphQLResponse<CreateIdentityData>> createIdentity(@Body GraphQLRequest.Builder request);
 
     /**
-     *
      * @param request
+     *
      * @return
      */
     @POST("graphql")
@@ -55,8 +55,8 @@ public interface IdentitiesRetrofitService {
     Call<GraphQLResponse<Identity>> unlinkIdentity(@Body GraphQLRequest.Builder request);
 
     /**
-     *
      * @param request
+     *
      * @return
      */
     @POST("graphql")

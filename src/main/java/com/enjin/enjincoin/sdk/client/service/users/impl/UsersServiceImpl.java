@@ -22,12 +22,18 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public void createUserAsync(final String name, final String email, final String password, final Callback<GraphQLResponse<CreateUserData>> callback) {
+    public void createUserAsync(final String name,
+                                final String email,
+                                final String password,
+                                final Callback<GraphQLResponse<CreateUserData>> callback) {
         getCreateCall(name, email, password).enqueue(callback);
     }
 
     @Override
-    public void loginUserAsync(final String name, final String email, final String password, final Callback<GraphQLResponse<LoginUserData>> callback) {
+    public void loginUserAsync(final String name,
+                               final String email,
+                               final String password,
+                               final Callback<GraphQLResponse<LoginUserData>> callback) {
         getLoginCall(name, email, password).enqueue(callback);
     }
 
@@ -37,17 +43,24 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public void getUsersAsync(final Integer userId, final String name, final String email, final Callback<GraphQLResponse<UsersData>> callback) {
+    public void getUsersAsync(final Integer userId,
+                              final String name,
+                              final String email,
+                              final Callback<GraphQLResponse<UsersData>> callback) {
         getUsersCall(userId, name, email).enqueue(callback);
     }
 
     @Override
-    public Response<GraphQLResponse<CreateUserData>> createUserSync(final String name, final String email, final String password) throws IOException {
+    public Response<GraphQLResponse<CreateUserData>> createUserSync(final String name,
+                                                                    final String email,
+                                                                    final String password) throws IOException {
         return getCreateCall(name, email, password).execute();
     }
 
     @Override
-    public Response<GraphQLResponse<LoginUserData>> loginUserSync(final String name, final String email, final String password) throws IOException {
+    public Response<GraphQLResponse<LoginUserData>> loginUserSync(final String name,
+                                                                  final String email,
+                                                                  final String password) throws IOException {
         return getLoginCall(name, email, password).execute();
     }
 
@@ -57,22 +70,28 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public Response<GraphQLResponse<UsersData>> getUsersSync(final Integer userId, final String name, final String email) throws IOException {
+    public Response<GraphQLResponse<UsersData>> getUsersSync(final Integer userId,
+                                                             final String name,
+                                                             final String email) throws IOException {
         return getUsersCall(userId, name, email).execute();
     }
 
-    private Call<GraphQLResponse<CreateUserData>> getCreateCall(final String name, final String email, final String password) {
+    private Call<GraphQLResponse<CreateUserData>> getCreateCall(final String name,
+                                                                final String email,
+                                                                final String password) {
         return this.service.createUser(GraphQLRequest.builder()
-                .withParameter("name", name)
-                .withParameter("email", email)
-                .withParameter("password", password));
+                                                     .withParameter("name", name)
+                                                     .withParameter("email", email)
+                                                     .withParameter("password", password));
     }
 
-    private Call<GraphQLResponse<LoginUserData>> getLoginCall(final String name, final String email, final String password) {
+    private Call<GraphQLResponse<LoginUserData>> getLoginCall(final String name,
+                                                              final String email,
+                                                              final String password) {
         return this.service.loginUser(GraphQLRequest.builder()
-                .withParameter("name", name)
-                .withParameter("email", email)
-                .withParameter("password", password));
+                                                    .withParameter("name", name)
+                                                    .withParameter("email", email)
+                                                    .withParameter("password", password));
     }
 
     private Call<GraphQLResponse<UsersData>> getAllUsersCall() {
@@ -81,8 +100,8 @@ public class UsersServiceImpl implements UsersService {
 
     private Call<GraphQLResponse<UsersData>> getUsersCall(final Integer id, final String name, final String email) {
         return this.service.getUsers(GraphQLRequest.builder()
-                .withParameter("id", id)
-                .withParameter("name", name)
-                .withParameter("email", email));
+                                                   .withParameter("id", id)
+                                                   .withParameter("name", name)
+                                                   .withParameter("email", email));
     }
 }

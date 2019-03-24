@@ -70,8 +70,8 @@ public class GraphQLParameters {
                 }
 
                 objBuilder.append(entry.getKey())
-                        .append(':')
-                        .append(jsonElementToGraphQLFormat(entry.getValue()));
+                          .append(':')
+                          .append(jsonElementToGraphQLFormat(entry.getValue()));
             }
             builder.append(objBuilder.toString());
             builder.append('}');
@@ -97,8 +97,8 @@ public class GraphQLParameters {
                 builder.append(primitive.getAsNumber());
             } else {
                 builder.append('\"')
-                        .append(primitive.getAsString())
-                        .append('\"');
+                       .append(primitive.getAsString())
+                       .append('\"');
             }
         } else {
             builder.append("null");

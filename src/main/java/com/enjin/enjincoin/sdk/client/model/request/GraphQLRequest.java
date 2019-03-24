@@ -3,7 +3,7 @@ package com.enjin.enjincoin.sdk.client.model.request;
 public final class GraphQLRequest {
 
     private GraphQLParameters parameters;
-    private String query;
+    private String            query;
 
     private GraphQLRequest() {
         this.parameters = new GraphQLParameters();

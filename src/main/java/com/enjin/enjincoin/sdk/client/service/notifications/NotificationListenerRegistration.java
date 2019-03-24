@@ -12,7 +12,7 @@ public class NotificationListenerRegistration {
     /**
      * All All Matchers Event.
      **/
-    public static final EventMatcher ALLOW_ALL_MATCHER = event -> true;
+    public static final EventMatcher ALLOW_ALL_MATCHER  = event -> true;
     /**
      * All No Matchers Event.
      **/
@@ -25,7 +25,7 @@ public class NotificationListenerRegistration {
     /**
      * Event Matcher.
      **/
-    private EventMatcher eventMatcher = ALLOW_ALL_MATCHER;
+    private EventMatcher         eventMatcher = ALLOW_ALL_MATCHER;
 
     /**
      * Class constructor.
@@ -92,7 +92,8 @@ public class NotificationListenerRegistration {
          * @param service  to use
          * @param listener to use
          */
-        protected RegistrationListenerConfiguration(final NotificationsService service, final NotificationListener listener) {
+        protected RegistrationListenerConfiguration(final NotificationsService service,
+                                                    final NotificationListener listener) {
             this.service = service;
             this.listener = listener;
             this.detectAndApplyListenerAnnotations();
@@ -174,7 +175,8 @@ public class NotificationListenerRegistration {
      * @return RegistrationListenerConfiguration
      */
     @SuppressWarnings("rawtypes")
-    public static RegistrationListenerConfiguration<?> configure(final NotificationsService service, final NotificationListener listener) {
+    public static RegistrationListenerConfiguration<?> configure(final NotificationsService service,
+                                                                 final NotificationListener listener) {
         return new RegistrationListenerConfiguration(service, listener);
     }
 

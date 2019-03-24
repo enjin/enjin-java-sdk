@@ -5,8 +5,8 @@ import java.util.Map;
 
 public class GraphError {
 
-    private String message;
-    private int status;
+    private String                     message;
+    private int                        status;
     private List<Map<String, Integer>> locations;
 
     public String getMessage() {

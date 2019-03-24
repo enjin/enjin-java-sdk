@@ -13,14 +13,13 @@ import java.io.IOException;
 public interface SynchronousRequestsService {
 
     /**
-     *
      * @return
+     *
      * @throws IOException
      */
     Response<GraphQLResponse<RequestsData>> getAllRequestsSync() throws IOException;
 
     /**
-     *
      * @param requestId
      * @param transactionId
      * @param identityId
@@ -32,7 +31,9 @@ public interface SynchronousRequestsService {
      * @param encodedData
      * @param state
      * @param accepted
+     *
      * @return
+     *
      * @throws IOException
      */
     Response<GraphQLResponse<RequestsData>> getRequestsSync(Integer requestId,
@@ -48,7 +49,6 @@ public interface SynchronousRequestsService {
                                                             Integer accepted) throws IOException;
 
     /**
-     *
      * @param identityId
      * @param appId
      * @param type
@@ -59,7 +59,9 @@ public interface SynchronousRequestsService {
      * @param mintTokenData
      * @param meltTokenData
      * @param sendTokenData
+     *
      * @return
+     *
      * @throws IOException
      */
     Response<GraphQLResponse<CreateRequestData>> createRequestSync(Integer identityId,
@@ -76,7 +78,6 @@ public interface SynchronousRequestsService {
                                                                    JsonObject sendTokenData) throws IOException;
 
     /**
-     * 
      * @param requestId
      * @param appId
      * @param recipientId
@@ -84,7 +85,9 @@ public interface SynchronousRequestsService {
      * @param title
      * @param icon
      * @param value
+     *
      * @return
+     *
      * @throws IOException
      */
     Response<GraphQLResponse<UpdateRequestData>> updateRequestSync(Integer requestId,
