@@ -1,1 +1,1 @@
-include 'client'
+rootProject.name = 'enjincoin-java-sdk'
