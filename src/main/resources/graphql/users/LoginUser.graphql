@@ -3,6 +3,7 @@ query login {
         id,
         name,
         email,
+        access_tokens,
         roles {
             id,
             name,
@@ -11,25 +12,6 @@ query login {
                 name
             },
             app_id
-        },
-        access_tokens,
-        created_at,
-        updated_at,
-        identities {
-            id,
-            app_id,
-            ethereum_address,
-            eth_balance,
-            enj_balance,
-            linking_code,
-            fields {
-                key,
-                value
-            },
-            tokens {
-                token_id,
-                balance
-            }
         }
     }
 }
