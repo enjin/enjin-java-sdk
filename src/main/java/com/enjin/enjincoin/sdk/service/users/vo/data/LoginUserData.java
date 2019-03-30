@@ -6,9 +6,9 @@ import com.google.gson.annotations.SerializedName;
 public class LoginUserData {
 
     @SerializedName("EnjinOauth")
-    private User auth;
+    private User user;
 
-    public User getAuth() {
-        return this.auth;
+    public User getUser() {
+        return this.user;
     }
 }

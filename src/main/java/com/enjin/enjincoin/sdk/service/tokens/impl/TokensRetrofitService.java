@@ -41,7 +41,7 @@ public interface TokensRetrofitService {
     @POST("graphql")
     @GraphQuery("CreateToken")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<CreateTokenData>> createToken(@Body Builder Token);
+    Call<GraphQLResponse<CreateTokenData>> importToken(@Body Builder Token);
 
     /**
      * @param Token

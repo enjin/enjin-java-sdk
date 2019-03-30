@@ -2,12 +2,14 @@ package com.enjin.enjincoin.sdk.service.tokens;
 
 import com.enjin.enjincoin.sdk.Callback;
 import com.enjin.enjincoin.sdk.model.body.GraphQLResponse;
+import com.enjin.enjincoin.sdk.service.requests.vo.TransactionType;
 import com.enjin.enjincoin.sdk.service.tokens.vo.TokenSupplyModel;
 import com.enjin.enjincoin.sdk.service.tokens.vo.TokenTransferFeeSettings;
 import com.enjin.enjincoin.sdk.service.tokens.vo.TokenTransferable;
 import com.enjin.enjincoin.sdk.service.tokens.vo.data.CreateTokenData;
 import com.enjin.enjincoin.sdk.service.tokens.vo.data.TokensData;
 import com.enjin.enjincoin.sdk.service.tokens.vo.data.UpdateTokenData;
+import com.google.gson.JsonObject;
 
 public interface AsynchronousTokensService {
 
@@ -18,97 +20,61 @@ public interface AsynchronousTokensService {
 
     /**
      * @param tokenId
-     * @param creator
+     * @param tokenIndex
      * @param name
+     * @param creator
      * @param totalSupply
-     * @param initialSupply
+     * @param reserve
      * @param supplyModel
      * @param meltValue
-     * @param meltFeePercentage
+     * @param meltFeeRatio
      * @param transferable
      * @param transferFeeSettings
-     * @param allowsCustomAdapters
      * @param nonFungible
      * @param firstBlock
      * @param blockHeight
      * @param tokenIdAsInt
+     * @param tokenIndexAsInt
      * @param markedForDelete
      * @param callback
      */
     void getTokensAsync(String tokenId,
-                        String creator,
+                        String tokenIndex,
                         String name,
+                        String creator,
                         String totalSupply,
-                        String initialSupply,
+                        String reserve,
                         TokenSupplyModel supplyModel,
                         String meltValue,
-                        String meltFeePercentage,
+                        String meltFeeRatio,
                         TokenTransferable transferable,
                         TokenTransferFeeSettings transferFeeSettings,
-                        Boolean allowsCustomAdapters,
                         Boolean nonFungible,
                         Integer firstBlock,
                         Integer blockHeight,
                         Boolean tokenIdAsInt,
+                        Boolean tokenIndexAsInt,
                         Boolean markedForDelete,
                         Callback<GraphQLResponse<TokensData>> callback);
 
     /**
      * @param tokenId
-     * @param creator
-     * @param name
-     * @param totalSupply
-     * @param initialSupply
-     * @param supplyModel
-     * @param meltValue
-     * @param meltFeePercentage
-     * @param transferable
-     * @param transferFeeSettings
-     * @param nonFungible
-     * @param fromBlockchain
      * @param callback
      */
-    void createTokenAsync(String tokenId,
-                          String creator,
-                          String name,
-                          String totalSupply,
-                          String initialSupply,
-                          TokenSupplyModel supplyModel,
-                          String meltValue,
-                          String meltFeePercentage,
-                          TokenTransferable transferable,
-                          TokenTransferFeeSettings transferFeeSettings,
-                          Boolean nonFungible,
-                          Boolean fromBlockchain,
+    void importTokenAsync(String tokenId,
                           Callback<GraphQLResponse<CreateTokenData>> callback);
 
     /**
      * @param tokenId
-     * @param creator
-     * @param name
-     * @param totalSupply
-     * @param initialSupply
-     * @param supplyModel
-     * @param meltValue
-     * @param meltFeePercentage
-     * @param transferable
-     * @param transferFeeSettings
-     * @param nonFungible
+     * @param appId
      * @param fromBlockchain
+     * @param updateIcon
      * @param callback
      */
     void updateTokenAsync(String tokenId,
-                          String creator,
-                          String name,
-                          String totalSupply,
-                          String initialSupply,
-                          TokenSupplyModel supplyModel,
-                          String meltValue,
-                          String meltFeePercentage,
-                          TokenTransferable transferable,
-                          TokenTransferFeeSettings transferFeeSettings,
-                          Boolean nonFungible,
+                          Integer appId,
                           Boolean fromBlockchain,
+                          String updateIcon,
                           Callback<GraphQLResponse<UpdateTokenData>> callback);
 
 }

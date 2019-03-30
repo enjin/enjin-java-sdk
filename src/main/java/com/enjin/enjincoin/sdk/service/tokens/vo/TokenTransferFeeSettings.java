@@ -9,7 +9,11 @@ public class TokenTransferFeeSettings {
     @SerializedName("token_id")
     private String tokenId;
 
-    private Integer value;
+    private String value;
+
+    /*
+    ----- Methods -----
+     */
 
     public TokenTransferFeeType getType() {
         return this.type;
@@ -19,7 +23,7 @@ public class TokenTransferFeeSettings {
         return this.tokenId;
     }
 
-    public Integer getValue() {
+    public String getValue() {
         return this.value;
     }
 }

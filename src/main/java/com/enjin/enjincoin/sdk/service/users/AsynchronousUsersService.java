@@ -20,13 +20,11 @@ public interface AsynchronousUsersService {
                          Callback<GraphQLResponse<CreateUserData>> callback);
 
     /**
-     * @param name
      * @param email
      * @param password
      * @param callback
      */
-    void loginUserAsync(String name,
-                        String email,
+    void loginUserAsync(String email,
                         String password,
                         Callback<GraphQLResponse<LoginUserData>> callback);
 
@@ -44,6 +42,7 @@ public interface AsynchronousUsersService {
     void getUsersAsync(Integer userId,
                        String name,
                        String email,
+                       Boolean me,
                        Callback<GraphQLResponse<UsersData>> callback);
 
 }

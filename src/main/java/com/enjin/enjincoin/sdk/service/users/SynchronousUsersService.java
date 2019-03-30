@@ -24,7 +24,6 @@ public interface SynchronousUsersService {
                                                              String password) throws IOException;
 
     /**
-     * @param name
      * @param email
      * @param password
      *
@@ -32,8 +31,7 @@ public interface SynchronousUsersService {
      *
      * @throws IOException
      */
-    Response<GraphQLResponse<LoginUserData>> loginUserSync(String name,
-                                                           String email,
+    Response<GraphQLResponse<LoginUserData>> loginUserSync(String email,
                                                            String password) throws IOException;
 
     /**
@@ -52,5 +50,8 @@ public interface SynchronousUsersService {
      *
      * @throws IOException
      */
-    Response<GraphQLResponse<UsersData>> getUsersSync(Integer userId, String name, String email) throws IOException;
+    Response<GraphQLResponse<UsersData>> getUsersSync(Integer userId,
+                                                      String name,
+                                                      String email,
+                                                      Boolean me) throws IOException;
 }

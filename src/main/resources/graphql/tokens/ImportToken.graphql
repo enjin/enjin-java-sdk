@@ -1,5 +1,5 @@
-query getAllTokens {
-    EnjinTokens {
+mutation createToken {
+    CreateEnjinToken(%s) {
         token_id
         app_id
         name

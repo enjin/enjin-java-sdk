@@ -2,25 +2,29 @@ mutation updateToken {
     UpdateEnjinToken(%s) {
         token_id
         app_id
-        creator
         name
-        totalSupply
-        circulatingSupply
-        reserve
-        supplyModel
-        meltValue
-        meltFeeRatio
-        transferable
+        creator
+        meltValue,
+        meltFeeRatio,
+        meltFeeMaxRatio,
+        supplyModel,
+        totalSupply,
+        circulatingSupply,
+        reserve,
+        transferable,
         transferFeeSettings {
             type
             token_id
             value
-        }
-        nonFungible
-        firstBlock
-        blockHeight
-        markedForDelete
-        created_at
-        updated_at
+        },
+        nonFungible,
+        firstBlock,
+        blockHeight,
+        markedForDelete,
+        balance,
+        index,
+        availableToMint,
+        itemURI,
+        icon
     }
 }

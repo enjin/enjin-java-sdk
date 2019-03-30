@@ -32,96 +32,58 @@ public class TokensServiceImpl extends ServiceBase implements TokensService {
 
     @Override
     public void getTokensAsync(String tokenId,
-                               String creator,
+                               String tokenIndex,
                                String name,
+                               String creator,
                                String totalSupply,
-                               String initialSupply,
+                               String reserve,
                                TokenSupplyModel supplyModel,
                                String meltValue,
-                               String meltFeePercentage,
+                               String meltFeeRatio,
                                TokenTransferable transferable,
                                TokenTransferFeeSettings transferFeeSettings,
-                               Boolean allowsCustomAdapters,
                                Boolean nonFungible,
                                Integer firstBlock,
                                Integer blockHeight,
                                Boolean tokenIdAsInt,
+                               Boolean tokenIndexAsInt,
                                Boolean markedForDelete,
                                Callback<GraphQLResponse<TokensData>> callback) {
         enqueue(getTokensCall(tokenId,
-                              creator,
+                              tokenIndex,
                               name,
+                              creator,
                               totalSupply,
-                              initialSupply,
+                              reserve,
                               supplyModel,
                               meltValue,
-                              meltFeePercentage,
+                              meltFeeRatio,
                               transferable,
                               transferFeeSettings,
-                              allowsCustomAdapters,
                               nonFungible,
                               firstBlock,
                               blockHeight,
                               tokenIdAsInt,
+                              tokenIndexAsInt,
                               markedForDelete),
                 callback);
     }
 
     @Override
-    public void createTokenAsync(String tokenId,
-                                 String creator,
-                                 String name,
-                                 String totalSupply,
-                                 String initialSupply,
-                                 TokenSupplyModel supplyModel,
-                                 String meltValue,
-                                 String meltFeePercentage,
-                                 TokenTransferable transferable,
-                                 TokenTransferFeeSettings transferFeeSettings,
-                                 Boolean nonFungible,
-                                 Boolean fromBlockchain,
-                                 Callback<GraphQLResponse<CreateTokenData>> callback) {
-        enqueue(getCreateTokenCall(tokenId,
-                                   creator,
-                                   name,
-                                   totalSupply,
-                                   initialSupply,
-                                   supplyModel,
-                                   meltValue,
-                                   meltFeePercentage,
-                                   transferable,
-                                   transferFeeSettings,
-                                   nonFungible,
-                                   fromBlockchain),
-                callback);
+    public void importTokenAsync(String tokenId, Callback<GraphQLResponse<CreateTokenData>> callback) {
+        enqueue(getImportTokenCall(tokenId), callback);
     }
 
     @Override
     public void updateTokenAsync(String tokenId,
-                                 String creator,
-                                 String name,
-                                 String totalSupply,
-                                 String initialSupply,
-                                 TokenSupplyModel supplyModel,
-                                 String meltValue,
-                                 String meltFeePercentage,
-                                 TokenTransferable transferable,
-                                 TokenTransferFeeSettings transferFeeSettings,
-                                 Boolean nonFungible,
+                                 Integer appId,
                                  Boolean fromBlockchain,
+                                 String updateIcon,
                                  Callback<GraphQLResponse<UpdateTokenData>> callback) {
         enqueue(getUpdateTokenCall(tokenId,
-                                   creator,
-                                   name,
-                                   totalSupply,
-                                   initialSupply,
-                                   supplyModel,
-                                   meltValue,
-                                   meltFeePercentage,
-                                   transferable,
-                                   transferFeeSettings,
-                                   nonFungible,
-                                   fromBlockchain),
+                                   appId,
+                                   fromBlockchain,
+                                   updateIcon),
                 callback);
     }
 
@@ -132,90 +94,55 @@ public class TokensServiceImpl extends ServiceBase implements TokensService {
 
     @Override
     public Response<GraphQLResponse<TokensData>> getTokensSync(String tokenId,
-                                                               String creator,
+                                                               String tokenIndex,
                                                                String name,
+                                                               String creator,
                                                                String totalSupply,
-                                                               String initialSupply,
+                                                               String reserve,
                                                                TokenSupplyModel supplyModel,
                                                                String meltValue,
-                                                               String meltFeePercentage,
+                                                               String meltFeeRatio,
                                                                TokenTransferable transferable,
                                                                TokenTransferFeeSettings transferFeeSettings,
-                                                               Boolean allowsCustomAdapters,
                                                                Boolean nonFungible,
                                                                Integer firstBlock,
                                                                Integer blockHeight,
                                                                Boolean tokenIdAsInt,
+                                                               Boolean tokenIndexAsInt,
                                                                Boolean markedForDelete) throws IOException {
         return execute(getTokensCall(tokenId,
-                                     creator,
+                                     tokenIndex,
                                      name,
+                                     creator,
                                      totalSupply,
-                                     initialSupply,
+                                     reserve,
                                      supplyModel,
                                      meltValue,
-                                     meltFeePercentage,
+                                     meltFeeRatio,
                                      transferable,
                                      transferFeeSettings,
-                                     allowsCustomAdapters,
                                      nonFungible,
                                      firstBlock,
                                      blockHeight,
                                      tokenIdAsInt,
+                                     tokenIndexAsInt,
                                      markedForDelete));
     }
 
     @Override
-    public Response<GraphQLResponse<CreateTokenData>> createTokenSync(String tokenId,
-                                                                      String creator,
-                                                                      String name,
-                                                                      String totalSupply, String initialSupply,
-                                                                      TokenSupplyModel supplyModel,
-                                                                      String meltValue,
-                                                                      String meltFeePercentage,
-                                                                      TokenTransferable transferable,
-                                                                      TokenTransferFeeSettings transferFeeSettings,
-                                                                      Boolean nonFungible,
-                                                                      Boolean fromBlockchain) throws IOException {
-        return execute(getCreateTokenCall(tokenId,
-                                          creator,
-                                          name,
-                                          totalSupply,
-                                          initialSupply,
-                                          supplyModel,
-                                          meltValue,
-                                          meltFeePercentage,
-                                          transferable,
-                                          transferFeeSettings,
-                                          nonFungible,
-                                          fromBlockchain));
+    public Response<GraphQLResponse<CreateTokenData>> importTokenSync(String tokenId) throws IOException {
+        return execute(getImportTokenCall(tokenId));
     }
 
     @Override
     public Response<GraphQLResponse<UpdateTokenData>> updateTokenSync(String tokenId,
-                                                                      String creator,
-                                                                      String name,
-                                                                      String totalSupply,
-                                                                      String initialSupply,
-                                                                      TokenSupplyModel supplyModel,
-                                                                      String meltValue,
-                                                                      String meltFeePercentage,
-                                                                      TokenTransferable transferable,
-                                                                      TokenTransferFeeSettings transferFeeSettings,
-                                                                      Boolean nonFungible,
-                                                                      Boolean fromBlockchain) throws IOException {
+                                                                      Integer appId,
+                                                                      Boolean fromBlockchain,
+                                                                      String updateIcon) throws IOException {
         return execute(getUpdateTokenCall(tokenId,
-                                          creator,
-                                          name,
-                                          totalSupply,
-                                          initialSupply,
-                                          supplyModel,
-                                          meltValue,
-                                          meltFeePercentage,
-                                          transferable,
-                                          transferFeeSettings,
-                                          nonFungible,
-                                          fromBlockchain));
+                                          appId,
+                                          fromBlockchain,
+                                          updateIcon));
     }
 
     private Call<GraphQLResponse<TokensData>> getAllTokensCall() {
@@ -223,91 +150,56 @@ public class TokensServiceImpl extends ServiceBase implements TokensService {
     }
 
     private Call<GraphQLResponse<TokensData>> getTokensCall(String tokenId,
-                                                            String creator,
+                                                            String tokenIndex,
                                                             String name,
+                                                            String creator,
                                                             String totalSupply,
-                                                            String initialSupply,
+                                                            String reserve,
                                                             TokenSupplyModel supplyModel,
                                                             String meltValue,
-                                                            String meltFeePercentage,
+                                                            String meltFeeRatio,
                                                             TokenTransferable transferable,
                                                             TokenTransferFeeSettings transferFeeSettings,
-                                                            Boolean allowsCustomAdapters,
                                                             Boolean nonFungible,
                                                             Integer firstBlock,
                                                             Integer blockHeight,
                                                             Boolean tokenIdAsInt,
+                                                            Boolean tokenIndexAsInt,
                                                             Boolean markedForDelete) {
         return this.service.getTokens(GraphQLRequest.builder()
                                                     .withParameter("token_id", tokenId)
+                                                    .withParameter("token_index", tokenIndex)
                                                     .withParameter("creator", creator)
                                                     .withParameter("name", name)
                                                     .withParameter("totalSupply", totalSupply)
-                                                    .withParameter("initialSupply", initialSupply)
+                                                    .withParameter("reserve", reserve)
                                                     .withParameter("supplyModel", supplyModel)
                                                     .withParameter("meltValue", meltValue)
-                                                    .withParameter("meltFeePercentage", meltFeePercentage)
+                                                    .withParameter("meltFeeRatio", meltFeeRatio)
                                                     .withParameter("transferable", transferable)
                                                     .withParameter("transferFeeSettings", transferFeeSettings)
-                                                    .withParameter("allowsCustomAdapters", allowsCustomAdapters)
                                                     .withParameter("nonFungible", nonFungible)
                                                     .withParameter("firstBlock", firstBlock)
                                                     .withParameter("blockHeight", blockHeight)
                                                     .withParameter("token_id_as_int", tokenIdAsInt)
+                                                    .withParameter("token_index_as_int", tokenIndexAsInt)
                                                     .withParameter("markedForDelete", markedForDelete));
     }
 
-    private Call<GraphQLResponse<CreateTokenData>> getCreateTokenCall(String tokenId,
-                                                                      String creator,
-                                                                      String name,
-                                                                      String totalSupply, String initialSupply,
-                                                                      TokenSupplyModel supplyModel,
-                                                                      String meltValue,
-                                                                      String meltFeePercentage,
-                                                                      TokenTransferable transferable,
-                                                                      TokenTransferFeeSettings transferFeeSettings,
-                                                                      Boolean nonFungible,
-                                                                      Boolean fromBlockchain) {
-        return this.service.createToken(GraphQLRequest.builder()
-                                                      .withParameter("token_id", tokenId)
-                                                      .withParameter("creator", creator)
-                                                      .withParameter("name", name)
-                                                      .withParameter("totalSupply", totalSupply)
-                                                      .withParameter("initialSupply", initialSupply)
-                                                      .withParameter("supplyModel", supplyModel)
-                                                      .withParameter("meltValue", meltValue)
-                                                      .withParameter("meltFeePercentage", meltFeePercentage)
-                                                      .withParameter("transferable", transferable)
-                                                      .withParameter("transferFeeSettings", transferFeeSettings)
-                                                      .withParameter("nonFungible", nonFungible)
-                                                      .withParameter("fromBlockchain", fromBlockchain));
+    private Call<GraphQLResponse<CreateTokenData>> getImportTokenCall(String tokenId) {
+        return this.service.importToken(GraphQLRequest.builder()
+                                                      .withParameter("token_id", tokenId));
     }
 
     private Call<GraphQLResponse<UpdateTokenData>> getUpdateTokenCall(String tokenId,
-                                                                      String creator,
-                                                                      String name,
-                                                                      String totalSupply,
-                                                                      String initialSupply,
-                                                                      TokenSupplyModel supplyModel,
-                                                                      String meltValue,
-                                                                      String meltFeePercentage,
-                                                                      TokenTransferable transferable,
-                                                                      TokenTransferFeeSettings transferFeeSettings,
-                                                                      Boolean nonFungible,
-                                                                      Boolean fromBlockchain) {
+                                                                      Integer appId,
+                                                                      Boolean fromBlockchain,
+                                                                      String updateIcon) {
         return this.service.updateToken(GraphQLRequest.builder()
                                                       .withParameter("token_id", tokenId)
-                                                      .withParameter("creator", creator)
-                                                      .withParameter("name", name)
-                                                      .withParameter("totalSupply", totalSupply)
-                                                      .withParameter("initialSupply", initialSupply)
-                                                      .withParameter("supplyModel", supplyModel)
-                                                      .withParameter("meltValue", meltValue)
-                                                      .withParameter("meltFeePercentage", meltFeePercentage)
-                                                      .withParameter("transferable", transferable)
-                                                      .withParameter("transferFeeSettings", transferFeeSettings)
-                                                      .withParameter("nonFungible", nonFungible)
-                                                      .withParameter("fromBlockchain", fromBlockchain));
+                                                      .withParameter("app_id", appId)
+                                                      .withParameter("fromBlockchain", fromBlockchain)
+                                                      .withParameter("update_icon", updateIcon));
     }
 
 }

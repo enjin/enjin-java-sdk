@@ -31,11 +31,10 @@ public class UsersServiceImpl extends ServiceBase implements UsersService {
     }
 
     @Override
-    public void loginUserAsync(final String name,
-                               final String email,
+    public void loginUserAsync(final String email,
                                final String password,
                                final Callback<GraphQLResponse<LoginUserData>> callback) {
-        enqueue(getLoginCall(name, email, password), callback);
+        enqueue(getLoginCall(email, password), callback);
     }
 
     @Override
@@ -47,8 +46,9 @@ public class UsersServiceImpl extends ServiceBase implements UsersService {
     public void getUsersAsync(final Integer userId,
                               final String name,
                               final String email,
+                              final Boolean me,
                               final Callback<GraphQLResponse<UsersData>> callback) {
-        enqueue(getUsersCall(userId, name, email), callback);
+        enqueue(getUsersCall(userId, name, email, me), callback);
     }
 
     @Override
@@ -59,10 +59,9 @@ public class UsersServiceImpl extends ServiceBase implements UsersService {
     }
 
     @Override
-    public Response<GraphQLResponse<LoginUserData>> loginUserSync(final String name,
-                                                                  final String email,
+    public Response<GraphQLResponse<LoginUserData>> loginUserSync(final String email,
                                                                   final String password) throws IOException {
-        return execute(getLoginCall(name, email, password));
+        return execute(getLoginCall(email, password));
     }
 
     @Override
@@ -73,8 +72,9 @@ public class UsersServiceImpl extends ServiceBase implements UsersService {
     @Override
     public Response<GraphQLResponse<UsersData>> getUsersSync(final Integer userId,
                                                              final String name,
-                                                             final String email) throws IOException {
-        return execute(getUsersCall(userId, name, email));
+                                                             final String email,
+                                                             final Boolean me) throws IOException {
+        return execute(getUsersCall(userId, name, email, me));
     }
 
     private Call<GraphQLResponse<CreateUserData>> getCreateCall(final String name,
@@ -86,11 +86,9 @@ public class UsersServiceImpl extends ServiceBase implements UsersService {
                                                      .withParameter("password", password));
     }
 
-    private Call<GraphQLResponse<LoginUserData>> getLoginCall(final String name,
-                                                              final String email,
+    private Call<GraphQLResponse<LoginUserData>> getLoginCall(final String email,
                                                               final String password) {
         return this.service.loginUser(GraphQLRequest.builder()
-                                                    .withParameter("name", name)
                                                     .withParameter("email", email)
                                                     .withParameter("password", password));
     }
@@ -99,10 +97,14 @@ public class UsersServiceImpl extends ServiceBase implements UsersService {
         return this.service.getAllUsers(GraphQLRequest.builder());
     }
 
-    private Call<GraphQLResponse<UsersData>> getUsersCall(final Integer id, final String name, final String email) {
+    private Call<GraphQLResponse<UsersData>> getUsersCall(final Integer id,
+                                                          final String name,
+                                                          final String email,
+                                                          final Boolean me) {
         return this.service.getUsers(GraphQLRequest.builder()
                                                    .withParameter("id", id)
                                                    .withParameter("name", name)
-                                                   .withParameter("email", email));
+                                                   .withParameter("email", email)
+                                                   .withParameter("me", me));
     }
 }

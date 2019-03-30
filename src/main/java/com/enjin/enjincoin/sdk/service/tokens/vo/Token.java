@@ -1,6 +1,5 @@
 package com.enjin.enjincoin.sdk.service.tokens.vo;
 
-import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
 
 public class Token {
@@ -11,23 +10,23 @@ public class Token {
     @SerializedName("app_id")
     private Integer appId;
 
-    private String creator;
-
     private String name;
 
-    private Integer decimals;
-
-    private String symbol;
-
-    private String totalSupply;
-
-    private String initialSupply;
-
-    private TokenSupplyModel supplyModel;
+    private String creator;
 
     private String meltValue;
 
-    private String meltFeePercentage;
+    private Integer meltFeeRatio;
+
+    private Integer meltFeeMaxRatio;
+
+    private TokenSupplyModel supplyModel;
+
+    private String totalSupply;
+
+    private String circulatingSupply;
+
+    private String reserve;
 
     private TokenTransferable transferable;
 
@@ -42,97 +41,105 @@ public class Token {
     @SerializedName("markedForDelete")
     private Boolean markedForDeletion;
 
-    @SerializedName("created_at")
-    private JsonObject createdAt;
-
-    @SerializedName("updated_at")
-    private JsonObject updatedAt;
-
     private Double balance;
+
+    private String index;
 
     private Double availableToMint;
 
+    private String itemURI;
+
+    private String icon;
+
+    /*
+    ----- Methods -----
+    */
+
     public String getTokenId() {
-        return this.tokenId;
+        return tokenId;
     }
 
     public Integer getAppId() {
-        return this.appId;
-    }
-
-    public String getCreator() {
-        return this.creator;
+        return appId;
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
-    public Integer getDecimals() {
-        return this.decimals;
-    }
-
-    public String getSymbol() {
-        return this.symbol;
-    }
-
-    public String getTotalSupply() {
-        return this.totalSupply;
-    }
-
-    public String getInitialSupply() {
-        return this.initialSupply;
-    }
-
-    public TokenSupplyModel getSupplyModel() {
-        return this.supplyModel;
+    public String getCreator() {
+        return creator;
     }
 
     public String getMeltValue() {
-        return this.meltValue;
+        return meltValue;
     }
 
-    public String getMeltFeePercentage() {
-        return this.meltFeePercentage;
+    public Integer getMeltFeeRatio() {
+        return meltFeeRatio;
+    }
+
+    public Integer getMeltFeeMaxRatio() {
+        return meltFeeMaxRatio;
+    }
+
+    public TokenSupplyModel getSupplyModel() {
+        return supplyModel;
+    }
+
+    public String getTotalSupply() {
+        return totalSupply;
+    }
+
+    public String getCirculatingSupply() {
+        return circulatingSupply;
+    }
+
+    public String getReserve() {
+        return reserve;
     }
 
     public TokenTransferable getTransferable() {
-        return this.transferable;
+        return transferable;
     }
 
     public TokenTransferFeeSettings getTransferFeeSettings() {
-        return this.transferFeeSettings;
+        return transferFeeSettings;
     }
 
     public Boolean getNonFungible() {
-        return this.nonFungible;
+        return nonFungible;
     }
 
     public Integer getFirstBlock() {
-        return this.firstBlock;
+        return firstBlock;
     }
 
     public Integer getBlockHeight() {
-        return this.blockHeight;
+        return blockHeight;
     }
 
     public Boolean getMarkedForDeletion() {
-        return this.markedForDeletion;
-    }
-
-    public JsonObject getCreatedAt() {
-        return this.createdAt;
-    }
-
-    public JsonObject getUpdatedAt() {
-        return this.updatedAt;
+        return markedForDeletion;
     }
 
     public Double getBalance() {
-        return this.balance;
+        return balance;
+    }
+
+    public String getIndex() {
+        return index;
     }
 
     public Double getAvailableToMint() {
-        return this.availableToMint;
+        return availableToMint;
+    }
+
+    public String getItemURI() {
+        return itemURI;
+    }
+
+    public String getIcon() {
+        return icon;
     }
 }
