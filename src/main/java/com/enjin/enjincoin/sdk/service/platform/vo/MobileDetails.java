@@ -1,7 +1,5 @@
 package com.enjin.enjincoin.sdk.service.platform.vo;
 
-import com.google.gson.annotations.SerializedName;
-
 /**
  * <p>
  * Mobile Details class.
@@ -9,7 +7,6 @@ import com.google.gson.annotations.SerializedName;
  */
 public class MobileDetails {
 
-    @SerializedName("type")
     private String type;
 
     public MobileDetails(final String type) {

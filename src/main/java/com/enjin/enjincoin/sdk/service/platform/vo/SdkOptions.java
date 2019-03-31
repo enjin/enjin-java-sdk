@@ -1,7 +1,5 @@
 package com.enjin.enjincoin.sdk.service.platform.vo;
 
-import com.google.gson.annotations.SerializedName;
-
 /**
  * <p>
  * Sdk Options class.
@@ -9,10 +7,8 @@ import com.google.gson.annotations.SerializedName;
  */
 public class SdkOptions {
 
-    @SerializedName("cluster")
     private String cluster;
 
-    @SerializedName("encrypted")
     private Boolean encrypted;
 
     public SdkOptions(final String cluster, final Boolean encrypted) {

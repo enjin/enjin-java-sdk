@@ -11,16 +11,14 @@ import java.util.List;
  */
 public class PlatformDetails {
 
-    @SerializedName("name")
     private String name;
 
-    @SerializedName("id")
     private String id;
+
+    private String network;
 
     @SerializedName("notifications")
     private NotificationDetails notificationDetails;
-
-    private List<AppDetail> apps;
 
     public String getName() {
         return this.name;
@@ -30,11 +28,11 @@ public class PlatformDetails {
         return this.id;
     }
 
-    public NotificationDetails getNotificationDetails() {
-        return this.notificationDetails;
+    public String getNetwork() {
+        return network;
     }
 
-    public List<AppDetail> getApps() {
-        return this.apps;
+    public NotificationDetails getNotificationDetails() {
+        return this.notificationDetails;
     }
 }

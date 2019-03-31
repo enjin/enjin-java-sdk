@@ -9,11 +9,11 @@ import com.google.gson.annotations.SerializedName;
  */
 public class SdkDetails {
 
-    @SerializedName("driver")
     private String driver;
 
-    @SerializedName("key")
     private String key;
+
+    private String secret;
 
     @SerializedName("app_id")
     private String appId;
@@ -21,10 +21,11 @@ public class SdkDetails {
     @SerializedName("options")
     private SdkOptions options;
 
-    public SdkDetails(final String driver, final String key, final String appId, final SdkOptions options) {
+    public SdkDetails(final String driver, final String key, final String secret, final String appId, final SdkOptions options) {
         super();
         this.driver = driver;
         this.key = key;
+        this.secret = secret;
         this.appId = appId;
         this.options = options;
     }
@@ -41,6 +42,10 @@ public class SdkDetails {
      */
     public String getKey() {
         return this.key;
+    }
+
+    public String getSecret() {
+        return secret;
     }
 
     /**
