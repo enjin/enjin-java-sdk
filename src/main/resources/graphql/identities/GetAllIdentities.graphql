@@ -4,18 +4,18 @@ query getAllIdentities {
         app_id,
         ethereum_address,
         linking_code,
+        linking_code_qr,
         fields {
             key,
             value
         },
-        created_at,
-        updated_at,
         tokens {
             token_id,
             balance
         },
         eth_balance,
         enj_balance,
+        enj_allowance,
         all_tokens_balance
     }
 }

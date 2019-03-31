@@ -20,19 +20,23 @@ public interface AsynchronousIdentitiesService {
     /**
      * @param identityId
      * @param ethereumAddress
+     * @param linkingCode
      * @param callback
      */
     void getIdentitiesAsync(Integer identityId,
                             String ethereumAddress,
+                            String linkingCode,
                             Callback<GraphQLResponse<IdentitiesData>> callback);
 
     /**
      * @param userId
+     * @param email
      * @param ethereumAddress
      * @param fields
      * @param callback
      */
     void createIdentityAsync(Integer userId,
+                             String email,
                              String ethereumAddress,
                              List<IdentityField> fields,
                              Callback<GraphQLResponse<CreateIdentityData>> callback);

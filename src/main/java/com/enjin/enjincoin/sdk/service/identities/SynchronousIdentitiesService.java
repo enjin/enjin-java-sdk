@@ -22,6 +22,7 @@ public interface SynchronousIdentitiesService {
 
     /**
      * @param identityId
+     * @param linkingCode
      * @param ethereumAddress
      *
      * @return
@@ -29,10 +30,12 @@ public interface SynchronousIdentitiesService {
      * @throws IOException
      */
     Response<GraphQLResponse<IdentitiesData>> getIdentitiesSync(Integer identityId,
-                                                                String ethereumAddress) throws IOException;
+                                                                String ethereumAddress,
+                                                                String linkingCode) throws IOException;
 
     /**
      * @param userId
+     * @param email
      * @param ethereumAddress
      * @param fields
      *
@@ -41,6 +44,7 @@ public interface SynchronousIdentitiesService {
      * @throws IOException
      */
     Response<GraphQLResponse<CreateIdentityData>> createIdentitySync(Integer userId,
+                                                                     String email,
                                                                      String ethereumAddress,
                                                                      List<IdentityField> fields) throws IOException;
 
@@ -65,7 +69,9 @@ public interface SynchronousIdentitiesService {
      *
      * @throws IOException
      */
-    Response<GraphQLResponse<UpdateIdentityData>> updateIdentitySync(Integer identityId, Integer appId, Integer userId,
+    Response<GraphQLResponse<UpdateIdentityData>> updateIdentitySync(Integer identityId,
+                                                                     Integer appId,
+                                                                     Integer userId,
                                                                      String ethereumAddress,
                                                                      List<IdentityField> fields) throws IOException;
 }

@@ -33,16 +33,18 @@ public class IdentitiesServiceImpl extends ServiceBase implements IdentitiesServ
     @Override
     public void getIdentitiesAsync(final Integer identityId,
                                    final String ethereumAddress,
+                                   final String linkingCode,
                                    final Callback<GraphQLResponse<IdentitiesData>> callback) {
-        enqueue(getIdentitiesCall(identityId, ethereumAddress), callback);
+        enqueue(getIdentitiesCall(identityId, ethereumAddress, linkingCode), callback);
     }
 
     @Override
     public void createIdentityAsync(final Integer userId,
+                                    final String email,
                                     final String ethereumAddress,
                                     final List<IdentityField> fields,
                                     final Callback<GraphQLResponse<CreateIdentityData>> callback) {
-        enqueue(getCreateIdentityCall(userId, ethereumAddress, fields), callback);
+        enqueue(getCreateIdentityCall(userId, email, ethereumAddress, fields), callback);
     }
 
     @Override
@@ -74,15 +76,17 @@ public class IdentitiesServiceImpl extends ServiceBase implements IdentitiesServ
 
     @Override
     public Response<GraphQLResponse<IdentitiesData>> getIdentitiesSync(final Integer identityId,
-                                                                       final String ethereumAddress) throws IOException {
-        return execute(getIdentitiesCall(identityId, ethereumAddress));
+                                                                       final String ethereumAddress,
+                                                                       final String linkingCode) throws IOException {
+        return execute(getIdentitiesCall(identityId, ethereumAddress, linkingCode));
     }
 
     @Override
     public Response<GraphQLResponse<CreateIdentityData>> createIdentitySync(final Integer userId,
+                                                                            final String email,
                                                                             final String ethereumAddress,
                                                                             final List<IdentityField> fields) throws IOException {
-        return execute(getCreateIdentityCall(userId, ethereumAddress, fields));
+        return execute(getCreateIdentityCall(userId, email, ethereumAddress, fields));
     }
 
     public Response<GraphQLResponse<Identity>> unlinkIdentitySync(final Integer identityId,
@@ -107,17 +111,22 @@ public class IdentitiesServiceImpl extends ServiceBase implements IdentitiesServ
         return this.service.getAllIdentities(GraphQLRequest.builder());
     }
 
-    private Call<GraphQLResponse<IdentitiesData>> getIdentitiesCall(final Integer id, final String ethereumAddress) {
+    private Call<GraphQLResponse<IdentitiesData>> getIdentitiesCall(final Integer id,
+                                                                    final String ethereumAddress,
+                                                                    final String linkingCode) {
         return this.service.getIdentities(GraphQLRequest.builder()
                                                         .withParameter("id", id)
-                                                        .withParameter("ethereum_address", ethereumAddress));
+                                                        .withParameter("ethereum_address", ethereumAddress)
+                                                        .withParameter("linking_code", linkingCode));
     }
 
     private Call<GraphQLResponse<CreateIdentityData>> getCreateIdentityCall(final Integer userId,
+                                                                            final String email,
                                                                             final String ethereumAddress,
                                                                             final List<IdentityField> fields) {
         return this.service.createIdentity(GraphQLRequest.builder()
                                                          .withParameter("user_id", userId)
+                                                         .withParameter("email", email)
                                                          .withParameter("ethereum_address", ethereumAddress)
                                                          .withParameter("fields", fields));
     }

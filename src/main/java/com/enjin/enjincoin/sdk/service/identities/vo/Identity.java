@@ -19,11 +19,8 @@ public class Identity {
     @SerializedName("linking_code")
     private String linkingCode;
 
-    @SerializedName("created_at")
-    private JsonObject createdAt;
-
-    @SerializedName("updated_at")
-    private JsonObject updatedAt;
+    @SerializedName("linking_code_qr")
+    private String linkingCodeQr;
 
     private List<IdentityField> fields;
 
@@ -34,6 +31,9 @@ public class Identity {
 
     @SerializedName("enj_balance")
     private Double enjBalance;
+
+    @SerializedName("enj_allowance")
+    private Double enjAllowance;
 
     @SerializedName("all_tokens_balance")
     private JsonObject allTokensBalance;
@@ -54,12 +54,8 @@ public class Identity {
         return this.linkingCode;
     }
 
-    public JsonObject getCreatedAt() {
-        return this.createdAt;
-    }
-
-    public JsonObject getUpdatedAt() {
-        return this.updatedAt;
+    public String getLinkingCodeQr() {
+        return linkingCodeQr;
     }
 
     public List<IdentityField> getFields() {
@@ -74,6 +70,10 @@ public class Identity {
 
     public Double getEnjBalance() {
         return this.enjBalance;
+    }
+
+    public Double getEnjAllowance() {
+        return enjAllowance;
     }
 
     public JsonObject getAllTokensBalance() {
