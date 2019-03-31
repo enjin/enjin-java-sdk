@@ -27,24 +27,27 @@ public class Transaction {
     @SerializedName("token_id")
     private Integer tokenId;
 
-    private String title;
-
-    private String icon;
-
-    private Integer value;
-
     @SerializedName("encoded_data")
     private String encodedData;
 
-    private String state;
+    @SerializedName("signed_transaction")
+    private String signedTransaction;
+
+
+    @SerializedName("signed_backup_transaction")
+    private String signedBackupTransaction;
+
+    @SerializedName("signed_cancel_transaction")
+    private String signedCancelTransaction;
+
+    private String nonce;
+
+    @SerializedName("retry_state")
+    private String retryState;
+
+    private TransactionState state;
 
     private Integer accepted;
-
-    @SerializedName("created_at")
-    private JsonObject createdAt;
-
-    @SerializedName("updated_at")
-    private JsonObject updatedAt;
 
     public Integer getId() {
         return this.id;
@@ -78,35 +81,15 @@ public class Transaction {
         return this.tokenId;
     }
 
-    public String getTitle() {
-        return this.title;
-    }
-
-    public String getIcon() {
-        return this.icon;
-    }
-
-    public Integer getValue() {
-        return this.value;
-    }
-
     public String getEncodedData() {
         return this.encodedData;
     }
 
-    public String getState() {
+    public TransactionState getState() {
         return this.state;
     }
 
     public Integer getAccepted() {
         return this.accepted;
-    }
-
-    public JsonObject getCreatedAt() {
-        return this.createdAt;
-    }
-
-    public JsonObject getUpdatedAt() {
-        return this.updatedAt;
     }
 }

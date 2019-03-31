@@ -8,13 +8,13 @@ mutation createRequest {
         recipient_id,
         recipient_address,
         token_id,
-        title,
-        icon,
-        value,
         encoded_data,
+        signed_transaction,
+        signed_backup_transaction,
+        signed_cancel_transaction,
+        nonce,
+        retry_state,
         state,
-        accepted,
-        created_at,
-        updated_at
+        accepted
     }
 }

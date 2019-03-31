@@ -2,13 +2,18 @@ query getAllRequests {
     EnjinTransactions {
         id,
         transaction_id,
+        app_id,
         identity_id,
         type,
         recipient_id,
         recipient_address,
         token_id,
-        value,
         encoded_data,
+        signed_transaction,
+        signed_backup_transaction,
+        signed_cancel_transaction,
+        nonce,
+        retry_state,
         state,
         accepted
     }

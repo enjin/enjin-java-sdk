@@ -6,6 +6,8 @@ import com.enjin.enjincoin.sdk.model.body.GraphQLResponse;
 import com.enjin.enjincoin.sdk.model.request.GraphQLRequest;
 import com.enjin.enjincoin.sdk.service.ServiceBase;
 import com.enjin.enjincoin.sdk.service.requests.RequestsService;
+import com.enjin.enjincoin.sdk.service.requests.vo.RebroadcastType;
+import com.enjin.enjincoin.sdk.service.requests.vo.TransactionState;
 import com.enjin.enjincoin.sdk.service.requests.vo.TransactionType;
 import com.enjin.enjincoin.sdk.service.requests.vo.data.CreateRequestData;
 import com.enjin.enjincoin.sdk.service.requests.vo.data.RequestsData;
@@ -30,77 +32,143 @@ public class RequestsServiceImpl extends ServiceBase implements RequestsService 
     }
 
     @Override
-    public void getRequestsAsync(final Integer requestId,
+    public void getRequestsAsync(final Integer id,
                                  final String transactionId,
                                  final Integer identityId,
                                  final TransactionType type,
                                  final Integer recipientId,
                                  final String recipientAddress,
+                                 final Integer senderOrRecipientId,
                                  final Integer tokenId,
                                  final Integer value,
-                                 final String encodedData,
-                                 final String state,
+                                 final TransactionState state,
+                                 final TransactionState[] stateIn,
                                  final Integer accepted,
                                  final Callback<GraphQLResponse<RequestsData>> callback) {
-        enqueue(getGetRequestsCall(requestId,
+        enqueue(getGetRequestsCall(id,
                                    transactionId,
                                    identityId,
                                    type,
                                    recipientId,
                                    recipientAddress,
+                                   senderOrRecipientId,
                                    tokenId,
                                    value,
-                                   encodedData,
                                    state,
+                                   stateIn,
                                    accepted),
                 callback);
     }
 
     @Override
-    public void createRequestAsync(final Integer identityId,
-                                   final Integer appId,
-                                   final TransactionType type,
-                                   final String title,
-                                   final String icon,
-                                   final Float value,
-                                   final JsonObject createTokenData,
-                                   final JsonObject createTradeData,
-                                   final JsonObject completeTradeData,
-                                   final JsonObject mintTokenData,
-                                   final JsonObject meltTokenData,
-                                   final JsonObject sendTokenData,
+    public void createRequestAsync(Integer identityId,
+                                   TransactionType type,
+                                   Boolean test,
+                                   Boolean dummy,
+                                   JsonObject createTokenData,
+                                   JsonObject createTradeData,
+                                   JsonObject completeTradeData,
+                                   JsonObject mintTokenData,
+                                   JsonObject meltTokenData,
+                                   JsonObject sendTokenData,
+                                   JsonObject advancedSendTokenData,
+                                   JsonObject updateItemNameData,
+                                   JsonObject setItemUriData,
+                                   JsonObject setWhitelistedData,
+                                   JsonObject approveEnjData,
+                                   JsonObject approveItemData,
+                                   JsonObject setTransferableData,
+                                   JsonObject setMeltFeeData,
+                                   JsonObject decreaseMaxMeltFeeData,
+                                   JsonObject setTransferFeeData,
+                                   JsonObject decreaseMaxTransferFeeData,
+                                   JsonObject addLogData,
+                                   JsonObject batchApproveData,
+                                   JsonObject setApprovalData,
+                                   JsonObject setApprovalForAllData,
+                                   JsonObject messageData,
                                    final Callback<GraphQLResponse<CreateRequestData>> callback) {
         enqueue(getCreateRequestCall(identityId,
-                                     appId,
                                      type,
-                                     title,
-                                     icon,
-                                     value,
+                                     test,
+                                     dummy,
                                      createTokenData,
                                      createTradeData,
                                      completeTradeData,
                                      mintTokenData,
                                      meltTokenData,
-                                     sendTokenData),
+                                     sendTokenData,
+                                     advancedSendTokenData,
+                                     updateItemNameData,
+                                     setItemUriData,
+                                     setWhitelistedData,
+                                     approveEnjData,
+                                     approveItemData,
+                                     setTransferableData,
+                                     setMeltFeeData,
+                                     decreaseMaxMeltFeeData,
+                                     setTransferFeeData,
+                                     decreaseMaxTransferFeeData,
+                                     addLogData,
+                                     batchApproveData,
+                                     setApprovalData,
+                                     setApprovalForAllData,
+                                     messageData),
                 callback);
     }
 
     @Override
-    public void updateRequestAsync(final Integer requestId,
-                                   final Integer appId,
-                                   final Integer recipientId,
-                                   final TransactionType type,
-                                   final String title,
-                                   final String icon,
-                                   final Float value,
+    public void updateRequestAsync(Integer id,
+                                   TransactionType type,
+                                   RebroadcastType rebroadcast,
+                                   JsonObject createTokenData,
+                                   JsonObject createTradeData,
+                                   JsonObject completeTradeData,
+                                   JsonObject mintTokenData,
+                                   JsonObject meltTokenData,
+                                   JsonObject sendTokenData,
+                                   JsonObject advancedSendTokenData,
+                                   JsonObject updateItemNameData,
+                                   JsonObject setItemUriData,
+                                   JsonObject setWhitelistedData,
+                                   JsonObject approveEnjData,
+                                   JsonObject approveItemData,
+                                   JsonObject setTransferableData,
+                                   JsonObject setMeltFeeData,
+                                   JsonObject decreaseMaxMeltFeeData,
+                                   JsonObject setTransferFeeData,
+                                   JsonObject decreaseMaxTransferFeeData,
+                                   JsonObject addLogData,
+                                   JsonObject batchApproveData,
+                                   JsonObject setApprovalData,
+                                   JsonObject setApprovalForAllData,
+                                   JsonObject messageData,
                                    final Callback<GraphQLResponse<UpdateRequestData>> callback) {
-        enqueue(getUpdateRequestCall(requestId,
-                                     appId,
-                                     recipientId,
+        enqueue(getUpdateRequestCall(id,
                                      type,
-                                     title,
-                                     icon,
-                                     value),
+                                     rebroadcast,
+                                     createTokenData,
+                                     createTradeData,
+                                     completeTradeData,
+                                     mintTokenData,
+                                     meltTokenData,
+                                     sendTokenData,
+                                     advancedSendTokenData,
+                                     updateItemNameData,
+                                     setItemUriData,
+                                     setWhitelistedData,
+                                     approveEnjData,
+                                     approveItemData,
+                                     setTransferableData,
+                                     setMeltFeeData,
+                                     decreaseMaxMeltFeeData,
+                                     setTransferFeeData,
+                                     decreaseMaxTransferFeeData,
+                                     addLogData,
+                                     batchApproveData,
+                                     setApprovalData,
+                                     setApprovalForAllData,
+                                     messageData),
                 callback);
     }
 
@@ -110,73 +178,138 @@ public class RequestsServiceImpl extends ServiceBase implements RequestsService 
     }
 
     @Override
-    public Response<GraphQLResponse<RequestsData>> getRequestsSync(final Integer requestId,
+    public Response<GraphQLResponse<RequestsData>> getRequestsSync(final Integer id,
                                                                    final String transactionId,
                                                                    final Integer identityId,
                                                                    final TransactionType type,
                                                                    final Integer recipientId,
                                                                    final String recipientAddress,
+                                                                   final Integer senderOrRecipientId,
                                                                    final Integer tokenId,
                                                                    final Integer value,
-                                                                   final String encodedData,
-                                                                   final String state,
+                                                                   final TransactionState state,
+                                                                   final TransactionState[] stateIn,
                                                                    final Integer accepted) throws IOException {
-        return execute(getGetRequestsCall(requestId,
-                                   transactionId,
-                                   identityId,
-                                   type,
-                                   recipientId,
-                                   recipientAddress,
-                                   tokenId,
-                                   value,
-                                   encodedData,
-                                   state,
-                                   accepted));
+        return execute(getGetRequestsCall(id,
+                                          transactionId,
+                                          identityId,
+                                          type,
+                                          recipientId,
+                                          recipientAddress,
+                                          senderOrRecipientId,
+                                          tokenId,
+                                          value,
+                                          state,
+                                          stateIn,
+                                          accepted));
     }
 
     @Override
-    public Response<GraphQLResponse<CreateRequestData>> createRequestSync(final Integer identityId,
-                                                                          final Integer appId,
-                                                                          final TransactionType type,
-                                                                          final String title,
-                                                                          final String icon,
-                                                                          final Float value,
-                                                                          final JsonObject createTokenData,
-                                                                          final JsonObject createTradeData,
-                                                                          final JsonObject completeTradeData,
-                                                                          final JsonObject mintTokenData,
-                                                                          final JsonObject meltTokenData,
-                                                                          final JsonObject sendTokenData) throws IOException {
-        return execute(getCreateRequestCall(
-                identityId,
-                appId,
-                type,
-                title,
-                icon,
-                value,
-                createTokenData,
-                createTradeData,
-                completeTradeData,
-                mintTokenData,
-                meltTokenData,
-                sendTokenData));
-    }
-
-    @Override
-    public Response<GraphQLResponse<UpdateRequestData>> updateRequestSync(final Integer requestId,
-                                                                          final Integer appId,
-                                                                          final Integer recipientId,
-                                                                          final TransactionType type,
-                                                                          final String title,
-                                                                          final String icon,
-                                                                          final Float value) throws IOException {
-        return execute(getUpdateRequestCall(requestId,
-                                            appId,
-                                            recipientId,
+    public Response<GraphQLResponse<CreateRequestData>> createRequestSync(Integer identityId,
+                                                                          TransactionType type,
+                                                                          Boolean test,
+                                                                          Boolean dummy,
+                                                                          JsonObject createTokenData,
+                                                                          JsonObject createTradeData,
+                                                                          JsonObject completeTradeData,
+                                                                          JsonObject mintTokenData,
+                                                                          JsonObject meltTokenData,
+                                                                          JsonObject sendTokenData,
+                                                                          JsonObject advancedSendTokenData,
+                                                                          JsonObject updateItemNameData,
+                                                                          JsonObject setItemUriData,
+                                                                          JsonObject setWhitelistedData,
+                                                                          JsonObject approveEnjData,
+                                                                          JsonObject approveItemData,
+                                                                          JsonObject setTransferableData,
+                                                                          JsonObject setMeltFeeData,
+                                                                          JsonObject decreaseMaxMeltFeeData,
+                                                                          JsonObject setTransferFeeData,
+                                                                          JsonObject decreaseMaxTransferFeeData,
+                                                                          JsonObject addLogData,
+                                                                          JsonObject batchApproveData,
+                                                                          JsonObject setApprovalData,
+                                                                          JsonObject setApprovalForAllData,
+                                                                          JsonObject messageData) throws IOException {
+        return execute(getCreateRequestCall(identityId,
                                             type,
-                                            title,
-                                            icon,
-                                            value));
+                                            test,
+                                            dummy,
+                                            createTokenData,
+                                            createTradeData,
+                                            completeTradeData,
+                                            mintTokenData,
+                                            meltTokenData,
+                                            sendTokenData,
+                                            advancedSendTokenData,
+                                            updateItemNameData,
+                                            setItemUriData,
+                                            setWhitelistedData,
+                                            approveEnjData,
+                                            approveItemData,
+                                            setTransferableData,
+                                            setMeltFeeData,
+                                            decreaseMaxMeltFeeData,
+                                            setTransferFeeData,
+                                            decreaseMaxTransferFeeData,
+                                            addLogData,
+                                            batchApproveData,
+                                            setApprovalData,
+                                            setApprovalForAllData,
+                                            messageData));
+    }
+
+    @Override
+    public Response<GraphQLResponse<UpdateRequestData>> updateRequestSync(Integer id,
+                                                                          TransactionType type,
+                                                                          RebroadcastType rebroadcast,
+                                                                          JsonObject createTokenData,
+                                                                          JsonObject createTradeData,
+                                                                          JsonObject completeTradeData,
+                                                                          JsonObject mintTokenData,
+                                                                          JsonObject meltTokenData,
+                                                                          JsonObject sendTokenData,
+                                                                          JsonObject advancedSendTokenData,
+                                                                          JsonObject updateItemNameData,
+                                                                          JsonObject setItemUriData,
+                                                                          JsonObject setWhitelistedData,
+                                                                          JsonObject approveEnjData,
+                                                                          JsonObject approveItemData,
+                                                                          JsonObject setTransferableData,
+                                                                          JsonObject setMeltFeeData,
+                                                                          JsonObject decreaseMaxMeltFeeData,
+                                                                          JsonObject setTransferFeeData,
+                                                                          JsonObject decreaseMaxTransferFeeData,
+                                                                          JsonObject addLogData,
+                                                                          JsonObject batchApproveData,
+                                                                          JsonObject setApprovalData,
+                                                                          JsonObject setApprovalForAllData,
+                                                                          JsonObject messageData) throws IOException {
+        return execute(getUpdateRequestCall(id,
+                                            type,
+                                            rebroadcast,
+                                            createTokenData,
+                                            createTradeData,
+                                            completeTradeData,
+                                            mintTokenData,
+                                            meltTokenData,
+                                            sendTokenData,
+                                            advancedSendTokenData,
+                                            updateItemNameData,
+                                            setItemUriData,
+                                            setWhitelistedData,
+                                            approveEnjData,
+                                            approveItemData,
+                                            setTransferableData,
+                                            setMeltFeeData,
+                                            decreaseMaxMeltFeeData,
+                                            setTransferFeeData,
+                                            decreaseMaxTransferFeeData,
+                                            addLogData,
+                                            batchApproveData,
+                                            setApprovalData,
+                                            setApprovalForAllData,
+                                            messageData));
     }
 
     private Call<GraphQLResponse<RequestsData>> getGetAllRequestsCall() {
@@ -189,10 +322,11 @@ public class RequestsServiceImpl extends ServiceBase implements RequestsService 
                                                                    final TransactionType type,
                                                                    final Integer recipientId,
                                                                    final String recipientAddress,
+                                                                   final Integer senderOrRecipientId,
                                                                    final Integer tokenId,
                                                                    final Integer value,
-                                                                   final String encodedData,
-                                                                   final String state,
+                                                                   final TransactionState state,
+                                                                   final TransactionState[] stateIn,
                                                                    final Integer accepted) {
         return this.service.getRequests(GraphQLRequest.builder()
                                                       .withParameter("id", id)
@@ -201,55 +335,124 @@ public class RequestsServiceImpl extends ServiceBase implements RequestsService 
                                                       .withParameter("type", type)
                                                       .withParameter("recipient_id", recipientId)
                                                       .withParameter("recipient_address", recipientAddress)
+                                                      .withParameter("sender_or_recipient_id", senderOrRecipientId)
                                                       .withParameter("token_id", tokenId)
                                                       .withParameter("value", value)
-                                                      .withParameter("encoded_data", encodedData)
                                                       .withParameter("state", state)
+                                                      .withParameter("state_in", stateIn)
                                                       .withParameter("accepted", accepted));
     }
 
-    private Call<GraphQLResponse<CreateRequestData>> getCreateRequestCall(final Integer identityId,
-                                                                          final Integer appId,
-                                                                          final TransactionType type,
-                                                                          final String title,
-                                                                          final String icon,
-                                                                          final Float value,
-                                                                          final JsonObject createTokenData,
-                                                                          final JsonObject createTradeData,
-                                                                          final JsonObject completeTradeData,
-                                                                          final JsonObject mintTokenData,
-                                                                          final JsonObject meltTokenData,
-                                                                          final JsonObject sendTokenData) {
-        return this.service.createRequest(GraphQLRequest.builder()
-                                                        .withParameter("identity_id", identityId)
-                                                        .withParameter("app_id", appId)
-                                                        .withParameter("type", type)
-                                                        .withParameter("title", title)
-                                                        .withParameter("icon", icon)
-                                                        .withParameter("value", value)
-                                                        .withParameter("create_token_data", createTokenData)
-                                                        .withParameter("create_trade_data", createTradeData)
-                                                        .withParameter("complete_trade_data", completeTradeData)
-                                                        .withParameter("mint_token_data", mintTokenData)
-                                                        .withParameter("melt_token_data", meltTokenData)
-                                                        .withParameter("send_token_data", sendTokenData));
+    private Call<GraphQLResponse<CreateRequestData>> getCreateRequestCall(Integer identityId,
+                                                                          TransactionType type,
+                                                                          Boolean test,
+                                                                          Boolean dummy,
+                                                                          JsonObject createTokenData,
+                                                                          JsonObject createTradeData,
+                                                                          JsonObject completeTradeData,
+                                                                          JsonObject mintTokenData,
+                                                                          JsonObject meltTokenData,
+                                                                          JsonObject sendTokenData,
+                                                                          JsonObject advancedSendTokenData,
+                                                                          JsonObject updateItemNameData,
+                                                                          JsonObject setItemUriData,
+                                                                          JsonObject setWhitelistedData,
+                                                                          JsonObject approveEnjData,
+                                                                          JsonObject approveItemData,
+                                                                          JsonObject setTransferableData,
+                                                                          JsonObject setMeltFeeData,
+                                                                          JsonObject decreaseMaxMeltFeeData,
+                                                                          JsonObject setTransferFeeData,
+                                                                          JsonObject decreaseMaxTransferFeeData,
+                                                                          JsonObject addLogData,
+                                                                          JsonObject batchApproveData,
+                                                                          JsonObject setApprovalData,
+                                                                          JsonObject setApprovalForAllData,
+                                                                          JsonObject messageData) {
+        return this.service.createRequest(
+                GraphQLRequest.builder()
+                              .withParameter("identity_id", identityId)
+                              .withParameter("type", type)
+                              .withParameter("test", test)
+                              .withParameter("dummy", dummy)
+                              .withParameter("create_token_data", createTokenData)
+                              .withParameter("create_trade_data", createTradeData)
+                              .withParameter("complete_trade_data", completeTradeData)
+                              .withParameter("mint_token_data", mintTokenData)
+                              .withParameter("melt_token_data", meltTokenData)
+                              .withParameter("send_token_data", sendTokenData)
+                              .withParameter("advanced_send_token_data", advancedSendTokenData)
+                              .withParameter("update_item_name_data", updateItemNameData)
+                              .withParameter("set_item_uri_data", setItemUriData)
+                              .withParameter("set_whitelisted_data", setWhitelistedData)
+                              .withParameter("approve_enj_data", approveEnjData)
+                              .withParameter("approve_item_data", approveItemData)
+                              .withParameter("set_transferable", setTransferableData)
+                              .withParameter("set_melt_fee_data", setMeltFeeData)
+                              .withParameter("decrease_max_melt_fee_data", decreaseMaxMeltFeeData)
+                              .withParameter("set_transfer_fee_data", setTransferFeeData)
+                              .withParameter("decrease_max_transfer_fee_data", decreaseMaxTransferFeeData)
+                              .withParameter("add_log_data", addLogData)
+                              .withParameter("batch_approve_data", batchApproveData)
+                              .withParameter("set_approval_data", setApprovalData)
+                              .withParameter("set_approval_for_all_data", setApprovalForAllData)
+                              .withParameter("message_data", messageData)
+        );
     }
 
-    private Call<GraphQLResponse<UpdateRequestData>> getUpdateRequestCall(final Integer id,
-                                                                          final Integer appId,
-                                                                          final Integer recipientId,
-                                                                          final TransactionType type,
-                                                                          final String title,
-                                                                          final String icon,
-                                                                          final Float value) {
-        return this.service.updateRequest(GraphQLRequest.builder()
-                                                        .withParameter("id", id)
-                                                        .withParameter("app_id", appId)
-                                                        .withParameter("recipient_id", recipientId)
-                                                        .withParameter("type", type)
-                                                        .withParameter("title", title)
-                                                        .withParameter("icon", icon)
-                                                        .withParameter("value", value));
+    private Call<GraphQLResponse<UpdateRequestData>> getUpdateRequestCall(Integer id,
+                                                                          TransactionType type,
+                                                                          RebroadcastType rebroadcast,
+                                                                          JsonObject createTokenData,
+                                                                          JsonObject createTradeData,
+                                                                          JsonObject completeTradeData,
+                                                                          JsonObject mintTokenData,
+                                                                          JsonObject meltTokenData,
+                                                                          JsonObject sendTokenData,
+                                                                          JsonObject advancedSendTokenData,
+                                                                          JsonObject updateItemNameData,
+                                                                          JsonObject setItemUriData,
+                                                                          JsonObject setWhitelistedData,
+                                                                          JsonObject approveEnjData,
+                                                                          JsonObject approveItemData,
+                                                                          JsonObject setTransferableData,
+                                                                          JsonObject setMeltFeeData,
+                                                                          JsonObject decreaseMaxMeltFeeData,
+                                                                          JsonObject setTransferFeeData,
+                                                                          JsonObject decreaseMaxTransferFeeData,
+                                                                          JsonObject addLogData,
+                                                                          JsonObject batchApproveData,
+                                                                          JsonObject setApprovalData,
+                                                                          JsonObject setApprovalForAllData,
+                                                                          JsonObject messageData) {
+        return this.service.updateRequest(
+                GraphQLRequest.builder()
+                              .withParameter("id", id)
+                              .withParameter("type", type)
+                              .withParameter("rebroadcast", rebroadcast)
+                              .withParameter("create_token_data", createTokenData)
+                              .withParameter("create_trade_data", createTradeData)
+                              .withParameter("complete_trade_data", completeTradeData)
+                              .withParameter("mint_token_data", mintTokenData)
+                              .withParameter("melt_token_data", meltTokenData)
+                              .withParameter("send_token_data", sendTokenData)
+                              .withParameter("advanced_send_token_data", advancedSendTokenData)
+                              .withParameter("update_item_name_data", updateItemNameData)
+                              .withParameter("set_item_uri_data", setItemUriData)
+                              .withParameter("set_whitelisted_data", setWhitelistedData)
+                              .withParameter("approve_enj_data", approveEnjData)
+                              .withParameter("approve_item_data", approveItemData)
+                              .withParameter("set_transferable", setTransferableData)
+                              .withParameter("set_melt_fee_data", setMeltFeeData)
+                              .withParameter("decrease_max_melt_fee_data", decreaseMaxMeltFeeData)
+                              .withParameter("set_transfer_fee_data", setTransferFeeData)
+                              .withParameter("decrease_max_transfer_fee_data", decreaseMaxTransferFeeData)
+                              .withParameter("add_log_data", addLogData)
+                              .withParameter("batch_approve_data", batchApproveData)
+                              .withParameter("set_approval_data", setApprovalData)
+                              .withParameter("set_approval_for_all_data", setApprovalForAllData)
+                              .withParameter("message_data", messageData)
+        );
     }
 
 }
