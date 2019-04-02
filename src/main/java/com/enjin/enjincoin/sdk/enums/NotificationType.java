@@ -64,13 +64,25 @@ public enum NotificationType {
      **/
     BALANCE_MELTED("balance_melted"),
     /**
-     * Event - token_updated.
+     * Event - item_updated.
      **/
-    TOKEN_UPDATED("token_updated"),
+    TOKEN_UPDATED("item_updated"),
     /**
-     * Event - token_created.
+     * Event - item_created.
      **/
-    TOKEN_CREATED("token_created");
+    TOKEN_CREATED("item_created"),
+    /**
+     * Event - app_created.
+     */
+    APP_CREATED("app_created"),
+    /**
+     * Event - app_updated.
+     */
+    APP_UPDATED("app_updated"),
+    /**
+     * Event - app_deleted.
+     */
+    APP_DELETED("app_deleted");
 
     /**
      * Local eventType variable.

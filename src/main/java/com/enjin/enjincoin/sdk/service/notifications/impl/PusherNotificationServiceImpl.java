@@ -203,6 +203,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
                 for (NotificationType type : NotificationType.values()) {
                     if (type.getEventType().equalsIgnoreCase(eventTypeString)) {
                         notificationType = type;
+                        break;
                     }
                 }
             }
