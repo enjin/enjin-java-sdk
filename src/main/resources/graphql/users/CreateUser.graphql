@@ -13,8 +13,6 @@ mutation createUser {
             app_id
         },
         access_tokens,
-        created_at,
-        updated_at,
         identities {
             id,
             app_id,

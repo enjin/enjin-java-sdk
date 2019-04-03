@@ -12,6 +12,22 @@ query getUsers {
                 name
             },
             app_id
+        },
+        identities {
+            id,
+            app_id,
+            ethereum_address,
+            eth_balance,
+            enj_balance,
+            linking_code,
+            fields {
+                key,
+                value
+            },
+            tokens {
+                token_id,
+                balance
+            }
         }
     }
 }
