@@ -4,7 +4,8 @@ public enum ChannelEvent {
 
     IDENTITY("EnjinCoin\\Events\\EnjinEventIdentity"),
     TOKEN("EnjinCoin\\Events\\EnjinEventTokenEvent"),
-    TRANSACTION("EnjinCoin\\Events\\EnjinEventTransaction");
+    TRANSACTION("EnjinCoin\\Events\\EnjinEventTransaction"),
+    UPDATE_BALANCE("EnjinCoin\\Events\\EnjinEventUpdateBalance");
 
     private String key;
 

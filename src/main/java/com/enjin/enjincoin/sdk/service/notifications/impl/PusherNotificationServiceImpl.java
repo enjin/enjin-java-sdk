@@ -82,8 +82,8 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
     public boolean init() {
         boolean initializeResult = false;
 
-        if (this.platformDetails == null || this.platformDetails.getNotificationDetails() == null) {
-            LOGGER.warning("platformDetails or notificationDetails are null");
+        if (this.platformDetails.getNotificationDetails() == null) {
+            LOGGER.warning("notificationDetails are null");
             return initializeResult;
         }
 
@@ -152,8 +152,9 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
         //String[] eventTypes = Arrays.stream(NotificationTypeEnum.values()).map(NotificationTypeEnum::name).toArray(String[]::new);
 
         for (ChannelEvent channelEvent : ChannelEvent.values()) {
+            LOGGER.info(String.format("Event Channel Bound: %s", channelEvent.getKey()));
             this.channel.bind(channelEvent.getKey(), (channel, event, data) -> {
-                LOGGER.fine(String.format("Received eventType %s, event %s with data %s ",
+                LOGGER.info(String.format("Received eventType %s, event %s with data %s ",
                                           channelEvent.getKey(),
                                           event,
                                           data));
@@ -168,7 +169,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
     private String getAppChannel(final PlatformDetails platformDetails) {
         final String platformId = platformDetails.getId();
 
-        return String.format("enjin.server.%s.%s", platformId, this.appId);
+        return String.format("enjin.server.%s.%s.%s", this.platformDetails.getNetwork().toLowerCase(), platformId, this.appId);
     }
 
     @Override

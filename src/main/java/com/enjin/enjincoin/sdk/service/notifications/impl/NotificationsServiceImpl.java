@@ -81,24 +81,26 @@ public class NotificationsServiceImpl implements NotificationsService {
      */
     @Override
     public boolean restart() {
-        boolean initResult = false;
-
         final Response<GraphQLResponse<PlatformData>> response;
         try {
             response = this.service.getPlatformSync();
             if (response == null || response.body() == null) {
                 LOGGER.warning("Failed to get platform details");
-                return initResult;
+                return false;
             }
 
             final GraphQLResponse<PlatformData> body = response.body();
             if (body == null || body.getData() == null) {
                 LOGGER.warning("Failed to get platform details");
-                return initResult;
+                return false;
             }
 
             final PlatformData    data    = body.getData();
             final PlatformDetails details = data.getPlatform();
+            if (details == null) {
+                LOGGER.warning("Platform details are null.");
+                return false;
+            }
             // Setup the thirdPartyNotificationService to use the pusher service.
             if (this.thirdPartyNotificationService == null) {
                 this.thirdPartyNotificationService = new PusherNotificationServiceImpl(details, this.clientId);
@@ -108,15 +110,14 @@ public class NotificationsServiceImpl implements NotificationsService {
             final boolean initPusherResult = this.thirdPartyNotificationService.init();
             if (BooleanUtils.isFalse(initPusherResult)) {
                 LOGGER.warning("A problem occured initializing the pusher library");
-                return initResult;
+                return false;
             }
-            initResult = initPusherResult;
         } catch (final IOException e) {
             LOGGER.warning(String.format("An IOException has occured. Exception: %s.", e.getMessage()));
         }
 
 
-        return initResult;
+        return true;
     }
 
     @Override
