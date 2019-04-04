@@ -18,12 +18,15 @@ import com.google.gson.JsonObject;
 import com.pusher.client.Pusher;
 import com.pusher.client.PusherOptions;
 import com.pusher.client.channel.Channel;
+import com.pusher.client.channel.ChannelEventListener;
 import com.pusher.client.connection.ConnectionEventListener;
 import com.pusher.client.connection.ConnectionState;
 import com.pusher.client.connection.ConnectionStateChange;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 /**
@@ -62,6 +65,10 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
      */
     private PlatformDetails platformDetails;
 
+    private PusherListener pusherListener;
+
+    private Map<String, Channel> identityChannels = new HashMap<>();
+
     /**
      * Class constructor.
      *
@@ -71,6 +78,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
     public PusherNotificationServiceImpl(final PlatformDetails platformDetails, final int appId) {
         this.platformDetails = platformDetails;
         this.appId = appId;
+        this.pusherListener = new PusherListener(this);
     }
 
     /**
@@ -96,7 +104,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
         final SdkDetails sdkDetails = notificationDetails.getSdkDetails();
         final String     appKey     = sdkDetails.getKey();
         final String     cluster    = sdkDetails.getOptions().getCluster();
-        final String     appChannel = getAppChannel(platformDetails);
+        final String     appChannel = getAppChannel();
         final boolean    encrypted  = sdkDetails.getOptions().getEncrypted();
         System.out.println("appChannel:" + appChannel);
         final Long activityTimeout = ACTIVITY_TIMEOUT;
@@ -110,6 +118,8 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
             LOGGER.warning("appChannel is null or empty");
             return initializeResult;
         }
+
+        shutdown();
 
         // Create a new Pusher instance
         final PusherOptions options = new PusherOptions()
@@ -166,10 +176,22 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
         return initializeResult;
     }
 
-    private String getAppChannel(final PlatformDetails platformDetails) {
-        final String platformId = platformDetails.getId();
+    private String getAppChannel() {
+        final String platformId = this.platformDetails.getId();
 
-        return String.format("enjin.server.%s.%s.%s", this.platformDetails.getNetwork().toLowerCase(), platformId, this.appId);
+        return String.format("enjin.server.%s.%s.%s",
+                             this.platformDetails.getNetwork().toLowerCase(),
+                             platformId,
+                             this.appId);
+    }
+
+    private String getIdentityChannel(int identityId) {
+        return String.format("enjin.server.%s.%s.%s.%s",
+                             this.platformDetails.getNetwork().toLowerCase(),
+                             this.platformDetails.getId(),
+                             this.appId,
+                             identityId
+        );
     }
 
     @Override
@@ -186,7 +208,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
      * @param channel    the channel the notification was received from
      * @param eventType  the type of event we received
      */
-    private void fireNotification(final String sourceData, final String channel, final String eventType) {
+    protected void fireNotification(final String sourceData, final String channel, final String eventType) {
 
         if (CollectionUtils.isEmpty(this.notificationListenerRegistrations)) {
             LOGGER.warning("No listeners are currently registered");
@@ -233,5 +255,39 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
     @Override
     public synchronized void setNotificationListeners(final List<NotificationListenerRegistration> argNotificationListeners) {
         this.notificationListenerRegistrations = argNotificationListeners;
+    }
+
+    @Override
+    public void listenForLink(int identityId) {
+        String channel = getIdentityChannel(identityId);
+
+        if (identityChannels.containsKey(channel)) {
+            unbind(identityChannels.remove(channel));
+        }
+
+        Channel ch = this.pusher.subscribe(channel);
+        identityChannels.put(channel, ch);
+        bind(ch);
+    }
+
+    @Override
+    public void stopListeningForLink(int identityId) {
+        String channel = getIdentityChannel(identityId);
+
+        if (identityChannels.containsKey(channel)) {
+            unbind(identityChannels.remove(channel));
+        }
+    }
+
+    private void bind(Channel channel) {
+        for (ChannelEvent channelEvent : ChannelEvent.values()) {
+            channel.bind(channelEvent.getKey(), this.pusherListener);
+        }
+    }
+
+    private void unbind(Channel channel) {
+        for (ChannelEvent channelEvent : ChannelEvent.values()) {
+            channel.unbind(channelEvent.getKey(), this.pusherListener);
+        }
     }
 }

@@ -100,4 +100,8 @@ public interface NotificationsService extends AsynchronousNotificationsService {
      * @param registration to remove
      */
     void removeNotificationListenerRegistration(NotificationListenerRegistration registration);
+
+    void listenForLink(int identityId);
+
+    void stopListeningForLink(int identityId);
 }

@@ -106,7 +106,6 @@ public class NotificationsServiceImpl implements NotificationsService {
                 this.thirdPartyNotificationService = new PusherNotificationServiceImpl(details, this.clientId);
             }
 
-            //boolean initPusherResult = this.thirdPartyNotificationService.init(platformAuthDetailsResponseVO);
             final boolean initPusherResult = this.thirdPartyNotificationService.init();
             if (BooleanUtils.isFalse(initPusherResult)) {
                 LOGGER.warning("A problem occured initializing the pusher library");
@@ -260,6 +259,16 @@ public class NotificationsServiceImpl implements NotificationsService {
         } else {
             LOGGER.warning("Could not add a NotificationListenerRegistration because it was null.");
         }
+    }
+
+    @Override
+    public void listenForLink(int identityId) {
+        this.thirdPartyNotificationService.listenForLink(identityId);
+    }
+
+    @Override
+    public void stopListeningForLink(int identityId) {
+        this.thirdPartyNotificationService.listenForLink(identityId);
     }
 
     @Override

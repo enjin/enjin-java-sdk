@@ -25,4 +25,8 @@ public interface ThirdPartyNotificationService {
      * @param notificationListeners the new list of listeners to set
      */
     void setNotificationListeners(List<NotificationListenerRegistration> notificationListeners);
+
+    void listenForLink(int identityId);
+
+    void stopListeningForLink(int identityId);
 }
