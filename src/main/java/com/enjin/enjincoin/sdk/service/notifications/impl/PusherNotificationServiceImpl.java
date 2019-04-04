@@ -277,6 +277,8 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
         if (identityChannels.containsKey(channel)) {
             unbind(identityChannels.remove(channel));
         }
+
+        pusher.unsubscribe(channel);
     }
 
     private void bind(Channel channel) {

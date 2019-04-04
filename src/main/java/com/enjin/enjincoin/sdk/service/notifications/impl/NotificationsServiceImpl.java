@@ -268,7 +268,7 @@ public class NotificationsServiceImpl implements NotificationsService {
 
     @Override
     public void stopListeningForLink(int identityId) {
-        this.thirdPartyNotificationService.listenForLink(identityId);
+        this.thirdPartyNotificationService.stopListeningForLink(identityId);
     }
 
     @Override
