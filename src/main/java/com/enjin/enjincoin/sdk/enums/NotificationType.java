@@ -30,7 +30,7 @@ public enum NotificationType {
     /**
      * Event - tx_broadcasted.
      **/
-    TX_BROADCASTED("tx_broadcasted"),
+    TX_BROADCASTED("tx_broadcast"),
     /**
      * Event - tx_executed.
      **/

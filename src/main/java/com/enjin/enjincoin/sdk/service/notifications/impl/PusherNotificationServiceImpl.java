@@ -218,22 +218,24 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
         JsonElement      dataElement      = gson.fromJson(sourceData, JsonElement.class);
         NotificationType notificationType = NotificationType.UNKNOWN_EVENT;
 
-        if (dataElement != null && dataElement.isJsonObject()) {
-            JsonObject dataObject = dataElement.getAsJsonObject();
-            if (dataObject.has("event_type")) {
-                JsonElement eventTypeElement = dataObject.get("event_type");
-                String      eventTypeString  = eventTypeElement.getAsString();
-                for (NotificationType type : NotificationType.values()) {
-                    if (type.getEventType().equalsIgnoreCase(eventTypeString)) {
-                        notificationType = type;
-                        break;
-                    }
-                }
+        if (dataElement == null || !dataElement.isJsonObject()
+                || !dataElement.getAsJsonObject().has("event_type")) {
+            return;
+        }
+
+        JsonObject  dataObject       = dataElement.getAsJsonObject();
+        JsonElement eventTypeElement = dataObject.get("event_type");
+        String      eventTypeString  = eventTypeElement.getAsString();
+        for (NotificationType type : NotificationType.values()) {
+            if (type.getEventType().equalsIgnoreCase(eventTypeString)) {
+                notificationType = type;
+                break;
             }
         }
 
         if (notificationType == NotificationType.UNKNOWN_EVENT) {
-            LOGGER.warning(String.format("UNKNOWN_EVENT NotificationType returned for the eventType of %s", eventType));
+            LOGGER.warning(String.format("UNKNOWN_EVENT NotificationType %s returned for the eventType of %s",
+                                         eventTypeString, eventType));
             return;
         }
 
