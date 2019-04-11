@@ -17,9 +17,8 @@ query getAllUsers {
             id,
             app_id,
             ethereum_address,
-            eth_balance,
-            enj_balance,
             linking_code,
+            linking_code_qr,
             fields {
                 key,
                 value
@@ -27,7 +26,11 @@ query getAllUsers {
             tokens {
                 token_id,
                 balance
-            }
+            },
+            eth_balance,
+            enj_balance,
+            enj_allowance,
+            all_tokens_balance
         }
     }
 }
