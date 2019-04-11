@@ -272,6 +272,11 @@ public class NotificationsServiceImpl implements NotificationsService {
     }
 
     @Override
+    public boolean isListeningForLink(int identityId) {
+        return this.thirdPartyNotificationService.isListeningForLink(identityId);
+    }
+
+    @Override
     public void startAsync(final CompletableFuture<Boolean> future) {
         this.restartAsync(future);
     }

@@ -104,4 +104,6 @@ public interface NotificationsService extends AsynchronousNotificationsService {
     void listenForLink(int identityId);
 
     void stopListeningForLink(int identityId);
+
+    boolean isListeningForLink(int identityId);
 }

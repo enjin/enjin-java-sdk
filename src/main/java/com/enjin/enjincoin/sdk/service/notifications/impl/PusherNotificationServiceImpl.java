@@ -283,6 +283,12 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
         pusher.unsubscribe(channel);
     }
 
+    @Override
+    public boolean isListeningForLink(int identityId) {
+        String channel = getIdentityChannel(identityId);
+        return identityChannels.containsKey(channel);
+    }
+
     private void bind(Channel channel) {
         for (ChannelEvent channelEvent : ChannelEvent.values()) {
             channel.bind(channelEvent.getKey(), this.pusherListener);
