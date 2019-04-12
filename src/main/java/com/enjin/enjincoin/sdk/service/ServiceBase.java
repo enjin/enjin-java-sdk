@@ -28,9 +28,7 @@ public class ServiceBase {
                         List<GraphError> errors = null;
 
                         try {
-                            System.out.println("Generating errors");
                             errors = GraphErrorUtil.getGraphQLError(errorBody.string());
-                            System.out.println(errors.toString());
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
