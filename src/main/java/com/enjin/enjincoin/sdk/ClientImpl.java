@@ -10,6 +10,8 @@ import com.enjin.enjincoin.sdk.cookiejar.persistence.MemoryCookiePersistor;
 import com.enjin.enjincoin.sdk.service.auth.AuthRetrofitService;
 import com.enjin.enjincoin.sdk.service.auth.vo.AuthBody;
 import com.enjin.enjincoin.sdk.service.auth.vo.AuthData;
+import com.enjin.enjincoin.sdk.service.ethereum.EthereumService;
+import com.enjin.enjincoin.sdk.service.ethereum.impl.EthereumServiceImpl;
 import com.enjin.enjincoin.sdk.service.identities.IdentitiesService;
 import com.enjin.enjincoin.sdk.service.identities.impl.IdentitiesServiceImpl;
 import com.enjin.enjincoin.sdk.service.notifications.NotificationsService;
@@ -42,6 +44,7 @@ public class ClientImpl implements Client {
     private OkHttpClient         client;
     private Retrofit             retrofit;
     private AuthRetrofitService  authRetrofitService;
+    private EthereumService      ethereumService;
     private IdentitiesService    identitiesService;
     private UsersService         userService;
     private RequestsService      requestsService;
@@ -113,6 +116,14 @@ public class ClientImpl implements Client {
     @Override
     public String getAppId() {
         return this.appId;
+    }
+
+    @Override
+    public EthereumService getEthereumService() {
+        if (this.ethereumService == null) {
+            this.ethereumService = new EthereumServiceImpl(retrofit);
+        }
+        return this.ethereumService;
     }
 
     @Override
