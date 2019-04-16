@@ -24,12 +24,12 @@ public class TokensServiceImpl extends ServiceBase implements TokensService {
 
     private final TokensRetrofitService service;
 
-    public TokensServiceImpl(final Retrofit retrofit) {
+    public TokensServiceImpl(Retrofit retrofit) {
         this.service = retrofit.create(TokensRetrofitService.class);
     }
 
     @Override
-    public void getAllTokensAsync(final Callback<GraphQLResponse<TokensData>> callback) {
+    public void getAllTokensAsync(Callback<GraphQLResponse<TokensData>> callback) {
         enqueue(getAllTokensCall(), callback);
     }
 

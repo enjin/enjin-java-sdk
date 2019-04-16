@@ -3,6 +3,9 @@ package com.enjin.enjincoin.sdk.service.users.impl;
 import com.enjin.enjincoin.sdk.Callback;
 import com.enjin.enjincoin.sdk.Response;
 import com.enjin.enjincoin.sdk.model.body.GraphQLResponse;
+import com.enjin.enjincoin.sdk.model.query.CreateUser;
+import com.enjin.enjincoin.sdk.model.query.GetUsers;
+import com.enjin.enjincoin.sdk.model.query.LoginUser;
 import com.enjin.enjincoin.sdk.model.request.GraphQLRequest;
 import com.enjin.enjincoin.sdk.service.ServiceBase;
 import com.enjin.enjincoin.sdk.service.users.UsersService;
@@ -18,50 +21,41 @@ public class UsersServiceImpl extends ServiceBase implements UsersService {
 
     private UsersRetrofitService service;
 
-    public UsersServiceImpl(final Retrofit retrofit) {
+    public UsersServiceImpl(Retrofit retrofit) {
         this.service = retrofit.create(UsersRetrofitService.class);
     }
 
     @Override
-    public void createUserAsync(final String name,
-                                final String email,
-                                final String password,
-                                final Callback<GraphQLResponse<CreateUserData>> callback) {
-        enqueue(getCreateCall(name, email, password), callback);
+    public void createUserAsync(CreateUser query,
+                                Callback<GraphQLResponse<CreateUserData>> callback) {
+        enqueue(getCreateCall(query), callback);
     }
 
     @Override
-    public void loginUserAsync(final String email,
-                               final String password,
-                               final Callback<GraphQLResponse<LoginUserData>> callback) {
-        enqueue(getLoginCall(email, password), callback);
+    public void loginUserAsync(LoginUser query,
+                               Callback<GraphQLResponse<LoginUserData>> callback) {
+        enqueue(getLoginCall(query), callback);
     }
 
     @Override
-    public void getAllUsersAsync(final Callback<GraphQLResponse<UsersData>> callback) {
+    public void getAllUsersAsync(Callback<GraphQLResponse<UsersData>> callback) {
         enqueue(getAllUsersCall(), callback);
     }
 
     @Override
-    public void getUsersAsync(final Integer userId,
-                              final String name,
-                              final String email,
-                              final Boolean me,
-                              final Callback<GraphQLResponse<UsersData>> callback) {
-        enqueue(getUsersCall(userId, name, email, me), callback);
+    public void getUsersAsync(GetUsers query,
+                              Callback<GraphQLResponse<UsersData>> callback) {
+        enqueue(getUsersCall(query), callback);
     }
 
     @Override
-    public Response<GraphQLResponse<CreateUserData>> createUserSync(final String name,
-                                                                    final String email,
-                                                                    final String password) throws IOException {
-        return execute(getCreateCall(name, email, password));
+    public Response<GraphQLResponse<CreateUserData>> createUserSync(CreateUser query) throws IOException {
+        return execute(getCreateCall(query));
     }
 
     @Override
-    public Response<GraphQLResponse<LoginUserData>> loginUserSync(final String email,
-                                                                  final String password) throws IOException {
-        return execute(getLoginCall(email, password));
+    public Response<GraphQLResponse<LoginUserData>> loginUserSync(LoginUser query) throws IOException {
+        return execute(getLoginCall(query));
     }
 
     @Override
@@ -70,41 +64,23 @@ public class UsersServiceImpl extends ServiceBase implements UsersService {
     }
 
     @Override
-    public Response<GraphQLResponse<UsersData>> getUsersSync(final Integer userId,
-                                                             final String name,
-                                                             final String email,
-                                                             final Boolean me) throws IOException {
-        return execute(getUsersCall(userId, name, email, me));
+    public Response<GraphQLResponse<UsersData>> getUsersSync(GetUsers query) throws IOException {
+        return execute(getUsersCall(query));
     }
 
-    private Call<GraphQLResponse<CreateUserData>> getCreateCall(final String name,
-                                                                final String email,
-                                                                final String password) {
-        return this.service.createUser(GraphQLRequest.builder()
-                                                     .withParameter("name", name)
-                                                     .withParameter("email", email)
-                                                     .withParameter("password", password));
+    private Call<GraphQLResponse<CreateUserData>> getCreateCall(CreateUser query) {
+        return this.service.createUser(query);
     }
 
-    private Call<GraphQLResponse<LoginUserData>> getLoginCall(final String email,
-                                                              final String password) {
-        return this.service.loginUser(GraphQLRequest.builder()
-                                                    .withParameter("email", email)
-                                                    .withParameter("password", password));
+    private Call<GraphQLResponse<LoginUserData>> getLoginCall(LoginUser query) {
+        return this.service.loginUser(query);
     }
 
     private Call<GraphQLResponse<UsersData>> getAllUsersCall() {
         return this.service.getAllUsers(GraphQLRequest.builder());
     }
 
-    private Call<GraphQLResponse<UsersData>> getUsersCall(final Integer id,
-                                                          final String name,
-                                                          final String email,
-                                                          final Boolean me) {
-        return this.service.getUsers(GraphQLRequest.builder()
-                                                   .withParameter("id", id)
-                                                   .withParameter("name", name)
-                                                   .withParameter("email", email)
-                                                   .withParameter("me", me));
+    private Call<GraphQLResponse<UsersData>> getUsersCall(GetUsers query) {
+        return this.service.getUsers(query);
     }
 }

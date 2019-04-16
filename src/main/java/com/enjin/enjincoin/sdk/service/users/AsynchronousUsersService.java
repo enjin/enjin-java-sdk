@@ -2,6 +2,9 @@ package com.enjin.enjincoin.sdk.service.users;
 
 import com.enjin.enjincoin.sdk.Callback;
 import com.enjin.enjincoin.sdk.model.body.GraphQLResponse;
+import com.enjin.enjincoin.sdk.model.query.CreateUser;
+import com.enjin.enjincoin.sdk.model.query.GetUsers;
+import com.enjin.enjincoin.sdk.model.query.LoginUser;
 import com.enjin.enjincoin.sdk.service.users.vo.data.CreateUserData;
 import com.enjin.enjincoin.sdk.service.users.vo.data.LoginUserData;
 import com.enjin.enjincoin.sdk.service.users.vo.data.UsersData;
@@ -9,23 +12,17 @@ import com.enjin.enjincoin.sdk.service.users.vo.data.UsersData;
 public interface AsynchronousUsersService {
 
     /**
-     * @param name
-     * @param email
-     * @param password
+     * @param query
      * @param callback
      */
-    void createUserAsync(String name,
-                         String email,
-                         String password,
+    void createUserAsync(CreateUser query,
                          Callback<GraphQLResponse<CreateUserData>> callback);
 
     /**
-     * @param email
-     * @param password
+     * @param query
      * @param callback
      */
-    void loginUserAsync(String email,
-                        String password,
+    void loginUserAsync(LoginUser query,
                         Callback<GraphQLResponse<LoginUserData>> callback);
 
     /**
@@ -34,15 +31,10 @@ public interface AsynchronousUsersService {
     void getAllUsersAsync(Callback<GraphQLResponse<UsersData>> callback);
 
     /**
-     * @param userId
-     * @param name
-     * @param email
+     * @param query
      * @param callback
      */
-    void getUsersAsync(Integer userId,
-                       String name,
-                       String email,
-                       Boolean me,
+    void getUsersAsync(GetUsers query,
                        Callback<GraphQLResponse<UsersData>> callback);
 
 }
