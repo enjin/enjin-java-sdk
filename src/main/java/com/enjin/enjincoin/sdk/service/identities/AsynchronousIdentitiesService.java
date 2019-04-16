@@ -2,13 +2,14 @@ package com.enjin.enjincoin.sdk.service.identities;
 
 import com.enjin.enjincoin.sdk.Callback;
 import com.enjin.enjincoin.sdk.model.body.GraphQLResponse;
+import com.enjin.enjincoin.sdk.model.query.CreateIdentity;
+import com.enjin.enjincoin.sdk.model.query.GetIdentities;
+import com.enjin.enjincoin.sdk.model.query.UnlinkIdentity;
+import com.enjin.enjincoin.sdk.model.query.UpdateIdentity;
 import com.enjin.enjincoin.sdk.service.identities.vo.Identity;
-import com.enjin.enjincoin.sdk.service.identities.vo.IdentityField;
 import com.enjin.enjincoin.sdk.service.identities.vo.data.CreateIdentityData;
 import com.enjin.enjincoin.sdk.service.identities.vo.data.IdentitiesData;
 import com.enjin.enjincoin.sdk.service.identities.vo.data.UpdateIdentityData;
-
-import java.util.List;
 
 public interface AsynchronousIdentitiesService {
 
@@ -18,44 +19,30 @@ public interface AsynchronousIdentitiesService {
     void getAllIdentitiesAsync(Callback<GraphQLResponse<IdentitiesData>> callback);
 
     /**
-     * @param identityId
-     * @param ethereumAddress
-     * @param linkingCode
+     * @param query
      * @param callback
      */
-    void getIdentitiesAsync(Integer identityId,
-                            String ethereumAddress,
-                            String linkingCode,
+    void getIdentitiesAsync(GetIdentities query,
                             Callback<GraphQLResponse<IdentitiesData>> callback);
 
     /**
-     * @param userId
-     * @param email
-     * @param ethereumAddress
-     * @param fields
+     * @param query
      * @param callback
      */
-    void createIdentityAsync(Integer userId,
-                             String email,
-                             String ethereumAddress,
-                             List<IdentityField> fields,
+    void createIdentityAsync(CreateIdentity query,
                              Callback<GraphQLResponse<CreateIdentityData>> callback);
 
     /**
-     * @param identityId
-     * @param unlink
-     */
-    void unlinkIdentityAsync(Integer identityId, Boolean unlink, Callback<GraphQLResponse<Identity>> callback);
-
-    /**
-     * @param identityId
-     * @param appId
-     * @param userId
-     * @param ethereumAddress
-     * @param fields
+     * @param query
      * @param callback
      */
-    void updateIdentityAsync(Integer identityId, Integer appId, Integer userId,
-                             String ethereumAddress,
-                             List<IdentityField> fields, Callback<GraphQLResponse<UpdateIdentityData>> callback);
+    void unlinkIdentityAsync(UnlinkIdentity query,
+                             Callback<GraphQLResponse<Identity>> callback);
+
+    /**
+     * @param query
+     * @param callback
+     */
+    void updateIdentityAsync(UpdateIdentity query,
+                             Callback<GraphQLResponse<UpdateIdentityData>> callback);
 }
