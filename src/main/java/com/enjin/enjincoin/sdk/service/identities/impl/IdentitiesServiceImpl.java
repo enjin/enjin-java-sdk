@@ -53,8 +53,7 @@ public class IdentitiesServiceImpl extends ServiceBase implements IdentitiesServ
     @Override
     public void updateIdentityAsync(UpdateIdentity query,
                                     Callback<GraphQLResponse<UpdateIdentityData>> callback) {
-        enqueue(getUpdateIdentityCall(query),
-                callback);
+        enqueue(getUpdateIdentityCall(query), callback);
     }
 
     @Override
