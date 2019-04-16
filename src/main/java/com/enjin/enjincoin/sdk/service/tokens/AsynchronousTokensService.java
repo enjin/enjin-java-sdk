@@ -2,6 +2,9 @@ package com.enjin.enjincoin.sdk.service.tokens;
 
 import com.enjin.enjincoin.sdk.Callback;
 import com.enjin.enjincoin.sdk.model.body.GraphQLResponse;
+import com.enjin.enjincoin.sdk.model.query.GetTokens;
+import com.enjin.enjincoin.sdk.model.query.ImportToken;
+import com.enjin.enjincoin.sdk.model.query.UpdateToken;
 import com.enjin.enjincoin.sdk.service.requests.vo.TransactionType;
 import com.enjin.enjincoin.sdk.service.tokens.vo.TokenSupplyModel;
 import com.enjin.enjincoin.sdk.service.tokens.vo.TokenTransferFeeSettings;
@@ -19,62 +22,24 @@ public interface AsynchronousTokensService {
     void getAllTokensAsync(Callback<GraphQLResponse<TokensData>> callback);
 
     /**
-     * @param tokenId
-     * @param tokenIndex
-     * @param name
-     * @param creator
-     * @param totalSupply
-     * @param reserve
-     * @param supplyModel
-     * @param meltValue
-     * @param meltFeeRatio
-     * @param transferable
-     * @param transferFeeSettings
-     * @param nonFungible
-     * @param firstBlock
-     * @param blockHeight
-     * @param tokenIdAsInt
-     * @param tokenIndexAsInt
-     * @param markedForDelete
+     * @param query
      * @param callback
      */
-    void getTokensAsync(String tokenId,
-                        String tokenIndex,
-                        String name,
-                        String creator,
-                        String totalSupply,
-                        String reserve,
-                        TokenSupplyModel supplyModel,
-                        String meltValue,
-                        String meltFeeRatio,
-                        TokenTransferable transferable,
-                        TokenTransferFeeSettings transferFeeSettings,
-                        Boolean nonFungible,
-                        Integer firstBlock,
-                        Integer blockHeight,
-                        Boolean tokenIdAsInt,
-                        Boolean tokenIndexAsInt,
-                        Boolean markedForDelete,
+    void getTokensAsync(GetTokens query,
                         Callback<GraphQLResponse<TokensData>> callback);
 
     /**
-     * @param tokenId
+     * @param query
      * @param callback
      */
-    void importTokenAsync(String tokenId,
+    void importTokenAsync(ImportToken query,
                           Callback<GraphQLResponse<CreateTokenData>> callback);
 
     /**
-     * @param tokenId
-     * @param appId
-     * @param fromBlockchain
-     * @param updateIcon
+     * @param query
      * @param callback
      */
-    void updateTokenAsync(String tokenId,
-                          Integer appId,
-                          Boolean fromBlockchain,
-                          String updateIcon,
+    void updateTokenAsync(UpdateToken query,
                           Callback<GraphQLResponse<UpdateTokenData>> callback);
 
 }
