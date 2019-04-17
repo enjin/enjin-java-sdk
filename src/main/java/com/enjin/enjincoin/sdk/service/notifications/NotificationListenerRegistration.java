@@ -1,7 +1,6 @@
 package com.enjin.enjincoin.sdk.service.notifications;
 
-import com.enjin.enjincoin.sdk.annotation.EventFilter;
-import com.enjin.enjincoin.sdk.enums.NotificationType;
+import com.enjin.enjincoin.sdk.model.service.notifications.NotificationType;
 
 /**
  * Registration wrapper for notification listeners that extracts any metadata

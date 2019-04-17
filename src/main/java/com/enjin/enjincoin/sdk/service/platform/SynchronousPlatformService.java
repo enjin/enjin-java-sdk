@@ -1,8 +1,8 @@
 package com.enjin.enjincoin.sdk.service.platform;
 
 import com.enjin.enjincoin.sdk.Response;
-import com.enjin.enjincoin.sdk.model.body.GraphQLResponse;
-import com.enjin.enjincoin.sdk.service.platform.vo.data.PlatformData;
+import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
+import com.enjin.enjincoin.sdk.model.service.platform.GetPlatformResult;
 
 import java.io.IOException;
 
@@ -13,5 +13,5 @@ public interface SynchronousPlatformService {
      *
      * @throws IOException
      */
-    Response<GraphQLResponse<PlatformData>> getPlatformSync() throws IOException;
+    Response<GraphQLResponse<GetPlatformResult>> getPlatformSync() throws IOException;
 }

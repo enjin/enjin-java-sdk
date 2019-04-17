@@ -1,15 +1,15 @@
 package com.enjin.enjincoin.sdk;
 
-import com.enjin.enjincoin.sdk.authentication.AuthenticationInterceptor;
-import com.enjin.enjincoin.sdk.converter.GraphConverter;
-import com.enjin.enjincoin.sdk.converter.JsonStringConverter;
-import com.enjin.enjincoin.sdk.cookiejar.ClearableCookieJar;
-import com.enjin.enjincoin.sdk.cookiejar.PersistentCookieJar;
-import com.enjin.enjincoin.sdk.cookiejar.cache.SetCookieCache;
-import com.enjin.enjincoin.sdk.cookiejar.persistence.MemoryCookiePersistor;
+import com.enjin.enjincoin.sdk.http.AuthenticationInterceptor;
+import com.enjin.enjincoin.sdk.http.ClearableCookieJar;
+import com.enjin.enjincoin.sdk.http.MemoryCookiePersistor;
+import com.enjin.enjincoin.sdk.http.PersistentCookieJar;
+import com.enjin.enjincoin.sdk.http.SetCookieCache;
+import com.enjin.enjincoin.sdk.model.service.auth.AuthBody;
+import com.enjin.enjincoin.sdk.model.service.auth.AuthResult;
+import com.enjin.enjincoin.sdk.serialization.converter.GraphConverter;
+import com.enjin.enjincoin.sdk.serialization.converter.JsonStringConverter;
 import com.enjin.enjincoin.sdk.service.auth.AuthRetrofitService;
-import com.enjin.enjincoin.sdk.service.auth.vo.AuthBody;
-import com.enjin.enjincoin.sdk.service.auth.vo.AuthData;
 import com.enjin.enjincoin.sdk.service.ethereum.EthereumService;
 import com.enjin.enjincoin.sdk.service.ethereum.impl.EthereumServiceImpl;
 import com.enjin.enjincoin.sdk.service.identities.IdentitiesService;
@@ -81,18 +81,18 @@ public class ClientImpl implements Client {
                 .build();
     }
 
-    public Response<AuthData> auth(String clientSecret) throws IOException {
-        Call<AuthData> call = getAuthRetrofitService()
+    public Response<AuthResult> auth(String clientSecret) throws IOException {
+        Call<AuthResult> call = getAuthRetrofitService()
                 .auth(new AuthBody("client_credentials", this.appId, clientSecret));
         // Failure needs to be handled by the callee.
-        retrofit2.Response<AuthData> response = call.execute();
+        retrofit2.Response<AuthResult> response = call.execute();
 
         if (response == null) {
             return null;
         }
 
         if (response.isSuccessful()) {
-            AuthData data = response.body();
+            AuthResult data = response.body();
             this.cookieJar.addCookie(new Cookie.Builder()
                                              .domain(this.retrofit.baseUrl().host()).name("laravel_session_type")
                                              .value(data.getTokenType())

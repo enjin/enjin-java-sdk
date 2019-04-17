@@ -1,13 +1,13 @@
 package com.enjin.enjincoin.sdk.service.notifications.impl;
 
-import com.enjin.enjincoin.sdk.enums.NotificationType;
+import com.enjin.enjincoin.sdk.model.service.notifications.NotificationEvent;
+import com.enjin.enjincoin.sdk.model.service.notifications.NotificationType;
+import com.enjin.enjincoin.sdk.model.service.platform.NotificationDetails;
+import com.enjin.enjincoin.sdk.model.service.platform.PlatformDetails;
+import com.enjin.enjincoin.sdk.model.service.platform.SdkDetails;
 import com.enjin.enjincoin.sdk.service.notifications.ChannelEvent;
 import com.enjin.enjincoin.sdk.service.notifications.NotificationListenerRegistration;
 import com.enjin.enjincoin.sdk.service.notifications.ThirdPartyNotificationService;
-import com.enjin.enjincoin.sdk.service.notifications.vo.NotificationEvent;
-import com.enjin.enjincoin.sdk.service.platform.vo.NotificationDetails;
-import com.enjin.enjincoin.sdk.service.platform.vo.PlatformDetails;
-import com.enjin.enjincoin.sdk.service.platform.vo.SdkDetails;
 import com.enjin.java_commons.CollectionUtils;
 import com.enjin.java_commons.ExceptionUtils;
 import com.enjin.java_commons.StringUtils;
@@ -18,7 +18,6 @@ import com.google.gson.JsonObject;
 import com.pusher.client.Pusher;
 import com.pusher.client.PusherOptions;
 import com.pusher.client.channel.Channel;
-import com.pusher.client.channel.ChannelEventListener;
 import com.pusher.client.connection.ConnectionEventListener;
 import com.pusher.client.connection.ConnectionState;
 import com.pusher.client.connection.ConnectionStateChange;
@@ -164,7 +163,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
         for (ChannelEvent channelEvent : ChannelEvent.values()) {
             LOGGER.info(String.format("Event Channel Bound: %s", channelEvent.getKey()));
             this.channel.bind(channelEvent.getKey(), (channel, event, data) -> {
-                LOGGER.info(String.format("Received eventType %s, event %s with data %s ",
+                LOGGER.info(String.format("Received eventType %s, event %s with results %s ",
                                           channelEvent.getKey(),
                                           event,
                                           data));

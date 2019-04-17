@@ -1,9 +1,9 @@
 package com.enjin.enjincoin.sdk.service;
 
-import com.enjin.enjincoin.sdk.Callback;
 import com.enjin.enjincoin.sdk.Response;
-import com.enjin.enjincoin.sdk.model.attribute.GraphError;
-import com.enjin.enjincoin.sdk.util.GraphErrorUtil;
+import com.enjin.enjincoin.sdk.graphql.GraphError;
+import com.enjin.enjincoin.sdk.util.GraphQLUtil;
+import com.enjin.enjincoin.sdk.util.concurrent.Callback;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 
@@ -28,7 +28,7 @@ public class ServiceBase {
                         List<GraphError> errors = null;
 
                         try {
-                            errors = GraphErrorUtil.getGraphQLError(errorBody.string());
+                            errors = GraphQLUtil.getGraphQLError(errorBody.string());
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

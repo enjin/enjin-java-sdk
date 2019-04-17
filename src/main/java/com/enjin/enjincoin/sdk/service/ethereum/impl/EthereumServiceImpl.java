@@ -1,9 +1,9 @@
 package com.enjin.enjincoin.sdk.service.ethereum.impl;
 
-import com.enjin.enjincoin.sdk.Callback;
 import com.enjin.enjincoin.sdk.Response;
 import com.enjin.enjincoin.sdk.service.ServiceBase;
 import com.enjin.enjincoin.sdk.service.ethereum.EthereumService;
+import com.enjin.enjincoin.sdk.util.concurrent.Callback;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 

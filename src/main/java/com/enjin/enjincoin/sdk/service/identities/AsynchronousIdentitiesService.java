@@ -1,36 +1,36 @@
 package com.enjin.enjincoin.sdk.service.identities;
 
-import com.enjin.enjincoin.sdk.Callback;
-import com.enjin.enjincoin.sdk.model.body.GraphQLResponse;
-import com.enjin.enjincoin.sdk.model.query.CreateIdentity;
-import com.enjin.enjincoin.sdk.model.query.GetIdentities;
-import com.enjin.enjincoin.sdk.model.query.UnlinkIdentity;
-import com.enjin.enjincoin.sdk.model.query.UpdateIdentity;
-import com.enjin.enjincoin.sdk.service.identities.vo.Identity;
-import com.enjin.enjincoin.sdk.service.identities.vo.data.CreateIdentityData;
-import com.enjin.enjincoin.sdk.service.identities.vo.data.IdentitiesData;
-import com.enjin.enjincoin.sdk.service.identities.vo.data.UpdateIdentityData;
+import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
+import com.enjin.enjincoin.sdk.model.service.identities.CreateIdentity;
+import com.enjin.enjincoin.sdk.model.service.identities.CreateIdentityResult;
+import com.enjin.enjincoin.sdk.model.service.identities.GetIdentities;
+import com.enjin.enjincoin.sdk.model.service.identities.GetIdentitiesResult;
+import com.enjin.enjincoin.sdk.model.service.identities.Identity;
+import com.enjin.enjincoin.sdk.model.service.identities.UnlinkIdentity;
+import com.enjin.enjincoin.sdk.model.service.identities.UpdateIdentity;
+import com.enjin.enjincoin.sdk.model.service.identities.UpdateIdentityResult;
+import com.enjin.enjincoin.sdk.util.concurrent.Callback;
 
 public interface AsynchronousIdentitiesService {
 
     /**
      * @param callback
      */
-    void getAllIdentitiesAsync(Callback<GraphQLResponse<IdentitiesData>> callback);
+    void getAllIdentitiesAsync(Callback<GraphQLResponse<GetIdentitiesResult>> callback);
 
     /**
      * @param query
      * @param callback
      */
     void getIdentitiesAsync(GetIdentities query,
-                            Callback<GraphQLResponse<IdentitiesData>> callback);
+                            Callback<GraphQLResponse<GetIdentitiesResult>> callback);
 
     /**
      * @param query
      * @param callback
      */
     void createIdentityAsync(CreateIdentity query,
-                             Callback<GraphQLResponse<CreateIdentityData>> callback);
+                             Callback<GraphQLResponse<CreateIdentityResult>> callback);
 
     /**
      * @param query
@@ -44,5 +44,5 @@ public interface AsynchronousIdentitiesService {
      * @param callback
      */
     void updateIdentityAsync(UpdateIdentity query,
-                             Callback<GraphQLResponse<UpdateIdentityData>> callback);
+                             Callback<GraphQLResponse<UpdateIdentityResult>> callback);
 }

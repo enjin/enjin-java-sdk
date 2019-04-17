@@ -1,7 +1,6 @@
 package com.enjin.enjincoin.sdk.service.ethereum;
 
-import com.enjin.enjincoin.sdk.Callback;
-import com.enjin.enjincoin.sdk.Response;
+import com.enjin.enjincoin.sdk.util.concurrent.Callback;
 
 public interface AsynchronousEthereumService {
 

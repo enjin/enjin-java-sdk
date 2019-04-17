@@ -1,8 +1,8 @@
 package com.enjin.enjincoin.sdk.service.auth;
 
-import com.enjin.enjincoin.sdk.annotation.Json;
-import com.enjin.enjincoin.sdk.service.auth.vo.AuthBody;
-import com.enjin.enjincoin.sdk.service.auth.vo.AuthData;
+import com.enjin.enjincoin.sdk.model.service.auth.AuthBody;
+import com.enjin.enjincoin.sdk.model.service.auth.AuthResult;
+import com.enjin.enjincoin.sdk.serialization.Json;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -15,6 +15,6 @@ public interface AuthRetrofitService {
      * @return
      */
     @POST("oauth/token")
-    Call<AuthData> auth(@Json @Body AuthBody body);
+    Call<AuthResult> auth(@Json @Body AuthBody body);
 
 }

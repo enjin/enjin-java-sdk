@@ -1,16 +1,16 @@
 package com.enjin.enjincoin.sdk.service.notifications.impl;
 
 import com.enjin.enjincoin.sdk.Response;
-import com.enjin.enjincoin.sdk.enums.NotificationType;
-import com.enjin.enjincoin.sdk.model.body.GraphQLResponse;
+import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
+import com.enjin.enjincoin.sdk.model.service.notifications.NotificationType;
+import com.enjin.enjincoin.sdk.model.service.platform.GetPlatformResult;
+import com.enjin.enjincoin.sdk.model.service.platform.PlatformDetails;
 import com.enjin.enjincoin.sdk.service.notifications.EventMatcher;
 import com.enjin.enjincoin.sdk.service.notifications.NotificationListener;
 import com.enjin.enjincoin.sdk.service.notifications.NotificationListenerRegistration;
 import com.enjin.enjincoin.sdk.service.notifications.NotificationsService;
 import com.enjin.enjincoin.sdk.service.notifications.ThirdPartyNotificationService;
 import com.enjin.enjincoin.sdk.service.platform.PlatformService;
-import com.enjin.enjincoin.sdk.service.platform.vo.PlatformDetails;
-import com.enjin.enjincoin.sdk.service.platform.vo.data.PlatformData;
 import com.enjin.java_commons.BooleanUtils;
 import com.enjin.java_commons.ObjectUtils;
 
@@ -81,7 +81,7 @@ public class NotificationsServiceImpl implements NotificationsService {
      */
     @Override
     public boolean restart() {
-        final Response<GraphQLResponse<PlatformData>> response;
+        final Response<GraphQLResponse<GetPlatformResult>> response;
         try {
             response = this.service.getPlatformSync();
             if (response == null || response.body() == null) {
@@ -89,14 +89,14 @@ public class NotificationsServiceImpl implements NotificationsService {
                 return false;
             }
 
-            final GraphQLResponse<PlatformData> body = response.body();
+            final GraphQLResponse<GetPlatformResult> body = response.body();
             if (body == null || body.getData() == null) {
                 LOGGER.warning("Failed to get platform details");
                 return false;
             }
 
-            final PlatformData    data    = body.getData();
-            final PlatformDetails details = data.getPlatform();
+            final GetPlatformResult data    = body.getData();
+            final PlatformDetails   details = data.getPlatform();
             if (details == null) {
                 LOGGER.warning("Platform details are null.");
                 return false;
@@ -286,12 +286,12 @@ public class NotificationsServiceImpl implements NotificationsService {
         this.service.getPlatformAsync(response -> {
             boolean result = false;
             if (response.body() != null) {
-                final GraphQLResponse<PlatformData> body = response.body();
+                final GraphQLResponse<GetPlatformResult> body = response.body();
 
                 shutdown();
 
-                final PlatformData    data    = body.getData();
-                final PlatformDetails details = data.getPlatform();
+                final GetPlatformResult data    = body.getData();
+                final PlatformDetails   details = data.getPlatform();
                 NotificationsServiceImpl.this.thirdPartyNotificationService =
                         new PusherNotificationServiceImpl(details,
                                                           NotificationsServiceImpl.this.clientId);

@@ -1,19 +1,19 @@
 package com.enjin.enjincoin.sdk.service.identities.impl;
 
-import com.enjin.enjincoin.sdk.Callback;
 import com.enjin.enjincoin.sdk.Response;
-import com.enjin.enjincoin.sdk.model.body.GraphQLResponse;
-import com.enjin.enjincoin.sdk.model.query.CreateIdentity;
-import com.enjin.enjincoin.sdk.model.query.GetIdentities;
-import com.enjin.enjincoin.sdk.model.query.UnlinkIdentity;
-import com.enjin.enjincoin.sdk.model.query.UpdateIdentity;
-import com.enjin.enjincoin.sdk.model.request.GraphQLRequest;
+import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
+import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
+import com.enjin.enjincoin.sdk.model.service.identities.CreateIdentity;
+import com.enjin.enjincoin.sdk.model.service.identities.CreateIdentityResult;
+import com.enjin.enjincoin.sdk.model.service.identities.GetIdentities;
+import com.enjin.enjincoin.sdk.model.service.identities.GetIdentitiesResult;
+import com.enjin.enjincoin.sdk.model.service.identities.Identity;
+import com.enjin.enjincoin.sdk.model.service.identities.UnlinkIdentity;
+import com.enjin.enjincoin.sdk.model.service.identities.UpdateIdentity;
+import com.enjin.enjincoin.sdk.model.service.identities.UpdateIdentityResult;
 import com.enjin.enjincoin.sdk.service.ServiceBase;
 import com.enjin.enjincoin.sdk.service.identities.IdentitiesService;
-import com.enjin.enjincoin.sdk.service.identities.vo.Identity;
-import com.enjin.enjincoin.sdk.service.identities.vo.data.CreateIdentityData;
-import com.enjin.enjincoin.sdk.service.identities.vo.data.IdentitiesData;
-import com.enjin.enjincoin.sdk.service.identities.vo.data.UpdateIdentityData;
+import com.enjin.enjincoin.sdk.util.concurrent.Callback;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 
@@ -28,19 +28,19 @@ public class IdentitiesServiceImpl extends ServiceBase implements IdentitiesServ
     }
 
     @Override
-    public void getAllIdentitiesAsync(Callback<GraphQLResponse<IdentitiesData>> callback) {
+    public void getAllIdentitiesAsync(Callback<GraphQLResponse<GetIdentitiesResult>> callback) {
         enqueue(getAllIdentitiesCall(), callback);
     }
 
     @Override
     public void getIdentitiesAsync(GetIdentities query,
-                                   Callback<GraphQLResponse<IdentitiesData>> callback) {
+                                   Callback<GraphQLResponse<GetIdentitiesResult>> callback) {
         enqueue(getIdentitiesCall(query), callback);
     }
 
     @Override
     public void createIdentityAsync(CreateIdentity query,
-                                    Callback<GraphQLResponse<CreateIdentityData>> callback) {
+                                    Callback<GraphQLResponse<CreateIdentityResult>> callback) {
         enqueue(getCreateIdentityCall(query), callback);
     }
 
@@ -52,22 +52,22 @@ public class IdentitiesServiceImpl extends ServiceBase implements IdentitiesServ
 
     @Override
     public void updateIdentityAsync(UpdateIdentity query,
-                                    Callback<GraphQLResponse<UpdateIdentityData>> callback) {
+                                    Callback<GraphQLResponse<UpdateIdentityResult>> callback) {
         enqueue(getUpdateIdentityCall(query), callback);
     }
 
     @Override
-    public Response<GraphQLResponse<IdentitiesData>> getAllIdentitiesSync() throws IOException {
+    public Response<GraphQLResponse<GetIdentitiesResult>> getAllIdentitiesSync() throws IOException {
         return execute(getAllIdentitiesCall());
     }
 
     @Override
-    public Response<GraphQLResponse<IdentitiesData>> getIdentitiesSync(GetIdentities query) throws IOException {
-            return execute(getIdentitiesCall(query));
+    public Response<GraphQLResponse<GetIdentitiesResult>> getIdentitiesSync(GetIdentities query) throws IOException {
+        return execute(getIdentitiesCall(query));
     }
 
     @Override
-    public Response<GraphQLResponse<CreateIdentityData>> createIdentitySync(CreateIdentity query) throws IOException {
+    public Response<GraphQLResponse<CreateIdentityResult>> createIdentitySync(CreateIdentity query) throws IOException {
         return execute(getCreateIdentityCall(query));
     }
 
@@ -77,19 +77,19 @@ public class IdentitiesServiceImpl extends ServiceBase implements IdentitiesServ
     }
 
     @Override
-    public Response<GraphQLResponse<UpdateIdentityData>> updateIdentitySync(UpdateIdentity query) throws IOException {
+    public Response<GraphQLResponse<UpdateIdentityResult>> updateIdentitySync(UpdateIdentity query) throws IOException {
         return execute(getUpdateIdentityCall(query));
     }
 
-    private Call<GraphQLResponse<IdentitiesData>> getAllIdentitiesCall() {
+    private Call<GraphQLResponse<GetIdentitiesResult>> getAllIdentitiesCall() {
         return this.service.getAllIdentities(GraphQLRequest.builder());
     }
 
-    private Call<GraphQLResponse<IdentitiesData>> getIdentitiesCall(GetIdentities query) {
+    private Call<GraphQLResponse<GetIdentitiesResult>> getIdentitiesCall(GetIdentities query) {
         return this.service.getIdentities(query);
     }
 
-    private Call<GraphQLResponse<CreateIdentityData>> getCreateIdentityCall(CreateIdentity query) {
+    private Call<GraphQLResponse<CreateIdentityResult>> getCreateIdentityCall(CreateIdentity query) {
         return this.service.createIdentity(query);
     }
 
@@ -97,7 +97,7 @@ public class IdentitiesServiceImpl extends ServiceBase implements IdentitiesServ
         return this.service.unlinkIdentity(query);
     }
 
-    private Call<GraphQLResponse<UpdateIdentityData>> getUpdateIdentityCall(UpdateIdentity query) {
+    private Call<GraphQLResponse<UpdateIdentityResult>> getUpdateIdentityCall(UpdateIdentity query) {
         return this.service.updateIdentity(query);
     }
 

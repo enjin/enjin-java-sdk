@@ -1,15 +1,15 @@
 package com.enjin.enjincoin.sdk.service.identities;
 
 import com.enjin.enjincoin.sdk.Response;
-import com.enjin.enjincoin.sdk.model.body.GraphQLResponse;
-import com.enjin.enjincoin.sdk.model.query.CreateIdentity;
-import com.enjin.enjincoin.sdk.model.query.GetIdentities;
-import com.enjin.enjincoin.sdk.model.query.UnlinkIdentity;
-import com.enjin.enjincoin.sdk.model.query.UpdateIdentity;
-import com.enjin.enjincoin.sdk.service.identities.vo.Identity;
-import com.enjin.enjincoin.sdk.service.identities.vo.data.CreateIdentityData;
-import com.enjin.enjincoin.sdk.service.identities.vo.data.IdentitiesData;
-import com.enjin.enjincoin.sdk.service.identities.vo.data.UpdateIdentityData;
+import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
+import com.enjin.enjincoin.sdk.model.service.identities.CreateIdentity;
+import com.enjin.enjincoin.sdk.model.service.identities.CreateIdentityResult;
+import com.enjin.enjincoin.sdk.model.service.identities.GetIdentities;
+import com.enjin.enjincoin.sdk.model.service.identities.GetIdentitiesResult;
+import com.enjin.enjincoin.sdk.model.service.identities.Identity;
+import com.enjin.enjincoin.sdk.model.service.identities.UnlinkIdentity;
+import com.enjin.enjincoin.sdk.model.service.identities.UpdateIdentity;
+import com.enjin.enjincoin.sdk.model.service.identities.UpdateIdentityResult;
 
 import java.io.IOException;
 
@@ -20,7 +20,7 @@ public interface SynchronousIdentitiesService {
      *
      * @throws IOException
      */
-    Response<GraphQLResponse<IdentitiesData>> getAllIdentitiesSync() throws IOException;
+    Response<GraphQLResponse<GetIdentitiesResult>> getAllIdentitiesSync() throws IOException;
 
     /**
      * @param query
@@ -29,7 +29,7 @@ public interface SynchronousIdentitiesService {
      *
      * @throws IOException
      */
-    Response<GraphQLResponse<IdentitiesData>> getIdentitiesSync(GetIdentities query) throws IOException;
+    Response<GraphQLResponse<GetIdentitiesResult>> getIdentitiesSync(GetIdentities query) throws IOException;
 
     /**
      * @param query
@@ -38,7 +38,7 @@ public interface SynchronousIdentitiesService {
      *
      * @throws IOException
      */
-    Response<GraphQLResponse<CreateIdentityData>> createIdentitySync(CreateIdentity query) throws IOException;
+    Response<GraphQLResponse<CreateIdentityResult>> createIdentitySync(CreateIdentity query) throws IOException;
 
     /**
      * @param query
@@ -56,5 +56,5 @@ public interface SynchronousIdentitiesService {
      *
      * @throws IOException
      */
-    Response<GraphQLResponse<UpdateIdentityData>> updateIdentitySync(UpdateIdentity query) throws IOException;
+    Response<GraphQLResponse<UpdateIdentityResult>> updateIdentitySync(UpdateIdentity query) throws IOException;
 }

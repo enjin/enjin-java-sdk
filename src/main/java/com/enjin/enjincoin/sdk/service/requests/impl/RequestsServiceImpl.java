@@ -1,17 +1,17 @@
 package com.enjin.enjincoin.sdk.service.requests.impl;
 
-import com.enjin.enjincoin.sdk.Callback;
 import com.enjin.enjincoin.sdk.Response;
-import com.enjin.enjincoin.sdk.model.body.GraphQLResponse;
-import com.enjin.enjincoin.sdk.model.query.CreateRequest;
-import com.enjin.enjincoin.sdk.model.query.GetRequests;
-import com.enjin.enjincoin.sdk.model.query.UpdateRequest;
-import com.enjin.enjincoin.sdk.model.request.GraphQLRequest;
+import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
+import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
+import com.enjin.enjincoin.sdk.model.service.requests.CreateRequest;
+import com.enjin.enjincoin.sdk.model.service.requests.CreateRequestResult;
+import com.enjin.enjincoin.sdk.model.service.requests.GetRequests;
+import com.enjin.enjincoin.sdk.model.service.requests.GetRequestsResult;
+import com.enjin.enjincoin.sdk.model.service.requests.UpdateRequest;
+import com.enjin.enjincoin.sdk.model.service.requests.UpdateRequestResult;
 import com.enjin.enjincoin.sdk.service.ServiceBase;
 import com.enjin.enjincoin.sdk.service.requests.RequestsService;
-import com.enjin.enjincoin.sdk.service.requests.vo.data.CreateRequestData;
-import com.enjin.enjincoin.sdk.service.requests.vo.data.RequestsData;
-import com.enjin.enjincoin.sdk.service.requests.vo.data.UpdateRequestData;
+import com.enjin.enjincoin.sdk.util.concurrent.Callback;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 
@@ -26,61 +26,61 @@ public class RequestsServiceImpl extends ServiceBase implements RequestsService 
     }
 
     @Override
-    public void getAllRequestsAsync(Callback<GraphQLResponse<RequestsData>> callback) {
+    public void getAllRequestsAsync(Callback<GraphQLResponse<GetRequestsResult>> callback) {
         enqueue(getGetAllRequestsCall(), callback);
     }
 
     @Override
     public void getRequestsAsync(GetRequests query,
-                                 Callback<GraphQLResponse<RequestsData>> callback) {
+                                 Callback<GraphQLResponse<GetRequestsResult>> callback) {
         enqueue(getGetRequestsCall(query), callback);
     }
 
     @Override
     public void createRequestAsync(CreateRequest query,
-                                   Callback<GraphQLResponse<CreateRequestData>> callback) {
+                                   Callback<GraphQLResponse<CreateRequestResult>> callback) {
         enqueue(getCreateRequestCall(query), callback);
     }
 
     @Override
     public void updateRequestAsync(UpdateRequest query,
-                                   Callback<GraphQLResponse<UpdateRequestData>> callback) {
+                                   Callback<GraphQLResponse<UpdateRequestResult>> callback) {
         enqueue(getUpdateRequestCall(query), callback);
     }
 
     @Override
-    public Response<GraphQLResponse<RequestsData>> getAllRequestsSync() throws IOException {
+    public Response<GraphQLResponse<GetRequestsResult>> getAllRequestsSync() throws IOException {
         return execute(getGetAllRequestsCall());
     }
 
     @Override
-    public Response<GraphQLResponse<RequestsData>> getRequestsSync(GetRequests query) throws IOException {
+    public Response<GraphQLResponse<GetRequestsResult>> getRequestsSync(GetRequests query) throws IOException {
         return execute(getGetRequestsCall(query));
     }
 
     @Override
-    public Response<GraphQLResponse<CreateRequestData>> createRequestSync(CreateRequest query) throws IOException {
+    public Response<GraphQLResponse<CreateRequestResult>> createRequestSync(CreateRequest query) throws IOException {
         return execute(getCreateRequestCall(query));
     }
 
     @Override
-    public Response<GraphQLResponse<UpdateRequestData>> updateRequestSync(UpdateRequest query) throws IOException {
+    public Response<GraphQLResponse<UpdateRequestResult>> updateRequestSync(UpdateRequest query) throws IOException {
         return execute(getUpdateRequestCall(query));
     }
 
-    private Call<GraphQLResponse<RequestsData>> getGetAllRequestsCall() {
+    private Call<GraphQLResponse<GetRequestsResult>> getGetAllRequestsCall() {
         return this.service.getAllRequests(GraphQLRequest.builder());
     }
 
-    private Call<GraphQLResponse<RequestsData>> getGetRequestsCall(GetRequests query) {
+    private Call<GraphQLResponse<GetRequestsResult>> getGetRequestsCall(GetRequests query) {
         return this.service.getRequests(query);
     }
 
-    private Call<GraphQLResponse<CreateRequestData>> getCreateRequestCall(CreateRequest query) {
+    private Call<GraphQLResponse<CreateRequestResult>> getCreateRequestCall(CreateRequest query) {
         return this.service.createRequest(query);
     }
 
-    private Call<GraphQLResponse<UpdateRequestData>> getUpdateRequestCall(UpdateRequest query) {
+    private Call<GraphQLResponse<UpdateRequestResult>> getUpdateRequestCall(UpdateRequest query) {
         return this.service.updateRequest(query);
     }
 

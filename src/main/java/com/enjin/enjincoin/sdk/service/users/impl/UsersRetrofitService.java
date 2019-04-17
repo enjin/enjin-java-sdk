@@ -1,11 +1,11 @@
 package com.enjin.enjincoin.sdk.service.users.impl;
 
-import com.enjin.enjincoin.sdk.annotation.GraphQuery;
-import com.enjin.enjincoin.sdk.model.body.GraphQLResponse;
-import com.enjin.enjincoin.sdk.service.users.vo.data.CreateUserData;
-import com.enjin.enjincoin.sdk.service.users.vo.data.LoginUserData;
-import com.enjin.enjincoin.sdk.service.users.vo.data.UsersData;
-import com.enjin.enjincoin.sdk.model.request.GraphQLRequest.Builder;
+import com.enjin.enjincoin.sdk.graphql.GraphQLRequest.Builder;
+import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
+import com.enjin.enjincoin.sdk.graphql.GraphQuery;
+import com.enjin.enjincoin.sdk.model.service.users.CreateUserResult;
+import com.enjin.enjincoin.sdk.model.service.users.GetUsersResult;
+import com.enjin.enjincoin.sdk.model.service.users.LoginUserResult;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Headers;
@@ -21,7 +21,7 @@ public interface UsersRetrofitService {
     @POST("graphql")
     @GraphQuery("GetAllUsers")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<UsersData>> getAllUsers(@Body Builder User);
+    Call<GraphQLResponse<GetUsersResult>> getAllUsers(@Body Builder User);
 
     /**
      * @param User
@@ -31,7 +31,7 @@ public interface UsersRetrofitService {
     @POST("graphql")
     @GraphQuery("GetUsers")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<UsersData>> getUsers(@Body Builder User);
+    Call<GraphQLResponse<GetUsersResult>> getUsers(@Body Builder User);
 
     /**
      * @param User
@@ -41,7 +41,7 @@ public interface UsersRetrofitService {
     @POST("graphql")
     @GraphQuery("CreateUser")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<CreateUserData>> createUser(@Body Builder User);
+    Call<GraphQLResponse<CreateUserResult>> createUser(@Body Builder User);
 
     /**
      * @param User
@@ -51,6 +51,6 @@ public interface UsersRetrofitService {
     @POST("graphql")
     @GraphQuery("LoginUser")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<LoginUserData>> loginUser(@Body Builder User);
+    Call<GraphQLResponse<LoginUserResult>> loginUser(@Body Builder User);
 
 }

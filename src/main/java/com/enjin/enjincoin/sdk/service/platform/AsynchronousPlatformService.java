@@ -1,13 +1,13 @@
 package com.enjin.enjincoin.sdk.service.platform;
 
-import com.enjin.enjincoin.sdk.Callback;
-import com.enjin.enjincoin.sdk.model.body.GraphQLResponse;
-import com.enjin.enjincoin.sdk.service.platform.vo.data.PlatformData;
+import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
+import com.enjin.enjincoin.sdk.model.service.platform.GetPlatformResult;
+import com.enjin.enjincoin.sdk.util.concurrent.Callback;
 
 public interface AsynchronousPlatformService {
 
     /**
      * @param callback
      */
-    void getPlatformAsync(Callback<GraphQLResponse<PlatformData>> callback);
+    void getPlatformAsync(Callback<GraphQLResponse<GetPlatformResult>> callback);
 }

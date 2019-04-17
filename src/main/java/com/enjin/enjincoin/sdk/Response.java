@@ -1,13 +1,13 @@
 package com.enjin.enjincoin.sdk;
 
-import com.enjin.enjincoin.sdk.model.attribute.GraphError;
+import com.enjin.enjincoin.sdk.graphql.GraphError;
 
 import java.util.List;
 
 public class Response<T> {
 
-    private int code;
-    private T   body;
+    private int              code;
+    private T                body;
     private List<GraphError> errors;
 
     public Response(int code, List<GraphError> errors) {

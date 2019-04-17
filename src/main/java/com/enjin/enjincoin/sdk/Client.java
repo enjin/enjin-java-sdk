@@ -1,6 +1,6 @@
 package com.enjin.enjincoin.sdk;
 
-import com.enjin.enjincoin.sdk.service.auth.vo.AuthData;
+import com.enjin.enjincoin.sdk.model.service.auth.AuthResult;
 import com.enjin.enjincoin.sdk.service.ethereum.EthereumService;
 import com.enjin.enjincoin.sdk.service.identities.IdentitiesService;
 import com.enjin.enjincoin.sdk.service.notifications.NotificationsService;
@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public interface Client extends Closeable {
 
-    Response<AuthData> auth(String clientSecret) throws IOException;
+    Response<AuthResult> auth(String clientSecret) throws IOException;
 
     String getAppId();
 

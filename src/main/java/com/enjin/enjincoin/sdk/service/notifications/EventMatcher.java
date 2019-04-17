@@ -1,6 +1,6 @@
 package com.enjin.enjincoin.sdk.service.notifications;
 
-import com.enjin.enjincoin.sdk.service.notifications.vo.NotificationEvent;
+import com.enjin.enjincoin.sdk.model.service.notifications.NotificationEvent;
 
 /**
  * Interface to define the methods to be implemented by any eventMatchers.
