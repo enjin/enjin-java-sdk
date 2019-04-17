@@ -1,11 +1,11 @@
 package com.enjin.enjincoin.sdk.service.ethereum;
 
-import com.enjin.enjincoin.sdk.Response;
+import com.enjin.enjincoin.sdk.http.Result;
 
 import java.io.IOException;
 
 public interface SynchronousEthereumService {
 
-    Response<Integer> getAllowanceSync(String ethAddr) throws IOException;
+    Result<Integer> getAllowanceSync(String ethAddr) throws IOException;
 
 }

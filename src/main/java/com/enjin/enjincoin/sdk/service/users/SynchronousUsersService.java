@@ -1,6 +1,6 @@
 package com.enjin.enjincoin.sdk.service.users;
 
-import com.enjin.enjincoin.sdk.Response;
+import com.enjin.enjincoin.sdk.http.Result;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
 import com.enjin.enjincoin.sdk.model.service.users.CreateUser;
 import com.enjin.enjincoin.sdk.model.service.users.CreateUserResult;
@@ -20,7 +20,7 @@ public interface SynchronousUsersService {
      *
      * @throws IOException
      */
-    Response<GraphQLResponse<CreateUserResult>> createUserSync(CreateUser query) throws IOException;
+    Result<GraphQLResponse<CreateUserResult>> createUserSync(CreateUser query) throws IOException;
 
     /**
      * @param query
@@ -29,14 +29,14 @@ public interface SynchronousUsersService {
      *
      * @throws IOException
      */
-    Response<GraphQLResponse<LoginUserResult>> loginUserSync(LoginUser query) throws IOException;
+    Result<GraphQLResponse<LoginUserResult>> loginUserSync(LoginUser query) throws IOException;
 
     /**
      * @return
      *
      * @throws IOException
      */
-    Response<GraphQLResponse<GetUsersResult>> getAllUsersSync() throws IOException;
+    Result<GraphQLResponse<GetUsersResult>> getAllUsersSync() throws IOException;
 
     /**
      * @param query
@@ -45,5 +45,5 @@ public interface SynchronousUsersService {
      *
      * @throws IOException
      */
-    Response<GraphQLResponse<GetUsersResult>> getUsersSync(GetUsers query) throws IOException;
+    Result<GraphQLResponse<GetUsersResult>> getUsersSync(GetUsers query) throws IOException;
 }

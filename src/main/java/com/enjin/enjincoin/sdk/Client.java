@@ -8,13 +8,14 @@ import com.enjin.enjincoin.sdk.service.platform.PlatformService;
 import com.enjin.enjincoin.sdk.service.requests.RequestsService;
 import com.enjin.enjincoin.sdk.service.tokens.TokensService;
 import com.enjin.enjincoin.sdk.service.users.UsersService;
+import com.enjin.enjincoin.sdk.http.Result;
 
 import java.io.Closeable;
 import java.io.IOException;
 
 public interface Client extends Closeable {
 
-    Response<AuthResult> auth(String clientSecret) throws IOException;
+    Result<AuthResult> auth(String clientSecret) throws IOException;
 
     String getAppId();
 

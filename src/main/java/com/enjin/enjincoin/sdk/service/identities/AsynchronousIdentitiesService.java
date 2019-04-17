@@ -9,7 +9,7 @@ import com.enjin.enjincoin.sdk.model.service.identities.Identity;
 import com.enjin.enjincoin.sdk.model.service.identities.UnlinkIdentity;
 import com.enjin.enjincoin.sdk.model.service.identities.UpdateIdentity;
 import com.enjin.enjincoin.sdk.model.service.identities.UpdateIdentityResult;
-import com.enjin.enjincoin.sdk.util.concurrent.Callback;
+import com.enjin.enjincoin.sdk.http.Callback;
 
 public interface AsynchronousIdentitiesService {
 

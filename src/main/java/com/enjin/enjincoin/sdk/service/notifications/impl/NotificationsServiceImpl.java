@@ -1,6 +1,6 @@
 package com.enjin.enjincoin.sdk.service.notifications.impl;
 
-import com.enjin.enjincoin.sdk.Response;
+import com.enjin.enjincoin.sdk.http.Result;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
 import com.enjin.enjincoin.sdk.model.service.notifications.NotificationType;
 import com.enjin.enjincoin.sdk.model.service.platform.GetPlatformResult;
@@ -81,15 +81,15 @@ public class NotificationsServiceImpl implements NotificationsService {
      */
     @Override
     public boolean restart() {
-        final Response<GraphQLResponse<GetPlatformResult>> response;
+        final Result<GraphQLResponse<GetPlatformResult>> result;
         try {
-            response = this.service.getPlatformSync();
-            if (response == null || response.body() == null) {
+            result = this.service.getPlatformSync();
+            if (result == null || result.body() == null) {
                 LOGGER.warning("Failed to get platform details");
                 return false;
             }
 
-            final GraphQLResponse<GetPlatformResult> body = response.body();
+            final GraphQLResponse<GetPlatformResult> body = result.body();
             if (body == null || body.getData() == null) {
                 LOGGER.warning("Failed to get platform details");
                 return false;

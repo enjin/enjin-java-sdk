@@ -1,43 +1,32 @@
 package com.enjin.enjincoin.sdk.service;
 
-import com.enjin.enjincoin.sdk.Response;
-import com.enjin.enjincoin.sdk.graphql.GraphError;
-import com.enjin.enjincoin.sdk.util.GraphQLUtil;
-import com.enjin.enjincoin.sdk.util.concurrent.Callback;
+import com.enjin.enjincoin.sdk.http.Callback;
+import com.enjin.enjincoin.sdk.http.Result;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import okhttp3.MediaType;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 
 import java.io.IOException;
-import java.util.List;
+import java.lang.reflect.Type;
 
 public class ServiceBase {
 
-    protected <T> Response<T> execute(Call<T> call) throws IOException {
+    private static final Gson GSON = new GsonBuilder().create();
+    private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+
+    protected <T> Result<T> execute(Call<T> call) throws IOException {
         retrofit2.Response<T> response = call.execute();
-        return new Response<>(response.code(), response.body());
+        return new Result<>(response.code(), response.body());
     }
 
     protected <T> void enqueue(Call<T> call, Callback<T> callback) {
         call.enqueue(new retrofit2.Callback<T>() {
             @Override
             public void onResponse(Call<T> call, retrofit2.Response<T> response) {
-                if (response.errorBody() != null) {
-                    ResponseBody errorBody = response.errorBody();
-                    if (errorBody.contentType().subtype() != null
-                            && errorBody.contentType().subtype().equalsIgnoreCase("json")) {
-                        List<GraphError> errors = null;
-
-                        try {
-                            errors = GraphQLUtil.getGraphQLError(errorBody.string());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
-                        callback.onComplete(new Response<>(response.code(), errors));
-                    }
-                } else {
-                    callback.onComplete(new Response<>(response.code(), response.body()));
-                }
+                callback.onComplete(new Result<>(response.code(), response.body()));
             }
 
             @Override

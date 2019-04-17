@@ -7,7 +7,7 @@ import com.enjin.enjincoin.sdk.model.service.users.GetUsers;
 import com.enjin.enjincoin.sdk.model.service.users.GetUsersResult;
 import com.enjin.enjincoin.sdk.model.service.users.LoginUser;
 import com.enjin.enjincoin.sdk.model.service.users.LoginUserResult;
-import com.enjin.enjincoin.sdk.util.concurrent.Callback;
+import com.enjin.enjincoin.sdk.http.Callback;
 
 public interface AsynchronousUsersService {
 

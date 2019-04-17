@@ -1,6 +1,6 @@
 package com.enjin.enjincoin.sdk.service.identities;
 
-import com.enjin.enjincoin.sdk.Response;
+import com.enjin.enjincoin.sdk.http.Result;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
 import com.enjin.enjincoin.sdk.model.service.identities.CreateIdentity;
 import com.enjin.enjincoin.sdk.model.service.identities.CreateIdentityResult;
@@ -20,7 +20,7 @@ public interface SynchronousIdentitiesService {
      *
      * @throws IOException
      */
-    Response<GraphQLResponse<GetIdentitiesResult>> getAllIdentitiesSync() throws IOException;
+    Result<GraphQLResponse<GetIdentitiesResult>> getAllIdentitiesSync() throws IOException;
 
     /**
      * @param query
@@ -29,7 +29,7 @@ public interface SynchronousIdentitiesService {
      *
      * @throws IOException
      */
-    Response<GraphQLResponse<GetIdentitiesResult>> getIdentitiesSync(GetIdentities query) throws IOException;
+    Result<GraphQLResponse<GetIdentitiesResult>> getIdentitiesSync(GetIdentities query) throws IOException;
 
     /**
      * @param query
@@ -38,7 +38,7 @@ public interface SynchronousIdentitiesService {
      *
      * @throws IOException
      */
-    Response<GraphQLResponse<CreateIdentityResult>> createIdentitySync(CreateIdentity query) throws IOException;
+    Result<GraphQLResponse<CreateIdentityResult>> createIdentitySync(CreateIdentity query) throws IOException;
 
     /**
      * @param query
@@ -47,7 +47,7 @@ public interface SynchronousIdentitiesService {
      *
      * @throws IOException
      */
-    Response<GraphQLResponse<Identity>> unlinkIdentitySync(UnlinkIdentity query) throws IOException;
+    Result<GraphQLResponse<Identity>> unlinkIdentitySync(UnlinkIdentity query) throws IOException;
 
     /**
      * @param query
@@ -56,5 +56,5 @@ public interface SynchronousIdentitiesService {
      *
      * @throws IOException
      */
-    Response<GraphQLResponse<UpdateIdentityResult>> updateIdentitySync(UpdateIdentity query) throws IOException;
+    Result<GraphQLResponse<UpdateIdentityResult>> updateIdentitySync(UpdateIdentity query) throws IOException;
 }

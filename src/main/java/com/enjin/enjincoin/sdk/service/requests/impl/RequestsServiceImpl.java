@@ -1,6 +1,6 @@
 package com.enjin.enjincoin.sdk.service.requests.impl;
 
-import com.enjin.enjincoin.sdk.Response;
+import com.enjin.enjincoin.sdk.http.Result;
 import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
 import com.enjin.enjincoin.sdk.model.service.requests.CreateRequest;
@@ -9,15 +9,15 @@ import com.enjin.enjincoin.sdk.model.service.requests.GetRequests;
 import com.enjin.enjincoin.sdk.model.service.requests.GetRequestsResult;
 import com.enjin.enjincoin.sdk.model.service.requests.UpdateRequest;
 import com.enjin.enjincoin.sdk.model.service.requests.UpdateRequestResult;
-import com.enjin.enjincoin.sdk.service.ServiceBase;
+import com.enjin.enjincoin.sdk.service.GraphQLServiceBase;
 import com.enjin.enjincoin.sdk.service.requests.RequestsService;
-import com.enjin.enjincoin.sdk.util.concurrent.Callback;
+import com.enjin.enjincoin.sdk.http.Callback;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 
 import java.io.IOException;
 
-public class RequestsServiceImpl extends ServiceBase implements RequestsService {
+public class RequestsServiceImpl extends GraphQLServiceBase implements RequestsService {
 
     private RequestsRetrofitService service;
 
@@ -27,45 +27,45 @@ public class RequestsServiceImpl extends ServiceBase implements RequestsService 
 
     @Override
     public void getAllRequestsAsync(Callback<GraphQLResponse<GetRequestsResult>> callback) {
-        enqueue(getGetAllRequestsCall(), callback);
+        enqueueGraphQLCall(getGetAllRequestsCall(), callback);
     }
 
     @Override
     public void getRequestsAsync(GetRequests query,
                                  Callback<GraphQLResponse<GetRequestsResult>> callback) {
-        enqueue(getGetRequestsCall(query), callback);
+        enqueueGraphQLCall(getGetRequestsCall(query), callback);
     }
 
     @Override
     public void createRequestAsync(CreateRequest query,
                                    Callback<GraphQLResponse<CreateRequestResult>> callback) {
-        enqueue(getCreateRequestCall(query), callback);
+        enqueueGraphQLCall(getCreateRequestCall(query), callback);
     }
 
     @Override
     public void updateRequestAsync(UpdateRequest query,
                                    Callback<GraphQLResponse<UpdateRequestResult>> callback) {
-        enqueue(getUpdateRequestCall(query), callback);
+        enqueueGraphQLCall(getUpdateRequestCall(query), callback);
     }
 
     @Override
-    public Response<GraphQLResponse<GetRequestsResult>> getAllRequestsSync() throws IOException {
-        return execute(getGetAllRequestsCall());
+    public Result<GraphQLResponse<GetRequestsResult>> getAllRequestsSync() throws IOException {
+        return executeGraphQLCall(getGetAllRequestsCall());
     }
 
     @Override
-    public Response<GraphQLResponse<GetRequestsResult>> getRequestsSync(GetRequests query) throws IOException {
-        return execute(getGetRequestsCall(query));
+    public Result<GraphQLResponse<GetRequestsResult>> getRequestsSync(GetRequests query) throws IOException {
+        return executeGraphQLCall(getGetRequestsCall(query));
     }
 
     @Override
-    public Response<GraphQLResponse<CreateRequestResult>> createRequestSync(CreateRequest query) throws IOException {
-        return execute(getCreateRequestCall(query));
+    public Result<GraphQLResponse<CreateRequestResult>> createRequestSync(CreateRequest query) throws IOException {
+        return executeGraphQLCall(getCreateRequestCall(query));
     }
 
     @Override
-    public Response<GraphQLResponse<UpdateRequestResult>> updateRequestSync(UpdateRequest query) throws IOException {
-        return execute(getUpdateRequestCall(query));
+    public Result<GraphQLResponse<UpdateRequestResult>> updateRequestSync(UpdateRequest query) throws IOException {
+        return executeGraphQLCall(getUpdateRequestCall(query));
     }
 
     private Call<GraphQLResponse<GetRequestsResult>> getGetAllRequestsCall() {

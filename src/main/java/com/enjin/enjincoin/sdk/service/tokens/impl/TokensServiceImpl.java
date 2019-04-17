@@ -1,6 +1,6 @@
 package com.enjin.enjincoin.sdk.service.tokens.impl;
 
-import com.enjin.enjincoin.sdk.Response;
+import com.enjin.enjincoin.sdk.http.Result;
 import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
 import com.enjin.enjincoin.sdk.model.service.tokens.CreateTokenResult;
@@ -9,15 +9,15 @@ import com.enjin.enjincoin.sdk.model.service.tokens.GetTokensResult;
 import com.enjin.enjincoin.sdk.model.service.tokens.ImportToken;
 import com.enjin.enjincoin.sdk.model.service.tokens.UpdateToken;
 import com.enjin.enjincoin.sdk.model.service.tokens.UpdateTokenResult;
-import com.enjin.enjincoin.sdk.service.ServiceBase;
+import com.enjin.enjincoin.sdk.service.GraphQLServiceBase;
 import com.enjin.enjincoin.sdk.service.tokens.TokensService;
-import com.enjin.enjincoin.sdk.util.concurrent.Callback;
+import com.enjin.enjincoin.sdk.http.Callback;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 
 import java.io.IOException;
 
-public class TokensServiceImpl extends ServiceBase implements TokensService {
+public class TokensServiceImpl extends GraphQLServiceBase implements TokensService {
 
     private final TokensRetrofitService service;
 
@@ -27,45 +27,45 @@ public class TokensServiceImpl extends ServiceBase implements TokensService {
 
     @Override
     public void getAllTokensAsync(Callback<GraphQLResponse<GetTokensResult>> callback) {
-        enqueue(getAllTokensCall(), callback);
+        enqueueGraphQLCall(getAllTokensCall(), callback);
     }
 
     @Override
     public void getTokensAsync(GetTokens query,
                                Callback<GraphQLResponse<GetTokensResult>> callback) {
-        enqueue(getTokensCall(query), callback);
+        enqueueGraphQLCall(getTokensCall(query), callback);
     }
 
     @Override
     public void importTokenAsync(ImportToken query,
                                  Callback<GraphQLResponse<CreateTokenResult>> callback) {
-        enqueue(getImportTokenCall(query), callback);
+        enqueueGraphQLCall(getImportTokenCall(query), callback);
     }
 
     @Override
     public void updateTokenAsync(UpdateToken query,
                                  Callback<GraphQLResponse<UpdateTokenResult>> callback) {
-        enqueue(getUpdateTokenCall(query), callback);
+        enqueueGraphQLCall(getUpdateTokenCall(query), callback);
     }
 
     @Override
-    public Response<GraphQLResponse<GetTokensResult>> getAllTokensSync() throws IOException {
-        return execute(getAllTokensCall());
+    public Result<GraphQLResponse<GetTokensResult>> getAllTokensSync() throws IOException {
+        return executeGraphQLCall(getAllTokensCall());
     }
 
     @Override
-    public Response<GraphQLResponse<GetTokensResult>> getTokensSync(GetTokens query) throws IOException {
-        return execute(getTokensCall(query));
+    public Result<GraphQLResponse<GetTokensResult>> getTokensSync(GetTokens query) throws IOException {
+        return executeGraphQLCall(getTokensCall(query));
     }
 
     @Override
-    public Response<GraphQLResponse<CreateTokenResult>> importTokenSync(ImportToken query) throws IOException {
-        return execute(getImportTokenCall(query));
+    public Result<GraphQLResponse<CreateTokenResult>> importTokenSync(ImportToken query) throws IOException {
+        return executeGraphQLCall(getImportTokenCall(query));
     }
 
     @Override
-    public Response<GraphQLResponse<UpdateTokenResult>> updateTokenSync(UpdateToken query) throws IOException {
-        return execute(getUpdateTokenCall(query));
+    public Result<GraphQLResponse<UpdateTokenResult>> updateTokenSync(UpdateToken query) throws IOException {
+        return executeGraphQLCall(getUpdateTokenCall(query));
     }
 
     private Call<GraphQLResponse<GetTokensResult>> getAllTokensCall() {

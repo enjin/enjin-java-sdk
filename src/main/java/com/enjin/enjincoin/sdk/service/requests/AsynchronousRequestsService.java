@@ -7,7 +7,7 @@ import com.enjin.enjincoin.sdk.model.service.requests.GetRequests;
 import com.enjin.enjincoin.sdk.model.service.requests.GetRequestsResult;
 import com.enjin.enjincoin.sdk.model.service.requests.UpdateRequest;
 import com.enjin.enjincoin.sdk.model.service.requests.UpdateRequestResult;
-import com.enjin.enjincoin.sdk.util.concurrent.Callback;
+import com.enjin.enjincoin.sdk.http.Callback;
 
 public interface AsynchronousRequestsService {
 

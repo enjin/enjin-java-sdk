@@ -1,9 +1,10 @@
 package com.enjin.enjincoin.sdk.service.ethereum.impl;
 
-import com.enjin.enjincoin.sdk.Response;
+import com.enjin.enjincoin.sdk.http.Result;
+import com.enjin.enjincoin.sdk.service.GraphQLServiceBase;
 import com.enjin.enjincoin.sdk.service.ServiceBase;
 import com.enjin.enjincoin.sdk.service.ethereum.EthereumService;
-import com.enjin.enjincoin.sdk.util.concurrent.Callback;
+import com.enjin.enjincoin.sdk.http.Callback;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 
@@ -19,24 +20,12 @@ public class EthereumServiceImpl extends ServiceBase implements EthereumService 
 
     @Override
     public void getAllowanceAsync(String ethAddr, Callback<Integer> callback) {
-        this.service.getAllowance(ethAddr).enqueue(new retrofit2.Callback<Integer>() {
-            @Override
-            public void onResponse(Call<Integer> call, retrofit2.Response<Integer> response) {
-                callback.onComplete(new Response<>(response.code(), response.body()));
-            }
-
-            @Override
-            public void onFailure(Call<Integer> call, Throwable t) {
-
-            }
-        });
+        enqueue(this.service.getAllowance(ethAddr), callback);
     }
 
     @Override
-    public Response<Integer> getAllowanceSync(String ethAddr) throws IOException {
-        retrofit2.Response<Integer> response = this.service.getAllowance(ethAddr).execute();
-
-        return new Response<>(response.code(), response.body());
+    public Result<Integer> getAllowanceSync(String ethAddr) throws IOException {
+        return execute(this.service.getAllowance(ethAddr));
     }
 
 }

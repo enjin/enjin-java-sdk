@@ -43,7 +43,7 @@ public class GraphConverter extends Converter.Factory {
     }
 
     /**
-     * Response body converter delegates logic processing to a child class that handles
+     * Result body converter delegates logic processing to a child class that handles
      * wrapping and deserialization of the json response results.
      *
      * @param annotations All the annotation applied to the requesting Call method
@@ -68,7 +68,7 @@ public class GraphConverter extends Converter.Factory {
     }
 
     /**
-     * Response body converter delegates logic processing to a child class that handles
+     * Result body converter delegates logic processing to a child class that handles
      * wrapping and deserialization of the json response results.
      *
      * @param parameterAnnotations All the annotation applied to request parameters

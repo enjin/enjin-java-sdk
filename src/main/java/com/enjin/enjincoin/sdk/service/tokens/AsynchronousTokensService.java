@@ -7,7 +7,7 @@ import com.enjin.enjincoin.sdk.model.service.tokens.GetTokensResult;
 import com.enjin.enjincoin.sdk.model.service.tokens.ImportToken;
 import com.enjin.enjincoin.sdk.model.service.tokens.UpdateToken;
 import com.enjin.enjincoin.sdk.model.service.tokens.UpdateTokenResult;
-import com.enjin.enjincoin.sdk.util.concurrent.Callback;
+import com.enjin.enjincoin.sdk.http.Callback;
 
 public interface AsynchronousTokensService {
 
