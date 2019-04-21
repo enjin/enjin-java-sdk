@@ -114,3 +114,6 @@ gradle-app.setting
 
 # Clover
 .clover/
+
+# Lombok
+DevelopmentWorkspaces*/

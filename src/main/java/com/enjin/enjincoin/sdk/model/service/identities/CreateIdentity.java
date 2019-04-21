@@ -22,12 +22,12 @@ public class CreateIdentity extends GraphQLRequest.Builder {
         return this;
     }
 
-    public CreateIdentity withFields(List<IdentityField> fields) {
+    public CreateIdentity withFields(List<IdentityFieldInput> fields) {
         withParameter("fields", fields);
         return this;
     }
 
-    public CreateIdentity withFields(IdentityField... fields) {
+    public CreateIdentity withFields(IdentityFieldInput... fields) {
         withParameter("fields", Arrays.asList(fields));
         return this;
     }
