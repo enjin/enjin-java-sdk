@@ -24,9 +24,11 @@ import com.enjin.enjincoin.sdk.model.service.requests.data.SetTransferableData;
 import com.enjin.enjincoin.sdk.model.service.requests.data.SetWhitelistedData;
 import com.enjin.enjincoin.sdk.model.service.requests.data.UpdateItemNameData;
 
+import java.math.BigInteger;
+
 public class CreateRequest extends GraphQLRequest.Builder {
 
-    public CreateRequest withIdentityId(int identityId) {
+    public CreateRequest withIdentityId(BigInteger identityId) {
         withParameter("identity_id", identityId);
         return this;
     }

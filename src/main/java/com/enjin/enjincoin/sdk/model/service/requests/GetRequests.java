@@ -2,11 +2,12 @@ package com.enjin.enjincoin.sdk.model.service.requests;
 
 import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
 
+import java.math.BigInteger;
 import java.util.List;
 
 public class GetRequests extends GraphQLRequest.Builder {
 
-    public GetRequests withRequestId(int requestId) {
+    public GetRequests withRequestId(BigInteger requestId) {
         withParameter("id", requestId);
         return this;
     }
@@ -16,7 +17,7 @@ public class GetRequests extends GraphQLRequest.Builder {
         return this;
     }
 
-    public GetRequests withIdentityId(int identityId) {
+    public GetRequests withIdentityId(BigInteger identityId) {
         withParameter("identity_id", identityId);
         return this;
     }
@@ -26,7 +27,7 @@ public class GetRequests extends GraphQLRequest.Builder {
         return this;
     }
 
-    public GetRequests withRecipientId(int recipientId) {
+    public GetRequests withRecipientId(BigInteger recipientId) {
         withParameter("recipient_id", recipientId);
         return this;
     }
@@ -36,7 +37,7 @@ public class GetRequests extends GraphQLRequest.Builder {
         return this;
     }
 
-    public GetRequests withSenderOrRecipientId(int senderOrRecipientId) {
+    public GetRequests withSenderOrRecipientId(BigInteger senderOrRecipientId) {
         withParameter("sender_or_recipient_id", senderOrRecipientId);
         return this;
     }

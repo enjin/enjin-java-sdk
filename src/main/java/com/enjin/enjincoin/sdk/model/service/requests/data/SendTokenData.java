@@ -3,6 +3,8 @@ package com.enjin.enjincoin.sdk.model.service.requests.data;
 import com.google.gson.annotations.SerializedName;
 import lombok.Builder;
 
+import java.math.BigInteger;
+
 @Builder
 public class SendTokenData {
 
@@ -16,7 +18,7 @@ public class SendTokenData {
     private String recipientAddress;
 
     @SerializedName("recipient_identity_id")
-    private Integer recipientIdentityId;
+    private BigInteger recipientIdentityId;
 
     private Integer value;
 

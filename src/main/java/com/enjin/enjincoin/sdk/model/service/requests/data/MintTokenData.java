@@ -3,6 +3,7 @@ package com.enjin.enjincoin.sdk.model.service.requests.data;
 import com.google.gson.annotations.SerializedName;
 import lombok.Builder;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,10 +23,10 @@ public class MintTokenData {
     private List<String> recipientAddresses;
 
     @SerializedName("recipient_identity_id")
-    private Integer recipientIdentityId;
+    private BigInteger recipientIdentityId;
 
     @SerializedName("recipient_identity_id_array")
-    private List<Integer> recipientIdentityIds;
+    private List<BigInteger> recipientIdentityIds;
 
     private Integer value;
 
@@ -43,12 +44,12 @@ public class MintTokenData {
             return this;
         }
 
-        public MintTokenDataBuilder recipientIdentityIds(Integer... recipientIdentityIds) {
+        public MintTokenDataBuilder recipientIdentityIds(BigInteger... recipientIdentityIds) {
             this.recipientIdentityIds = Arrays.asList(recipientIdentityIds);
             return this;
         }
 
-        public MintTokenDataBuilder recipientIdentityIds(List<Integer> recipientIdentityIds) {
+        public MintTokenDataBuilder recipientIdentityIds(List<BigInteger> recipientIdentityIds) {
             this.recipientIdentityIds = recipientIdentityIds;
             return this;
         }
