@@ -4,10 +4,10 @@ import com.enjin.enjincoin.sdk.http.Result;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
 import com.enjin.enjincoin.sdk.model.service.identities.CreateIdentity;
 import com.enjin.enjincoin.sdk.model.service.identities.CreateIdentityResult;
+import com.enjin.enjincoin.sdk.model.service.identities.DeleteIdentity;
+import com.enjin.enjincoin.sdk.model.service.identities.DeleteIdentityResult;
 import com.enjin.enjincoin.sdk.model.service.identities.GetIdentities;
 import com.enjin.enjincoin.sdk.model.service.identities.GetIdentitiesResult;
-import com.enjin.enjincoin.sdk.model.service.identities.Identity;
-import com.enjin.enjincoin.sdk.model.service.identities.UnlinkIdentity;
 import com.enjin.enjincoin.sdk.model.service.identities.UpdateIdentity;
 import com.enjin.enjincoin.sdk.model.service.identities.UpdateIdentityResult;
 
@@ -47,7 +47,7 @@ public interface SynchronousIdentitiesService {
      *
      * @throws IOException
      */
-    Result<GraphQLResponse<Identity>> unlinkIdentitySync(UnlinkIdentity query) throws IOException;
+    Result<GraphQLResponse<DeleteIdentityResult>> deleteIdentitySync(DeleteIdentity query) throws IOException;
 
     /**
      * @param query

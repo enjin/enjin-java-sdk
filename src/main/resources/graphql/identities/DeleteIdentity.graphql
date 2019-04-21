@@ -1,4 +1,4 @@
-mutation unlinkIdentity {
+mutation deleteIdentity {
     DeleteEnjinIdentity(%s){
         id,
         app_id,

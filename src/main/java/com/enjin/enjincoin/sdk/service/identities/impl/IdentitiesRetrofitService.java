@@ -4,6 +4,7 @@ import com.enjin.enjincoin.sdk.graphql.GraphQLRequest.Builder;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
 import com.enjin.enjincoin.sdk.graphql.GraphQuery;
 import com.enjin.enjincoin.sdk.model.service.identities.CreateIdentityResult;
+import com.enjin.enjincoin.sdk.model.service.identities.DeleteIdentityResult;
 import com.enjin.enjincoin.sdk.model.service.identities.GetIdentitiesResult;
 import com.enjin.enjincoin.sdk.model.service.identities.Identity;
 import com.enjin.enjincoin.sdk.model.service.identities.UpdateIdentityResult;
@@ -50,9 +51,9 @@ public interface IdentitiesRetrofitService {
      * @return
      */
     @POST("graphql")
-    @GraphQuery("UnlinkIdentity")
+    @GraphQuery("DeleteIdentity")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<Identity>> unlinkIdentity(@Body Builder request);
+    Call<GraphQLResponse<DeleteIdentityResult>> deleteIdentity(@Body Builder request);
 
     /**
      * @param request

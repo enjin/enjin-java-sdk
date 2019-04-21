@@ -5,10 +5,10 @@ import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
 import com.enjin.enjincoin.sdk.model.service.identities.CreateIdentity;
 import com.enjin.enjincoin.sdk.model.service.identities.CreateIdentityResult;
+import com.enjin.enjincoin.sdk.model.service.identities.DeleteIdentity;
+import com.enjin.enjincoin.sdk.model.service.identities.DeleteIdentityResult;
 import com.enjin.enjincoin.sdk.model.service.identities.GetIdentities;
 import com.enjin.enjincoin.sdk.model.service.identities.GetIdentitiesResult;
-import com.enjin.enjincoin.sdk.model.service.identities.Identity;
-import com.enjin.enjincoin.sdk.model.service.identities.UnlinkIdentity;
 import com.enjin.enjincoin.sdk.model.service.identities.UpdateIdentity;
 import com.enjin.enjincoin.sdk.model.service.identities.UpdateIdentityResult;
 import com.enjin.enjincoin.sdk.service.GraphQLServiceBase;
@@ -45,9 +45,9 @@ public class IdentitiesServiceImpl extends GraphQLServiceBase implements Identit
     }
 
     @Override
-    public void unlinkIdentityAsync(UnlinkIdentity query,
-                                    Callback<GraphQLResponse<Identity>> callback) {
-        enqueueGraphQLCall(getUnlinkIdentityCall(query), callback);
+    public void deleteIdentityAsync(DeleteIdentity query,
+                                    Callback<GraphQLResponse<DeleteIdentityResult>> callback) {
+        enqueueGraphQLCall(getDeleteIdentityCall(query), callback);
     }
 
     @Override
@@ -72,8 +72,8 @@ public class IdentitiesServiceImpl extends GraphQLServiceBase implements Identit
     }
 
     @Override
-    public Result<GraphQLResponse<Identity>> unlinkIdentitySync(UnlinkIdentity query) throws IOException {
-        return executeGraphQLCall(getUnlinkIdentityCall(query));
+    public Result<GraphQLResponse<DeleteIdentityResult>> deleteIdentitySync(DeleteIdentity query) throws IOException {
+        return executeGraphQLCall(getDeleteIdentityCall(query));
     }
 
     @Override
@@ -93,8 +93,8 @@ public class IdentitiesServiceImpl extends GraphQLServiceBase implements Identit
         return this.service.createIdentity(query);
     }
 
-    private Call<GraphQLResponse<Identity>> getUnlinkIdentityCall(UnlinkIdentity query) {
-        return this.service.unlinkIdentity(query);
+    private Call<GraphQLResponse<DeleteIdentityResult>> getDeleteIdentityCall(DeleteIdentity query) {
+        return this.service.deleteIdentity(query);
     }
 
     private Call<GraphQLResponse<UpdateIdentityResult>> getUpdateIdentityCall(UpdateIdentity query) {
