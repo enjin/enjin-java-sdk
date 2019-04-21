@@ -3,6 +3,8 @@ package com.enjin.enjincoin.sdk.service.notifications;
 import com.enjin.enjincoin.sdk.model.service.notifications.NotificationType;
 import com.enjin.enjincoin.sdk.service.notifications.NotificationListenerRegistration.RegistrationListenerConfiguration;
 
+import java.math.BigInteger;
+
 /**
  * <p>
  * NotificationsService - Synchronous.
@@ -101,9 +103,9 @@ public interface NotificationsService extends AsynchronousNotificationsService {
      */
     void removeNotificationListenerRegistration(NotificationListenerRegistration registration);
 
-    void listenForLink(int identityId);
+    void listenForLink(BigInteger identityId);
 
-    void stopListeningForLink(int identityId);
+    void stopListeningForLink(BigInteger identityId);
 
-    boolean isListeningForLink(int identityId);
+    boolean isListeningForLink(BigInteger identityId);
 }

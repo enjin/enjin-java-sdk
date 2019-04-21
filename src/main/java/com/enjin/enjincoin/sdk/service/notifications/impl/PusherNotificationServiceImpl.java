@@ -22,6 +22,7 @@ import com.pusher.client.connection.ConnectionEventListener;
 import com.pusher.client.connection.ConnectionState;
 import com.pusher.client.connection.ConnectionStateChange;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -182,7 +183,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
                              this.appId);
     }
 
-    private String getIdentityChannel(int identityId) {
+    private String getIdentityChannel(BigInteger identityId) {
         return String.format("enjin.server.%s.%s.%s.%s",
                              this.platformDetails.getNetwork().toLowerCase(),
                              this.platformDetails.getId(),
@@ -261,7 +262,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
     }
 
     @Override
-    public void listenForLink(int identityId) {
+    public void listenForLink(BigInteger identityId) {
         String channel = getIdentityChannel(identityId);
 
         if (identityChannels.containsKey(channel)) {
@@ -274,7 +275,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
     }
 
     @Override
-    public void stopListeningForLink(int identityId) {
+    public void stopListeningForLink(BigInteger identityId) {
         String channel = getIdentityChannel(identityId);
 
         if (identityChannels.containsKey(channel)) {
@@ -285,7 +286,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
     }
 
     @Override
-    public boolean isListeningForLink(int identityId) {
+    public boolean isListeningForLink(BigInteger identityId) {
         String channel = getIdentityChannel(identityId);
         return identityChannels.containsKey(channel);
     }

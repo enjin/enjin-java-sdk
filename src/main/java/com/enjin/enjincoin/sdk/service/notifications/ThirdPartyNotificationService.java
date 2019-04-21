@@ -1,5 +1,6 @@
 package com.enjin.enjincoin.sdk.service.notifications;
 
+import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -26,9 +27,9 @@ public interface ThirdPartyNotificationService {
      */
     void setNotificationListeners(List<NotificationListenerRegistration> notificationListeners);
 
-    void listenForLink(int identityId);
+    void listenForLink(BigInteger identityId);
 
-    void stopListeningForLink(int identityId);
+    void stopListeningForLink(BigInteger identityId);
 
-    boolean isListeningForLink(int identityId);
+    boolean isListeningForLink(BigInteger identityId);
 }

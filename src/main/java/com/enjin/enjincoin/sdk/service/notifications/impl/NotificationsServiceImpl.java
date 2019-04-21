@@ -15,6 +15,7 @@ import com.enjin.java_commons.BooleanUtils;
 import com.enjin.java_commons.ObjectUtils;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -262,17 +263,17 @@ public class NotificationsServiceImpl implements NotificationsService {
     }
 
     @Override
-    public void listenForLink(int identityId) {
+    public void listenForLink(BigInteger identityId) {
         this.thirdPartyNotificationService.listenForLink(identityId);
     }
 
     @Override
-    public void stopListeningForLink(int identityId) {
+    public void stopListeningForLink(BigInteger identityId) {
         this.thirdPartyNotificationService.stopListeningForLink(identityId);
     }
 
     @Override
-    public boolean isListeningForLink(int identityId) {
+    public boolean isListeningForLink(BigInteger identityId) {
         return this.thirdPartyNotificationService.isListeningForLink(identityId);
     }
 
