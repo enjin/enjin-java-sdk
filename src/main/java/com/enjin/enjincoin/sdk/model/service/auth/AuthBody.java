@@ -1,7 +1,9 @@
 package com.enjin.enjincoin.sdk.model.service.auth;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Builder;
 
+@Builder
 public class AuthBody {
 
     @SerializedName("grant_type")
@@ -12,11 +14,5 @@ public class AuthBody {
 
     @SerializedName("client_secret")
     private String clientSecret;
-
-    public AuthBody(String grantType, String clientId, String clientSecret) {
-        this.grantType = grantType;
-        this.clientId = clientId;
-        this.clientSecret = clientSecret;
-    }
 
 }

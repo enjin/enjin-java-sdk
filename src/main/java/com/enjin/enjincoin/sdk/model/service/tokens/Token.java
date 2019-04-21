@@ -1,7 +1,11 @@
 package com.enjin.enjincoin.sdk.model.service.tokens;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Getter;
+import lombok.ToString;
 
+@ToString
+@Getter
 public class Token {
 
     @SerializedName("token_id")
@@ -41,105 +45,14 @@ public class Token {
     @SerializedName("markedForDelete")
     private Boolean markedForDeletion;
 
+    private Boolean isCreator;
+
     private Double balance;
 
     private String index;
 
-    private Double availableToMint;
+    private String availableToMint;
 
     private String itemURI;
 
-    private String icon;
-
-    /*
-    ----- Methods -----
-    */
-
-    public String getTokenId() {
-        return tokenId;
-    }
-
-    public Integer getAppId() {
-        return appId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getCreator() {
-        return creator;
-    }
-
-    public String getMeltValue() {
-        return meltValue;
-    }
-
-    public Integer getMeltFeeRatio() {
-        return meltFeeRatio;
-    }
-
-    public Integer getMeltFeeMaxRatio() {
-        return meltFeeMaxRatio;
-    }
-
-    public TokenSupplyModel getSupplyModel() {
-        return supplyModel;
-    }
-
-    public String getTotalSupply() {
-        return totalSupply;
-    }
-
-    public String getCirculatingSupply() {
-        return circulatingSupply;
-    }
-
-    public String getReserve() {
-        return reserve;
-    }
-
-    public TokenTransferable getTransferable() {
-        return transferable;
-    }
-
-    public TokenTransferFeeSettings getTransferFeeSettings() {
-        return transferFeeSettings;
-    }
-
-    public Boolean getNonFungible() {
-        return nonFungible;
-    }
-
-    public Integer getFirstBlock() {
-        return firstBlock;
-    }
-
-    public Integer getBlockHeight() {
-        return blockHeight;
-    }
-
-    public Boolean getMarkedForDeletion() {
-        return markedForDeletion;
-    }
-
-    public Double getBalance() {
-        return balance;
-    }
-
-    public String getIndex() {
-        return index;
-    }
-
-    public Double getAvailableToMint() {
-        return availableToMint;
-    }
-
-    public String getItemURI() {
-        return itemURI;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
 }

@@ -119,7 +119,7 @@ public class NotificationListenerRegistration {
          * @return T
          */
         public T withAllowedEvents(final NotificationType... types) {
-            return this.withMatcher(types == null ? null : event -> event.getNotificationType().in(types));
+            return this.withMatcher(types == null ? null : event -> event.getType().in(types));
         }
 
         /**
@@ -130,7 +130,7 @@ public class NotificationListenerRegistration {
          * @return T
          */
         public T withIgnoredEvents(final NotificationType... types) {
-            return this.withMatcher(types == null ? null : event -> !event.getNotificationType().in(types));
+            return this.withMatcher(types == null ? null : event -> !event.getType().in(types));
         }
 
         /**

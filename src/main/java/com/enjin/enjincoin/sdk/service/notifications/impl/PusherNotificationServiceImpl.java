@@ -89,18 +89,18 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
     public boolean init() {
         boolean initializeResult = false;
 
-        if (this.platformDetails.getNotificationDetails() == null) {
+        if (this.platformDetails.getNotifications() == null) {
             LOGGER.warning("notificationDetails are null");
             return initializeResult;
         }
 
-        final NotificationDetails notificationDetails = this.platformDetails.getNotificationDetails();
-        if (notificationDetails.getSdkDetails() == null || notificationDetails.getSdkDetails().getOptions() == null) {
+        final NotificationDetails notificationDetails = this.platformDetails.getNotifications();
+        if (notificationDetails.getSdk() == null || notificationDetails.getSdk().getOptions() == null) {
             LOGGER.warning("the sdk details or the options are null");
             return initializeResult;
         }
 
-        final SdkDetails sdkDetails = notificationDetails.getSdkDetails();
+        final SdkDetails sdkDetails = notificationDetails.getSdk();
         final String     appKey     = sdkDetails.getKey();
         final String     cluster    = sdkDetails.getOptions().getCluster();
         final String     appChannel = getAppChannel();
@@ -176,11 +176,9 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
     }
 
     private String getAppChannel() {
-        final String platformId = this.platformDetails.getId();
-
         return String.format("enjin.server.%s.%s.%s",
                              this.platformDetails.getNetwork().toLowerCase(),
-                             platformId,
+                             this.platformDetails.getId(),
                              this.appId);
     }
 
@@ -238,7 +236,11 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
             return;
         }
 
-        final NotificationEvent notificationEvent = new NotificationEvent(notificationType, channel, sourceData);
+        final NotificationEvent notificationEvent = NotificationEvent.builder()
+                                                                     .type(notificationType)
+                                                                     .channel(channel)
+                                                                     .sourceData(sourceData)
+                                                                     .build();
 
         for (final NotificationListenerRegistration registration : this.notificationListenerRegistrations) {
             if (registration.getEventMatcher().matches(notificationEvent)) {

@@ -3,15 +3,21 @@ package com.enjin.enjincoin.sdk.model.service.identities;
 import com.enjin.enjincoin.sdk.model.service.tokens.Token;
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
+import lombok.Getter;
+import lombok.ToString;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 
+@ToString
+@Getter
 public class Identity {
 
-    private Integer id;
+    private BigInteger id;
 
     @SerializedName("app_id")
-    private Integer appId;
+    private BigInteger appId;
 
     @SerializedName("ethereum_address")
     private String ethereumAddress;
@@ -27,56 +33,15 @@ public class Identity {
     private List<Token> tokens;
 
     @SerializedName("eth_balance")
-    private Double ethBalance;
+    private BigDecimal ethBalance;
 
     @SerializedName("enj_balance")
-    private Double enjBalance;
+    private BigDecimal enjBalance;
 
     @SerializedName("enj_allowance")
-    private Double enjAllowance;
+    private BigDecimal enjAllowance;
 
     @SerializedName("all_tokens_balance")
     private JsonObject allTokensBalance;
 
-    public Integer getId() {
-        return this.id;
-    }
-
-    public Integer getAppId() {
-        return this.appId;
-    }
-
-    public String getEthereumAddress() {
-        return this.ethereumAddress;
-    }
-
-    public String getLinkingCode() {
-        return this.linkingCode;
-    }
-
-    public String getLinkingCodeQr() {
-        return linkingCodeQr;
-    }
-
-    public List<IdentityField> getFields() {
-        return this.fields;
-    }
-
-    public List<Token> getTokens() { return this.tokens; }
-
-    public Double getEthBalance() {
-        return this.ethBalance;
-    }
-
-    public Double getEnjBalance() {
-        return this.enjBalance;
-    }
-
-    public Double getEnjAllowance() {
-        return enjAllowance;
-    }
-
-    public JsonObject getAllTokensBalance() {
-        return this.allTokensBalance;
-    }
 }

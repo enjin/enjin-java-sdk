@@ -1,10 +1,16 @@
 package com.enjin.enjincoin.sdk.model.service.requests;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Getter;
+import lombok.ToString;
 
+import java.math.BigInteger;
+
+@ToString
+@Getter
 public class Transaction {
 
-    private Integer id;
+    private BigInteger id;
 
     @SerializedName("transaction_id")
     private String transactionId;
@@ -15,7 +21,7 @@ public class Transaction {
     @SerializedName("identity_id")
     private Integer identityId;
 
-    private String type;
+    private TransactionType type;
 
     @SerializedName("recipient_id")
     private Integer recipientId;
@@ -48,47 +54,4 @@ public class Transaction {
 
     private Integer accepted;
 
-    public Integer getId() {
-        return this.id;
-    }
-
-    public String getTransactionId() {
-        return this.transactionId;
-    }
-
-    public Integer getAppId() {
-        return this.appId;
-    }
-
-    public Integer getIdentityId() {
-        return this.identityId;
-    }
-
-    public String getType() {
-        return this.type;
-    }
-
-    public Integer getRecipientId() {
-        return this.recipientId;
-    }
-
-    public String getRecipientAddress() {
-        return this.recipientAddress;
-    }
-
-    public Integer getTokenId() {
-        return this.tokenId;
-    }
-
-    public String getEncodedData() {
-        return this.encodedData;
-    }
-
-    public TransactionState getState() {
-        return this.state;
-    }
-
-    public Integer getAccepted() {
-        return this.accepted;
-    }
 }

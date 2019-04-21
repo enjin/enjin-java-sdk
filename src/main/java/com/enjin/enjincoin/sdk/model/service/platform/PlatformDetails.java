@@ -1,36 +1,27 @@
 package com.enjin.enjincoin.sdk.model.service.platform;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Getter;
+
+import java.math.BigInteger;
 
 /**
  * <p>
  * Platform Config used throughout the sdk.
  * </p>
  */
+@Getter
 public class PlatformDetails {
 
     private String name;
 
-    private String id;
+    private BigInteger id;
 
     private String network;
 
-    @SerializedName("notifications")
-    private NotificationDetails notificationDetails;
+    @SerializedName("blockheight")
+    private Integer blockHeight;
 
-    public String getName() {
-        return this.name;
-    }
+    private NotificationDetails notifications;
 
-    public String getId() {
-        return this.id;
-    }
-
-    public String getNetwork() {
-        return network;
-    }
-
-    public NotificationDetails getNotificationDetails() {
-        return this.notificationDetails;
-    }
 }

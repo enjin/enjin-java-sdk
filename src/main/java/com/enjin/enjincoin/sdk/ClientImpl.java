@@ -84,7 +84,11 @@ public class ClientImpl implements Client {
 
     public Result<AuthResult> auth(String clientSecret) throws IOException {
         Call<AuthResult> call = getAuthRetrofitService()
-                .auth(new AuthBody("client_credentials", this.appId, clientSecret));
+                .auth(AuthBody.builder()
+                              .grantType("client_credentials")
+                              .clientId(this.appId)
+                              .clientSecret(clientSecret)
+                              .build());
         // Failure needs to be handled by the callee.
         retrofit2.Response<AuthResult> response = call.execute();
 
