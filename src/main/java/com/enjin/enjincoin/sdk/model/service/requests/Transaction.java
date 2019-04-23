@@ -30,7 +30,7 @@ public class Transaction {
     private String recipientAddress;
 
     @SerializedName("token_id")
-    private Integer tokenId;
+    private String tokenId;
 
     @SerializedName("encoded_data")
     private String encodedData;
