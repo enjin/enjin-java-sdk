@@ -1,5 +1,7 @@
 package com.enjin.enjincoin.sdk.graphql;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -10,6 +12,9 @@ import java.util.Map;
 
 public class GraphQLParameters {
 
+    private final Gson gson = new GsonBuilder()
+            .disableHtmlEscaping()
+            .create();
     private Map<String, Object> parameters;
 
     public GraphQLParameters() {
@@ -32,16 +37,7 @@ public class GraphQLParameters {
             }
 
             builder.append(parameter.getKey()).append(": ");
-
-            if (parameter.getValue() instanceof String) {
-                builder.append("\"");
-            }
-
             builder.append(objectToGraphQLFormat(parameter.getValue()));
-
-            if (parameter.getValue() instanceof String) {
-                builder.append("\"");
-            }
         }
         return builder.toString();
     }
@@ -53,7 +49,7 @@ public class GraphQLParameters {
             return ((Enum) object).name();
         }
 
-        return String.valueOf(object);
+        return jsonElementToGraphQLFormat(gson.toJsonTree(object));
     }
 
     private String jsonElementToGraphQLFormat(JsonElement element) {
