@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.math.BigDecimal;
+
 @ToString
 @Getter
 public class Token {
@@ -47,7 +49,7 @@ public class Token {
 
     private Boolean isCreator;
 
-    private Double balance;
+    private BigDecimal balance;
 
     private String index;
 
