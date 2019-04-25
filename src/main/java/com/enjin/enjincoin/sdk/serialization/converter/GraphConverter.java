@@ -4,9 +4,11 @@ import com.enjin.enjincoin.sdk.graphql.GraphProcessor;
 import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
 import com.enjin.enjincoin.sdk.graphql.GraphQLRequest.Builder;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
+import com.enjin.enjincoin.sdk.serialization.BigIntegerDeserializer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
+import net.dongliu.gson.GsonJava8TypeAdapterFactory;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -17,6 +19,7 @@ import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.math.BigInteger;
 
 /**
  * Body for GraphQL requests and responses, closed for modification
@@ -31,6 +34,8 @@ public class GraphConverter extends Converter.Factory {
             .enableComplexMapKeySerialization()
             .serializeNulls()
             .setLenient()
+            .registerTypeAdapter(BigInteger.class, new BigIntegerDeserializer())
+            .registerTypeAdapterFactory(new GsonJava8TypeAdapterFactory())
             .create();
 
     /**
