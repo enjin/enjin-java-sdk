@@ -7,6 +7,7 @@ import com.enjin.enjincoin.sdk.http.PersistentCookieJar;
 import com.enjin.enjincoin.sdk.http.SetCookieCache;
 import com.enjin.enjincoin.sdk.model.service.auth.AuthBody;
 import com.enjin.enjincoin.sdk.model.service.auth.AuthResult;
+import com.enjin.enjincoin.sdk.serialization.BigIntegerDeserializer;
 import com.enjin.enjincoin.sdk.serialization.converter.GraphConverter;
 import com.enjin.enjincoin.sdk.serialization.converter.JsonStringConverter;
 import com.enjin.enjincoin.sdk.service.auth.AuthRetrofitService;
@@ -37,6 +38,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
+import java.math.BigInteger;
 
 public class ClientImpl implements Client {
 
@@ -183,6 +185,7 @@ public class ClientImpl implements Client {
 
     private Gson getGsonInstance() {
         return new GsonBuilder()
+                .registerTypeAdapter(BigInteger.class, new BigIntegerDeserializer())
                 .registerTypeAdapterFactory(new GsonJava8TypeAdapterFactory())
                 .create();
     }

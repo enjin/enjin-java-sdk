@@ -9,6 +9,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 
 import java.io.IOException;
+import java.math.BigInteger;
 
 public class EthereumServiceImpl extends ServiceBase implements EthereumService {
 
@@ -19,12 +20,12 @@ public class EthereumServiceImpl extends ServiceBase implements EthereumService 
     }
 
     @Override
-    public void getAllowanceAsync(String ethAddr, Callback<Integer> callback) {
+    public void getAllowanceAsync(String ethAddr, Callback<BigInteger> callback) {
         enqueue(this.service.getAllowance(ethAddr), callback);
     }
 
     @Override
-    public Result<Integer> getAllowanceSync(String ethAddr) throws IOException {
+    public Result<BigInteger> getAllowanceSync(String ethAddr) throws IOException {
         return execute(this.service.getAllowance(ethAddr));
     }
 

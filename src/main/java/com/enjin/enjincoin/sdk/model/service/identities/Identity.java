@@ -39,7 +39,7 @@ public class Identity {
     private BigDecimal enjBalance;
 
     @SerializedName("enj_allowance")
-    private BigDecimal enjAllowance;
+    private BigInteger enjAllowance;
 
     @SerializedName("all_tokens_balance")
     private JsonObject allTokensBalance;
