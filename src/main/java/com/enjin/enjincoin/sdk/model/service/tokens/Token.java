@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 @ToString
 @Getter
@@ -49,7 +50,7 @@ public class Token {
 
     private Boolean isCreator;
 
-    private BigDecimal balance;
+    private BigInteger balance;
 
     private String index;
 
