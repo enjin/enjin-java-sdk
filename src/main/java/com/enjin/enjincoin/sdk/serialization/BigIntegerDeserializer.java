@@ -19,10 +19,10 @@ public class BigIntegerDeserializer implements JsonDeserializer<BigInteger> {
         BigInteger out = null;
 
         if (json.isJsonPrimitive()) {
-            String s = json.toString();
+            String s = json.toString().toLowerCase();
 
             try {
-                if (s.contains(".") || s.contains("E") || s.contains("E+")) {
+                if (s.contains(".") || s.contains("e") || s.contains("e+")) {
                     out = new BigDecimal(s).toBigInteger();
                 } else {
                     out = new BigInteger(s);
