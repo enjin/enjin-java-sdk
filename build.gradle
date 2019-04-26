@@ -1,8 +1,15 @@
 buildscript {
     repositories {
+        mavenLocal()
         jcenter()
         mavenCentral()
         maven { url 'https://plugins.gradle.org/m2/' }
+    }
+
+    dependencies {
+        classpath group: 'io.freefair.lombok',
+                  name: 'io.freefair.lombok.gradle.plugin',
+                  version: '3.3.0'
     }
 }
 
@@ -11,8 +18,10 @@ plugins {
     id 'java'
     id 'java-library'
     id 'maven'
-    id 'io.freefair.lombok' version '3.2.0'
+//    id 'io.freefair.lombok' version '3.2.0'
 }
+
+apply plugin: 'io.freefair.lombok'
 
 apply from: 'gradle/util.gradle'
 
@@ -62,7 +71,8 @@ dependencies {
 }
 
 javadoc {
-    source = sourceSets.main.java
+    dependsOn delombok
+    source = delombok.target
     // exclude any implementation packages
     exclude '**/impl/**'
     // exclude any implementation classes
@@ -83,4 +93,9 @@ artifacts {
     archives javadocJar
     archives sourcesJar
     archives shadowJar
+}
+
+wrapper {
+    gradleVersion = '5.4.1'
+    distributionType = Wrapper.DistributionType.ALL
 }
