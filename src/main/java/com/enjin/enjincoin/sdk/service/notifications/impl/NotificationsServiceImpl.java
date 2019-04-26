@@ -57,9 +57,9 @@ public class NotificationsServiceImpl implements NotificationsService {
      * @param service  - the platform service to use
      * @param clientId - the app id to use
      */
-    public NotificationsServiceImpl(final PlatformService service, final String clientId) {
+    public NotificationsServiceImpl(final PlatformService service, final Integer clientId) {
         this.service = service;
-        this.clientId = Integer.parseInt(clientId);
+        this.clientId = clientId;
     }
 
     /**

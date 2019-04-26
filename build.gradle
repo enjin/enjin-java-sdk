@@ -61,7 +61,15 @@ dependencies {
     testImplementation group: 'org.assertj', name: 'assertj-core', version: assertj
 }
 
-task javadocJar(type: Jar) {
+javadoc {
+    source = sourceSets.main.java
+    // exclude any implementation packages
+    exclude '**/impl/**'
+    // exclude any implementation classes
+    exclude '**/*Impl.java'
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
     from javadoc
 }

@@ -43,8 +43,8 @@ import java.math.BigInteger;
 public class ClientImpl implements Client {
 
     private String               url;
-    private String               appId;
-    private OkHttpClient         client;
+    private Integer               appId;
+    private OkHttpClient         httpClient;
     private Retrofit             retrofit;
     private AuthRetrofitService  authRetrofitService;
     private EthereumService      ethereumService;
@@ -59,7 +59,7 @@ public class ClientImpl implements Client {
 
     public ClientImpl(final String url, final String appId, final boolean log) {
         this.url = url;
-        this.appId = appId;
+        this.appId = Integer.parseInt(appId);
         this.cookieJar = new PersistentCookieJar(new SetCookieCache(), new MemoryCookiePersistor());
 
         final OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
@@ -74,22 +74,22 @@ public class ClientImpl implements Client {
 
         final Converter.Factory gsonFactory = GsonConverterFactory.create(getGsonInstance());
 
-        this.client = clientBuilder.build();
+        this.httpClient = clientBuilder.build();
         this.retrofit = new Retrofit.Builder()
                 .baseUrl(url)
-                .client(this.client)
+                .client(this.httpClient)
                 .addConverterFactory(GraphConverter.create())
                 .addConverterFactory(new JsonStringConverter(gsonFactory))
                 .addConverterFactory(gsonFactory)
                 .build();
     }
 
-    public Result<AuthResult> auth(String clientSecret) throws IOException {
+    public Result<AuthResult> auth(String secret) throws IOException {
         Call<AuthResult> call = getAuthRetrofitService()
                 .auth(AuthBody.builder()
                               .grantType("client_credentials")
-                              .clientId(this.appId)
-                              .clientSecret(clientSecret)
+                              .clientId(this.appId.toString())
+                              .clientSecret(secret)
                               .build());
         // Failure needs to be handled by the callee.
         retrofit2.Response<AuthResult> response = call.execute();
@@ -121,7 +121,7 @@ public class ClientImpl implements Client {
     }
 
     @Override
-    public String getAppId() {
+    public Integer getAppId() {
         return this.appId;
     }
 
@@ -192,7 +192,7 @@ public class ClientImpl implements Client {
 
     @Override
     public void close() throws IOException {
-        this.client.dispatcher().executorService().shutdown();
+        this.httpClient.dispatcher().executorService().shutdown();
         if (this.notificationsService != null) {
             this.notificationsService.shutdown();
         }
