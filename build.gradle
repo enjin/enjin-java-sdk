@@ -1,17 +1,8 @@
 buildscript {
     repositories {
-        mavenLocal()
         jcenter()
         mavenCentral()
         maven { url 'https://plugins.gradle.org/m2/' }
-    }
-
-    dependencies {
-        // This is a custom version of the plugin. To build clone github.com/favorlock/gradle-plugin
-        // and run the following gradle command: clean publishToMavenLocal -Pversion=3.3.0
-        classpath group: 'io.freefair.lombok',
-                  name: 'io.freefair.lombok.gradle.plugin',
-                  version: '3.3.0'
     }
 }
 
@@ -20,7 +11,7 @@ plugins {
     id 'java'
     id 'java-library'
     id 'maven'
-//    id 'io.freefair.lombok' version '3.2.0'
+    id 'io.freefair.lombok' version '3.2.1'
 }
 
 apply plugin: 'io.freefair.lombok'
