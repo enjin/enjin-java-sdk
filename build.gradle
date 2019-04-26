@@ -7,6 +7,8 @@ buildscript {
     }
 
     dependencies {
+        // This is a custom version of the plugin. To build clone github.com/favorlock/gradle-plugin
+        // and run the following gradle command: clean publishToMavenLocal -Pversion=3.3.0
         classpath group: 'io.freefair.lombok',
                   name: 'io.freefair.lombok.gradle.plugin',
                   version: '3.3.0'
