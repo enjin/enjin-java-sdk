@@ -2,6 +2,9 @@ package com.enjin.enjincoin.sdk;
 
 /**
  * Factory class for creating new instances of {@link Client}.
+ *
+ * @author Evan Lindsay
+ * @see Client
  */
 public final class Clients {
 
