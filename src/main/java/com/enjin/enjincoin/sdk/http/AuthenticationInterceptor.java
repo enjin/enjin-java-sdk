@@ -9,10 +9,21 @@ import okhttp3.Response;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Adds necessary authorization cookies to use the
+ * Trusted Platform.
+ *
+ * @author Evan Lindsay
+ */
 public class AuthenticationInterceptor implements Interceptor {
 
     private CookieJar cookieJar;
 
+    /**
+     * Creates a new instance.
+     *
+     * @param cookieJar the cookie jar to get cookies from.
+     */
     public AuthenticationInterceptor(CookieJar cookieJar) {
         this.cookieJar = cookieJar;
     }

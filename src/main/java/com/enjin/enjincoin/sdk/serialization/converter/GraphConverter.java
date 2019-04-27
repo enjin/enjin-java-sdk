@@ -1,6 +1,6 @@
 package com.enjin.enjincoin.sdk.serialization.converter;
 
-import com.enjin.enjincoin.sdk.graphql.GraphProcessor;
+import com.enjin.enjincoin.sdk.graphql.GraphQLProcessor;
 import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
 import com.enjin.enjincoin.sdk.graphql.GraphQLRequest.Builder;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
@@ -28,7 +28,7 @@ import java.math.BigInteger;
 
 public class GraphConverter extends Converter.Factory {
 
-    protected GraphProcessor graphProcessor;
+    protected GraphQLProcessor graphProcessor;
 
     protected final Gson gson = new GsonBuilder()
             .enableComplexMapKeySerialization()
@@ -44,11 +44,11 @@ public class GraphConverter extends Converter.Factory {
      * <br>
      */
     protected GraphConverter() {
-        this.graphProcessor = GraphProcessor.getInstance();
+        this.graphProcessor = GraphQLProcessor.getInstance();
     }
 
     /**
-     * Result body converter delegates logic processing to a child class that handles
+     * HttpResponse body converter delegates logic processing to a child class that handles
      * wrapping and deserialization of the json response results.
      *
      * @param annotations All the annotation applied to the requesting Call method
@@ -73,7 +73,7 @@ public class GraphConverter extends Converter.Factory {
     }
 
     /**
-     * Result body converter delegates logic processing to a child class that handles
+     * HttpResponse body converter delegates logic processing to a child class that handles
      * wrapping and deserialization of the json response results.
      *
      * @param parameterAnnotations All the annotation applied to request parameters

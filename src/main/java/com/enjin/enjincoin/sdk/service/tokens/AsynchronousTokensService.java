@@ -7,34 +7,34 @@ import com.enjin.enjincoin.sdk.model.service.tokens.GetTokensResult;
 import com.enjin.enjincoin.sdk.model.service.tokens.ImportToken;
 import com.enjin.enjincoin.sdk.model.service.tokens.UpdateToken;
 import com.enjin.enjincoin.sdk.model.service.tokens.UpdateTokenResult;
-import com.enjin.enjincoin.sdk.http.Callback;
+import com.enjin.enjincoin.sdk.http.HttpCallback;
 
 public interface AsynchronousTokensService {
 
     /**
      * @param callback
      */
-    void getAllTokensAsync(Callback<GraphQLResponse<GetTokensResult>> callback);
+    void getAllTokensAsync(HttpCallback<GraphQLResponse<GetTokensResult>> callback);
 
     /**
      * @param query
      * @param callback
      */
     void getTokensAsync(GetTokens query,
-                        Callback<GraphQLResponse<GetTokensResult>> callback);
+                        HttpCallback<GraphQLResponse<GetTokensResult>> callback);
 
     /**
      * @param query
      * @param callback
      */
     void importTokenAsync(ImportToken query,
-                          Callback<GraphQLResponse<CreateTokenResult>> callback);
+                          HttpCallback<GraphQLResponse<CreateTokenResult>> callback);
 
     /**
      * @param query
      * @param callback
      */
     void updateTokenAsync(UpdateToken query,
-                          Callback<GraphQLResponse<UpdateTokenResult>> callback);
+                          HttpCallback<GraphQLResponse<UpdateTokenResult>> callback);
 
 }

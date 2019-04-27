@@ -27,11 +27,24 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * A persistant cookie jar.
+ *
+ * @author Evan Lindsay
+ * @see CookiePersistor
+ * @see CookieCache
+ */
 public class PersistentCookieJar implements ClearableCookieJar {
 
     private CookieCache     cache;
     private CookiePersistor persistor;
 
+    /**
+     * Creates a new instance with the provided cookie cache and persistor.
+     *
+     * @param cache the cookie cache.
+     * @param persistor the cookie persistor.
+     */
     public PersistentCookieJar(CookieCache cache, CookiePersistor persistor) {
         this.cache = cache;
         this.persistor = persistor;

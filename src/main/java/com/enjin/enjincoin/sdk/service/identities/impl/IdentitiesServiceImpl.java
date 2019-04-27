@@ -1,6 +1,6 @@
 package com.enjin.enjincoin.sdk.service.identities.impl;
 
-import com.enjin.enjincoin.sdk.http.Result;
+import com.enjin.enjincoin.sdk.http.HttpResponse;
 import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
 import com.enjin.enjincoin.sdk.model.service.identities.CreateIdentity;
@@ -13,7 +13,7 @@ import com.enjin.enjincoin.sdk.model.service.identities.UpdateIdentity;
 import com.enjin.enjincoin.sdk.model.service.identities.UpdateIdentityResult;
 import com.enjin.enjincoin.sdk.service.GraphQLServiceBase;
 import com.enjin.enjincoin.sdk.service.identities.IdentitiesService;
-import com.enjin.enjincoin.sdk.http.Callback;
+import com.enjin.enjincoin.sdk.http.HttpCallback;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 
@@ -28,56 +28,56 @@ public class IdentitiesServiceImpl extends GraphQLServiceBase implements Identit
     }
 
     @Override
-    public void getAllIdentitiesAsync(Callback<GraphQLResponse<GetIdentitiesResult>> callback) {
+    public void getAllIdentitiesAsync(HttpCallback<GraphQLResponse<GetIdentitiesResult>> callback) {
         enqueueGraphQLCall(getAllIdentitiesCall(), callback);
     }
 
     @Override
     public void getIdentitiesAsync(GetIdentities query,
-                                   Callback<GraphQLResponse<GetIdentitiesResult>> callback) {
+                                   HttpCallback<GraphQLResponse<GetIdentitiesResult>> callback) {
         enqueueGraphQLCall(getIdentitiesCall(query), callback);
     }
 
     @Override
     public void createIdentityAsync(CreateIdentity query,
-                                    Callback<GraphQLResponse<CreateIdentityResult>> callback) {
+                                    HttpCallback<GraphQLResponse<CreateIdentityResult>> callback) {
         enqueueGraphQLCall(getCreateIdentityCall(query), callback);
     }
 
     @Override
     public void deleteIdentityAsync(DeleteIdentity query,
-                                    Callback<GraphQLResponse<DeleteIdentityResult>> callback) {
+                                    HttpCallback<GraphQLResponse<DeleteIdentityResult>> callback) {
         enqueueGraphQLCall(getDeleteIdentityCall(query), callback);
     }
 
     @Override
     public void updateIdentityAsync(UpdateIdentity query,
-                                    Callback<GraphQLResponse<UpdateIdentityResult>> callback) {
+                                    HttpCallback<GraphQLResponse<UpdateIdentityResult>> callback) {
         enqueueGraphQLCall(getUpdateIdentityCall(query), callback);
     }
 
     @Override
-    public Result<GraphQLResponse<GetIdentitiesResult>> getAllIdentitiesSync() throws IOException {
+    public HttpResponse<GraphQLResponse<GetIdentitiesResult>> getAllIdentitiesSync() throws IOException {
         return executeGraphQLCall(getAllIdentitiesCall());
     }
 
     @Override
-    public Result<GraphQLResponse<GetIdentitiesResult>> getIdentitiesSync(GetIdentities query) throws IOException {
+    public HttpResponse<GraphQLResponse<GetIdentitiesResult>> getIdentitiesSync(GetIdentities query) throws IOException {
         return executeGraphQLCall(getIdentitiesCall(query));
     }
 
     @Override
-    public Result<GraphQLResponse<CreateIdentityResult>> createIdentitySync(CreateIdentity query) throws IOException {
+    public HttpResponse<GraphQLResponse<CreateIdentityResult>> createIdentitySync(CreateIdentity query) throws IOException {
         return executeGraphQLCall(getCreateIdentityCall(query));
     }
 
     @Override
-    public Result<GraphQLResponse<DeleteIdentityResult>> deleteIdentitySync(DeleteIdentity query) throws IOException {
+    public HttpResponse<GraphQLResponse<DeleteIdentityResult>> deleteIdentitySync(DeleteIdentity query) throws IOException {
         return executeGraphQLCall(getDeleteIdentityCall(query));
     }
 
     @Override
-    public Result<GraphQLResponse<UpdateIdentityResult>> updateIdentitySync(UpdateIdentity query) throws IOException {
+    public HttpResponse<GraphQLResponse<UpdateIdentityResult>> updateIdentitySync(UpdateIdentity query) throws IOException {
         return executeGraphQLCall(getUpdateIdentityCall(query));
     }
 

@@ -202,7 +202,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
     /**
      * Method to fire a notification.
      *
-     * @param sourceData the sourceData received from the notification
+     * @param sourceData the data received from the notification
      * @param channel    the channel the notification was received from
      * @param eventType  the type of event we received
      */
@@ -240,7 +240,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
         final NotificationEvent notificationEvent = NotificationEvent.builder()
                                                                      .type(notificationType)
                                                                      .channel(channel)
-                                                                     .sourceData(sourceData)
+                                                                     .data(sourceData)
                                                                      .build();
 
         for (final NotificationListenerRegistration registration : this.notificationListenerRegistrations) {

@@ -1,6 +1,6 @@
 package com.enjin.enjincoin.sdk.service.notifications.impl;
 
-import com.enjin.enjincoin.sdk.http.Result;
+import com.enjin.enjincoin.sdk.http.HttpResponse;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
 import com.enjin.enjincoin.sdk.model.service.notifications.NotificationType;
 import com.enjin.enjincoin.sdk.model.service.platform.GetPlatformResult;
@@ -82,7 +82,7 @@ public class NotificationsServiceImpl implements NotificationsService {
      */
     @Override
     public boolean restart() {
-        final Result<GraphQLResponse<GetPlatformResult>> result;
+        final HttpResponse<GraphQLResponse<GetPlatformResult>> result;
         try {
             result = this.service.getPlatformSync();
             if (result == null || result.body() == null) {

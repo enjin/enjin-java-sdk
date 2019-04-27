@@ -1,5 +1,11 @@
 package com.enjin.enjincoin.sdk.model.service.requests;
 
+/**
+ * Represents the state of a request.
+ *
+ * @author Evan Lindsay
+ * @see Transaction
+ */
 public enum TransactionState {
 
     PENDING,

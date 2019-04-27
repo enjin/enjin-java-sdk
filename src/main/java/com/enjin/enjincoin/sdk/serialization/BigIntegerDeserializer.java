@@ -10,6 +10,11 @@ import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
+/**
+ * A Gson serializer that can deserialize an integer from scientific notation.
+ *
+ * @author Evan Lindsay
+ */
 public class BigIntegerDeserializer implements JsonDeserializer<BigInteger> {
 
     @Override

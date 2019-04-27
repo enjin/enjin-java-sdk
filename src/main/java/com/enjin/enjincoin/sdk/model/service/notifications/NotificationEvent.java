@@ -5,17 +5,39 @@ import lombok.Getter;
 import lombok.ToString;
 
 /**
- * <p> Bean used when a notification event is triggered.</p>
+ * Represents a trusted platform event.
+ *
+ * @author Evan Lindsay
+ * @see com.enjin.enjincoin.sdk.service.notifications.NotificationsService
+ * @see NotificationType
  */
 @ToString
 @Getter
 @Builder
 public class NotificationEvent {
 
+    /**
+     * The type of notification.
+     *
+     * @param type the notification type.
+     * @return the builder.
+     */
     private NotificationType type;
 
+    /**
+     * The channel the notification was received.
+     *
+     * @param channel the channel.
+     * @return the builder.
+     */
     private String channel;
 
-    private String sourceData;
+    /**
+     * The notification data.
+     *
+     * @param data the notification data.
+     * @return the builder.
+     */
+    private String data;
 
 }

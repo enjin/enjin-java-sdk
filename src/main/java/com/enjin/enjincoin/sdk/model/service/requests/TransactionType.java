@@ -1,5 +1,12 @@
 package com.enjin.enjincoin.sdk.model.service.requests;
 
+/**
+ * Represents the type of transaction when creating or updating a request.
+ *
+ * @author Evan Lindsay
+ * @see CreateRequest
+ * @see UpdateRequest
+ */
 public enum TransactionType {
 
     APPROVE,

@@ -4,16 +4,27 @@ import lombok.Getter;
 import lombok.ToString;
 
 /**
- * <p>
- * Sdk Options class.
- * </p>
+ * Will contain settings for the sdk notification driver.
+ *
+ * @author Evan Lindsay
+ * @see SdkDetails
  */
 @ToString
 @Getter
 public class SdkOptions {
 
+    /**
+     * The cluster to use.
+     *
+     * @return the cluster.
+     */
     private String cluster;
 
+    /**
+     * Is the connection encrypted?
+     *
+     * retrun true if encrypted, else false.
+     */
     private Boolean encrypted;
 
 }

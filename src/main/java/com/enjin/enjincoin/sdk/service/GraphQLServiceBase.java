@@ -1,7 +1,7 @@
 package com.enjin.enjincoin.sdk.service;
 
-import com.enjin.enjincoin.sdk.http.Result;
-import com.enjin.enjincoin.sdk.http.Callback;
+import com.enjin.enjincoin.sdk.http.HttpResponse;
+import com.enjin.enjincoin.sdk.http.HttpCallback;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -17,12 +17,12 @@ public class GraphQLServiceBase extends ServiceBase {
     private static final Gson GSON = new GsonBuilder().create();
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
-    protected <T> Result<T> executeGraphQLCall(Call<T> call) throws IOException {
+    protected <T> HttpResponse<T> executeGraphQLCall(Call<T> call) throws IOException {
         retrofit2.Response<T> response = call.execute();
         return createResult(response);
     }
 
-    protected <T> void enqueueGraphQLCall(Call<T> call, Callback<T> callback) {
+    protected <T> void enqueueGraphQLCall(Call<T> call, HttpCallback<T> callback) {
         call.enqueue(new retrofit2.Callback<T>() {
             @Override
             public void onResponse(Call<T> call, retrofit2.Response<T> response) {
@@ -41,7 +41,7 @@ public class GraphQLServiceBase extends ServiceBase {
         });
     }
 
-    protected <T> Result<T> createResult(retrofit2.Response<T> response) throws IOException {
+    protected <T> HttpResponse<T> createResult(retrofit2.Response<T> response) throws IOException {
         int code = response.code();
         T body = null;
 
@@ -55,6 +55,6 @@ public class GraphQLServiceBase extends ServiceBase {
             }
         }
 
-        return new Result<>(code, body);
+        return new HttpResponse<>(code, body);
     }
 }

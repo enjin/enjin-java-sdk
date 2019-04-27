@@ -7,34 +7,34 @@ import com.enjin.enjincoin.sdk.model.service.requests.GetRequests;
 import com.enjin.enjincoin.sdk.model.service.requests.GetRequestsResult;
 import com.enjin.enjincoin.sdk.model.service.requests.UpdateRequest;
 import com.enjin.enjincoin.sdk.model.service.requests.UpdateRequestResult;
-import com.enjin.enjincoin.sdk.http.Callback;
+import com.enjin.enjincoin.sdk.http.HttpCallback;
 
 public interface AsynchronousRequestsService {
 
     /**
      * @param callback
      */
-    void getAllRequestsAsync(Callback<GraphQLResponse<GetRequestsResult>> callback);
+    void getAllRequestsAsync(HttpCallback<GraphQLResponse<GetRequestsResult>> callback);
 
     /**
      * @param query
      * @param callback
      */
     void getRequestsAsync(GetRequests query,
-                          Callback<GraphQLResponse<GetRequestsResult>> callback);
+                          HttpCallback<GraphQLResponse<GetRequestsResult>> callback);
 
     /**
      * @param query
      * @param callback
      */
     void createRequestAsync(CreateRequest query,
-                            Callback<GraphQLResponse<CreateRequestResult>> callback);
+                            HttpCallback<GraphQLResponse<CreateRequestResult>> callback);
 
     /**
      * @param query
      * @param callback
      */
     void updateRequestAsync(UpdateRequest query,
-                            Callback<GraphQLResponse<UpdateRequestResult>> callback);
+                            HttpCallback<GraphQLResponse<UpdateRequestResult>> callback);
 
 }

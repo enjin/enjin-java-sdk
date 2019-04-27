@@ -1,6 +1,6 @@
 package com.enjin.enjincoin.sdk.service.requests;
 
-import com.enjin.enjincoin.sdk.http.Result;
+import com.enjin.enjincoin.sdk.http.HttpResponse;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
 import com.enjin.enjincoin.sdk.model.service.requests.CreateRequest;
 import com.enjin.enjincoin.sdk.model.service.requests.CreateRequestResult;
@@ -18,7 +18,7 @@ public interface SynchronousRequestsService {
      *
      * @throws IOException
      */
-    Result<GraphQLResponse<GetRequestsResult>> getAllRequestsSync() throws IOException;
+    HttpResponse<GraphQLResponse<GetRequestsResult>> getAllRequestsSync() throws IOException;
 
     /**
      * @param query
@@ -27,7 +27,7 @@ public interface SynchronousRequestsService {
      *
      * @throws IOException
      */
-    Result<GraphQLResponse<GetRequestsResult>> getRequestsSync(GetRequests query) throws IOException;
+    HttpResponse<GraphQLResponse<GetRequestsResult>> getRequestsSync(GetRequests query) throws IOException;
 
     /**
      * @param query
@@ -36,7 +36,7 @@ public interface SynchronousRequestsService {
      *
      * @throws IOException
      */
-    Result<GraphQLResponse<CreateRequestResult>> createRequestSync(CreateRequest query) throws IOException;
+    HttpResponse<GraphQLResponse<CreateRequestResult>> createRequestSync(CreateRequest query) throws IOException;
 
     /**
      * @param query
@@ -45,6 +45,6 @@ public interface SynchronousRequestsService {
      *
      * @throws IOException
      */
-    Result<GraphQLResponse<UpdateRequestResult>> updateRequestSync(UpdateRequest query) throws IOException;
+    HttpResponse<GraphQLResponse<UpdateRequestResult>> updateRequestSync(UpdateRequest query) throws IOException;
 
 }

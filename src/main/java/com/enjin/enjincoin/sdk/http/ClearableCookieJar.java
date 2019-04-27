@@ -21,6 +21,8 @@ import okhttp3.CookieJar;
 
 /**
  * This interface extends {@link CookieJar} and adds methods to clear the cookies.
+ *
+ * @author Evan Lindsay
  */
 public interface ClearableCookieJar extends CookieJar {
 
@@ -37,7 +39,7 @@ public interface ClearableCookieJar extends CookieJar {
     /**
      * Adds a cookie to the cache.
      *
-     * @param cookie to add
+     * @param cookie to add.
      */
     void addCookie(Cookie cookie);
 }

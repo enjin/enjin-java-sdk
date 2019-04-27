@@ -1,22 +1,32 @@
 package com.enjin.enjincoin.sdk.model.service.platform;
 
-import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.ToString;
 
 /**
- * <p>
- * Notification Details class.
- * </p>
+ * Will contain the mobile and sdk notification details.
+ *
+ * @author Evan Lindsay
+ * @see PlatformDetails
+ * @see MobileDetails
+ * @see SdkDetails
  */
 @ToString
 @Getter
 public class NotificationDetails {
 
-    @SerializedName("sdk")
+    /**
+     * The sdk notification details.
+     *
+     * @return the sdk details.
+     */
     private SdkDetails sdk;
 
-    @SerializedName("mobile")
+    /**
+     * The mobile notification details.
+     *
+     * @return the mobile details.
+     */
     private MobileDetails mobile;
 
 

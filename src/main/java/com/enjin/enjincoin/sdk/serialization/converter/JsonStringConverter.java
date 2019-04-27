@@ -10,10 +10,18 @@ import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
+/**
+ * A converter factory for {@link DelegateToStringConverter}.
+ */
 public class JsonStringConverter extends Converter.Factory {
 
     private final Converter.Factory delegate;
 
+    /**
+     * Creates a new factory instance.
+     *
+     * @param delegate the delegate converter factory.
+     */
     public JsonStringConverter(final Converter.Factory delegate) {
         this.delegate = delegate;
     }
@@ -32,10 +40,20 @@ public class JsonStringConverter extends Converter.Factory {
         return null;
     }
 
+    /**
+     * Converts an object to json.
+     *
+     * @param <T> the type of the object being converted.
+     */
     public static class DelegateToStringConverter<T> implements Converter<T, String> {
 
         private final Converter<T, RequestBody> delegate;
 
+        /**
+         * Creates a new converter instance.
+         *
+         * @param delegate the delegate converter.
+         */
         public DelegateToStringConverter(final Converter<T, RequestBody> delegate) {
             this.delegate = delegate;
         }

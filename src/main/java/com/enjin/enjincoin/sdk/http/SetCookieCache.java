@@ -23,10 +23,20 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+/**
+ * A cookie cache that uses a {@link HashSet}.
+ *
+ * @author Evan Lindsay
+ * @see IdentifiableCookie
+ * @see Cookie
+ */
 public class SetCookieCache implements CookieCache {
 
     private Set<IdentifiableCookie> cookies;
 
+    /**
+     * Creates a new instance.
+     */
     public SetCookieCache() {
         cookies = new HashSet<>();
     }

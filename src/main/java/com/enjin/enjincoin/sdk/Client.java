@@ -8,7 +8,7 @@ import com.enjin.enjincoin.sdk.service.platform.PlatformService;
 import com.enjin.enjincoin.sdk.service.requests.RequestsService;
 import com.enjin.enjincoin.sdk.service.tokens.TokensService;
 import com.enjin.enjincoin.sdk.service.users.UsersService;
-import com.enjin.enjincoin.sdk.http.Result;
+import com.enjin.enjincoin.sdk.http.HttpResponse;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -52,7 +52,7 @@ public interface Client extends Closeable {
      * @return the result of the auth request
      * @throws IOException if a problem occurred while communicating with the server.
      */
-    Result<AuthResult> auth(String secret) throws IOException;
+    HttpResponse<AuthResult> auth(String secret) throws IOException;
 
     /**
      * The app id the client is configured for.

@@ -1,6 +1,6 @@
 package com.enjin.enjincoin.sdk.service.tokens;
 
-import com.enjin.enjincoin.sdk.http.Result;
+import com.enjin.enjincoin.sdk.http.HttpResponse;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
 import com.enjin.enjincoin.sdk.model.service.tokens.CreateTokenResult;
 import com.enjin.enjincoin.sdk.model.service.tokens.GetTokens;
@@ -18,7 +18,7 @@ public interface SynchronousTokensService {
      *
      * @throws IOException
      */
-    Result<GraphQLResponse<GetTokensResult>> getAllTokensSync() throws IOException;
+    HttpResponse<GraphQLResponse<GetTokensResult>> getAllTokensSync() throws IOException;
 
 
     /**
@@ -28,12 +28,12 @@ public interface SynchronousTokensService {
      *
      * @throws IOException
      */
-    Result<GraphQLResponse<GetTokensResult>> getTokensSync(GetTokens query) throws IOException;
+    HttpResponse<GraphQLResponse<GetTokensResult>> getTokensSync(GetTokens query) throws IOException;
 
     /**
      * @param query
      */
-    Result<GraphQLResponse<CreateTokenResult>> importTokenSync(ImportToken query) throws IOException;
+    HttpResponse<GraphQLResponse<CreateTokenResult>> importTokenSync(ImportToken query) throws IOException;
 
     /**
      * @param query
@@ -42,6 +42,6 @@ public interface SynchronousTokensService {
      *
      * @throws IOException
      */
-    Result<GraphQLResponse<UpdateTokenResult>> updateTokenSync(UpdateToken query) throws IOException;
+    HttpResponse<GraphQLResponse<UpdateTokenResult>> updateTokenSync(UpdateToken query) throws IOException;
 
 }

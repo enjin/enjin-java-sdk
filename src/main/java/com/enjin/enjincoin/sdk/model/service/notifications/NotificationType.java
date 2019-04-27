@@ -3,7 +3,10 @@ package com.enjin.enjincoin.sdk.model.service.notifications;
 import com.enjin.enjincoin.sdk.service.notifications.EventFilter;
 
 /**
- * <p> Notification types which can be received from the ThirdPartyNotificationService.</p>
+ * Represent the type of notification received.
+ *
+ * @author Evan Lindsay
+ * @see NotificationEvent
  */
 public enum NotificationType {
 
@@ -89,11 +92,6 @@ public enum NotificationType {
      **/
     private String eventType;
 
-    /**
-     * Enum constructor.
-     *
-     * @param eventType - eventType being processed
-     */
     NotificationType(final String eventType) {
         this.eventType = eventType;
     }
@@ -111,7 +109,6 @@ public enum NotificationType {
      * Checks if this type is value in the given filter.
      *
      * @param filter - filter being processed
-     *
      * @return boolean
      */
     public boolean in(final EventFilter filter) {
@@ -126,7 +123,6 @@ public enum NotificationType {
      * Check if this type is the current type.
      *
      * @param types to check
-     *
      * @return boolean
      */
     public boolean in(final NotificationType... types) {
@@ -143,7 +139,6 @@ public enum NotificationType {
      * Method to get the correct enum value.
      *
      * @param name to get enum for
-     *
      * @return NotificationType
      */
     public static NotificationType valueOfEnum(final String name) {

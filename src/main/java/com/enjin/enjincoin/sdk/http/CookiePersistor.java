@@ -23,24 +23,36 @@ import java.util.List;
 
 /**
  * A CookiePersistor handles the persistent cookie storage.
+ *
+ * @author Evan Lindsay
  */
 public interface CookiePersistor {
 
+    /**
+     * Loads any persisted cookies.
+     *
+     * @return the loaded cookies.
+     */
     List<Cookie> loadAll();
 
+    /**
+     * Persist a cookie, if the cookie exists it will be overwritten.
+     *
+     * @param cookie to persist.
+     */
     void save(Cookie cookie);
 
     /**
      * Persist all cookies, existing cookies will be overwritten.
      *
-     * @param cookies cookies persist
+     * @param cookies cookies to persist.
      */
     void saveAll(Collection<Cookie> cookies);
 
     /**
      * Removes indicated cookies from persistence.
      *
-     * @param cookies cookies to remove from persistence
+     * @param cookies cookies to remove from persistence.
      */
     void removeAll(Collection<Cookie> cookies);
 

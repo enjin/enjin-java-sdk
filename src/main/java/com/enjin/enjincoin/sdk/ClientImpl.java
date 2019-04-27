@@ -25,7 +25,7 @@ import com.enjin.enjincoin.sdk.service.tokens.TokensService;
 import com.enjin.enjincoin.sdk.service.tokens.impl.TokensServiceImpl;
 import com.enjin.enjincoin.sdk.service.users.UsersService;
 import com.enjin.enjincoin.sdk.service.users.impl.UsersServiceImpl;
-import com.enjin.enjincoin.sdk.http.Result;
+import com.enjin.enjincoin.sdk.http.HttpResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.dongliu.gson.GsonJava8TypeAdapterFactory;
@@ -84,7 +84,7 @@ public class ClientImpl implements Client {
                 .build();
     }
 
-    public Result<AuthResult> auth(String secret) throws IOException {
+    public HttpResponse<AuthResult> auth(String secret) throws IOException {
         Call<AuthResult> call = getAuthRetrofitService()
                 .auth(AuthBody.builder()
                               .grantType("client_credentials")
@@ -110,7 +110,7 @@ public class ClientImpl implements Client {
                                              .build());
         }
 
-        return new Result<>(response.code(), response.body());
+        return new HttpResponse<>(response.code(), response.body());
     }
 
     private AuthRetrofitService getAuthRetrofitService() {

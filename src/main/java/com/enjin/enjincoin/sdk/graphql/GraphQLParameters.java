@@ -10,6 +10,13 @@ import com.google.gson.JsonPrimitive;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Represents a dynamic mapping of GraphQL parameters and
+ * facilitates the serialization of the parameters to the
+ * GraphQL query format.
+ *
+ * @author Evan Lindsay
+ */
 public class GraphQLParameters {
 
     private final Gson gson = new GsonBuilder()
@@ -17,18 +24,36 @@ public class GraphQLParameters {
             .create();
     private Map<String, Object> parameters;
 
+    /**
+     * Creates a new instance with no parameters.
+     */
     public GraphQLParameters() {
         this(new HashMap<>());
     }
 
+    /**
+     * Creates a new instance with existing parameters.
+     *
+     * @param parameters the parameters.
+     */
     public GraphQLParameters(final Map<String, Object> parameters) {
         this.parameters = parameters;
     }
 
+    /**
+     * Returns a map of parameter keys and values.
+     *
+     * @return the parameters
+     */
     public Map<String, Object> getParameters() {
         return this.parameters;
     }
 
+    /**
+     * Returns a String of parameters in GraphQL query format.
+     *
+     * @return the formatted parameters.
+     */
     public String getFormattedParameters() {
         final StringBuilder builder = new StringBuilder();
         for (final Map.Entry<String, Object> parameter : this.parameters.entrySet()) {

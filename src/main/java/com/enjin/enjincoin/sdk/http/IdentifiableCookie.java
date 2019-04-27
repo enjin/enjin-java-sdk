@@ -23,16 +23,25 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * This class decorates a Cookie to re-implements equals() and hashcode() methods in order to identify
- * the cookie by the following attributes: name, domain, path, secure & hostOnly.<p>
+ * This class decorates a Cookie to reimplement equals() and hashcode() methods in order to identify
+ * the cookie by the following attributes: name, domain, path, secure & hostOnly.
  *
- * This new behaviour will be useful in determining when an already existing cookie in session must be overwritten.
+ * <p>This new behaviour will be useful in determining when an already existing cookie in session must be overwritten.
+ *
+ * @author Evan Lindsay
+ * @see Cookie
  */
 class IdentifiableCookie {
 
     private Cookie cookie;
 
-    static List<IdentifiableCookie> decorateAll(Collection<Cookie> cookies) {
+    /**
+     * Takes a list of {@link Cookie} and wraps them with {@link IdentifiableCookie}.
+     *
+     * @param cookies the cookies to wrap.
+     * @return the wrapped cookies.
+     */
+    public static List<IdentifiableCookie> decorateAll(Collection<Cookie> cookies) {
         List<IdentifiableCookie> identifiableCookies = new ArrayList<>(cookies.size());
         for (Cookie cookie : cookies) {
             identifiableCookies.add(decorate(cookie));
@@ -40,7 +49,13 @@ class IdentifiableCookie {
         return identifiableCookies;
     }
 
-    static IdentifiableCookie decorate(Cookie cookie) {
+    /**
+     * Wraps a {@link Cookie} with {@link IdentifiableCookie}.
+     *
+     * @param cookie the cookie to wrap.
+     * @return the wrapped cookie.
+     */
+    public static IdentifiableCookie decorate(Cookie cookie) {
         return new IdentifiableCookie(cookie);
     }
 

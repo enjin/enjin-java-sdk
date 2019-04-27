@@ -7,7 +7,7 @@ import com.enjin.enjincoin.sdk.model.service.users.GetUsers;
 import com.enjin.enjincoin.sdk.model.service.users.GetUsersResult;
 import com.enjin.enjincoin.sdk.model.service.users.LoginUser;
 import com.enjin.enjincoin.sdk.model.service.users.LoginUserResult;
-import com.enjin.enjincoin.sdk.http.Callback;
+import com.enjin.enjincoin.sdk.http.HttpCallback;
 
 public interface AsynchronousUsersService {
 
@@ -16,25 +16,25 @@ public interface AsynchronousUsersService {
      * @param callback
      */
     void createUserAsync(CreateUser query,
-                         Callback<GraphQLResponse<CreateUserResult>> callback);
+                         HttpCallback<GraphQLResponse<CreateUserResult>> callback);
 
     /**
      * @param query
      * @param callback
      */
     void loginUserAsync(LoginUser query,
-                        Callback<GraphQLResponse<LoginUserResult>> callback);
+                        HttpCallback<GraphQLResponse<LoginUserResult>> callback);
 
     /**
      * @param callback
      */
-    void getAllUsersAsync(Callback<GraphQLResponse<GetUsersResult>> callback);
+    void getAllUsersAsync(HttpCallback<GraphQLResponse<GetUsersResult>> callback);
 
     /**
      * @param query
      * @param callback
      */
     void getUsersAsync(GetUsers query,
-                       Callback<GraphQLResponse<GetUsersResult>> callback);
+                       HttpCallback<GraphQLResponse<GetUsersResult>> callback);
 
 }

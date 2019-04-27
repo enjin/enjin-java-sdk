@@ -6,6 +6,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Persists {@link Cookie} in memory.
+ *
+ * @author Evan Lindsay
+ * @see Cookie
+ */
 public class MemoryCookiePersistor implements CookiePersistor {
 
     private List<Cookie> storage = new ArrayList<>();
