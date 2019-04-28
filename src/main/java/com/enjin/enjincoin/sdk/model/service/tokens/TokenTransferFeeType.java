@@ -1,5 +1,12 @@
 package com.enjin.enjincoin.sdk.model.service.tokens;
 
+/**
+ * The transfer fee strategy type.
+ *
+ * @author Evan Lindsay
+ * @see Token
+ * @see TokenTransferFeeSettings
+ */
 public enum TokenTransferFeeType {
     NONE,
     PER_TRANSFER,

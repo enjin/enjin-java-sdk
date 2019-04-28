@@ -23,7 +23,7 @@ public class SdkOptions {
     /**
      * Is the connection encrypted?
      *
-     * retrun true if encrypted, else false.
+     * @return true if encrypted, else false.
      */
     private Boolean encrypted;
 

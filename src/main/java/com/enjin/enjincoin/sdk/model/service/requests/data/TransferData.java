@@ -5,6 +5,14 @@ import lombok.Builder;
 
 import java.math.BigInteger;
 
+/**
+ * A data model that defines the different transfers to perform in
+ * an Advanced Send Token request.
+ *
+ * @author Evan Lindsay
+ * @see AdvancedSendTokenData
+ * @see com.enjin.enjincoin.sdk.service.requests.RequestsService
+ */
 @Builder
 public class TransferData {
 
@@ -18,12 +26,33 @@ public class TransferData {
     @SerializedName("to_id")
     private BigInteger toId;
 
+    /**
+     * The token id.
+     *
+     * -- SETTER --
+     * @param tokenId the token id.
+     * @return the builder.
+     */
     @SerializedName("token_id")
     private String tokenId;
 
+    /**
+     * The token index.
+     *
+     * -- SETTER --
+     * @param tokenIndex the token index.
+     * @return the builder.
+     */
     @SerializedName("token_index")
     private String tokenIndex;
 
+    /**
+     * The amount of the token.
+     *
+     * -- SETTER --
+     * @param value the amount.
+     * @return the builder.
+     */
     private String value;
 
 }
