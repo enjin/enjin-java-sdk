@@ -16,6 +16,7 @@ public class UpdateItemNameData {
      * The token id.
      *
      * -- SETTER --
+     *
      * @param tokenId the token id.
      * @return the builder.
      */
@@ -26,6 +27,7 @@ public class UpdateItemNameData {
      * The token index.
      *
      * -- SETTER --
+     *
      * @param tokenIndex the token index.
      * @return the builder.
      */
@@ -36,6 +38,7 @@ public class UpdateItemNameData {
      * The new name of the item.
      *
      * -- SETTER --
+     *
      * @param name the name.
      * @return the builder.
      */

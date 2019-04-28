@@ -43,7 +43,7 @@ import java.math.BigInteger;
 public class ClientImpl implements Client {
 
     private String               url;
-    private Integer               appId;
+    private Integer              appId;
     private OkHttpClient         httpClient;
     private Retrofit             retrofit;
     private AuthRetrofitService  authRetrofitService;
@@ -57,22 +57,22 @@ public class ClientImpl implements Client {
 
     private ClearableCookieJar cookieJar;
 
-    public ClientImpl(final String url, final String appId, final boolean log) {
+    public ClientImpl(String url, String appId, boolean log) {
         this.url = url;
         this.appId = Integer.parseInt(appId);
         this.cookieJar = new PersistentCookieJar(new SetCookieCache(), new MemoryCookiePersistor());
 
-        final OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
+        OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
         clientBuilder.cookieJar(this.cookieJar);
         clientBuilder.addInterceptor(new AuthenticationInterceptor(this.cookieJar));
 
         if (log) {
-            final HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
             clientBuilder.addInterceptor(interceptor);
         }
 
-        final Converter.Factory gsonFactory = GsonConverterFactory.create(getGsonInstance());
+        Converter.Factory gsonFactory = GsonConverterFactory.create(getGsonInstance());
 
         this.httpClient = clientBuilder.build();
         this.retrofit = new Retrofit.Builder()

@@ -18,6 +18,7 @@ public class SetApprovalForAllData {
      * The ethereum address of the operator.
      *
      * -- SETTER --
+     *
      * @param operator the ethereum address.
      * @return the builder.
      */
@@ -27,6 +28,7 @@ public class SetApprovalForAllData {
      * The identity id of the operator.
      *
      * -- SETTER --
+     *
      * @param operatorId the identity id.
      * @return the builder.
      */
@@ -37,6 +39,7 @@ public class SetApprovalForAllData {
      * Whether to be approved or not.
      *
      * -- SETTER --
+     *
      * @param approved whether approved or not.
      * @return the builder.
      */

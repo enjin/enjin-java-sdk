@@ -18,6 +18,7 @@ public class IdentityFieldInput {
      * The field key.
      *
      * -- SETTER --
+     *
      * @param key the key
      * @return the builder.
      */
@@ -27,6 +28,7 @@ public class IdentityFieldInput {
      * The field value.
      *
      * -- SETTER --
+     *
      * @param value the value.
      * @return the builder.
      */
@@ -36,6 +38,7 @@ public class IdentityFieldInput {
      * Is the field searchable?
      *
      * -- SETTER --
+     *
      * @param searchable is searchable.
      * @return the builder.
      */
@@ -45,6 +48,7 @@ public class IdentityFieldInput {
      * Is the field displayable?
      *
      * -- SETTER --
+     *
      * @param displayable is displayable.
      * @return the builder.
      */
@@ -54,6 +58,7 @@ public class IdentityFieldInput {
      * Is the field unique?
      *
      * -- SETTER --
+     *
      * @param unique is unique
      * @return the builder.
      */

@@ -14,6 +14,7 @@ public class LoginUser extends GraphQLRequest.Builder {
      * The email of the user.
      *
      * @param email the email.
+     *
      * @return the builder.
      */
     public LoginUser withEmail(String email) {
@@ -25,6 +26,7 @@ public class LoginUser extends GraphQLRequest.Builder {
      * The password of the user.
      *
      * @param password the password.
+     *
      * @return the builder.
      */
     public LoginUser withPassword(String password) {

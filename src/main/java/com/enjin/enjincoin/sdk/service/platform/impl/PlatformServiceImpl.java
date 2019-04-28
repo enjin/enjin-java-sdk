@@ -16,12 +16,12 @@ public class PlatformServiceImpl extends GraphQLServiceBase implements PlatformS
 
     private PlatformRetrofitService service;
 
-    public PlatformServiceImpl(final Retrofit retrofit) {
+    public PlatformServiceImpl(Retrofit retrofit) {
         this.service = retrofit.create(PlatformRetrofitService.class);
     }
 
     @Override
-    public void getPlatformAsync(final HttpCallback<GraphQLResponse<GetPlatformResult>> callback) {
+    public void getPlatformAsync(HttpCallback<GraphQLResponse<GetPlatformResult>> callback) {
         enqueueGraphQLCall(getPlatform(), callback);
     }
 

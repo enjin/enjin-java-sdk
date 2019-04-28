@@ -17,6 +17,7 @@ public class GetRequests extends GraphQLRequest.Builder {
      * The request id.
      *
      * @param requestId the request id.
+     *
      * @return the builder.
      */
     public GetRequests withRequestId(BigInteger requestId) {
@@ -28,6 +29,7 @@ public class GetRequests extends GraphQLRequest.Builder {
      * The blockchain transaction id.
      *
      * @param transactionId the transaction id.
+     *
      * @return the builder.
      */
     public GetRequests withTransactionId(String transactionId) {
@@ -39,6 +41,7 @@ public class GetRequests extends GraphQLRequest.Builder {
      * The identity id.
      *
      * @param identityId the identity id.
+     *
      * @return the builder.
      */
     public GetRequests withIdentityId(BigInteger identityId) {
@@ -50,6 +53,7 @@ public class GetRequests extends GraphQLRequest.Builder {
      * The transaction type.
      *
      * @param type the transaction type.
+     *
      * @return the builder.
      */
     public GetRequests withType(TransactionType type) {
@@ -61,6 +65,7 @@ public class GetRequests extends GraphQLRequest.Builder {
      * The recipients identity id.
      *
      * @param recipientId the recipients identity id.
+     *
      * @return the builder.
      */
     public GetRequests withRecipientId(BigInteger recipientId) {
@@ -72,6 +77,7 @@ public class GetRequests extends GraphQLRequest.Builder {
      * The recipients ethereum address.
      *
      * @param recipientAddress the recipients ethereum address.
+     *
      * @return the builder.
      */
     public GetRequests withRecipientAddress(String recipientAddress) {
@@ -83,6 +89,7 @@ public class GetRequests extends GraphQLRequest.Builder {
      * The sender or recipients identity id.
      *
      * @param senderOrRecipientId the sender or recipients identity id.
+     *
      * @return the builder.
      */
     public GetRequests withSenderOrRecipientId(BigInteger senderOrRecipientId) {
@@ -94,6 +101,7 @@ public class GetRequests extends GraphQLRequest.Builder {
      * The token id.
      *
      * @param tokenId the token id.
+     *
      * @return the builder.
      */
     public GetRequests withTokenId(String tokenId) {
@@ -105,6 +113,7 @@ public class GetRequests extends GraphQLRequest.Builder {
      * The token value.
      *
      * @param value the token value.
+     *
      * @return the builder.
      */
     public GetRequests withValue(String value) {
@@ -116,6 +125,7 @@ public class GetRequests extends GraphQLRequest.Builder {
      * The request state.
      *
      * @param state the request state.
+     *
      * @return the builder.
      */
     public GetRequests withState(TransactionState state) {
@@ -127,6 +137,7 @@ public class GetRequests extends GraphQLRequest.Builder {
      * A list of states to match.
      *
      * @param stateIn a list of states to match.
+     *
      * @return the builder.
      */
     public GetRequests withStateIn(List<TransactionState> stateIn) {
@@ -138,6 +149,7 @@ public class GetRequests extends GraphQLRequest.Builder {
      * A list of states to match.
      *
      * @param stateIn a list of states to match.
+     *
      * @return the builder.
      */
     public GetRequests withStateIn(TransactionState... stateIn) {
@@ -149,6 +161,7 @@ public class GetRequests extends GraphQLRequest.Builder {
      * Whether the transactions can only broadcast.
      *
      * @param canBroadcastOnly whether the transactions can only broadcast.
+     *
      * @return the builder.
      */
     public GetRequests withCanBroadcastOnly(Boolean canBroadcastOnly) {

@@ -20,6 +20,7 @@ public class NotificationEvent {
      * The type of notification.
      *
      * -- GETTER --
+     *
      * @return the type.
      * -- SETTER --
      * @param type the notification type.
@@ -31,6 +32,7 @@ public class NotificationEvent {
      * The channel the notification was received.
      *
      * -- GETTER --
+     *
      * @return the channel.
      * -- SETTER --
      * @param channel the channel.
@@ -42,6 +44,7 @@ public class NotificationEvent {
      * The notification data.
      *
      * -- GETTER --
+     *
      * @return the data.
      * -- SETTER --
      * @param data the notification data.

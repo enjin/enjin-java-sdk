@@ -16,6 +16,7 @@ public class AuthBody {
      * At this time the trusted platform supports "client_credentials".
      *
      * -- SETTER --
+     *
      * @param grantType the grant type.
      * @return the builder.
      */
@@ -26,6 +27,7 @@ public class AuthBody {
      * The app id to authenticate.
      *
      * -- SETTER --
+     *
      * @param clientId the app id.
      * @return the builder.
      */
@@ -36,6 +38,7 @@ public class AuthBody {
      * The app secret.
      *
      * -- SETTER --
+     *
      * @param clientSecret the app secret.
      * @return the builder.
      */

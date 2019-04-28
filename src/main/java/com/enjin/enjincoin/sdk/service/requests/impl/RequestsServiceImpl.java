@@ -19,7 +19,7 @@ import java.io.IOException;
 
 public class RequestsServiceImpl extends GraphQLServiceBase implements RequestsService {
 
-    private RequestsRetrofitService service;
+    private final RequestsRetrofitService service;
 
     public RequestsServiceImpl(Retrofit retrofit) {
         this.service = retrofit.create(RequestsRetrofitService.class);

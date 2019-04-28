@@ -18,6 +18,7 @@ public class ApproveItemData {
      * The ethereum address of the operator.
      *
      * -- SETTER --
+     *
      * @param operator the ethereum address.
      * @return the builder.
      */
@@ -27,6 +28,7 @@ public class ApproveItemData {
      * The identity id of the operator.
      *
      * -- SETTER --
+     *
      * @param operatorId the identity id.
      * @return the builder.
      */
@@ -37,6 +39,7 @@ public class ApproveItemData {
      * The token id.
      *
      * -- SETTER --
+     *
      * @param tokenId the token id.
      * @return the builder.
      */
@@ -47,6 +50,7 @@ public class ApproveItemData {
      * The token index.
      *
      * -- SETTER --
+     *
      * @param tokenIndex the token index.
      * @return the builder.
      */
@@ -57,6 +61,7 @@ public class ApproveItemData {
      * The current approved value prior to this transaction.
      *
      * -- SETTER --
+     *
      * @param currentValue the current approved value.
      * @return the builder.
      */
@@ -67,6 +72,7 @@ public class ApproveItemData {
      * The amount to be approved.
      *
      * -- SETTER --
+     *
      * @param value the amount to approve.
      * @return the builder.
      */

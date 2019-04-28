@@ -15,6 +15,7 @@ public class ApproveEnjData {
      * The amount of ENJ to approve. Set this to -1 to approve the maximum amount possible.
      *
      * -- SETTER --
+     *
      * @param value the amount of enj to approve.
      * @return the builder.
      */

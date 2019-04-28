@@ -5,138 +5,106 @@ import com.enjin.enjincoin.sdk.model.service.notifications.NotificationType;
 /**
  * Registration wrapper for notification listeners that extracts any metadata
  * from the notification listener that may be used in event handling.
+ *
+ * @author Evan Lindsay
  */
 public class NotificationListenerRegistration {
 
     /**
-     * All All Matchers Event.
+     * A matcher that matches all events.
      **/
-    public static final EventMatcher ALLOW_ALL_MATCHER  = event -> true;
-    /**
-     * All No Matchers Event.
-     **/
-    public static final EventMatcher ALLOW_NONE_MATCHER = event -> false;
+    public static final EventMatcher ALLOW_ALL_MATCHER = event -> true;
 
-    /**
-     * Notification Listener.
-     **/
     private NotificationListener listener;
-    /**
-     * Event Matcher.
-     **/
     private EventMatcher         eventMatcher = ALLOW_ALL_MATCHER;
 
-    /**
-     * Class constructor.
-     *
-     * @param listener to use
-     */
-    protected NotificationListenerRegistration(final NotificationListener listener) {
+    protected NotificationListenerRegistration(NotificationListener listener) {
         this.listener = listener;
     }
 
-    /**
-     * Class constructor.
-     *
-     * @param listener     to use
-     * @param eventMatcher to match against
-     */
-    protected NotificationListenerRegistration(final NotificationListener listener, final EventMatcher eventMatcher) {
+    protected NotificationListenerRegistration(NotificationListener listener, EventMatcher eventMatcher) {
         this(listener);
         this.eventMatcher = eventMatcher;
     }
 
     /**
-     * Method to get the listener.
+     * Returns the listener that a registration was created for.
      *
-     * @return NotificationListener
+     * @return the listener.
      */
     public NotificationListener getListener() {
         return this.listener;
     }
 
     /**
-     * Method to get the event matcher.
+     * Returns the event matcher used for the listener.
      *
-     * @return EventMatcher
+     * @return the listener.
      */
     public EventMatcher getEventMatcher() {
         return this.eventMatcher;
     }
 
     /**
-     * Configuration class for the registration listener.
+     * A registration configuration for listeners.
      *
-     * @param <T> class type
+     * @param <T> the configuration.
+     *
+     * @author Evan Lindsay
      */
     public static class RegistrationListenerConfiguration<T extends RegistrationListenerConfiguration<T>> {
 
-        /**
-         * Notification Service.
-         **/
         private NotificationsService service;
-        /**
-         * Notification Listener.
-         **/
         private NotificationListener listener;
+        private EventMatcher         eventMatcher = ALLOW_ALL_MATCHER;
 
-        /**
-         * Event Matcher.
-         **/
-        private EventMatcher eventMatcher = ALLOW_ALL_MATCHER;
-
-        /**
-         * Class Constructor.
-         *
-         * @param service  to use
-         * @param listener to use
-         */
-        protected RegistrationListenerConfiguration(final NotificationsService service,
-                                                    final NotificationListener listener) {
+        protected RegistrationListenerConfiguration(NotificationsService service,
+                                                    NotificationListener listener) {
             this.service = service;
             this.listener = listener;
             this.detectAndApplyListenerAnnotations();
         }
 
         /**
-         * Method to match against an event matcher.
+         * Assigns the specified event matcher to the configuration. If the specified event matcher
+         * is null then the default event matcher that allows all event will be assigned.
          *
-         * @param eventMatcher to check
+         * @param eventMatcher the event matcher
          *
-         * @return T
+         * @return the configuration.
          */
         @SuppressWarnings("unchecked")
-        public T withMatcher(final EventMatcher eventMatcher) {
+        public T withMatcher(EventMatcher eventMatcher) {
             this.eventMatcher = eventMatcher == null ? ALLOW_ALL_MATCHER : eventMatcher;
             return (T) this;
         }
 
         /**
-         * Method to check if the notification type is allowed.
+         * Creates an event matcher that will allow the specified event types.
          *
-         * @param types to check
+         * @param types the types to allow.
          *
-         * @return T
+         * @return the configuration.
          */
-        public T withAllowedEvents(final NotificationType... types) {
+        public T withAllowedEvents(NotificationType... types) {
             return this.withMatcher(types == null ? null : event -> event.getType().in(types));
         }
 
         /**
-         * Method to check if the notification type is ignored.
+         * Creates an event matcher that will ignore the specified event types.
          *
-         * @param types to check
+         * @param types the types to ignore.
          *
-         * @return T
+         * @return the configuration.
          */
-        public T withIgnoredEvents(final NotificationType... types) {
+        public T withIgnoredEvents(NotificationType... types) {
             return this.withMatcher(types == null ? null : event -> !event.getType().in(types));
         }
 
         /**
-         * Method to register a NotificationListener.
+         * Creates a new listener registration and adds it to the notification service.
          *
-         * @return NotificationListenerRegistration
+         * @return the registration.
          */
         public NotificationListenerRegistration register() {
             NotificationListenerRegistration registration = null;
@@ -147,14 +115,11 @@ public class NotificationListenerRegistration {
             return registration;
         }
 
-        /**
-         * Method to apply listener annotations.
-         */
         private void detectAndApplyListenerAnnotations() {
             if (this.listener != null) {
-                final Class<?> clazz = this.listener.getClass();
+                Class<?> clazz = this.listener.getClass();
                 if (clazz.isAnnotationPresent(EventFilter.class)) {
-                    final EventFilter filter = clazz.getAnnotation(EventFilter.class);
+                    EventFilter filter = clazz.getAnnotation(EventFilter.class);
                     if (filter.allow()) {
                         this.withAllowedEvents(filter.value());
                     } else {
@@ -166,16 +131,16 @@ public class NotificationListenerRegistration {
     }
 
     /**
-     * Method to configure a RegistrationListener.
+     * Creates a new listener configuration for the provided notification service.
      *
-     * @param service  to use
-     * @param listener to use
+     * @param service  the service the listener is being configured for.
+     * @param listener the listener to configure.
      *
      * @return RegistrationListenerConfiguration
      */
     @SuppressWarnings("rawtypes")
-    public static RegistrationListenerConfiguration<?> configure(final NotificationsService service,
-                                                                 final NotificationListener listener) {
+    public static RegistrationListenerConfiguration<?> configure(NotificationsService service,
+                                                                 NotificationListener listener) {
         return new RegistrationListenerConfiguration(service, listener);
     }
 

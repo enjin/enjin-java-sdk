@@ -30,6 +30,7 @@ public class TransferData {
      * The token id.
      *
      * -- SETTER --
+     *
      * @param tokenId the token id.
      * @return the builder.
      */
@@ -40,6 +41,7 @@ public class TransferData {
      * The token index.
      *
      * -- SETTER --
+     *
      * @param tokenIndex the token index.
      * @return the builder.
      */
@@ -50,6 +52,7 @@ public class TransferData {
      * The amount of the token.
      *
      * -- SETTER --
+     *
      * @param value the amount.
      * @return the builder.
      */

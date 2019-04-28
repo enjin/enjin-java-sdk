@@ -15,6 +15,7 @@ public class MessageData {
      * The message to sign.
      *
      * -- SETTER --
+     *
      * @param message the message.
      * @return the builder.
      */

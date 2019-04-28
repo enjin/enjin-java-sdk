@@ -16,6 +16,7 @@ public class SetWhitelistedData {
      * The token id.
      *
      * -- SETTER --
+     *
      * @param tokenId the token id.
      * @return the builder.
      */
@@ -26,6 +27,7 @@ public class SetWhitelistedData {
      * The account to be whitelisted.
      *
      * -- SETTER --
+     *
      * @param account the account.
      * @return the builder.
      */
@@ -35,6 +37,7 @@ public class SetWhitelistedData {
      * The whitelist setting for this account address.
      *
      * -- SETTER --
+     *
      * @param whitelisted the settings.
      * @return the builder.
      */
@@ -44,6 +47,7 @@ public class SetWhitelistedData {
      * Whether the whitelist setting is on or off.
      *
      * -- SETTER --
+     *
      * @param on whether the setting is on or off.
      * @return the builder.
      */

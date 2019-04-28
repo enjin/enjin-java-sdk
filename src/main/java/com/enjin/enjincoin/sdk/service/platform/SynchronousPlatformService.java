@@ -9,9 +9,11 @@ import java.io.IOException;
 public interface SynchronousPlatformService {
 
     /**
-     * @return
+     * Gets the platform details and settings.
      *
-     * @throws IOException
+     * @return the response.
+     *
+     * @throws IOException if a communication error occurred.
      */
     HttpResponse<GraphQLResponse<GetPlatformResult>> getPlatformSync() throws IOException;
 }

@@ -39,6 +39,7 @@ class IdentifiableCookie {
      * Takes a list of {@link Cookie} and wraps them with {@link IdentifiableCookie}.
      *
      * @param cookies the cookies to wrap.
+     *
      * @return the wrapped cookies.
      */
     public static List<IdentifiableCookie> decorateAll(Collection<Cookie> cookies) {
@@ -53,6 +54,7 @@ class IdentifiableCookie {
      * Wraps a {@link Cookie} with {@link IdentifiableCookie}.
      *
      * @param cookie the cookie to wrap.
+     *
      * @return the wrapped cookie.
      */
     public static IdentifiableCookie decorate(Cookie cookie) {

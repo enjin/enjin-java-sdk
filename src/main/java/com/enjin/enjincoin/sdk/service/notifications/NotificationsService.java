@@ -6,106 +6,125 @@ import com.enjin.enjincoin.sdk.service.notifications.NotificationListenerRegistr
 import java.math.BigInteger;
 
 /**
- * <p>
- * NotificationsService - Synchronous.
- * </p>
+ * A notification service interface.
+ *
+ * @author Evan Lindsay
  */
 public interface NotificationsService extends AsynchronousNotificationsService {
 
     /**
-     * Method to initialize the notifications service.
+     * Starts the notification service.
      *
-     * @return boolean
+     * @return true if started, else false.
      */
     boolean start();
 
     /**
-     * Method to re-initialize the notifications service.
+     * Restarts the notification service.
      *
-     * @return boolean
+     * @return true if started, else false.
      */
     boolean restart();
 
     /**
-     * Method to shut down the notifications service.
+     * Shuts down the notification service.
      */
     void shutdown();
 
     /**
-     * Method to configure a listener.
+     * Configures a notification listener.
      *
-     * @param listener notificationListener to configure
+     * @param listener the listener to configure.
      *
-     * @return RegistrationListenerConfiguration
+     * @return the listener configuration.
      */
-    @SuppressWarnings("rawtypes")
     RegistrationListenerConfiguration configureListener(NotificationListener listener);
 
     /**
-     * Method to add a notification listener.
+     * Adds a notification listener.
      *
-     * @param listener the listener to add
+     * @param listener the listener to add.
      *
-     * @return NotificationListenerRegistration
+     * @return the listener registration.
      */
     NotificationListenerRegistration addNotificationListener(NotificationListener listener);
 
     /**
-     * Method to add a notification listener.
+     * Adds a notification listener with an event matcher.
      *
-     * @param listener     the listener to add
-     * @param eventMatcher to match against
+     * @param listener     the listener to add.
+     * @param eventMatcher the event matcher to use.
      *
-     * @return NotificationListenerRegistration
+     * @return the listener registration.
      */
     NotificationListenerRegistration addNotificationListener(NotificationListener listener, EventMatcher eventMatcher);
 
     /**
-     * Method to configure a listener for allowed types.
+     * Adds a notification listener with an array of types to allow.
      *
-     * @param listener to configure
-     * @param allowed  types
+     * @param listener the listener to add.
+     * @param allowed  the events to listen for.
      *
-     * @return NotificationListenerRegistration
+     * @return the listener registration.
      */
     NotificationListenerRegistration addAllowedTypesNotificationListener(NotificationListener listener,
                                                                          NotificationType... allowed);
 
     /**
-     * Method to configure a listener for ignore types.
+     * Adds a notification listener with an array of types to ignore.
      *
-     * @param listener to configure
-     * @param ignored  types
+     * @param listener the listener to add.
+     * @param ignored  the events to ignore.
      *
-     * @return NotificationListenerRegistration
+     * @return the listener registration.
      */
     NotificationListenerRegistration addIgnoredTypesNotificationListener(NotificationListener listener,
                                                                          NotificationType... ignored);
 
     /**
-     * Method to remove a notification listener.
+     * Removes a listener.
      *
-     * @param listener the listener to remove
+     * @param listener the listener to remove.
      */
     void removeNotificationListener(NotificationListener listener);
 
     /**
-     * Method to register a notificationListener.
+     * Adds a notification listener registration.
      *
-     * @param registration to add
+     * @param registration the registration to add.
      */
     void addNotificationListenerRegistration(NotificationListenerRegistration registration);
 
     /**
-     * Method to remove a notificationListener.
+     * Removes a notification listener registration.
      *
-     * @param registration to remove
+     * @param registration the registration to remove.
      */
     void removeNotificationListenerRegistration(NotificationListenerRegistration registration);
 
+    /**
+     * Opens a channel for the specified identity id, allowing listeners
+     * to receive link events for that identity.
+     *
+     * @param identityId the identity id.
+     */
     void listenForLink(BigInteger identityId);
 
+    /**
+     * Closes a channel for the specified identity id, preventing listeners
+     * from receiving link events for that identity.
+     *
+     * @param identityId the identity id.
+     */
     void stopListeningForLink(BigInteger identityId);
 
+    /**
+     * Returns whether or not a channel is open for the specified identity id.
+     *
+     * @param identityId the identity id.
+     *
+     * @return true if listening, else false.
+     */
     boolean isListeningForLink(BigInteger identityId);
+
 }

@@ -29,63 +29,26 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-/**
- * <p>Service to implement methods that interact with the pusher library.</p>
- */
 public class PusherNotificationServiceImpl implements ThirdPartyNotificationService {
 
-    /**
-     * Logger used by this class.
-     */
-    private static final Logger LOGGER = Logger.getLogger(PusherNotificationServiceImpl.class.getName());
+    private static final Logger LOGGER           = Logger.getLogger(PusherNotificationServiceImpl.class.getName());
+    private static final Long   ACTIVITY_TIMEOUT = 4000L;
 
-    private static final Long ACTIVITY_TIMEOUT = 4000L;
-
-    private Gson gson = new GsonBuilder().create();
-
-    private int appId;
-
-    /**
-     * Local pusher variable.
-     **/
-    private Pusher pusher;
-
-    /**
-     * Local channel variable .
-     **/
-    private Channel channel;
-
-    /**
-     * Local variable holding all the notification listener registrations.
-     */
+    private Gson                                   gson                              = new GsonBuilder().create();
+    private int                                    appId;
+    private Pusher                                 pusher;
+    private Channel                                channel;
     private List<NotificationListenerRegistration> notificationListenerRegistrations = new ArrayList<>();
+    private PlatformDetails                        platformDetails;
+    private PusherListener                         pusherListener;
+    private Map<String, Channel>                   identityChannels                  = new HashMap<>();
 
-    /**
-     * Local notification details method.
-     */
-    private PlatformDetails platformDetails;
-
-    private PusherListener pusherListener;
-
-    private Map<String, Channel> identityChannels = new HashMap<>();
-
-    /**
-     * Class constructor.
-     *
-     * @param platformDetails to use
-     * @param appId           to use
-     */
-    public PusherNotificationServiceImpl(final PlatformDetails platformDetails, final int appId) {
+    public PusherNotificationServiceImpl(PlatformDetails platformDetails, int appId) {
         this.platformDetails = platformDetails;
         this.appId = appId;
         this.pusherListener = new PusherListener(this);
     }
 
-    /**
-     * Method to initialize the notification service.
-     *
-     * @return boolean
-     */
     @Override
     public boolean init() {
         boolean initializeResult = false;
@@ -95,19 +58,18 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
             return initializeResult;
         }
 
-        final NotificationDetails notificationDetails = this.platformDetails.getNotifications();
+        NotificationDetails notificationDetails = this.platformDetails.getNotifications();
         if (notificationDetails.getSdk() == null || notificationDetails.getSdk().getOptions() == null) {
             LOGGER.warning("the sdk details or the options are null");
             return initializeResult;
         }
 
-        final SdkDetails sdkDetails = notificationDetails.getSdk();
-        final String     appKey     = sdkDetails.getKey();
-        final String     cluster    = sdkDetails.getOptions().getCluster();
-        final String     appChannel = getAppChannel();
-        final boolean    encrypted  = sdkDetails.getOptions().getEncrypted();
-        System.out.println("appChannel:" + appChannel);
-        final Long activityTimeout = ACTIVITY_TIMEOUT;
+        SdkDetails sdkDetails      = notificationDetails.getSdk();
+        String     appKey          = sdkDetails.getKey();
+        String     cluster         = sdkDetails.getOptions().getCluster();
+        String     appChannel      = getAppChannel();
+        boolean    encrypted       = sdkDetails.getOptions().getEncrypted();
+        Long       activityTimeout = ACTIVITY_TIMEOUT;
 
         if (StringUtils.isEmpty(appKey) || StringUtils.isEmpty(cluster)) {
             LOGGER.warning("appId, appKey, appSecret or cluster is null or empty");
@@ -122,7 +84,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
         shutdown();
 
         // Create a new Pusher instance
-        final PusherOptions options = new PusherOptions()
+        PusherOptions options = new PusherOptions()
                 .setCluster(cluster)
                 .setActivityTimeout(activityTimeout)
                 .setEncrypted(encrypted);
@@ -130,25 +92,15 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
 
         //Connect to pusher
         this.pusher.connect(new ConnectionEventListener() {
-            /**
-             * Method call on connection state change.
-             * @param change
-             */
             @Override
-            public void onConnectionStateChange(final ConnectionStateChange change) {
+            public void onConnectionStateChange(ConnectionStateChange change) {
                 LOGGER.fine(String.format("State changed to %s from %s ",
                                           change.getCurrentState(),
                                           change.getPreviousState()));
             }
 
-            /**
-             * Method call on connection error
-             * @param message
-             * @param code
-             * @param exception
-             */
             @Override
-            public void onError(final String message, final String code, final Exception exception) {
+            public void onError(String message, String code, Exception exception) {
                 LOGGER.warning(String.format("There was a problem connecting!. Exception: %s",
                                              ExceptionUtils.throwableToString(exception)));
             }
@@ -199,14 +151,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
         }
     }
 
-    /**
-     * Method to fire a notification.
-     *
-     * @param sourceData the data received from the notification
-     * @param channel    the channel the notification was received from
-     * @param eventType  the type of event we received
-     */
-    protected void fireNotification(final String sourceData, final String channel, final String eventType) {
+    protected void fireNotification(String sourceData, String channel, String eventType) {
 
         if (CollectionUtils.isEmpty(this.notificationListenerRegistrations)) {
             LOGGER.warning("No listeners are currently registered");
@@ -237,13 +182,13 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
             return;
         }
 
-        final NotificationEvent notificationEvent = NotificationEvent.builder()
-                                                                     .type(notificationType)
-                                                                     .channel(channel)
-                                                                     .data(sourceData)
-                                                                     .build();
+        NotificationEvent notificationEvent = NotificationEvent.builder()
+                                                               .type(notificationType)
+                                                               .channel(channel)
+                                                               .data(sourceData)
+                                                               .build();
 
-        for (final NotificationListenerRegistration registration : this.notificationListenerRegistrations) {
+        for (NotificationListenerRegistration registration : this.notificationListenerRegistrations) {
             if (registration.getEventMatcher().matches(notificationEvent)) {
                 registration.getListener().notificationReceived(notificationEvent);
             }
@@ -251,13 +196,8 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
 
     }
 
-    /**
-     * Method to set the notification listeners.
-     *
-     * @param argNotificationListeners - list of listeners to set as the new listeners
-     */
     @Override
-    public synchronized void setNotificationListeners(final List<NotificationListenerRegistration> argNotificationListeners) {
+    public synchronized void setNotificationListeners(List<NotificationListenerRegistration> argNotificationListeners) {
         this.notificationListenerRegistrations = argNotificationListeners;
     }
 

@@ -16,6 +16,7 @@ public class CompleteTradeData {
      * The trade id from the CreateTrade event.
      *
      * -- SETTER --
+     *
      * @param tradeId the trade id.
      * @return the builder.
      */

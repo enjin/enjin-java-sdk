@@ -17,6 +17,7 @@ public class AdvancedSendTokenData {
      * The different transfers to perform.
      *
      * -- SETTER --
+     *
      * @param transfers the transfers.
      * @return the builder.
      */
@@ -26,6 +27,7 @@ public class AdvancedSendTokenData {
      * Whether the safe variant of the transaction should be used.
      *
      * -- SETTER --
+     *
      * @param safe whether to use the safe variant or not.
      * @return the builder.
      */
@@ -35,6 +37,7 @@ public class AdvancedSendTokenData {
      * The data to forward with the safe callbacks.
      *
      * -- SETTER --
+     *
      * @param data the data to forward.
      * @return the builder.
      */

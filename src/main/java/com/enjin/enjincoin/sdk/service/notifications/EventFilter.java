@@ -8,7 +8,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Annotation for filtering events.
+ * Annotation for filtering listener events.
+ *
+ * @author Evan Lindsay
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
@@ -17,14 +19,14 @@ public @interface EventFilter {
     /**
      * Filtered types to allow.
      *
-     * @return NotifcationType[]
+     * @return the filtered notification types.
      */
     NotificationType[] value();
 
     /**
-     * Allow or not.
+     * Whether the filtered types are whitelisted or blacklisted.
      *
-     * @return boolean
+     * @return true if the listener should only handle the filtered types, else types are ignored.
      */
     boolean allow() default true;
 

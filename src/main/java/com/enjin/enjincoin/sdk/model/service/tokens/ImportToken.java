@@ -14,6 +14,7 @@ public class ImportToken extends GraphQLRequest.Builder {
      * The token id.
      *
      * @param tokenId the token id.
+     *
      * @return the builder.
      */
     public ImportToken withTokenId(String tokenId) {

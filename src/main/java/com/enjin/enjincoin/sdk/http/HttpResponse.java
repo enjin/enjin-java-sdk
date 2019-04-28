@@ -4,6 +4,7 @@ package com.enjin.enjincoin.sdk.http;
  * An http response wrapper.
  *
  * @param <T> the type of the body.
+ *
  * @author Evan Lindsay
  */
 public class HttpResponse<T> {

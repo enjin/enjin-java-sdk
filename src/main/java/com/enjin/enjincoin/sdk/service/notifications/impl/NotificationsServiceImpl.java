@@ -22,51 +22,20 @@ import java.util.concurrent.CompletableFuture;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-/**
- * <p>
- * NotificationsService - Synchronous.
- * </p>
- */
 public class NotificationsServiceImpl implements NotificationsService {
 
-    /**
-     * Logger used by this class.
-     */
     private static final Logger LOGGER = Logger.getLogger(NotificationsServiceImpl.class.getName());
 
-    /**
-     * Local variable for the third party notification service.
-     */
-    private ThirdPartyNotificationService thirdPartyNotificationService;
-
-    /**
-     * Local variable holding all the notification listeners.
-     */
+    private ThirdPartyNotificationService          thirdPartyNotificationService;
     private List<NotificationListenerRegistration> notificationListeners = new ArrayList<>();
+    private PlatformService                        service;
+    private int                                    clientId;
 
-    /**
-     * Local variable for the platformService.
-     */
-    private PlatformService service;
-
-    private int clientId;
-
-    /**
-     * Class constructor.
-     *
-     * @param service  - the platform service to use
-     * @param clientId - the app id to use
-     */
-    public NotificationsServiceImpl(final PlatformService service, final Integer clientId) {
+    public NotificationsServiceImpl(PlatformService service, Integer clientId) {
         this.service = service;
         this.clientId = clientId;
     }
 
-    /**
-     * Method to initialize the notifications service.
-     *
-     * @return boolean
-     */
     @Override
     public boolean start() {
 
@@ -74,15 +43,9 @@ public class NotificationsServiceImpl implements NotificationsService {
         return this.restart();
     }
 
-
-    /**
-     * Method to re-initialize the notifications service.
-     *
-     * @return boolean
-     */
     @Override
     public boolean restart() {
-        final HttpResponse<GraphQLResponse<GetPlatformResult>> result;
+        HttpResponse<GraphQLResponse<GetPlatformResult>> result;
         try {
             result = this.service.getPlatformSync();
             if (result == null || result.body() == null) {
@@ -90,14 +53,14 @@ public class NotificationsServiceImpl implements NotificationsService {
                 return false;
             }
 
-            final GraphQLResponse<GetPlatformResult> body = result.body();
+            GraphQLResponse<GetPlatformResult> body = result.body();
             if (body == null || body.getData() == null) {
                 LOGGER.warning("Failed to get platform details");
                 return false;
             }
 
-            final GetPlatformResult data    = body.getData();
-            final PlatformDetails   details = data.getPlatform();
+            GetPlatformResult data    = body.getData();
+            PlatformDetails   details = data.getPlatform();
             if (details == null) {
                 LOGGER.warning("Platform details are null.");
                 return false;
@@ -107,12 +70,12 @@ public class NotificationsServiceImpl implements NotificationsService {
                 this.thirdPartyNotificationService = new PusherNotificationServiceImpl(details, this.clientId);
             }
 
-            final boolean initPusherResult = this.thirdPartyNotificationService.init();
+            boolean initPusherResult = this.thirdPartyNotificationService.init();
             if (BooleanUtils.isFalse(initPusherResult)) {
                 LOGGER.warning("A problem occured initializing the pusher library");
                 return false;
             }
-        } catch (final IOException e) {
+        } catch (IOException e) {
             LOGGER.warning(String.format("An IOException has occured. Exception: %s.", e.getMessage()));
         }
 
@@ -127,34 +90,19 @@ public class NotificationsServiceImpl implements NotificationsService {
         }
     }
 
-    /**
-     * Method to configure a listener.
-     *
-     * @param listener notificationListener to configer
-     *
-     * @return NotificationListenerRegistration
-     */
-    @SuppressWarnings("rawtypes")
     @Override
-    public NotificationListenerRegistration.RegistrationListenerConfiguration configureListener(final NotificationListener listener) {
+    public NotificationListenerRegistration.RegistrationListenerConfiguration configureListener(NotificationListener listener) {
         return NotificationListenerRegistration.configure(this, listener);
     }
 
-    /**
-     * Method to add a notification listener.
-     *
-     * @param listener - listener to add
-     *
-     * @return NotificationListenerRegistration
-     */
     @Override
-    public synchronized NotificationListenerRegistration addNotificationListener(final NotificationListener listener) {
+    public synchronized NotificationListenerRegistration addNotificationListener(NotificationListener listener) {
         NotificationListenerRegistration registration = null;
         if (ObjectUtils.isNull(listener)) {
             LOGGER.warning("Could not add a NotificationListener because it was null.");
             return null;
         } else {
-            final long count = this.notificationListeners.stream().filter(r -> r.getListener() == listener).count();
+            long count = this.notificationListeners.stream().filter(r -> r.getListener() == listener).count();
 
             if (count == 0) {
                 registration = NotificationListenerRegistration.configure(this, listener).register();
@@ -165,80 +113,46 @@ public class NotificationsServiceImpl implements NotificationsService {
         return registration;
     }
 
-    /**
-     * Method to add a notification listener.
-     *
-     * @param listener     the listener to add
-     * @param eventMatcher to match against
-     *
-     * @return NotificationListenerRegistration
-     */
     @Override
-    public NotificationListenerRegistration addNotificationListener(final NotificationListener listener,
-                                                                    final EventMatcher eventMatcher) {
+    public NotificationListenerRegistration addNotificationListener(NotificationListener listener,
+                                                                    EventMatcher eventMatcher) {
         return this.configureListener(listener).withMatcher(eventMatcher).register();
     }
 
-    /**
-     * Method to configure a listener for allowed types.
-     *
-     * @param listener to configure
-     * @param allowed  types
-     *
-     * @return NotificationListenerRegistration
-     */
     @Override
-    public NotificationListenerRegistration addAllowedTypesNotificationListener(final NotificationListener listener,
-                                                                                final NotificationType... allowed) {
+    public NotificationListenerRegistration addAllowedTypesNotificationListener(NotificationListener listener,
+                                                                                NotificationType... allowed) {
         return this.configureListener(listener).withAllowedEvents(allowed).register();
     }
 
-    /**
-     * Method to configure a listener for ignore types.
-     *
-     * @param listener to configure
-     * @param ignored  types
-     *
-     * @return NotificationListenerRegistration
-     */
     @Override
-    public NotificationListenerRegistration addIgnoredTypesNotificationListener(final NotificationListener listener,
-                                                                                final NotificationType... ignored) {
+    public NotificationListenerRegistration addIgnoredTypesNotificationListener(NotificationListener listener,
+                                                                                NotificationType... ignored) {
         return this.configureListener(listener).withIgnoredEvents(ignored).register();
     }
 
-    /**
-     * Method to remove a notification listener.
-     *
-     * @param listener - listener to remove
-     */
     @Override
-    public synchronized void removeNotificationListener(final NotificationListener listener) {
+    public synchronized void removeNotificationListener(NotificationListener listener) {
         if (ObjectUtils.isNull(listener)) {
             LOGGER.warning("Could not remove a NotificationListener because it was null.");
             return;
         }
 
-        final List<NotificationListenerRegistration> matching = this.notificationListeners.stream()
-                                                                                          .filter(registration -> registration
-                                                                                                  .getListener() == listener)
-                                                                                          .collect(Collectors.toList());
+        List<NotificationListenerRegistration> matching =
+                this.notificationListeners.stream()
+                                          .filter(registration -> registration
+                                                  .getListener() == listener)
+                                          .collect(Collectors.toList());
 
         if (matching.size() > 0) {
             matching.forEach(this::removeNotificationListenerRegistration);
-            // thirdPartyNotificationService.setNotificationListeners(notificationListeners);
         } else {
             LOGGER.warning("Could not remove a NotificationListener because it wasn't already registered.");
         }
     }
 
-    /**
-     * Method to register a notificationListener.
-     *
-     * @param registration to add
-     */
     @Override
-    public void addNotificationListenerRegistration(final NotificationListenerRegistration registration) {
+    public void addNotificationListenerRegistration(NotificationListenerRegistration registration) {
         if (registration != null) {
             this.notificationListeners.add(registration);
             this.thirdPartyNotificationService.setNotificationListeners(this.notificationListeners);
@@ -247,13 +161,8 @@ public class NotificationsServiceImpl implements NotificationsService {
         }
     }
 
-    /**
-     * Method to remove a notificationListener.
-     *
-     * @param registration to remove
-     */
     @Override
-    public void removeNotificationListenerRegistration(final NotificationListenerRegistration registration) {
+    public void removeNotificationListenerRegistration(NotificationListenerRegistration registration) {
         if (registration != null) {
             this.notificationListeners.remove(registration);
             this.thirdPartyNotificationService.setNotificationListeners(this.notificationListeners);
@@ -278,21 +187,21 @@ public class NotificationsServiceImpl implements NotificationsService {
     }
 
     @Override
-    public void startAsync(final CompletableFuture<Boolean> future) {
+    public void startAsync(CompletableFuture<Boolean> future) {
         this.restartAsync(future);
     }
 
     @Override
-    public void restartAsync(final CompletableFuture<Boolean> future) {
+    public void restartAsync(CompletableFuture<Boolean> future) {
         this.service.getPlatformAsync(response -> {
             boolean result = false;
             if (response.body() != null) {
-                final GraphQLResponse<GetPlatformResult> body = response.body();
+                GraphQLResponse<GetPlatformResult> body = response.body();
 
                 shutdown();
 
-                final GetPlatformResult data    = body.getData();
-                final PlatformDetails   details = data.getPlatform();
+                GetPlatformResult data    = body.getData();
+                PlatformDetails   details = data.getPlatform();
                 NotificationsServiceImpl.this.thirdPartyNotificationService =
                         new PusherNotificationServiceImpl(details,
                                                           NotificationsServiceImpl.this.clientId);

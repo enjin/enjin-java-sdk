@@ -3,14 +3,16 @@ package com.enjin.enjincoin.sdk.service.notifications;
 import com.enjin.enjincoin.sdk.model.service.notifications.NotificationEvent;
 
 /**
- * <p>Listener for listening to notifications.</p>
+ * Notification event listener.
+ *
+ * @author Evan Lindsay
  */
 public interface NotificationListener {
 
     /**
-     * Method called when a notification event is received.
+     * Called when an event is received.
      *
-     * @param event the event that just occured
+     * @param event the event received.
      */
     void notificationReceived(NotificationEvent event);
 }

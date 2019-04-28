@@ -16,6 +16,7 @@ public class SetMeltFeeData {
      * The token id.
      *
      * -- SETTER --
+     *
      * @param tokenId the token id.
      * @return the builder.
      */
@@ -26,6 +27,7 @@ public class SetMeltFeeData {
      * The token index.
      *
      * -- SETTER --
+     *
      * @param tokenIndex the token index.
      * @return the builder.
      */
@@ -36,6 +38,7 @@ public class SetMeltFeeData {
      * The new melt fee amount.
      *
      * -- SETTER --
+     *
      * @param meltFee the new fee amount.
      * @return the builder.
      */

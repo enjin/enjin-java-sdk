@@ -15,51 +15,26 @@ import retrofit2.http.POST;
 
 public interface IdentitiesRetrofitService {
 
-    /**
-     * @param request
-     *
-     * @return
-     */
     @POST("graphql")
     @GraphQuery("GetAllIdentities")
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<GetIdentitiesResult>> getAllIdentities(@Body Builder request);
 
-    /**
-     * @param request
-     *
-     * @return
-     */
     @POST("graphql")
     @GraphQuery("GetIdentities")
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<GetIdentitiesResult>> getIdentities(@Body Builder request);
 
-    /**
-     * @param request
-     *
-     * @return
-     */
     @POST("graphql")
     @GraphQuery("CreateIdentity")
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<CreateIdentityResult>> createIdentity(@Body Builder request);
 
-    /**
-     * @param request
-     *
-     * @return
-     */
     @POST("graphql")
     @GraphQuery("DeleteIdentity")
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<DeleteIdentityResult>> deleteIdentity(@Body Builder request);
 
-    /**
-     * @param request
-     *
-     * @return
-     */
     @POST("graphql")
     @GraphQuery("UpdateIdentity")
     @Headers("Content-Type: application/json")

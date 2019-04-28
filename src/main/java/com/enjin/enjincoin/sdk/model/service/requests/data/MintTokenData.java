@@ -20,6 +20,7 @@ public class MintTokenData {
      * The token id.
      *
      * -- SETTER --
+     *
      * @param tokenId the token id.
      * @return the builder.
      */
@@ -30,6 +31,7 @@ public class MintTokenData {
      * The token index.
      *
      * -- SETTER --
+     *
      * @param tokenIndex the token index.
      * @return the builder.
      */
@@ -40,6 +42,7 @@ public class MintTokenData {
      * The ethereum address to send the newly minted item to.
      *
      * -- SETTER --
+     *
      * @param recipientAddress the ethereum address.
      * @return the builder.
      */
@@ -50,6 +53,7 @@ public class MintTokenData {
      * An array of addresses to send the newly minted items to.
      *
      * -- SETTER --
+     *
      * @param recipientAddresses the array of ethereum addresses.
      * @return the builder.
      */
@@ -60,6 +64,7 @@ public class MintTokenData {
      * The identity id of the wallet to send the newly minted item to.
      *
      * -- SETTER --
+     *
      * @param recipientIdentityId the identity id.
      * @return the builder.
      */
@@ -70,6 +75,7 @@ public class MintTokenData {
      * An array of identity ids to send the newly minted items to.
      *
      * -- SETTER --
+     *
      * @param recipientIdentityIds the array of identity ids.
      * @return the builder.
      */
@@ -80,6 +86,7 @@ public class MintTokenData {
      * The number of items to mint.
      *
      * -- SETTER --
+     *
      * @param value the amount to mint.
      * @return the builder.
      */
@@ -89,6 +96,7 @@ public class MintTokenData {
      * The amount to mint for each address/identity id.
      *
      * -- SETTER --
+     *
      * @param values the amounts to mint.
      * @return the builder.
      */
@@ -100,7 +108,9 @@ public class MintTokenData {
          * An array of addresses to send the newly minted items to.
          *
          * -- SETTER --
+         *
          * @param recipientAddresses the array of ethereum addresses.
+         *
          * @return the builder.
          */
         public MintTokenDataBuilder recipientAddress(String... recipientAddresses) {
@@ -112,7 +122,9 @@ public class MintTokenData {
          * An array of addresses to send the newly minted items to.
          *
          * -- SETTER --
+         *
          * @param recipientAddresses the array of ethereum addresses.
+         *
          * @return the builder.
          */
         public MintTokenDataBuilder recipientAddress(List<String> recipientAddresses) {
@@ -124,7 +136,9 @@ public class MintTokenData {
          * An array of identity ids to send the newly minted items to.
          *
          * -- SETTER --
+         *
          * @param recipientIdentityIds the array of identity ids.
+         *
          * @return the builder.
          */
         @SerializedName("recipient_identity_id_array")
@@ -137,7 +151,9 @@ public class MintTokenData {
          * An array of identity ids to send the newly minted items to.
          *
          * -- SETTER --
+         *
          * @param recipientIdentityIds the array of identity ids.
+         *
          * @return the builder.
          */
         @SerializedName("recipient_identity_id_array")
@@ -150,7 +166,9 @@ public class MintTokenData {
          * The amount to mint for each address/identity id.
          *
          * -- SETTER --
+         *
          * @param values the amounts to mint.
+         *
          * @return the builder.
          */
         public MintTokenDataBuilder values(Integer... values) {
@@ -162,7 +180,9 @@ public class MintTokenData {
          * The amount to mint for each address/identity id.
          *
          * -- SETTER --
+         *
          * @param values the amounts to mint.
+         *
          * @return the builder.
          */
         public MintTokenDataBuilder values(List<Integer> values) {

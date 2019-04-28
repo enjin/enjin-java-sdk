@@ -14,4 +14,5 @@ public class PusherListener implements SubscriptionEventListener {
     public void onEvent(String channelName, String eventName, String data) {
         this.pusherService.fireNotification(data, channelName, eventName);
     }
+
 }

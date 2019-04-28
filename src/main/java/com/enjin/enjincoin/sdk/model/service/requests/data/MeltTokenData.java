@@ -19,6 +19,7 @@ public class MeltTokenData {
      * The token id.
      *
      * -- SETTER --
+     *
      * @param tokenId the token id.
      * @return the builder.
      */
@@ -29,6 +30,7 @@ public class MeltTokenData {
      * The token index.
      *
      * -- SETTER --
+     *
      * @param tokenIndex the token index.
      * @return the builder.
      */
@@ -39,6 +41,7 @@ public class MeltTokenData {
      * The indexes of the token to melt.
      *
      * -- SETTER --
+     *
      * @param tokenIndexes a list of token indexes.
      * @return the builder.
      */
@@ -49,6 +52,7 @@ public class MeltTokenData {
      * The number of items to melt.
      *
      * -- SETTER --
+     *
      * @param value the amount to melt.
      * @return the builder.
      */
@@ -58,6 +62,7 @@ public class MeltTokenData {
      * The number of items to melt.
      *
      * -- SETTER --
+     *
      * @param values the amounts to melt.
      * @return the builder.
      */
@@ -69,7 +74,9 @@ public class MeltTokenData {
          * The indexes of the token to melt.
          *
          * -- SETTER --
+         *
          * @param tokenIndexes a list of token indexes.
+         *
          * @return the builder.
          */
         public MeltTokenDataBuilder tokenIndexes(String... tokenIndexes) {
@@ -81,7 +88,9 @@ public class MeltTokenData {
          * The indexes of the token to melt.
          *
          * -- SETTER --
+         *
          * @param tokenIndexes a list of token indexes.
+         *
          * @return the builder.
          */
         public MeltTokenDataBuilder tokenIndexes(List<String> tokenIndexes) {
@@ -93,7 +102,9 @@ public class MeltTokenData {
          * The number of items to melt.
          *
          * -- SETTER --
+         *
          * @param values the amounts to melt.
+         *
          * @return the builder.
          */
         public MeltTokenDataBuilder values(Integer... values) {
@@ -105,7 +116,9 @@ public class MeltTokenData {
          * The number of items to melt.
          *
          * -- SETTER --
+         *
          * @param values the amounts to melt.
+         *
          * @return the builder.
          */
         public MeltTokenDataBuilder values(List<Integer> values) {

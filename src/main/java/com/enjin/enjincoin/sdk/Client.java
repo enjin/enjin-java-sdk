@@ -49,7 +49,9 @@ public interface Client extends Closeable {
      * </pre>
      *
      * @param secret the app secret
+     *
      * @return the result of the auth request
+     *
      * @throws IOException if a problem occurred while communicating with the server.
      */
     HttpResponse<AuthResult> auth(String secret) throws IOException;

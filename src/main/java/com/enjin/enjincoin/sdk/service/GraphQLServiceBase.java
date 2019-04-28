@@ -14,7 +14,7 @@ import java.lang.reflect.Type;
 
 public class GraphQLServiceBase extends ServiceBase {
 
-    private static final Gson GSON = new GsonBuilder().create();
+    private static final Gson      GSON = new GsonBuilder().create();
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     protected <T> HttpResponse<T> executeGraphQLCall(Call<T> call) throws IOException {
@@ -43,14 +43,14 @@ public class GraphQLServiceBase extends ServiceBase {
 
     protected <T> HttpResponse<T> createResult(retrofit2.Response<T> response) throws IOException {
         int code = response.code();
-        T body = null;
+        T   body = null;
 
         if (response.isSuccessful() || response.body() != null) {
             body = response.body();
         } else if (response.errorBody() != null) {
             ResponseBody errorBody = response.errorBody();
             if (errorBody.contentType().equals(JSON)) {
-                Type type = new TypeToken<T>(){}.getType();
+                Type type = new TypeToken<T>() {}.getType();
                 body = GSON.fromJson(errorBody.string(), type);
             }
         }

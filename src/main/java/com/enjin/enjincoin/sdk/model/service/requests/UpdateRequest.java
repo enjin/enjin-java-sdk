@@ -38,6 +38,7 @@ public class UpdateRequest extends GraphQLRequest.Builder {
      * The id of the identity this request was created for.
      *
      * @param identityId the identity id.
+     *
      * @return builder.
      */
     public UpdateRequest withIdentityId(BigInteger identityId) {
@@ -49,6 +50,7 @@ public class UpdateRequest extends GraphQLRequest.Builder {
      * The transaction type.
      *
      * @param type the transaction type.
+     *
      * @return the builder.
      */
     public UpdateRequest withType(TransactionType type) {
@@ -60,6 +62,7 @@ public class UpdateRequest extends GraphQLRequest.Builder {
      * Can be set to retry or cancel a transaction.
      *
      * @param rebroadcast the rebroadcast type.
+     *
      * @return the builder.
      */
     public UpdateRequest withRebroadcast(RebroadcastType rebroadcast) {
@@ -71,6 +74,7 @@ public class UpdateRequest extends GraphQLRequest.Builder {
      * Sets the create token data.
      *
      * @param createTokenData the data.
+     *
      * @return the builder.
      */
     public UpdateRequest withCreateTokenData(CreateTokenData createTokenData) {
@@ -83,6 +87,7 @@ public class UpdateRequest extends GraphQLRequest.Builder {
      * Sets the create trade data.
      *
      * @param createTradeData the data.
+     *
      * @return the builder.
      */
     public UpdateRequest withCreateTradeData(CreateTradeData createTradeData) {
@@ -95,6 +100,7 @@ public class UpdateRequest extends GraphQLRequest.Builder {
      * Sets the complete trade data.
      *
      * @param completeTradeData the data.
+     *
      * @return the builder.
      */
     public UpdateRequest withCompleteTradeData(CompleteTradeData completeTradeData) {
@@ -107,6 +113,7 @@ public class UpdateRequest extends GraphQLRequest.Builder {
      * Sets the mint data.
      *
      * @param mintTokenData the data.
+     *
      * @return the builder.
      */
     public UpdateRequest withMintTokenData(MintTokenData mintTokenData) {
@@ -119,6 +126,7 @@ public class UpdateRequest extends GraphQLRequest.Builder {
      * Sets the melt data.
      *
      * @param meltTokenData the data.
+     *
      * @return the builder.
      */
     public UpdateRequest withMeltTokenData(MeltTokenData meltTokenData) {
@@ -131,6 +139,7 @@ public class UpdateRequest extends GraphQLRequest.Builder {
      * Sets the send token data.
      *
      * @param sendTokenData the data.
+     *
      * @return the builder.
      */
     public UpdateRequest withSendTokenData(SendTokenData sendTokenData) {
@@ -143,6 +152,7 @@ public class UpdateRequest extends GraphQLRequest.Builder {
      * Sets the advanced send token data.
      *
      * @param advancedSendTokenData the data.
+     *
      * @return the builder.
      */
     public UpdateRequest withAdvancedSendTokenData(AdvancedSendTokenData advancedSendTokenData) {
@@ -155,6 +165,7 @@ public class UpdateRequest extends GraphQLRequest.Builder {
      * Sets the update item name data.
      *
      * @param updateItemNameData the data.
+     *
      * @return the builder.
      */
     public UpdateRequest withUpdateItemNameData(UpdateItemNameData updateItemNameData) {
@@ -167,6 +178,7 @@ public class UpdateRequest extends GraphQLRequest.Builder {
      * Sets the set item uri data.
      *
      * @param setItemUriData the data.
+     *
      * @return the builder.
      */
     public UpdateRequest withSetItemUriData(SetItemUriData setItemUriData) {
@@ -179,6 +191,7 @@ public class UpdateRequest extends GraphQLRequest.Builder {
      * Sets the set whitelisted data.
      *
      * @param setWhitelistedData the data.
+     *
      * @return the builder.
      */
     public UpdateRequest withSetWhitelistedData(SetWhitelistedData setWhitelistedData) {
@@ -191,6 +204,7 @@ public class UpdateRequest extends GraphQLRequest.Builder {
      * Sets the approve enj data.
      *
      * @param approveEnjData the data.
+     *
      * @return the builder.
      */
     public UpdateRequest withApproveEnjData(ApproveEnjData approveEnjData) {
@@ -203,6 +217,7 @@ public class UpdateRequest extends GraphQLRequest.Builder {
      * Sets the approve item data.
      *
      * @param approveItemData the data.
+     *
      * @return the builder.
      */
     public UpdateRequest withApproveItemData(ApproveItemData approveItemData) {
@@ -214,6 +229,7 @@ public class UpdateRequest extends GraphQLRequest.Builder {
      * Sets the set transferable data.
      *
      * @param setTransferableData the data.
+     *
      * @return the builder.
      */
     public UpdateRequest withSetTransferableData(SetTransferableData setTransferableData) {
@@ -226,6 +242,7 @@ public class UpdateRequest extends GraphQLRequest.Builder {
      * Sets the set melt fee data.
      *
      * @param setMeltFeeData the data.
+     *
      * @return the builder.
      */
     public UpdateRequest withSetMeltFeeData(SetMeltFeeData setMeltFeeData) {
@@ -238,6 +255,7 @@ public class UpdateRequest extends GraphQLRequest.Builder {
      * Sets the decrease max melt fee data.
      *
      * @param decreaseMaxMeltFeeData the data.
+     *
      * @return the builder.
      */
     public UpdateRequest withDecreaseMaxMeltFeeData(DecreaseMaxMeltFeeData decreaseMaxMeltFeeData) {
@@ -250,6 +268,7 @@ public class UpdateRequest extends GraphQLRequest.Builder {
      * Sets the set transfer fee data.
      *
      * @param setTransferFeeData the data.
+     *
      * @return the builder.
      */
     public UpdateRequest withSetTransferFeeData(SetTransferFeeData setTransferFeeData) {
@@ -262,6 +281,7 @@ public class UpdateRequest extends GraphQLRequest.Builder {
      * Sets the decrease max transfer fee data.
      *
      * @param decreaseMaxTransferFeeData the data.
+     *
      * @return the builder.
      */
     public UpdateRequest withDecreaseMaxTransferFeeData(DecreaseMaxTransferFeeData decreaseMaxTransferFeeData) {
@@ -274,6 +294,7 @@ public class UpdateRequest extends GraphQLRequest.Builder {
      * Sets the add log data.
      *
      * @param addLogData the data.
+     *
      * @return the builder.
      */
     public UpdateRequest withAddLogData(AddLogData addLogData) {
@@ -286,6 +307,7 @@ public class UpdateRequest extends GraphQLRequest.Builder {
      * Sets the batch approve data.
      *
      * @param batchApproveData the data.
+     *
      * @return the builder.
      */
     public UpdateRequest withBatchApproveData(BatchApproveData batchApproveData) {
@@ -298,6 +320,7 @@ public class UpdateRequest extends GraphQLRequest.Builder {
      * Sets the set approval data.
      *
      * @param setApprovalData the data.
+     *
      * @return the builder.
      */
     public UpdateRequest withSetApprovalData(SetApprovalData setApprovalData) {
@@ -310,6 +333,7 @@ public class UpdateRequest extends GraphQLRequest.Builder {
      * Sets the set approval for all data.
      *
      * @param setApprovalForAllData the data.
+     *
      * @return the builder.
      */
     public UpdateRequest withSetApprovalForAllData(SetApprovalForAllData setApprovalForAllData) {
@@ -322,6 +346,7 @@ public class UpdateRequest extends GraphQLRequest.Builder {
      * Sets the message data.
      *
      * @param messageData the data.
+     *
      * @return the builder.
      */
     public UpdateRequest withMessageData(MessageData messageData) {

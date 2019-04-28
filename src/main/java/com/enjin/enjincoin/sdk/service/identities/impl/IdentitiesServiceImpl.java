@@ -21,7 +21,7 @@ import java.io.IOException;
 
 public class IdentitiesServiceImpl extends GraphQLServiceBase implements IdentitiesService {
 
-    private IdentitiesRetrofitService service;
+    private final IdentitiesRetrofitService service;
 
     public IdentitiesServiceImpl(Retrofit retrofit) {
         this.service = retrofit.create(IdentitiesRetrofitService.class);

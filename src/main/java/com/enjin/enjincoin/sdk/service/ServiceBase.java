@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class ServiceBase {
 
-    private static final Gson GSON = new GsonBuilder().create();
+    private static final Gson      GSON = new GsonBuilder().create();
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     protected <T> HttpResponse<T> execute(Call<T> call) throws IOException {

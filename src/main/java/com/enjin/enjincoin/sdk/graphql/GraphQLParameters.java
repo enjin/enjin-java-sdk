@@ -19,10 +19,10 @@ import java.util.Map;
  */
 public class GraphQLParameters {
 
-    private final Gson gson = new GsonBuilder()
+    private final Gson                gson = new GsonBuilder()
             .disableHtmlEscaping()
             .create();
-    private Map<String, Object> parameters;
+    private       Map<String, Object> parameters;
 
     /**
      * Creates a new instance with no parameters.
@@ -36,7 +36,7 @@ public class GraphQLParameters {
      *
      * @param parameters the parameters.
      */
-    public GraphQLParameters(final Map<String, Object> parameters) {
+    public GraphQLParameters(Map<String, Object> parameters) {
         this.parameters = parameters;
     }
 
@@ -55,7 +55,7 @@ public class GraphQLParameters {
      * @return the formatted parameters.
      */
     public String getFormattedParameters() {
-        final StringBuilder builder = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
         for (final Map.Entry<String, Object> parameter : this.parameters.entrySet()) {
             if (builder.length() > 0) {
                 builder.append(", ");

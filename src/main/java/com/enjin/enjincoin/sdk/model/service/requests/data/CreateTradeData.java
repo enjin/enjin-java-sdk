@@ -19,6 +19,7 @@ public class CreateTradeData {
      * The tokens the first party is asking for.
      *
      * -- SETTER --
+     *
      * @param askingTokens the tokens.
      * @return the builder.
      */
@@ -29,6 +30,7 @@ public class CreateTradeData {
      * The tokens the first party is offering.
      *
      * -- SETTER --
+     *
      * @param offeringTokens the tokens.
      * @return the builder.
      */
@@ -39,6 +41,7 @@ public class CreateTradeData {
      * The second party ethereum address.
      *
      * -- SETTER --
+     *
      * @param secondPartyAddress the ethereum address.
      * @return the builder.
      */
@@ -49,6 +52,7 @@ public class CreateTradeData {
      * The second party identity id.
      *
      * -- SETTER --
+     *
      * @param secondPartyIdentityId the identity id.
      * @return the builder.
      */

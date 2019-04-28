@@ -13,48 +13,64 @@ import com.enjin.enjincoin.sdk.model.service.identities.UpdateIdentityResult;
 
 import java.io.IOException;
 
+/**
+ * Synchronous methods for querying and mutating app identities.
+ *
+ * @author Evan Lindsay
+ */
 public interface SynchronousIdentitiesService {
 
     /**
-     * @return
+     * Returns all identities of an app.
      *
-     * @throws IOException
+     * @return the response.
+     *
+     * @throws IOException if a communication error occurred.
      */
     HttpResponse<GraphQLResponse<GetIdentitiesResult>> getAllIdentitiesSync() throws IOException;
 
+
     /**
-     * @param query
+     * Gets identities of an app that match the query parameters.
      *
-     * @return
+     * @param query the query.
      *
-     * @throws IOException
+     * @return the response.
+     *
+     * @throws IOException if a communication error occurred.
      */
     HttpResponse<GraphQLResponse<GetIdentitiesResult>> getIdentitiesSync(GetIdentities query) throws IOException;
 
     /**
-     * @param query
+     * Creates a new identity.
      *
-     * @return
+     * @param query the query.
      *
-     * @throws IOException
+     * @return the response.
+     *
+     * @throws IOException if a communication error occurred.
      */
     HttpResponse<GraphQLResponse<CreateIdentityResult>> createIdentitySync(CreateIdentity query) throws IOException;
 
     /**
-     * @param query
+     * Deletes or unlinks an identity.
      *
-     * @return
+     * @param query the query.
      *
-     * @throws IOException
+     * @return the response.
+     *
+     * @throws IOException if a communication error occurred.
      */
     HttpResponse<GraphQLResponse<DeleteIdentityResult>> deleteIdentitySync(DeleteIdentity query) throws IOException;
 
     /**
-     * @param query
+     * Updates an identity.
      *
-     * @return
+     * @param query the query.
      *
-     * @throws IOException
+     * @return the response.
+     *
+     * @throws IOException if a communication error occurred.
      */
     HttpResponse<GraphQLResponse<UpdateIdentityResult>> updateIdentitySync(UpdateIdentity query) throws IOException;
 }

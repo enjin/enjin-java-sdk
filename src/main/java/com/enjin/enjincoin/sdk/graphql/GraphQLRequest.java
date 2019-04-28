@@ -22,6 +22,7 @@ public final class GraphQLRequest {
      * parameters baked in.
      *
      * @return the formatted query
+     *
      * @see GraphQLRequest
      * @see GraphQLParameters
      */
@@ -47,9 +48,10 @@ public final class GraphQLRequest {
          * Sets the request query.
          *
          * @param query the query.
+         *
          * @return the builder.
          */
-        public Builder withQuery(final String query) {
+        public Builder withQuery(String query) {
             this.request.query = query;
             return this;
         }
@@ -57,11 +59,12 @@ public final class GraphQLRequest {
         /**
          * Adds a parameter to be baked into the query.
          *
-         * @param key the parameter key.
+         * @param key   the parameter key.
          * @param value the parameter value.
+         *
          * @return the builder.
          */
-        public Builder withParameter(final String key, final Object value) {
+        public Builder withParameter(String key, Object value) {
             if (key != null && !key.isEmpty() && value != null) {
                 this.request.parameters.getParameters().put(key, value);
             }

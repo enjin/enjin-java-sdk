@@ -92,7 +92,7 @@ public enum NotificationType {
      **/
     private String eventType;
 
-    NotificationType(final String eventType) {
+    NotificationType(String eventType) {
         this.eventType = eventType;
     }
 
@@ -109,9 +109,10 @@ public enum NotificationType {
      * Checks if this type is value in the given filter.
      *
      * @param filter - filter being processed
+     *
      * @return boolean
      */
-    public boolean in(final EventFilter filter) {
+    public boolean in(EventFilter filter) {
         if (filter != null) {
             return this.in(filter.value());
         }
@@ -123,10 +124,11 @@ public enum NotificationType {
      * Check if this type is the current type.
      *
      * @param types to check
+     *
      * @return boolean
      */
-    public boolean in(final NotificationType... types) {
-        for (final NotificationType type : types) {
+    public boolean in(NotificationType... types) {
+        for (NotificationType type : types) {
             if (this == type) {
                 return true;
             }
@@ -139,14 +141,15 @@ public enum NotificationType {
      * Method to get the correct enum value.
      *
      * @param name to get enum for
+     *
      * @return NotificationType
      */
-    public static NotificationType valueOfEnum(final String name) {
+    public static NotificationType valueOfEnum(String name) {
         NotificationType type;
 
         try {
             type = valueOf(name);
-        } catch (final IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             type = UNKNOWN_EVENT;
         }
 

@@ -11,9 +11,9 @@ import java.math.BigInteger;
 
 public class EthereumServiceImpl extends ServiceBase implements EthereumService {
 
-    private EthereumRetrofitService service;
+    private final EthereumRetrofitService service;
 
-    public EthereumServiceImpl(final Retrofit retrofit) {
+    public EthereumServiceImpl(Retrofit retrofit) {
         this.service = retrofit.create(EthereumRetrofitService.class);
     }
 

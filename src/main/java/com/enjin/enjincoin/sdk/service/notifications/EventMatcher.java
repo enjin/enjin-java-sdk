@@ -3,16 +3,18 @@ package com.enjin.enjincoin.sdk.service.notifications;
 import com.enjin.enjincoin.sdk.model.service.notifications.NotificationEvent;
 
 /**
- * Interface to define the methods to be implemented by any eventMatchers.
+ * Matches events.
+ *
+ * @author Evan Lindsay
  */
 public interface EventMatcher {
 
     /**
-     * Method to match against any events.
+     * Method to check events to see if they match.
      *
-     * @param event to match
+     * @param event the event to match.
      *
-     * @return boolean
+     * @return true if matched, else false.
      */
     boolean matches(NotificationEvent event);
 }

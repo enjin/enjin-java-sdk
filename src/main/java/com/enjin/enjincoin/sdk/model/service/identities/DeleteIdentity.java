@@ -16,6 +16,7 @@ public class DeleteIdentity extends GraphQLRequest.Builder {
      * The identity id.
      *
      * @param identityId the identity id.
+     *
      * @return the builder.
      */
     public DeleteIdentity withIdentityId(BigInteger identityId) {
@@ -27,6 +28,7 @@ public class DeleteIdentity extends GraphQLRequest.Builder {
      * Whether to unlink or delete an identity.
      *
      * @param unlink to unlink or not to unlink.
+     *
      * @return the builder.
      */
     public DeleteIdentity withUnlink(boolean unlink) {
@@ -40,6 +42,7 @@ public class DeleteIdentity extends GraphQLRequest.Builder {
      * <p>Sets the identity id and unlink to true.
      *
      * @param id the identity id.
+     *
      * @return the builder.
      */
     public static DeleteIdentity unlink(BigInteger id) {

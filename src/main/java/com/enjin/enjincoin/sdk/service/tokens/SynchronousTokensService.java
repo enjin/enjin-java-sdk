@@ -14,33 +14,45 @@ import java.io.IOException;
 public interface SynchronousTokensService {
 
     /**
-     * @return
+     * Gets all app tokens.
      *
-     * @throws IOException
+     * @return the response.
+     *
+     * @throws IOException if a communication error occurred.
      */
     HttpResponse<GraphQLResponse<GetTokensResult>> getAllTokensSync() throws IOException;
 
 
     /**
-     * @param query
+     * Gets app tokens that match the query parameters.
      *
-     * @return
+     * @param query the query.
      *
-     * @throws IOException
+     * @return the response.
+     *
+     * @throws IOException if a communication error occurred.
      */
     HttpResponse<GraphQLResponse<GetTokensResult>> getTokensSync(GetTokens query) throws IOException;
 
     /**
-     * @param query
+     * Imports a token from the blockchain.
+     *
+     * @param query the query.
+     *
+     * @return the response.
+     *
+     * @throws IOException if a communication error occurred.
      */
     HttpResponse<GraphQLResponse<CreateTokenResult>> importTokenSync(ImportToken query) throws IOException;
 
     /**
-     * @param query
+     * Updates an app token.
      *
-     * @return
+     * @param query the query.
      *
-     * @throws IOException
+     * @return the response.
+     *
+     * @throws IOException if a communication error occurred.
      */
     HttpResponse<GraphQLResponse<UpdateTokenResult>> updateTokenSync(UpdateToken query) throws IOException;
 

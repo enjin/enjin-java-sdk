@@ -4,32 +4,53 @@ import java.math.BigInteger;
 import java.util.List;
 
 /**
- * <p>Interface for any third party notification systems such as pusher.</p>
+ * An interface that defines required methods for a 3rd party service such as Pusher.
+ *
+ * @author Evan Lindsay
  */
 public interface ThirdPartyNotificationService {
 
     /**
-     * Method to initialize the notification service.
+     * Initializes the 3rd party service.
      *
-     * @return boolean
+     * @return true if init success, else false.
      */
     boolean init();
 
     /**
-     * Method to shut down the notification service.
+     * Shuts down the 3rd party service.
      */
     void shutdown();
 
     /**
-     * Method to set the notification listeners.
+     * Sets the list of notification listeners.
      *
-     * @param notificationListeners the new list of listeners to set
+     * @param notificationListeners the listeners.
      */
     void setNotificationListeners(List<NotificationListenerRegistration> notificationListeners);
 
+    /**
+     * Opens a channel for the specified identity id, allowing listeners
+     * to receive link events for that identity.
+     *
+     * @param identityId the identity id.
+     */
     void listenForLink(BigInteger identityId);
 
+    /**
+     * Closes a channel for the specified identity id, preventing listeners
+     * from receiving link events for that identity.
+     *
+     * @param identityId the identity id.
+     */
     void stopListeningForLink(BigInteger identityId);
 
+    /**
+     * Returns whether or not a channel is open for the specified identity id.
+     *
+     * @param identityId the identity id.
+     *
+     * @return true if listening, else false.
+     */
     boolean isListeningForLink(BigInteger identityId);
 }

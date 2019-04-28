@@ -16,6 +16,7 @@ public class GetIdentities extends GraphQLRequest.Builder {
      * The identity id.
      *
      * @param identityId the identity id.
+     *
      * @return the builder.
      */
     public GetIdentities withIdentityId(BigInteger identityId) {
@@ -27,6 +28,7 @@ public class GetIdentities extends GraphQLRequest.Builder {
      * The ethereum address linked to the identity.
      *
      * @param ethAddr the ethereum address.
+     *
      * @return the builder.
      */
     public GetIdentities withEthereumAddress(String ethAddr) {
@@ -38,6 +40,7 @@ public class GetIdentities extends GraphQLRequest.Builder {
      * The linking code associated with the unlinked identity.
      *
      * @param linkingCode the linking code.
+     *
      * @return the builder.
      */
     public GetIdentities withLinkingCode(String linkingCode) {

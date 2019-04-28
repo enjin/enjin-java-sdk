@@ -42,7 +42,7 @@ public class PersistentCookieJar implements ClearableCookieJar {
     /**
      * Creates a new instance with the provided cookie cache and persistor.
      *
-     * @param cache the cookie cache.
+     * @param cache     the cookie cache.
      * @param persistor the cookie persistor.
      */
     public PersistentCookieJar(CookieCache cache, CookiePersistor persistor) {

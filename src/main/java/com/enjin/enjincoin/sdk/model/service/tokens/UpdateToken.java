@@ -14,6 +14,7 @@ public class UpdateToken extends GraphQLRequest.Builder {
      * The token id.
      *
      * @param tokenId the token id.
+     *
      * @return the builder.
      */
     public UpdateToken withTokenId(String tokenId) {
@@ -25,6 +26,7 @@ public class UpdateToken extends GraphQLRequest.Builder {
      * The app id.
      *
      * @param appId the app id.
+     *
      * @return the builder.
      */
     public UpdateToken withAppId(int appId) {
@@ -36,6 +38,7 @@ public class UpdateToken extends GraphQLRequest.Builder {
      * Whether the token should be updated from the blockchain or not.
      *
      * @param fromBlockchain update from the blockchain?
+     *
      * @return the builder.
      */
     public UpdateToken withFromBlockchain(boolean fromBlockchain) {

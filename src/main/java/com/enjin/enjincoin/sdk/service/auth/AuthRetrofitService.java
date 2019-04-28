@@ -7,12 +7,19 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 
+/**
+ * Authenticates the client with the app secret.
+ *
+ * @author Evan Lindsay
+ */
 public interface AuthRetrofitService {
 
     /**
-     * @param body
+     * Authenticate the client.
      *
-     * @return
+     * @param body the authentication body.
+     *
+     * @return a call instance.
      */
     @POST("oauth/token")
     Call<AuthResult> auth(@Json @Body AuthBody body);

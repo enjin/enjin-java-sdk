@@ -1,5 +1,10 @@
 package com.enjin.enjincoin.sdk.service.notifications;
 
+/**
+ * The channels specified by the trusted platform.
+ *
+ * @author Evan Lindsay
+ */
 public enum ChannelEvent {
 
     IDENTITY("EnjinCoin\\Events\\EnjinEventIdentity"),
@@ -13,6 +18,11 @@ public enum ChannelEvent {
         this.key = key;
     }
 
+    /**
+     * The channel event key.
+     *
+     * @return the key.
+     */
     public String getKey() {
         return this.key;
     }

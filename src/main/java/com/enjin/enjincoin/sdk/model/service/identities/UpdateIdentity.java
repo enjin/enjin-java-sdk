@@ -18,6 +18,7 @@ public class UpdateIdentity extends GraphQLRequest.Builder {
      * The identity id.
      *
      * @param identityId the identity id.
+     *
      * @return the builder.
      */
     public UpdateIdentity withIdentityId(BigInteger identityId) {
@@ -29,6 +30,7 @@ public class UpdateIdentity extends GraphQLRequest.Builder {
      * The new app id to transfer an identity to.
      *
      * @param appId the new app id.
+     *
      * @return the builder.
      */
     public UpdateIdentity withAppId(int appId) {
@@ -40,6 +42,7 @@ public class UpdateIdentity extends GraphQLRequest.Builder {
      * The user id to link this identity to.
      *
      * @param userId the user id.
+     *
      * @return the builder.
      */
     public UpdateIdentity withUserId(BigInteger userId) {
@@ -51,6 +54,7 @@ public class UpdateIdentity extends GraphQLRequest.Builder {
      * The ethereum address linked to the identity.
      *
      * @param ethAddr the ethereum address.
+     *
      * @return the builder.
      */
     public UpdateIdentity withEthereumAddress(String ethAddr) {
@@ -62,6 +66,7 @@ public class UpdateIdentity extends GraphQLRequest.Builder {
      * The fields to add and/or modify for an identity.
      *
      * @param fields the fields.
+     *
      * @return the builder.
      */
     public UpdateIdentity withFields(List<IdentityFieldInput> fields) {
@@ -73,6 +78,7 @@ public class UpdateIdentity extends GraphQLRequest.Builder {
      * The fields to add and/or modify for an identity.
      *
      * @param fields the fields.
+     *
      * @return the builder.
      */
     public UpdateIdentity withFields(IdentityFieldInput... fields) {

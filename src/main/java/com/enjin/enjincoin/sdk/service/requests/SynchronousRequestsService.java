@@ -14,36 +14,44 @@ import java.io.IOException;
 public interface SynchronousRequestsService {
 
     /**
-     * @return
+     * Gets all app requests.
      *
-     * @throws IOException
+     * @return the response.
+     *
+     * @throws IOException if a communication error occurred.
      */
     HttpResponse<GraphQLResponse<GetRequestsResult>> getAllRequestsSync() throws IOException;
 
     /**
-     * @param query
+     * Gets app requests that match the query parameters.
      *
-     * @return
+     * @param query the query.
      *
-     * @throws IOException
+     * @return the response.
+     *
+     * @throws IOException if a communication error occurred.
      */
     HttpResponse<GraphQLResponse<GetRequestsResult>> getRequestsSync(GetRequests query) throws IOException;
 
     /**
-     * @param query
+     * Creates a new app request.
      *
-     * @return
+     * @param query the query.
      *
-     * @throws IOException
+     * @return the response.
+     *
+     * @throws IOException if a communication error occurred.
      */
     HttpResponse<GraphQLResponse<CreateRequestResult>> createRequestSync(CreateRequest query) throws IOException;
 
     /**
-     * @param query
+     * Updates an app request.
      *
-     * @return
+     * @param query the query.
      *
-     * @throws IOException
+     * @return the response.
+     *
+     * @throws IOException if a communication error occurred.
      */
     HttpResponse<GraphQLResponse<UpdateRequestResult>> updateRequestSync(UpdateRequest query) throws IOException;
 

@@ -42,6 +42,7 @@ public class CreateRequest extends GraphQLRequest.Builder {
      * The id of the identity this request was created for.
      *
      * @param identityId the identity id.
+     *
      * @return builder.
      */
     public CreateRequest withIdentityId(BigInteger identityId) {
@@ -53,6 +54,7 @@ public class CreateRequest extends GraphQLRequest.Builder {
      * The transaction type.
      *
      * @param type the transaction type.
+     *
      * @return the builder.
      */
     public CreateRequest withType(TransactionType type) {
@@ -66,6 +68,7 @@ public class CreateRequest extends GraphQLRequest.Builder {
      * blockchain. Disable with caution.
      *
      * @param test whether to test or not.
+     *
      * @return the builder.
      */
     public CreateRequest withTest(boolean test) {
@@ -78,6 +81,7 @@ public class CreateRequest extends GraphQLRequest.Builder {
      * if you wish test settings without submitting any blockchain transactions.
      *
      * @param dummy whether to test and not save/send or not.
+     *
      * @return the builder.
      */
     public CreateRequest withDummy(boolean dummy) {
@@ -89,6 +93,7 @@ public class CreateRequest extends GraphQLRequest.Builder {
      * Sets the create token data.
      *
      * @param createTokenData the data.
+     *
      * @return the builder.
      */
     public CreateRequest withCreateTokenData(CreateTokenData createTokenData) {
@@ -101,6 +106,7 @@ public class CreateRequest extends GraphQLRequest.Builder {
      * Sets the create trade data.
      *
      * @param createTradeData the data.
+     *
      * @return the builder.
      */
     public CreateRequest withCreateTradeData(CreateTradeData createTradeData) {
@@ -113,6 +119,7 @@ public class CreateRequest extends GraphQLRequest.Builder {
      * Sets the complete trade data.
      *
      * @param completeTradeData the data.
+     *
      * @return the builder.
      */
     public CreateRequest withCompleteTradeData(CompleteTradeData completeTradeData) {
@@ -125,6 +132,7 @@ public class CreateRequest extends GraphQLRequest.Builder {
      * Sets the mint data.
      *
      * @param mintTokenData the data.
+     *
      * @return the builder.
      */
     public CreateRequest withMintTokenData(MintTokenData mintTokenData) {
@@ -137,6 +145,7 @@ public class CreateRequest extends GraphQLRequest.Builder {
      * Sets the melt data.
      *
      * @param meltTokenData the data.
+     *
      * @return the builder.
      */
     public CreateRequest withMeltTokenData(MeltTokenData meltTokenData) {
@@ -149,6 +158,7 @@ public class CreateRequest extends GraphQLRequest.Builder {
      * Sets the send token data.
      *
      * @param sendTokenData the data.
+     *
      * @return the builder.
      */
     public CreateRequest withSendTokenData(SendTokenData sendTokenData) {
@@ -161,6 +171,7 @@ public class CreateRequest extends GraphQLRequest.Builder {
      * Sets the advanced send token data.
      *
      * @param advancedSendTokenData the data.
+     *
      * @return the builder.
      */
     public CreateRequest withAdvancedSendTokenData(AdvancedSendTokenData advancedSendTokenData) {
@@ -173,6 +184,7 @@ public class CreateRequest extends GraphQLRequest.Builder {
      * Sets the update item name data.
      *
      * @param updateItemNameData the data.
+     *
      * @return the builder.
      */
     public CreateRequest withUpdateItemNameData(UpdateItemNameData updateItemNameData) {
@@ -185,6 +197,7 @@ public class CreateRequest extends GraphQLRequest.Builder {
      * Sets the set item uri data.
      *
      * @param setItemUriData the data.
+     *
      * @return the builder.
      */
     public CreateRequest withSetItemUriData(SetItemUriData setItemUriData) {
@@ -197,6 +210,7 @@ public class CreateRequest extends GraphQLRequest.Builder {
      * Sets the set whitelisted data.
      *
      * @param setWhitelistedData the data.
+     *
      * @return the builder.
      */
     public CreateRequest withSetWhitelistedData(SetWhitelistedData setWhitelistedData) {
@@ -209,6 +223,7 @@ public class CreateRequest extends GraphQLRequest.Builder {
      * Sets the approve enj data.
      *
      * @param approveEnjData the data.
+     *
      * @return the builder.
      */
     public CreateRequest withApproveEnjData(ApproveEnjData approveEnjData) {
@@ -221,6 +236,7 @@ public class CreateRequest extends GraphQLRequest.Builder {
      * Sets the approve item data.
      *
      * @param approveItemData the data.
+     *
      * @return the builder.
      */
     public CreateRequest withApproveItemData(ApproveItemData approveItemData) {
@@ -232,6 +248,7 @@ public class CreateRequest extends GraphQLRequest.Builder {
      * Sets the set transferable data.
      *
      * @param setTransferableData the data.
+     *
      * @return the builder.
      */
     public CreateRequest withSetTransferableData(SetTransferableData setTransferableData) {
@@ -244,6 +261,7 @@ public class CreateRequest extends GraphQLRequest.Builder {
      * Sets the set melt fee data.
      *
      * @param setMeltFeeData the data.
+     *
      * @return the builder.
      */
     public CreateRequest withSetMeltFeeData(SetMeltFeeData setMeltFeeData) {
@@ -256,6 +274,7 @@ public class CreateRequest extends GraphQLRequest.Builder {
      * Sets the decrease max melt fee data.
      *
      * @param decreaseMaxMeltFeeData the data.
+     *
      * @return the builder.
      */
     public CreateRequest withDecreaseMaxMeltFeeData(DecreaseMaxMeltFeeData decreaseMaxMeltFeeData) {
@@ -268,6 +287,7 @@ public class CreateRequest extends GraphQLRequest.Builder {
      * Sets the set transfer fee data.
      *
      * @param setTransferFeeData the data.
+     *
      * @return the builder.
      */
     public CreateRequest withSetTransferFeeData(SetTransferFeeData setTransferFeeData) {
@@ -280,6 +300,7 @@ public class CreateRequest extends GraphQLRequest.Builder {
      * Sets the decrease max transfer fee data.
      *
      * @param decreaseMaxTransferFeeData the data.
+     *
      * @return the builder.
      */
     public CreateRequest withDecreaseMaxTransferFeeData(DecreaseMaxTransferFeeData decreaseMaxTransferFeeData) {
@@ -292,6 +313,7 @@ public class CreateRequest extends GraphQLRequest.Builder {
      * Sets the add log data.
      *
      * @param addLogData the data.
+     *
      * @return the builder.
      */
     public CreateRequest withAddLogData(AddLogData addLogData) {
@@ -304,6 +326,7 @@ public class CreateRequest extends GraphQLRequest.Builder {
      * Sets the batch approve data.
      *
      * @param batchApproveData the data.
+     *
      * @return the builder.
      */
     public CreateRequest withBatchApproveData(BatchApproveData batchApproveData) {
@@ -316,6 +339,7 @@ public class CreateRequest extends GraphQLRequest.Builder {
      * Sets the set approval data.
      *
      * @param setApprovalData the data.
+     *
      * @return the builder.
      */
     public CreateRequest withSetApprovalData(SetApprovalData setApprovalData) {
@@ -328,6 +352,7 @@ public class CreateRequest extends GraphQLRequest.Builder {
      * Sets the set approval for all data.
      *
      * @param setApprovalForAllData the data.
+     *
      * @return the builder.
      */
     public CreateRequest withSetApprovalForAllData(SetApprovalForAllData setApprovalForAllData) {
@@ -340,6 +365,7 @@ public class CreateRequest extends GraphQLRequest.Builder {
      * Sets the message data.
      *
      * @param messageData the data.
+     *
      * @return the builder.
      */
     public CreateRequest withMessageData(MessageData messageData) {

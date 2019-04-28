@@ -49,6 +49,7 @@ public class GraphQLProcessor {
      * null.
      *
      * @param annotations an array of annotations that should contain {@link GraphQuery}.
+     *
      * @return the contents of a template file or null if no entry is found.
      */
     public String getQuery(Annotation[] annotations) {

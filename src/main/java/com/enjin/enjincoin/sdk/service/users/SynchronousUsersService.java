@@ -14,36 +14,45 @@ import java.io.IOException;
 public interface SynchronousUsersService {
 
     /**
-     * @param query
+     * Gets all users.
      *
-     * @return
+     * @return the response.
      *
-     * @throws IOException
-     */
-    HttpResponse<GraphQLResponse<CreateUserResult>> createUserSync(CreateUser query) throws IOException;
-
-    /**
-     * @param query
-     *
-     * @return
-     *
-     * @throws IOException
-     */
-    HttpResponse<GraphQLResponse<LoginUserResult>> loginUserSync(LoginUser query) throws IOException;
-
-    /**
-     * @return
-     *
-     * @throws IOException
+     * @throws IOException if a communication error occurred.
      */
     HttpResponse<GraphQLResponse<GetUsersResult>> getAllUsersSync() throws IOException;
 
     /**
-     * @param query
+     * Gets users that match the query parameters.
      *
-     * @return
+     * @param query the query.
      *
-     * @throws IOException
+     * @return the response.
+     *
+     * @throws IOException if a communication error occurred.
      */
     HttpResponse<GraphQLResponse<GetUsersResult>> getUsersSync(GetUsers query) throws IOException;
+
+    /**
+     * Creates a new user.
+     *
+     * @param query the query.
+     *
+     * @return the response.
+     *
+     * @throws IOException if a communication error occurred.
+     */
+    HttpResponse<GraphQLResponse<CreateUserResult>> createUserSync(CreateUser query) throws IOException;
+
+    /**
+     * Authenticates a user and returns the users access tokens.
+     *
+     * @param query the query.
+     *
+     * @return the response.
+     *
+     * @throws IOException if a communication error occurred.
+     */
+    HttpResponse<GraphQLResponse<LoginUserResult>> loginUserSync(LoginUser query) throws IOException;
+
 }

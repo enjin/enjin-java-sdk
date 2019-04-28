@@ -14,6 +14,7 @@ public class GetTokens extends GraphQLRequest.Builder {
      * The token id.
      *
      * @param tokenId the token id.
+     *
      * @return the builder.
      */
     public GetTokens withTokenId(String tokenId) {
@@ -25,6 +26,7 @@ public class GetTokens extends GraphQLRequest.Builder {
      * The token index.
      *
      * @param tokenIndex the token index.
+     *
      * @return the builder.
      */
     public GetTokens withTokenIndex(String tokenIndex) {
@@ -36,6 +38,7 @@ public class GetTokens extends GraphQLRequest.Builder {
      * The token name.
      *
      * @param name the token name.
+     *
      * @return the builder.
      */
     public GetTokens withName(String name) {
@@ -47,6 +50,7 @@ public class GetTokens extends GraphQLRequest.Builder {
      * The token creator.
      *
      * @param creator creator ethereum address.
+     *
      * @return the builder.
      */
     public GetTokens withCreator(String creator) {
@@ -58,6 +62,7 @@ public class GetTokens extends GraphQLRequest.Builder {
      * The total supply.
      *
      * @param totalSupply the total supply.
+     *
      * @return the builder.
      */
     public GetTokens withTotalSupply(String totalSupply) {
@@ -69,6 +74,7 @@ public class GetTokens extends GraphQLRequest.Builder {
      * The reserve amount.
      *
      * @param reserve the reserve amount.
+     *
      * @return the builder.
      */
     public GetTokens withReserve(String reserve) {
@@ -80,6 +86,7 @@ public class GetTokens extends GraphQLRequest.Builder {
      * The supply model.
      *
      * @param supplyModel the supply model.
+     *
      * @return the builder.
      */
     public GetTokens withSupplyModel(TokenSupplyModel supplyModel) {
@@ -91,6 +98,7 @@ public class GetTokens extends GraphQLRequest.Builder {
      * The melt value.
      *
      * @param meltValue the melt value.
+     *
      * @return the builder.
      */
     public GetTokens withMeltValue(String meltValue) {
@@ -102,6 +110,7 @@ public class GetTokens extends GraphQLRequest.Builder {
      * The melt fee ratio.
      *
      * @param meltFeeRatio the fee ratio.
+     *
      * @return the builder.
      */
     public GetTokens withMeltFeeRatio(String meltFeeRatio) {
@@ -113,6 +122,7 @@ public class GetTokens extends GraphQLRequest.Builder {
      * The transferable type.
      *
      * @param transferable the type.
+     *
      * @return the builder.
      */
     public GetTokens withTransferable(TokenTransferable transferable) {
@@ -124,6 +134,7 @@ public class GetTokens extends GraphQLRequest.Builder {
      * The transfer fee settings.
      *
      * @param transferFeeSettings the settings.
+     *
      * @return the builder.
      */
     public GetTokens withTransferFeeSettings(TokenTransferFeeSettings transferFeeSettings) {
@@ -135,6 +146,7 @@ public class GetTokens extends GraphQLRequest.Builder {
      * Whether non-fungible or not.
      *
      * @param nonFungible is it non-fungible?
+     *
      * @return the builder.
      */
     public GetTokens withNonFungible(boolean nonFungible) {
@@ -146,6 +158,7 @@ public class GetTokens extends GraphQLRequest.Builder {
      * The first block this token existed.
      *
      * @param firstBlock the block.
+     *
      * @return the builder.
      */
     public GetTokens withFirstBlock(int firstBlock) {
@@ -157,6 +170,7 @@ public class GetTokens extends GraphQLRequest.Builder {
      * The block height of this token.
      *
      * @param blockHeight the block height.
+     *
      * @return the builder.
      */
     public GetTokens withBlockHeight(int blockHeight) {
@@ -168,6 +182,7 @@ public class GetTokens extends GraphQLRequest.Builder {
      * Whether to return the token id as an int.
      *
      * @param tokenIdAsInt return the id as an int?
+     *
      * @return the builder.
      */
     public GetTokens withTokenIdAsInt(boolean tokenIdAsInt) {
@@ -179,6 +194,7 @@ public class GetTokens extends GraphQLRequest.Builder {
      * Whether to return the token index as an int.
      *
      * @param tokenIndexAsInt return the index as an int?
+     *
      * @return the builder.
      */
     public GetTokens withTokenIndexAsInt(boolean tokenIndexAsInt) {
@@ -190,6 +206,7 @@ public class GetTokens extends GraphQLRequest.Builder {
      * Whether the token is marked for deletion or not.
      *
      * @param markedForDelete is it marked for deletion?
+     *
      * @return the builder.
      */
     public GetTokens withMarkedForDelete(boolean markedForDelete) {
