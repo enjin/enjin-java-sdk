@@ -14,6 +14,7 @@ plugins {
     id 'io.freefair.lombok' version '3.2.1'
     id 'com.bmuschko.nexus' version '2.3.1'
     id 'io.codearte.nexus-staging' version '0.20.0'
+    id 'org.ajoberstar.git-publish' version '2.1.1'
 }
 
 apply plugin: 'io.freefair.lombok'
@@ -125,6 +126,17 @@ nexus {
     sign = false
     repositoryUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
     snapshotRepositoryUrl = 'https://oss.sonatype.org/content/repositories/snapshots/'
+}
+
+gitPublish {
+    repoUri = 'git@github.com:enjin/Enjin-Coin-Java-SDK.git'
+    branch = 'gh-pages'
+    contents {
+        from(javadoc) {
+            into 'api'
+        }
+    }
+    commitMessage = "Publishing documentation for version ${version}."
 }
 
 wrapper {
