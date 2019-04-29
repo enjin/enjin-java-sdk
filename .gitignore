@@ -99,6 +99,7 @@ fabric.properties
 ### Gradle template
 .gradle
 /build/
+gradle.properties
 
 # Ignore Gradle GUI clientConfig
 gradle-app.setting
@@ -114,6 +115,3 @@ gradle-app.setting
 
 # Clover
 .clover/
-
-# Lombok
-DevelopmentWorkspaces*/

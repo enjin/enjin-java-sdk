@@ -12,6 +12,8 @@ plugins {
     id 'java-library'
     id 'maven'
     id 'io.freefair.lombok' version '3.2.1'
+    id 'com.bmuschko.nexus' version '2.3.1'
+    id 'io.codearte.nexus-staging' version '0.20.0'
 }
 
 apply plugin: 'io.freefair.lombok'
@@ -86,6 +88,43 @@ artifacts {
     archives javadocJar
     archives sourcesJar
     archives shadowJar
+}
+
+modifyPom {
+    project {
+        name 'Enjin Coin Java SDK'
+        description 'Java SDK for interacting with the Enjin Coin Trusted Platform'
+        url 'https://github.com/enjin/Enjin-Coin-Java-SDK'
+        inceptionYear '2017'
+
+        licenses {
+            license {
+                name 'The Apache Software License, Version 2.0'
+                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                distribution 'repo'
+            }
+        }
+
+        developers {
+            developer {
+                id 'Favorlock'
+                name 'Evan Lindsay'
+                email 'evan@enjin.io'
+            }
+        }
+    }
+}
+
+extraArchive {
+    sources = false
+    javadoc = false
+    tests = false
+}
+
+nexus {
+    sign = false
+    repositoryUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+    snapshotRepositoryUrl = 'https://oss.sonatype.org/content/repositories/snapshots/'
 }
 
 wrapper {
