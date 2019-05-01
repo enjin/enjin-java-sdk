@@ -133,7 +133,7 @@ gitPublish {
     branch = 'gh-pages'
     contents {
         from(javadoc) {
-            into 'api'
+            into '/'
         }
     }
     commitMessage = "Publishing documentation for version ${version}."
