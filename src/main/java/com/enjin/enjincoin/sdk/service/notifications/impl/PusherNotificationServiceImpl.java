@@ -136,10 +136,9 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
     }
 
     private String getIdentityChannel(BigInteger identityId) {
-        return String.format("enjin.server.%s.%s.%s.%s",
+        return String.format("enjin.server.%s.%s.identity.%s",
                              this.platformDetails.getNetwork().toLowerCase(),
                              this.platformDetails.getId(),
-                             this.appId,
                              identityId
         );
     }
@@ -204,6 +203,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
     @Override
     public void listenForLink(BigInteger identityId) {
         String channel = getIdentityChannel(identityId);
+        System.out.println("Listening for link on " + channel);
 
         if (identityChannels.containsKey(channel)) {
             unbind(identityChannels.remove(channel));
