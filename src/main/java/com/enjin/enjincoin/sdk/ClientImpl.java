@@ -39,6 +39,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
 import java.math.BigInteger;
+import java.util.concurrent.TimeUnit;
 
 public class ClientImpl implements Client {
 
@@ -74,7 +75,10 @@ public class ClientImpl implements Client {
 
         Converter.Factory gsonFactory = GsonConverterFactory.create(getGsonInstance());
 
-        this.httpClient = clientBuilder.build();
+        this.httpClient = clientBuilder.connectTimeout(30, TimeUnit.SECONDS)
+                                       .callTimeout(30, TimeUnit.SECONDS)
+                                       .readTimeout(30, TimeUnit.SECONDS)
+                                       .writeTimeout(30, TimeUnit.SECONDS).build();
         this.retrofit = new Retrofit.Builder()
                 .baseUrl(url)
                 .client(this.httpClient)

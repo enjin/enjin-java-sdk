@@ -35,7 +35,7 @@ public class GraphQLServiceBase extends ServiceBase {
 
             @Override
             public void onFailure(Call<T> call, Throwable t) {
-                Exception exception = new Exception("There was an error while processing a request or a response.", t);
+                Exception exception = new Exception("Request Failed: " + call.request().toString(), t);
                 exception.printStackTrace();
             }
         });
