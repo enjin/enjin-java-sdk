@@ -109,20 +109,7 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
 
         // Subscribe to a channel
         this.channel = this.pusher.subscribe(appChannel);
-
-        //Convert an enum to an array of strings
-        //String[] eventTypes = Arrays.stream(NotificationTypeEnum.values()).map(NotificationTypeEnum::name).toArray(String[]::new);
-
-        for (ChannelEvent channelEvent : ChannelEvent.values()) {
-            LOGGER.info(String.format("Event Channel Bound: %s", channelEvent.getKey()));
-            this.channel.bind(channelEvent.getKey(), (channel, event, data) -> {
-                LOGGER.info(String.format("Received eventType %s, event %s with results %s ",
-                                          channelEvent.getKey(),
-                                          event,
-                                          data));
-                PusherNotificationServiceImpl.this.fireNotification(data, channel, event);
-            });
-        }
+        bind(this.channel);
 
         initializeResult = true;
         return initializeResult;
@@ -233,12 +220,14 @@ public class PusherNotificationServiceImpl implements ThirdPartyNotificationServ
 
     private void bind(Channel channel) {
         for (ChannelEvent channelEvent : ChannelEvent.values()) {
+            LOGGER.info(String.format("Event Channel Bound: %s", channelEvent.getKey()));
             channel.bind(channelEvent.getKey(), this.pusherListener);
         }
     }
 
     private void unbind(Channel channel) {
         for (ChannelEvent channelEvent : ChannelEvent.values()) {
+            LOGGER.info(String.format("Event Channel Unbound: %s", channelEvent.getKey()));
             channel.unbind(channelEvent.getKey(), this.pusherListener);
         }
     }
