@@ -34,7 +34,7 @@ public class Identity {
      * @return the app id.
      */
     @SerializedName("app_id")
-    private BigInteger appId;
+    private Integer appId;
 
     /**
      * The linked ethereum address.
