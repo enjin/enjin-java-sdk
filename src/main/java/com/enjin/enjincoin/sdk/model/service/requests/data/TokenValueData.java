@@ -22,7 +22,6 @@ public class TokenValueData {
      * @param id the token id.
      * @return the builder.
      */
-    @SerializedName("token_id")
     private String id;
 
     /**
@@ -33,7 +32,6 @@ public class TokenValueData {
      * @param index the token index.
      * @return the builder.
      */
-    @SerializedName("token_index")
     private Integer index;
 
     /**
