@@ -1,8 +1,0 @@
-query getPlatform {
-    EnjinPlatform {
-        name,
-        id,
-        network,
-        notifications
-    }
-}

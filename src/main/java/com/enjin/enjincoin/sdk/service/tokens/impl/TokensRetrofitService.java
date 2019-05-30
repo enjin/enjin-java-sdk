@@ -14,22 +14,22 @@ import retrofit2.http.POST;
 public interface TokensRetrofitService {
 
     @POST("graphql")
-    @GraphQuery("GetAllTokens")
+    @GraphQuery("GET_ALL_TOKENS")
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<GetTokensResult>> getAllTokens(@Body Builder Token);
 
     @POST("graphql")
-    @GraphQuery("GetTokens")
+    @GraphQuery("GET_TOKENS")
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<GetTokensResult>> getTokens(@Body Builder Token);
 
     @POST("graphql")
-    @GraphQuery("CreateToken")
+    @GraphQuery("IMPORT_TOKEN")
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<CreateTokenResult>> importToken(@Body Builder Token);
 
     @POST("graphql")
-    @GraphQuery("UpdateToken")
+    @GraphQuery("UPDATE_TOKEN")
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<UpdateTokenResult>> updateToken(@Body Builder Token);
 

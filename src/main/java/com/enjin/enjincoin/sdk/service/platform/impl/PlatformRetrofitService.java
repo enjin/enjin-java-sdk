@@ -17,7 +17,7 @@ public interface PlatformRetrofitService {
      * @return
      */
     @POST("graphql")
-    @GraphQuery("GetPlatform")
+    @GraphQuery("GET_PLATFORM")
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<GetPlatformResult>> getPlatform(@Body Builder request);
 

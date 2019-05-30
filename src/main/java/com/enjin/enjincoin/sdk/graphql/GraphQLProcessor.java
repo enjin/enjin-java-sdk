@@ -1,19 +1,7 @@
 package com.enjin.enjincoin.sdk.graphql;
 
-import com.enjin.java_commons.ResourceUtils;
-
-import java.io.IOException;
 import java.lang.annotation.Annotation;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.FileSystemNotFoundException;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Loads and manages GraphQL template files used by various
@@ -26,18 +14,13 @@ public class GraphQLProcessor {
 
     private static       GraphQLProcessor ourInstance;
     private final static Object           lock             = new Object();
-    private final static String           defaultExtension = ".graphql";
-    private final static String           defaultDirectory = "graphql";
 
     private volatile Map<String, String> graphFiles;
 
     private GraphQLProcessor() {
         synchronized (lock) {
             if (this.graphFiles == null) {
-                this.graphFiles = new HashMap<>();
-            }
-            if (isEmpty()) {
-                initialize();
+                this.graphFiles = Queries.getQueryMap();
             }
         }
     }
@@ -62,38 +45,12 @@ public class GraphQLProcessor {
             }
         }
 
-        if (graphFiles != null && graphQuery != null) {
-            String fileName = String.format("%s%s", graphQuery.value(), defaultExtension);
-            if (graphFiles.containsKey(fileName)) {
-                return graphFiles.get(fileName);
+        if (graphQuery != null) {
+            if (graphFiles.containsKey(graphQuery.value())) {
+                return graphFiles.get(graphQuery.value());
             }
         }
         return null;
-    }
-
-    private synchronized boolean isEmpty() {
-        return graphFiles.size() < 1;
-    }
-
-    private synchronized void initialize() {
-        try {
-            Set<URL> urls = ResourceUtils.getResourceURLs(getClass(),
-                                                          url -> url.getFile().endsWith(defaultExtension));
-
-            for (URL url : urls) {
-                try {
-                    FileSystems.getFileSystem(url.toURI());
-                } catch (FileSystemNotFoundException ex) {
-                    FileSystems.newFileSystem(url.toURI(), new HashMap<>());
-                }
-
-                Path   path = Paths.get(url.toURI());
-                byte[] data = Files.readAllBytes(path);
-                this.graphFiles.put(path.getFileName().toString(), new String(data));
-            }
-        } catch (URISyntaxException | IOException e) {
-            e.printStackTrace();
-        }
     }
 
     /**
