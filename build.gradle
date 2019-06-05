@@ -44,6 +44,9 @@ ext {
 repositories {
     mavenLocal()
     mavenCentral()
+    // Sonatype Repository
+    maven { url 'https://oss.sonatype.org/content/groups/public/' }
+    
 }
 
 dependencies {
