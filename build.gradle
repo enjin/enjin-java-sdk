@@ -53,7 +53,6 @@ dependencies {
     // implementation dependencies
     implementation group: 'com.enjin', name: 'java_commons', version: enjinCommons
     implementation group: 'com.google.code.gson', name: 'gson', version: gson
-    implementation group: 'net.dongliu', name: 'gson-java8-datatype', version: gsonJava8Datatype
     implementation group: 'com.pusher', name: 'pusher-java-client', version: pusher
     implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: okhttp
     implementation group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: okhttp

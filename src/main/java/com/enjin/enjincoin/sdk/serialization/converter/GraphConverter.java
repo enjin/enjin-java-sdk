@@ -8,7 +8,6 @@ import com.enjin.enjincoin.sdk.serialization.BigIntegerDeserializer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-import net.dongliu.gson.GsonJava8TypeAdapterFactory;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -35,7 +34,6 @@ public class GraphConverter extends Converter.Factory {
             .serializeNulls()
             .setLenient()
             .registerTypeAdapter(BigInteger.class, new BigIntegerDeserializer())
-            .registerTypeAdapterFactory(new GsonJava8TypeAdapterFactory())
             .create();
 
     /**

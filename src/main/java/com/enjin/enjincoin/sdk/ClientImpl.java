@@ -28,7 +28,6 @@ import com.enjin.enjincoin.sdk.service.users.impl.UsersServiceImpl;
 import com.enjin.enjincoin.sdk.http.HttpResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import net.dongliu.gson.GsonJava8TypeAdapterFactory;
 import okhttp3.Cookie;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -190,7 +189,6 @@ public class ClientImpl implements Client {
     private Gson getGsonInstance() {
         return new GsonBuilder()
                 .registerTypeAdapter(BigInteger.class, new BigIntegerDeserializer())
-                .registerTypeAdapterFactory(new GsonJava8TypeAdapterFactory())
                 .create();
     }
 
