@@ -10,7 +10,7 @@ import java.math.BigInteger;
  * @author Evan Lindsay
  * @see com.enjin.enjincoin.sdk.service.identities.IdentitiesService
  */
-public class GetIdentities extends GraphQLRequest.Builder {
+public class GetIdentities extends GraphQLRequest<GetIdentities> {
 
     /**
      * The identity id.

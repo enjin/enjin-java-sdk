@@ -8,7 +8,7 @@ import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
  * @author Evan Lindsay
  * @see com.enjin.enjincoin.sdk.service.tokens.TokensService
  */
-public class GetTokens extends GraphQLRequest.Builder {
+public class GetTokens extends GraphQLRequest<GetTokens> {
 
     /**
      * The token id.

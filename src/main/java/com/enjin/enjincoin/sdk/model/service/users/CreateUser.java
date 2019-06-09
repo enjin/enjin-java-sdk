@@ -8,7 +8,7 @@ import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
  * @author Evan Lindsay
  * @see com.enjin.enjincoin.sdk.service.users.UsersService
  */
-public class CreateUser extends GraphQLRequest.Builder {
+public class CreateUser extends GraphQLRequest<CreateUser> {
 
     /**
      * The name of the user.

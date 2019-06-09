@@ -32,7 +32,7 @@ import java.math.BigInteger;
  * @author Evan Lindsay
  * @see com.enjin.enjincoin.sdk.service.requests.RequestsService
  */
-public class CreateRequest extends GraphQLRequest.Builder {
+public class CreateRequest extends GraphQLRequest<CreateRequest> {
 
     public CreateRequest() {
         withTest(true);

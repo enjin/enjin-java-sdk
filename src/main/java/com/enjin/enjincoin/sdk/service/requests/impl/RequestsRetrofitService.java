@@ -1,6 +1,6 @@
 package com.enjin.enjincoin.sdk.service.requests.impl;
 
-import com.enjin.enjincoin.sdk.graphql.GraphQLRequest.Builder;
+import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
 import com.enjin.enjincoin.sdk.graphql.GraphQuery;
 import com.enjin.enjincoin.sdk.model.service.requests.CreateRequestResult;
@@ -16,21 +16,21 @@ public interface RequestsRetrofitService {
     @POST("graphql")
     @GraphQuery("GET_ALL_REQUESTS")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<GetRequestsResult>> getAllRequests(@Body Builder request);
+    Call<GraphQLResponse<GetRequestsResult>> getAllRequests(@Body GraphQLRequest request);
 
     @POST("graphql")
     @GraphQuery("GET_REQUESTS")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<GetRequestsResult>> getRequests(@Body Builder request);
+    Call<GraphQLResponse<GetRequestsResult>> getRequests(@Body GraphQLRequest request);
 
     @POST("graphql")
     @GraphQuery("CREATE_REQUEST")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<CreateRequestResult>> createRequest(@Body Builder request);
+    Call<GraphQLResponse<CreateRequestResult>> createRequest(@Body GraphQLRequest request);
 
     @POST("graphql")
     @GraphQuery("UPDATE_REQUEST")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<UpdateRequestResult>> updateRequest(@Body Builder request);
+    Call<GraphQLResponse<UpdateRequestResult>> updateRequest(@Body GraphQLRequest request);
 
 }

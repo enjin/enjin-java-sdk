@@ -1,6 +1,6 @@
 package com.enjin.enjincoin.sdk.service.users.impl;
 
-import com.enjin.enjincoin.sdk.graphql.GraphQLRequest.Builder;
+import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
 import com.enjin.enjincoin.sdk.graphql.GraphQuery;
 import com.enjin.enjincoin.sdk.model.service.users.CreateUserResult;
@@ -19,26 +19,26 @@ public interface UsersRetrofitService {
     @POST("graphql")
     @GraphQuery("GET_ALL_USERS")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<GetUsersResult>> getAllUsers(@Body Builder builder);
+    Call<GraphQLResponse<GetUsersResult>> getAllUsers(@Body GraphQLRequest request);
 
     @POST("graphql")
     @GraphQuery("GET_USERS")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<GetUsersResult>> getUsers(@Body Builder builder);
+    Call<GraphQLResponse<GetUsersResult>> getUsers(@Body GraphQLRequest request);
 
     @POST("graphql")
     @GraphQuery("CREATE_USER")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<CreateUserResult>> createUser(@Body Builder builder);
+    Call<GraphQLResponse<CreateUserResult>> createUser(@Body GraphQLRequest request);
 
     @POST("graphql")
     @GraphQuery("LOGIN_USER")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<LoginUserResult>> loginUser(@Body Builder builder);
+    Call<GraphQLResponse<LoginUserResult>> loginUser(@Body GraphQLRequest request);
 
     @POST("graphql")
     @GraphQuery("GetUsers")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<List<User>>> getUsers2(@Body Builder builder);
+    Call<GraphQLResponse<List<User>>> getUsers2(@Body GraphQLRequest request);
 
 }

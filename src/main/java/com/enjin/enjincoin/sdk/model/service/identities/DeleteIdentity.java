@@ -10,7 +10,7 @@ import java.math.BigInteger;
  * @author Evan Lindsay
  * @see com.enjin.enjincoin.sdk.service.identities.IdentitiesService
  */
-public class DeleteIdentity extends GraphQLRequest.Builder {
+public class DeleteIdentity extends GraphQLRequest<DeleteIdentity> {
 
     /**
      * The identity id.

@@ -69,7 +69,7 @@ public class TokensServiceImpl extends GraphQLServiceBase implements TokensServi
     }
 
     private Call<GraphQLResponse<GetTokensResult>> getAllTokensCall() {
-        return this.service.getAllTokens(GraphQLRequest.builder());
+        return this.service.getAllTokens(new GetTokens());
     }
 
     private Call<GraphQLResponse<GetTokensResult>> getTokensCall(GetTokens query) {

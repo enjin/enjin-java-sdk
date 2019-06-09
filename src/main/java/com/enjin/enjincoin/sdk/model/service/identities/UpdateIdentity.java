@@ -12,7 +12,7 @@ import java.util.List;
  * @author Evan Lindsay
  * @see com.enjin.enjincoin.sdk.service.identities.IdentitiesService
  */
-public class UpdateIdentity extends GraphQLRequest.Builder {
+public class UpdateIdentity extends GraphQLRequest<UpdateIdentity> {
 
     /**
      * The identity id.

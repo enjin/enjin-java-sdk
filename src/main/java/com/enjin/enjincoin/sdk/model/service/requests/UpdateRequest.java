@@ -32,7 +32,7 @@ import java.math.BigInteger;
  * @author Evan Lindsay
  * @see com.enjin.enjincoin.sdk.service.requests.RequestsService
  */
-public class UpdateRequest extends GraphQLRequest.Builder {
+public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
 
     /**
      * The id of the identity this request was created for.

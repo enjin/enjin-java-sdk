@@ -11,7 +11,7 @@ import java.math.BigInteger;
  * @author Evan Lindsay
  * @see com.enjin.enjincoin.sdk.service.users.UsersService
  */
-public class GetUsers extends GraphQLRequest.Builder {
+public class GetUsers extends GraphQLRequest<GetUsers> {
 
     /**
      * The id of the user.

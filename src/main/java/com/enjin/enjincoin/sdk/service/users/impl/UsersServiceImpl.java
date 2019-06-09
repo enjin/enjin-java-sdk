@@ -85,7 +85,7 @@ public class UsersServiceImpl extends GraphQLServiceBase implements UsersService
     }
 
     private Call<GraphQLResponse<GetUsersResult>> getAllUsersCall() {
-        return this.service.getAllUsers(GraphQLRequest.builder());
+        return this.service.getAllUsers(new GetUsers());
     }
 
     private Call<GraphQLResponse<GetUsersResult>> getUsersCall(GetUsers query) {

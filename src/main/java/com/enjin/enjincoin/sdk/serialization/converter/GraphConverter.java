@@ -2,7 +2,7 @@ package com.enjin.enjincoin.sdk.serialization.converter;
 
 import com.enjin.enjincoin.sdk.graphql.GraphQLError;
 import com.enjin.enjincoin.sdk.graphql.GraphQLProcessor;
-import com.enjin.enjincoin.sdk.graphql.GraphQLRequest.Builder;
+import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
 import com.enjin.enjincoin.sdk.graphql.GraphQLTemplate;
 import com.enjin.enjincoin.sdk.model.service.PaginationCursor;
@@ -91,11 +91,11 @@ public class GraphConverter extends Converter.Factory {
      * <br>
      */
     @Override
-    public Converter<Builder, RequestBody> requestBodyConverter(Type type,
-                                                                Annotation[] parameterAnnotations,
-                                                                Annotation[] methodAnnotations,
-                                                                Retrofit retrofit) {
-        if (Builder.class.isAssignableFrom((Class<?>) type)) {
+    public Converter<GraphQLRequest<?>, RequestBody> requestBodyConverter(Type type,
+                                                                       Annotation[] parameterAnnotations,
+                                                                       Annotation[] methodAnnotations,
+                                                                       Retrofit retrofit) {
+        if (GraphQLRequest.class.isAssignableFrom((Class<?>) type)) {
             return new GraphRequestConverter(methodAnnotations);
         }
 
@@ -218,7 +218,7 @@ public class GraphConverter extends Converter.Factory {
     /**
      * GraphQL request body converter and injector, uses method annotation for a given retrofit call
      */
-    protected class GraphRequestConverter implements Converter<Builder, RequestBody> {
+    protected class GraphRequestConverter implements Converter<GraphQLRequest<?>, RequestBody> {
         protected Annotation[] methodAnnotations;
 
         protected GraphRequestConverter(Annotation[] methodAnnotations) {
@@ -230,16 +230,16 @@ public class GraphConverter extends Converter.Factory {
          * and constructs a GraphQL request body to send over the network.
          * <br>
          *
-         * @param containerBuilder The constructed builder method of your query with variables
+         * @param request The constructed builder method of your query with variables
          *
          * @return Request body
          */
         @Override
-        public RequestBody convert(Builder containerBuilder) {
+        public RequestBody convert(GraphQLRequest<?> request) {
             GraphQLTemplate template = graphProcessor.getTemplate(methodAnnotations);
 
             JsonObject body = new JsonObject();
-            body.addProperty("query", template.serialize(containerBuilder.parameters()));
+            body.addProperty("query", template.serialize(request.parameters()));
             String queryJson = gson.toJson(body);
             return RequestBody.create(MediaType.parse("application/graphql"), queryJson);
         }

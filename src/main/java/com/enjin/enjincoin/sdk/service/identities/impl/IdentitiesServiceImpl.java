@@ -11,6 +11,7 @@ import com.enjin.enjincoin.sdk.model.service.identities.GetIdentities;
 import com.enjin.enjincoin.sdk.model.service.identities.GetIdentitiesResult;
 import com.enjin.enjincoin.sdk.model.service.identities.UpdateIdentity;
 import com.enjin.enjincoin.sdk.model.service.identities.UpdateIdentityResult;
+import com.enjin.enjincoin.sdk.model.service.users.GetUsers;
 import com.enjin.enjincoin.sdk.service.GraphQLServiceBase;
 import com.enjin.enjincoin.sdk.service.identities.IdentitiesService;
 import com.enjin.enjincoin.sdk.http.HttpCallback;
@@ -82,7 +83,7 @@ public class IdentitiesServiceImpl extends GraphQLServiceBase implements Identit
     }
 
     private Call<GraphQLResponse<GetIdentitiesResult>> getAllIdentitiesCall() {
-        return this.service.getAllIdentities(GraphQLRequest.builder());
+        return this.service.getAllIdentities(new GetUsers());
     }
 
     private Call<GraphQLResponse<GetIdentitiesResult>> getIdentitiesCall(GetIdentities query) {

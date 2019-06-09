@@ -11,7 +11,7 @@ import java.util.List;
  * @author Evan Lindsay
  * @see com.enjin.enjincoin.sdk.service.requests.RequestsService
  */
-public class GetRequests extends GraphQLRequest.Builder {
+public class GetRequests extends GraphQLRequest<GetRequests> {
 
     /**
      * The request id.

@@ -31,6 +31,6 @@ public class PlatformServiceImpl extends GraphQLServiceBase implements PlatformS
     }
 
     private Call<GraphQLResponse<GetPlatformResult>> getPlatform() {
-        return this.service.getPlatform(GraphQLRequest.builder());
+        return this.service.getPlatform(new GraphQLRequest());
     }
 }

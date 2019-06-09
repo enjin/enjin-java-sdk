@@ -69,7 +69,7 @@ public class RequestsServiceImpl extends GraphQLServiceBase implements RequestsS
     }
 
     private Call<GraphQLResponse<GetRequestsResult>> getGetAllRequestsCall() {
-        return this.service.getAllRequests(GraphQLRequest.builder());
+        return this.service.getAllRequests(new GetRequests());
     }
 
     private Call<GraphQLResponse<GetRequestsResult>> getGetRequestsCall(GetRequests query) {
