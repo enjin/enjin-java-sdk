@@ -11,13 +11,20 @@ import java.util.List;
 
 public class Templates {
 
-    public static final GraphQLTemplate GET_USERS = GraphQLTemplate.of("GetUsers", false, GET_USER_QUERY)
-                                                                   .withField(ID)
-                                                                   .withField(NAME)
-                                                                   .withField(EMAIL)
-                                                                   .withField(ACCESS_TOKENS)
-                                                                   .withField(ROLES)
-                                                                   .withField(IDENTITIES);
+    // User Templates
+    public static final GraphQLTemplate GET_USERS  = GraphQLTemplate.of("GetUsers", false, ENJIN_USERS)
+                                                                    .withField(ID)
+                                                                    .withField(NAME)
+                                                                    .withField(EMAIL)
+                                                                    .withField(ACCESS_TOKENS)
+                                                                    .withField(ROLES)
+                                                                    .withField(IDENTITIES);
+    public static final GraphQLTemplate LOGIN_USER = GraphQLTemplate.of("LoginUser", false, ENJIN_OAUTH)
+                                                                    .copyFields(GET_USERS);
+    public static final GraphQLTemplate CREATE_USER = GraphQLTemplate.of("CreateUser", true, CREATE_ENJIN_USER)
+                                                                    .copyFields(GET_USERS);
+
+    // Identity Templates
 
     public static List<GraphQLTemplate> getTemplates() {
         List<GraphQLTemplate> templates = new ArrayList<>();
