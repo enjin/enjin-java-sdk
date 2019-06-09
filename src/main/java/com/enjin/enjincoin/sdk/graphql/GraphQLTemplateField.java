@@ -5,8 +5,8 @@ import java.util.List;
 
 public class GraphQLTemplateField {
 
-    private String                     name;
-    private List<GraphQLTemplateField> children;
+    protected String                     name;
+    protected List<GraphQLTemplateField> children;
 
     protected GraphQLTemplateField(String name) {
         this(name, new ArrayList<>());

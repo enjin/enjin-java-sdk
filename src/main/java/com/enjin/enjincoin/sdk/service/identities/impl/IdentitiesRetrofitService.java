@@ -3,40 +3,34 @@ package com.enjin.enjincoin.sdk.service.identities.impl;
 import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
 import com.enjin.enjincoin.sdk.graphql.GraphQuery;
-import com.enjin.enjincoin.sdk.model.service.identities.CreateIdentityResult;
-import com.enjin.enjincoin.sdk.model.service.identities.DeleteIdentityResult;
-import com.enjin.enjincoin.sdk.model.service.identities.GetIdentitiesResult;
-import com.enjin.enjincoin.sdk.model.service.identities.UpdateIdentityResult;
+import com.enjin.enjincoin.sdk.model.service.identities.Identity;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
+import java.util.List;
+
 public interface IdentitiesRetrofitService {
 
     @POST("graphql")
-    @GraphQuery("GET_ALL_IDENTITIES")
+    @GraphQuery("GetIdentities")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<GetIdentitiesResult>> getAllIdentities(@Body GraphQLRequest request);
+    Call<GraphQLResponse<List<Identity>>> getIdentities(@Body GraphQLRequest request);
 
     @POST("graphql")
-    @GraphQuery("GET_IDENTITIES")
+    @GraphQuery("CreateIdentity")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<GetIdentitiesResult>> getIdentities(@Body GraphQLRequest request);
+    Call<GraphQLResponse<Identity>> createIdentity(@Body GraphQLRequest request);
 
     @POST("graphql")
-    @GraphQuery("CREATE_IDENTITY")
+    @GraphQuery("DeleteIdentity")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<CreateIdentityResult>> createIdentity(@Body GraphQLRequest request);
+    Call<GraphQLResponse<Identity>> deleteIdentity(@Body GraphQLRequest request);
 
     @POST("graphql")
-    @GraphQuery("DELETE_IDENTITY")
+    @GraphQuery("UpdateIdentity")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<DeleteIdentityResult>> deleteIdentity(@Body GraphQLRequest request);
-
-    @POST("graphql")
-    @GraphQuery("UPDATE_IDENTITY")
-    @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<UpdateIdentityResult>> updateIdentity(@Body GraphQLRequest request);
+    Call<GraphQLResponse<Identity>> updateIdentity(@Body GraphQLRequest request);
 
 }

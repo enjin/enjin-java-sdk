@@ -50,6 +50,11 @@ public class GraphQLTemplate {
         return this;
     }
 
+    public GraphQLTemplate copyChildren(GraphQLTemplateField field) {
+        fields.addAll(field.children);
+        return this;
+    }
+
     public String serializeFields() {
         StringBuilder builder = new StringBuilder();
 

@@ -3,15 +3,13 @@ package com.enjin.enjincoin.sdk.service.identities;
 import com.enjin.enjincoin.sdk.http.HttpResponse;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
 import com.enjin.enjincoin.sdk.model.service.identities.CreateIdentity;
-import com.enjin.enjincoin.sdk.model.service.identities.CreateIdentityResult;
 import com.enjin.enjincoin.sdk.model.service.identities.DeleteIdentity;
-import com.enjin.enjincoin.sdk.model.service.identities.DeleteIdentityResult;
 import com.enjin.enjincoin.sdk.model.service.identities.GetIdentities;
-import com.enjin.enjincoin.sdk.model.service.identities.GetIdentitiesResult;
+import com.enjin.enjincoin.sdk.model.service.identities.Identity;
 import com.enjin.enjincoin.sdk.model.service.identities.UpdateIdentity;
-import com.enjin.enjincoin.sdk.model.service.identities.UpdateIdentityResult;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Synchronous methods for querying and mutating app identities.
@@ -19,16 +17,6 @@ import java.io.IOException;
  * @author Evan Lindsay
  */
 public interface SynchronousIdentitiesService {
-
-    /**
-     * Returns all identities of an app.
-     *
-     * @return the response.
-     *
-     * @throws IOException if a communication error occurred.
-     */
-    HttpResponse<GraphQLResponse<GetIdentitiesResult>> getAllIdentitiesSync() throws IOException;
-
 
     /**
      * Gets identities of an app that match the query parameters.
@@ -39,7 +27,7 @@ public interface SynchronousIdentitiesService {
      *
      * @throws IOException if a communication error occurred.
      */
-    HttpResponse<GraphQLResponse<GetIdentitiesResult>> getIdentitiesSync(GetIdentities query) throws IOException;
+    HttpResponse<GraphQLResponse<List<Identity>>> getIdentitiesSync(GetIdentities query) throws IOException;
 
     /**
      * Creates a new identity.
@@ -50,7 +38,7 @@ public interface SynchronousIdentitiesService {
      *
      * @throws IOException if a communication error occurred.
      */
-    HttpResponse<GraphQLResponse<CreateIdentityResult>> createIdentitySync(CreateIdentity query) throws IOException;
+    HttpResponse<GraphQLResponse<Identity>> createIdentitySync(CreateIdentity query) throws IOException;
 
     /**
      * Deletes or unlinks an identity.
@@ -61,7 +49,7 @@ public interface SynchronousIdentitiesService {
      *
      * @throws IOException if a communication error occurred.
      */
-    HttpResponse<GraphQLResponse<DeleteIdentityResult>> deleteIdentitySync(DeleteIdentity query) throws IOException;
+    HttpResponse<GraphQLResponse<Identity>> deleteIdentitySync(DeleteIdentity query) throws IOException;
 
     /**
      * Updates an identity.
@@ -72,5 +60,5 @@ public interface SynchronousIdentitiesService {
      *
      * @throws IOException if a communication error occurred.
      */
-    HttpResponse<GraphQLResponse<UpdateIdentityResult>> updateIdentitySync(UpdateIdentity query) throws IOException;
+    HttpResponse<GraphQLResponse<Identity>> updateIdentitySync(UpdateIdentity query) throws IOException;
 }

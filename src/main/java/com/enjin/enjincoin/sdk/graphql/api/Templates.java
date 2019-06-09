@@ -31,7 +31,15 @@ public class Templates {
     public static final GraphQLTemplate CREATE_USER = GraphQLTemplate.of("CreateUser", true, CREATE_ENJIN_USER)
                                                                      .copyFields(GET_USERS);
 
-    // Identity Templates
+    // Identities
+    public static final GraphQLTemplate GET_IDENTITIES = GraphQLTemplate.of("GetIdentities", false, ENJIN_IDENTITIES)
+                                                                        .copyChildren(IDENTITIES);
+    public static final GraphQLTemplate CREATE_IDENTITY = GraphQLTemplate.of("CreateIdentity", true, CREATE_ENJIN_IDENTITY)
+                                                                        .copyChildren(IDENTITIES);
+    public static final GraphQLTemplate UPDATE_IDENTITY = GraphQLTemplate.of("UpdateIdentity", true, UPDATE_ENJIN_IDENTITY)
+                                                                        .copyChildren(IDENTITIES);
+    public static final GraphQLTemplate DELETE_IDENTITY = GraphQLTemplate.of("DeleteIdentity", true, DELETE_ENJIN_IDENTITY)
+                                                                        .copyChildren(IDENTITIES);
 
     public static List<GraphQLTemplate> getTemplates() {
         List<GraphQLTemplate> templates = new ArrayList<>();
