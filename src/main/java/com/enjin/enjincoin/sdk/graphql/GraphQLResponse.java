@@ -1,5 +1,7 @@
 package com.enjin.enjincoin.sdk.graphql;
 
+import com.enjin.enjincoin.sdk.model.service.PaginationCursor;
+
 import java.util.List;
 
 /**
@@ -12,9 +14,21 @@ import java.util.List;
  */
 public class GraphQLResponse<T> {
 
+    private String raw;
     private T data;
-
     private List<GraphQLError> errors;
+    private PaginationCursor cursor;
+
+    public GraphQLResponse(String raw, T data, List<GraphQLError> errors, PaginationCursor cursor) {
+        this.raw = raw;
+        this.data = data;
+        this.errors = errors;
+        this.cursor = cursor;
+    }
+
+    public String getRaw() {
+        return raw;
+    }
 
     /**
      * Returns the data object.
@@ -34,6 +48,10 @@ public class GraphQLResponse<T> {
         return errors;
     }
 
+    public PaginationCursor getCursor() {
+        return cursor;
+    }
+
     /**
      * Returns whether the response is empty or not.
      *
@@ -50,6 +68,10 @@ public class GraphQLResponse<T> {
      */
     public boolean hasErrors() {
         return errors != null && errors.size() > 0;
+    }
+
+    public boolean isPaginated() {
+        return cursor != null;
     }
 
     /**

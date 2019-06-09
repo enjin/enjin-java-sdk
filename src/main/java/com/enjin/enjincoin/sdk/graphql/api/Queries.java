@@ -1,4 +1,4 @@
-package com.enjin.enjincoin.sdk.graphql;
+package com.enjin.enjincoin.sdk.graphql.api;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;

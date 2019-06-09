@@ -1,13 +1,18 @@
 package com.enjin.enjincoin.sdk.serialization.converter;
 
+import com.enjin.enjincoin.sdk.graphql.GraphQLError;
 import com.enjin.enjincoin.sdk.graphql.GraphQLProcessor;
-import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
 import com.enjin.enjincoin.sdk.graphql.GraphQLRequest.Builder;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
+import com.enjin.enjincoin.sdk.graphql.GraphQLTemplate;
+import com.enjin.enjincoin.sdk.model.service.PaginationCursor;
 import com.enjin.enjincoin.sdk.serialization.BigIntegerDeserializer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -19,6 +24,8 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Body for GraphQL requests and responses, closed for modification
@@ -29,7 +36,8 @@ public class GraphConverter extends Converter.Factory {
 
     protected GraphQLProcessor graphProcessor;
 
-    protected final Gson gson = new GsonBuilder()
+    protected final JsonParser parser = new JsonParser();
+    protected final Gson       gson   = new GsonBuilder()
             .enableComplexMapKeySerialization()
             .serializeNulls()
             .setLenient()
@@ -63,7 +71,7 @@ public class GraphConverter extends Converter.Factory {
             ParameterizedType parameterizedType = (ParameterizedType) type;
             Type              rawType           = parameterizedType.getRawType();
             if (rawType == GraphQLResponse.class) {
-                return new GraphResponseConverter<>(type);
+                return new GraphResponseConverter<>(parameterizedType);
             }
         }
 
@@ -102,11 +110,13 @@ public class GraphConverter extends Converter.Factory {
      * GraphQL response body converter to unwrap nested object results,
      * resulting in a smaller generic tree for requests
      */
-    protected class GraphResponseConverter<T> implements Converter<ResponseBody, T> {
-        protected Type type;
+    protected class GraphResponseConverter<T> implements Converter<ResponseBody, GraphQLResponse<T>> {
+        protected ParameterizedType graphResponseType;
+        protected Type              resultType;
 
-        protected GraphResponseConverter(Type type) {
-            this.type = type;
+        protected GraphResponseConverter(ParameterizedType graphResponseType) {
+            this.graphResponseType = graphResponseType;
+            this.resultType = graphResponseType.getActualTypeArguments()[0];
         }
 
         /**
@@ -120,15 +130,88 @@ public class GraphConverter extends Converter.Factory {
          * @return The type declared in the Call of the request
          */
         @Override
-        public T convert(ResponseBody responseBody) {
-            T response = null;
+        public GraphQLResponse<T> convert(ResponseBody responseBody) {
+            String             raw    = null;
+            T                  result = null;
+            List<GraphQLError> errors = null;
+            PaginationCursor   cursor = null;
+
             try {
-                String responseString = responseBody.string();
-                response = gson.fromJson(responseString, type);
+                raw = responseBody.string();
+
+                JsonElement elem = parser.parse(raw);
+                if (elem.isJsonObject()) {
+                    JsonObject root = elem.getAsJsonObject();
+                    result = getResult(root);
+                    errors = getErrors(root);
+                    cursor = getCursor(root);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            GraphQLResponse<T> response = new GraphQLResponse<>(raw, result, errors, cursor);
+
             return response;
+        }
+
+        private T getResult(JsonObject root) {
+            T res = null;
+
+            if (root.has("data")) {
+                JsonElement elem = root.get("data");
+                if (elem.isJsonObject()) {
+                    JsonObject data = elem.getAsJsonObject();
+                    if (data.has("result")) {
+                        elem = data.get("result");
+                        if (elem.isJsonObject()) {
+                            JsonObject result = elem.getAsJsonObject();
+                            if (result.has("items") && result.has("cursor")) {
+                                res = gson.fromJson(result.get("items"), resultType);
+                            } else {
+                                res = gson.fromJson(result, resultType);
+                            }
+                        } else if (elem.isJsonArray()) {
+                            res = gson.fromJson(elem, resultType);
+                        }
+                    }
+                }
+            }
+
+            return res;
+        }
+
+        private List<GraphQLError> getErrors(JsonObject root) {
+            List<GraphQLError> errors = null;
+
+            if (root.has("errors")) {
+                errors = gson.fromJson(root.get("errors"),
+                                       TypeToken.getParameterized(ArrayList.class, GraphQLError.class).getType());
+            }
+
+            return errors;
+        }
+
+        private PaginationCursor getCursor(JsonObject root) {
+            PaginationCursor cursor = null;
+
+            if (root.has("data")) {
+                JsonElement elem = root.get("data");
+                if (elem.isJsonObject()) {
+                    JsonObject data = elem.getAsJsonObject();
+                    if (data.has("result")) {
+                        elem = data.get("result");
+                        if (elem.isJsonObject()) {
+                            JsonObject result = elem.getAsJsonObject();
+                            if (result.has("cursor")) {
+                                cursor = gson.fromJson(result.get("cursor"), PaginationCursor.class);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return cursor;
         }
     }
 
@@ -153,11 +236,10 @@ public class GraphConverter extends Converter.Factory {
          */
         @Override
         public RequestBody convert(Builder containerBuilder) {
-            GraphQLRequest queryContainer = containerBuilder
-                    .withQuery(graphProcessor.getQuery(methodAnnotations))
-                    .build();
+            GraphQLTemplate template = graphProcessor.getTemplate(methodAnnotations);
+
             JsonObject body = new JsonObject();
-            body.addProperty("query", queryContainer.getFormattedQuery());
+            body.addProperty("query", template.serialize(containerBuilder.parameters()));
             String queryJson = gson.toJson(body);
             return RequestBody.create(MediaType.parse("application/graphql"), queryJson);
         }

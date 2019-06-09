@@ -67,6 +67,10 @@ public class GraphQLParameters {
         return builder.toString();
     }
 
+    public boolean has(String key) {
+        return parameters.containsKey(key);
+    }
+
     private String objectToGraphQLFormat(Object object) {
         if (object instanceof JsonElement) {
             return jsonElementToGraphQLFormat((JsonElement) object);

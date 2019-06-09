@@ -8,8 +8,10 @@ import com.enjin.enjincoin.sdk.model.service.users.GetUsers;
 import com.enjin.enjincoin.sdk.model.service.users.GetUsersResult;
 import com.enjin.enjincoin.sdk.model.service.users.LoginUser;
 import com.enjin.enjincoin.sdk.model.service.users.LoginUserResult;
+import com.enjin.enjincoin.sdk.model.service.users.User;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface SynchronousUsersService {
 
@@ -54,5 +56,7 @@ public interface SynchronousUsersService {
      * @throws IOException if a communication error occurred.
      */
     HttpResponse<GraphQLResponse<LoginUserResult>> loginUserSync(LoginUser query) throws IOException;
+
+    HttpResponse<GraphQLResponse<List<User>>> getUsers2Sync(GetUsers query) throws IOException;
 
 }

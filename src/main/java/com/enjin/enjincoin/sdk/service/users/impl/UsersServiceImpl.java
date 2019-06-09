@@ -9,6 +9,7 @@ import com.enjin.enjincoin.sdk.model.service.users.GetUsers;
 import com.enjin.enjincoin.sdk.model.service.users.GetUsersResult;
 import com.enjin.enjincoin.sdk.model.service.users.LoginUser;
 import com.enjin.enjincoin.sdk.model.service.users.LoginUserResult;
+import com.enjin.enjincoin.sdk.model.service.users.User;
 import com.enjin.enjincoin.sdk.service.GraphQLServiceBase;
 import com.enjin.enjincoin.sdk.service.users.UsersService;
 import com.enjin.enjincoin.sdk.http.HttpCallback;
@@ -16,6 +17,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 
 import java.io.IOException;
+import java.util.List;
 
 public class UsersServiceImpl extends GraphQLServiceBase implements UsersService {
 
@@ -68,6 +70,12 @@ public class UsersServiceImpl extends GraphQLServiceBase implements UsersService
         return executeGraphQLCall(getUsersCall(query));
     }
 
+    @Override
+    public HttpResponse<GraphQLResponse<List<User>>> getUsers2Sync(GetUsers query) throws IOException {
+        return executeGraphQLCall(getUsers2Call(query));
+    }
+
+
     private Call<GraphQLResponse<CreateUserResult>> getCreateCall(CreateUser query) {
         return this.service.createUser(query);
     }
@@ -82,5 +90,9 @@ public class UsersServiceImpl extends GraphQLServiceBase implements UsersService
 
     private Call<GraphQLResponse<GetUsersResult>> getUsersCall(GetUsers query) {
         return this.service.getUsers(query);
+    }
+
+    private Call<GraphQLResponse<List<User>>> getUsers2Call(GetUsers query) {
+        return this.service.getUsers2(query);
     }
 }

@@ -83,6 +83,10 @@ public final class GraphQLRequest {
             return this.request;
         }
 
+        public GraphQLParameters parameters() {
+            return this.request.parameters;
+        }
+
     }
 
     /**

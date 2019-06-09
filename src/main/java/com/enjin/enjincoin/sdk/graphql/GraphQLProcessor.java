@@ -1,5 +1,8 @@
 package com.enjin.enjincoin.sdk.graphql;
 
+import com.enjin.enjincoin.sdk.graphql.api.Queries;
+import com.enjin.enjincoin.sdk.graphql.api.Templates;
+
 import java.lang.annotation.Annotation;
 import java.util.Map;
 
@@ -15,12 +18,15 @@ public class GraphQLProcessor {
     private static       GraphQLProcessor ourInstance;
     private final static Object           lock             = new Object();
 
-    private volatile Map<String, String> graphFiles;
+    private GraphQLTemplateRegistry templateRegistry;
 
     private GraphQLProcessor() {
         synchronized (lock) {
-            if (this.graphFiles == null) {
-                this.graphFiles = Queries.getQueryMap();
+            if (this.templateRegistry == null) {
+                this.templateRegistry = new GraphQLTemplateRegistry();
+                for (GraphQLTemplate template : Templates.getTemplates()) {
+                    this.templateRegistry.register(template);
+                }
             }
         }
     }
@@ -35,7 +41,7 @@ public class GraphQLProcessor {
      *
      * @return the contents of a template file or null if no entry is found.
      */
-    public String getQuery(Annotation[] annotations) {
+    public GraphQLTemplate getTemplate(Annotation[] annotations) {
         GraphQuery graphQuery = null;
 
         for (Annotation annotation : annotations) {
@@ -46,8 +52,8 @@ public class GraphQLProcessor {
         }
 
         if (graphQuery != null) {
-            if (graphFiles.containsKey(graphQuery.value())) {
-                return graphFiles.get(graphQuery.value());
+            if (templateRegistry.has(graphQuery.value())) {
+                return templateRegistry.get(graphQuery.value());
             }
         }
         return null;
