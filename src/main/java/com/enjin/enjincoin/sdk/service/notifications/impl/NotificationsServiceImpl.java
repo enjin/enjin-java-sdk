@@ -3,7 +3,6 @@ package com.enjin.enjincoin.sdk.service.notifications.impl;
 import com.enjin.enjincoin.sdk.http.HttpResponse;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
 import com.enjin.enjincoin.sdk.model.service.notifications.NotificationType;
-import com.enjin.enjincoin.sdk.model.service.platform.GetPlatformResult;
 import com.enjin.enjincoin.sdk.model.service.platform.PlatformDetails;
 import com.enjin.enjincoin.sdk.service.notifications.EventMatcher;
 import com.enjin.enjincoin.sdk.service.notifications.NotificationListener;
@@ -45,7 +44,7 @@ public class NotificationsServiceImpl implements NotificationsService {
 
     @Override
     public boolean restart() {
-        HttpResponse<GraphQLResponse<GetPlatformResult>> result;
+        HttpResponse<GraphQLResponse<PlatformDetails>> result;
         try {
             result = this.service.getPlatformSync();
             if (result == null || result.body() == null) {
@@ -53,14 +52,13 @@ public class NotificationsServiceImpl implements NotificationsService {
                 return false;
             }
 
-            GraphQLResponse<GetPlatformResult> body = result.body();
+            GraphQLResponse<PlatformDetails> body = result.body();
             if (body == null || body.getData() == null) {
                 LOGGER.warning("Failed to get platform details");
                 return false;
             }
 
-            GetPlatformResult data    = body.getData();
-            PlatformDetails   details = data.getPlatform();
+            PlatformDetails   details = body.getData();
             if (details == null) {
                 LOGGER.warning("Platform details are null.");
                 return false;
@@ -196,12 +194,11 @@ public class NotificationsServiceImpl implements NotificationsService {
         this.service.getPlatformAsync(response -> {
             boolean result = false;
             if (response.body() != null) {
-                GraphQLResponse<GetPlatformResult> body = response.body();
+                GraphQLResponse<PlatformDetails> body = response.body();
 
                 shutdown();
 
-                GetPlatformResult data    = body.getData();
-                PlatformDetails   details = data.getPlatform();
+                PlatformDetails   details = body.getData();
                 NotificationsServiceImpl.this.thirdPartyNotificationService =
                         new PusherNotificationServiceImpl(details,
                                                           NotificationsServiceImpl.this.clientId);

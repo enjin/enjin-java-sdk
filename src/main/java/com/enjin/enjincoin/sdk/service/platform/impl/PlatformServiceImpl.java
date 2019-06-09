@@ -3,7 +3,7 @@ package com.enjin.enjincoin.sdk.service.platform.impl;
 import com.enjin.enjincoin.sdk.http.HttpResponse;
 import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
-import com.enjin.enjincoin.sdk.model.service.platform.GetPlatformResult;
+import com.enjin.enjincoin.sdk.model.service.platform.PlatformDetails;
 import com.enjin.enjincoin.sdk.service.GraphQLServiceBase;
 import com.enjin.enjincoin.sdk.service.platform.PlatformService;
 import com.enjin.enjincoin.sdk.http.HttpCallback;
@@ -21,16 +21,16 @@ public class PlatformServiceImpl extends GraphQLServiceBase implements PlatformS
     }
 
     @Override
-    public void getPlatformAsync(HttpCallback<GraphQLResponse<GetPlatformResult>> callback) {
+    public void getPlatformAsync(HttpCallback<GraphQLResponse<PlatformDetails>> callback) {
         enqueueGraphQLCall(getPlatform(), callback);
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<GetPlatformResult>> getPlatformSync() throws IOException {
+    public HttpResponse<GraphQLResponse<PlatformDetails>> getPlatformSync() throws IOException {
         return executeGraphQLCall(getPlatform());
     }
 
-    private Call<GraphQLResponse<GetPlatformResult>> getPlatform() {
+    private Call<GraphQLResponse<PlatformDetails>> getPlatform() {
         return this.service.getPlatform(new GraphQLRequest());
     }
 }

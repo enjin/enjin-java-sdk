@@ -20,6 +20,8 @@ public class Fields {
     public static final GraphQLTemplateField ENJ_BALANCE        = GraphQLTemplateField.of("enj_balance");
     public static final GraphQLTemplateField ENJ_ALLOWANCE      = GraphQLTemplateField.of("enj_allowance");
     public static final GraphQLTemplateField ALL_TOKENS_BALANCE = GraphQLTemplateField.of("all_tokens_balance");
+    public static final GraphQLTemplateField NETWORK            = GraphQLTemplateField.of("network");
+    public static final GraphQLTemplateField NOTIFICATIONS      = GraphQLTemplateField.of("notifications");
     public static final GraphQLTemplateField CURSOR             = GraphQLTemplateField.of("cursor")
                                                                                       .withChild(GraphQLTemplateField.of("total"))
                                                                                       .withChild(GraphQLTemplateField.of("perPage"))

@@ -114,16 +114,6 @@ public class Queries {
             "    }\n" +
             "}";
 
-    // Platform
-    public static final String GET_PLATFORM = "query getPlatform {\n" +
-            "    EnjinPlatform {\n" +
-            "        name,\n" +
-            "        id,\n" +
-            "        network,\n" +
-            "        notifications\n" +
-            "    }\n" +
-            "}";
-
     // Requests
     public static final String CREATE_REQUEST = "mutation createRequest {\n" +
             "    CreateEnjinRequest(%s) {\n" +
