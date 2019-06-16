@@ -70,6 +70,31 @@ public class Templates {
     public static final GraphQLTemplate DELETE_TOKEN    = GraphQLTemplate.of("DeleteToken", true, DELETE_ENJIN_TOKEN)
                                                                          .copyFields(GET_TOKENS);
 
+    // Requests
+    public static final GraphQLTemplate GET_REQUESTS   = GraphQLTemplate.of("GetRequests", false, ENJIN_TRANSACTIONS)
+                                                                        .withField(ID)
+                                                                        .withField(TRANSACTION_ID)
+                                                                        .withField(APP_ID)
+                                                                        .withField(IDENTITY_ID)
+                                                                        .withField(TYPE)
+                                                                        .withField(RECIPIENT_ID)
+                                                                        .withField(RECIPIENT_ADDR)
+                                                                        .withField(TOKEN_ID)
+                                                                        .withField(ENCODED_DATA)
+                                                                        .withField(SIGNED_TRANSACTION)
+                                                                        .withField(SIGNED_BACKUP_TRANSACTION)
+                                                                        .withField(SIGNED_CANCEL_TRANSACTION)
+                                                                        .withField(NONCE)
+                                                                        .withField(RETRY_STATE)
+                                                                        .withField(STATE)
+                                                                        .withField(ACCEPTED);
+    public static final GraphQLTemplate CREATE_REQUEST = GraphQLTemplate.of("CreateRequest", true, CREATE_ENJIN_REQUEST)
+                                                                        .copyFields(GET_REQUESTS);
+    public static final GraphQLTemplate UPDATE_REQUEST = GraphQLTemplate.of("UpdateRequest", true, UPDATE_ENJIN_REQUEST)
+                                                                        .copyFields(GET_REQUESTS);
+    public static final GraphQLTemplate DELETE_REQUEST = GraphQLTemplate.of("DeleteRequest", true, DELETE_ENJIN_REQUEST)
+                                                                        .copyFields(GET_REQUESTS);
+
     // Balances
     public static final GraphQLTemplate GET_BALANCES = GraphQLTemplate.of("GetBalances", false, ENJIN_BALANCES)
                                                                       .withField(ETH_ADDR)

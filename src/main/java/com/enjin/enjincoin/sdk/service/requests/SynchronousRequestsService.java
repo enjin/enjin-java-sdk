@@ -3,24 +3,14 @@ package com.enjin.enjincoin.sdk.service.requests;
 import com.enjin.enjincoin.sdk.http.HttpResponse;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
 import com.enjin.enjincoin.sdk.model.service.requests.CreateRequest;
-import com.enjin.enjincoin.sdk.model.service.requests.CreateRequestResult;
 import com.enjin.enjincoin.sdk.model.service.requests.GetRequests;
-import com.enjin.enjincoin.sdk.model.service.requests.GetRequestsResult;
+import com.enjin.enjincoin.sdk.model.service.requests.Transaction;
 import com.enjin.enjincoin.sdk.model.service.requests.UpdateRequest;
-import com.enjin.enjincoin.sdk.model.service.requests.UpdateRequestResult;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface SynchronousRequestsService {
-
-    /**
-     * Gets all app requests.
-     *
-     * @return the response.
-     *
-     * @throws IOException if a communication error occurred.
-     */
-    HttpResponse<GraphQLResponse<GetRequestsResult>> getAllRequestsSync() throws IOException;
 
     /**
      * Gets app requests that match the query parameters.
@@ -31,7 +21,7 @@ public interface SynchronousRequestsService {
      *
      * @throws IOException if a communication error occurred.
      */
-    HttpResponse<GraphQLResponse<GetRequestsResult>> getRequestsSync(GetRequests query) throws IOException;
+    HttpResponse<GraphQLResponse<List<Transaction>>> getRequestsSync(GetRequests query) throws IOException;
 
     /**
      * Creates a new app request.
@@ -42,7 +32,7 @@ public interface SynchronousRequestsService {
      *
      * @throws IOException if a communication error occurred.
      */
-    HttpResponse<GraphQLResponse<CreateRequestResult>> createRequestSync(CreateRequest query) throws IOException;
+    HttpResponse<GraphQLResponse<Transaction>> createRequestSync(CreateRequest query) throws IOException;
 
     /**
      * Updates an app request.
@@ -53,6 +43,6 @@ public interface SynchronousRequestsService {
      *
      * @throws IOException if a communication error occurred.
      */
-    HttpResponse<GraphQLResponse<UpdateRequestResult>> updateRequestSync(UpdateRequest query) throws IOException;
+    HttpResponse<GraphQLResponse<Transaction>> updateRequestSync(UpdateRequest query) throws IOException;
 
 }
