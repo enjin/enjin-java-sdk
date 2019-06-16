@@ -8,7 +8,7 @@ import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
  * @author Evan Lindsay
  * @see com.enjin.enjincoin.sdk.service.tokens.TokensService
  */
-public class ImportToken extends GraphQLRequest<ImportToken> {
+public class CreateToken extends GraphQLRequest<CreateToken> {
 
     /**
      * The token id.
@@ -17,7 +17,7 @@ public class ImportToken extends GraphQLRequest<ImportToken> {
      *
      * @return the builder.
      */
-    public ImportToken withTokenId(String tokenId) {
+    public CreateToken withTokenId(String tokenId) {
         withParameter("token_id", tokenId);
         return this;
     }

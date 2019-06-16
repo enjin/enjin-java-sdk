@@ -2,26 +2,15 @@ package com.enjin.enjincoin.sdk.service.tokens;
 
 import com.enjin.enjincoin.sdk.http.HttpResponse;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
-import com.enjin.enjincoin.sdk.model.service.tokens.CreateTokenResult;
 import com.enjin.enjincoin.sdk.model.service.tokens.GetTokens;
-import com.enjin.enjincoin.sdk.model.service.tokens.GetTokensResult;
-import com.enjin.enjincoin.sdk.model.service.tokens.ImportToken;
+import com.enjin.enjincoin.sdk.model.service.tokens.CreateToken;
+import com.enjin.enjincoin.sdk.model.service.tokens.Token;
 import com.enjin.enjincoin.sdk.model.service.tokens.UpdateToken;
-import com.enjin.enjincoin.sdk.model.service.tokens.UpdateTokenResult;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface SynchronousTokensService {
-
-    /**
-     * Gets all app tokens.
-     *
-     * @return the response.
-     *
-     * @throws IOException if a communication error occurred.
-     */
-    HttpResponse<GraphQLResponse<GetTokensResult>> getAllTokensSync() throws IOException;
-
 
     /**
      * Gets app tokens that match the query parameters.
@@ -32,7 +21,7 @@ public interface SynchronousTokensService {
      *
      * @throws IOException if a communication error occurred.
      */
-    HttpResponse<GraphQLResponse<GetTokensResult>> getTokensSync(GetTokens query) throws IOException;
+    HttpResponse<GraphQLResponse<List<Token>>> getTokensSync(GetTokens query) throws IOException;
 
     /**
      * Imports a token from the blockchain.
@@ -43,7 +32,7 @@ public interface SynchronousTokensService {
      *
      * @throws IOException if a communication error occurred.
      */
-    HttpResponse<GraphQLResponse<CreateTokenResult>> importTokenSync(ImportToken query) throws IOException;
+    HttpResponse<GraphQLResponse<Token>> importTokenSync(CreateToken query) throws IOException;
 
     /**
      * Updates an app token.
@@ -54,6 +43,6 @@ public interface SynchronousTokensService {
      *
      * @throws IOException if a communication error occurred.
      */
-    HttpResponse<GraphQLResponse<UpdateTokenResult>> updateTokenSync(UpdateToken query) throws IOException;
+    HttpResponse<GraphQLResponse<Token>> updateTokenSync(UpdateToken query) throws IOException;
 
 }

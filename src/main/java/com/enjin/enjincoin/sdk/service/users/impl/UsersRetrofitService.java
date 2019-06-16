@@ -14,11 +14,6 @@ import java.util.List;
 public interface UsersRetrofitService {
 
     @POST("graphql")
-    @GraphQuery("CreateUser")
-    @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<User>> createUser(@Body GraphQLRequest request);
-
-    @POST("graphql")
     @GraphQuery("LoginUser")
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<User>> loginUser(@Body GraphQLRequest request);
@@ -27,5 +22,20 @@ public interface UsersRetrofitService {
     @GraphQuery("GetUsers")
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<List<User>>> getUsers(@Body GraphQLRequest request);
+
+    @POST("graphql")
+    @GraphQuery("CreateUser")
+    @Headers("Content-Type: application/json")
+    Call<GraphQLResponse<User>> createUser(@Body GraphQLRequest request);
+
+    @POST("graphql")
+    @GraphQuery("UpdateUser")
+    @Headers("Content-Type: application/json")
+    Call<GraphQLResponse<User>> updateUser(@Body GraphQLRequest request);
+
+    @POST("graphql")
+    @GraphQuery("DeleteUser")
+    @Headers("Content-Type: application/json")
+    Call<GraphQLResponse<User>> deleteUser(@Body GraphQLRequest request);
 
 }
