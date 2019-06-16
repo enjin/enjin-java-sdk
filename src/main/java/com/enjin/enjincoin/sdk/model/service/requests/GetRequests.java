@@ -1,6 +1,6 @@
 package com.enjin.enjincoin.sdk.model.service.requests;
 
-import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
+import com.enjin.enjincoin.sdk.model.service.PaginationRequest;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
  * @author Evan Lindsay
  * @see com.enjin.enjincoin.sdk.service.requests.RequestsService
  */
-public class GetRequests extends GraphQLRequest<GetRequests> {
+public class GetRequests extends PaginationRequest<GetRequests> {
 
     /**
      * The request id.

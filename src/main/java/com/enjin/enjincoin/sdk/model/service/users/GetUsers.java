@@ -1,7 +1,6 @@
 package com.enjin.enjincoin.sdk.model.service.users;
 
-import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
-import com.enjin.enjincoin.sdk.model.service.PaginationInput;
+import com.enjin.enjincoin.sdk.model.service.PaginationRequest;
 
 import java.math.BigInteger;
 
@@ -11,7 +10,7 @@ import java.math.BigInteger;
  * @author Evan Lindsay
  * @see com.enjin.enjincoin.sdk.service.users.UsersService
  */
-public class GetUsers extends GraphQLRequest<GetUsers> {
+public class GetUsers extends PaginationRequest<GetUsers> {
 
     /**
      * The id of the user.
@@ -58,18 +57,6 @@ public class GetUsers extends GraphQLRequest<GetUsers> {
      */
     public GetUsers withMe(boolean me) {
         withParameter("me", me);
-        return this;
-    }
-
-    /**
-     * Whether the request should be paginated.
-     *
-     * @param pagination the pagination input.
-     *
-     * @return the builder.
-     */
-    public GetUsers withPagination(PaginationInput pagination) {
-        withParameter("pagination", pagination);
         return this;
     }
 

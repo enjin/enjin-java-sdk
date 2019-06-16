@@ -1,6 +1,6 @@
 package com.enjin.enjincoin.sdk.model.service.identities;
 
-import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
+import com.enjin.enjincoin.sdk.model.service.PaginationRequest;
 
 import java.math.BigInteger;
 
@@ -10,7 +10,7 @@ import java.math.BigInteger;
  * @author Evan Lindsay
  * @see com.enjin.enjincoin.sdk.service.identities.IdentitiesService
  */
-public class GetIdentities extends GraphQLRequest<GetIdentities> {
+public class GetIdentities extends PaginationRequest<GetIdentities> {
 
     /**
      * The identity id.

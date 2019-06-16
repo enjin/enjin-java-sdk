@@ -1,6 +1,6 @@
 package com.enjin.enjincoin.sdk.model.service.tokens;
 
-import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
+import com.enjin.enjincoin.sdk.model.service.PaginationRequest;
 
 /**
  * The results of a get token request.
@@ -8,7 +8,7 @@ import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
  * @author Evan Lindsay
  * @see com.enjin.enjincoin.sdk.service.tokens.TokensService
  */
-public class GetTokens extends GraphQLRequest<GetTokens> {
+public class GetTokens extends PaginationRequest<GetTokens> {
 
     /**
      * The token id.
