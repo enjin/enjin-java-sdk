@@ -82,7 +82,7 @@ public class ClientImpl implements Client {
                 .baseUrl(url)
                 .client(this.httpClient)
                 .addConverterFactory(GraphConverter.create())
-                .addConverterFactory(new JsonStringConverter(gsonFactory))
+                .addConverterFactory(JsonStringConverter.create(gsonFactory))
                 .addConverterFactory(gsonFactory)
                 .build();
     }

@@ -1,6 +1,7 @@
 package com.enjin.enjincoin.sdk.serialization.converter;
 
 import com.enjin.enjincoin.sdk.serialization.Json;
+import com.google.gson.Gson;
 import okhttp3.RequestBody;
 import okio.Buffer;
 import retrofit2.Converter;
@@ -22,7 +23,7 @@ public class JsonStringConverter extends Converter.Factory {
      *
      * @param delegate the delegate converter factory.
      */
-    public JsonStringConverter(Converter.Factory delegate) {
+    protected JsonStringConverter(Converter.Factory delegate) {
         this.delegate = delegate;
     }
 
@@ -64,5 +65,9 @@ public class JsonStringConverter extends Converter.Factory {
             this.delegate.convert(value).writeTo(buffer);
             return buffer.readUtf8();
         }
+    }
+
+    public static JsonStringConverter create(Converter.Factory delegate) {
+        return new JsonStringConverter(delegate);
     }
 }
