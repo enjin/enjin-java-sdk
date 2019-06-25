@@ -1,5 +1,7 @@
 package com.enjin.enjincoin.sdk.http;
 
+import lombok.ToString;
+
 /**
  * An http response wrapper.
  *
@@ -7,6 +9,7 @@ package com.enjin.enjincoin.sdk.http;
  *
  * @author Evan Lindsay
  */
+@ToString
 public class HttpResponse<T> {
 
     private int code;

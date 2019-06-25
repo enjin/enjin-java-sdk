@@ -56,6 +56,8 @@ public class TrustedPlatformClient implements Closeable {
     // Keys
     public static final String CLIENT_CREDENTIALS = "client_credentials";
     public static final String AUTHORIZATION      = "Authorization";
+    // Constants
+    public static final long CACHE_SIZE = 10 * 1024 * 1024;
 
     // Cookie Jar
     private CookieCache            cookieCache;
@@ -103,6 +105,7 @@ public class TrustedPlatformClient implements Closeable {
         this.gsonFactory = GsonConverterFactory.create(this.gson);
         this.retrofit = new Retrofit.Builder()
                 .baseUrl(builder.baseUrl)
+                .client(this.httpClient)
                 .addConverterFactory(GraphConverter.create())
                 .addConverterFactory(JsonStringConverter.create(this.gsonFactory))
                 .addConverterFactory(this.gsonFactory)
@@ -167,7 +170,7 @@ public class TrustedPlatformClient implements Closeable {
 
     @Override
     public void close() throws IOException {
-        Dispatcher dispatcher = this.httpClient.dispatcher();
+        Dispatcher      dispatcher      = this.httpClient.dispatcher();
         ExecutorService executorService = dispatcher.executorService();
 
         if (!executorService.isShutdown()) {

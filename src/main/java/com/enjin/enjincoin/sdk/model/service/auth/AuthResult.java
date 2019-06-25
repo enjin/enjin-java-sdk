@@ -2,6 +2,7 @@ package com.enjin.enjincoin.sdk.model.service.auth;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
+import lombok.ToString;
 
 /**
  * The response body of an oauth authentication request to the Trusted Platform.
@@ -9,6 +10,7 @@ import lombok.Getter;
  * @author Evan Lindsay
  */
 @Getter
+@ToString
 public class AuthResult {
 
     /**
