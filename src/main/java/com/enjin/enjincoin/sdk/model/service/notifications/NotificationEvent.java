@@ -1,5 +1,7 @@
 package com.enjin.enjincoin.sdk.model.service.notifications;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
@@ -51,5 +53,22 @@ public class NotificationEvent {
      * @return the builder.
      */
     private String data;
+
+    /**
+     * -- GETTER --
+     * The deserialized data. Lazy loaded.
+     *
+     * @return the deserialized data
+     * -- SETTER --
+     * @param event the deserialized event data.
+     * @return the builder.
+     */
+    @Getter(lazy = true)
+    private final Event event = event();
+
+    private Event event() {
+        Gson gson = new GsonBuilder().create();
+        return gson.fromJson(data, Event.class);
+    }
 
 }
