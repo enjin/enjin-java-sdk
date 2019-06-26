@@ -1,70 +1,88 @@
 buildscript {
+    ext.versions = [
+            'enjinCommons': '0.3.0-SNAPSHOT',
+            'gson'        : '2.8.5',
+            'pusher'      : '1.8.0',
+            'okhttp'      : '3.12.1',
+            'retrofit'    : '2.5.0',
+            'lombok'      : '1.18.6',
+            'slf4j'       : '1.7.26'
+    ]
+
+    ext.deps = [
+            'enjinCommons'            : "com.enjin:java_commons:${versions.enjinCommons}",
+            'gson'                    : "com.google.code.gson:gson:${versions.gson}",
+            'pusher'                  : "com.pusher:pusher-java-client:${versions.pusher}",
+            'okhttp'                  : "com.squareup.okhttp3:okhttp:${versions.okhttp}",
+            'okhttpLoggingInterceptor': "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}",
+            'okhttpUrlConnection'     : "com.squareup.okhttp3:okhttp-urlconnection:${versions.okhttp}",
+            'retrofit'                : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+            'retrofitGson'            : "com.squareup.retrofit2:converter-gson:${versions.retrofit}",
+            'slf4jApi'                : "org.slf4j:slf4j-api:${versions.slf4j}",
+            'slf4jSimple'             : "org.slf4j:slf4j-simple:${versions.slf4j}"
+    ]
+
+    ext.local = new Properties()
+    File file = project.rootProject.file('local.properties')
+    if (file.exists()) local.load(file.newDataInputStream())
+
     repositories {
-        jcenter()
         mavenCentral()
+        gradlePluginPortal()
         maven { url 'https://plugins.gradle.org/m2/' }
     }
 }
 
 plugins {
-    id 'com.github.johnrengelman.shadow' version '5.0.0'
-    id 'java'
-    id 'java-library'
-    id 'maven'
     id 'io.freefair.lombok' version '3.2.1'
+    id 'com.github.johnrengelman.shadow' version '5.0.0'
     id 'com.bmuschko.nexus' version '2.3.1'
     id 'io.codearte.nexus-staging' version '0.20.0'
     id 'org.ajoberstar.git-publish' version '2.1.1'
+    id 'net.ltgt.errorprone' version '0.8.1'
 }
 
-apply plugin: 'io.freefair.lombok'
+apply plugin: 'java'
+apply plugin: 'java-library'
+apply plugin: 'maven'
 
-apply from: 'gradle/util.gradle'
-
-apply from: scriptFile('env.gradle')
-configureJavaCompilers(8)
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 
 group = 'com.enjin'
 version = '0.8.0-SNAPSHOT'
 
-ext {
-    enjinCommons = '0.3.0-SNAPSHOT'
-    mockito = '2.9.0'
-    junit = '4.12'
-    powermock = '1.7.4'
-    assertj = '3.11.1'
-    gson = '2.8.5'
-    pusher = '1.8.0'
-    okhttp = '3.12.1'
-    retrofit = '2.5.0'
-    lombok = '1.18.6'
-}
+allprojects {
+    repositories {
+        mavenCentral()
+        maven {
+            url 'https://oss.sonatype.org/content/groups/public/'
+        }
 
-repositories {
-    mavenLocal()
-    mavenCentral()
-    // Sonatype Repository
-    maven { url 'https://oss.sonatype.org/content/groups/public/' }
-    
+    }
 }
 
 dependencies {
-    // implementation dependencies
-    implementation group: 'com.enjin', name: 'java_commons', version: enjinCommons
-    implementation group: 'com.google.code.gson', name: 'gson', version: gson
-    implementation group: 'com.pusher', name: 'pusher-java-client', version: pusher
-    implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: okhttp
-    implementation group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: okhttp
-    implementation group: 'com.squareup.okhttp3', name: 'okhttp-urlconnection', version: okhttp
-    implementation group: 'com.squareup.retrofit2', name: 'retrofit', version: retrofit
-    implementation group: 'com.squareup.retrofit2', name: 'converter-gson', version: retrofit
+    implementation deps.enjinCommons
+    implementation deps.gson
+    implementation deps.pusher
+    implementation deps.okhttp
+    implementation deps.okhttpLoggingInterceptor
+    implementation deps.okhttpUrlConnection
+    implementation deps.retrofit
+    implementation deps.retrofitGson
+    implementation deps.slf4jApi
+    implementation deps.slf4jSimple
 
-    // testImplementation dependencies
-    testImplementation group: 'org.mockito', name: 'mockito-core', version: mockito
-    testImplementation group: 'junit', name: 'junit', version: junit
-    testImplementation group: 'org.powermock', name: 'powermock-api-mockito2', version: powermock
-    testImplementation group: 'org.powermock', name: 'powermock-module-junit4', version: powermock
-    testImplementation group: 'org.assertj', name: 'assertj-core', version: assertj
+    errorproneJavac 'com.google.errorprone:javac:9+181-r4173-1'
+    errorprone 'com.google.errorprone:error_prone_core:2.3.3'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.errorprone {
+        enabled = JavaVersion.current() < JavaVersion.VERSION_12
+        disable('UnusedVariable')
+    }
 }
 
 javadoc {
@@ -127,6 +145,11 @@ nexus {
     sign = false
     repositoryUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
     snapshotRepositoryUrl = 'https://oss.sonatype.org/content/repositories/snapshots/'
+}
+
+nexusStaging {
+    username = local.getProperty('nexusUsername')
+    password = local.getProperty('nexusPassword')
 }
 
 gitPublish {

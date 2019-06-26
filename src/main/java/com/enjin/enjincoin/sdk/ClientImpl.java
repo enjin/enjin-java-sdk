@@ -87,6 +87,7 @@ public class ClientImpl implements Client {
                 .build();
     }
 
+    @Override
     public HttpResponse<AuthResult> auth(String secret) throws IOException {
         Call<AuthResult> call = getAuthRetrofitService()
                 .auth(AuthBody.builder()

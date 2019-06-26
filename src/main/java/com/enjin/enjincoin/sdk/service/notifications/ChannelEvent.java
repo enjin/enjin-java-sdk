@@ -12,7 +12,7 @@ public enum ChannelEvent {
     TRANSACTION("EnjinCoin\\Events\\EnjinEventTransaction"),
     UPDATE_BALANCE("EnjinCoin\\Events\\EnjinEventUpdateBalance");
 
-    private String key;
+    private final String key;
 
     ChannelEvent(String key) {
         this.key = key;
