@@ -54,13 +54,10 @@ public class NotificationListenerRegistration {
      */
     public static class RegistrationListenerConfiguration<T extends RegistrationListenerConfiguration<T>> {
 
-        private NotificationsService service;
-        private NotificationListener listener;
-        private EventMatcher         eventMatcher = ALLOW_ALL_MATCHER;
+        protected NotificationListener listener;
+        protected EventMatcher         eventMatcher = ALLOW_ALL_MATCHER;
 
-        protected RegistrationListenerConfiguration(NotificationsService service,
-                                                    NotificationListener listener) {
-            this.service = service;
+        protected RegistrationListenerConfiguration(NotificationListener listener) {
             this.listener = listener;
             this.detectAndApplyListenerAnnotations();
         }
@@ -101,17 +98,13 @@ public class NotificationListenerRegistration {
             return this.withMatcher(types == null ? null : event -> !event.getType().in(types));
         }
 
-        /**
-         * Creates a new listener registration and adds it to the notification service.
-         *
-         * @return the registration.
-         */
-        public NotificationListenerRegistration register() {
+        public NotificationListenerRegistration create() {
             NotificationListenerRegistration registration = null;
-            if (this.service != null && this.listener != null) {
+
+            if (this.listener != null) {
                 registration = new NotificationListenerRegistration(this.listener, this.eventMatcher);
-                this.service.addNotificationListenerRegistration(registration);
             }
+
             return registration;
         }
 
@@ -133,15 +126,13 @@ public class NotificationListenerRegistration {
     /**
      * Creates a new listener configuration for the provided notification service.
      *
-     * @param service  the service the listener is being configured for.
      * @param listener the listener to configure.
      *
      * @return RegistrationListenerConfiguration
      */
     @SuppressWarnings("rawtypes")
-    public static RegistrationListenerConfiguration<?> configure(NotificationsService service,
-                                                                 NotificationListener listener) {
-        return new RegistrationListenerConfiguration(service, listener);
+    public static RegistrationListenerConfiguration<?> configure(NotificationListener listener) {
+        return new RegistrationListenerConfiguration(listener);
     }
 
 }

@@ -1,6 +1,7 @@
 package com.enjin.enjincoin.sdk.service.notifications;
 
 import com.enjin.enjincoin.sdk.model.service.notifications.NotificationType;
+import com.enjin.enjincoin.sdk.model.service.platform.PlatformDetails;
 import com.enjin.enjincoin.sdk.service.notifications.NotificationListenerRegistration.RegistrationListenerConfiguration;
 
 import java.math.BigInteger;
@@ -10,35 +11,26 @@ import java.math.BigInteger;
  *
  * @author Evan Lindsay
  */
-public interface NotificationsService extends AsynchronousNotificationsService {
+public interface NotificationsService {
 
     /**
      * Starts the notification service.
-     *
-     * @return true if started, else false.
      */
-    boolean start();
+    void start();
 
     /**
-     * Restarts the notification service.
+     * Starts the notification with the provided details.
      *
-     * @return true if started, else false.
+     * @param details the platform details.
      */
-    boolean restart();
+    void start(PlatformDetails details);
+
+    boolean isStarted();
 
     /**
      * Shuts down the notification service.
      */
     void shutdown();
-
-    /**
-     * Configures a notification listener.
-     *
-     * @param listener the listener to configure.
-     *
-     * @return the listener configuration.
-     */
-    RegistrationListenerConfiguration configureListener(NotificationListener listener);
 
     /**
      * Adds a notification listener.
@@ -47,7 +39,7 @@ public interface NotificationsService extends AsynchronousNotificationsService {
      *
      * @return the listener registration.
      */
-    NotificationListenerRegistration addNotificationListener(NotificationListener listener);
+    NotificationListenerRegistration registerListenerWithMatcher(NotificationListener listener);
 
     /**
      * Adds a notification listener with an event matcher.
@@ -57,7 +49,7 @@ public interface NotificationsService extends AsynchronousNotificationsService {
      *
      * @return the listener registration.
      */
-    NotificationListenerRegistration addNotificationListener(NotificationListener listener, EventMatcher eventMatcher);
+    NotificationListenerRegistration registerListenerWithMatcher(NotificationListener listener, EventMatcher eventMatcher);
 
     /**
      * Adds a notification listener with an array of types to allow.
@@ -67,8 +59,8 @@ public interface NotificationsService extends AsynchronousNotificationsService {
      *
      * @return the listener registration.
      */
-    NotificationListenerRegistration addAllowedTypesNotificationListener(NotificationListener listener,
-                                                                         NotificationType... allowed);
+    NotificationListenerRegistration registerListenerIncludingTypes(NotificationListener listener,
+                                                                    NotificationType... allowed);
 
     /**
      * Adds a notification listener with an array of types to ignore.
@@ -78,29 +70,21 @@ public interface NotificationsService extends AsynchronousNotificationsService {
      *
      * @return the listener registration.
      */
-    NotificationListenerRegistration addIgnoredTypesNotificationListener(NotificationListener listener,
-                                                                         NotificationType... ignored);
-
-    /**
-     * Removes a listener.
-     *
-     * @param listener the listener to remove.
-     */
-    void removeNotificationListener(NotificationListener listener);
-
-    /**
-     * Adds a notification listener registration.
-     *
-     * @param registration the registration to add.
-     */
-    void addNotificationListenerRegistration(NotificationListenerRegistration registration);
+    NotificationListenerRegistration registerListenerExcludingTypes(NotificationListener listener,
+                                                                    NotificationType... ignored);
 
     /**
      * Removes a notification listener registration.
      *
      * @param registration the registration to remove.
      */
-    void removeNotificationListenerRegistration(NotificationListenerRegistration registration);
+    void unregisterListener(NotificationListener registration);
+
+    void subscribeToApp(int appId);
+
+    void unsubscribeToApp(int appId);
+
+    boolean isSubscribedToApp(int appId);
 
     /**
      * Opens a channel for the specified identity id, allowing listeners
@@ -108,7 +92,7 @@ public interface NotificationsService extends AsynchronousNotificationsService {
      *
      * @param identityId the identity id.
      */
-    void listenForLink(BigInteger identityId);
+    void subscribeToIdentity(int identityId);
 
     /**
      * Closes a channel for the specified identity id, preventing listeners
@@ -116,7 +100,7 @@ public interface NotificationsService extends AsynchronousNotificationsService {
      *
      * @param identityId the identity id.
      */
-    void stopListeningForLink(BigInteger identityId);
+    void unsubscribeToIdentity(int identityId);
 
     /**
      * Returns whether or not a channel is open for the specified identity id.
@@ -125,6 +109,6 @@ public interface NotificationsService extends AsynchronousNotificationsService {
      *
      * @return true if listening, else false.
      */
-    boolean isListeningForLink(BigInteger identityId);
+    boolean isSubscribedToIdentity(int identityId);
 
 }
