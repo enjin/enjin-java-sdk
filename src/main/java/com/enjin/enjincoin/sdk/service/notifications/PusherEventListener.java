@@ -8,10 +8,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.pusher.client.channel.SubscriptionEventListener;
-import lombok.extern.slf4j.Slf4j;
 
-
-@Slf4j
 public class PusherEventListener implements SubscriptionEventListener {
 
     private static final Gson GSON = new GsonBuilder().create();
@@ -25,7 +22,7 @@ public class PusherEventListener implements SubscriptionEventListener {
 
     @Override
     public void onEvent(String channelName, String eventName, String data) {
-        PusherEventListener.log.debug(String.format("Received event %s on channel %s with results %s ",
+        PusherNotificationService.logger().fine(String.format("Received event %s on channel %s with results %s ",
                                                     eventName,
                                                     channelName,
                                                     data));
@@ -56,7 +53,7 @@ public class PusherEventListener implements SubscriptionEventListener {
         }
 
         if (notificationType == NotificationType.UNKNOWN_EVENT) {
-            PusherEventListener.log.warn(String.format("UNKNOWN_EVENT NotificationType %s returned for the eventType of %s",
+            PusherNotificationService.logger().warning(String.format("UNKNOWN_EVENT NotificationType %s returned for the eventType of %s",
                                                        eventTypeString, eventType));
             return;
         }

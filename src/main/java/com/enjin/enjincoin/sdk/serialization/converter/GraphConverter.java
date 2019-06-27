@@ -13,7 +13,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.java.Log;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -27,12 +27,13 @@ import java.lang.reflect.Type;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 /**
  * Body for GraphQL requests and responses, closed for modification
  * but open for extension.
  */
-@Slf4j
+@Log
 public class GraphConverter extends Converter.Factory {
 
     protected GraphQLProcessor graphProcessor;
@@ -148,7 +149,7 @@ public class GraphConverter extends Converter.Factory {
                     cursor = getCursor(root);
                 }
             } catch (IOException e) {
-                GraphConverter.log.error("An exception occurred:", e);
+                GraphConverter.log.log(Level.SEVERE,"An exception occurred:", e);
             }
 
             GraphQLResponse<T> response = new GraphQLResponse<>(raw, result, errors, cursor);

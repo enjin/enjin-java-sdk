@@ -6,7 +6,6 @@ buildscript {
             'okhttp'      : '3.12.1',
             'retrofit'    : '2.5.0',
             'lombok'      : '1.18.6',
-            'slf4j'       : '1.7.26'
     ]
 
     ext.deps = [
@@ -17,9 +16,7 @@ buildscript {
             'okhttpLoggingInterceptor': "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}",
             'okhttpUrlConnection'     : "com.squareup.okhttp3:okhttp-urlconnection:${versions.okhttp}",
             'retrofit'                : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
-            'retrofitGson'            : "com.squareup.retrofit2:converter-gson:${versions.retrofit}",
-            'slf4jApi'                : "org.slf4j:slf4j-api:${versions.slf4j}",
-            'slf4jSimple'             : "org.slf4j:slf4j-simple:${versions.slf4j}"
+            'retrofitGson'            : "com.squareup.retrofit2:converter-gson:${versions.retrofit}"
     ]
 
     ext.local = new Properties()
@@ -71,8 +68,6 @@ dependencies {
     implementation deps.okhttpUrlConnection
     implementation deps.retrofit
     implementation deps.retrofitGson
-    implementation deps.slf4jApi
-    implementation deps.slf4jSimple
 
     errorproneJavac 'com.google.errorprone:javac:9+181-r4173-1'
     errorprone 'com.google.errorprone:error_prone_core:2.3.3'

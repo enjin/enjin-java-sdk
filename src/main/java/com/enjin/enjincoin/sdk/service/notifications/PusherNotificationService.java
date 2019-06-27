@@ -7,6 +7,7 @@ import com.enjin.enjincoin.sdk.model.service.platform.SdkDetails;
 import com.enjin.enjincoin.sdk.service.notifications.NotificationListenerRegistration.RegistrationListenerConfiguration;
 import com.enjin.enjincoin.sdk.service.notifications.subscriptions.AppChannel;
 import com.enjin.enjincoin.sdk.service.notifications.subscriptions.IdentityChannel;
+import com.enjin.enjincoin.sdk.service.notifications.subscriptions.UserChannel;
 import com.enjin.java_commons.ObjectUtils;
 import com.enjin.java_commons.StringUtils;
 import com.pusher.client.Pusher;
@@ -16,20 +17,21 @@ import com.pusher.client.connection.ConnectionEventListener;
 import com.pusher.client.connection.ConnectionState;
 import com.pusher.client.connection.ConnectionStateChange;
 import lombok.NonNull;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.java.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-@Slf4j
+@Log
 public class PusherNotificationService implements NotificationsService {
 
     private static final String DRIVER = "pusher";
 
     protected List<NotificationListenerRegistration> listeners = new ArrayList<>();
-    private   boolean                                started   = false;
     private   PlatformDetails                        platformDetails;
     private   Pusher                                 pusher;
     private   PusherEventListener                    listener;
@@ -67,20 +69,14 @@ public class PusherNotificationService implements NotificationsService {
                             ConnectionState previous = change.getPreviousState();
                             ConnectionState current  = change.getCurrentState();
 
-                            PusherNotificationService.log.debug(String.format("State changed from %s to %s.",
+                            PusherNotificationService.log.fine(String.format("State changed from %s to %s.",
                                                                               previous,
                                                                               current));
-
-                            if (current == ConnectionState.CONNECTED) {
-                                started = true;
-                            } else {
-                                started = false;
-                            }
                         }
 
                         @Override
                         public void onError(String message, String code, Exception e) {
-                            PusherNotificationService.log.error("Unable to connect to pusher service.", e);
+                            PusherNotificationService.log.log(Level.SEVERE, "Unable to connect to pusher service.", e);
                         }
                     }, ConnectionState.ALL);
                 }
@@ -89,18 +85,14 @@ public class PusherNotificationService implements NotificationsService {
     }
 
     @Override
-    public boolean isStarted() {
-        return started;
-    }
-
-    public void setStarted(boolean started) {
-        this.started = started;
-    }
-
-    @Override
     public void start(PlatformDetails details) {
         platformDetails = details;
         start();
+    }
+
+    @Override
+    public boolean isConnected() {
+        return pusher != null && pusher.getConnection().getState() == ConnectionState.CONNECTED;
     }
 
     @Override
@@ -170,6 +162,21 @@ public class PusherNotificationService implements NotificationsService {
     }
 
     @Override
+    public void subscribeToUser(int userId) {
+        subscribe(new UserChannel(platformDetails, userId).channel());
+    }
+
+    @Override
+    public void unsubscribeToUser(int userId) {
+        unsubscribe(new UserChannel(platformDetails, userId).channel());
+    }
+
+    @Override
+    public boolean isSubscribedToUser(int userId) {
+        return subscribed.containsKey(new UserChannel(platformDetails, userId).channel());
+    }
+
+    @Override
     public void subscribeToIdentity(int identityId) {
         subscribe(new IdentityChannel(platformDetails, identityId).channel());
     }
@@ -206,16 +213,20 @@ public class PusherNotificationService implements NotificationsService {
 
     private void bind(@NonNull Channel channel) {
         for (ChannelEvent channelEvent : ChannelEvent.values()) {
-            PusherNotificationService.log.debug(String.format("Event Channel Bound: %s", channelEvent.getKey()));
+            PusherNotificationService.log.fine(String.format("Event Channel Bound: %s", channelEvent.getKey()));
             channel.bind(channelEvent.getKey(), this.listener);
         }
     }
 
     private void unbind(@NonNull Channel channel) {
         for (ChannelEvent channelEvent : ChannelEvent.values()) {
-            PusherNotificationService.log.debug(String.format("Event Channel Unbound: %s", channelEvent.getKey()));
+            PusherNotificationService.log.fine(String.format("Event Channel Unbound: %s", channelEvent.getKey()));
             channel.unbind(channelEvent.getKey(), this.listener);
         }
+    }
+
+    public static Logger logger() {
+        return log;
     }
 
 }

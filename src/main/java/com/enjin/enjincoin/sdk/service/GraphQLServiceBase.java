@@ -5,15 +5,16 @@ import com.enjin.enjincoin.sdk.http.HttpCallback;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.java.Log;
 import okhttp3.MediaType;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.logging.Level;
 
-@Slf4j
+@Log
 public class GraphQLServiceBase extends ServiceBase {
 
     private static final Gson      GSON = new GsonBuilder().create();
@@ -31,14 +32,14 @@ public class GraphQLServiceBase extends ServiceBase {
                 try {
                     callback.onComplete(createResult(response));
                 } catch (IOException e) {
-                    GraphQLServiceBase.log.error("An exception occurred:", e);
+                    GraphQLServiceBase.log.log(Level.SEVERE, "An exception occurred:", e);
                 }
             }
 
             @Override
             public void onFailure(Call<T> call, Throwable t) {
                 Exception exception = new Exception("Request Failed: " + call.request().toString(), t);
-                GraphQLServiceBase.log.error("An exception occurred:", exception);
+                GraphQLServiceBase.log.log(Level.SEVERE,"An exception occurred:", exception);
             }
         });
     }

@@ -1,5 +1,6 @@
 package com.enjin.enjincoin.sdk;
 
+import com.enjin.enjincoin.sdk.http.AuthorizationInterceptor;
 import com.enjin.enjincoin.sdk.http.ClearableCookieJar;
 import com.enjin.enjincoin.sdk.http.CookieCache;
 import com.enjin.enjincoin.sdk.http.CookiePersistor;
@@ -29,7 +30,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.TypeAdapterFactory;
 import lombok.Getter;
-import okhttp3.Cookie;
 import okhttp3.Dispatcher;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -55,34 +55,32 @@ public class TrustedPlatformClient implements Closeable {
     public static final String KOVAN              = "https://kovan.cloud.enjin.io/";
     // Keys
     public static final String CLIENT_CREDENTIALS = "client_credentials";
-    public static final String AUTHORIZATION      = "Authorization";
-    // Constants
-    public static final long CACHE_SIZE = 10 * 1024 * 1024;
 
     // Cookie Jar
-    private CookieCache            cookieCache;
-    private CookiePersistor        cookiePersistor;
-    private ClearableCookieJar     cookieJar;
+    private CookieCache              cookieCache;
+    private CookiePersistor          cookiePersistor;
+    private ClearableCookieJar       cookieJar;
     // Http Client
-    private HttpLoggingInterceptor httpLogInterceptor;
-    private OkHttpClient           httpClient;
+    private AuthorizationInterceptor authorizationInterceptor;
+    private HttpLoggingInterceptor   httpLogInterceptor;
+    private OkHttpClient             httpClient;
     // Serialization
-    private Gson                   gson;
-    private Converter.Factory      gsonFactory;
-    private Retrofit               retrofit;
+    private Gson                     gson;
+    private Converter.Factory        gsonFactory;
+    private Retrofit                 retrofit;
     // Services
     @Getter
-    private AuthRetrofitService    authService;
+    private AuthRetrofitService      authService;
     @Getter
-    private PlatformService        platformService;
+    private PlatformService          platformService;
     @Getter
-    private UsersService           usersService;
+    private UsersService             usersService;
     @Getter
-    private IdentitiesService      identitiesService;
+    private IdentitiesService        identitiesService;
     @Getter
-    private RequestsService        requestsService;
+    private RequestsService          requestsService;
     @Getter
-    private TokensService          tokensService;
+    private TokensService            tokensService;
 
     public TrustedPlatformClient() {
         this(new Builder());
@@ -93,9 +91,11 @@ public class TrustedPlatformClient implements Closeable {
         this.cookiePersistor = new MemoryCookiePersistor();
         this.cookieJar = new PersistentCookieJar(this.cookieCache, this.cookiePersistor);
 
+        this.authorizationInterceptor = new AuthorizationInterceptor();
         this.httpLogInterceptor = builder.httpLogInterceptor;
         this.httpClient = builder.httpClientBuilder
                 .cookieJar(this.cookieJar)
+                .addInterceptor(this.authorizationInterceptor)
                 .addInterceptor(this.httpLogInterceptor)
                 .build();
 
@@ -159,12 +159,7 @@ public class TrustedPlatformClient implements Closeable {
     private void authApp(long start, Response<AuthResult> response) {
         if (response.isSuccessful()) {
             AuthResult body = response.body();
-            this.cookieJar.addCookie(new Cookie.Builder()
-                                             .domain(this.retrofit.baseUrl().host())
-                                             .name(AUTHORIZATION)
-                                             .value(String.format("%s %s", body.getTokenType(), body.getAccessToken()))
-                                             .expiresAt(start + TimeUnit.SECONDS.toMillis(body.getExpiresIn()))
-                                             .build());
+            authorizationInterceptor.auth(body);
         }
     }
 

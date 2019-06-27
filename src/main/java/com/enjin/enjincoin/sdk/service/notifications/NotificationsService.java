@@ -25,7 +25,7 @@ public interface NotificationsService {
      */
     void start(PlatformDetails details);
 
-    boolean isStarted();
+    boolean isConnected();
 
     /**
      * Shuts down the notification service.
@@ -85,6 +85,12 @@ public interface NotificationsService {
     void unsubscribeToApp(int appId);
 
     boolean isSubscribedToApp(int appId);
+
+    void subscribeToUser(int userId);
+
+    void unsubscribeToUser(int userId);
+
+    boolean isSubscribedToUser(int userId);
 
     /**
      * Opens a channel for the specified identity id, allowing listeners
