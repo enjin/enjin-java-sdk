@@ -21,6 +21,10 @@ public class Templates {
                                                                       .withField(NETWORK)
                                                                       .withField(NOTIFICATIONS);
 
+    // Ethereum
+    public static final GraphQLTemplate GET_BLOCK_HEIGHT = GraphQLTemplate.of("GetBlockHeight", false, ENJIN_BLOCK_HEIGHT)
+                                                                          .withField(BLOCK);
+
     // Users
     public static final GraphQLTemplate GET_USERS   = GraphQLTemplate.of("GetUsers", false, ENJIN_USERS)
                                                                      .withField(ID)

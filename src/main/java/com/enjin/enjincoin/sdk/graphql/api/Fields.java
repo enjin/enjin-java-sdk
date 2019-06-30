@@ -56,6 +56,7 @@ public class Fields {
     public static final GraphQLTemplateField PARAM3                    = GraphQLTemplateField.of("param3");
     public static final GraphQLTemplateField PARAM4                    = GraphQLTemplateField.of("param4");
     public static final GraphQLTemplateField BLOCK_NUMBER              = GraphQLTemplateField.of("blockNumber");
+    public static final GraphQLTemplateField BLOCK              = GraphQLTemplateField.of("block");
     public static final GraphQLTemplateField CURSOR                    = GraphQLTemplateField.of("cursor")
                                                                                              .withChild(GraphQLTemplateField.of("total"))
                                                                                              .withChild(GraphQLTemplateField.of("perPage"))

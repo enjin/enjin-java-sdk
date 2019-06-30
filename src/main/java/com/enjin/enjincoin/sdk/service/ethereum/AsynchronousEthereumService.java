@@ -1,6 +1,8 @@
 package com.enjin.enjincoin.sdk.service.ethereum;
 
+import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
 import com.enjin.enjincoin.sdk.http.HttpCallback;
+import com.enjin.enjincoin.sdk.model.service.ethereum.Block;
 
 import java.math.BigInteger;
 
@@ -11,12 +13,6 @@ import java.math.BigInteger;
  */
 public interface AsynchronousEthereumService {
 
-    /**
-     * Gets the allowance of an ethereum address.
-     *
-     * @param ethAddr  the ethereum address.
-     * @param callback the callback.
-     */
-    void getAllowanceAsync(String ethAddr, HttpCallback<BigInteger> callback);
+    void getBlockAsync(HttpCallback<GraphQLResponse<Block>> callback);
 
 }

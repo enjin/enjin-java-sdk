@@ -4,6 +4,8 @@ public class Methods {
 
     // Platform
     public static final String ENJIN_PLATFORM = "EnjinPlatform";
+
+    // Ethereum
     public static final String ENJIN_BLOCK_HEIGHT = "EnjinBlockHeight";
 
     // Oauth
