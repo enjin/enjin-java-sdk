@@ -35,7 +35,7 @@ public interface SynchronousTokensService {
      *
      * @throws IOException if a communication error occurred.
      */
-    HttpResponse<GraphQLResponse<Token>> importTokenSync(CreateToken query) throws IOException;
+    HttpResponse<GraphQLResponse<Token>> createTokenSync(CreateToken query) throws IOException;
 
     /**
      * Updates an app token.

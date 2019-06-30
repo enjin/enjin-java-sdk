@@ -34,7 +34,7 @@ public interface AsynchronousTokensService {
      * @param query    the query.
      * @param callback the callback.
      */
-    void importTokenAsync(CreateToken query,
+    void createTokenAsync(CreateToken query,
                           HttpCallback<GraphQLResponse<Token>> callback);
 
     /**

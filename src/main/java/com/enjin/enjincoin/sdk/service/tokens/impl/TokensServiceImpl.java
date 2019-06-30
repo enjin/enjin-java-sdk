@@ -33,7 +33,7 @@ public class TokensServiceImpl extends GraphQLServiceBase implements TokensServi
     }
 
     @Override
-    public void importTokenAsync(CreateToken query,
+    public void createTokenAsync(CreateToken query,
                                  HttpCallback<GraphQLResponse<Token>> callback) {
         enqueueGraphQLCall(getImportTokenCall(query), callback);
     }
@@ -60,7 +60,7 @@ public class TokensServiceImpl extends GraphQLServiceBase implements TokensServi
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<Token>> importTokenSync(CreateToken query) throws IOException {
+    public HttpResponse<GraphQLResponse<Token>> createTokenSync(CreateToken query) throws IOException {
         return executeGraphQLCall(getImportTokenCall(query));
     }
 
