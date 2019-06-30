@@ -2,9 +2,12 @@ package com.enjin.enjincoin.sdk.service.tokens.impl;
 
 import com.enjin.enjincoin.sdk.http.HttpResponse;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
+import com.enjin.enjincoin.sdk.model.service.tokens.DeleteToken;
+import com.enjin.enjincoin.sdk.model.service.tokens.GetTokenEvents;
 import com.enjin.enjincoin.sdk.model.service.tokens.GetTokens;
 import com.enjin.enjincoin.sdk.model.service.tokens.CreateToken;
 import com.enjin.enjincoin.sdk.model.service.tokens.Token;
+import com.enjin.enjincoin.sdk.model.service.tokens.TokenEvent;
 import com.enjin.enjincoin.sdk.model.service.tokens.UpdateToken;
 import com.enjin.enjincoin.sdk.service.GraphQLServiceBase;
 import com.enjin.enjincoin.sdk.service.tokens.TokensService;
@@ -42,6 +45,16 @@ public class TokensServiceImpl extends GraphQLServiceBase implements TokensServi
     }
 
     @Override
+    public void deleteTokenAsync(DeleteToken query, HttpCallback<GraphQLResponse<Token>> callback) {
+        enqueueGraphQLCall(getDeleteTokenCall(query), callback);
+    }
+
+    @Override
+    public void getTokenEventsAsync(GetTokenEvents query, HttpCallback<GraphQLResponse<List<TokenEvent>>> callback) {
+        enqueueGraphQLCall(getTokenEventsCall(query), callback);
+    }
+
+    @Override
     public HttpResponse<GraphQLResponse<List<Token>>> getTokensSync(GetTokens query) throws IOException {
         return executeGraphQLCall(getTokensCall(query));
     }
@@ -56,6 +69,16 @@ public class TokensServiceImpl extends GraphQLServiceBase implements TokensServi
         return executeGraphQLCall(getUpdateTokenCall(query));
     }
 
+    @Override
+    public HttpResponse<GraphQLResponse<Token>> deleteTokenSync(DeleteToken query) throws IOException {
+        return executeGraphQLCall(getDeleteTokenCall(query));
+    }
+
+    @Override
+    public HttpResponse<GraphQLResponse<List<TokenEvent>>> getTokenEventsSync(GetTokenEvents query) throws IOException {
+        return executeGraphQLCall(getTokenEventsCall(query));
+    }
+
     private Call<GraphQLResponse<List<Token>>> getTokensCall(GetTokens query) {
         return this.service.getTokens(query);
     }
@@ -66,6 +89,14 @@ public class TokensServiceImpl extends GraphQLServiceBase implements TokensServi
 
     private Call<GraphQLResponse<Token>> getUpdateTokenCall(UpdateToken query) {
         return this.service.updateToken(query);
+    }
+
+    private Call<GraphQLResponse<Token>> getDeleteTokenCall(DeleteToken query) {
+        return this.service.deleteToken(query);
+    }
+
+    private Call<GraphQLResponse<List<TokenEvent>>> getTokenEventsCall(GetTokenEvents query) {
+        return this.service.getTokenEvents(query);
     }
 
 }

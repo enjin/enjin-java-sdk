@@ -1,9 +1,12 @@
 package com.enjin.enjincoin.sdk.service.tokens;
 
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
+import com.enjin.enjincoin.sdk.model.service.tokens.DeleteToken;
+import com.enjin.enjincoin.sdk.model.service.tokens.GetTokenEvents;
 import com.enjin.enjincoin.sdk.model.service.tokens.GetTokens;
 import com.enjin.enjincoin.sdk.model.service.tokens.CreateToken;
 import com.enjin.enjincoin.sdk.model.service.tokens.Token;
+import com.enjin.enjincoin.sdk.model.service.tokens.TokenEvent;
 import com.enjin.enjincoin.sdk.model.service.tokens.UpdateToken;
 import com.enjin.enjincoin.sdk.http.HttpCallback;
 
@@ -42,5 +45,11 @@ public interface AsynchronousTokensService {
      */
     void updateTokenAsync(UpdateToken query,
                           HttpCallback<GraphQLResponse<Token>> callback);
+
+    void deleteTokenAsync(DeleteToken query,
+                          HttpCallback<GraphQLResponse<Token>> callback);
+
+    void getTokenEventsAsync(GetTokenEvents query,
+                             HttpCallback<GraphQLResponse<List<TokenEvent>>> callback);
 
 }

@@ -50,6 +50,12 @@ public class Fields {
     public static final GraphQLTemplateField RETRY_STATE               = GraphQLTemplateField.of("retry_state");
     public static final GraphQLTemplateField STATE                     = GraphQLTemplateField.of("state");
     public static final GraphQLTemplateField ACCEPTED                  = GraphQLTemplateField.of("accepted");
+    public static final GraphQLTemplateField EVENT                     = GraphQLTemplateField.of("event");
+    public static final GraphQLTemplateField PARAM1                    = GraphQLTemplateField.of("param1");
+    public static final GraphQLTemplateField PARAM2                    = GraphQLTemplateField.of("param2");
+    public static final GraphQLTemplateField PARAM3                    = GraphQLTemplateField.of("param3");
+    public static final GraphQLTemplateField PARAM4                    = GraphQLTemplateField.of("param4");
+    public static final GraphQLTemplateField BLOCK_NUMBER              = GraphQLTemplateField.of("blockNumber");
     public static final GraphQLTemplateField CURSOR                    = GraphQLTemplateField.of("cursor")
                                                                                              .withChild(GraphQLTemplateField.of("total"))
                                                                                              .withChild(GraphQLTemplateField.of("perPage"))

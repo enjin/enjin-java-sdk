@@ -2,9 +2,12 @@ package com.enjin.enjincoin.sdk.service.tokens;
 
 import com.enjin.enjincoin.sdk.http.HttpResponse;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
+import com.enjin.enjincoin.sdk.model.service.tokens.DeleteToken;
+import com.enjin.enjincoin.sdk.model.service.tokens.GetTokenEvents;
 import com.enjin.enjincoin.sdk.model.service.tokens.GetTokens;
 import com.enjin.enjincoin.sdk.model.service.tokens.CreateToken;
 import com.enjin.enjincoin.sdk.model.service.tokens.Token;
+import com.enjin.enjincoin.sdk.model.service.tokens.TokenEvent;
 import com.enjin.enjincoin.sdk.model.service.tokens.UpdateToken;
 
 import java.io.IOException;
@@ -44,5 +47,9 @@ public interface SynchronousTokensService {
      * @throws IOException if a communication error occurred.
      */
     HttpResponse<GraphQLResponse<Token>> updateTokenSync(UpdateToken query) throws IOException;
+
+    HttpResponse<GraphQLResponse<Token>> deleteTokenSync(DeleteToken query) throws IOException;
+
+    HttpResponse<GraphQLResponse<List<TokenEvent>>> getTokenEventsSync(GetTokenEvents query) throws IOException;
 
 }
