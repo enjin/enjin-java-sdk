@@ -2,6 +2,7 @@ package com.enjin.enjincoin.sdk.service.requests;
 
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
 import com.enjin.enjincoin.sdk.model.service.requests.CreateRequest;
+import com.enjin.enjincoin.sdk.model.service.requests.DeleteRequest;
 import com.enjin.enjincoin.sdk.model.service.requests.GetRequests;
 import com.enjin.enjincoin.sdk.model.service.requests.Transaction;
 import com.enjin.enjincoin.sdk.model.service.requests.UpdateRequest;
@@ -41,6 +42,9 @@ public interface AsynchronousRequestsService {
      * @param callback the callback.
      */
     void updateRequestAsync(UpdateRequest query,
+                            HttpCallback<GraphQLResponse<Transaction>> callback);
+
+    void deleteRequestAsync(DeleteRequest query,
                             HttpCallback<GraphQLResponse<Transaction>> callback);
 
 }

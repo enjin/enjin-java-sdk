@@ -3,6 +3,7 @@ package com.enjin.enjincoin.sdk.service.requests;
 import com.enjin.enjincoin.sdk.http.HttpResponse;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
 import com.enjin.enjincoin.sdk.model.service.requests.CreateRequest;
+import com.enjin.enjincoin.sdk.model.service.requests.DeleteRequest;
 import com.enjin.enjincoin.sdk.model.service.requests.GetRequests;
 import com.enjin.enjincoin.sdk.model.service.requests.Transaction;
 import com.enjin.enjincoin.sdk.model.service.requests.UpdateRequest;
@@ -44,5 +45,7 @@ public interface SynchronousRequestsService {
      * @throws IOException if a communication error occurred.
      */
     HttpResponse<GraphQLResponse<Transaction>> updateRequestSync(UpdateRequest query) throws IOException;
+
+    HttpResponse<GraphQLResponse<Transaction>> deleteRequestSync(DeleteRequest query) throws IOException;
 
 }

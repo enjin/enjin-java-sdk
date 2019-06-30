@@ -3,6 +3,7 @@ package com.enjin.enjincoin.sdk.service.requests.impl;
 import com.enjin.enjincoin.sdk.http.HttpResponse;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
 import com.enjin.enjincoin.sdk.model.service.requests.CreateRequest;
+import com.enjin.enjincoin.sdk.model.service.requests.DeleteRequest;
 import com.enjin.enjincoin.sdk.model.service.requests.GetRequests;
 import com.enjin.enjincoin.sdk.model.service.requests.Transaction;
 import com.enjin.enjincoin.sdk.model.service.requests.UpdateRequest;
@@ -26,46 +27,44 @@ public class RequestsServiceImpl extends GraphQLServiceBase implements RequestsS
     @Override
     public void getRequestsAsync(GetRequests query,
                                  HttpCallback<GraphQLResponse<List<Transaction>>> callback) {
-        enqueueGraphQLCall(getGetRequestsCall(query), callback);
+        enqueueGraphQLCall(this.service.getRequests(query), callback);
     }
 
     @Override
     public void createRequestAsync(CreateRequest query,
                                    HttpCallback<GraphQLResponse<Transaction>> callback) {
-        enqueueGraphQLCall(getCreateRequestCall(query), callback);
+        enqueueGraphQLCall(this.service.createRequest(query), callback);
     }
 
     @Override
     public void updateRequestAsync(UpdateRequest query,
                                    HttpCallback<GraphQLResponse<Transaction>> callback) {
-        enqueueGraphQLCall(getUpdateRequestCall(query), callback);
+        enqueueGraphQLCall(this.service.updateRequest(query), callback);
+    }
+
+    @Override
+    public void deleteRequestAsync(DeleteRequest query, HttpCallback<GraphQLResponse<Transaction>> callback) {
+        enqueueGraphQLCall(this.service.deleteRequest(query), callback);
     }
 
     @Override
     public HttpResponse<GraphQLResponse<List<Transaction>>> getRequestsSync(GetRequests query) throws IOException {
-        return executeGraphQLCall(getGetRequestsCall(query));
+        return executeGraphQLCall(this.service.getRequests(query));
     }
 
     @Override
     public HttpResponse<GraphQLResponse<Transaction>> createRequestSync(CreateRequest query) throws IOException {
-        return executeGraphQLCall(getCreateRequestCall(query));
+        return executeGraphQLCall(this.service.createRequest(query));
     }
 
     @Override
     public HttpResponse<GraphQLResponse<Transaction>> updateRequestSync(UpdateRequest query) throws IOException {
-        return executeGraphQLCall(getUpdateRequestCall(query));
+        return executeGraphQLCall(this.service.updateRequest(query));
     }
 
-    private Call<GraphQLResponse<List<Transaction>>> getGetRequestsCall(GetRequests query) {
-        return this.service.getRequests(query);
-    }
-
-    private Call<GraphQLResponse<Transaction>> getCreateRequestCall(CreateRequest query) {
-        return this.service.createRequest(query);
-    }
-
-    private Call<GraphQLResponse<Transaction>> getUpdateRequestCall(UpdateRequest query) {
-        return this.service.updateRequest(query);
+    @Override
+    public HttpResponse<GraphQLResponse<Transaction>> deleteRequestSync(DeleteRequest query) throws IOException {
+        return executeGraphQLCall(this.service.deleteRequest(query));
     }
 
 }
