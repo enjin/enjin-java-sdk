@@ -20,7 +20,7 @@ public class GetRequests extends PaginationRequest<GetRequests> {
      *
      * @return the builder.
      */
-    public GetRequests withRequestId(BigInteger requestId) {
+    public GetRequests requestId(int requestId) {
         withParameter("id", requestId);
         return this;
     }
@@ -32,7 +32,7 @@ public class GetRequests extends PaginationRequest<GetRequests> {
      *
      * @return the builder.
      */
-    public GetRequests withTransactionId(String transactionId) {
+    public GetRequests transactionId(String transactionId) {
         withParameter("transaction_id", transactionId);
         return this;
     }
@@ -44,7 +44,7 @@ public class GetRequests extends PaginationRequest<GetRequests> {
      *
      * @return the builder.
      */
-    public GetRequests withIdentityId(BigInteger identityId) {
+    public GetRequests identityId(int identityId) {
         withParameter("identity_id", identityId);
         return this;
     }
@@ -56,7 +56,7 @@ public class GetRequests extends PaginationRequest<GetRequests> {
      *
      * @return the builder.
      */
-    public GetRequests withType(TransactionType type) {
+    public GetRequests transactionType(TransactionType type) {
         withParameter("type", type);
         return this;
     }
@@ -68,7 +68,7 @@ public class GetRequests extends PaginationRequest<GetRequests> {
      *
      * @return the builder.
      */
-    public GetRequests withRecipientId(BigInteger recipientId) {
+    public GetRequests recipientId(int recipientId) {
         withParameter("recipient_id", recipientId);
         return this;
     }
@@ -80,7 +80,7 @@ public class GetRequests extends PaginationRequest<GetRequests> {
      *
      * @return the builder.
      */
-    public GetRequests withRecipientAddress(String recipientAddress) {
+    public GetRequests recipientAddress(String recipientAddress) {
         withParameter("recipient_address", recipientAddress);
         return this;
     }
@@ -92,7 +92,7 @@ public class GetRequests extends PaginationRequest<GetRequests> {
      *
      * @return the builder.
      */
-    public GetRequests withSenderOrRecipientId(BigInteger senderOrRecipientId) {
+    public GetRequests senderOrRecipientIdentity(int senderOrRecipientId) {
         withParameter("sender_or_recipient_id", senderOrRecipientId);
         return this;
     }
@@ -104,7 +104,7 @@ public class GetRequests extends PaginationRequest<GetRequests> {
      *
      * @return the builder.
      */
-    public GetRequests withTokenId(String tokenId) {
+    public GetRequests tokenId(String tokenId) {
         withParameter("token_id", tokenId);
         return this;
     }
@@ -116,7 +116,7 @@ public class GetRequests extends PaginationRequest<GetRequests> {
      *
      * @return the builder.
      */
-    public GetRequests withValue(String value) {
+    public GetRequests value(String value) {
         withParameter("value", value);
         return this;
     }
@@ -128,7 +128,7 @@ public class GetRequests extends PaginationRequest<GetRequests> {
      *
      * @return the builder.
      */
-    public GetRequests withState(TransactionState state) {
+    public GetRequests state(TransactionState state) {
         withParameter("state", state);
         return this;
     }
@@ -140,7 +140,7 @@ public class GetRequests extends PaginationRequest<GetRequests> {
      *
      * @return the builder.
      */
-    public GetRequests withStateIn(List<TransactionState> stateIn) {
+    public GetRequests stateMatchesAny(List<TransactionState> stateIn) {
         withParameter("state_in", stateIn);
         return this;
     }
@@ -152,7 +152,7 @@ public class GetRequests extends PaginationRequest<GetRequests> {
      *
      * @return the builder.
      */
-    public GetRequests withStateIn(TransactionState... stateIn) {
+    public GetRequests stateMatchesAny(TransactionState... stateIn) {
         withParameter("state_in", stateIn);
         return this;
     }
@@ -160,12 +160,10 @@ public class GetRequests extends PaginationRequest<GetRequests> {
     /**
      * Whether the transactions can only broadcast.
      *
-     * @param canBroadcastOnly whether the transactions can only broadcast.
-     *
      * @return the builder.
      */
-    public GetRequests withCanBroadcastOnly(Boolean canBroadcastOnly) {
-        withParameter("can_broadcast_only", canBroadcastOnly);
+    public GetRequests canBroadcastOnly() {
+        withParameter("can_broadcast_only", true);
         return this;
     }
 

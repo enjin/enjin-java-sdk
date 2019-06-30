@@ -59,7 +59,7 @@ public class Templates {
                                                                      .withField(ACCESS_TOKENS)
                                                                      .withField(ROLES)
                                                                      .withField(IDENTITIES_BASE);
-    public static final GraphQLTemplate LOGIN_USER  = GraphQLTemplate.of("LoginUser", false, ENJIN_OAUTH)
+    public static final GraphQLTemplate LOGIN_USER  = GraphQLTemplate.of("AuthUser", false, ENJIN_OAUTH)
                                                                      .copyFields(GET_USERS);
     public static final GraphQLTemplate CREATE_USER = GraphQLTemplate.of("CreateUser", true, CREATE_ENJIN_USER)
                                                                      .copyFields(GET_USERS);

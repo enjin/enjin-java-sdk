@@ -4,7 +4,7 @@ import com.enjin.enjincoin.sdk.http.HttpResponse;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
 import com.enjin.enjincoin.sdk.model.service.users.CreateUser;
 import com.enjin.enjincoin.sdk.model.service.users.GetUsers;
-import com.enjin.enjincoin.sdk.model.service.users.LoginUser;
+import com.enjin.enjincoin.sdk.model.service.users.AuthUser;
 import com.enjin.enjincoin.sdk.model.service.users.User;
 
 import java.io.IOException;
@@ -43,6 +43,6 @@ public interface SynchronousUsersService {
      *
      * @throws IOException if a communication error occurred.
      */
-    HttpResponse<GraphQLResponse<User>> loginUserSync(LoginUser query) throws IOException;
+    HttpResponse<GraphQLResponse<User>> loginUserSync(AuthUser query) throws IOException;
 
 }

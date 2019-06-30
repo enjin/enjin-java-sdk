@@ -9,7 +9,7 @@ import lombok.ToString;
  *
  * @author Evan Lindsay
  * @see User
- * @see LoginUser
+ * @see AuthUser
  */
 @Getter
 @ToString

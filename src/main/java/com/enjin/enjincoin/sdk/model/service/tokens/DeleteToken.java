@@ -4,7 +4,7 @@ import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
 
 public class DeleteToken extends GraphQLRequest<DeleteToken> {
 
-    public DeleteToken withTokenId(String tokenId) {
+    public DeleteToken tokenId(String tokenId) {
         withParameter("token_id", tokenId);
         return this;
     }

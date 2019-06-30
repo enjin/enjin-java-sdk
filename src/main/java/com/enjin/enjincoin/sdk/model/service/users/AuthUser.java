@@ -8,7 +8,17 @@ import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
  * @author Evan Lindsay
  * @see com.enjin.enjincoin.sdk.service.users.UsersService
  */
-public class LoginUser extends GraphQLRequest<LoginUser> {
+public class AuthUser extends GraphQLRequest<AuthUser> {
+
+    public AuthUser appId(int id) {
+        withParameter("app_id", id);
+        return this;
+    }
+
+    public AuthUser name(String name) {
+        withParameter("name", name);
+        return this;
+    }
 
     /**
      * The email of the user.
@@ -17,7 +27,7 @@ public class LoginUser extends GraphQLRequest<LoginUser> {
      *
      * @return the builder.
      */
-    public LoginUser withEmail(String email) {
+    public AuthUser email(String email) {
         withParameter("email", email);
         return this;
     }
@@ -29,8 +39,18 @@ public class LoginUser extends GraphQLRequest<LoginUser> {
      *
      * @return the builder.
      */
-    public LoginUser withPassword(String password) {
+    public AuthUser password(String password) {
         withParameter("password", password);
+        return this;
+    }
+
+    public AuthUser walletSignature(String signature) {
+        withParameter("wallet_signature", signature);
+        return this;
+    }
+
+    public AuthUser walletSignatureTransaction(String transaction) {
+        withParameter("wallet_signature_tx", transaction);
         return this;
     }
 

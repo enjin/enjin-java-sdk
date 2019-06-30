@@ -19,7 +19,7 @@ public class GetUsers extends PaginationRequest<GetUsers> {
      *
      * @return the builder.
      */
-    public GetUsers withUserId(BigInteger userId) {
+    public GetUsers userId(BigInteger userId) {
         withParameter("id", userId);
         return this;
     }
@@ -31,7 +31,7 @@ public class GetUsers extends PaginationRequest<GetUsers> {
      *
      * @return the builder.
      */
-    public GetUsers withName(String name) {
+    public GetUsers name(String name) {
         withParameter("name", name);
         return this;
     }
@@ -43,7 +43,7 @@ public class GetUsers extends PaginationRequest<GetUsers> {
      *
      * @return the builder.
      */
-    public GetUsers withEmail(String email) {
+    public GetUsers email(String email) {
         withParameter("email", email);
         return this;
     }
@@ -51,12 +51,10 @@ public class GetUsers extends PaginationRequest<GetUsers> {
     /**
      * Whether to only get the currently authenticated user.
      *
-     * @param me should only get current user?
-     *
      * @return the builder.
      */
-    public GetUsers withMe(boolean me) {
-        withParameter("me", me);
+    public GetUsers me() {
+        withParameter("me", true);
         return this;
     }
 

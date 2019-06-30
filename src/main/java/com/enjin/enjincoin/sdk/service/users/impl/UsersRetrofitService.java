@@ -14,7 +14,7 @@ import java.util.List;
 public interface UsersRetrofitService {
 
     @POST("graphql")
-    @GraphQuery("LoginUser")
+    @GraphQuery("AuthUser")
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<User>> loginUser(@Body GraphQLRequest request);
 

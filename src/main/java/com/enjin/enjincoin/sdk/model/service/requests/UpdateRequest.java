@@ -41,7 +41,7 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      *
      * @return builder.
      */
-    public UpdateRequest withIdentityId(BigInteger identityId) {
+    public UpdateRequest identityId(int identityId) {
         withParameter("identity_id", identityId);
         return this;
     }
@@ -53,7 +53,7 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      *
      * @return the builder.
      */
-    public UpdateRequest withType(TransactionType type) {
+    public UpdateRequest transactionType(TransactionType type) {
         withParameter("type", type);
         return this;
     }
@@ -65,7 +65,7 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      *
      * @return the builder.
      */
-    public UpdateRequest withRebroadcast(RebroadcastType rebroadcast) {
+    public UpdateRequest rebroadcast(RebroadcastType rebroadcast) {
         withParameter("rebroadcast", rebroadcast);
         return this;
     }
@@ -77,9 +77,9 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      *
      * @return the builder.
      */
-    public UpdateRequest withCreateTokenData(CreateTokenData createTokenData) {
+    public UpdateRequest createToken(CreateTokenData createTokenData) {
         withParameter("create_token_data", createTokenData);
-        withType(TransactionType.CREATE);
+        transactionType(TransactionType.CREATE);
         return this;
     }
 
@@ -90,9 +90,9 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      *
      * @return the builder.
      */
-    public UpdateRequest withCreateTradeData(CreateTradeData createTradeData) {
+    public UpdateRequest createTrade(CreateTradeData createTradeData) {
         withParameter("create_trade_data", createTradeData);
-        withType(TransactionType.CREATE_TRADE);
+        transactionType(TransactionType.CREATE_TRADE);
         return this;
     }
 
@@ -103,9 +103,9 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      *
      * @return the builder.
      */
-    public UpdateRequest withCompleteTradeData(CompleteTradeData completeTradeData) {
+    public UpdateRequest completeTrade(CompleteTradeData completeTradeData) {
         withParameter("complete_trade_data", completeTradeData);
-        withType(TransactionType.COMPLETE_TRADE);
+        transactionType(TransactionType.COMPLETE_TRADE);
         return this;
     }
 
@@ -116,9 +116,9 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      *
      * @return the builder.
      */
-    public UpdateRequest withMintTokenData(MintTokenData mintTokenData) {
+    public UpdateRequest mintToken(MintTokenData mintTokenData) {
         withParameter("mint_token_data", mintTokenData);
-        withType(TransactionType.MINT);
+        transactionType(TransactionType.MINT);
         return this;
     }
 
@@ -129,9 +129,9 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      *
      * @return the builder.
      */
-    public UpdateRequest withMeltTokenData(MeltTokenData meltTokenData) {
+    public UpdateRequest meltToken(MeltTokenData meltTokenData) {
         withParameter("melt_token_data", meltTokenData);
-        withType(TransactionType.MELT);
+        transactionType(TransactionType.MELT);
         return this;
     }
 
@@ -142,9 +142,9 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      *
      * @return the builder.
      */
-    public UpdateRequest withSendTokenData(SendTokenData sendTokenData) {
+    public UpdateRequest sendToken(SendTokenData sendTokenData) {
         withParameter("send_token_data", sendTokenData);
-        withType(TransactionType.SEND);
+        transactionType(TransactionType.SEND);
         return this;
     }
 
@@ -155,9 +155,9 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      *
      * @return the builder.
      */
-    public UpdateRequest withAdvancedSendTokenData(AdvancedSendTokenData advancedSendTokenData) {
+    public UpdateRequest advancedSendToken(AdvancedSendTokenData advancedSendTokenData) {
         withParameter("advanced_send_token_data", advancedSendTokenData);
-        withType(TransactionType.ADVANCED_SEND);
+        transactionType(TransactionType.ADVANCED_SEND);
         return this;
     }
 
@@ -168,9 +168,9 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      *
      * @return the builder.
      */
-    public UpdateRequest withUpdateItemNameData(UpdateItemNameData updateItemNameData) {
+    public UpdateRequest updateItemName(UpdateItemNameData updateItemNameData) {
         withParameter("update_item_name_data", updateItemNameData);
-        withType(TransactionType.UPDATE_NAME);
+        transactionType(TransactionType.UPDATE_NAME);
         return this;
     }
 
@@ -181,9 +181,9 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      *
      * @return the builder.
      */
-    public UpdateRequest withSetItemUriData(SetItemUriData setItemUriData) {
+    public UpdateRequest setItemUri(SetItemUriData setItemUriData) {
         withParameter("set_item_uri_data", setItemUriData);
-        withType(TransactionType.SET_ITEM_URI);
+        transactionType(TransactionType.SET_ITEM_URI);
         return this;
     }
 
@@ -194,9 +194,9 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      *
      * @return the builder.
      */
-    public UpdateRequest withSetWhitelistedData(SetWhitelistedData setWhitelistedData) {
+    public UpdateRequest setWhitelisted(SetWhitelistedData setWhitelistedData) {
         withParameter("set_whitelisted_data", setWhitelistedData);
-        withType(TransactionType.SET_WHITELISTED);
+        transactionType(TransactionType.SET_WHITELISTED);
         return this;
     }
 
@@ -207,9 +207,9 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      *
      * @return the builder.
      */
-    public UpdateRequest withApproveEnjData(ApproveEnjData approveEnjData) {
+    public UpdateRequest approveEnj(ApproveEnjData approveEnjData) {
         withParameter("approve_enj_data", approveEnjData);
-        withType(TransactionType.APPROVE);
+        transactionType(TransactionType.APPROVE);
         return this;
     }
 
@@ -220,7 +220,7 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      *
      * @return the builder.
      */
-    public UpdateRequest withApproveItemData(ApproveItemData approveItemData) {
+    public UpdateRequest approveItem(ApproveItemData approveItemData) {
         withParameter("approve_item_data", approveItemData);
         return this;
     }
@@ -232,9 +232,9 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      *
      * @return the builder.
      */
-    public UpdateRequest withSetTransferableData(SetTransferableData setTransferableData) {
+    public UpdateRequest setTransferable(SetTransferableData setTransferableData) {
         withParameter("set_transferable_data", setTransferableData);
-        withType(TransactionType.SET_TRANSFERABLE);
+        transactionType(TransactionType.SET_TRANSFERABLE);
         return this;
     }
 
@@ -245,9 +245,9 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      *
      * @return the builder.
      */
-    public UpdateRequest withSetMeltFeeData(SetMeltFeeData setMeltFeeData) {
+    public UpdateRequest setMeltFee(SetMeltFeeData setMeltFeeData) {
         withParameter("set_melt_fee_data", setMeltFeeData);
-        withType(TransactionType.SET_MELT_FEE);
+        transactionType(TransactionType.SET_MELT_FEE);
         return this;
     }
 
@@ -258,9 +258,9 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      *
      * @return the builder.
      */
-    public UpdateRequest withDecreaseMaxMeltFeeData(DecreaseMaxMeltFeeData decreaseMaxMeltFeeData) {
+    public UpdateRequest decreaseMaxMeltFee(DecreaseMaxMeltFeeData decreaseMaxMeltFeeData) {
         withParameter("decrease_max_melt_fee_data", decreaseMaxMeltFeeData);
-        withType(TransactionType.DECREASE_MAX_MELT_FEE);
+        transactionType(TransactionType.DECREASE_MAX_MELT_FEE);
         return this;
     }
 
@@ -271,9 +271,9 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      *
      * @return the builder.
      */
-    public UpdateRequest withSetTransferFeeData(SetTransferFeeData setTransferFeeData) {
+    public UpdateRequest setTransferFee(SetTransferFeeData setTransferFeeData) {
         withParameter("set_transfer_fee_data", setTransferFeeData);
-        withType(TransactionType.SET_TRANSFER_FEE);
+        transactionType(TransactionType.SET_TRANSFER_FEE);
         return this;
     }
 
@@ -284,9 +284,9 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      *
      * @return the builder.
      */
-    public UpdateRequest withDecreaseMaxTransferFeeData(DecreaseMaxTransferFeeData decreaseMaxTransferFeeData) {
+    public UpdateRequest decreaseMaxTransferFee(DecreaseMaxTransferFeeData decreaseMaxTransferFeeData) {
         withParameter("decrease_max_transfer_fee_data", decreaseMaxTransferFeeData);
-        withType(TransactionType.DECREASE_MAX_TRANSFER_FEE);
+        transactionType(TransactionType.DECREASE_MAX_TRANSFER_FEE);
         return this;
     }
 
@@ -297,9 +297,9 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      *
      * @return the builder.
      */
-    public UpdateRequest withAddLogData(AddLogData addLogData) {
+    public UpdateRequest addLog(AddLogData addLogData) {
         withParameter("add_log_data", addLogData);
-        withType(TransactionType.ADD_LOG);
+        transactionType(TransactionType.ADD_LOG);
         return this;
     }
 
@@ -310,9 +310,9 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      *
      * @return the builder.
      */
-    public UpdateRequest withBatchApproveData(BatchApproveData batchApproveData) {
+    public UpdateRequest batchApprove(BatchApproveData batchApproveData) {
         withParameter("batch_approve_data", batchApproveData);
-        withType(TransactionType.BATCH_APPROVE);
+        transactionType(TransactionType.BATCH_APPROVE);
         return this;
     }
 
@@ -323,9 +323,9 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      *
      * @return the builder.
      */
-    public UpdateRequest withSetApprovalData(SetApprovalData setApprovalData) {
+    public UpdateRequest setApproval(SetApprovalData setApprovalData) {
         withParameter("set_approval_data", setApprovalData);
-        withType(TransactionType.SET_APPROVAL);
+        transactionType(TransactionType.SET_APPROVAL);
         return this;
     }
 
@@ -336,9 +336,9 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      *
      * @return the builder.
      */
-    public UpdateRequest withSetApprovalForAllData(SetApprovalForAllData setApprovalForAllData) {
+    public UpdateRequest setApprovalForAll(SetApprovalForAllData setApprovalForAllData) {
         withParameter("set_approval_for_all_data", setApprovalForAllData);
-        withType(TransactionType.SET_APPROVAL_FOR_ALL);
+        transactionType(TransactionType.SET_APPROVAL_FOR_ALL);
         return this;
     }
 
@@ -349,9 +349,9 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      *
      * @return the builder.
      */
-    public UpdateRequest withMessageData(MessageData messageData) {
+    public UpdateRequest message(MessageData messageData) {
         withParameter("message_data", messageData);
-        withType(TransactionType.MESSAGE);
+        transactionType(TransactionType.MESSAGE);
         return this;
     }
 

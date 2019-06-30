@@ -4,18 +4,18 @@ import com.enjin.enjincoin.sdk.model.service.PaginationRequest;
 
 public class GetBalances extends PaginationRequest<GetBalances> {
 
-    public GetBalances withEthereumAddress(String ethAddr) {
+    public GetBalances ethAddr(String ethAddr) {
         withParameter("ethereum_address", ethAddr);
         return this;
     }
 
-    public GetBalances withTokenId(String tokenId) {
+    public GetBalances tokenId(String tokenId) {
         withParameter("token_id", tokenId);
         return this;
     }
 
-    public GetBalances withShowZeroBalance(boolean showZeroBalance) {
-        withParameter("show_zero_balance", showZeroBalance);
+    public GetBalances excludeZeroBalance() {
+        withParameter("show_zero_balance", false);
         return this;
     }
 

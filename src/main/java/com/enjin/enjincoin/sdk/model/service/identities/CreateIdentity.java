@@ -21,7 +21,7 @@ public class CreateIdentity extends GraphQLRequest<CreateIdentity> {
      *
      * @return the builder.
      */
-    public CreateIdentity withUserId(BigInteger userId) {
+    public CreateIdentity userId(BigInteger userId) {
         withParameter("user_id", userId);
         return this;
     }
@@ -33,7 +33,7 @@ public class CreateIdentity extends GraphQLRequest<CreateIdentity> {
      *
      * @return the builder.
      */
-    public CreateIdentity withEmail(String email) {
+    public CreateIdentity email(String email) {
         withParameter("email", email);
         return this;
     }
@@ -45,7 +45,7 @@ public class CreateIdentity extends GraphQLRequest<CreateIdentity> {
      *
      * @return the builder.
      */
-    public CreateIdentity withEthereumAddress(String ethereumAddress) {
+    public CreateIdentity ethAddr(String ethereumAddress) {
         withParameter("ethereum_address", ethereumAddress);
         return this;
     }
@@ -57,7 +57,7 @@ public class CreateIdentity extends GraphQLRequest<CreateIdentity> {
      *
      * @return the builder.
      */
-    public CreateIdentity withFields(List<IdentityFieldInput> fields) {
+    public CreateIdentity fields(List<IdentityFieldInput> fields) {
         withParameter("fields", fields);
         return this;
     }
@@ -69,7 +69,7 @@ public class CreateIdentity extends GraphQLRequest<CreateIdentity> {
      *
      * @return the builder.
      */
-    public CreateIdentity withFields(IdentityFieldInput... fields) {
+    public CreateIdentity fields(IdentityFieldInput... fields) {
         withParameter("fields", Arrays.asList(fields));
         return this;
     }

@@ -2,9 +2,9 @@ package com.enjin.enjincoin.sdk.service.users.impl;
 
 import com.enjin.enjincoin.sdk.http.HttpResponse;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
+import com.enjin.enjincoin.sdk.model.service.users.AuthUser;
 import com.enjin.enjincoin.sdk.model.service.users.CreateUser;
 import com.enjin.enjincoin.sdk.model.service.users.GetUsers;
-import com.enjin.enjincoin.sdk.model.service.users.LoginUser;
 import com.enjin.enjincoin.sdk.model.service.users.User;
 import com.enjin.enjincoin.sdk.service.GraphQLServiceBase;
 import com.enjin.enjincoin.sdk.service.users.UsersService;
@@ -30,7 +30,7 @@ public class UsersServiceImpl extends GraphQLServiceBase implements UsersService
     }
 
     @Override
-    public void loginUserAsync(LoginUser query,
+    public void loginUserAsync(AuthUser query,
                                HttpCallback<GraphQLResponse<User>> callback) {
         enqueueGraphQLCall(getLoginCall(query), callback);
     }
@@ -47,7 +47,7 @@ public class UsersServiceImpl extends GraphQLServiceBase implements UsersService
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<User>> loginUserSync(LoginUser query) throws IOException {
+    public HttpResponse<GraphQLResponse<User>> loginUserSync(AuthUser query) throws IOException {
         return executeGraphQLCall(getLoginCall(query));
     }
 
@@ -61,7 +61,7 @@ public class UsersServiceImpl extends GraphQLServiceBase implements UsersService
         return this.service.createUser(query);
     }
 
-    private Call<GraphQLResponse<User>> getLoginCall(LoginUser query) {
+    private Call<GraphQLResponse<User>> getLoginCall(AuthUser query) {
         return this.service.loginUser(query);
     }
 

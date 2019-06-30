@@ -8,28 +8,28 @@ import lombok.ToString;
 @ToString
 public class GetIdentityFields extends PaginationRequest<GetIdentityFields> {
 
-    public GetIdentityFields withId(int id) {
+    public GetIdentityFields id(int id) {
         withParameter("id", id);
         return this;
     }
 
-    public GetIdentityFields withKey(String key) {
+    public GetIdentityFields key(String key) {
         withParameter("key", key);
         return this;
     }
 
-    public GetIdentityFields withSearchable(int searchable) {
-        withParameter("searchable", searchable);
+    public GetIdentityFields searchable() {
+        withParameter("searchable", true);
         return this;
     }
 
-    public GetIdentityFields withDisplayable(int displayable) {
-        withParameter("displayable", displayable);
+    public GetIdentityFields displayable() {
+        withParameter("displayable", true);
         return this;
     }
 
-    public GetIdentityFields withUnique(int unique) {
-        withParameter("unique", unique);
+    public GetIdentityFields unique() {
+        withParameter("unique", true);
         return this;
     }
 

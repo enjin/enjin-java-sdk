@@ -17,7 +17,7 @@ public class CreateUser extends GraphQLRequest<CreateUser> {
      *
      * @return the builder.
      */
-    public CreateUser withName(String name) {
+    public CreateUser name(String name) {
         withParameter("name", name);
         return this;
     }
@@ -29,7 +29,7 @@ public class CreateUser extends GraphQLRequest<CreateUser> {
      *
      * @return the builder.
      */
-    public CreateUser withEmail(String email) {
+    public CreateUser email(String email) {
         withParameter("email", email);
         return this;
     }
@@ -41,7 +41,7 @@ public class CreateUser extends GraphQLRequest<CreateUser> {
      *
      * @return the builder.
      */
-    public CreateUser withPassword(String password) {
+    public CreateUser password(String password) {
         withParameter("password", password);
         return this;
     }

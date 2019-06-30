@@ -17,7 +17,7 @@ public class CreateToken extends GraphQLRequest<CreateToken> {
      *
      * @return the builder.
      */
-    public CreateToken withTokenId(String tokenId) {
+    public CreateToken tokenId(String tokenId) {
         withParameter("token_id", tokenId);
         return this;
     }

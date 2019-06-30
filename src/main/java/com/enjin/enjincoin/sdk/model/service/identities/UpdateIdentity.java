@@ -21,7 +21,7 @@ public class UpdateIdentity extends GraphQLRequest<UpdateIdentity> {
      *
      * @return the builder.
      */
-    public UpdateIdentity withIdentityId(BigInteger identityId) {
+    public UpdateIdentity identityId(BigInteger identityId) {
         withParameter("id", identityId);
         return this;
     }
@@ -33,7 +33,7 @@ public class UpdateIdentity extends GraphQLRequest<UpdateIdentity> {
      *
      * @return the builder.
      */
-    public UpdateIdentity withAppId(int appId) {
+    public UpdateIdentity appId(int appId) {
         withParameter("app_id", appId);
         return this;
     }
@@ -45,7 +45,7 @@ public class UpdateIdentity extends GraphQLRequest<UpdateIdentity> {
      *
      * @return the builder.
      */
-    public UpdateIdentity withUserId(BigInteger userId) {
+    public UpdateIdentity userId(BigInteger userId) {
         withParameter("user_id", userId);
         return this;
     }
@@ -57,7 +57,7 @@ public class UpdateIdentity extends GraphQLRequest<UpdateIdentity> {
      *
      * @return the builder.
      */
-    public UpdateIdentity withEthereumAddress(String ethAddr) {
+    public UpdateIdentity ethAddr(String ethAddr) {
         withParameter("ethereum_address", ethAddr);
         return this;
     }
@@ -69,7 +69,7 @@ public class UpdateIdentity extends GraphQLRequest<UpdateIdentity> {
      *
      * @return the builder.
      */
-    public UpdateIdentity withFields(List<IdentityFieldInput> fields) {
+    public UpdateIdentity fields(List<IdentityFieldInput> fields) {
         withParameter("fields", fields);
         return this;
     }
@@ -81,7 +81,7 @@ public class UpdateIdentity extends GraphQLRequest<UpdateIdentity> {
      *
      * @return the builder.
      */
-    public UpdateIdentity withFields(IdentityFieldInput... fields) {
+    public UpdateIdentity fields(IdentityFieldInput... fields) {
         withParameter("fields", Arrays.asList(fields));
         return this;
     }
