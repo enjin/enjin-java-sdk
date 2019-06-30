@@ -2,6 +2,8 @@ package com.enjin.enjincoin.sdk.graphql.api;
 
 import com.enjin.enjincoin.sdk.graphql.GraphQLTemplateField;
 
+import javax.print.attribute.standard.MediaSize.NA;
+
 public class Fields {
 
     public static final GraphQLTemplateField ID                        = GraphQLTemplateField.of("id");
@@ -60,6 +62,13 @@ public class Fields {
     public static final GraphQLTemplateField SEARCHABLE                = GraphQLTemplateField.of("searchable");
     public static final GraphQLTemplateField DISPLAYABLE               = GraphQLTemplateField.of("displayable");
     public static final GraphQLTemplateField UNIQUE                    = GraphQLTemplateField.of("unique");
+    public static final GraphQLTemplateField SECRET                    = GraphQLTemplateField.of("secret");
+    public static final GraphQLTemplateField DESCRIPTION               = GraphQLTemplateField.of("description");
+    public static final GraphQLTemplateField IMAGE                     = GraphQLTemplateField.of("image");
+    public static final GraphQLTemplateField TOKEN_COUNT               = GraphQLTemplateField.of("token_count");
+    public static final GraphQLTemplateField OWNER                     = GraphQLTemplateField.of("owner")
+                                                                                             .withChild(ID)
+                                                                                             .withChild(NAME);
     public static final GraphQLTemplateField CURSOR                    = GraphQLTemplateField.of("cursor")
                                                                                              .withChild(GraphQLTemplateField.of("total"))
                                                                                              .withChild(GraphQLTemplateField.of("perPage"))

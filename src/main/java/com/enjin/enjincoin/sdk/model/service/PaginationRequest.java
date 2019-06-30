@@ -4,6 +4,8 @@ import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
 
 public class PaginationRequest<T extends GraphQLRequest<T>> extends GraphQLRequest<T> {
 
+    public static final int DEFAULT_LIMIT = 10;
+
     /**
      * Whether the request should be paginated.
      *
@@ -11,9 +13,17 @@ public class PaginationRequest<T extends GraphQLRequest<T>> extends GraphQLReque
      *
      * @return the builder.
      */
-    public T withPagination(PaginationInput pagination) {
+    public T paginate(PaginationInput pagination) {
         withParameter("pagination", pagination);
         return (T) this;
+    }
+
+    public T paginate(int page, int limit) {
+        return paginate(new PaginationInput(page, limit));
+    }
+
+    public T paginate(int page) {
+        return paginate(page, DEFAULT_LIMIT);
     }
 
 }

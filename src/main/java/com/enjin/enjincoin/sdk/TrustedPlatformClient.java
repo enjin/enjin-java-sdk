@@ -11,9 +11,13 @@ import com.enjin.enjincoin.sdk.model.service.auth.AuthResult;
 import com.enjin.enjincoin.sdk.serialization.BigIntegerDeserializer;
 import com.enjin.enjincoin.sdk.serialization.converter.GraphConverter;
 import com.enjin.enjincoin.sdk.serialization.converter.JsonStringConverter;
+import com.enjin.enjincoin.sdk.service.apps.AppsService;
+import com.enjin.enjincoin.sdk.service.apps.impl.AppsServiceImpl;
 import com.enjin.enjincoin.sdk.service.auth.AuthRetrofitService;
 import com.enjin.enjincoin.sdk.service.balances.BalancesService;
 import com.enjin.enjincoin.sdk.service.balances.impl.BalancesServiceImpl;
+import com.enjin.enjincoin.sdk.service.ethereum.EthereumService;
+import com.enjin.enjincoin.sdk.service.ethereum.impl.EthereumServiceImpl;
 import com.enjin.enjincoin.sdk.service.identities.IdentitiesService;
 import com.enjin.enjincoin.sdk.service.identities.impl.IdentitiesServiceImpl;
 import com.enjin.enjincoin.sdk.service.platform.PlatformService;
@@ -73,6 +77,10 @@ public class TrustedPlatformClient implements Closeable {
     @Getter
     private PlatformService          platformService;
     @Getter
+    private EthereumService          ethereumService;
+    @Getter
+    private AppsService              appsService;
+    @Getter
     private UsersService             usersService;
     @Getter
     private IdentitiesService        identitiesService;
@@ -113,6 +121,8 @@ public class TrustedPlatformClient implements Closeable {
 
         this.authService = this.retrofit.create(AuthRetrofitService.class);
         this.platformService = new PlatformServiceImpl(this.retrofit);
+        this.ethereumService = new EthereumServiceImpl(this.retrofit);
+        this.appsService = new AppsServiceImpl(this.retrofit);
         this.usersService = new UsersServiceImpl(this.retrofit);
         this.identitiesService = new IdentitiesServiceImpl(this.retrofit);
         this.requestsService = new RequestsServiceImpl(this.retrofit);

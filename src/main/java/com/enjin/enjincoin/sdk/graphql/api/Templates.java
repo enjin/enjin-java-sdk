@@ -25,6 +25,22 @@ public class Templates {
     public static final GraphQLTemplate GET_BLOCK_HEIGHT = GraphQLTemplate.of("GetBlockHeight", false, ENJIN_BLOCK_HEIGHT)
                                                                           .withField(BLOCK);
 
+    // Apps
+    public static final GraphQLTemplate GET_APPS   = GraphQLTemplate.of("GetApps", false, ENJIN_APPS)
+                                                                    .withField(ID)
+                                                                    .withField(SECRET)
+                                                                    .withField(NAME)
+                                                                    .withField(DESCRIPTION)
+                                                                    .withField(IMAGE)
+                                                                    .withField(OWNER)
+                                                                    .withField(TOKEN_COUNT);
+    public static final GraphQLTemplate CREATE_APP = GraphQLTemplate.of("CreateApp", true, CREATE_ENJIN_APP)
+                                                                    .copyFields(GET_APPS);
+    public static final GraphQLTemplate UPDATE_APP = GraphQLTemplate.of("UpdateApp", true, UPDATE_ENJIN_APP)
+                                                                    .copyFields(GET_APPS);
+    public static final GraphQLTemplate DELETE_APP = GraphQLTemplate.of("DeleteApp", true, DELETE_ENJIN_APP)
+                                                                    .copyFields(GET_APPS);
+
     // Users
     public static final GraphQLTemplate GET_USERS   = GraphQLTemplate.of("GetUsers", false, ENJIN_USERS)
                                                                      .withField(ID)
