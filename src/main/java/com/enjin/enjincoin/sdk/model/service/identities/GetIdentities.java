@@ -2,8 +2,6 @@ package com.enjin.enjincoin.sdk.model.service.identities;
 
 import com.enjin.enjincoin.sdk.model.service.PaginationRequest;
 
-import java.math.BigInteger;
-
 /**
  * A builder for getting identities from the Trusted platform.
  *
@@ -19,7 +17,7 @@ public class GetIdentities extends PaginationRequest<GetIdentities> {
      *
      * @return the builder.
      */
-    public GetIdentities identityId(BigInteger identityId) {
+    public GetIdentities identityId(int identityId) {
         withParameter("id", identityId);
         return this;
     }

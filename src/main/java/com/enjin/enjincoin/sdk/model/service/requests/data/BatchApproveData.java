@@ -3,7 +3,6 @@ package com.enjin.enjincoin.sdk.model.service.requests.data;
 import com.google.gson.annotations.SerializedName;
 import lombok.Builder;
 
-import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -34,7 +33,7 @@ public class BatchApproveData {
      * @return the builder.
      */
     @SerializedName("operator_id")
-    private BigInteger operatorId;
+    private Integer operatorId;
 
     /**
      * The different items that the operator is permitted to transfer.

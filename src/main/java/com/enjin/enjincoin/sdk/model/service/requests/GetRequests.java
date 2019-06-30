@@ -2,7 +2,6 @@ package com.enjin.enjincoin.sdk.model.service.requests;
 
 import com.enjin.enjincoin.sdk.model.service.PaginationRequest;
 
-import java.math.BigInteger;
 import java.util.List;
 
 /**

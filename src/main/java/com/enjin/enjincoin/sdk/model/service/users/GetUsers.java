@@ -2,8 +2,6 @@ package com.enjin.enjincoin.sdk.model.service.users;
 
 import com.enjin.enjincoin.sdk.model.service.PaginationRequest;
 
-import java.math.BigInteger;
-
 /**
  * A builder for getting users on the Trusted platform.
  *
@@ -19,7 +17,7 @@ public class GetUsers extends PaginationRequest<GetUsers> {
      *
      * @return the builder.
      */
-    public GetUsers userId(BigInteger userId) {
+    public GetUsers userId(Integer userId) {
         withParameter("id", userId);
         return this;
     }

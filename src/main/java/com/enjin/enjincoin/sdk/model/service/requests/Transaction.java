@@ -4,8 +4,6 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.math.BigInteger;
-
 /**
  * Represents a transaction request on the trusted platform.
  *
@@ -23,7 +21,7 @@ public class Transaction {
      *
      * @return the request id.
      */
-    private BigInteger id;
+    private Integer id;
 
     /**
      * The transaction id.

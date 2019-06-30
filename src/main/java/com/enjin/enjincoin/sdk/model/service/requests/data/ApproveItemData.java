@@ -3,8 +3,6 @@ package com.enjin.enjincoin.sdk.model.service.requests.data;
 import com.google.gson.annotations.SerializedName;
 import lombok.Builder;
 
-import java.math.BigInteger;
-
 /**
  * A data model for the Approve Item request type.
  *
@@ -33,7 +31,7 @@ public class ApproveItemData {
      * @return the builder.
      */
     @SerializedName("operator_id")
-    private BigInteger operatorId;
+    private Integer operatorId;
 
     /**
      * The token id.

@@ -4,8 +4,6 @@ import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
 import com.enjin.enjincoin.sdk.http.HttpCallback;
 import com.enjin.enjincoin.sdk.model.service.ethereum.Block;
 
-import java.math.BigInteger;
-
 /**
  * Asynchronous methods for querying the blockchain.
  *

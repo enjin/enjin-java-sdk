@@ -3,8 +3,6 @@ package com.enjin.enjincoin.sdk.model.service.requests.data;
 import com.google.gson.annotations.SerializedName;
 import lombok.Builder;
 
-import java.math.BigInteger;
-
 /**
  * A data model that defines the different transfers to perform in
  * an Advanced Send Token request.
@@ -19,12 +17,12 @@ public class TransferData {
     private String from;
 
     @SerializedName("from_id")
-    private BigInteger fromId;
+    private Integer fromId;
 
     private String to;
 
     @SerializedName("to_id")
-    private BigInteger toId;
+    private Integer toId;
 
     /**
      * The token id.

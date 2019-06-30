@@ -3,8 +3,6 @@ package com.enjin.enjincoin.sdk.model.service.identities;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.math.BigInteger;
-
 /**
  * Represents a key value pair associated with an identity.
  *
@@ -21,7 +19,7 @@ public class IdentityField {
      *
      * @return the field id.
      */
-    private BigInteger id;
+    private Integer id;
 
     /**
      * The field key.

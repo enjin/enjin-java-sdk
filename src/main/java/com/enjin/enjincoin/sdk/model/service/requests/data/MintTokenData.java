@@ -3,7 +3,6 @@ package com.enjin.enjincoin.sdk.model.service.requests.data;
 import com.google.gson.annotations.SerializedName;
 import lombok.Builder;
 
-import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
 
@@ -69,7 +68,7 @@ public class MintTokenData {
      * @return the builder.
      */
     @SerializedName("recipient_identity_id")
-    private BigInteger recipientIdentityId;
+    private Integer recipientIdentityId;
 
     /**
      * An array of identity ids to send the newly minted items to.
@@ -80,7 +79,7 @@ public class MintTokenData {
      * @return the builder.
      */
     @SerializedName("recipient_identity_id_array")
-    private List<BigInteger> recipientIdentityIds;
+    private List<Integer> recipientIdentityIds;
 
     /**
      * The number of items to mint.
@@ -142,7 +141,7 @@ public class MintTokenData {
          * @return the builder.
          */
         @SerializedName("recipient_identity_id_array")
-        public MintTokenDataBuilder recipientIdentityIds(BigInteger... recipientIdentityIds) {
+        public MintTokenDataBuilder recipientIdentityIds(Integer... recipientIdentityIds) {
             this.recipientIdentityIds = Arrays.asList(recipientIdentityIds);
             return this;
         }
@@ -157,7 +156,7 @@ public class MintTokenData {
          * @return the builder.
          */
         @SerializedName("recipient_identity_id_array")
-        public MintTokenDataBuilder recipientIdentityIds(List<BigInteger> recipientIdentityIds) {
+        public MintTokenDataBuilder recipientIdentityIds(List<Integer> recipientIdentityIds) {
             this.recipientIdentityIds = recipientIdentityIds;
             return this;
         }

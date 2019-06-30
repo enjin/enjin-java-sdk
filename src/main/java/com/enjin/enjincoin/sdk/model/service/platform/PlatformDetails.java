@@ -4,8 +4,6 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.math.BigInteger;
-
 /**
  * Will contain information regarding the trusted platfrom, blockchain, and any
  * other configurations details that are to fully utilize the capabilities of
@@ -31,7 +29,7 @@ public class PlatformDetails {
      *
      * @return the trusted platform id.
      */
-    private BigInteger id;
+    private Integer id;
 
     /**
      * The blockchain network the trusted platform operates on.

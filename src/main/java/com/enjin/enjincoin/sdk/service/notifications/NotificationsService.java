@@ -2,9 +2,6 @@ package com.enjin.enjincoin.sdk.service.notifications;
 
 import com.enjin.enjincoin.sdk.model.service.notifications.NotificationType;
 import com.enjin.enjincoin.sdk.model.service.platform.PlatformDetails;
-import com.enjin.enjincoin.sdk.service.notifications.NotificationListenerRegistration.RegistrationListenerConfiguration;
-
-import java.math.BigInteger;
 
 /**
  * A notification service interface.

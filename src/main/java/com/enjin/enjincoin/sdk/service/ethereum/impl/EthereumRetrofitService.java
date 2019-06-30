@@ -6,12 +6,8 @@ import com.enjin.enjincoin.sdk.graphql.GraphQuery;
 import com.enjin.enjincoin.sdk.model.service.ethereum.Block;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
-
-import java.math.BigInteger;
 
 public interface EthereumRetrofitService {
 

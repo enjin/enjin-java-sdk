@@ -6,7 +6,6 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -24,7 +23,7 @@ public class User {
      *
      * @return the id.
      */
-    private BigInteger id;
+    private Integer id;
 
     /**
      * The user name.

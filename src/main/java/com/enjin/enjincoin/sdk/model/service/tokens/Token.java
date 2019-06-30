@@ -4,9 +4,6 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-
 @ToString
 @Getter
 public class Token {
@@ -145,7 +142,7 @@ public class Token {
      *
      * @return the balance.
      */
-    private BigInteger balance;
+    private Integer balance;
 
     /**
      * The item index.

@@ -2,7 +2,6 @@ package com.enjin.enjincoin.sdk.model.service.identities;
 
 import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
 
-import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class UpdateIdentity extends GraphQLRequest<UpdateIdentity> {
      *
      * @return the builder.
      */
-    public UpdateIdentity identityId(BigInteger identityId) {
+    public UpdateIdentity identityId(int identityId) {
         withParameter("id", identityId);
         return this;
     }
@@ -45,7 +44,7 @@ public class UpdateIdentity extends GraphQLRequest<UpdateIdentity> {
      *
      * @return the builder.
      */
-    public UpdateIdentity userId(BigInteger userId) {
+    public UpdateIdentity userId(int userId) {
         withParameter("user_id", userId);
         return this;
     }

@@ -2,8 +2,6 @@ package com.enjin.enjincoin.sdk.model.service.identities;
 
 import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
 
-import java.math.BigInteger;
-
 /**
  * A builder for deleting an identity from the Trusted platform.
  *
@@ -19,7 +17,7 @@ public class DeleteIdentity extends GraphQLRequest<DeleteIdentity> {
      *
      * @return the builder.
      */
-    public DeleteIdentity identityId(BigInteger identityId) {
+    public DeleteIdentity identityId(int identityId) {
         withParameter("id", identityId);
         return this;
     }
@@ -43,7 +41,7 @@ public class DeleteIdentity extends GraphQLRequest<DeleteIdentity> {
      *
      * @return the builder.
      */
-    public static DeleteIdentity unlink(BigInteger id) {
+    public static DeleteIdentity unlink(int id) {
         return new DeleteIdentity().identityId(id)
                                    .unlink();
     }

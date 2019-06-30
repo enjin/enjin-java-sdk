@@ -24,8 +24,6 @@ import com.enjin.enjincoin.sdk.model.service.requests.data.SetTransferableData;
 import com.enjin.enjincoin.sdk.model.service.requests.data.SetWhitelistedData;
 import com.enjin.enjincoin.sdk.model.service.requests.data.UpdateItemNameData;
 
-import java.math.BigInteger;
-
 /**
  * A builder for updating a request on the Trusted platform.
  *

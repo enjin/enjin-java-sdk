@@ -4,8 +4,6 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.math.BigInteger;
-
 /**
  * An aggregated result of all tokens.
  */
@@ -19,7 +17,7 @@ public class AggregatedBalance {
      * @return the count of all owned tokens.
      */
     @SerializedName("token_count")
-    private BigInteger tokenCount;
+    private int tokenCount;
 
     /**
      * The total value in enj.
@@ -27,6 +25,6 @@ public class AggregatedBalance {
      * @return the value of all owned tokens.
      */
     @SerializedName("enj_value")
-    private BigInteger enjValue;
+    private String enjValue;
 
 }

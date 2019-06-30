@@ -1,7 +1,6 @@
 package com.enjin.enjincoin.sdk.model.service.identities;
 
 import com.enjin.enjincoin.sdk.model.service.tokens.Token;
-import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.ToString;
@@ -26,7 +25,7 @@ public class Identity {
      *
      * @return the identity id.
      */
-    private BigInteger id;
+    private Integer id;
 
     /**
      * The app id.

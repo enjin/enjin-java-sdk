@@ -5,7 +5,6 @@ import com.enjin.enjincoin.sdk.http.HttpResponse;
 import com.enjin.enjincoin.sdk.model.service.ethereum.Block;
 
 import java.io.IOException;
-import java.math.BigInteger;
 
 /**
  * Synchronous methods for querying the blockchain.
