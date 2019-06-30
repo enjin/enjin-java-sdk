@@ -4,7 +4,9 @@ import com.enjin.enjincoin.sdk.http.HttpResponse;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
 import com.enjin.enjincoin.sdk.model.service.users.AuthUser;
 import com.enjin.enjincoin.sdk.model.service.users.CreateUser;
+import com.enjin.enjincoin.sdk.model.service.users.DeleteUser;
 import com.enjin.enjincoin.sdk.model.service.users.GetUsers;
+import com.enjin.enjincoin.sdk.model.service.users.UpdateUser;
 import com.enjin.enjincoin.sdk.model.service.users.User;
 import com.enjin.enjincoin.sdk.service.GraphQLServiceBase;
 import com.enjin.enjincoin.sdk.service.users.UsersService;
@@ -24,48 +26,55 @@ public class UsersServiceImpl extends GraphQLServiceBase implements UsersService
     }
 
     @Override
-    public void createUserAsync(CreateUser query,
-                                HttpCallback<GraphQLResponse<User>> callback) {
-        enqueueGraphQLCall(getCreateCall(query), callback);
-    }
-
-    @Override
-    public void loginUserAsync(AuthUser query,
-                               HttpCallback<GraphQLResponse<User>> callback) {
-        enqueueGraphQLCall(getLoginCall(query), callback);
-    }
-
-    @Override
     public void getUsersAsync(GetUsers query,
                               HttpCallback<GraphQLResponse<List<User>>> callback) {
-        enqueueGraphQLCall(getUsersCall(query), callback);
+        enqueueGraphQLCall(this.service.getUsers(query), callback);
+    }
+    @Override
+    public void createUserAsync(CreateUser query,
+                                HttpCallback<GraphQLResponse<User>> callback) {
+        enqueueGraphQLCall(this.service.createUser(query), callback);
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<User>> createUserSync(CreateUser query) throws IOException {
-        return executeGraphQLCall(getCreateCall(query));
+    public void updateUserAsync(UpdateUser query, HttpCallback<GraphQLResponse<User>> callback) {
+        enqueueGraphQLCall(this.service.updateUser(query), callback);
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<User>> loginUserSync(AuthUser query) throws IOException {
-        return executeGraphQLCall(getLoginCall(query));
+    public void deleteUserAsync(DeleteUser query, HttpCallback<GraphQLResponse<User>> callback) {
+        enqueueGraphQLCall(this.service.deleteUser(query), callback);
+    }
+
+    @Override
+    public void authUserAsync(AuthUser query,
+                              HttpCallback<GraphQLResponse<User>> callback) {
+        enqueueGraphQLCall(this.service.authUser(query), callback);
     }
 
     @Override
     public HttpResponse<GraphQLResponse<List<User>>> getUsersSync(GetUsers query) throws IOException {
-        return executeGraphQLCall(getUsersCall(query));
+        return executeGraphQLCall(this.service.getUsers(query));
     }
 
-
-    private Call<GraphQLResponse<User>> getCreateCall(CreateUser query) {
-        return this.service.createUser(query);
+    @Override
+    public HttpResponse<GraphQLResponse<User>> createUserSync(CreateUser query) throws IOException {
+        return executeGraphQLCall(this.service.createUser(query));
     }
 
-    private Call<GraphQLResponse<User>> getLoginCall(AuthUser query) {
-        return this.service.loginUser(query);
+    @Override
+    public HttpResponse<GraphQLResponse<User>> updateUserSync(UpdateUser query) throws IOException {
+        return executeGraphQLCall(this.service.updateUser(query));
     }
 
-    private Call<GraphQLResponse<List<User>>> getUsersCall(GetUsers query) {
-        return this.service.getUsers(query);
+    @Override
+    public HttpResponse<GraphQLResponse<User>> deleteUserSync(DeleteUser query) throws IOException {
+        return executeGraphQLCall(this.service.deleteUser(query));
     }
+
+    @Override
+    public HttpResponse<GraphQLResponse<User>> authUserSync(AuthUser query) throws IOException {
+        return executeGraphQLCall(this.service.authUser(query));
+    }
+
 }

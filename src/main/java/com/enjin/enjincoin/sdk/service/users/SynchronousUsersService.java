@@ -3,8 +3,10 @@ package com.enjin.enjincoin.sdk.service.users;
 import com.enjin.enjincoin.sdk.http.HttpResponse;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
 import com.enjin.enjincoin.sdk.model.service.users.CreateUser;
+import com.enjin.enjincoin.sdk.model.service.users.DeleteUser;
 import com.enjin.enjincoin.sdk.model.service.users.GetUsers;
 import com.enjin.enjincoin.sdk.model.service.users.AuthUser;
+import com.enjin.enjincoin.sdk.model.service.users.UpdateUser;
 import com.enjin.enjincoin.sdk.model.service.users.User;
 
 import java.io.IOException;
@@ -34,6 +36,10 @@ public interface SynchronousUsersService {
      */
     HttpResponse<GraphQLResponse<User>> createUserSync(CreateUser query) throws IOException;
 
+    HttpResponse<GraphQLResponse<User>> updateUserSync(UpdateUser query) throws IOException;
+
+    HttpResponse<GraphQLResponse<User>> deleteUserSync(DeleteUser query) throws IOException;
+
     /**
      * Authenticates a user and returns the users access tokens.
      *
@@ -43,6 +49,6 @@ public interface SynchronousUsersService {
      *
      * @throws IOException if a communication error occurred.
      */
-    HttpResponse<GraphQLResponse<User>> loginUserSync(AuthUser query) throws IOException;
+    HttpResponse<GraphQLResponse<User>> authUserSync(AuthUser query) throws IOException;
 
 }

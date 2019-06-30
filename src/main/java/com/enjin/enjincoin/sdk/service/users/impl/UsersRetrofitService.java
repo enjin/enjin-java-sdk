@@ -16,7 +16,7 @@ public interface UsersRetrofitService {
     @POST("graphql")
     @GraphQuery("AuthUser")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<User>> loginUser(@Body GraphQLRequest request);
+    Call<GraphQLResponse<User>> authUser(@Body GraphQLRequest request);
 
     @POST("graphql")
     @GraphQuery("GetUsers")
