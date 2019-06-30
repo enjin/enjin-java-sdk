@@ -1,15 +1,11 @@
 package com.enjin.enjincoin.sdk;
 
 import com.enjin.enjincoin.sdk.http.AuthorizationInterceptor;
-import com.enjin.enjincoin.sdk.http.ClearableCookieJar;
-import com.enjin.enjincoin.sdk.http.CookieCache;
-import com.enjin.enjincoin.sdk.http.CookiePersistor;
 import com.enjin.enjincoin.sdk.http.HttpCallback;
 import com.enjin.enjincoin.sdk.http.HttpResponse;
-import com.enjin.enjincoin.sdk.http.MemoryCookiePersistor;
-import com.enjin.enjincoin.sdk.http.PersistentCookieJar;
-import com.enjin.enjincoin.sdk.http.SetCookieCache;
+import com.enjin.enjincoin.sdk.http.SessionCookieJar;
 import com.enjin.enjincoin.sdk.http.SimpleCallback;
+import com.enjin.enjincoin.sdk.http.TrustedPlatformInterceptor;
 import com.enjin.enjincoin.sdk.model.service.auth.AuthBody;
 import com.enjin.enjincoin.sdk.model.service.auth.AuthResult;
 import com.enjin.enjincoin.sdk.serialization.BigIntegerDeserializer;
@@ -55,11 +51,12 @@ public class TrustedPlatformClient implements Closeable {
     public static final String KOVAN              = "https://kovan.cloud.enjin.io/";
     // Keys
     public static final String CLIENT_CREDENTIALS = "client_credentials";
+    public static final String APP_ID             = "X-App-Id";
+    public static final String USER_ID            = "user_id";
+    public static final String IDENTITY_ID        = "identity_id";
 
     // Cookie Jar
-    private CookieCache              cookieCache;
-    private CookiePersistor          cookiePersistor;
-    private ClearableCookieJar       cookieJar;
+    private SessionCookieJar         cookieJar;
     // Http Client
     private AuthorizationInterceptor authorizationInterceptor;
     private HttpLoggingInterceptor   httpLogInterceptor;
@@ -87,16 +84,15 @@ public class TrustedPlatformClient implements Closeable {
     }
 
     protected TrustedPlatformClient(Builder builder) {
-        this.cookieCache = new SetCookieCache();
-        this.cookiePersistor = new MemoryCookiePersistor();
-        this.cookieJar = new PersistentCookieJar(this.cookieCache, this.cookiePersistor);
+        this.cookieJar = new SessionCookieJar();
 
         this.authorizationInterceptor = new AuthorizationInterceptor();
         this.httpLogInterceptor = builder.httpLogInterceptor;
         this.httpClient = builder.httpClientBuilder
                 .cookieJar(this.cookieJar)
                 .addInterceptor(this.authorizationInterceptor)
-                .addInterceptor(this.httpLogInterceptor)
+                .addInterceptor(new TrustedPlatformInterceptor(this.cookieJar))
+                .addNetworkInterceptor(this.httpLogInterceptor)
                 .build();
 
         this.gson = builder.gsonBuilder
@@ -117,6 +113,30 @@ public class TrustedPlatformClient implements Closeable {
         this.identitiesService = new IdentitiesServiceImpl(this.retrofit);
         this.requestsService = new RequestsServiceImpl(this.retrofit);
         this.tokensService = new TokensServiceImpl(this.retrofit);
+    }
+
+    public void setAppId(Integer id) {
+        if (id != null) {
+            this.cookieJar.setCookie(this.retrofit.baseUrl(), APP_ID, id.toString());
+        } else {
+            this.cookieJar.removeCookie(this.retrofit.baseUrl(), APP_ID);
+        }
+    }
+
+    public void setUserId(Integer id) {
+        if (id != null) {
+            this.cookieJar.setCookie(this.retrofit.baseUrl(), USER_ID, id.toString());
+        } else {
+            this.cookieJar.removeCookie(this.retrofit.baseUrl(), USER_ID);
+        }
+    }
+
+    public void setIdentityId(Integer id) {
+        if (id != null) {
+            this.cookieJar.setCookie(this.retrofit.baseUrl(), IDENTITY_ID, id.toString());
+        } else {
+            this.cookieJar.removeCookie(this.retrofit.baseUrl(), IDENTITY_ID);
+        }
     }
 
     public void setHttpLogLevel(Level level) {
