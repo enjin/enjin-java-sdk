@@ -12,6 +12,8 @@ import com.enjin.enjincoin.sdk.serialization.BigIntegerDeserializer;
 import com.enjin.enjincoin.sdk.serialization.converter.GraphConverter;
 import com.enjin.enjincoin.sdk.serialization.converter.JsonStringConverter;
 import com.enjin.enjincoin.sdk.service.auth.AuthRetrofitService;
+import com.enjin.enjincoin.sdk.service.balances.BalancesService;
+import com.enjin.enjincoin.sdk.service.balances.impl.BalancesServiceImpl;
 import com.enjin.enjincoin.sdk.service.identities.IdentitiesService;
 import com.enjin.enjincoin.sdk.service.identities.impl.IdentitiesServiceImpl;
 import com.enjin.enjincoin.sdk.service.platform.PlatformService;
@@ -78,6 +80,8 @@ public class TrustedPlatformClient implements Closeable {
     private RequestsService          requestsService;
     @Getter
     private TokensService            tokensService;
+    @Getter
+    private BalancesService          balancesService;
 
     public TrustedPlatformClient() {
         this(new Builder());
@@ -113,6 +117,7 @@ public class TrustedPlatformClient implements Closeable {
         this.identitiesService = new IdentitiesServiceImpl(this.retrofit);
         this.requestsService = new RequestsServiceImpl(this.retrofit);
         this.tokensService = new TokensServiceImpl(this.retrofit);
+        this.balancesService = new BalancesServiceImpl(this.retrofit);
     }
 
     public void setAppId(Integer id) {

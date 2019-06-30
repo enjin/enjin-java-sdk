@@ -2,6 +2,7 @@ package com.enjin.enjincoin.sdk.model.service.auth;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Builder;
+import lombok.ToString;
 
 /**
  * The body of an oauth authentication request to the Trusted Platform.
@@ -10,6 +11,7 @@ import lombok.Builder;
  * @see com.enjin.enjincoin.sdk.service.auth.AuthRetrofitService
  */
 @Builder
+@ToString
 public class AuthBody {
 
     /**

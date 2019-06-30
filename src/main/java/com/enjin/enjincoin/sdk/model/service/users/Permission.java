@@ -1,6 +1,7 @@
 package com.enjin.enjincoin.sdk.model.service.users;
 
 import lombok.Getter;
+import lombok.ToString;
 
 /**
  * Represents the permissions a role has.
@@ -9,6 +10,7 @@ import lombok.Getter;
  * @see Role
  */
 @Getter
+@ToString
 public class Permission {
 
     /**

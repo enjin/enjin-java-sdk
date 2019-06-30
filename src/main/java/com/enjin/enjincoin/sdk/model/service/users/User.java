@@ -3,6 +3,7 @@ package com.enjin.enjincoin.sdk.model.service.users;
 import com.enjin.enjincoin.sdk.model.service.identities.Identity;
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
  * @see com.enjin.enjincoin.sdk.service.users.UsersService
  */
 @Getter
+@ToString
 public class User {
 
     /**

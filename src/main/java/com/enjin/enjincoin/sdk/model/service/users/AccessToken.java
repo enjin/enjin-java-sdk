@@ -2,6 +2,7 @@ package com.enjin.enjincoin.sdk.model.service.users;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
+import lombok.ToString;
 
 /**
  * A users access token that is returned when logging a user in.
@@ -11,6 +12,7 @@ import lombok.Getter;
  * @see LoginUser
  */
 @Getter
+@ToString
 public class AccessToken {
 
     /**

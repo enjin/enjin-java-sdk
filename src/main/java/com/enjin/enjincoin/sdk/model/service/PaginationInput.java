@@ -1,5 +1,8 @@
 package com.enjin.enjincoin.sdk.model.service;
 
+import lombok.ToString;
+
+@ToString
 public class PaginationInput {
 
     private int page;

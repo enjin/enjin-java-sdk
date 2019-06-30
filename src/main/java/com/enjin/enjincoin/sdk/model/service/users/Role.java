@@ -2,6 +2,7 @@ package com.enjin.enjincoin.sdk.model.service.users;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * @see User
  */
 @Getter
+@ToString
 public class Role {
 
     /**

@@ -2,6 +2,7 @@ package com.enjin.enjincoin.sdk.model.service.platform;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.math.BigInteger;
 
@@ -15,6 +16,7 @@ import java.math.BigInteger;
  * @see NotificationDetails
  */
 @Getter
+@ToString
 public class PlatformDetails {
 
     /**
