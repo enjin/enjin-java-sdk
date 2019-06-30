@@ -28,7 +28,7 @@ public class Templates {
                                                                      .withField(EMAIL)
                                                                      .withField(ACCESS_TOKENS)
                                                                      .withField(ROLES)
-                                                                     .withField(IDENTITIES);
+                                                                     .withField(IDENTITIES_BASE);
     public static final GraphQLTemplate LOGIN_USER  = GraphQLTemplate.of("LoginUser", false, ENJIN_OAUTH)
                                                                      .copyFields(GET_USERS);
     public static final GraphQLTemplate CREATE_USER = GraphQLTemplate.of("CreateUser", true, CREATE_ENJIN_USER)
@@ -39,13 +39,13 @@ public class Templates {
 
     // Identities
     public static final GraphQLTemplate GET_IDENTITIES  = GraphQLTemplate.of("GetIdentities", false, ENJIN_IDENTITIES)
-                                                                         .copyChildren(IDENTITIES);
+                                                                         .copyChildren(IDENTITIES_WITH_BALANCES);
     public static final GraphQLTemplate CREATE_IDENTITY = GraphQLTemplate.of("CreateIdentity", true, CREATE_ENJIN_IDENTITY)
-                                                                         .copyChildren(IDENTITIES);
+                                                                         .copyChildren(IDENTITIES_WITH_BALANCES);
     public static final GraphQLTemplate UPDATE_IDENTITY = GraphQLTemplate.of("UpdateIdentity", true, UPDATE_ENJIN_IDENTITY)
-                                                                         .copyChildren(IDENTITIES);
+                                                                         .copyChildren(IDENTITIES_WITH_BALANCES);
     public static final GraphQLTemplate DELETE_IDENTITY = GraphQLTemplate.of("DeleteIdentity", true, DELETE_ENJIN_IDENTITY)
-                                                                         .copyChildren(IDENTITIES);
+                                                                         .copyChildren(IDENTITIES_WITH_BALANCES);
     // Tokens
     public static final GraphQLTemplate GET_TOKENS      = GraphQLTemplate.of("GetTokens", false, ENJIN_TOKENS)
                                                                          .withField(TOKEN_ID)

@@ -1,6 +1,7 @@
 package com.enjin.enjincoin.sdk.graphql;
 
 import com.enjin.enjincoin.sdk.model.service.PaginationCursor;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * @author Evan Lindsay
  * @see GraphQLError
  */
+@ToString
 public class GraphQLResponse<T> {
 
     private String raw;
@@ -83,5 +85,14 @@ public class GraphQLResponse<T> {
      */
     public boolean isSuccess() {
         return !isEmpty() && !hasErrors();
+    }
+
+    @Override
+    public String toString() {
+        return "GraphQLResponse{" +
+                "raw='" + raw + '\'' +
+                ", errors=" + errors +
+                ", cursor=" + cursor +
+                '}';
     }
 }

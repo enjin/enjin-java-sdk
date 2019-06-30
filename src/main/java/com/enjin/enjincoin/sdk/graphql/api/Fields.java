@@ -74,13 +74,17 @@ public class Fields {
                                                                                              .withChild(TOKEN_ID)
                                                                                              .withChild(INDEX)
                                                                                              .withChild(BALANCE);
-    public static final GraphQLTemplateField IDENTITIES                = GraphQLTemplateField.of("identities")
+    public static final GraphQLTemplateField IDENTITIES_BASE           = GraphQLTemplateField.of("identities")
                                                                                              .withChild(ID)
                                                                                              .withChild(APP_ID)
                                                                                              .withChild(ETH_ADDR)
                                                                                              .withChild(LINKING_CODE)
-                                                                                             .withChild(LINKING_CODE_QR)
-                                                                                             .withChild(FIELDS)
+                                                                                             .withChild(LINKING_CODE_QR);
+    public static final GraphQLTemplateField IDENTITIES_SIMPLE         = GraphQLTemplateField.of("identities")
+                                                                                             .copyChildren(IDENTITIES_BASE)
+                                                                                             .withChild(FIELDS);
+    public static final GraphQLTemplateField IDENTITIES_WITH_BALANCES  = GraphQLTemplateField.of("identities")
+                                                                                             .copyChildren(IDENTITIES_SIMPLE)
                                                                                              .withChild(IDENTITY_TOKEN_BALANCE)
                                                                                              .withChild(ETH_BALANCE)
                                                                                              .withChild(ENJ_BALANCE)

@@ -27,6 +27,11 @@ public class GraphQLTemplateField {
         return this;
     }
 
+    public GraphQLTemplateField copyChildren(GraphQLTemplateField other) {
+        children.addAll(other.children);
+        return this;
+    }
+
     public String getName() {
         return name;
     }
