@@ -41,6 +41,16 @@ public class Templates {
     public static final GraphQLTemplate DELETE_APP = GraphQLTemplate.of("DeleteApp", true, DELETE_ENJIN_APP)
                                                                     .copyFields(GET_APPS);
 
+    // Roles
+    public static final GraphQLTemplate GET_ROLES = GraphQLTemplate.of("GetRoles", false, ENJIN_ROLES)
+                                                                   .copyChildren(ROLES);
+    public static final GraphQLTemplate CREATE_ROLE = GraphQLTemplate.of("CreateRole", true, CREATE_ENJIN_ROLE)
+                                                                   .copyFields(GET_ROLES);
+    public static final GraphQLTemplate UPDATE_ROLE = GraphQLTemplate.of("UpdateRole", true, UPDATE_ENJIN_ROLE)
+                                                                     .copyFields(GET_ROLES);
+    public static final GraphQLTemplate DELETE_ROLE = GraphQLTemplate.of("DeleteRole", true, DELETE_ENJIN_ROLE)
+                                                                     .copyFields(GET_ROLES);
+
     // Users
     public static final GraphQLTemplate GET_USERS   = GraphQLTemplate.of("GetUsers", false, ENJIN_USERS)
                                                                      .withField(ID)

@@ -1,5 +1,6 @@
-package com.enjin.enjincoin.sdk.model.service.users;
+package com.enjin.enjincoin.sdk.model.service.roles;
 
+import com.enjin.enjincoin.sdk.model.service.users.User;
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.ToString;

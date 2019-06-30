@@ -13,12 +13,12 @@ import java.util.List;
 
 public interface SynchronousAppsService {
 
-    HttpResponse<GraphQLResponse<List<App>>> getIdentitiesSync(GetApps query) throws IOException;
+    HttpResponse<GraphQLResponse<List<App>>> getAppsSync(GetApps query) throws IOException;
 
-    HttpResponse<GraphQLResponse<App>> createIdentitySync(CreateApp query) throws IOException;
+    HttpResponse<GraphQLResponse<App>> createAppSync(CreateApp query) throws IOException;
 
-    HttpResponse<GraphQLResponse<App>> deleteIdentitySync(DeleteApp query) throws IOException;
+    HttpResponse<GraphQLResponse<App>> deleteAppSync(DeleteApp query) throws IOException;
 
-    HttpResponse<GraphQLResponse<App>> updateIdentitySync(UpdateApp query) throws IOException;
+    HttpResponse<GraphQLResponse<App>> updateAppSync(UpdateApp query) throws IOException;
 
 }

@@ -12,16 +12,16 @@ import java.util.List;
 
 public interface AsynchronousAppsService {
 
-    void getIdentitiesAsync(GetApps query,
+    void getAppsAsync(GetApps query,
                             HttpCallback<GraphQLResponse<List<App>>> callback);
 
-    void createIdentityAsync(CreateApp query,
+    void createAppAsync(CreateApp query,
                              HttpCallback<GraphQLResponse<App>> callback);
 
-    void deleteIdentityAsync(DeleteApp query,
+    void deleteAppAsync(DeleteApp query,
                              HttpCallback<GraphQLResponse<App>> callback);
 
-    void updateIdentityAsync(UpdateApp query,
+    void updateAppAsync(UpdateApp query,
                              HttpCallback<GraphQLResponse<App>> callback);
 
 }

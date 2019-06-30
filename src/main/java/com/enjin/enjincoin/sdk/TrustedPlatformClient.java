@@ -24,6 +24,8 @@ import com.enjin.enjincoin.sdk.service.platform.PlatformService;
 import com.enjin.enjincoin.sdk.service.platform.impl.PlatformServiceImpl;
 import com.enjin.enjincoin.sdk.service.requests.RequestsService;
 import com.enjin.enjincoin.sdk.service.requests.impl.RequestsServiceImpl;
+import com.enjin.enjincoin.sdk.service.roles.RolesService;
+import com.enjin.enjincoin.sdk.service.roles.impl.RolesServiceImpl;
 import com.enjin.enjincoin.sdk.service.tokens.TokensService;
 import com.enjin.enjincoin.sdk.service.tokens.impl.TokensServiceImpl;
 import com.enjin.enjincoin.sdk.service.users.UsersService;
@@ -81,6 +83,8 @@ public class TrustedPlatformClient implements Closeable {
     @Getter
     private AppsService              appsService;
     @Getter
+    private RolesService             rolesService;
+    @Getter
     private UsersService             usersService;
     @Getter
     private IdentitiesService        identitiesService;
@@ -123,6 +127,7 @@ public class TrustedPlatformClient implements Closeable {
         this.platformService = new PlatformServiceImpl(this.retrofit);
         this.ethereumService = new EthereumServiceImpl(this.retrofit);
         this.appsService = new AppsServiceImpl(this.retrofit);
+        this.rolesService = new RolesServiceImpl(this.retrofit);
         this.usersService = new UsersServiceImpl(this.retrofit);
         this.identitiesService = new IdentitiesServiceImpl(this.retrofit);
         this.requestsService = new RequestsServiceImpl(this.retrofit);
