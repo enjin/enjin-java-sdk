@@ -5,7 +5,9 @@ import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
 import com.enjin.enjincoin.sdk.model.service.identities.CreateIdentity;
 import com.enjin.enjincoin.sdk.model.service.identities.DeleteIdentity;
 import com.enjin.enjincoin.sdk.model.service.identities.GetIdentities;
+import com.enjin.enjincoin.sdk.model.service.identities.GetIdentityFields;
 import com.enjin.enjincoin.sdk.model.service.identities.Identity;
+import com.enjin.enjincoin.sdk.model.service.identities.IdentityField;
 import com.enjin.enjincoin.sdk.model.service.identities.UpdateIdentity;
 import com.enjin.enjincoin.sdk.service.GraphQLServiceBase;
 import com.enjin.enjincoin.sdk.service.identities.IdentitiesService;
@@ -27,61 +29,55 @@ public class IdentitiesServiceImpl extends GraphQLServiceBase implements Identit
     @Override
     public void getIdentitiesAsync(GetIdentities query,
                                    HttpCallback<GraphQLResponse<List<Identity>>> callback) {
-        enqueueGraphQLCall(getIdentitiesCall(query), callback);
+        enqueueGraphQLCall(this.service.getIdentities(query), callback);
     }
 
     @Override
     public void createIdentityAsync(CreateIdentity query,
                                     HttpCallback<GraphQLResponse<Identity>> callback) {
-        enqueueGraphQLCall(getCreateIdentityCall(query), callback);
+        enqueueGraphQLCall(this.service.createIdentity(query), callback);
     }
 
     @Override
     public void deleteIdentityAsync(DeleteIdentity query,
                                     HttpCallback<GraphQLResponse<Identity>> callback) {
-        enqueueGraphQLCall(getDeleteIdentityCall(query), callback);
+        enqueueGraphQLCall(this.service.deleteIdentity(query), callback);
     }
 
     @Override
     public void updateIdentityAsync(UpdateIdentity query,
                                     HttpCallback<GraphQLResponse<Identity>> callback) {
-        enqueueGraphQLCall(getUpdateIdentityCall(query), callback);
+        enqueueGraphQLCall(this.service.updateIdentity(query), callback);
+    }
+
+    @Override
+    public void getIdentityFieldsAsync(GetIdentityFields query, HttpCallback<GraphQLResponse<List<IdentityField>>> callback) {
+        enqueueGraphQLCall(this.service.getIdentityFields(query), callback);
     }
 
     @Override
     public HttpResponse<GraphQLResponse<List<Identity>>> getIdentitiesSync(GetIdentities query) throws IOException {
-        return executeGraphQLCall(getIdentitiesCall(query));
+        return executeGraphQLCall(this.service.getIdentities(query));
     }
 
     @Override
     public HttpResponse<GraphQLResponse<Identity>> createIdentitySync(CreateIdentity query) throws IOException {
-        return executeGraphQLCall(getCreateIdentityCall(query));
+        return executeGraphQLCall(this.service.createIdentity(query));
     }
 
     @Override
     public HttpResponse<GraphQLResponse<Identity>> deleteIdentitySync(DeleteIdentity query) throws IOException {
-        return executeGraphQLCall(getDeleteIdentityCall(query));
+        return executeGraphQLCall(this.service.deleteIdentity(query));
     }
 
     @Override
     public HttpResponse<GraphQLResponse<Identity>> updateIdentitySync(UpdateIdentity query) throws IOException {
-        return executeGraphQLCall(getUpdateIdentityCall(query));
+        return executeGraphQLCall(this.service.updateIdentity(query));
     }
 
-    private Call<GraphQLResponse<List<Identity>>> getIdentitiesCall(GetIdentities query) {
-        return this.service.getIdentities(query);
-    }
-
-    private Call<GraphQLResponse<Identity>> getCreateIdentityCall(CreateIdentity query) {
-        return this.service.createIdentity(query);
-    }
-
-    private Call<GraphQLResponse<Identity>> getDeleteIdentityCall(DeleteIdentity query) {
-        return this.service.deleteIdentity(query);
-    }
-
-    private Call<GraphQLResponse<Identity>> getUpdateIdentityCall(UpdateIdentity query) {
-        return this.service.updateIdentity(query);
+    @Override
+    public HttpResponse<GraphQLResponse<List<IdentityField>>> getIdentityFieldsSync(GetIdentityFields query) throws IOException {
+        return executeGraphQLCall(this.service.getIdentityFields(query));
     }
 
 }

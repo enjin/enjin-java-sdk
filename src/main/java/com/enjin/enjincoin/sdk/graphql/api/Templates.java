@@ -42,14 +42,17 @@ public class Templates {
     public static final GraphQLTemplate DELETE_USER = GraphQLTemplate.of("DeleteUser", true, DELETE_ENJIN_USER);
 
     // Identities
-    public static final GraphQLTemplate GET_IDENTITIES   = GraphQLTemplate.of("GetIdentities", false, ENJIN_IDENTITIES)
-                                                                          .copyChildren(IDENTITIES_WITH_BALANCES);
-    public static final GraphQLTemplate CREATE_IDENTITY  = GraphQLTemplate.of("CreateIdentity", true, CREATE_ENJIN_IDENTITY)
-                                                                          .copyChildren(IDENTITIES_WITH_BALANCES);
-    public static final GraphQLTemplate UPDATE_IDENTITY  = GraphQLTemplate.of("UpdateIdentity", true, UPDATE_ENJIN_IDENTITY)
-                                                                          .copyChildren(IDENTITIES_WITH_BALANCES);
-    public static final GraphQLTemplate DELETE_IDENTITY  = GraphQLTemplate.of("DeleteIdentity", true, DELETE_ENJIN_IDENTITY)
-                                                                          .copyChildren(IDENTITIES_WITH_BALANCES);
+    public static final GraphQLTemplate GET_IDENTITIES      = GraphQLTemplate.of("GetIdentities", false, ENJIN_IDENTITIES)
+                                                                             .copyChildren(IDENTITIES_WITH_BALANCES);
+    public static final GraphQLTemplate CREATE_IDENTITY     = GraphQLTemplate.of("CreateIdentity", true, CREATE_ENJIN_IDENTITY)
+                                                                             .copyChildren(IDENTITIES_WITH_BALANCES);
+    public static final GraphQLTemplate UPDATE_IDENTITY     = GraphQLTemplate.of("UpdateIdentity", true, UPDATE_ENJIN_IDENTITY)
+                                                                             .copyChildren(IDENTITIES_WITH_BALANCES);
+    public static final GraphQLTemplate DELETE_IDENTITY     = GraphQLTemplate.of("DeleteIdentity", true, DELETE_ENJIN_IDENTITY)
+                                                                             .copyChildren(IDENTITIES_WITH_BALANCES);
+    public static final GraphQLTemplate GET_IDENTITY_FIELDS = GraphQLTemplate.of("GetIdentityFields", false, ENJIN_IDENTITY_FIELDS)
+                                                                             .copyChildren(FIELDS);
+
     // Tokens
     public static final GraphQLTemplate GET_TOKENS       = GraphQLTemplate.of("GetTokens", false, ENJIN_TOKENS)
                                                                           .withField(TOKEN_ID)

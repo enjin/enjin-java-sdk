@@ -56,7 +56,10 @@ public class Fields {
     public static final GraphQLTemplateField PARAM3                    = GraphQLTemplateField.of("param3");
     public static final GraphQLTemplateField PARAM4                    = GraphQLTemplateField.of("param4");
     public static final GraphQLTemplateField BLOCK_NUMBER              = GraphQLTemplateField.of("blockNumber");
-    public static final GraphQLTemplateField BLOCK              = GraphQLTemplateField.of("block");
+    public static final GraphQLTemplateField BLOCK                     = GraphQLTemplateField.of("block");
+    public static final GraphQLTemplateField SEARCHABLE                = GraphQLTemplateField.of("searchable");
+    public static final GraphQLTemplateField DISPLAYABLE               = GraphQLTemplateField.of("displayable");
+    public static final GraphQLTemplateField UNIQUE                    = GraphQLTemplateField.of("unique");
     public static final GraphQLTemplateField CURSOR                    = GraphQLTemplateField.of("cursor")
                                                                                              .withChild(GraphQLTemplateField.of("total"))
                                                                                              .withChild(GraphQLTemplateField.of("perPage"))
@@ -76,7 +79,10 @@ public class Fields {
                                                                                              .withChild(APP_ID);
     public static final GraphQLTemplateField FIELDS                    = GraphQLTemplateField.of("fields")
                                                                                              .withChild(KEY)
-                                                                                             .withChild(VALUE);
+                                                                                             .withChild(VALUE)
+                                                                                             .withChild(SEARCHABLE)
+                                                                                             .withChild(DISPLAYABLE)
+                                                                                             .withChild(UNIQUE);
     public static final GraphQLTemplateField IDENTITY_TOKEN_BALANCE    = GraphQLTemplateField.of("tokens")
                                                                                              .withChild(TOKEN_ID)
                                                                                              .withChild(INDEX)
