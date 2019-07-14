@@ -86,13 +86,4 @@ public class GraphQLResponse<T> {
     public boolean isSuccess() {
         return !isEmpty() && !hasErrors();
     }
-
-    @Override
-    public String toString() {
-        return "GraphQLResponse{" +
-                "raw='" + raw + '\'' +
-                ", errors=" + errors +
-                ", cursor=" + cursor +
-                '}';
-    }
 }

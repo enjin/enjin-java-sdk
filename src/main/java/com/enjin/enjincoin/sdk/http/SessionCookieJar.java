@@ -86,7 +86,9 @@ public class SessionCookieJar implements CookieJar {
                 }
             }
 
-            cookieStore.remove(name);
+            if (cookie != null) {
+                cookieStore.remove(cookie);
+            }
         }
     }
 
