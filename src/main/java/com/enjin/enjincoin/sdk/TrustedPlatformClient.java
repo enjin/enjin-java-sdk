@@ -1,6 +1,5 @@
 package com.enjin.enjincoin.sdk;
 
-import com.enjin.enjincoin.sdk.http.AuthorizationInterceptor;
 import com.enjin.enjincoin.sdk.http.HttpCallback;
 import com.enjin.enjincoin.sdk.http.HttpResponse;
 import com.enjin.enjincoin.sdk.http.SessionCookieJar;
@@ -59,14 +58,11 @@ public class TrustedPlatformClient implements Closeable {
     public static final String KOVAN              = "https://kovan.cloud.enjin.io/";
     // Keys
     public static final String CLIENT_CREDENTIALS = "client_credentials";
-    public static final String APP_ID             = "X-App-Id";
-    public static final String USER_ID            = "user_id";
-    public static final String IDENTITY_ID        = "identity_id";
 
     // Cookie Jar
     private SessionCookieJar         cookieJar;
     // Http Client
-    private AuthorizationInterceptor authorizationInterceptor;
+    private TrustedPlatformInterceptor trustedPlatformInterceptor;
     private HttpLoggingInterceptor   httpLogInterceptor;
     private OkHttpClient             httpClient;
     // Serialization
@@ -102,12 +98,12 @@ public class TrustedPlatformClient implements Closeable {
     protected TrustedPlatformClient(Builder builder) {
         this.cookieJar = new SessionCookieJar();
 
-        this.authorizationInterceptor = new AuthorizationInterceptor();
+        this.trustedPlatformInterceptor = new TrustedPlatformInterceptor();
         this.httpLogInterceptor = builder.httpLogInterceptor;
         this.httpClient = builder.httpClientBuilder
                 .cookieJar(this.cookieJar)
-                .addInterceptor(this.authorizationInterceptor)
-                .addInterceptor(new TrustedPlatformInterceptor(this.cookieJar))
+                .addInterceptor(this.trustedPlatformInterceptor)
+                .addInterceptor(new TrustedPlatformInterceptor())
                 .addNetworkInterceptor(this.httpLogInterceptor)
                 .build();
 
@@ -136,27 +132,15 @@ public class TrustedPlatformClient implements Closeable {
     }
 
     public void setAppId(Integer id) {
-        if (id != null) {
-            this.cookieJar.setCookie(this.retrofit.baseUrl(), APP_ID, id.toString());
-        } else {
-            this.cookieJar.removeCookie(this.retrofit.baseUrl(), APP_ID);
-        }
+        this.trustedPlatformInterceptor.setAppId(id);
     }
 
     public void setUserId(Integer id) {
-        if (id != null) {
-            this.cookieJar.setCookie(this.retrofit.baseUrl(), USER_ID, id.toString());
-        } else {
-            this.cookieJar.removeCookie(this.retrofit.baseUrl(), USER_ID);
-        }
+        this.trustedPlatformInterceptor.setUserId(id);
     }
 
     public void setIdentityId(Integer id) {
-        if (id != null) {
-            this.cookieJar.setCookie(this.retrofit.baseUrl(), IDENTITY_ID, id.toString());
-        } else {
-            this.cookieJar.removeCookie(this.retrofit.baseUrl(), IDENTITY_ID);
-        }
+        this.trustedPlatformInterceptor.setIdentityId(id);
     }
 
     public void setHttpLogLevel(Level level) {
@@ -164,23 +148,21 @@ public class TrustedPlatformClient implements Closeable {
     }
 
     public HttpResponse<AuthResult> authAppSync(int appId, String appSecret) throws IOException {
-        long                 start    = System.currentTimeMillis();
         Call<AuthResult>     call     = authApp(appId, appSecret);
         Response<AuthResult> response = call.execute();
 
-        authApp(start, response);
+        authApp(appId, response);
 
         return new HttpResponse<>(response.code(), response.body());
     }
 
     public void authAppAsync(int appId, String appSecret, HttpCallback<AuthResult> callback) {
-        long             start = System.currentTimeMillis();
         Call<AuthResult> call  = authApp(appId, appSecret);
 
         call.enqueue(new SimpleCallback<AuthResult>() {
             @Override
             public void onResponse(Call<AuthResult> call, Response<AuthResult> response) {
-                authApp(start, response);
+                authApp(appId, response);
                 if (callback != null) {
                     callback.onComplete(new HttpResponse<>(response.code(), response.body()));
                 }
@@ -196,10 +178,11 @@ public class TrustedPlatformClient implements Closeable {
                                              .build());
     }
 
-    private void authApp(long start, Response<AuthResult> response) {
+    private void authApp(int appId, Response<AuthResult> response) {
         if (response.isSuccessful()) {
             AuthResult body = response.body();
-            authorizationInterceptor.auth(body);
+            trustedPlatformInterceptor.auth(body);
+            setAppId(appId);
         }
     }
 

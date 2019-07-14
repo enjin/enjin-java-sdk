@@ -1,53 +1,62 @@
 package com.enjin.enjincoin.sdk.http;
 
-import com.enjin.enjincoin.sdk.TrustedPlatformClient;
-import okhttp3.Cookie;
+import com.enjin.enjincoin.sdk.model.service.auth.AuthResult;
+import com.enjin.java_commons.StringUtils;
+import lombok.Getter;
+import lombok.Setter;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 
 import java.io.IOException;
-import java.util.List;
 
 public class TrustedPlatformInterceptor implements Interceptor {
 
-    private static final String[] COOKIES = {
-            TrustedPlatformClient.APP_ID,
-            TrustedPlatformClient.USER_ID,
-            TrustedPlatformClient.IDENTITY_ID
-    };
+    public static final String APP_ID      = "X-App-Id";
+    public static final String USER_ID     = "user_id";
+    public static final String IDENTITY_ID = "identity_id";
+    public static final String AUTHORIZATION      = "Authorization";
 
-    private SessionCookieJar cookieJar;
-
-    public TrustedPlatformInterceptor(SessionCookieJar cookieJar) {
-        this.cookieJar = cookieJar;
-    }
+    @Setter
+    private String tokenType;
+    @Setter
+    private String token;
+    @Getter
+    @Setter
+    private Integer appId;
+    @Getter
+    @Setter
+    private Integer userId;
+    @Getter
+    @Setter
+    private Integer identityId;
 
     @Override
     public Response intercept(Chain chain) throws IOException {
-        Request original = chain.request();
+        Request.Builder builder = chain.request().newBuilder();
 
-        Request.Builder builder = original.newBuilder();
+        if (appId != null) {
+            builder.header(APP_ID, String.valueOf(appId));
+        }
 
-        List<Cookie> cookieStore = cookieJar.getCookies(original.url());
+        if (userId != null) {
+            builder.header(USER_ID, String.valueOf(userId));
+        }
 
-        for (Cookie stored : cookieStore) {
-            if (match(stored)) {
-                builder.header(stored.name(), stored.value());
-            }
+        if (identityId != null) {
+            builder.header(IDENTITY_ID, String.valueOf(identityId));
+        }
+
+        if (!StringUtils.isEmpty(tokenType) && !StringUtils.isEmpty(token)) {
+            builder.header(AUTHORIZATION, String.format("%s %s", tokenType, token));
         }
 
         return chain.proceed(builder.build());
     }
 
-    private boolean match(Cookie cookie) {
-        for (String name : COOKIES) {
-            if (name.equals(cookie.name())) {
-                return true;
-            }
-        }
-
-        return false;
+    public void auth(AuthResult result) {
+        tokenType = result.getTokenType();
+        token = result.getAccessToken();
     }
 
 }
