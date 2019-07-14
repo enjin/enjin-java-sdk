@@ -103,7 +103,7 @@ public class PusherNotificationService implements NotificationsService {
     }
 
     @Override
-    public NotificationListenerRegistration registerListenerWithMatcher(@NonNull NotificationListener listener) {
+    public NotificationListenerRegistration registerListener(@NonNull NotificationListener listener) {
         return register(NotificationListenerRegistration.configure(listener));
     }
 
