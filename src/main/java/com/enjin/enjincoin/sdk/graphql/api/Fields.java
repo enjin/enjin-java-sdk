@@ -2,8 +2,6 @@ package com.enjin.enjincoin.sdk.graphql.api;
 
 import com.enjin.enjincoin.sdk.graphql.GraphQLTemplateField;
 
-import javax.print.attribute.standard.MediaSize.NA;
-
 public class Fields {
 
     public static final GraphQLTemplateField ID                        = GraphQLTemplateField.of("id");
@@ -14,7 +12,6 @@ public class Fields {
     public static final GraphQLTemplateField ETH_ADDR                  = GraphQLTemplateField.of("ethereum_address");
     public static final GraphQLTemplateField LINKING_CODE              = GraphQLTemplateField.of("linking_code");
     public static final GraphQLTemplateField LINKING_CODE_QR           = GraphQLTemplateField.of("linking_code_qr");
-    public static final GraphQLTemplateField KEY                       = GraphQLTemplateField.of("key");
     public static final GraphQLTemplateField VALUE                     = GraphQLTemplateField.of("value");
     public static final GraphQLTemplateField TOKEN_ID                  = GraphQLTemplateField.of("token_id");
     public static final GraphQLTemplateField TOKEN_INDEX               = GraphQLTemplateField.of("token_index");
@@ -59,9 +56,6 @@ public class Fields {
     public static final GraphQLTemplateField PARAM4                    = GraphQLTemplateField.of("param4");
     public static final GraphQLTemplateField BLOCK_NUMBER              = GraphQLTemplateField.of("blockNumber");
     public static final GraphQLTemplateField BLOCK                     = GraphQLTemplateField.of("block");
-    public static final GraphQLTemplateField SEARCHABLE                = GraphQLTemplateField.of("searchable");
-    public static final GraphQLTemplateField DISPLAYABLE               = GraphQLTemplateField.of("displayable");
-    public static final GraphQLTemplateField UNIQUE                    = GraphQLTemplateField.of("unique");
     public static final GraphQLTemplateField SECRET                    = GraphQLTemplateField.of("secret");
     public static final GraphQLTemplateField DESCRIPTION               = GraphQLTemplateField.of("description");
     public static final GraphQLTemplateField IMAGE                     = GraphQLTemplateField.of("image");
@@ -86,12 +80,6 @@ public class Fields {
                                                                                              .withChild(NAME)
                                                                                              .withChild(PERMISSIONS)
                                                                                              .withChild(APP_ID);
-    public static final GraphQLTemplateField FIELDS                    = GraphQLTemplateField.of("fields")
-                                                                                             .withChild(KEY)
-                                                                                             .withChild(VALUE)
-                                                                                             .withChild(SEARCHABLE)
-                                                                                             .withChild(DISPLAYABLE)
-                                                                                             .withChild(UNIQUE);
     public static final GraphQLTemplateField IDENTITY_TOKEN_BALANCE    = GraphQLTemplateField.of("tokens")
                                                                                              .withChild(TOKEN_ID)
                                                                                              .withChild(INDEX)
@@ -102,11 +90,8 @@ public class Fields {
                                                                                              .withChild(ETH_ADDR)
                                                                                              .withChild(LINKING_CODE)
                                                                                              .withChild(LINKING_CODE_QR);
-    public static final GraphQLTemplateField IDENTITIES_SIMPLE         = GraphQLTemplateField.of("identities")
-                                                                                             .copyChildren(IDENTITIES_BASE)
-                                                                                             .withChild(FIELDS);
     public static final GraphQLTemplateField IDENTITIES_WITH_BALANCES  = GraphQLTemplateField.of("identities")
-                                                                                             .copyChildren(IDENTITIES_SIMPLE)
+                                                                                             .copyChildren(IDENTITIES_BASE)
                                                                                              .withChild(IDENTITY_TOKEN_BALANCE)
                                                                                              .withChild(ETH_BALANCE)
                                                                                              .withChild(ENJ_BALANCE)

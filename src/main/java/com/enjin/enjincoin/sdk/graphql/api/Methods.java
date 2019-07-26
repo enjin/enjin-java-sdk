@@ -34,7 +34,6 @@ public class Methods {
     public static final String CREATE_ENJIN_IDENTITY = "CreateEnjinIdentity";
     public static final String UPDATE_ENJIN_IDENTITY = "UpdateEnjinIdentity";
     public static final String DELETE_ENJIN_IDENTITY = "DeleteEnjinIdentity";
-    public static final String ENJIN_IDENTITY_FIELDS = "EnjinIdentityFields";
 
     // Tokens
     public static final String ENJIN_TOKENS = "EnjinTokens";

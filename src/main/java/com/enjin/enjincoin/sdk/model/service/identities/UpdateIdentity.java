@@ -61,28 +61,4 @@ public class UpdateIdentity extends GraphQLRequest<UpdateIdentity> {
         return this;
     }
 
-    /**
-     * The fields to add and/or modify for an identity.
-     *
-     * @param fields the fields.
-     *
-     * @return the builder.
-     */
-    public UpdateIdentity fields(List<IdentityFieldInput> fields) {
-        withParameter("fields", fields);
-        return this;
-    }
-
-    /**
-     * The fields to add and/or modify for an identity.
-     *
-     * @param fields the fields.
-     *
-     * @return the builder.
-     */
-    public UpdateIdentity fields(IdentityFieldInput... fields) {
-        withParameter("fields", Arrays.asList(fields));
-        return this;
-    }
-
 }

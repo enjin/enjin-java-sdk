@@ -14,7 +14,6 @@ import java.util.List;
  *
  * @author Evan Lindsay
  * @see com.enjin.enjincoin.sdk.service.identities.IdentitiesService
- * @see IdentityField
  */
 @ToString
 @Getter
@@ -58,13 +57,6 @@ public class Identity {
      */
     @SerializedName("linking_code_qr")
     private String linkingCodeQr;
-
-    /**
-     * The identity fields.
-     *
-     * @return the identity fields.
-     */
-    private List<IdentityField> fields;
 
     /**
      * The owned tokens.

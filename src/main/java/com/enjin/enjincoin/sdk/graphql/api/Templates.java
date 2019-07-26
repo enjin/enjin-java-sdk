@@ -76,8 +76,6 @@ public class Templates {
                                                                              .copyChildren(IDENTITIES_WITH_BALANCES);
     public static final GraphQLTemplate DELETE_IDENTITY     = GraphQLTemplate.of("DeleteIdentity", true, DELETE_ENJIN_IDENTITY)
                                                                              .copyChildren(IDENTITIES_WITH_BALANCES);
-    public static final GraphQLTemplate GET_IDENTITY_FIELDS = GraphQLTemplate.of("GetIdentityFields", false, ENJIN_IDENTITY_FIELDS)
-                                                                             .copyChildren(FIELDS);
 
     // Tokens
     public static final GraphQLTemplate GET_TOKENS       = GraphQLTemplate.of("GetTokens", false, ENJIN_TOKENS)

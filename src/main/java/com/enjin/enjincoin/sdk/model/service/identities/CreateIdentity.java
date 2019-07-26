@@ -49,28 +49,4 @@ public class CreateIdentity extends GraphQLRequest<CreateIdentity> {
         return this;
     }
 
-    /**
-     * The fields to assign to the created identity.
-     *
-     * @param fields the fields.
-     *
-     * @return the builder.
-     */
-    public CreateIdentity fields(List<IdentityFieldInput> fields) {
-        withParameter("fields", fields);
-        return this;
-    }
-
-    /**
-     * The fields to assign to the created identity.
-     *
-     * @param fields the fields.
-     *
-     * @return the builder.
-     */
-    public CreateIdentity fields(IdentityFieldInput... fields) {
-        withParameter("fields", Arrays.asList(fields));
-        return this;
-    }
-
 }
