@@ -1,5 +1,6 @@
 package com.enjin.enjincoin.sdk.model.service.balances;
 
+import com.enjin.enjincoin.sdk.model.service.tokens.Token;
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.ToString;
@@ -21,5 +22,7 @@ public class Balance {
     private Integer identityId;
 
     private Integer balance;
+
+    private Token token;
 
 }

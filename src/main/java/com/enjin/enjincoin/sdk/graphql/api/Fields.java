@@ -60,6 +60,7 @@ public class Fields {
     public static final GraphQLTemplateField DESCRIPTION               = GraphQLTemplateField.of("description");
     public static final GraphQLTemplateField IMAGE                     = GraphQLTemplateField.of("image");
     public static final GraphQLTemplateField TOKEN_COUNT               = GraphQLTemplateField.of("token_count");
+    public static final GraphQLTemplateField ITEM_URI                  = GraphQLTemplateField.of("itemURI");
     public static final GraphQLTemplateField OWNER                     = GraphQLTemplateField.of("owner")
                                                                                              .withChild(ID)
                                                                                              .withChild(NAME);
@@ -84,6 +85,9 @@ public class Fields {
                                                                                              .withChild(TOKEN_ID)
                                                                                              .withChild(INDEX)
                                                                                              .withChild(BALANCE);
+    public static final GraphQLTemplateField BALANCE_TOKEN             = GraphQLTemplateField.of("token")
+                                                                                             .withChild(NAME)
+                                                                                             .withChild(ITEM_URI);
     public static final GraphQLTemplateField IDENTITIES_BASE           = GraphQLTemplateField.of("identities")
                                                                                              .withChild(ID)
                                                                                              .withChild(APP_ID)
