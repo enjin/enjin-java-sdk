@@ -7,7 +7,7 @@ import lombok.ToString;
 @ToString
 public class EventData {
 
-    private int id;
+    private Integer id;
     private String transactionId;
     private String transactionType;
     private String requestType;
