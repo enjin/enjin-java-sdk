@@ -60,11 +60,12 @@ allprojects {
 }
 
 dependencies {
+    api deps.okhttpLoggingInterceptor
+
     implementation deps.enjinCommons
     implementation deps.gson
     implementation deps.pusher
     implementation deps.okhttp
-    implementation deps.okhttpLoggingInterceptor
     implementation deps.okhttpUrlConnection
     implementation deps.retrofit
     implementation deps.retrofitGson
