@@ -10,7 +10,7 @@ public class EventData {
     private Integer id;
     private String transactionId;
     private String transactionType;
-    private String requestType;
+    private RequestType requestType;
     private String eventType;
     private String param1;
     private String param2;
