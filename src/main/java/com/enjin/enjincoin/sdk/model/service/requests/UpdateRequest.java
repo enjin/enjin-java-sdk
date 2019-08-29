@@ -220,6 +220,7 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      */
     public UpdateRequest approveItem(ApproveItemData approveItemData) {
         withParameter("approve_item_data", approveItemData);
+        transactionType(TransactionType.APPROVE);
         return this;
     }
 
@@ -298,32 +299,6 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
     public UpdateRequest addLog(AddLogData addLogData) {
         withParameter("add_log_data", addLogData);
         transactionType(TransactionType.ADD_LOG);
-        return this;
-    }
-
-    /**
-     * Sets the batch approve data.
-     *
-     * @param batchApproveData the data.
-     *
-     * @return the builder.
-     */
-    public UpdateRequest batchApprove(BatchApproveData batchApproveData) {
-        withParameter("batch_approve_data", batchApproveData);
-        transactionType(TransactionType.BATCH_APPROVE);
-        return this;
-    }
-
-    /**
-     * Sets the set approval data.
-     *
-     * @param setApprovalData the data.
-     *
-     * @return the builder.
-     */
-    public UpdateRequest setApproval(SetApprovalData setApprovalData) {
-        withParameter("set_approval_data", setApprovalData);
-        transactionType(TransactionType.SET_APPROVAL);
         return this;
     }
 
