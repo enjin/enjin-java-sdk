@@ -101,4 +101,13 @@ public class Fields {
                                                                                              .withChild(ENJ_BALANCE)
                                                                                              .withChild(ENJ_ALLOWANCE)
                                                                                              .withChild(ALL_TOKENS_BALANCE);
+    public static final GraphQLTemplateField EVENTS                    = GraphQLTemplateField.of("events")
+                                                                                             .withChild(ID)
+                                                                                             .withChild(TOKEN_ID)
+                                                                                             .withChild(EVENT)
+                                                                                             .withChild(PARAM1)
+                                                                                             .withChild(PARAM2)
+                                                                                             .withChild(PARAM3)
+                                                                                             .withChild(PARAM4)
+                                                                                             .withChild(BLOCK_NUMBER);
 }

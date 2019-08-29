@@ -1,8 +1,11 @@
 package com.enjin.enjincoin.sdk.model.service.requests;
 
+import com.enjin.enjincoin.sdk.model.service.tokens.TokenEvent;
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.ToString;
+
+import java.util.List;
 
 /**
  * Represents a transaction request on the trusted platform.
@@ -138,5 +141,12 @@ public class Transaction {
      * @return the accepted state.
      */
     private Integer accepted;
+
+    /**
+     * The events associated with the transaction.
+     *
+     * @return the events;
+     */
+    private List<TokenEvent> events;
 
 }
