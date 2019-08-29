@@ -105,14 +105,7 @@ public class Templates {
     public static final GraphQLTemplate DELETE_TOKEN     = GraphQLTemplate.of("DeleteToken", true, DELETE_ENJIN_TOKEN)
                                                                           .copyFields(GET_TOKENS);
     public static final GraphQLTemplate GET_TOKEN_EVENTS = GraphQLTemplate.of("GetTokenEvents", false, ENJIN_TOKEN_EVENTS)
-                                                                          .withField(ID)
-                                                                          .withField(TOKEN_ID)
-                                                                          .withField(EVENT)
-                                                                          .withField(PARAM1)
-                                                                          .withField(PARAM2)
-                                                                          .withField(PARAM3)
-                                                                          .withField(PARAM4)
-                                                                          .withField(BLOCK_NUMBER);
+                                                                          .copyChildren(EVENTS);
 
     // Requests
     public static final GraphQLTemplate GET_REQUESTS   = GraphQLTemplate.of("GetRequests", false, ENJIN_TRANSACTIONS)
@@ -131,7 +124,8 @@ public class Templates {
                                                                         .withField(NONCE)
                                                                         .withField(RETRY_STATE)
                                                                         .withField(STATE)
-                                                                        .withField(ACCEPTED);
+                                                                        .withField(ACCEPTED)
+                                                                        .withField(EVENTS);
     public static final GraphQLTemplate CREATE_REQUEST = GraphQLTemplate.of("CreateRequest", true, CREATE_ENJIN_REQUEST)
                                                                         .copyFields(GET_REQUESTS);
     public static final GraphQLTemplate UPDATE_REQUEST = GraphQLTemplate.of("UpdateRequest", true, UPDATE_ENJIN_REQUEST)
