@@ -9,6 +9,7 @@ package com.enjin.enjincoin.sdk.model.service.requests;
  */
 public enum TransactionType {
 
+    UNKNOWN,
     APPROVE,
     CREATE,
     MINT,

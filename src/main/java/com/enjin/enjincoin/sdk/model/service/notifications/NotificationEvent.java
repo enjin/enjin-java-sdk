@@ -1,6 +1,7 @@
 package com.enjin.enjincoin.sdk.model.service.notifications;
 
-import com.enjin.enjincoin.sdk.serialization.RequestTypeDeserializer;
+import com.enjin.enjincoin.sdk.model.service.requests.TransactionType;
+import com.enjin.enjincoin.sdk.serialization.TransactionTypeDeserializer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import lombok.Builder;
@@ -20,7 +21,7 @@ import lombok.ToString;
 public class NotificationEvent {
 
     private static final Gson GSON = new GsonBuilder()
-            .registerTypeAdapter(RequestType.class, new RequestTypeDeserializer())
+            .registerTypeAdapter(TransactionType.class, new TransactionTypeDeserializer())
             .create();
 
     /**
