@@ -1,11 +1,20 @@
 buildscript {
     ext.versions = [
-            'enjinCommons': '0.3.0-SNAPSHOT',
-            'gson'        : '2.8.5',
-            'pusher'      : '1.8.0',
-            'okhttp'      : '3.12.1',
-            'retrofit'    : '2.5.0',
-            'lombok'      : '1.18.6',
+            'enjinCommons'    : '0.3.0-SNAPSHOT',
+            'gson'            : '2.8.5',
+            'pusher'          : '2.0.1',
+            'okhttp'          : '4.2.0',
+            'retrofit'        : '2.6.2',
+            'supportOptional' : '1.2',
+            'lombok'          : '1.18.6',
+            'junit'           : '4.12',
+            'mockWebServer'   : '4.2.0',
+            'truth'           : '1.0',
+            'awaitility'      : '4.0.1',
+            'toStringVerifier': '1.4.5',
+            'equalsVerifier'  : '3.1.10',
+            'mockito'         : '3.0.0',
+            'powermock'       : '2.0.2'
     ]
 
     ext.deps = [
@@ -16,7 +25,17 @@ buildscript {
             'okhttpLoggingInterceptor': "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}",
             'okhttpUrlConnection'     : "com.squareup.okhttp3:okhttp-urlconnection:${versions.okhttp}",
             'retrofit'                : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
-            'retrofitGson'            : "com.squareup.retrofit2:converter-gson:${versions.retrofit}"
+            'retrofitGson'            : "com.squareup.retrofit2:converter-gson:${versions.retrofit}",
+            'supportOptional'         : "com.github.dmstocking:support-optional:${versions.supportOptional}",
+            'junit'                   : "junit:junit:${versions.junit}",
+            'mockWebServer'           : "com.squareup.okhttp3:mockwebserver:${versions.mockWebServer}",
+            'truth'                   : "com.google.truth:truth:${versions.truth}",
+            'awaitility'              : "org.awaitility:awaitility:${versions.awaitility}",
+            'toStringVerifier'        : "com.jparams:to-string-verifier:${versions.toStringVerifier}",
+            'equalsVerifier'          : "nl.jqno.equalsverifier:equalsverifier:${versions.equalsVerifier}",
+            'mockito'                 : "org.mockito:mockito-core:${versions.mockito}",
+            'powermockJunit4'         : "org.powermock:powermock-module-junit4:${versions.powermock}",
+            'powermockMockito2'       : "org.powermock:powermock-api-mockito2:${versions.powermock}"
     ]
 
     ext.local = new Properties()
@@ -25,141 +44,127 @@ buildscript {
 
     repositories {
         mavenCentral()
+        jcenter()
         gradlePluginPortal()
-        maven { url 'https://plugins.gradle.org/m2/' }
+    }
+
+    dependencies {
+        classpath 'com.vanniktech:gradle-maven-publish-plugin:0.8.0'
+        classpath 'org.ajoberstar:gradle-git-publish:2.1.1'
+        classpath 'com.diffplug.spotless:spotless-plugin-gradle:3.24.3'
     }
 }
 
 plugins {
-    id 'io.freefair.lombok' version '3.2.1'
+    id 'io.freefair.lombok' version '4.1.1'
     id 'com.github.johnrengelman.shadow' version '5.0.0'
     id 'com.bmuschko.nexus' version '2.3.1'
-    id 'io.codearte.nexus-staging' version '0.20.0'
-    id 'org.ajoberstar.git-publish' version '2.1.1'
+    id 'io.codearte.nexus-staging' version '0.21.1'
     id 'net.ltgt.errorprone' version '0.8.1'
+    id 'jacoco'
+    id 'org.sonarqube' version '2.7.1'
+    id 'checkstyle'
+    id 'com.github.ben-manes.versions' version '0.25.0'
 }
 
-apply plugin: 'java'
-apply plugin: 'java-library'
-apply plugin: 'maven'
-
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
-
-group = 'com.enjin'
-version = '1.0.0-SNAPSHOT'
+sonarqube {
+    properties {
+        property 'sonar.sourceEncoding', 'UTF-8'
+    }
+}
 
 allprojects {
+    apply from: "${rootProject.rootDir}/gradle/spotless.gradle"
+
+    group = GROUP
+    version = VERSION_NAME
+
     repositories {
+        jcenter()
         mavenCentral()
         maven {
             url 'https://oss.sonatype.org/content/groups/public/'
         }
-
     }
 }
 
-dependencies {
-    api deps.okhttpLoggingInterceptor
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+    apply plugin: 'maven'
+    apply plugin: 'io.freefair.lombok'
+    apply plugin: 'net.ltgt.errorprone'
+    apply plugin: 'com.github.johnrengelman.shadow'
+    apply plugin: 'jacoco'
+    apply plugin: 'checkstyle'
+    apply from: "${rootProject.rootDir}/gradle/deploy.gradle"
 
-    implementation deps.enjinCommons
-    implementation deps.gson
-    implementation deps.pusher
-    implementation deps.okhttp
-    implementation deps.okhttpUrlConnection
-    implementation deps.retrofit
-    implementation deps.retrofitGson
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 
-    errorproneJavac 'com.google.errorprone:javac:9+181-r4173-1'
-    errorprone 'com.google.errorprone:error_prone_core:2.3.3'
-}
-
-tasks.withType(JavaCompile).configureEach {
-    options.errorprone {
-        enabled = JavaVersion.current() < JavaVersion.VERSION_12
-        disable('UnusedVariable')
-    }
-}
-
-javadoc {
-    dependsOn delombok
-    source = delombok.target
-    // exclude any implementation packages
-    exclude '**/impl/**'
-    // exclude any implementation classes
-    exclude '**/*Impl.java'
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc
-}
-
-task sourcesJar(type: Jar) {
-    classifier = 'sources'
-    from sourceSets.main.allJava
-}
-
-artifacts {
-    archives javadocJar
-    archives sourcesJar
-    archives shadowJar
-}
-
-modifyPom {
-    project {
-        name 'Enjin Coin Java SDK'
-        description 'Java SDK for interacting with the Enjin Coin Trusted Platform'
-        url 'https://github.com/enjin/Enjin-Coin-Java-SDK'
-        inceptionYear '2017'
-
-        licenses {
-            license {
-                name 'The Apache Software License, Version 2.0'
-                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                distribution 'repo'
-            }
-        }
-
-        developers {
-            developer {
-                id 'Favorlock'
-                name 'Evan Lindsay'
-                email 'evan@enjin.io'
-            }
+    tasks.withType(JavaCompile).configureEach {
+        options.errorprone {
+            enabled = JavaVersion.current() < JavaVersion.VERSION_12
+            disable('UnusedVariable')
         }
     }
-}
 
-extraArchive {
-    sources = false
-    javadoc = false
-    tests = false
-}
+    javadoc {
+        dependsOn delombok
+        source = delombok.target
+        // exclude any implementation packages
+        exclude '**/impl/**'
+        // exclude any implementation classes
+        exclude '**/*Impl.java'
+    }
 
-nexus {
-    sign = false
-    repositoryUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
-    snapshotRepositoryUrl = 'https://oss.sonatype.org/content/repositories/snapshots/'
-}
+    artifacts {
+        archives shadowJar
+    }
 
-nexusStaging {
-    username = local.getProperty('nexusUsername')
-    password = local.getProperty('nexusPassword')
-}
+    lombok {
+        config['lombok.addLombokGeneratedAnnotation'] = 'false'
+    }
 
-gitPublish {
-    repoUri = 'git@github.com:enjin/Enjin-Coin-Java-SDK.git'
-    branch = 'gh-pages'
-    contents {
-        from(javadoc) {
-            into '/'
+    test {
+        reports {
+            html.enabled = false
         }
     }
-    commitMessage = "Publishing documentation for version ${version}."
+
+    jacoco {
+        toolVersion = '0.8.4'
+    }
+
+    jacocoTestReport {
+        reports {
+            xml.enabled = true
+            html.destination file("${buildDir}/reports/tests/test")
+        }
+    }
+
+    sonarqube {
+        properties {
+            property 'sonar.sources', 'src'
+            property 'sonar.exclusions', '**/*{!.java},**/build/**,**/test/**'
+            property 'sonar.jacoco.xmlReportsPath', 'build/reports/jacoco/jacocoTestReport.xml'
+        }
+    }
+
+    checkstyle {
+        toolVersion = '8.24'
+        sourceSets = [project.sourceSets.main]
+    }
+
+    tasks.withType(Checkstyle) {
+        reports {
+            xml.enabled false
+            html.enabled true
+        }
+    }
 }
 
 wrapper {
-    gradleVersion = '5.4.1'
+    gradleVersion = '5.6.2'
     distributionType = Wrapper.DistributionType.ALL
 }

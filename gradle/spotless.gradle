@@ -1,0 +1,18 @@
+apply plugin: 'com.diffplug.gradle.spotless'
+
+spotless {
+    enforceCheck = false
+
+    java {
+        target fileTree(projectDir) {
+            include '**/*.java'
+            exclude '**/build/**'
+        }
+
+        importOrder 'java', 'javax', 'com', 'org', ''
+        removeUnusedImports()
+
+        indentWithSpaces()
+        trimTrailingWhitespace()
+    }
+}

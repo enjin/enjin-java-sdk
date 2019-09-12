@@ -1,0 +1,19 @@
+apply plugin: 'org.ajoberstar.git-publish'
+
+gitPublish {
+    repoUri = 'git@github.com:enjin/Enjin-Coin-Java-SDK.git'
+    branch = 'gh-pages'
+
+    contents {
+        from(javadoc) {
+            into "/javadocs/${project.name}/${version}"
+        }
+    }
+
+    preserve {
+        include '**/*'
+        exclude "/javadocs/${project.name}/${version}"
+    }
+
+    commitMessage = "Publishing javadocs of ${project.name} version ${version}."
+}
