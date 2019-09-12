@@ -1,5 +1,6 @@
 package com.enjin.enjincoin.sdk.service.notifications;
 
+import com.enjin.enjincoin.sdk.model.service.notifications.NotificationEvent;
 import com.enjin.enjincoin.sdk.model.service.notifications.NotificationType;
 
 /**
@@ -13,7 +14,12 @@ public class NotificationListenerRegistration {
     /**
      * A matcher that matches all events.
      **/
-    public static final EventMatcher ALLOW_ALL_MATCHER = event -> true;
+    public static final EventMatcher ALLOW_ALL_MATCHER = new EventMatcher() {
+        @Override
+        public boolean matches(NotificationEvent event) {
+            return true;
+        }
+    };
 
     private NotificationListener listener;
     private EventMatcher         eventMatcher = ALLOW_ALL_MATCHER;
@@ -83,8 +89,13 @@ public class NotificationListenerRegistration {
          *
          * @return the configuration.
          */
-        public T withAllowedEvents(NotificationType... types) {
-            return this.withMatcher(types == null ? null : event -> event.getType().in(types));
+        public T withAllowedEvents(final NotificationType... types) {
+            return this.withMatcher(types == null ? null : new EventMatcher() {
+                @Override
+                public boolean matches(NotificationEvent event) {
+                    return event.getType().in(types);
+                }
+            });
         }
 
         /**
@@ -94,8 +105,13 @@ public class NotificationListenerRegistration {
          *
          * @return the configuration.
          */
-        public T withIgnoredEvents(NotificationType... types) {
-            return this.withMatcher(types == null ? null : event -> !event.getType().in(types));
+        public T withIgnoredEvents(final NotificationType... types) {
+            return this.withMatcher(types == null ? null : new EventMatcher() {
+                @Override
+                public boolean matches(NotificationEvent event) {
+                    return !event.getType().in(types);
+                }
+            });
         }
 
         public NotificationListenerRegistration create() {

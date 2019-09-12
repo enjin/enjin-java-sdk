@@ -25,7 +25,7 @@ public class GraphQLServiceBase extends ServiceBase {
         return createResult(response);
     }
 
-    protected <T> void enqueueGraphQLCall(Call<T> call, HttpCallback<T> callback) {
+    protected <T> void enqueueGraphQLCall(Call<T> call, final HttpCallback<T> callback) {
         call.enqueue(new retrofit2.Callback<T>() {
             @Override
             public void onResponse(Call<T> call, retrofit2.Response<T> response) {

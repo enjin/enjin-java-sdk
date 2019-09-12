@@ -128,10 +128,15 @@ public class PusherNotificationService implements NotificationsService {
 
 
     protected NotificationListenerRegistration register(@NonNull RegistrationListenerConfiguration configuration) {
-        NotificationListenerRegistration registration = this.listeners.stream()
-                                                                      .filter(r -> r.getListener().equals(configuration.listener))
-                                                                      .findFirst()
-                                                                      .orElse(null);
+        NotificationListenerRegistration registration = null;
+
+        for (int i = 0; i < this.listeners.size(); i++) {
+            NotificationListenerRegistration reg = this.listeners.get(i);
+            if (reg.getListener().equals(configuration.listener)) {
+                registration = reg;
+                break;
+            }
+        }
 
         if (registration == null) {
             registration = configuration.create();
@@ -143,7 +148,13 @@ public class PusherNotificationService implements NotificationsService {
 
     @Override
     public void unregisterListener(@NonNull NotificationListener listener) {
-        this.listeners.removeIf(r -> r.getListener().equals(listener));
+        for (int i = 0; i < this.listeners.size(); i++) {
+            NotificationListenerRegistration reg = this.listeners.get(i);
+            if (reg.getListener().equals(listener)) {
+                this.listeners.remove(i);
+                break;
+            }
+        }
     }
 
     @Override

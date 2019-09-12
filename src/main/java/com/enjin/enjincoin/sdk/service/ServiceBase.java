@@ -19,7 +19,7 @@ public class ServiceBase {
         return new HttpResponse<>(response.code(), response.body());
     }
 
-    protected <T> void enqueue(Call<T> call, HttpCallback<T> callback) {
+    protected <T> void enqueue(Call<T> call, final HttpCallback<T> callback) {
         call.enqueue(new retrofit2.Callback<T>() {
             @Override
             public void onResponse(Call<T> call, retrofit2.Response<T> response) {

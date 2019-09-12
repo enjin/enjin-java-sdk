@@ -9,7 +9,7 @@ public class GraphQLTemplateField {
     protected List<GraphQLTemplateField> children;
 
     protected GraphQLTemplateField(String name) {
-        this(name, new ArrayList<>());
+        this(name, new ArrayList<GraphQLTemplateField>());
     }
 
     protected GraphQLTemplateField(String name, List<GraphQLTemplateField> children) {

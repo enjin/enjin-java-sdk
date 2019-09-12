@@ -7,7 +7,6 @@ import com.enjin.enjincoin.sdk.http.SimpleCallback;
 import com.enjin.enjincoin.sdk.http.TrustedPlatformInterceptor;
 import com.enjin.enjincoin.sdk.model.service.auth.AuthBody;
 import com.enjin.enjincoin.sdk.model.service.auth.AuthResult;
-import com.enjin.enjincoin.sdk.serialization.BigIntegerDeserializer;
 import com.enjin.enjincoin.sdk.serialization.converter.GraphConverter;
 import com.enjin.enjincoin.sdk.serialization.converter.JsonStringConverter;
 import com.enjin.enjincoin.sdk.service.apps.AppsService;
@@ -29,11 +28,10 @@ import com.enjin.enjincoin.sdk.service.tokens.TokensService;
 import com.enjin.enjincoin.sdk.service.tokens.impl.TokensServiceImpl;
 import com.enjin.enjincoin.sdk.service.users.UsersService;
 import com.enjin.enjincoin.sdk.service.users.impl.UsersServiceImpl;
+import com.github.dmstocking.optional.java.util.Optional;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.TypeAdapterFactory;
 import lombok.Getter;
-import okhttp3.Dispatcher;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -46,105 +44,130 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.Closeable;
 import java.io.IOException;
-import java.lang.reflect.Type;
-import java.math.BigInteger;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class TrustedPlatformClient implements Closeable {
 
     // Trusted Platform Base URLs
-    public static final String MAIN_NET           = "https://cloud.enjin.io/";
-    public static final String KOVAN              = "https://kovan.cloud.enjin.io/";
+    public static final  HttpUrl MAIN_NET           = HttpUrl.get("https://cloud.enjin.io/");
+    public static final  HttpUrl KOVAN              = HttpUrl.get("https://kovan.cloud.enjin.io/");
     // Keys
-    public static final String CLIENT_CREDENTIALS = "client_credentials";
+    private static final String  CLIENT_CREDENTIALS = "client_credentials";
 
-    // Cookie Jar
-    private SessionCookieJar         cookieJar;
+    private HttpUrl                    baseUrl;
     // Http Client
     private TrustedPlatformInterceptor trustedPlatformInterceptor;
-    private HttpLoggingInterceptor   httpLogInterceptor;
-    private OkHttpClient             httpClient;
-    // Serialization
-    private Gson                     gson;
-    private Converter.Factory        gsonFactory;
-    private Retrofit                 retrofit;
+    private HttpLoggingInterceptor     httpLogInterceptor;
+    private OkHttpClient               httpClient;
     // Services
     @Getter
-    private AuthRetrofitService      authService;
+    private AppsService                appsService;
     @Getter
-    private PlatformService          platformService;
+    private AuthRetrofitService        authService;
     @Getter
-    private EthereumService          ethereumService;
+    private BalancesService            balancesService;
     @Getter
-    private AppsService              appsService;
+    private EthereumService            ethereumService;
     @Getter
-    private RolesService             rolesService;
+    private IdentitiesService          identitiesService;
     @Getter
-    private UsersService             usersService;
+    private PlatformService            platformService;
     @Getter
-    private IdentitiesService        identitiesService;
+    private RequestsService            requestsService;
     @Getter
-    private RequestsService          requestsService;
+    private RolesService               rolesService;
     @Getter
-    private TokensService            tokensService;
+    private TokensService              tokensService;
     @Getter
-    private BalancesService          balancesService;
+    private UsersService               usersService;
 
-    public TrustedPlatformClient() {
-        this(new Builder());
-    }
+    private TrustedPlatformClient(Builder builder) {
+        baseUrl = builder.baseUrl.orElse(MAIN_NET);
+        // Cookie Jar
+        SessionCookieJar cookieJar = new SessionCookieJar();
 
-    protected TrustedPlatformClient(Builder builder) {
-        this.cookieJar = new SessionCookieJar();
+        trustedPlatformInterceptor = new TrustedPlatformInterceptor();
+        httpLogInterceptor = new HttpLoggingInterceptor();
+        OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder()
+                .cookieJar(cookieJar)
+                .addInterceptor(trustedPlatformInterceptor)
+                .addNetworkInterceptor(httpLogInterceptor);
+        if (builder.connectTimeoutMillis.isPresent())
+            httpClientBuilder.connectTimeout(builder.connectTimeoutMillis.get(), TimeUnit.MILLISECONDS);
+        if (builder.callTimeoutMillis.isPresent())
+            httpClientBuilder.callTimeout(builder.callTimeoutMillis.get(), TimeUnit.MILLISECONDS);
+        if (builder.readTimeoutMillis.isPresent())
+            httpClientBuilder.readTimeout(builder.readTimeoutMillis.get(), TimeUnit.MILLISECONDS);
+        if (builder.writeTimeoutMillis.isPresent())
+            httpClientBuilder.writeTimeout(builder.writeTimeoutMillis.get(), TimeUnit.MILLISECONDS);
+        httpClient = httpClientBuilder.build();
 
-        this.trustedPlatformInterceptor = new TrustedPlatformInterceptor();
-        this.httpLogInterceptor = builder.httpLogInterceptor;
-        this.httpClient = builder.httpClientBuilder
-                .cookieJar(this.cookieJar)
-                .addInterceptor(this.trustedPlatformInterceptor)
-                .addInterceptor(new TrustedPlatformInterceptor())
-                .addNetworkInterceptor(this.httpLogInterceptor)
-                .build();
+        httpLogInterceptor.setLevel(builder.httpLogLevel.orElse(Level.NONE));
 
-        this.gson = builder.gsonBuilder
+        // Serialization
+        Gson gson = new GsonBuilder()
                 .serializeSpecialFloatingPointValues()
                 .create();
-        this.gsonFactory = GsonConverterFactory.create(this.gson);
-        this.retrofit = new Retrofit.Builder()
-                .baseUrl(builder.baseUrl)
+        Converter.Factory gsonFactory = GsonConverterFactory.create(gson);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(this.baseUrl)
                 .client(this.httpClient)
                 .addConverterFactory(GraphConverter.create())
-                .addConverterFactory(JsonStringConverter.create(this.gsonFactory))
-                .addConverterFactory(this.gsonFactory)
+                .addConverterFactory(JsonStringConverter.create(gsonFactory))
+                .addConverterFactory(gsonFactory)
                 .build();
 
-        this.authService = this.retrofit.create(AuthRetrofitService.class);
-        this.platformService = new PlatformServiceImpl(this.retrofit);
-        this.ethereumService = new EthereumServiceImpl(this.retrofit);
-        this.appsService = new AppsServiceImpl(this.retrofit);
-        this.rolesService = new RolesServiceImpl(this.retrofit);
-        this.usersService = new UsersServiceImpl(this.retrofit);
-        this.identitiesService = new IdentitiesServiceImpl(this.retrofit);
-        this.requestsService = new RequestsServiceImpl(this.retrofit);
-        this.tokensService = new TokensServiceImpl(this.retrofit);
-        this.balancesService = new BalancesServiceImpl(this.retrofit);
+        this.authService = retrofit.create(AuthRetrofitService.class);
+        this.platformService = new PlatformServiceImpl(retrofit);
+        this.ethereumService = new EthereumServiceImpl(retrofit);
+        this.appsService = new AppsServiceImpl(retrofit);
+        this.rolesService = new RolesServiceImpl(retrofit);
+        this.usersService = new UsersServiceImpl(retrofit);
+        this.identitiesService = new IdentitiesServiceImpl(retrofit);
+        this.requestsService = new RequestsServiceImpl(retrofit);
+        this.tokensService = new TokensServiceImpl(retrofit);
+        this.balancesService = new BalancesServiceImpl(retrofit);
+    }
+
+    public OkHttpClient getHttpClient() {
+        return httpClient;
+    }
+
+    public HttpUrl getBaseUrl() {
+        return baseUrl;
     }
 
     public void setAppId(Integer id) {
         this.trustedPlatformInterceptor.setAppId(id);
     }
 
+    public Integer getAppId() {
+        return this.trustedPlatformInterceptor.getAppId();
+    }
+
     public void setUserId(Integer id) {
         this.trustedPlatformInterceptor.setUserId(id);
+    }
+
+    public Integer getUserId() {
+        return this.trustedPlatformInterceptor.getUserId();
     }
 
     public void setIdentityId(Integer id) {
         this.trustedPlatformInterceptor.setIdentityId(id);
     }
 
+    public Integer getIdentityId() {
+        return this.trustedPlatformInterceptor.getIdentityId();
+    }
+
     public void setHttpLogLevel(Level level) {
         this.httpLogInterceptor.setLevel(level == null ? Level.NONE : level);
+    }
+
+    public Level getHttpLogLevel() {
+        return this.httpLogInterceptor.getLevel();
     }
 
     public HttpResponse<AuthResult> authAppSync(int appId, String appSecret) throws IOException {
@@ -156,8 +179,8 @@ public class TrustedPlatformClient implements Closeable {
         return new HttpResponse<>(response.code(), response.body());
     }
 
-    public void authAppAsync(int appId, String appSecret, HttpCallback<AuthResult> callback) {
-        Call<AuthResult> call  = authApp(appId, appSecret);
+    public void authAppAsync(final int appId, String appSecret, final HttpCallback<AuthResult> callback) {
+        Call<AuthResult> call = authApp(appId, appSecret);
 
         call.enqueue(new SimpleCallback<AuthResult>() {
             @Override
@@ -188,82 +211,63 @@ public class TrustedPlatformClient implements Closeable {
 
     @Override
     public void close() throws IOException {
-        Dispatcher      dispatcher      = this.httpClient.dispatcher();
-        ExecutorService executorService = dispatcher.executorService();
+        ExecutorService executorService = this.httpClient.dispatcher()
+                                                         .executorService();
 
         if (!executorService.isShutdown()) {
             executorService.shutdown();
         }
     }
 
-    public static class Builder<T extends Builder<T>> {
+    public boolean isClosed() {
+        return this.httpClient.dispatcher()
+                              .executorService()
+                              .isShutdown();
+    }
 
-        private HttpUrl                baseUrl;
-        private HttpLoggingInterceptor httpLogInterceptor;
-        private OkHttpClient.Builder   httpClientBuilder;
-        private GsonBuilder            gsonBuilder;
+    public static Builder builder() {
+        return new Builder();
+    }
 
-        public Builder() {
-            this.baseUrl = HttpUrl.get(MAIN_NET);
-            this.httpLogInterceptor = new HttpLoggingInterceptor();
-            this.httpClientBuilder = new OkHttpClient.Builder();
-            this.gsonBuilder = new GsonBuilder()
-                    .registerTypeAdapter(BigInteger.class, new BigIntegerDeserializer());
+    public static class Builder {
+
+        private Optional<HttpUrl> baseUrl              = Optional.empty();
+        private Optional<Level>   httpLogLevel         = Optional.empty();
+        private Optional<Long>    connectTimeoutMillis = Optional.empty();
+        private Optional<Long>    callTimeoutMillis    = Optional.empty();
+        private Optional<Long>    readTimeoutMillis    = Optional.empty();
+        private Optional<Long>    writeTimeoutMillis   = Optional.empty();
+
+        private Builder() {}
+
+        public Builder httpLogLevel(Level level) {
+            httpLogLevel = Optional.ofNullable(level);
+            return this;
         }
 
-        public T httpLogLevel(Level level) {
-            this.httpLogInterceptor.setLevel(level == null ? Level.NONE : level);
-            return (T) this;
+        public Builder connectTimeout(long timeout, TimeUnit unit) {
+            connectTimeoutMillis = Optional.of(unit.toMillis(timeout));
+            return this;
         }
 
-        public T connectTimeout(long timeout, TimeUnit unit) {
-            this.httpClientBuilder.connectTimeout(timeout, unit);
-            return (T) this;
+        public Builder callTimeout(long timeout, TimeUnit unit) {
+            callTimeoutMillis = Optional.of(unit.toMillis(timeout));
+            return this;
         }
 
-        public T callTimeout(long timeout, TimeUnit unit) {
-            this.httpClientBuilder.callTimeout(timeout, unit);
-            return (T) this;
+        public Builder readTimeout(long timeout, TimeUnit unit) {
+            readTimeoutMillis = Optional.of(unit.toMillis(timeout));
+            return this;
         }
 
-        public T readTimeout(long timeout, TimeUnit unit) {
-            this.httpClientBuilder.readTimeout(timeout, unit);
-            return (T) this;
+        public Builder writeTimeout(long timeout, TimeUnit unit) {
+            writeTimeoutMillis = Optional.of(unit.toMillis(timeout));
+            return this;
         }
 
-        public T writeTimeout(long timeout, TimeUnit unit) {
-            this.httpClientBuilder.writeTimeout(timeout, unit);
-            return (T) this;
-        }
-
-        public T baseUrl(String url) {
-            this.baseUrl = HttpUrl.get(url == null || url.isEmpty() ? MAIN_NET : url);
-            return (T) this;
-        }
-
-        public T mainNet() {
-            baseUrl(MAIN_NET);
-            return (T) this;
-        }
-
-        public T kovan() {
-            baseUrl(KOVAN);
-            return (T) this;
-        }
-
-        public T addTypeAdapter(Type type, Object adapter) {
-            this.gsonBuilder.registerTypeAdapter(type, adapter);
-            return (T) this;
-        }
-
-        public T addTypeAdapterFactory(TypeAdapterFactory factory) {
-            this.gsonBuilder.registerTypeAdapterFactory(factory);
-            return (T) this;
-        }
-
-        public T addTypeHierchyAdapter(Class<?> baseType, Object adapter) {
-            this.gsonBuilder.registerTypeHierarchyAdapter(baseType, adapter);
-            return (T) this;
+        public Builder baseUrl(String url) {
+            baseUrl = Optional.ofNullable(url == null ? null : HttpUrl.get(url));
+            return this;
         }
 
         public TrustedPlatformClient build() {

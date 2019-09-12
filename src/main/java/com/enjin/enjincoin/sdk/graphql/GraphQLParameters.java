@@ -28,7 +28,7 @@ public class GraphQLParameters {
      * Creates a new instance with no parameters.
      */
     public GraphQLParameters() {
-        this(new HashMap<>());
+        this(new HashMap<String, Object>());
     }
 
     /**

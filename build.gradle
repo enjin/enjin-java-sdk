@@ -1,11 +1,16 @@
 buildscript {
     ext.versions = [
-            'enjinCommons': '0.3.0-SNAPSHOT',
-            'gson'        : '2.8.5',
-            'pusher'      : '1.8.0',
-            'okhttp'      : '3.12.1',
-            'retrofit'    : '2.5.0',
-            'lombok'      : '1.18.6',
+            'enjinCommons'   : '0.3.0-SNAPSHOT',
+            'gson'           : '2.8.5',
+            'pusher'         : '1.8.0',
+            'okhttp'         : '3.12.1',
+            'retrofit'       : '2.5.0',
+            'supportOptional': '1.2',
+            'lombok'         : '1.18.6',
+            'junit'          : '4.12',
+            'mockWebServer'  : '4.2.0',
+            'truth'          : '1.0',
+            'awaitility'     : '4.0.1'
     ]
 
     ext.deps = [
@@ -16,7 +21,12 @@ buildscript {
             'okhttpLoggingInterceptor': "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}",
             'okhttpUrlConnection'     : "com.squareup.okhttp3:okhttp-urlconnection:${versions.okhttp}",
             'retrofit'                : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
-            'retrofitGson'            : "com.squareup.retrofit2:converter-gson:${versions.retrofit}"
+            'retrofitGson'            : "com.squareup.retrofit2:converter-gson:${versions.retrofit}",
+            'supportOptional'         : "com.github.dmstocking:support-optional:${versions.supportOptional}",
+            'junit'                   : "junit:junit:${versions.junit}",
+            'mockWebServer'           : "com.squareup.okhttp3:mockwebserver:${versions.mockWebServer}",
+            'truth'                   : "com.google.truth:truth:${versions.truth}",
+            'awaitility'              : "org.awaitility:awaitility:${versions.awaitility}"
     ]
 
     ext.local = new Properties()
@@ -43,14 +53,15 @@ apply plugin: 'java'
 apply plugin: 'java-library'
 apply plugin: 'maven'
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
 
 group = 'com.enjin'
 version = '1.0.0-SNAPSHOT'
 
 allprojects {
     repositories {
+        jcenter()
         mavenCentral()
         maven {
             url 'https://oss.sonatype.org/content/groups/public/'
@@ -69,6 +80,12 @@ dependencies {
     implementation deps.okhttpUrlConnection
     implementation deps.retrofit
     implementation deps.retrofitGson
+    implementation deps.supportOptional
+
+    testImplementation deps.junit
+    testImplementation deps.truth
+    testImplementation deps.mockWebServer
+    testImplementation deps.awaitility
 
     errorproneJavac 'com.google.errorprone:javac:9+181-r4173-1'
     errorprone 'com.google.errorprone:error_prone_core:2.3.3'
