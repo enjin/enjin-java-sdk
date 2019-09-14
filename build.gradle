@@ -45,6 +45,9 @@ buildscript {
 }
 
 plugins {
+    id 'java'
+    id 'java-library'
+    id 'maven'
     id 'io.freefair.lombok' version '3.2.1'
     id 'com.github.johnrengelman.shadow' version '5.0.0'
     id 'com.bmuschko.nexus' version '2.3.1'
@@ -52,10 +55,6 @@ plugins {
     id 'org.ajoberstar.git-publish' version '2.1.1'
     id 'net.ltgt.errorprone' version '0.8.1'
 }
-
-apply plugin: 'java'
-apply plugin: 'java-library'
-apply plugin: 'maven'
 
 sourceCompatibility = JavaVersion.VERSION_1_7
 targetCompatibility = JavaVersion.VERSION_1_7

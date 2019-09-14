@@ -13,19 +13,14 @@ import java.lang.annotation.Annotation;
  */
 public class GraphQLProcessor {
 
-    private static       GraphQLProcessor ourInstance;
-    private final static Object           lock             = new Object();
+    private static GraphQLProcessor ourInstance;
 
     private GraphQLTemplateRegistry templateRegistry;
 
     private GraphQLProcessor() {
-        synchronized (lock) {
-            if (this.templateRegistry == null) {
-                this.templateRegistry = new GraphQLTemplateRegistry();
-                for (GraphQLTemplate template : Templates.getTemplates()) {
-                    this.templateRegistry.register(template);
-                }
-            }
+        this.templateRegistry = new GraphQLTemplateRegistry();
+        for (GraphQLTemplate template : Templates.getTemplates()) {
+            this.templateRegistry.register(template);
         }
     }
 
@@ -40,20 +35,12 @@ public class GraphQLProcessor {
      * @return the contents of a template file or null if no entry is found.
      */
     public GraphQLTemplate getTemplate(Annotation[] annotations) {
-        GraphQuery graphQuery = null;
-
         for (Annotation annotation : annotations) {
             if (annotation instanceof GraphQuery) {
-                graphQuery = (GraphQuery) annotation;
-                break;
+                return templateRegistry.get(((GraphQuery) annotation).value());
             }
         }
 
-        if (graphQuery != null) {
-            if (templateRegistry.has(graphQuery.value())) {
-                return templateRegistry.get(graphQuery.value());
-            }
-        }
         return null;
     }
 
