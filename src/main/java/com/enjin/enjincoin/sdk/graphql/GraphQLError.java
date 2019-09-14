@@ -1,8 +1,9 @@
 package com.enjin.enjincoin.sdk.graphql;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.List;
 import java.util.Map;
@@ -12,10 +13,11 @@ import java.util.Map;
  *
  * @author Evan Lindsay
  */
-@Data
 @NoArgsConstructor
-@AllArgsConstructor
-public class GraphQLError {
+@Getter
+@EqualsAndHashCode
+@ToString
+public final class GraphQLError {
 
     /**
      * The response error message.
