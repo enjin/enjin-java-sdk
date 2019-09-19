@@ -1,5 +1,7 @@
 package com.enjin.enjincoin.sdk.graphql;
 
+import lombok.NonNull;
+
 /**
  * Represents a model of a GraphQL request and
  * facilitates the serialization of the query.
@@ -22,11 +24,16 @@ public class GraphQLRequest<T extends GraphQLRequest<T>> {
      * @param value the parameter value.
      *
      * @return the builder.
+     *
+     * @throws NullPointerException     if key is null
+     * @throws IllegalArgumentException if key is empty
      */
-    public T withParameter(String key, Object value) {
-        if (key != null && !key.isEmpty() && value != null) {
-            this.parameters.getParameters().put(key, value);
+    public T withParameter(@NonNull String key, @NonNull Object value) {
+        if (key.isEmpty()) {
+            throw new IllegalArgumentException("Key is empty");
         }
+
+        this.parameters.getParameters().put(key, value);
 
         return (T) this;
     }
