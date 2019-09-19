@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Enjin-Coin-Java-SDK [cleanTest test]" type="GradleRunConfiguration" factoryName="Gradle" nameIsGenerated="true">
+  <configuration default="false" name="clean install uploadArchives" type="GradleRunConfiguration" factoryName="Gradle">
     <ExternalSystemSettings>
       <option name="executionName" />
       <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -10,13 +10,13 @@
       </option>
       <option name="taskNames">
         <list>
-          <option value="cleanTest" />
-          <option value="test" />
+          <option value="clean" />
+          <option value="install" />
+          <option value="uploadArchives" />
         </list>
       </option>
       <option name="vmOptions" value="" />
     </ExternalSystemSettings>
-    <extension name="coverage" runner="jacoco" />
     <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
     <method v="2" />
   </configuration>

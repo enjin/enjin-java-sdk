@@ -48,12 +48,13 @@ plugins {
     id 'java'
     id 'java-library'
     id 'maven'
-    id 'io.freefair.lombok' version '3.2.1'
+    id 'io.freefair.lombok' version '4.1.0'
     id 'com.github.johnrengelman.shadow' version '5.0.0'
     id 'com.bmuschko.nexus' version '2.3.1'
     id 'io.codearte.nexus-staging' version '0.20.0'
     id 'org.ajoberstar.git-publish' version '2.1.1'
     id 'net.ltgt.errorprone' version '0.8.1'
+    id 'jacoco'
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_7
@@ -179,6 +180,14 @@ gitPublish {
         }
     }
     commitMessage = "Publishing documentation for version ${version}."
+}
+
+lombok {
+    config['lombok.addLombokGeneratedAnnotation'] = 'false'
+}
+
+jacoco {
+    toolVersion = '0.8.4'
 }
 
 wrapper {
