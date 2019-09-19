@@ -186,11 +186,23 @@ lombok {
     config['lombok.addLombokGeneratedAnnotation'] = 'false'
 }
 
+test {
+    reports {
+        html.enabled = false
+    }
+}
+
 jacoco {
     toolVersion = '0.8.4'
 }
 
+jacocoTestReport {
+    reports {
+        html.destination file("${buildDir}/reports/tests/test")
+    }
+}
+
 wrapper {
-    gradleVersion = '5.4.1'
+    gradleVersion = '5.6.2'
     distributionType = Wrapper.DistributionType.ALL
 }

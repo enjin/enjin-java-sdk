@@ -1,8 +1,6 @@
 package com.enjin.enjincoin.sdk.graphql;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.List;
@@ -13,9 +11,7 @@ import java.util.Map;
  *
  * @author Evan Lindsay
  */
-@NoArgsConstructor
 @Getter
-@EqualsAndHashCode
 @ToString
 public final class GraphQLError {
 

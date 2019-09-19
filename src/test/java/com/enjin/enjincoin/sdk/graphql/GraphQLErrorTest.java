@@ -20,10 +20,11 @@ import static com.google.common.truth.Truth.*;
 
 public class GraphQLErrorTest {
 
-    // General
     private static final Gson GSON = new Gson();
 
-    // Test Data
+    @Rule
+    public final JsonParsingRule jsonParsingRule = new JsonParsingRule(GSON);
+
     private static final String                     MESSAGE   = "Internal Server Error";
     private static final int                        CODE      = 500;
     private static final List<Map<String, Integer>> LOCATIONS = new ArrayList<>();
@@ -36,11 +37,8 @@ public class GraphQLErrorTest {
         LOCATIONS.add(location);
     }
 
-    @Rule
-    public final JsonParsingRule jsonParsingRule = new JsonParsingRule(GSON);
-
     @Test
-    @JsonFileResource(fileName = "graphql-error-500.json", targetClass = GraphQLError.class)
+    @JsonFileResource(fileName = "error-500.json", targetClass = GraphQLError.class)
     public void deserializeFromJson_fieldsMatchConstants() {
         GraphQLError error = jsonParsingRule.getModel(0).getValue();
         assertThat(error.getMessage()).isEqualTo(MESSAGE);
@@ -51,28 +49,13 @@ public class GraphQLErrorTest {
 
     @Test
     @JsonFileResources(resources = {
-            @JsonFileResource(fileName = "graphql-error-500.json", targetClass = GraphQLError.class),
-            @JsonFileResource(fileName = "graphql-error-502.json", targetClass = GraphQLError.class)
+            @JsonFileResource(fileName = "error-500.json", targetClass = GraphQLError.class),
+            @JsonFileResource(fileName = "error-502.json", targetClass = GraphQLError.class)
     })
     public void equalTo_notEqual() {
         GraphQLError error500 = jsonParsingRule.getModel(0).getValue();
         GraphQLError error502 = jsonParsingRule.getModel(1).getValue();
         assertThat(error500).isNotEqualTo(error502);
     }
-
-    @Test
-    public void toString_verified() {
-        ToStringVerifier.forClass(GraphQLError.class)
-                        .withClassName(NameStyle.SIMPLE_NAME)
-                        .verify();
-    }
-
-    @Test
-    public void equals_verified() {
-        EqualsVerifier.forClass(GraphQLError.class)
-                      .suppress(Warning.NONFINAL_FIELDS)
-                      .verify();
-    }
-
 
 }
