@@ -1,6 +1,7 @@
 package com.enjin.enjincoin.sdk.graphql;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class GraphQLTemplateField {
@@ -14,7 +15,7 @@ public class GraphQLTemplateField {
 
     protected GraphQLTemplateField(String name, List<GraphQLTemplateField> children) {
         this.name = name;
-        this.children = children;
+        this.children = new ArrayList<>(children);
     }
 
     public GraphQLTemplateField withChild(GraphQLTemplateField child) {
@@ -23,7 +24,7 @@ public class GraphQLTemplateField {
     }
 
     public GraphQLTemplateField withChild(String child) {
-        children.add(GraphQLTemplateField.of(child));
+        withChild(GraphQLTemplateField.of(child));
         return this;
     }
 
@@ -61,5 +62,9 @@ public class GraphQLTemplateField {
 
     public static GraphQLTemplateField of(String name) {
         return new GraphQLTemplateField(name);
+    }
+
+    public static GraphQLTemplateField of(String name, GraphQLTemplateField... children) {
+        return new GraphQLTemplateField(name, Arrays.asList(children));
     }
 }
