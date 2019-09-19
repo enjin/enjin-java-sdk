@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="clean build gitPublishPush" type="GradleRunConfiguration" factoryName="Gradle">
+  <configuration default="false" name="Publish Archives" type="GradleRunConfiguration" factoryName="Gradle">
     <ExternalSystemSettings>
       <option name="executionName" />
       <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -11,8 +11,8 @@
       <option name="taskNames">
         <list>
           <option value="clean" />
-          <option value="build" />
-          <option value="gitPublishPush" />
+          <option value="install" />
+          <option value="uploadArchives" />
         </list>
       </option>
       <option name="vmOptions" value="" />
