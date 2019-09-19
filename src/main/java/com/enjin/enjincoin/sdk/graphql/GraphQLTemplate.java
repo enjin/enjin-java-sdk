@@ -9,13 +9,13 @@ public class GraphQLTemplate {
 
     public static final String PAGINATION_PARAM = "pagination";
 
-    private String                     name;
-    private boolean                    mutation;
-    private String                     method;
-    private List<GraphQLTemplateField> fields;
-    private GraphQLTemplateField       paginationItemField;
+    protected String                     name;
+    protected boolean                    mutation;
+    protected String                     method;
+    protected List<GraphQLTemplateField> fields;
+    protected GraphQLTemplateField       paginationItemField;
 
-    private GraphQLTemplate(String name, boolean mutation, String method) {
+    protected GraphQLTemplate(String name, boolean mutation, String method) {
         this.name = name;
         this.mutation = mutation;
         this.method = method;
@@ -41,7 +41,7 @@ public class GraphQLTemplate {
     }
 
     public GraphQLTemplate withField(String field) {
-        fields.add(GraphQLTemplateField.of(field));
+        withField(GraphQLTemplateField.of(field));
         return this;
     }
 
@@ -83,7 +83,7 @@ public class GraphQLTemplate {
 
         builder.append('{');
 
-        if (parameters.has(PAGINATION_PARAM)) {
+        if (parameters != null && parameters.has(PAGINATION_PARAM)) {
             builder.append(paginationItemField.serialize())
                    .append(',')
                    .append(Fields.CURSOR.serialize());
