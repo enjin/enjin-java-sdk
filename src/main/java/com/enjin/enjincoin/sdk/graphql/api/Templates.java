@@ -3,6 +3,10 @@ package com.enjin.enjincoin.sdk.graphql.api;
 import com.enjin.enjincoin.sdk.graphql.GraphQLTemplate;
 import static com.enjin.enjincoin.sdk.graphql.api.Fields.*;
 import static com.enjin.enjincoin.sdk.graphql.api.Methods.*;
+import com.enjin.enjincoin.sdk.reflection.SafeField;
+import com.enjin.enjincoin.sdk.reflection.SafeReflection;
+import com.github.dmstocking.optional.java.util.Optional;
+import com.github.dmstocking.optional.java.util.function.Consumer;
 import lombok.extern.java.Log;
 
 import java.lang.reflect.Field;
@@ -143,18 +147,20 @@ public class Templates {
                                                                       .withField(BALANCE_TOKEN);
 
     public static List<GraphQLTemplate> getTemplates() {
-        List<GraphQLTemplate> templates = new ArrayList<>();
-        for (Field field : Templates.class.getDeclaredFields()) {
-            if (field.getType() == GraphQLTemplate.class && Modifier.isPublic(field.getModifiers())
-                    && Modifier.isStatic(field.getModifiers())
-                    && Modifier.isFinal(field.getModifiers())) {
-                try {
-                    templates.add((GraphQLTemplate) field.get(null));
-                } catch (IllegalAccessException e) {
-                    Templates.log.log(Level.SEVERE, "An exception occurred:", e);
+        final List<GraphQLTemplate> templates = new ArrayList<>();
+        final List<SafeField> fields = SafeReflection.getFieldsOfTypeWithModifiers(Templates.class, GraphQLTemplate.class,
+                                                                             Modifier.PUBLIC, Modifier.STATIC);
+
+        for (SafeField field : fields) {
+            final Optional<GraphQLTemplate> template = field.getStatic(GraphQLTemplate.class);
+            template.ifPresent(new Consumer<GraphQLTemplate>() {
+                @Override
+                public void accept(GraphQLTemplate graphQLTemplate) {
+                    templates.add(template.get());
                 }
-            }
+            });
         }
+
         return templates;
     }
 
