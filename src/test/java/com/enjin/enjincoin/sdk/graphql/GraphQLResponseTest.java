@@ -124,6 +124,12 @@ public class GraphQLResponseTest {
         assertThat(response.isSuccess()).isFalse();
     }
 
+    @Test
+    public void toString_matches() {
+        GraphQLResponse<List<String>> response = create(RAW_RESULT,DATA,null, null);
+        assertThat(response.toString()).matches("^GraphQLResponse\\(raw=.*, data=.*, errors=.*, cursor=.*\\)$");
+    }
+
     private <T> GraphQLResponse<T> create(String raw, T data, List<GraphQLError> errors, PaginationCursor cursor) {
         return new GraphQLResponse<>(raw, data, errors, cursor);
     }

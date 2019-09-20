@@ -58,4 +58,11 @@ public class GraphQLErrorTest {
         assertThat(error500).isNotEqualTo(error502);
     }
 
+    @Test
+    @JsonFileResource(fileName = "error-500.json", targetClass = GraphQLError.class)
+    public void toString_matches() {
+        GraphQLError error = jsonParsingRule.getModel(0).getValue();
+        assertThat(error.toString()).matches("^GraphQLError\\(message=.*, code=.*, locations=.*, details=.*\\)$");
+    }
+
 }
