@@ -15,6 +15,7 @@ com.enjin.enjincoin.sdk.model.service.requests.data
 com.enjin.enjincoin.sdk.model.service.roles
 com.enjin.enjincoin.sdk.model.service.tokens
 com.enjin.enjincoin.sdk.model.service.users
+com.enjin.enjincoin.sdk.reflection
 com.enjin.enjincoin.sdk.serialization
 com.enjin.enjincoin.sdk.serialization.converter
 com.enjin.enjincoin.sdk.service
