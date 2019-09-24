@@ -1,0 +1,14 @@
+apply plugin: 'com.vanniktech.maven.publish'
+
+mavenPublish {
+    targets {
+        uploadArchives {
+            releaseRepositoryUrl = RELEASE_REPOSITORY_URL
+            snapshotRepositoryUrl = SNAPSHOT_REPOSITORY_URL
+            if (project.local.containsKey('SONATYPE_NEXUS_USERNAME'))
+                repositoryUsername = local.getProperty('SONATYPE_NEXUS_USERNAME')
+            if (project.local.containsKey('SONATYPE_NEXUS_PASSWORD'))
+                repositoryPassword = local.getProperty('SONATYPE_NEXUS_PASSWORD')
+        }
+    }
+}

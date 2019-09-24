@@ -39,166 +39,89 @@ buildscript {
 
     repositories {
         mavenCentral()
+        jcenter()
         gradlePluginPortal()
-        maven { url 'https://plugins.gradle.org/m2/' }
+    }
+
+    dependencies {
+        classpath 'com.vanniktech:gradle-maven-publish-plugin:0.8.0'
+        classpath 'org.ajoberstar:gradle-git-publish:2.1.1'
     }
 }
 
 plugins {
-    id 'java'
-    id 'java-library'
-    id 'maven'
-    id 'io.freefair.lombok' version '4.1.0'
+    id 'io.freefair.lombok' version '3.2.1'
     id 'com.github.johnrengelman.shadow' version '5.0.0'
     id 'com.bmuschko.nexus' version '2.3.1'
     id 'io.codearte.nexus-staging' version '0.20.0'
-    id 'org.ajoberstar.git-publish' version '2.1.1'
     id 'net.ltgt.errorprone' version '0.8.1'
     id 'jacoco'
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_7
-targetCompatibility = JavaVersion.VERSION_1_7
-
-group = 'com.enjin'
-version = '1.0.0-SNAPSHOT'
-
 allprojects {
+    group = GROUP
+    version = VERSION_NAME
+
     repositories {
         jcenter()
         mavenCentral()
         maven {
             url 'https://oss.sonatype.org/content/groups/public/'
         }
-
     }
 }
 
-dependencies {
-    api deps.okhttpLoggingInterceptor
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+    apply plugin: 'maven'
+    apply plugin: 'io.freefair.lombok'
+    apply plugin: 'net.ltgt.errorprone'
+    apply plugin: 'com.github.johnrengelman.shadow'
+    apply plugin: 'jacoco'
+    apply from: "${rootProject.rootDir}/gradle/deploy.gradle"
 
-    implementation deps.enjinCommons
-    implementation deps.gson
-    implementation deps.pusher
-    implementation deps.okhttp
-    implementation deps.okhttpUrlConnection
-    implementation deps.retrofit
-    implementation deps.retrofitGson
-    implementation deps.supportOptional
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 
-    testImplementation deps.junit
-    testImplementation deps.truth
-    testImplementation deps.mockWebServer
-    testImplementation deps.awaitility
-    testImplementation deps.toStringVerifier
-    testImplementation deps.equalsVerifier
-
-    errorproneJavac 'com.google.errorprone:javac:9+181-r4173-1'
-    errorprone 'com.google.errorprone:error_prone_core:2.3.3'
-}
-
-tasks.withType(JavaCompile).configureEach {
-    options.errorprone {
-        enabled = JavaVersion.current() < JavaVersion.VERSION_12
-        disable('UnusedVariable')
-    }
-}
-
-javadoc {
-    dependsOn delombok
-    source = delombok.target
-    // exclude any implementation packages
-    exclude '**/impl/**'
-    // exclude any implementation classes
-    exclude '**/*Impl.java'
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc
-}
-
-task sourcesJar(type: Jar) {
-    classifier = 'sources'
-    from sourceSets.main.allJava
-}
-
-artifacts {
-    archives javadocJar
-    archives sourcesJar
-    archives shadowJar
-}
-
-modifyPom {
-    project {
-        name 'Enjin Coin Java SDK'
-        description 'Java SDK for interacting with the Enjin Coin Trusted Platform'
-        url 'https://github.com/enjin/Enjin-Coin-Java-SDK'
-        inceptionYear '2017'
-
-        licenses {
-            license {
-                name 'The Apache Software License, Version 2.0'
-                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                distribution 'repo'
-            }
-        }
-
-        developers {
-            developer {
-                id 'Favorlock'
-                name 'Evan Lindsay'
-                email 'evan@enjin.io'
-            }
+    tasks.withType(JavaCompile).configureEach {
+        options.errorprone {
+            enabled = JavaVersion.current() < JavaVersion.VERSION_12
+            disable('UnusedVariable')
         }
     }
-}
 
-extraArchive {
-    sources = false
-    javadoc = false
-    tests = false
-}
+    javadoc {
+        dependsOn delombok
+        source = delombok.target
+        // exclude any implementation packages
+        exclude '**/impl/**'
+        // exclude any implementation classes
+        exclude '**/*Impl.java'
+    }
 
-nexus {
-    sign = false
-    repositoryUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
-    snapshotRepositoryUrl = 'https://oss.sonatype.org/content/repositories/snapshots/'
-}
+    artifacts {
+        archives shadowJar
+    }
 
-nexusStaging {
-    username = local.getProperty('nexusUsername')
-    password = local.getProperty('nexusPassword')
-}
+    lombok {
+        config['lombok.addLombokGeneratedAnnotation'] = 'false'
+    }
 
-gitPublish {
-    repoUri = 'git@github.com:enjin/Enjin-Coin-Java-SDK.git'
-    branch = 'gh-pages'
-    contents {
-        from(javadoc) {
-            into '/'
+    test {
+        reports {
+            html.enabled = false
         }
     }
-    commitMessage = "Publishing documentation for version ${version}."
-}
 
-lombok {
-    config['lombok.addLombokGeneratedAnnotation'] = 'false'
-}
-
-test {
-    reports {
-        html.enabled = false
+    jacoco {
+        toolVersion = '0.8.4'
     }
-}
 
-jacoco {
-    toolVersion = '0.8.4'
-}
-
-jacocoTestReport {
-    reports {
-        html.destination file("${buildDir}/reports/tests/test")
+    jacocoTestReport {
+        reports {
+            html.destination file("${buildDir}/reports/tests/test")
+        }
     }
 }
 

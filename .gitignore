@@ -115,3 +115,5 @@ gradle-app.setting
 
 # Clover
 .clover/
+
+**/lombok.config

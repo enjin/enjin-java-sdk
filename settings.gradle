@@ -1,1 +1,3 @@
-rootProject.name = 'enjincoin-java-sdk'
+rootProject.name = 'enjincoin-parent'
+
+include 'enjincoin-sdk'
