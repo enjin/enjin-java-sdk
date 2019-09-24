@@ -81,8 +81,8 @@ subprojects {
     apply plugin: 'jacoco'
     apply from: "${rootProject.rootDir}/gradle/deploy.gradle"
 
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
 
     tasks.withType(JavaCompile).configureEach {
         options.errorprone {
