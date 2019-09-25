@@ -46,6 +46,7 @@ buildscript {
     dependencies {
         classpath 'com.vanniktech:gradle-maven-publish-plugin:0.8.0'
         classpath 'org.ajoberstar:gradle-git-publish:2.1.1'
+        classpath 'com.diffplug.spotless:spotless-plugin-gradle:3.24.3'
     }
 }
 
@@ -56,9 +57,12 @@ plugins {
     id 'io.codearte.nexus-staging' version '0.20.0'
     id 'net.ltgt.errorprone' version '0.8.1'
     id 'jacoco'
+    id 'org.sonarqube' version '2.7'
 }
 
 allprojects {
+    apply from: "${rootProject.rootDir}/gradle/spotless.gradle"
+
     group = GROUP
     version = VERSION_NAME
 
