@@ -3,7 +3,6 @@ package com.enjin.enjincoin.sdk.serialization;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 
 import java.lang.reflect.Type;
@@ -20,7 +19,7 @@ public class BigIntegerDeserializer implements JsonDeserializer<BigInteger> {
     @Override
     public BigInteger deserialize(JsonElement json,
                                   Type typeOfT,
-                                  JsonDeserializationContext context) throws JsonParseException {
+                                  JsonDeserializationContext context) {
         BigInteger out = null;
 
         if (json.isJsonPrimitive()) {

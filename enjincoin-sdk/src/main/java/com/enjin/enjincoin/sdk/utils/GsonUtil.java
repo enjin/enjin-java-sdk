@@ -1,0 +1,64 @@
+package com.enjin.enjincoin.sdk.utils;
+
+import com.github.dmstocking.optional.java.util.Optional;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
+public final class GsonUtil {
+
+    private GsonUtil() {
+        throw new IllegalStateException("Utility Class");
+    }
+
+    public static boolean pathExists(JsonObject root, String path) {
+        String[] keys = path.split(".");
+        return pathExists(root, keys, 0);
+    }
+
+    private static boolean pathExists(JsonObject node, String[] keys, int keyIndex) {
+        if (keyIndex == keys.length)
+            return true;
+
+        if (!node.has(keys[keyIndex]))
+            return false;
+
+        JsonElement next = node.get(keys[keyIndex]);
+
+        if (!next.isJsonObject())
+            return false;
+
+        return pathExists(next.getAsJsonObject(), keys, keyIndex + 1);
+    }
+
+    public static Optional<JsonElement> getJsonElement(JsonObject root, String path) {
+        if (!pathExists(root, path))
+            return Optional.empty();
+
+        String[] keys = path.split(".");
+        return getJsonElement(root, keys, 0);
+    }
+
+    private static Optional<JsonElement> getJsonElement(JsonElement node, String[] keys, int keyIndex) {
+        if (keyIndex == keys.length)
+            return Optional.of(node);
+
+        if (!node.isJsonObject())
+            return Optional.empty();
+
+        JsonObject obj = node.getAsJsonObject();
+
+        if (!obj.has(keys[keyIndex]))
+            return Optional.empty();
+
+        return getJsonElement(obj.get(keys[keyIndex]), keys, keyIndex + 1);
+    }
+
+    public static boolean isJsonObject(Optional<JsonElement> optional) {
+        return optional.isPresent() && optional.get().isJsonObject();
+    }
+
+    public static boolean isJsonArray(Optional<JsonElement> optional) {
+        return optional.isPresent() && optional.get().isJsonArray();
+    }
+
+}

@@ -2,7 +2,11 @@ package com.enjin.enjincoin.sdk.graphql.api;
 
 import com.enjin.enjincoin.sdk.graphql.GraphQLTemplateField;
 
-public class Fields {
+public final class Fields {
+
+    private Fields() {
+        throw new IllegalStateException("Utility Class");
+    }
 
     public static final GraphQLTemplateField ID                        = GraphQLTemplateField.of("id");
     public static final GraphQLTemplateField NAME                      = GraphQLTemplateField.of("name");

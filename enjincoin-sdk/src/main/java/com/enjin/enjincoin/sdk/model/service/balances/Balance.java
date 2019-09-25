@@ -21,7 +21,8 @@ public class Balance {
     @SerializedName("identity_id")
     private Integer identityId;
 
-    private Integer balance;
+    @SerializedName("balance")
+    private Integer amount;
 
     private Token token;
 

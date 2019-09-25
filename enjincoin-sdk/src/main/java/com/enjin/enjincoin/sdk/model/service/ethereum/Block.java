@@ -1,5 +1,6 @@
 package com.enjin.enjincoin.sdk.model.service.ethereum;
 
+import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -7,6 +8,7 @@ import lombok.ToString;
 @ToString
 public class Block {
 
-    private Integer block;
+    @SerializedName("block")
+    private Integer number;
 
 }
