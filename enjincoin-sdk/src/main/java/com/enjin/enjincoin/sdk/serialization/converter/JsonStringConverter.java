@@ -61,9 +61,10 @@ public class JsonStringConverter extends Converter.Factory {
 
         @Override
         public String convert(T value) throws IOException {
-            Buffer buffer = new Buffer();
-            this.delegate.convert(value).writeTo(buffer);
-            return buffer.readUtf8();
+            try (Buffer buffer = new Buffer()) {
+                this.delegate.convert(value).writeTo(buffer);
+                return buffer.readUtf8();
+            }
         }
     }
 
