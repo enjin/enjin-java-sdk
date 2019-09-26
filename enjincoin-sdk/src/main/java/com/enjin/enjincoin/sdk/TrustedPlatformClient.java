@@ -47,7 +47,7 @@ import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class TrustedPlatformClient implements Closeable {
+public final class TrustedPlatformClient implements Closeable {
 
     // Trusted Platform Base URLs
     public static final  HttpUrl MAIN_NET           = HttpUrl.get("https://cloud.enjin.io/");
@@ -229,7 +229,7 @@ public class TrustedPlatformClient implements Closeable {
         return new Builder();
     }
 
-    public static class Builder {
+    public static final class Builder {
 
         private Optional<HttpUrl> baseUrl              = Optional.empty();
         private Optional<Level>   httpLogLevel         = Optional.empty();

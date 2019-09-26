@@ -52,6 +52,18 @@ public class NotificationListenerRegistration {
     }
 
     /**
+     * Creates a new listener configuration for the provided notification service.
+     *
+     * @param listener the listener to configure.
+     *
+     * @return RegistrationListenerConfiguration
+     */
+    @SuppressWarnings("rawtypes")
+    public static RegistrationListenerConfiguration configure(NotificationListener listener) {
+        return new RegistrationListenerConfiguration(listener);
+    }
+
+    /**
      * A registration configuration for listeners.
      *
      * @param <T> the configuration.
@@ -137,18 +149,6 @@ public class NotificationListenerRegistration {
                 }
             }
         }
-    }
-
-    /**
-     * Creates a new listener configuration for the provided notification service.
-     *
-     * @param listener the listener to configure.
-     *
-     * @return RegistrationListenerConfiguration
-     */
-    @SuppressWarnings("rawtypes")
-    public static RegistrationListenerConfiguration configure(NotificationListener listener) {
-        return new RegistrationListenerConfiguration(listener);
     }
 
 }

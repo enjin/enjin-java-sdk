@@ -58,6 +58,7 @@ plugins {
     id 'net.ltgt.errorprone' version '0.8.1'
     id 'jacoco'
     id 'org.sonarqube' version '2.7'
+    id 'checkstyle'
 }
 
 allprojects {

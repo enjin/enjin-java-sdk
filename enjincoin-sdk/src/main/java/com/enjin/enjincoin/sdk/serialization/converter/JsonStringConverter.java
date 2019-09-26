@@ -40,6 +40,10 @@ public class JsonStringConverter extends Converter.Factory {
         return null;
     }
 
+    public static JsonStringConverter create(Converter.Factory delegate) {
+        return new JsonStringConverter(delegate);
+    }
+
     /**
      * Converts an object to json.
      *
@@ -67,7 +71,4 @@ public class JsonStringConverter extends Converter.Factory {
         }
     }
 
-    public static JsonStringConverter create(Converter.Factory delegate) {
-        return new JsonStringConverter(delegate);
-    }
 }

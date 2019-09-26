@@ -11,7 +11,7 @@ import java.lang.annotation.Annotation;
  * @author Evan Lindsay
  * @see GraphQuery
  */
-public class GraphQLProcessor {
+public final class GraphQLProcessor {
 
     private static GraphQLProcessor ourInstance;
 
