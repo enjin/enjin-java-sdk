@@ -1,16 +1,17 @@
 package com.enjin.enjincoin.sdk.service.platform.impl;
 
-import com.enjin.enjincoin.sdk.http.HttpResponse;
+import java.io.IOException;
+
 import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
+import com.enjin.enjincoin.sdk.http.HttpCallback;
+import com.enjin.enjincoin.sdk.http.HttpResponse;
 import com.enjin.enjincoin.sdk.model.service.platform.PlatformDetails;
 import com.enjin.enjincoin.sdk.service.GraphQLServiceBase;
 import com.enjin.enjincoin.sdk.service.platform.PlatformService;
-import com.enjin.enjincoin.sdk.http.HttpCallback;
+
 import retrofit2.Call;
 import retrofit2.Retrofit;
-
-import java.io.IOException;
 
 public class PlatformServiceImpl extends GraphQLServiceBase implements PlatformService {
 

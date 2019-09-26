@@ -1,13 +1,14 @@
 package com.enjin.enjincoin.sdk.model.service.identities;
 
-import com.enjin.enjincoin.sdk.model.service.tokens.Token;
-import com.google.gson.annotations.SerializedName;
-import lombok.Getter;
-import lombok.ToString;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
+
+import com.enjin.enjincoin.sdk.model.service.tokens.Token;
+import com.google.gson.annotations.SerializedName;
+
+import lombok.Getter;
+import lombok.ToString;
 
 /**
  * Represents a Trusted Platform identity.

@@ -1,14 +1,14 @@
 package com.enjin.enjincoin.sdk.service.identities;
 
+import java.util.List;
+
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
+import com.enjin.enjincoin.sdk.http.HttpCallback;
 import com.enjin.enjincoin.sdk.model.service.identities.CreateIdentity;
 import com.enjin.enjincoin.sdk.model.service.identities.DeleteIdentity;
 import com.enjin.enjincoin.sdk.model.service.identities.GetIdentities;
 import com.enjin.enjincoin.sdk.model.service.identities.Identity;
 import com.enjin.enjincoin.sdk.model.service.identities.UpdateIdentity;
-import com.enjin.enjincoin.sdk.http.HttpCallback;
-
-import java.util.List;
 
 /**
  * Asynchronous methods for querying and mutating app identities.

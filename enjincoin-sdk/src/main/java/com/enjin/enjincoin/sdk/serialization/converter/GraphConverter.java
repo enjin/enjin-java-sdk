@@ -1,5 +1,14 @@
 package com.enjin.enjincoin.sdk.serialization.converter;
 
+import java.io.IOException;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+
 import com.enjin.enjincoin.sdk.graphql.GraphQLError;
 import com.enjin.enjincoin.sdk.graphql.GraphQLProcessor;
 import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
@@ -15,21 +24,13 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
+
 import lombok.extern.java.Log;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
-
-import java.io.IOException;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
 
 /**
  * Body for GraphQL requests and responses, closed for modification
@@ -38,10 +39,10 @@ import java.util.logging.Level;
 @Log
 public class GraphConverter extends Converter.Factory {
 
-    private static final String DATA_KEY   = "data";
+    private static final String DATA_KEY = "data";
     private static final String ERRORS_KEY = "errors";
     private static final String RESULT_KEY = "result";
-    private static final String ITEM_KEY   = "items";
+    private static final String ITEM_KEY = "items";
     private static final String CURSOR_KEY = "cursor";
 
     private static final String RESULT_PATH = DATA_KEY + '.' + RESULT_KEY;
@@ -50,7 +51,7 @@ public class GraphConverter extends Converter.Factory {
     protected GraphQLProcessor graphProcessor;
 
     protected final JsonParser parser = new JsonParser();
-    protected final Gson       gson   = new GsonBuilder()
+    protected final Gson gson = new GsonBuilder()
             .enableComplexMapKeySerialization()
             .serializeNulls()
             .setLenient()
@@ -59,7 +60,7 @@ public class GraphConverter extends Converter.Factory {
 
     /**
      * Protected constructor because we want to make use of the
-     * Factory Pattern to create our converter
+     * Factory Pattern to create our converter.
      * <br>
      */
     protected GraphConverter() {
@@ -82,7 +83,7 @@ public class GraphConverter extends Converter.Factory {
     public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations, Retrofit retrofit) {
         if (type instanceof ParameterizedType) {
             ParameterizedType parameterizedType = (ParameterizedType) type;
-            Type              rawType           = parameterizedType.getRawType();
+            Type rawType = parameterizedType.getRawType();
             if (rawType == GraphQLResponse.class) {
                 return new GraphResponseConverter<>(parameterizedType);
             }
@@ -121,11 +122,11 @@ public class GraphConverter extends Converter.Factory {
 
     /**
      * GraphQL response body converter to unwrap nested object results,
-     * resulting in a smaller generic tree for requests
+     * resulting in a smaller generic tree for requests.
      */
     protected class GraphResponseConverter<T> implements Converter<ResponseBody, GraphQLResponse<T>> {
         protected ParameterizedType graphResponseType;
-        protected Type              resultType;
+        protected Type resultType;
 
         protected GraphResponseConverter(ParameterizedType graphResponseType) {
             this.graphResponseType = graphResponseType;
@@ -135,7 +136,7 @@ public class GraphConverter extends Converter.Factory {
         /**
          * Converter contains logic on how to handle responses, since GraphQL responses follow
          * the JsonAPI spec it makes sense to wrap our base query response results and errors response
-         * in here, the logic remains open to the implementation
+         * in here, the logic remains open to the implementation.
          * <br>
          *
          * @param responseBody The retrofit response body received from the network
@@ -144,10 +145,10 @@ public class GraphConverter extends Converter.Factory {
          */
         @Override
         public GraphQLResponse<T> convert(ResponseBody responseBody) {
-            String             raw    = null;
-            T                  result = null;
+            String raw = null;
+            T result = null;
             List<GraphQLError> errors = null;
-            PaginationCursor   cursor = null;
+            PaginationCursor cursor = null;
 
             try {
                 raw = responseBody.string();
@@ -205,7 +206,7 @@ public class GraphConverter extends Converter.Factory {
     }
 
     /**
-     * GraphQL request body converter and injector, uses method annotation for a given retrofit call
+     * GraphQL request body converter and injector, uses method annotation for a given retrofit call.
      */
     protected class GraphRequestConverter implements Converter<GraphQLRequest<?>, RequestBody> {
         protected Annotation[] methodAnnotations;

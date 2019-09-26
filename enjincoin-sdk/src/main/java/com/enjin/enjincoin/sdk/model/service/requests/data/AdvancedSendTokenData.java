@@ -1,8 +1,8 @@
 package com.enjin.enjincoin.sdk.model.service.requests.data;
 
-import lombok.Builder;
-
 import java.util.List;
+
+import lombok.Builder;
 
 /**
  * A data model for the Advanced Send Token request type.

@@ -1,14 +1,14 @@
 package com.enjin.enjincoin.sdk.service.requests;
 
+import java.util.List;
+
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
+import com.enjin.enjincoin.sdk.http.HttpCallback;
 import com.enjin.enjincoin.sdk.model.service.requests.CreateRequest;
 import com.enjin.enjincoin.sdk.model.service.requests.DeleteRequest;
 import com.enjin.enjincoin.sdk.model.service.requests.GetRequests;
 import com.enjin.enjincoin.sdk.model.service.requests.Transaction;
 import com.enjin.enjincoin.sdk.model.service.requests.UpdateRequest;
-import com.enjin.enjincoin.sdk.http.HttpCallback;
-
-import java.util.List;
 
 /**
  * Asynchronous methods for querying and mutating app requests.

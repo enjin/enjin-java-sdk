@@ -22,7 +22,7 @@ public final class Methods {
     public static final String DELETE_ENJIN_APP = "DeleteEnjinApp";
 
     // Roles
-    public static final String ENJIN_ROLES       = "EnjinRoles";
+    public static final String ENJIN_ROLES = "EnjinRoles";
     public static final String CREATE_ENJIN_ROLE = "CreateEnjinRole";
     public static final String UPDATE_ENJIN_ROLE = "UpdateEnjinRole";
     public static final String DELETE_ENJIN_ROLE = "DeleteEnjinRole";

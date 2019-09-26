@@ -1,16 +1,17 @@
 package com.enjin.enjincoin.sdk.service.tokens.impl;
 
+import java.util.List;
+
 import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
 import com.enjin.enjincoin.sdk.graphql.GraphQuery;
 import com.enjin.enjincoin.sdk.model.service.tokens.Token;
 import com.enjin.enjincoin.sdk.model.service.tokens.TokenEvent;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
-
-import java.util.List;
 
 public interface TokensRetrofitService {
 

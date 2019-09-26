@@ -46,7 +46,8 @@ public interface NotificationsService {
      *
      * @return the listener registration.
      */
-    NotificationListenerRegistration registerListenerWithMatcher(NotificationListener listener, EventMatcher eventMatcher);
+    NotificationListenerRegistration registerListenerWithMatcher(NotificationListener listener,
+                                                                 EventMatcher eventMatcher);
 
     /**
      * Adds a notification listener with an array of types to allow.

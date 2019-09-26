@@ -1,10 +1,11 @@
 package com.enjin.enjincoin.sdk.model.service.requests.data;
 
-import com.google.gson.annotations.SerializedName;
-import lombok.Builder;
-
 import java.util.Arrays;
 import java.util.List;
+
+import com.google.gson.annotations.SerializedName;
+
+import lombok.Builder;
 
 /**
  * A data model for the Melt Token request type.

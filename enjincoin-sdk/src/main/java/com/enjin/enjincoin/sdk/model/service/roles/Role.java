@@ -1,10 +1,11 @@
 package com.enjin.enjincoin.sdk.model.service.roles;
 
+import java.util.List;
+
 import com.google.gson.annotations.SerializedName;
+
 import lombok.Getter;
 import lombok.ToString;
-
-import java.util.List;
 
 /**
  * Represents the permissions a user has on the Trusted Platform.

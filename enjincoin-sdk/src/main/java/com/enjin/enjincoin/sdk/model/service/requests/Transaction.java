@@ -1,11 +1,12 @@
 package com.enjin.enjincoin.sdk.model.service.requests;
 
+import java.util.List;
+
 import com.enjin.enjincoin.sdk.model.service.tokens.TokenEvent;
 import com.google.gson.annotations.SerializedName;
+
 import lombok.Getter;
 import lombok.ToString;
-
-import java.util.List;
 
 /**
  * Represents a transaction request on the trusted platform.

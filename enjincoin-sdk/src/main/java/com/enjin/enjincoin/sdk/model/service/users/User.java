@@ -1,12 +1,13 @@
 package com.enjin.enjincoin.sdk.model.service.users;
 
+import java.util.List;
+
 import com.enjin.enjincoin.sdk.model.service.identities.Identity;
 import com.enjin.enjincoin.sdk.model.service.roles.Role;
 import com.google.gson.annotations.SerializedName;
+
 import lombok.Getter;
 import lombok.ToString;
-
-import java.util.List;
 
 /**
  * Represents a Trusted Platform user.

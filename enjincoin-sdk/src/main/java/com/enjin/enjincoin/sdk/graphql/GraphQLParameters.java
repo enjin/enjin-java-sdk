@@ -1,14 +1,14 @@
 package com.enjin.enjincoin.sdk.graphql;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Represents a dynamic mapping of GraphQL parameters and
@@ -19,9 +19,9 @@ import java.util.Map;
  */
 public class GraphQLParameters {
 
-    private final Gson                gson = new GsonBuilder().disableHtmlEscaping()
-                                                              .create();
-    private       Map<String, Object> parameters;
+    private final Gson gson = new GsonBuilder().disableHtmlEscaping()
+                                               .create();
+    private Map<String, Object> parameters;
 
     /**
      * Creates a new instance with no parameters.

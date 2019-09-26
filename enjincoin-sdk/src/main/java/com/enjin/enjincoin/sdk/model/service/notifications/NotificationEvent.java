@@ -4,6 +4,7 @@ import com.enjin.enjincoin.sdk.model.service.requests.TransactionType;
 import com.enjin.enjincoin.sdk.serialization.TransactionTypeDeserializer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;

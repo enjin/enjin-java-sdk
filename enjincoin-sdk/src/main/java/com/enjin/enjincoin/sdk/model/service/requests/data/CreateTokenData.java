@@ -3,6 +3,7 @@ package com.enjin.enjincoin.sdk.model.service.requests.data;
 import com.enjin.enjincoin.sdk.model.service.tokens.TokenSupplyModel;
 import com.enjin.enjincoin.sdk.model.service.tokens.TokenTransferFeeSettings;
 import com.enjin.enjincoin.sdk.model.service.tokens.TokenTransferable;
+
 import lombok.Builder;
 
 /**

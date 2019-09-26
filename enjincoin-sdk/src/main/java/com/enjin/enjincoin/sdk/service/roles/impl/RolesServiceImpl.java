@@ -1,5 +1,8 @@
 package com.enjin.enjincoin.sdk.service.roles.impl;
 
+import java.io.IOException;
+import java.util.List;
+
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
 import com.enjin.enjincoin.sdk.http.HttpCallback;
 import com.enjin.enjincoin.sdk.http.HttpResponse;
@@ -10,10 +13,8 @@ import com.enjin.enjincoin.sdk.model.service.roles.Role;
 import com.enjin.enjincoin.sdk.model.service.roles.UpdateRole;
 import com.enjin.enjincoin.sdk.service.GraphQLServiceBase;
 import com.enjin.enjincoin.sdk.service.roles.RolesService;
-import retrofit2.Retrofit;
 
-import java.io.IOException;
-import java.util.List;
+import retrofit2.Retrofit;
 
 public class RolesServiceImpl extends GraphQLServiceBase implements RolesService {
 

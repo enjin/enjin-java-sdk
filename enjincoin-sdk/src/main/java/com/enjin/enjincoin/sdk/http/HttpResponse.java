@@ -13,7 +13,7 @@ import lombok.ToString;
 public class HttpResponse<T> {
 
     private int code;
-    private T   body;
+    private T body;
 
     /**
      * Creates a new http response with the code returned

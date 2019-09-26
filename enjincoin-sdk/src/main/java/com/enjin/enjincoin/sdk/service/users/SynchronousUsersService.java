@@ -1,16 +1,16 @@
 package com.enjin.enjincoin.sdk.service.users;
 
-import com.enjin.enjincoin.sdk.http.HttpResponse;
+import java.io.IOException;
+import java.util.List;
+
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
+import com.enjin.enjincoin.sdk.http.HttpResponse;
+import com.enjin.enjincoin.sdk.model.service.users.AuthUser;
 import com.enjin.enjincoin.sdk.model.service.users.CreateUser;
 import com.enjin.enjincoin.sdk.model.service.users.DeleteUser;
 import com.enjin.enjincoin.sdk.model.service.users.GetUsers;
-import com.enjin.enjincoin.sdk.model.service.users.AuthUser;
 import com.enjin.enjincoin.sdk.model.service.users.UpdateUser;
 import com.enjin.enjincoin.sdk.model.service.users.User;
-
-import java.io.IOException;
-import java.util.List;
 
 public interface SynchronousUsersService {
 

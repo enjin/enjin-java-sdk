@@ -1,22 +1,20 @@
 package com.enjin.enjincoin.sdk.graphql;
 
-import com.enjin.testing.JsonFileResource;
-import com.enjin.testing.JsonFileResources;
-import com.enjin.testing.rules.JsonParsingRule;
-import com.google.gson.Gson;
-import com.jparams.verifier.tostring.NameStyle;
-import com.jparams.verifier.tostring.ToStringVerifier;
-import nl.jqno.equalsverifier.EqualsVerifier;
-import nl.jqno.equalsverifier.Warning;
-import org.junit.Rule;
-import org.junit.Test;
+import static com.google.common.truth.Truth.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.google.common.truth.Truth.*;
+import com.enjin.testing.JsonFileResource;
+import com.enjin.testing.JsonFileResources;
+import com.enjin.testing.rules.JsonParsingRule;
+import com.google.gson.Gson;
+
+import org.junit.Rule;
+import org.junit.Test;
+
 
 public class GraphQLErrorTest {
 

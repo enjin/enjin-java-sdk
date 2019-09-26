@@ -1,23 +1,24 @@
 package com.enjin.enjincoin.sdk.service;
 
-import com.enjin.enjincoin.sdk.http.HttpResponse;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.logging.Level;
+
 import com.enjin.enjincoin.sdk.http.HttpCallback;
+import com.enjin.enjincoin.sdk.http.HttpResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+
 import lombok.extern.java.Log;
 import okhttp3.MediaType;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 
-import java.io.IOException;
-import java.lang.reflect.Type;
-import java.util.logging.Level;
-
 @Log
 public class GraphQLServiceBase extends ServiceBase {
 
-    private static final Gson      GSON = new GsonBuilder().create();
+    private static final Gson GSON = new GsonBuilder().create();
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     protected <T> HttpResponse<T> executeGraphQLCall(Call<T> call) throws IOException {
@@ -39,14 +40,14 @@ public class GraphQLServiceBase extends ServiceBase {
             @Override
             public void onFailure(Call<T> call, Throwable t) {
                 Exception exception = new Exception("Request Failed: " + call.request().toString(), t);
-                GraphQLServiceBase.log.log(Level.SEVERE,"An exception occurred:", exception);
+                GraphQLServiceBase.log.log(Level.SEVERE, "An exception occurred:", exception);
             }
         });
     }
 
     protected <T> HttpResponse<T> createResult(retrofit2.Response<T> response) throws IOException {
         int code = response.code();
-        T   body = null;
+        T body = null;
 
         if (response.isSuccessful() || response.body() != null) {
             body = response.body();

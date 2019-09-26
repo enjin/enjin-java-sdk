@@ -6,7 +6,7 @@ import java.util.List;
 
 public class GraphQLTemplateField {
 
-    protected String                     name;
+    protected String name;
     protected List<GraphQLTemplateField> children;
 
     protected GraphQLTemplateField(String name) {
@@ -41,6 +41,11 @@ public class GraphQLTemplateField {
         return new ArrayList<>(children);
     }
 
+    /**
+     * Serializes the template field to GraphQL format.
+     *
+     * @return the serialized field
+     */
     public String serialize() {
         StringBuilder builder = new StringBuilder();
 
@@ -50,7 +55,8 @@ public class GraphQLTemplateField {
             builder.append('{');
 
             for (int i = 0; i < children.size(); i++) {
-                if (i > 0) builder.append(',');
+                if (i > 0)
+                    builder.append(',');
                 builder.append(children.get(i).serialize());
             }
 

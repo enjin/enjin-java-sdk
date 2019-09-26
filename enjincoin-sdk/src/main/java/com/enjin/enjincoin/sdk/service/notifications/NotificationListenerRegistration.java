@@ -22,7 +22,7 @@ public class NotificationListenerRegistration {
     };
 
     private NotificationListener listener;
-    private EventMatcher         eventMatcher = ALLOW_ALL_MATCHER;
+    private EventMatcher eventMatcher = ALLOW_ALL_MATCHER;
 
     protected NotificationListenerRegistration(NotificationListener listener) {
         this.listener = listener;
@@ -73,7 +73,7 @@ public class NotificationListenerRegistration {
     public static class RegistrationListenerConfiguration<T extends RegistrationListenerConfiguration<T>> {
 
         protected NotificationListener listener;
-        protected EventMatcher         eventMatcher = ALLOW_ALL_MATCHER;
+        protected EventMatcher eventMatcher = ALLOW_ALL_MATCHER;
 
         protected RegistrationListenerConfiguration(NotificationListener listener) {
             this.listener = listener;
@@ -126,6 +126,11 @@ public class NotificationListenerRegistration {
             });
         }
 
+        /**
+         * Creates new instance of notification listener with the configured listener and event matcher.
+         *
+         * @return a new instance if listener is not null, else null
+         */
         public NotificationListenerRegistration create() {
             NotificationListenerRegistration registration = null;
 

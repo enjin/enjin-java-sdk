@@ -1,16 +1,18 @@
 package com.enjin.enjincoin.sdk.graphql;
 
-import com.enjin.enjincoin.sdk.model.service.PaginationCursor;
-import com.enjin.testing.JsonFileResource;
-import com.enjin.testing.rules.JsonParsingRule;
 import static com.google.common.truth.Truth.*;
-import com.google.gson.Gson;
-import org.junit.Rule;
-import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import com.enjin.enjincoin.sdk.model.service.PaginationCursor;
+import com.enjin.testing.JsonFileResource;
+import com.enjin.testing.rules.JsonParsingRule;
+import com.google.gson.Gson;
+
+import org.junit.Rule;
+import org.junit.Test;
 
 public class GraphQLResponseTest {
 

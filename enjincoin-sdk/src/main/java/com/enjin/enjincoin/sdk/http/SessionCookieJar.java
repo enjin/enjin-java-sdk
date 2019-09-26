@@ -1,14 +1,14 @@
 package com.enjin.enjincoin.sdk.http;
 
-import lombok.NonNull;
-import okhttp3.Cookie;
-import okhttp3.CookieJar;
-import okhttp3.HttpUrl;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
+import lombok.NonNull;
+import okhttp3.Cookie;
+import okhttp3.CookieJar;
+import okhttp3.HttpUrl;
 
 public class SessionCookieJar implements CookieJar {
 
@@ -49,6 +49,12 @@ public class SessionCookieJar implements CookieJar {
         setCookie(HttpUrl.get(url), cookie);
     }
 
+    /**
+     * Sets a cookie for the provided url.
+     *
+     * @param url    the url
+     * @param cookie the cookie
+     */
     public void setCookie(@NonNull HttpUrl url, @NonNull Cookie cookie) {
         String host = url.host();
 
@@ -66,6 +72,13 @@ public class SessionCookieJar implements CookieJar {
         setCookie(HttpUrl.get(url), name, value);
     }
 
+    /**
+     * Sets a cookie with the provided name and value for the url.
+     *
+     * @param url   the url
+     * @param name  the cookie name
+     * @param value the cookie value
+     */
     public void setCookie(@NonNull HttpUrl url, @NonNull String name, @NonNull String value) {
         setCookie(url, Cookie.parse(url, name + "=" + value));
     }
@@ -74,6 +87,12 @@ public class SessionCookieJar implements CookieJar {
         removeCookie(HttpUrl.get(url), name);
     }
 
+    /**
+     * Removes a cookie with the provided name from the url.
+     *
+     * @param url  the url
+     * @param name the cookie name
+     */
     public void removeCookie(HttpUrl url, String name) {
         List<Cookie> cookieStore = clientCookieStore.get(url.host());
 

@@ -1,14 +1,15 @@
 package com.enjin.enjincoin.sdk.serialization.converter;
 
+import java.io.IOException;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Type;
+
 import com.enjin.enjincoin.sdk.serialization.Json;
+
 import okhttp3.RequestBody;
 import okio.Buffer;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
-
-import java.io.IOException;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Type;
 
 /**
  * A converter factory for {@link DelegateToStringConverter}.

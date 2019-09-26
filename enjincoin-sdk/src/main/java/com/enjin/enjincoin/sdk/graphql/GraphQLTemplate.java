@@ -1,19 +1,19 @@
 package com.enjin.enjincoin.sdk.graphql;
 
-import com.enjin.enjincoin.sdk.graphql.api.Fields;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import com.enjin.enjincoin.sdk.graphql.api.Fields;
 
 public class GraphQLTemplate {
 
     public static final String PAGINATION_PARAM = "pagination";
 
-    protected String                     name;
-    protected boolean                    mutation;
-    protected String                     method;
+    protected String name;
+    protected boolean mutation;
+    protected String method;
     protected List<GraphQLTemplateField> fields;
-    protected GraphQLTemplateField       paginationItemField;
+    protected GraphQLTemplateField paginationItemField;
 
     protected GraphQLTemplate(String name, boolean mutation, String method) {
         this.name = name;
@@ -55,17 +55,30 @@ public class GraphQLTemplate {
         return this;
     }
 
+    /**
+     * Serializes the fields of a GraphQL template.
+     *
+     * @return the serialized fields
+     */
     public String serializeFields() {
         StringBuilder builder = new StringBuilder();
 
         for (int i = 0; i < fields.size(); i++) {
-            if (i > 0) builder.append(',');
+            if (i > 0)
+                builder.append(',');
             builder.append(fields.get(i).serialize());
         }
 
         return builder.toString();
     }
 
+    /**
+     * Serializes the template with the provided parameters.
+     *
+     * @param parameters the request parameters
+     *
+     * @return the serialized template
+     */
     public String serialize(GraphQLParameters parameters) {
         StringBuilder builder = new StringBuilder(mutation ? "mutation" : "query");
 

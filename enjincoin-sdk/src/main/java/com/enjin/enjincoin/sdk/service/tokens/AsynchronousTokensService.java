@@ -1,16 +1,16 @@
 package com.enjin.enjincoin.sdk.service.tokens;
 
+import java.util.List;
+
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
+import com.enjin.enjincoin.sdk.http.HttpCallback;
+import com.enjin.enjincoin.sdk.model.service.tokens.CreateToken;
 import com.enjin.enjincoin.sdk.model.service.tokens.DeleteToken;
 import com.enjin.enjincoin.sdk.model.service.tokens.GetTokenEvents;
 import com.enjin.enjincoin.sdk.model.service.tokens.GetTokens;
-import com.enjin.enjincoin.sdk.model.service.tokens.CreateToken;
 import com.enjin.enjincoin.sdk.model.service.tokens.Token;
 import com.enjin.enjincoin.sdk.model.service.tokens.TokenEvent;
 import com.enjin.enjincoin.sdk.model.service.tokens.UpdateToken;
-import com.enjin.enjincoin.sdk.http.HttpCallback;
-
-import java.util.List;
 
 /**
  * Asynchronous methods for querying and mutating app tokens.

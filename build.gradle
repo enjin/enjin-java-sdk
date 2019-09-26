@@ -138,6 +138,7 @@ subprojects {
 
     checkstyle {
         toolVersion = '8.24'
+        sourceSets = [project.sourceSets.main]
     }
 
     tasks.withType(Checkstyle) {

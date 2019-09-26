@@ -1,21 +1,22 @@
 package com.enjin.enjincoin.sdk.http;
 
+import java.io.IOException;
+
 import com.enjin.enjincoin.sdk.model.service.auth.AuthResult;
 import com.enjin.java_commons.StringUtils;
+
 import lombok.Getter;
 import lombok.Setter;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import java.io.IOException;
-
 public class TrustedPlatformInterceptor implements Interceptor {
 
-    public static final String APP_ID      = "X-App-Id";
-    public static final String USER_ID     = "user_id";
+    public static final String APP_ID = "X-App-Id";
+    public static final String USER_ID = "user_id";
     public static final String IDENTITY_ID = "identity_id";
-    public static final String AUTHORIZATION      = "Authorization";
+    public static final String AUTHORIZATION = "Authorization";
 
     @Setter
     private String tokenType;

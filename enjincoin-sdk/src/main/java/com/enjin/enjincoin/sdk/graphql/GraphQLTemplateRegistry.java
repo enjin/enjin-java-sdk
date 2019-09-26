@@ -7,6 +7,13 @@ public class GraphQLTemplateRegistry {
 
     private Map<String, GraphQLTemplate> registered = new HashMap<>();
 
+    /**
+     * Registers a template with a registry.
+     *
+     * @param template the template to register
+     *
+     * @return true if registered, false if already exists
+     */
     public boolean register(GraphQLTemplate template) {
         boolean result = false;
 

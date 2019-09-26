@@ -1,5 +1,7 @@
 package com.enjin.enjincoin.sdk.service.notifications;
 
+import java.util.logging.Level;
+
 import com.enjin.enjincoin.sdk.model.service.notifications.NotificationEvent;
 import com.enjin.enjincoin.sdk.model.service.notifications.NotificationType;
 import com.enjin.java_commons.CollectionUtils;
@@ -9,11 +11,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.pusher.client.channel.SubscriptionEventListener;
 
-import java.util.logging.Level;
-
 public class PusherEventListener implements SubscriptionEventListener {
 
-    private static final Gson   GSON           = new GsonBuilder().create();
+    private static final Gson GSON = new GsonBuilder().create();
     private static final String EVENT_TYPE_KEY = "event_type";
 
     private PusherNotificationService service;
@@ -24,7 +24,10 @@ public class PusherEventListener implements SubscriptionEventListener {
 
     @Override
     public void onEvent(String channelName, String eventName, String data) {
-        PusherNotificationService.logger().log(Level.FINE, "Received event {0} on channel {1} with results {2}", new Object[] {eventName, channelName, data});
+        PusherNotificationService.logger()
+                                 .log(Level.FINE,
+                                      "Received event {0} on channel {1} with results {2}",
+                                      new Object[] {eventName, channelName, data});
         call(data, channelName, eventName);
     }
 
@@ -32,18 +35,18 @@ public class PusherEventListener implements SubscriptionEventListener {
         if (CollectionUtils.isEmpty(service.listeners))
             return;
 
-        JsonElement      dataElement      = GSON.fromJson(sourceData, JsonElement.class);
+        JsonElement dataElement = GSON.fromJson(sourceData, JsonElement.class);
         NotificationType notificationType = NotificationType.UNKNOWN_EVENT;
 
-        if (dataElement == null ||
-                !dataElement.isJsonObject() ||
-                !dataElement.getAsJsonObject().has(EVENT_TYPE_KEY)) {
+        if (dataElement == null
+                || !dataElement.isJsonObject()
+                || !dataElement.getAsJsonObject().has(EVENT_TYPE_KEY)) {
             return;
         }
 
-        JsonObject  dataObject       = dataElement.getAsJsonObject();
+        JsonObject dataObject = dataElement.getAsJsonObject();
         JsonElement eventTypeElement = dataObject.get(EVENT_TYPE_KEY);
-        String      eventTypeString  = eventTypeElement.getAsString();
+        String eventTypeString = eventTypeElement.getAsString();
 
         for (NotificationType type : NotificationType.values()) {
             if (type.getEventType().equalsIgnoreCase(eventTypeString)) {
@@ -53,7 +56,10 @@ public class PusherEventListener implements SubscriptionEventListener {
         }
 
         if (notificationType == NotificationType.UNKNOWN_EVENT) {
-            PusherNotificationService.logger().log(Level.WARNING, "UNKNOWN_EVENT NotificationType {0} returned for the eventType of {1}", new Object[]{eventTypeString, eventType});
+            PusherNotificationService.logger()
+                                     .log(Level.WARNING,
+                                          "UNKNOWN_EVENT NotificationType {0} returned for the eventType of {1}",
+                                          new Object[] {eventTypeString, eventType});
             return;
         }
 

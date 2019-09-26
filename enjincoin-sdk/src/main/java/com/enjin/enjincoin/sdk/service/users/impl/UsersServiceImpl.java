@@ -1,7 +1,11 @@
 package com.enjin.enjincoin.sdk.service.users.impl;
 
-import com.enjin.enjincoin.sdk.http.HttpResponse;
+import java.io.IOException;
+import java.util.List;
+
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
+import com.enjin.enjincoin.sdk.http.HttpCallback;
+import com.enjin.enjincoin.sdk.http.HttpResponse;
 import com.enjin.enjincoin.sdk.model.service.users.AuthUser;
 import com.enjin.enjincoin.sdk.model.service.users.CreateUser;
 import com.enjin.enjincoin.sdk.model.service.users.DeleteUser;
@@ -10,11 +14,8 @@ import com.enjin.enjincoin.sdk.model.service.users.UpdateUser;
 import com.enjin.enjincoin.sdk.model.service.users.User;
 import com.enjin.enjincoin.sdk.service.GraphQLServiceBase;
 import com.enjin.enjincoin.sdk.service.users.UsersService;
-import com.enjin.enjincoin.sdk.http.HttpCallback;
-import retrofit2.Retrofit;
 
-import java.io.IOException;
-import java.util.List;
+import retrofit2.Retrofit;
 
 public class UsersServiceImpl extends GraphQLServiceBase implements UsersService {
 
@@ -29,6 +30,7 @@ public class UsersServiceImpl extends GraphQLServiceBase implements UsersService
                               HttpCallback<GraphQLResponse<List<User>>> callback) {
         enqueueGraphQLCall(this.service.getUsers(query), callback);
     }
+
     @Override
     public void createUserAsync(CreateUser query,
                                 HttpCallback<GraphQLResponse<User>> callback) {

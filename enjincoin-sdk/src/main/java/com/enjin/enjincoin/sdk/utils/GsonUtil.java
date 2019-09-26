@@ -30,6 +30,14 @@ public final class GsonUtil {
         return pathExists(next.getAsJsonObject(), keys, keyIndex + 1);
     }
 
+    /**
+     * Gets an element from the provided path for the provided object.
+     *
+     * @param root the object to search in
+     * @param path the path to fetch
+     *
+     * @return empty optional if path does not exist or is null, else optional wrapped element
+     */
     public static Optional<JsonElement> getJsonElement(JsonObject root, String path) {
         if (!pathExists(root, path))
             return Optional.empty();

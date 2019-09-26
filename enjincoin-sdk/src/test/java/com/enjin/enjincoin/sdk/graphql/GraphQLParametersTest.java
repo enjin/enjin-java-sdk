@@ -1,15 +1,17 @@
 package com.enjin.enjincoin.sdk.graphql;
 
-import com.enjin.enjincoin.sdk.model.service.tokens.TokenTransferFeeType;
-import com.google.common.collect.ImmutableMap;
-import com.google.gson.JsonObject;
-import org.junit.Test;
 import static com.google.common.truth.Truth.*;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.enjin.enjincoin.sdk.model.service.tokens.TokenTransferFeeType;
+import com.google.common.collect.ImmutableMap;
+import com.google.gson.JsonObject;
+
+import org.junit.Test;
 
 public class GraphQLParametersTest {
 

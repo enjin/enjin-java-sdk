@@ -1,12 +1,13 @@
 package com.enjin.enjincoin.sdk.service.notifications.subscriptions;
 
 import com.enjin.enjincoin.sdk.model.service.platform.PlatformDetails;
+
 import lombok.NonNull;
 
 public class UserChannel implements Channel {
 
     private PlatformDetails details;
-    private int             userId;
+    private int userId;
 
     public UserChannel(@NonNull PlatformDetails details, int userId) {
         this.details = details;

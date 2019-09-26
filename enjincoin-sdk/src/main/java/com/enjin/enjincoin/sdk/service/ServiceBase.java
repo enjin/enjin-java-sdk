@@ -1,12 +1,13 @@
 package com.enjin.enjincoin.sdk.service;
 
-import com.enjin.enjincoin.sdk.http.HttpCallback;
-import com.enjin.enjincoin.sdk.http.HttpResponse;
-import lombok.extern.java.Log;
-import retrofit2.Call;
-
 import java.io.IOException;
 import java.util.logging.Level;
+
+import com.enjin.enjincoin.sdk.http.HttpCallback;
+import com.enjin.enjincoin.sdk.http.HttpResponse;
+
+import lombok.extern.java.Log;
+import retrofit2.Call;
 
 @Log
 public class ServiceBase {

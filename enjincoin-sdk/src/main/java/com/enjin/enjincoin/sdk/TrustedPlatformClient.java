@@ -1,5 +1,10 @@
 package com.enjin.enjincoin.sdk;
 
+import java.io.Closeable;
+import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.TimeUnit;
+
 import com.enjin.enjincoin.sdk.http.HttpCallback;
 import com.enjin.enjincoin.sdk.http.HttpResponse;
 import com.enjin.enjincoin.sdk.http.SessionCookieJar;
@@ -31,6 +36,7 @@ import com.enjin.enjincoin.sdk.service.users.impl.UsersServiceImpl;
 import com.github.dmstocking.optional.java.util.Optional;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
 import lombok.Getter;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -42,45 +48,40 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.io.Closeable;
-import java.io.IOException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.TimeUnit;
-
 public final class TrustedPlatformClient implements Closeable {
 
     // Trusted Platform Base URLs
-    public static final  HttpUrl MAIN_NET           = HttpUrl.get("https://cloud.enjin.io/");
-    public static final  HttpUrl KOVAN              = HttpUrl.get("https://kovan.cloud.enjin.io/");
+    public static final HttpUrl MAIN_NET = HttpUrl.get("https://cloud.enjin.io/");
+    public static final HttpUrl KOVAN = HttpUrl.get("https://kovan.cloud.enjin.io/");
     // Keys
-    private static final String  CLIENT_CREDENTIALS = "client_credentials";
+    private static final String CLIENT_CREDENTIALS = "client_credentials";
 
-    private HttpUrl                    baseUrl;
+    private HttpUrl baseUrl;
     // Http Client
     private TrustedPlatformInterceptor trustedPlatformInterceptor;
-    private HttpLoggingInterceptor     httpLogInterceptor;
-    private OkHttpClient               httpClient;
+    private HttpLoggingInterceptor httpLogInterceptor;
+    private OkHttpClient httpClient;
     // Services
     @Getter
-    private AppsService                appsService;
+    private AppsService appsService;
     @Getter
-    private AuthRetrofitService        authService;
+    private AuthRetrofitService authService;
     @Getter
-    private BalancesService            balancesService;
+    private BalancesService balancesService;
     @Getter
-    private EthereumService            ethereumService;
+    private EthereumService ethereumService;
     @Getter
-    private IdentitiesService          identitiesService;
+    private IdentitiesService identitiesService;
     @Getter
-    private PlatformService            platformService;
+    private PlatformService platformService;
     @Getter
-    private RequestsService            requestsService;
+    private RequestsService requestsService;
     @Getter
-    private RolesService               rolesService;
+    private RolesService rolesService;
     @Getter
-    private TokensService              tokensService;
+    private TokensService tokensService;
     @Getter
-    private UsersService               usersService;
+    private UsersService usersService;
 
     private TrustedPlatformClient(Builder builder) {
         baseUrl = builder.baseUrl.orElse(MAIN_NET);
@@ -170,8 +171,18 @@ public final class TrustedPlatformClient implements Closeable {
         return this.httpLogInterceptor.getLevel();
     }
 
+    /**
+     * Synchronously authenticates the trusted platform using the provided app id and secret.
+     *
+     * @param appId     the app id
+     * @param appSecret the app secret
+     *
+     * @return the response
+     *
+     * @throws IOException if network exception is encountered
+     */
     public HttpResponse<AuthResult> authAppSync(int appId, String appSecret) throws IOException {
-        Call<AuthResult>     call     = authApp(appId, appSecret);
+        Call<AuthResult> call = authApp(appId, appSecret);
         Response<AuthResult> response = call.execute();
 
         authApp(appId, response);
@@ -179,6 +190,14 @@ public final class TrustedPlatformClient implements Closeable {
         return new HttpResponse<>(response.code(), response.body());
     }
 
+    /**
+     * Aynchronously authenticates the trusted platform using the provided app id and secret and calls the callback
+     * with the response result.
+     *
+     * @param appId     the app id
+     * @param appSecret the app secret
+     * @param callback  the callback
+     */
     public void authAppAsync(final int appId, String appSecret, final HttpCallback<AuthResult> callback) {
         Call<AuthResult> call = authApp(appId, appSecret);
 
@@ -219,6 +238,11 @@ public final class TrustedPlatformClient implements Closeable {
         }
     }
 
+    /**
+     * Checks if the client is closed.
+     *
+     * @return true if the dispatcher executor service is shutdown, else false
+     */
     public boolean isClosed() {
         return this.httpClient.dispatcher()
                               .executorService()
@@ -231,14 +255,15 @@ public final class TrustedPlatformClient implements Closeable {
 
     public static final class Builder {
 
-        private Optional<HttpUrl> baseUrl              = Optional.empty();
-        private Optional<Level>   httpLogLevel         = Optional.empty();
-        private Optional<Long>    connectTimeoutMillis = Optional.empty();
-        private Optional<Long>    callTimeoutMillis    = Optional.empty();
-        private Optional<Long>    readTimeoutMillis    = Optional.empty();
-        private Optional<Long>    writeTimeoutMillis   = Optional.empty();
+        private Optional<HttpUrl> baseUrl = Optional.empty();
+        private Optional<Level> httpLogLevel = Optional.empty();
+        private Optional<Long> connectTimeoutMillis = Optional.empty();
+        private Optional<Long> callTimeoutMillis = Optional.empty();
+        private Optional<Long> readTimeoutMillis = Optional.empty();
+        private Optional<Long> writeTimeoutMillis = Optional.empty();
 
-        private Builder() {}
+        private Builder() {
+        }
 
         public Builder httpLogLevel(Level level) {
             httpLogLevel = Optional.ofNullable(level);

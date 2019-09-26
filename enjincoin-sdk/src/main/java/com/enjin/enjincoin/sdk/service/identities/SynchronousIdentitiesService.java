@@ -1,15 +1,15 @@
 package com.enjin.enjincoin.sdk.service.identities;
 
-import com.enjin.enjincoin.sdk.http.HttpResponse;
+import java.io.IOException;
+import java.util.List;
+
 import com.enjin.enjincoin.sdk.graphql.GraphQLResponse;
+import com.enjin.enjincoin.sdk.http.HttpResponse;
 import com.enjin.enjincoin.sdk.model.service.identities.CreateIdentity;
 import com.enjin.enjincoin.sdk.model.service.identities.DeleteIdentity;
 import com.enjin.enjincoin.sdk.model.service.identities.GetIdentities;
 import com.enjin.enjincoin.sdk.model.service.identities.Identity;
 import com.enjin.enjincoin.sdk.model.service.identities.UpdateIdentity;
-
-import java.io.IOException;
-import java.util.List;
 
 /**
  * Synchronous methods for querying and mutating app identities.

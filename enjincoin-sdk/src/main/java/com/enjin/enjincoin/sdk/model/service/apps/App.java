@@ -2,6 +2,7 @@ package com.enjin.enjincoin.sdk.model.service.apps;
 
 import com.enjin.enjincoin.sdk.model.service.users.User;
 import com.google.gson.annotations.SerializedName;
+
 import lombok.Getter;
 import lombok.ToString;
 

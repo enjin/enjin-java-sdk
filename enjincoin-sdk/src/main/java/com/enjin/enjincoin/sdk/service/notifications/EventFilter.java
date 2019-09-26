@@ -1,11 +1,11 @@
 package com.enjin.enjincoin.sdk.service.notifications;
 
-import com.enjin.enjincoin.sdk.model.service.notifications.NotificationType;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
+import com.enjin.enjincoin.sdk.model.service.notifications.NotificationType;
 
 /**
  * Annotation for filtering listener events.

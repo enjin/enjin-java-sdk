@@ -1,9 +1,9 @@
 package com.enjin.enjincoin.sdk.model.service.users;
 
+import java.util.List;
+
 import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
 import com.enjin.enjincoin.sdk.model.service.roles.Role;
-
-import java.util.List;
 
 /**
  * A builder for creating a new user on the Trusted platform.

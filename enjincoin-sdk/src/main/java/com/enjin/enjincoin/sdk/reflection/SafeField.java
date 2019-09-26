@@ -1,11 +1,12 @@
 package com.enjin.enjincoin.sdk.reflection;
 
-import com.github.dmstocking.optional.java.util.Optional;
-import lombok.Getter;
-import lombok.extern.java.Log;
-
 import java.lang.reflect.Field;
 import java.util.logging.Level;
+
+import com.github.dmstocking.optional.java.util.Optional;
+
+import lombok.Getter;
+import lombok.extern.java.Log;
 
 @Log
 public class SafeField {
@@ -17,6 +18,15 @@ public class SafeField {
         this.field = field;
     }
 
+    /**
+     * Gets the value assigned to the instance field and casts it to the provided type.
+     *
+     * @param instance the object instance
+     * @param type     the value type
+     * @param <T>      the type to cast to
+     *
+     * @return empty optional if unable to get value or value is null, else wrapped value
+     */
     public <T> Optional<T> get(Object instance, Class<T> type) {
         try {
             Object value = field.get(instance);

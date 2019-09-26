@@ -1,6 +1,7 @@
 package com.enjin.testing;
 
 import com.google.gson.JsonElement;
+
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

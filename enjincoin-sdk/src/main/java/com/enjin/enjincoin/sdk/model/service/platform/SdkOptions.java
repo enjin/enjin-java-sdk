@@ -16,14 +16,14 @@ public class SdkOptions {
     /**
      * The cluster to use.
      *
-     * @return the cluster.
+     * @return the cluster
      */
     private String cluster;
 
     /**
-     * Is the connection encrypted?
+     * Returns whether the notification service is encrypted.
      *
-     * @return true if encrypted, else false.
+     * @return true if encrypted, else false
      */
     private Boolean encrypted;
 

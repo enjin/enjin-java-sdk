@@ -1,9 +1,10 @@
 package com.enjin.enjincoin.sdk.graphql;
 
-import com.enjin.enjincoin.sdk.model.service.PaginationCursor;
-import lombok.ToString;
-
 import java.util.List;
+
+import com.enjin.enjincoin.sdk.model.service.PaginationCursor;
+
+import lombok.ToString;
 
 /**
  * Models the body of a GraphQLResponse.
@@ -21,6 +22,14 @@ public class GraphQLResponse<T> {
     private List<GraphQLError> errors;
     private PaginationCursor cursor;
 
+    /**
+     * Represents a response of a GraphQL request.
+     *
+     * @param raw    the raw response body
+     * @param data   the deserialized response data
+     * @param errors the deserialized response errors
+     * @param cursor the deserialized response pagination cursor
+     */
     public GraphQLResponse(String raw, T data, List<GraphQLError> errors, PaginationCursor cursor) {
         this.raw = raw;
         this.data = data;

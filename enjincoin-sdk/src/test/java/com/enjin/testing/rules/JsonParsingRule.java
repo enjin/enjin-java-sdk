@@ -1,15 +1,5 @@
 package com.enjin.testing.rules;
 
-import com.enjin.testing.JsonFileResource;
-import com.enjin.testing.JsonFileResources;
-import com.enjin.testing.JsonModel;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.reflect.TypeToken;
-import kotlin.text.Charsets;
-import org.junit.rules.TestRule;
-import org.junit.runner.Description;
-import org.junit.runners.model.Statement;
 import static com.google.common.truth.Truth.*;
 
 import java.io.BufferedReader;
@@ -19,6 +9,19 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.enjin.testing.JsonFileResource;
+import com.enjin.testing.JsonFileResources;
+import com.enjin.testing.JsonModel;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.reflect.TypeToken;
+
+import org.junit.rules.TestRule;
+import org.junit.runner.Description;
+import org.junit.runners.model.Statement;
+
+import kotlin.text.Charsets;
 
 public class JsonParsingRule implements TestRule {
 

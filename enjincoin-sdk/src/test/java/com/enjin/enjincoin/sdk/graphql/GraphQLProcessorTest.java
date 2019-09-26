@@ -1,8 +1,10 @@
 package com.enjin.enjincoin.sdk.graphql;
 
-import com.enjin.testing.utils.RuntimeUtils;
-import org.junit.Test;
 import static com.google.common.truth.Truth.*;
+
+import com.enjin.testing.utils.RuntimeUtils;
+
+import org.junit.Test;
 
 public class GraphQLProcessorTest {
 

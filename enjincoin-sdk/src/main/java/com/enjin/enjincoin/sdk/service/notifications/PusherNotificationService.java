@@ -1,5 +1,12 @@
 package com.enjin.enjincoin.sdk.service.notifications;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import com.enjin.enjincoin.sdk.model.service.notifications.NotificationType;
 import com.enjin.enjincoin.sdk.model.service.platform.NotificationDetails;
 import com.enjin.enjincoin.sdk.model.service.platform.PlatformDetails;
@@ -16,15 +23,9 @@ import com.pusher.client.channel.Channel;
 import com.pusher.client.connection.ConnectionEventListener;
 import com.pusher.client.connection.ConnectionState;
 import com.pusher.client.connection.ConnectionStateChange;
+
 import lombok.NonNull;
 import lombok.extern.java.Log;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @Log
 public class PusherNotificationService implements NotificationsService {
@@ -32,9 +33,9 @@ public class PusherNotificationService implements NotificationsService {
     private static final String DRIVER = "pusher";
 
     protected List<NotificationListenerRegistration> listeners = new ArrayList<>();
-    private   PlatformDetails                        platformDetails;
-    private   Pusher                                 pusher;
-    private   PusherEventListener                    listener;
+    private PlatformDetails platformDetails;
+    private Pusher pusher;
+    private PusherEventListener listener;
 
     private Map<String, Channel> subscribed = new HashMap<>();
 
@@ -51,9 +52,9 @@ public class PusherNotificationService implements NotificationsService {
         if (notificationDetails != null) {
             SdkDetails sdkDetails = notificationDetails.getSdk();
             if (sdkDetails != null) {
-                String  driver    = sdkDetails.getDriver();
-                String  appKey    = sdkDetails.getKey();
-                String  cluster   = sdkDetails.getOptions().getCluster();
+                String driver = sdkDetails.getDriver();
+                String appKey = sdkDetails.getKey();
+                String cluster = sdkDetails.getOptions().getCluster();
                 boolean encrypted = sdkDetails.getOptions().getEncrypted();
 
                 if (DRIVER.equalsIgnoreCase(driver) && !StringUtils.isEmpty(appKey) && !StringUtils.isEmpty(cluster)) {
@@ -67,7 +68,7 @@ public class PusherNotificationService implements NotificationsService {
                         @Override
                         public void onConnectionStateChange(ConnectionStateChange change) {
                             ConnectionState previous = change.getPreviousState();
-                            ConnectionState current  = change.getCurrentState();
+                            ConnectionState current = change.getCurrentState();
 
                             PusherNotificationService.log.fine(String.format("State changed from %s to %s.",
                                                                              previous,
@@ -108,17 +109,20 @@ public class PusherNotificationService implements NotificationsService {
     }
 
     @Override
-    public NotificationListenerRegistration registerListenerWithMatcher(@NonNull NotificationListener listener, EventMatcher eventMatcher) {
+    public NotificationListenerRegistration registerListenerWithMatcher(@NonNull NotificationListener listener,
+                                                                        EventMatcher eventMatcher) {
         return register(configureListener(listener).withMatcher(eventMatcher));
     }
 
     @Override
-    public NotificationListenerRegistration registerListenerIncludingTypes(@NonNull NotificationListener listener, NotificationType... allowed) {
+    public NotificationListenerRegistration registerListenerIncludingTypes(@NonNull NotificationListener listener,
+                                                                           NotificationType... allowed) {
         return register(configureListener(listener).withAllowedEvents(allowed));
     }
 
     @Override
-    public NotificationListenerRegistration registerListenerExcludingTypes(@NonNull NotificationListener listener, NotificationType... ignored) {
+    public NotificationListenerRegistration registerListenerExcludingTypes(@NonNull NotificationListener listener,
+                                                                           NotificationType... ignored) {
         return register(configureListener(listener).withIgnoredEvents(ignored));
     }
 
@@ -209,9 +213,9 @@ public class PusherNotificationService implements NotificationsService {
         if (subscribed.containsKey(channel))
             return;
 
-        Channel pChan = pusher.subscribe(channel);
-        subscribed.put(channel, pChan);
-        bind(pChan);
+        Channel pusherChannel = pusher.subscribe(channel);
+        subscribed.put(channel, pusherChannel);
+        bind(pusherChannel);
     }
 
     private void unsubscribe(@NonNull String channel) {
@@ -221,8 +225,8 @@ public class PusherNotificationService implements NotificationsService {
         if (!subscribed.containsKey(channel))
             return;
 
-        Channel pChan = subscribed.remove(channel);
-        unbind(pChan);
+        Channel pusherChannel = subscribed.remove(channel);
+        unbind(pusherChannel);
         pusher.unsubscribe(channel);
     }
 

@@ -1,11 +1,12 @@
 package com.enjin.enjincoin.sdk;
 
-import okhttp3.HttpUrl;
-import okhttp3.mockwebserver.MockWebServer;
+import java.io.IOException;
+
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 
-import java.io.IOException;
+import okhttp3.HttpUrl;
+import okhttp3.mockwebserver.MockWebServer;
 
 public class MockWebServerTestRule extends TestWatcher {
 

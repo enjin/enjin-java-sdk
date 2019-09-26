@@ -1,8 +1,8 @@
 package com.enjin.enjincoin.sdk.model.service.requests;
 
-import com.enjin.enjincoin.sdk.model.service.PaginationRequest;
-
 import java.util.List;
+
+import com.enjin.enjincoin.sdk.model.service.PaginationRequest;
 
 /**
  * A builder for requests from the Trusted platform.

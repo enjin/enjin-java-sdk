@@ -1,8 +1,8 @@
 package com.enjin.enjincoin.sdk.model.service.roles;
 
-import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
-
 import java.util.Collection;
+
+import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
 
 public class UpdateRole extends GraphQLRequest<UpdateRole> {
 

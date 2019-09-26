@@ -1,10 +1,11 @@
 package com.enjin.enjincoin.sdk.graphql.api;
 
+import java.util.List;
+
 import com.enjin.enjincoin.sdk.graphql.GraphQLTemplate;
 import com.google.common.truth.Truth;
-import org.junit.Test;
 
-import java.util.List;
+import org.junit.Test;
 
 public class TemplatesTest {
 

@@ -1,6 +1,7 @@
 package com.enjin.enjincoin.sdk.graphql;
 
 import static com.google.common.truth.Truth.*;
+
 import org.junit.Test;
 
 public class GraphQLTemplateFieldTest {

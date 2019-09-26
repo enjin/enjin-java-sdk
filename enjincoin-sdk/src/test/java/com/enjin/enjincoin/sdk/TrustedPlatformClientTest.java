@@ -1,12 +1,5 @@
 package com.enjin.enjincoin.sdk;
 
-import com.enjin.enjincoin.sdk.http.HttpCallback;
-import com.enjin.enjincoin.sdk.http.HttpResponse;
-import com.enjin.enjincoin.sdk.model.service.auth.AuthResult;
-import okhttp3.logging.HttpLoggingInterceptor.Level;
-import okhttp3.mockwebserver.MockResponse;
-import org.junit.Rule;
-import org.junit.Test;
 import static com.google.common.truth.Truth.*;
 import static org.awaitility.Awaitility.*;
 import static org.hamcrest.Matchers.*;
@@ -14,6 +7,16 @@ import static org.hamcrest.Matchers.*;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
+
+import com.enjin.enjincoin.sdk.http.HttpCallback;
+import com.enjin.enjincoin.sdk.http.HttpResponse;
+import com.enjin.enjincoin.sdk.model.service.auth.AuthResult;
+
+import org.junit.Rule;
+import org.junit.Test;
+
+import okhttp3.logging.HttpLoggingInterceptor.Level;
+import okhttp3.mockwebserver.MockResponse;
 
 public class TrustedPlatformClientTest {
 
