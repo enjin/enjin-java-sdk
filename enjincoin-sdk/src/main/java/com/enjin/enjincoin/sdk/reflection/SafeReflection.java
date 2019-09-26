@@ -13,10 +13,9 @@ public final class SafeReflection {
         List<SafeField> fields = new ArrayList<>();
 
         for (Field field : target.getDeclaredFields()) {
-            if (field.getType() != type)
+            if (field.getType() != type || !hasModifiers(field, modifiers))
                 continue;
-            if (!hasModifiers(field, modifiers))
-                continue;
+
             fields.add(new SafeField(field));
         }
 

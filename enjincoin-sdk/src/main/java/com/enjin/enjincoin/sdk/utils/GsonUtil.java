@@ -11,7 +11,7 @@ public final class GsonUtil {
     }
 
     public static boolean pathExists(JsonObject root, String path) {
-        String[] keys = path.split(".");
+        String[] keys = path.split("\\.");
         return pathExists(root, keys, 0);
     }
 
@@ -34,7 +34,7 @@ public final class GsonUtil {
         if (!pathExists(root, path))
             return Optional.empty();
 
-        String[] keys = path.split(".");
+        String[] keys = path.split("\\.");
         return getJsonElement(root, keys, 0);
     }
 

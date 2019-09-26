@@ -55,7 +55,8 @@ public class SessionCookieJar implements CookieJar {
         List<Cookie> cookieStore = clientCookieStore.get(host);
 
         if (cookieStore == null) {
-            clientCookieStore.put(host, (cookieStore = new ArrayList<>()));
+            cookieStore = new ArrayList<>();
+            clientCookieStore.put(host, cookieStore);
         }
 
         putCookie(cookieStore, cookie);

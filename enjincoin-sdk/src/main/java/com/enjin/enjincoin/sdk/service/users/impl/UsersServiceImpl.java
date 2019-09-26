@@ -11,7 +11,6 @@ import com.enjin.enjincoin.sdk.model.service.users.User;
 import com.enjin.enjincoin.sdk.service.GraphQLServiceBase;
 import com.enjin.enjincoin.sdk.service.users.UsersService;
 import com.enjin.enjincoin.sdk.http.HttpCallback;
-import retrofit2.Call;
 import retrofit2.Retrofit;
 
 import java.io.IOException;

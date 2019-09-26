@@ -70,8 +70,8 @@ public class PusherNotificationService implements NotificationsService {
                             ConnectionState current  = change.getCurrentState();
 
                             PusherNotificationService.log.fine(String.format("State changed from %s to %s.",
-                                                                              previous,
-                                                                              current));
+                                                                             previous,
+                                                                             current));
                         }
 
                         @Override
@@ -203,23 +203,27 @@ public class PusherNotificationService implements NotificationsService {
     }
 
     private void subscribe(@NonNull String channel) {
-        if (!ObjectUtils.isNull(pusher)) {
-            if (!subscribed.containsKey(channel)) {
-                Channel pChan = pusher.subscribe(channel);
-                subscribed.put(channel, pChan);
-                bind(pChan);
-            }
-        }
+        if (pusher == null)
+            return;
+
+        if (subscribed.containsKey(channel))
+            return;
+
+        Channel pChan = pusher.subscribe(channel);
+        subscribed.put(channel, pChan);
+        bind(pChan);
     }
 
     private void unsubscribe(@NonNull String channel) {
-        if (!ObjectUtils.isNull(pusher)) {
-            if (subscribed.containsKey(channel)) {
-                Channel pChan = subscribed.remove(channel);
-                unbind(pChan);
-                pusher.unsubscribe(channel);
-            }
-        }
+        if (pusher == null)
+            return;
+
+        if (!subscribed.containsKey(channel))
+            return;
+
+        Channel pChan = subscribed.remove(channel);
+        unbind(pChan);
+        pusher.unsubscribe(channel);
     }
 
     private void bind(@NonNull Channel channel) {

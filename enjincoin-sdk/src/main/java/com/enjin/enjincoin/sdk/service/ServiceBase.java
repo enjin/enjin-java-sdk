@@ -2,17 +2,14 @@ package com.enjin.enjincoin.sdk.service;
 
 import com.enjin.enjincoin.sdk.http.HttpCallback;
 import com.enjin.enjincoin.sdk.http.HttpResponse;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import okhttp3.MediaType;
+import lombok.extern.java.Log;
 import retrofit2.Call;
 
 import java.io.IOException;
+import java.util.logging.Level;
 
+@Log
 public class ServiceBase {
-
-    private static final Gson      GSON = new GsonBuilder().create();
-    private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     protected <T> HttpResponse<T> execute(Call<T> call) throws IOException {
         retrofit2.Response<T> response = call.execute();
@@ -28,8 +25,7 @@ public class ServiceBase {
 
             @Override
             public void onFailure(Call<T> call, Throwable t) {
-                Exception exception = new Exception("There was an error while processing a request or a response.", t);
-                exception.printStackTrace();
+                ServiceBase.log.log(Level.WARNING, "There was an error while processing a request or a response.", t);
             }
         });
     }

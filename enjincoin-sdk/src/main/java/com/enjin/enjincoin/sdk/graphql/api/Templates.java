@@ -9,14 +9,16 @@ import com.github.dmstocking.optional.java.util.Optional;
 import com.github.dmstocking.optional.java.util.function.Consumer;
 import lombok.extern.java.Log;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
 @Log
-public class Templates {
+public final class Templates {
+
+    private Templates() {
+        throw new IllegalStateException("Utility Class");
+    }
 
     // Platform
     public static final GraphQLTemplate GET_PLATFORM = GraphQLTemplate.of("GetPlatform", false, ENJIN_PLATFORM)

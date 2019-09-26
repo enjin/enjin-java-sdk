@@ -1,7 +1,6 @@
 package com.enjin.enjincoin.sdk.serialization.converter;
 
 import com.enjin.enjincoin.sdk.serialization.Json;
-import com.google.gson.Gson;
 import okhttp3.RequestBody;
 import okio.Buffer;
 import retrofit2.Converter;

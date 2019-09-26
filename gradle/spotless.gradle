@@ -1,6 +1,8 @@
 apply plugin: 'com.diffplug.gradle.spotless'
 
 spotless {
+    enforceCheck = false
+
     java {
         target fileTree(projectDir) {
             include '**/*.java'

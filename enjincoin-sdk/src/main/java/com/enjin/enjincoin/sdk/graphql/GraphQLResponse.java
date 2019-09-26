@@ -69,7 +69,7 @@ public class GraphQLResponse<T> {
      * @return true if there are errors, else false.
      */
     public boolean hasErrors() {
-        return errors != null && errors.size() > 0;
+        return errors != null && !errors.isEmpty();
     }
 
     public boolean isPaginated() {

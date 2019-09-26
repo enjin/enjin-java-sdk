@@ -1,6 +1,10 @@
 package com.enjin.enjincoin.sdk.graphql.api;
 
-public class Methods {
+public final class Methods {
+
+    private Methods() {
+        throw new IllegalStateException("Utility Class");
+    }
 
     // Platform
     public static final String ENJIN_PLATFORM = "EnjinPlatform";

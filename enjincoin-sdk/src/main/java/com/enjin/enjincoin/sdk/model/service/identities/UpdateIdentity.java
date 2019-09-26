@@ -2,9 +2,6 @@ package com.enjin.enjincoin.sdk.model.service.identities;
 
 import com.enjin.enjincoin.sdk.graphql.GraphQLRequest;
 
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * A builder for updating an identity on the Trusted platform.
  *

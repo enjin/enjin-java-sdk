@@ -4,7 +4,6 @@ import com.enjin.enjincoin.sdk.model.service.requests.TransactionType;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonParseException;
 
 import java.lang.reflect.Type;
 
@@ -12,8 +11,8 @@ public class TransactionTypeDeserializer implements JsonDeserializer<Transaction
 
     @Override
     public TransactionType deserialize(JsonElement json,
-                                   Type typeOfT,
-                                   JsonDeserializationContext context) throws JsonParseException {
+                                       Type typeOfT,
+                                       JsonDeserializationContext context) {
         TransactionType out = TransactionType.UNKNOWN;
 
         if (json.isJsonPrimitive()) {

@@ -9,9 +9,11 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.pusher.client.channel.SubscriptionEventListener;
 
+import java.util.logging.Level;
+
 public class PusherEventListener implements SubscriptionEventListener {
 
-    private static final Gson GSON = new GsonBuilder().create();
+    private static final Gson   GSON           = new GsonBuilder().create();
     private static final String EVENT_TYPE_KEY = "event_type";
 
     private PusherNotificationService service;
@@ -22,15 +24,13 @@ public class PusherEventListener implements SubscriptionEventListener {
 
     @Override
     public void onEvent(String channelName, String eventName, String data) {
-        PusherNotificationService.logger().fine(String.format("Received event %s on channel %s with results %s ",
-                                                    eventName,
-                                                    channelName,
-                                                    data));
+        PusherNotificationService.logger().log(Level.FINE, "Received event {0} on channel {1} with results {2}", new Object[] {eventName, channelName, data});
         call(data, channelName, eventName);
     }
 
     private void call(String sourceData, String channel, String eventType) {
-        if (CollectionUtils.isEmpty(service.listeners)) return;
+        if (CollectionUtils.isEmpty(service.listeners))
+            return;
 
         JsonElement      dataElement      = GSON.fromJson(sourceData, JsonElement.class);
         NotificationType notificationType = NotificationType.UNKNOWN_EVENT;
@@ -53,8 +53,7 @@ public class PusherEventListener implements SubscriptionEventListener {
         }
 
         if (notificationType == NotificationType.UNKNOWN_EVENT) {
-            PusherNotificationService.logger().warning(String.format("UNKNOWN_EVENT NotificationType %s returned for the eventType of %s",
-                                                       eventTypeString, eventType));
+            PusherNotificationService.logger().log(Level.WARNING, "UNKNOWN_EVENT NotificationType {0} returned for the eventType of {1}", new Object[]{eventTypeString, eventType});
             return;
         }
 

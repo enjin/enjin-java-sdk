@@ -147,7 +147,7 @@ public class NotificationListenerRegistration {
      * @return RegistrationListenerConfiguration
      */
     @SuppressWarnings("rawtypes")
-    public static RegistrationListenerConfiguration<?> configure(NotificationListener listener) {
+    public static RegistrationListenerConfiguration configure(NotificationListener listener) {
         return new RegistrationListenerConfiguration(listener);
     }
 

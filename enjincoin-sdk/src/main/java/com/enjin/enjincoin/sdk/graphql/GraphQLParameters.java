@@ -19,9 +19,8 @@ import java.util.Map;
  */
 public class GraphQLParameters {
 
-    private final Gson                gson = new GsonBuilder()
-            .disableHtmlEscaping()
-            .create();
+    private final Gson                gson = new GsonBuilder().disableHtmlEscaping()
+                                                              .create();
     private       Map<String, Object> parameters;
 
     /**
@@ -56,14 +55,16 @@ public class GraphQLParameters {
      */
     public String getFormattedParameters() {
         StringBuilder builder = new StringBuilder();
-        for (final Map.Entry<String, Object> parameter : this.parameters.entrySet()) {
-            if (builder.length() > 0) {
-                builder.append(", ");
-            }
 
-            builder.append(parameter.getKey()).append(": ");
-            builder.append(objectToGraphQLFormat(parameter.getValue()));
+        for (final Map.Entry<String, Object> parameter : this.parameters.entrySet()) {
+            if (builder.length() > 0)
+                builder.append(", ");
+
+            builder.append(parameter.getKey())
+                   .append(": ")
+                   .append(toGraphQLFormat(parameter.getValue()));
         }
+
         return builder.toString();
     }
 
@@ -71,49 +72,52 @@ public class GraphQLParameters {
         return parameters.containsKey(key);
     }
 
-    private String objectToGraphQLFormat(Object object) {
-        if (object instanceof JsonElement) {
-            return jsonElementToGraphQLFormat((JsonElement) object);
-        } else if (object instanceof Enum) {
+    private String toGraphQLFormat(Object object) {
+        if (object instanceof JsonElement)
+            return toGraphQLFormat((JsonElement) object);
+        else if (object instanceof Enum)
             return ((Enum) object).name();
-        }
 
-        return jsonElementToGraphQLFormat(gson.toJsonTree(object));
+        return toGraphQLFormat(gson.toJsonTree(object));
     }
 
-    private String jsonElementToGraphQLFormat(JsonElement element) {
+    private String toGraphQLFormat(JsonObject object) {
+        StringBuilder builder = new StringBuilder("{");
+
+        for (Map.Entry<String, JsonElement> entry : object.entrySet()) {
+            if (builder.length() > 1)
+                builder.append(',');
+
+            builder.append(entry.getKey())
+                   .append(':')
+                   .append(toGraphQLFormat(entry.getValue()));
+        }
+
+        return builder.append('}')
+                      .toString();
+    }
+
+    private String toGraphQLFormat(JsonArray array) {
+        StringBuilder builder = new StringBuilder("[");
+
+        for (JsonElement elem : array) {
+            if (builder.length() > 1)
+                builder.append(',');
+
+            builder.append(toGraphQLFormat(elem));
+        }
+
+        return builder.append(']')
+                      .toString();
+    }
+
+    private String toGraphQLFormat(JsonElement element) {
         StringBuilder builder = new StringBuilder();
 
         if (element instanceof JsonObject) {
-            JsonObject object = element.getAsJsonObject();
-
-            builder.append('{');
-            StringBuilder objBuilder = new StringBuilder();
-            for (Map.Entry<String, JsonElement> entry : object.entrySet()) {
-                if (objBuilder.length() > 0) {
-                    objBuilder.append(',');
-                }
-
-                objBuilder.append(entry.getKey())
-                          .append(':')
-                          .append(jsonElementToGraphQLFormat(entry.getValue()));
-            }
-            builder.append(objBuilder.toString());
-            builder.append('}');
+            builder.append(toGraphQLFormat(element.getAsJsonObject()));
         } else if (element instanceof JsonArray) {
-            JsonArray array = element.getAsJsonArray();
-
-            builder.append('[');
-            StringBuilder arrBuilder = new StringBuilder();
-            for (JsonElement elem : array) {
-                if (arrBuilder.length() > 0) {
-                    arrBuilder.append(',');
-                }
-
-                arrBuilder.append(jsonElementToGraphQLFormat(elem));
-            }
-            builder.append(arrBuilder.toString());
-            builder.append(']');
+            builder.append(toGraphQLFormat(element.getAsJsonArray()));
         } else if (element instanceof JsonPrimitive) {
             JsonPrimitive primitive = element.getAsJsonPrimitive();
             if (primitive.isBoolean()) {
