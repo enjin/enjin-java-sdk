@@ -74,6 +74,12 @@ allprojects {
             url 'https://oss.sonatype.org/content/groups/public/'
         }
     }
+
+    sonarqube {
+        properties {
+            property "sonar.exclusions", "**/*{!.java},**/build/**,**/test/**"
+        }
+    }
 }
 
 subprojects {
@@ -84,6 +90,7 @@ subprojects {
     apply plugin: 'net.ltgt.errorprone'
     apply plugin: 'com.github.johnrengelman.shadow'
     apply plugin: 'jacoco'
+    apply plugin: 'checkstyle'
     apply from: "${rootProject.rootDir}/gradle/deploy.gradle"
 
     sourceCompatibility = JavaVersion.VERSION_1_7
@@ -126,6 +133,17 @@ subprojects {
     jacocoTestReport {
         reports {
             html.destination file("${buildDir}/reports/tests/test")
+        }
+    }
+
+    checkstyle {
+        toolVersion = '8.24'
+    }
+
+    tasks.withType(Checkstyle) {
+        reports {
+            xml.enabled false
+            html.enabled true
         }
     }
 }
