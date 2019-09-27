@@ -1,7 +1,7 @@
-package com.enjin.enjincoin.sdk.graphql.api;
+package com.enjin.enjincoin.sdk.graphql.definitions;
 
-import static com.enjin.enjincoin.sdk.graphql.api.Fields.*;
-import static com.enjin.enjincoin.sdk.graphql.api.Methods.*;
+import static com.enjin.enjincoin.sdk.graphql.definitions.Fields.*;
+import static com.enjin.enjincoin.sdk.graphql.definitions.Methods.*;
 
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
@@ -157,7 +157,7 @@ public final class Templates {
                                                                       .withField(BALANCE_TOKEN);
 
     private Templates() {
-        throw new IllegalStateException("Utility Class");
+        throw new UnsupportedOperationException("Utility Class");
     }
 
     /**

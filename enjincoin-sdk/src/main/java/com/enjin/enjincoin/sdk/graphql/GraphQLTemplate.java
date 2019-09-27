@@ -3,7 +3,7 @@ package com.enjin.enjincoin.sdk.graphql;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.enjin.enjincoin.sdk.graphql.api.Fields;
+import com.enjin.enjincoin.sdk.graphql.definitions.Fields;
 
 public class GraphQLTemplate {
 

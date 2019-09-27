@@ -2,7 +2,7 @@ package com.enjin.enjincoin.sdk.graphql;
 
 import java.lang.annotation.Annotation;
 
-import com.enjin.enjincoin.sdk.graphql.api.Templates;
+import com.enjin.enjincoin.sdk.graphql.definitions.Templates;
 
 /**
  * Loads and manages GraphQL template files used by various

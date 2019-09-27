@@ -1,4 +1,4 @@
-package com.enjin.enjincoin.sdk.graphql.api;
+package com.enjin.enjincoin.sdk.graphql.definitions;
 
 import com.enjin.enjincoin.sdk.graphql.GraphQLTemplateField;
 
@@ -114,7 +114,7 @@ public final class Fields {
                                                                           .withChild(BLOCK_NUMBER);
 
     private Fields() {
-        throw new IllegalStateException("Utility Class");
+        throw new UnsupportedOperationException("Utility Class");
     }
 
 }

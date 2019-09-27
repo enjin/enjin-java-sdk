@@ -12,7 +12,9 @@ buildscript {
             'truth'           : '1.0',
             'awaitility'      : '4.0.1',
             'toStringVerifier': '1.4.5',
-            'equalsVerifier'  : '3.1.9'
+            'equalsVerifier'  : '3.1.9',
+            'mockito'         : '2.28.2',
+            'powermock'       : '2.0.2'
     ]
 
     ext.deps = [
@@ -30,7 +32,10 @@ buildscript {
             'truth'                   : "com.google.truth:truth:${versions.truth}",
             'awaitility'              : "org.awaitility:awaitility:${versions.awaitility}",
             'toStringVerifier'        : "com.jparams:to-string-verifier:${versions.toStringVerifier}",
-            'equalsVerifier'          : "nl.jqno.equalsverifier:equalsverifier:${versions.equalsVerifier}"
+            'equalsVerifier'          : "nl.jqno.equalsverifier:equalsverifier:${versions.equalsVerifier}",
+            'mockito'                 : "org.mockito:mockito-core:${versions.mockito}",
+            'powermockJunit4'         : "org.powermock:powermock-module-junit4:${versions.powermock}",
+            'powermockMockito2'       : "org.powermock:powermock-api-mockito2:${versions.powermock}"
     ]
 
     ext.local = new Properties()

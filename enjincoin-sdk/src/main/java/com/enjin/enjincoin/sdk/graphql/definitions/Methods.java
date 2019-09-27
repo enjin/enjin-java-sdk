@@ -1,10 +1,6 @@
-package com.enjin.enjincoin.sdk.graphql.api;
+package com.enjin.enjincoin.sdk.graphql.definitions;
 
 public final class Methods {
-
-    private Methods() {
-        throw new IllegalStateException("Utility Class");
-    }
 
     // Platform
     public static final String ENJIN_PLATFORM = "EnjinPlatform";
@@ -54,5 +50,9 @@ public final class Methods {
 
     // Balances
     public static final String ENJIN_BALANCES = "EnjinBalances";
+
+    private Methods() {
+        throw new UnsupportedOperationException("Utility Class");
+    }
 
 }
