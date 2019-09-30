@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.pusher.client.channel.PusherEvent;
 import com.pusher.client.channel.SubscriptionEventListener;
 
 public class PusherEventListener implements SubscriptionEventListener {
@@ -23,7 +24,11 @@ public class PusherEventListener implements SubscriptionEventListener {
     }
 
     @Override
-    public void onEvent(String channelName, String eventName, String data) {
+    public void onEvent(PusherEvent event) {
+        String eventName = event.getEventName();
+        String channelName = event.getChannelName();
+        String data = event.getData();
+
         PusherNotificationService.logger()
                                  .log(Level.FINE,
                                       "Received event {0} on channel {1} with results {2}",
