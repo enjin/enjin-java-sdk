@@ -16,11 +16,11 @@ public final class GsonUtil {
     }
 
     private static boolean pathExists(JsonObject node, String[] keys, int keyIndex) {
-        if (keyIndex == keys.length)
-            return true;
-
         if (!node.has(keys[keyIndex]))
             return false;
+
+        if (keyIndex == keys.length - 1)
+            return true;
 
         JsonElement next = node.get(keys[keyIndex]);
 
@@ -39,9 +39,6 @@ public final class GsonUtil {
      * @return empty optional if path does not exist or is null, else optional wrapped element
      */
     public static Optional<JsonElement> getJsonElement(JsonObject root, String path) {
-        if (!pathExists(root, path))
-            return Optional.empty();
-
         String[] keys = path.split("\\.");
         return getJsonElement(root, keys, 0);
     }

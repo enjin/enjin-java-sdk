@@ -93,6 +93,6 @@ public class GraphQLResponse<T> {
      * @return true if not empty and no errors, else false.
      */
     public boolean isSuccess() {
-        return !isEmpty() && !hasErrors();
+        return !(isEmpty() || hasErrors());
     }
 }
