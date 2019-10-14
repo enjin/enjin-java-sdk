@@ -91,20 +91,6 @@ public class TrustedPlatformClientTest {
     }
 
     @Test
-    public void setUserId_returnsUserId() {
-        TrustedPlatformClient client = MockWebServerTestRule.clientBuilder().build();
-        client.setUserId(USER_ID);
-        assertThat(client.getUserId()).isEqualTo(USER_ID);
-    }
-
-    @Test
-    public void setIdentityId_returnsIdentityId() {
-        TrustedPlatformClient client = MockWebServerTestRule.clientBuilder().build();
-        client.setIdentityId(IDENTITY_ID);
-        assertThat(client.getIdentityId()).isEqualTo(IDENTITY_ID);
-    }
-
-    @Test
     public void authAppSync_networkResponseIsSuccessful() throws IOException {
         TrustedPlatformClient client = MockWebServerTestRule.clientBuilder().build();
 

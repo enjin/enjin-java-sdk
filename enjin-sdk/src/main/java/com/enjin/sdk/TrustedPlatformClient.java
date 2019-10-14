@@ -147,22 +147,6 @@ public final class TrustedPlatformClient implements Closeable {
         return this.trustedPlatformInterceptor.getAppId();
     }
 
-    public void setUserId(Integer id) {
-        this.trustedPlatformInterceptor.setUserId(id);
-    }
-
-    public Integer getUserId() {
-        return this.trustedPlatformInterceptor.getUserId();
-    }
-
-    public void setIdentityId(Integer id) {
-        this.trustedPlatformInterceptor.setIdentityId(id);
-    }
-
-    public Integer getIdentityId() {
-        return this.trustedPlatformInterceptor.getIdentityId();
-    }
-
     public void setHttpLogLevel(Level level) {
         this.httpLogInterceptor.setLevel(level == null ? Level.NONE : level);
     }
