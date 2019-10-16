@@ -11,27 +11,28 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface IdentitiesRetrofitService {
 
-    @POST("graphql")
+    @POST("graphql/{schema}")
     @GraphQuery("GetIdentities")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<List<Identity>>> getIdentities(@Body GraphQLRequest request);
+    Call<GraphQLResponse<List<Identity>>> getIdentities(@Path(value = "schema") String schema, @Body GraphQLRequest request);
 
-    @POST("graphql")
+    @POST("graphql/{schema}")
     @GraphQuery("CreateIdentity")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<Identity>> createIdentity(@Body GraphQLRequest request);
+    Call<GraphQLResponse<Identity>> createIdentity(@Path(value = "schema") String schema, @Body GraphQLRequest request);
 
-    @POST("graphql")
+    @POST("graphql/{schema}")
     @GraphQuery("DeleteIdentity")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<Identity>> deleteIdentity(@Body GraphQLRequest request);
+    Call<GraphQLResponse<Identity>> deleteIdentity(@Path(value = "schema") String schema, @Body GraphQLRequest request);
 
-    @POST("graphql")
+    @POST("graphql/{schema}")
     @GraphQuery("UpdateIdentity")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<Identity>> updateIdentity(@Body GraphQLRequest request);
+    Call<GraphQLResponse<Identity>> updateIdentity(@Path(value = "schema") String schema, @Body GraphQLRequest request);
 
 }

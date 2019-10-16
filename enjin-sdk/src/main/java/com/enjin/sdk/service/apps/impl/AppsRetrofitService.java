@@ -11,27 +11,28 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface AppsRetrofitService {
 
-    @POST("graphql")
+    @POST("graphql/{schema}")
     @GraphQuery("GetApps")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<List<App>>> getApps(@Body GraphQLRequest request);
+    Call<GraphQLResponse<List<App>>> getApps(@Path(value = "schema") String schema, @Body GraphQLRequest request);
 
-    @POST("graphql")
+    @POST("graphql/{schema}")
     @GraphQuery("CreateApp")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<App>> createApps(@Body GraphQLRequest request);
+    Call<GraphQLResponse<App>> createApps(@Path(value = "schema") String schema, @Body GraphQLRequest request);
 
-    @POST("graphql")
+    @POST("graphql/{schema}")
     @GraphQuery("DeleteApp")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<App>> deleteApps(@Body GraphQLRequest request);
+    Call<GraphQLResponse<App>> deleteApps(@Path(value = "schema") String schema, @Body GraphQLRequest request);
 
-    @POST("graphql")
+    @POST("graphql/{schema}")
     @GraphQuery("UpdateApp")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<App>> updateApps(@Body GraphQLRequest request);
+    Call<GraphQLResponse<App>> updateApps(@Path(value = "schema") String schema, @Body GraphQLRequest request);
 
 }

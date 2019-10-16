@@ -11,27 +11,28 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface RolesRetrofitService {
 
-    @POST("graphql")
+    @POST("graphql/{schema}")
     @GraphQuery("GetRoles")
     @Headers("Content-Type: Rolelication/json")
-    Call<GraphQLResponse<List<Role>>> getRoles(@Body GraphQLRequest request);
+    Call<GraphQLResponse<List<Role>>> getRoles(@Path(value = "schema") String schema, @Body GraphQLRequest request);
 
-    @POST("graphql")
+    @POST("graphql/{schema}")
     @GraphQuery("CreateRole")
     @Headers("Content-Type: Rolelication/json")
-    Call<GraphQLResponse<Role>> createRole(@Body GraphQLRequest request);
+    Call<GraphQLResponse<Role>> createRole(@Path(value = "schema") String schema, @Body GraphQLRequest request);
 
-    @POST("graphql")
+    @POST("graphql/{schema}")
     @GraphQuery("DeleteRole")
     @Headers("Content-Type: Rolelication/json")
-    Call<GraphQLResponse<Role>> deleteRole(@Body GraphQLRequest request);
+    Call<GraphQLResponse<Role>> deleteRole(@Path(value = "schema") String schema, @Body GraphQLRequest request);
 
-    @POST("graphql")
+    @POST("graphql/{schema}")
     @GraphQuery("UpdateRole")
     @Headers("Content-Type: Rolelication/json")
-    Call<GraphQLResponse<Role>> updateRole(@Body GraphQLRequest request);
+    Call<GraphQLResponse<Role>> updateRole(@Path(value = "schema") String schema, @Body GraphQLRequest request);
 
 }

@@ -9,6 +9,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface PlatformRetrofitService {
 
@@ -19,10 +20,10 @@ public interface PlatformRetrofitService {
      *
      * @return the request call
      */
-    @POST("graphql")
+    @POST("graphql/{schema}")
     @GraphQuery("GetPlatform")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<PlatformDetails>> getPlatform(@Body GraphQLRequest request);
+    Call<GraphQLResponse<PlatformDetails>> getPlatform(@Path(value = "schema") String schema, @Body GraphQLRequest request);
 
 
 }

@@ -11,27 +11,28 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface RequestsRetrofitService {
 
-    @POST("graphql")
+    @POST("graphql/{schema}")
     @GraphQuery("GetRequests")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<List<Transaction>>> getRequests(@Body GraphQLRequest request);
+    Call<GraphQLResponse<List<Transaction>>> getRequests(@Path(value = "schema") String schema, @Body GraphQLRequest request);
 
-    @POST("graphql")
+    @POST("graphql/{schema}")
     @GraphQuery("CreateRequest")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<Transaction>> createRequest(@Body GraphQLRequest request);
+    Call<GraphQLResponse<Transaction>> createRequest(@Path(value = "schema") String schema, @Body GraphQLRequest request);
 
-    @POST("graphql")
+    @POST("graphql/{schema}")
     @GraphQuery("UpdateRequest")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<Transaction>> updateRequest(@Body GraphQLRequest request);
+    Call<GraphQLResponse<Transaction>> updateRequest(@Path(value = "schema") String schema, @Body GraphQLRequest request);
 
-    @POST("graphql")
+    @POST("graphql/{schema}")
     @GraphQuery("DeleteRequest")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<Transaction>> deleteRequest(@Body GraphQLRequest request);
+    Call<GraphQLResponse<Transaction>> deleteRequest(@Path(value = "schema") String schema, @Body GraphQLRequest request);
 
 }

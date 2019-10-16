@@ -12,32 +12,33 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface TokensRetrofitService {
 
-    @POST("graphql")
+    @POST("graphql/{schema}")
     @GraphQuery("GetTokens")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<List<Token>>> getTokens(@Body GraphQLRequest request);
+    Call<GraphQLResponse<List<Token>>> getTokens(@Path(value = "schema") String schema, @Body GraphQLRequest request);
 
-    @POST("graphql")
+    @POST("graphql/{schema}")
     @GraphQuery("CreateToken")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<Token>> createToken(@Body GraphQLRequest request);
+    Call<GraphQLResponse<Token>> createToken(@Path(value = "schema") String schema, @Body GraphQLRequest request);
 
-    @POST("graphql")
+    @POST("graphql/{schema}")
     @GraphQuery("UpdateToken")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<Token>> updateToken(@Body GraphQLRequest request);
+    Call<GraphQLResponse<Token>> updateToken(@Path(value = "schema") String schema, @Body GraphQLRequest request);
 
-    @POST("graphql")
+    @POST("graphql/{schema}")
     @GraphQuery("DeleteToken")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<Token>> deleteToken(@Body GraphQLRequest request);
+    Call<GraphQLResponse<Token>> deleteToken(@Path(value = "schema") String schema, @Body GraphQLRequest request);
 
-    @POST("graphql")
+    @POST("graphql/{schema}")
     @GraphQuery("GetTokenEvents")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<List<TokenEvent>>> getTokenEvents(@Body GraphQLRequest request);
+    Call<GraphQLResponse<List<TokenEvent>>> getTokenEvents(@Path(value = "schema") String schema, @Body GraphQLRequest request);
 
 }

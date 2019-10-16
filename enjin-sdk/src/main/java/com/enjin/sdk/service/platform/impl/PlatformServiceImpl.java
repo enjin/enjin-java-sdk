@@ -6,6 +6,7 @@ import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpCallback;
 import com.enjin.sdk.http.HttpResponse;
+import com.enjin.sdk.http.SchemaProvider;
 import com.enjin.sdk.model.service.platform.PlatformDetails;
 import com.enjin.sdk.service.GraphQLServiceBase;
 import com.enjin.sdk.service.platform.PlatformService;
@@ -15,23 +16,21 @@ import retrofit2.Retrofit;
 
 public class PlatformServiceImpl extends GraphQLServiceBase implements PlatformService {
 
-    private PlatformRetrofitService service;
+    private final PlatformRetrofitService service;
+    private final SchemaProvider schemaProvider;
 
-    public PlatformServiceImpl(Retrofit retrofit) {
+    public PlatformServiceImpl(Retrofit retrofit, SchemaProvider schemaProvider) {
         this.service = retrofit.create(PlatformRetrofitService.class);
+        this.schemaProvider = schemaProvider;
     }
 
     @Override
     public void getPlatformAsync(HttpCallback<GraphQLResponse<PlatformDetails>> callback) {
-        enqueueGraphQLCall(getPlatform(), callback);
+        enqueueGraphQLCall(this.service.getPlatform(schemaProvider.get(), new GraphQLRequest()), callback);
     }
 
     @Override
     public HttpResponse<GraphQLResponse<PlatformDetails>> getPlatformSync() throws IOException {
-        return executeGraphQLCall(getPlatform());
-    }
-
-    private Call<GraphQLResponse<PlatformDetails>> getPlatform() {
-        return this.service.getPlatform(new GraphQLRequest());
+        return executeGraphQLCall(this.service.getPlatform(schemaProvider.get(), new GraphQLRequest()));
     }
 }

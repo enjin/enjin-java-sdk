@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 import com.enjin.sdk.http.HttpCallback;
 import com.enjin.sdk.http.HttpResponse;
+import com.enjin.sdk.http.SchemaProvider;
 import com.enjin.sdk.http.SessionCookieJar;
 import com.enjin.sdk.http.SimpleCallback;
 import com.enjin.sdk.http.TrustedPlatformInterceptor;
@@ -61,6 +62,7 @@ public final class TrustedPlatformClient implements Closeable {
     private TrustedPlatformInterceptor trustedPlatformInterceptor;
     private HttpLoggingInterceptor httpLogInterceptor;
     private OkHttpClient httpClient;
+    private SchemaProvider schemaProvider;
     // Services
     @Getter
     private AppsService appsService;
@@ -85,6 +87,7 @@ public final class TrustedPlatformClient implements Closeable {
 
     private TrustedPlatformClient(Builder builder) {
         baseUrl = builder.baseUrl.orElse(MAIN_NET);
+        schemaProvider = new SchemaProvider();
         // Cookie Jar
         SessionCookieJar cookieJar = new SessionCookieJar();
 
@@ -120,15 +123,15 @@ public final class TrustedPlatformClient implements Closeable {
                 .build();
 
         this.authService = retrofit.create(AuthRetrofitService.class);
-        this.platformService = new PlatformServiceImpl(retrofit);
-        this.ethereumService = new EthereumServiceImpl(retrofit);
-        this.appsService = new AppsServiceImpl(retrofit);
-        this.rolesService = new RolesServiceImpl(retrofit);
-        this.usersService = new UsersServiceImpl(retrofit);
-        this.identitiesService = new IdentitiesServiceImpl(retrofit);
-        this.requestsService = new RequestsServiceImpl(retrofit);
-        this.tokensService = new TokensServiceImpl(retrofit);
-        this.balancesService = new BalancesServiceImpl(retrofit);
+        this.platformService = new PlatformServiceImpl(retrofit, schemaProvider);
+        this.ethereumService = new EthereumServiceImpl(retrofit, schemaProvider);
+        this.appsService = new AppsServiceImpl(retrofit, schemaProvider);
+        this.rolesService = new RolesServiceImpl(retrofit, schemaProvider);
+        this.usersService = new UsersServiceImpl(retrofit, schemaProvider);
+        this.identitiesService = new IdentitiesServiceImpl(retrofit, schemaProvider);
+        this.requestsService = new RequestsServiceImpl(retrofit, schemaProvider);
+        this.tokensService = new TokensServiceImpl(retrofit, schemaProvider);
+        this.balancesService = new BalancesServiceImpl(retrofit, schemaProvider);
     }
 
     public OkHttpClient getHttpClient() {
