@@ -130,13 +130,6 @@ public class Token {
     private Boolean markedForDeletion;
 
     /**
-     * Whether the tokens are held by the creator. Depends on the query context.
-     *
-     * @return is this owned by the creator?
-     */
-    private Boolean isCreator;
-
-    /**
      * The balance.
      *
      * @return the balance.
