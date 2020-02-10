@@ -35,12 +35,12 @@ import com.enjin.sdk.service.requests.RequestsService;
  */
 public class CreateRequest extends GraphQLRequest<CreateRequest> {
 
-    private CreateRequest appId(Integer appId) {
+    public CreateRequest appId(Integer appId) {
         withParameter("appId", appId);
         return this;
     }
 
-    private CreateRequest ethAddr(String ethAddr) {
+    public CreateRequest ethAddr(String ethAddr) {
         withParameter("ethAddress", ethAddr);
         return this;
     }

@@ -66,6 +66,10 @@ public final class Templates {
                                                                              true,
                                                                              Methods.DELETE_ENJIN_IDENTITY)
                                                                          .copyChildren(Fields.IDENT_W_BALS);
+    public static final GraphQLTemplate UNLINK_IDENTITY = GraphQLTemplate.of("UnlinkIdentity",
+                                                                             true,
+                                                                             Methods.UNLINK_IDENTITY)
+                                                                         .copyChildren(Fields.IDENT_BASE);
 
     // Tokens
     public static final GraphQLTemplate GET_TOKENS = GraphQLTemplate.of("GetTokens", false, Methods.ENJIN_TOKENS)

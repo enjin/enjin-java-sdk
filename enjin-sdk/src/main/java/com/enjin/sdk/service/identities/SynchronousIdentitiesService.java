@@ -9,6 +9,7 @@ import com.enjin.sdk.model.service.identities.CreateIdentity;
 import com.enjin.sdk.model.service.identities.DeleteIdentity;
 import com.enjin.sdk.model.service.identities.GetIdentities;
 import com.enjin.sdk.model.service.identities.Identity;
+import com.enjin.sdk.model.service.identities.UnlinkIdentity;
 import com.enjin.sdk.model.service.identities.UpdateIdentity;
 
 /**
@@ -61,5 +62,7 @@ public interface SynchronousIdentitiesService {
      * @throws IOException if a communication error occurred.
      */
     HttpResponse<GraphQLResponse<Identity>> updateIdentitySync(UpdateIdentity query) throws IOException;
+
+    HttpResponse<GraphQLResponse<Identity>> unlinkIdentitySync(UnlinkIdentity query) throws IOException;
 
 }

@@ -34,4 +34,9 @@ public interface IdentitiesRetrofitService {
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<Identity>> updateIdentity(@Body GraphQLRequest request);
 
+    @POST("graphql")
+    @GraphQuery("UnlinkIdentity")
+    @Headers("Content-Type: application/json")
+    Call<GraphQLResponse<Identity>> unlinkIdentity(@Body GraphQLRequest request);
+
 }

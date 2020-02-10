@@ -4,10 +4,12 @@ import java.util.List;
 
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpCallback;
+import com.enjin.sdk.http.HttpResponse;
 import com.enjin.sdk.model.service.identities.CreateIdentity;
 import com.enjin.sdk.model.service.identities.DeleteIdentity;
 import com.enjin.sdk.model.service.identities.GetIdentities;
 import com.enjin.sdk.model.service.identities.Identity;
+import com.enjin.sdk.model.service.identities.UnlinkIdentity;
 import com.enjin.sdk.model.service.identities.UpdateIdentity;
 
 /**
@@ -51,6 +53,9 @@ public interface AsynchronousIdentitiesService {
      * @param callback the callback.
      */
     void updateIdentityAsync(UpdateIdentity query,
+                             HttpCallback<GraphQLResponse<Identity>> callback);
+
+    void unlinkIdentityAsync(UnlinkIdentity query,
                              HttpCallback<GraphQLResponse<Identity>> callback);
 
 }
