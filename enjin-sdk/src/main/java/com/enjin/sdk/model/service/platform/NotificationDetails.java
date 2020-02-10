@@ -9,7 +9,7 @@ import lombok.ToString;
  * @author Evan Lindsay
  * @see PlatformDetails
  * @see MobileDetails
- * @see SdkDetails
+ * @see PusherDetails
  */
 @ToString
 @Getter
@@ -20,7 +20,7 @@ public class NotificationDetails {
      *
      * @return the sdk details.
      */
-    private SdkDetails sdk;
+    private PusherDetails pusher;
 
     /**
      * The mobile notification details.

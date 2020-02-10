@@ -33,15 +33,15 @@ public class Transaction {
      *
      * @return the transaction id.
      */
-    @SerializedName("transaction_id")
     private String transactionId;
+
+    private String error;
 
     /**
      * The app id.
      *
      * @return the app id.
      */
-    @SerializedName("app_id")
     private Integer appId;
 
     /**
@@ -49,7 +49,6 @@ public class Transaction {
      *
      * @return the identity id.
      */
-    @SerializedName("identity_id")
     private Integer identityId;
 
     /**
@@ -64,7 +63,6 @@ public class Transaction {
      *
      * @return the recipient id.
      */
-    @SerializedName("recipient_id")
     private Integer recipientId;
 
     /**
@@ -72,7 +70,6 @@ public class Transaction {
      *
      * @return the recipient ethereum address.
      */
-    @SerializedName("recipient_address")
     private String recipientAddress;
 
     /**
@@ -80,15 +77,19 @@ public class Transaction {
      *
      * @return the token id.
      */
-    @SerializedName("token_id")
     private String tokenId;
+
+    private String title;
+
+    private String icon;
+
+    private String value;
 
     /**
      * The encoded data.
      *
      * @return the encoded data.
      */
-    @SerializedName("encoded_data")
     private String encodedData;
 
     /**
@@ -96,7 +97,6 @@ public class Transaction {
      *
      * @return the signed transaction.
      */
-    @SerializedName("signed_transaction")
     private String signedTransaction;
 
     /**
@@ -104,7 +104,6 @@ public class Transaction {
      *
      * @return the signed backup transaction.
      */
-    @SerializedName("signed_backup_transaction")
     private String signedBackupTransaction;
 
     /**
@@ -112,7 +111,6 @@ public class Transaction {
      *
      * @return the signed cancel transaction.
      */
-    @SerializedName("signed_cancel_transaction")
     private String signedCancelTransaction;
 
     /**
@@ -127,7 +125,6 @@ public class Transaction {
      *
      * @return the retry state.
      */
-    @SerializedName("retry_state")
     private String retryState;
 
     /**

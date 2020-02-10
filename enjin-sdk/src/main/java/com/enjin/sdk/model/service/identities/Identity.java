@@ -1,12 +1,10 @@
 package com.enjin.sdk.model.service.identities;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.List;
 
 import com.enjin.sdk.model.service.tokens.Token;
+import com.enjin.sdk.model.service.wallets.Wallet;
 import com.enjin.sdk.service.identities.IdentitiesService;
-import com.google.gson.annotations.SerializedName;
 
 import lombok.Getter;
 import lombok.ToString;
@@ -33,23 +31,13 @@ public class Identity {
      *
      * @return the app id.
      */
-    @SerializedName("app_id")
     private Integer appId;
-
-    /**
-     * The linked ethereum address.
-     *
-     * @return the ethereum address.
-     */
-    @SerializedName("ethereum_address")
-    private String ethereumAddress;
 
     /**
      * The linking code.
      *
      * @return the linking code.
      */
-    @SerializedName("linking_code")
     private String linkingCode;
 
     /**
@@ -57,7 +45,6 @@ public class Identity {
      *
      * @return the linking code qr.
      */
-    @SerializedName("linking_code_qr")
     private String linkingCodeQr;
 
     /**
@@ -67,36 +54,6 @@ public class Identity {
      */
     private List<Token> tokens;
 
-    /**
-     * The eth balance.
-     *
-     * @return the eth balance.
-     */
-    @SerializedName("eth_balance")
-    private BigDecimal ethBalance;
-
-    /**
-     * The enj balance.
-     *
-     * @return the enj balance.
-     */
-    @SerializedName("enj_balance")
-    private BigDecimal enjBalance;
-
-    /**
-     * The set enj allowance.
-     *
-     * @return the set enj allowance.
-     */
-    @SerializedName("enj_allowance")
-    private BigInteger enjAllowance;
-
-    /**
-     * The aggregated total and value in enj of owned tokens.
-     *
-     * @return the aggregated balance.
-     */
-    @SerializedName("all_tokens_balance")
-    private AggregatedBalance allTokensBalance;
+    private Wallet wallet;
 
 }

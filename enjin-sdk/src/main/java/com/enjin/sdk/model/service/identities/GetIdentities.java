@@ -18,8 +18,13 @@ public class GetIdentities extends PaginationRequest<GetIdentities> {
      *
      * @return the builder.
      */
-    public GetIdentities identityId(int identityId) {
+    public GetIdentities identityId(Integer identityId) {
         withParameter("id", identityId);
+        return this;
+    }
+
+    public GetIdentities appId(Integer appId) {
+        withParameter("appId", appId);
         return this;
     }
 
@@ -31,7 +36,7 @@ public class GetIdentities extends PaginationRequest<GetIdentities> {
      * @return the builder.
      */
     public GetIdentities ethAddr(String ethAddr) {
-        withParameter("ethereum_address", ethAddr);
+        withParameter("ethAddress", ethAddr);
         return this;
     }
 
@@ -43,7 +48,7 @@ public class GetIdentities extends PaginationRequest<GetIdentities> {
      * @return the builder.
      */
     public GetIdentities linkingCode(String linkingCode) {
-        withParameter("linking_code", linkingCode);
+        withParameter("linkingCode", linkingCode);
         return this;
     }
 

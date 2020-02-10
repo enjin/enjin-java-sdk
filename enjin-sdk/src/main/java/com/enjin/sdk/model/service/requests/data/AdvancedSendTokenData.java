@@ -25,16 +25,6 @@ public class AdvancedSendTokenData {
     private List<TransferData> transfers;
 
     /**
-     * Whether the safe variant of the transaction should be used.
-     *
-     * -- SETTER --
-     *
-     * @param safe whether to use the safe variant or not.
-     * @return the builder.
-     */
-    private Boolean safe;
-
-    /**
      * The data to forward with the safe callbacks.
      *
      * -- SETTER --

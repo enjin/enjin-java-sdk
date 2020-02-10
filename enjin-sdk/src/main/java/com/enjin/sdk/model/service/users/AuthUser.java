@@ -45,14 +45,4 @@ public class AuthUser extends GraphQLRequest<AuthUser> {
         return this;
     }
 
-    public AuthUser walletSignature(String signature) {
-        withParameter("wallet_signature", signature);
-        return this;
-    }
-
-    public AuthUser walletSignatureTransaction(String transaction) {
-        withParameter("wallet_signature_tx", transaction);
-        return this;
-    }
-
 }

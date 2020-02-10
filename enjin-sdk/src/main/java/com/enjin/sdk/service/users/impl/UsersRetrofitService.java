@@ -34,9 +34,4 @@ public interface UsersRetrofitService {
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<User>> updateUser(@Body GraphQLRequest request);
 
-    @POST("graphql")
-    @GraphQuery("DeleteUser")
-    @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<User>> deleteUser(@Body GraphQLRequest request);
-
 }

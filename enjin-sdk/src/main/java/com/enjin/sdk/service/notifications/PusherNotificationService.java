@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 import com.enjin.sdk.model.service.notifications.NotificationType;
 import com.enjin.sdk.model.service.platform.NotificationDetails;
 import com.enjin.sdk.model.service.platform.PlatformDetails;
-import com.enjin.sdk.model.service.platform.SdkDetails;
+import com.enjin.sdk.model.service.platform.PusherDetails;
 import com.enjin.sdk.service.notifications.NotificationListenerRegistration.RegistrationListenerConfiguration;
 import com.enjin.sdk.service.notifications.subscriptions.AppChannel;
 import com.enjin.sdk.service.notifications.subscriptions.IdentityChannel;
@@ -30,8 +30,6 @@ import lombok.extern.java.Log;
 @Log
 public class PusherNotificationService implements NotificationsService {
 
-    private static final String DRIVER = "pusher";
-
     protected List<NotificationListenerRegistration> listeners = new ArrayList<>();
     private PlatformDetails platformDetails;
     private Pusher pusher;
@@ -50,14 +48,13 @@ public class PusherNotificationService implements NotificationsService {
         NotificationDetails notificationDetails = platformDetails.getNotifications();
 
         if (notificationDetails != null) {
-            SdkDetails sdkDetails = notificationDetails.getSdk();
-            if (sdkDetails != null) {
-                String driver = sdkDetails.getDriver();
-                String appKey = sdkDetails.getKey();
-                String cluster = sdkDetails.getOptions().getCluster();
-                boolean encrypted = sdkDetails.getOptions().getEncrypted();
+            PusherDetails pusherDetails = notificationDetails.getPusher();
+            if (pusherDetails != null) {
+                String appKey = pusherDetails.getKey();
+                String cluster = pusherDetails.getOptions().getCluster();
+                boolean encrypted = pusherDetails.getOptions().getEncrypted();
 
-                if (DRIVER.equalsIgnoreCase(driver) && !StringUtils.isEmpty(appKey) && !StringUtils.isEmpty(cluster)) {
+                if (!StringUtils.isEmpty(appKey) && !StringUtils.isEmpty(cluster)) {
                     PusherOptions options = new PusherOptions()
                             .setCluster(cluster)
                             .setEncrypted(encrypted);

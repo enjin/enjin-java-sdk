@@ -23,27 +23,8 @@ public class UpdateIdentity extends GraphQLRequest<UpdateIdentity> {
         return this;
     }
 
-    /**
-     * The new app id to transfer an identity to.
-     *
-     * @param appId the new app id.
-     *
-     * @return the builder.
-     */
-    public UpdateIdentity appId(int appId) {
-        withParameter("app_id", appId);
-        return this;
-    }
-
-    /**
-     * The user id to link this identity to.
-     *
-     * @param userId the user id.
-     *
-     * @return the builder.
-     */
-    public UpdateIdentity userId(int userId) {
-        withParameter("user_id", userId);
+    public UpdateIdentity linkingCode(String linkingCode) {
+        withParameter("linkingCode", linkingCode);
         return this;
     }
 
@@ -55,7 +36,7 @@ public class UpdateIdentity extends GraphQLRequest<UpdateIdentity> {
      * @return the builder.
      */
     public UpdateIdentity ethAddr(String ethAddr) {
-        withParameter("ethereum_address", ethAddr);
+        withParameter("ethAddress", ethAddr);
         return this;
     }
 

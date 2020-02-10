@@ -3,10 +3,7 @@ package com.enjin.sdk.graphql.definitions;
 public final class Methods {
 
     // Platform
-    public static final String ENJIN_PLATFORM = "EnjinPlatform";
-
-    // Ethereum
-    public static final String ENJIN_BLOCK_HEIGHT = "EnjinBlockHeight";
+    public static final String ENJIN_PLATFORM = "Platform";
 
     // Oauth
     public static final String ENJIN_OAUTH = "EnjinOauth";
@@ -27,7 +24,6 @@ public final class Methods {
     public static final String ENJIN_USERS = "EnjinUsers";
     public static final String CREATE_ENJIN_USER = "CreateEnjinUser";
     public static final String UPDATE_ENJIN_USER = "UpdateEnjinUser";
-    public static final String DELETE_ENJIN_USER = "DeleteEnjinUser";
 
     // Identities
     public static final String ENJIN_IDENTITIES = "EnjinIdentities";

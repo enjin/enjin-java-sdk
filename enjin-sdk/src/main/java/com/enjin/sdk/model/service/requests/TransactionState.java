@@ -12,9 +12,9 @@ public enum TransactionState {
     BROADCAST,
     TP_PROCESSING,
     EXECUTED,
-    CONFIRMED,
     CANCELED_USER,
     CANCELED_PLATFORM,
+    DROPPED,
     FAILED
 
 }

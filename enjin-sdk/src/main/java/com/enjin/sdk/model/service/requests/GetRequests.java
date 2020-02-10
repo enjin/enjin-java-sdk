@@ -33,7 +33,7 @@ public class GetRequests extends PaginationRequest<GetRequests> {
      * @return the builder.
      */
     public GetRequests transactionId(String transactionId) {
-        withParameter("transaction_id", transactionId);
+        withParameter("transactionId", transactionId);
         return this;
     }
 
@@ -45,7 +45,7 @@ public class GetRequests extends PaginationRequest<GetRequests> {
      * @return the builder.
      */
     public GetRequests identityId(int identityId) {
-        withParameter("identity_id", identityId);
+        withParameter("identityId", identityId);
         return this;
     }
 
@@ -69,7 +69,7 @@ public class GetRequests extends PaginationRequest<GetRequests> {
      * @return the builder.
      */
     public GetRequests recipientId(int recipientId) {
-        withParameter("recipient_id", recipientId);
+        withParameter("recipientId", recipientId);
         return this;
     }
 
@@ -81,7 +81,7 @@ public class GetRequests extends PaginationRequest<GetRequests> {
      * @return the builder.
      */
     public GetRequests recipientAddress(String recipientAddress) {
-        withParameter("recipient_address", recipientAddress);
+        withParameter("recipientAddress", recipientAddress);
         return this;
     }
 
@@ -93,7 +93,7 @@ public class GetRequests extends PaginationRequest<GetRequests> {
      * @return the builder.
      */
     public GetRequests senderOrRecipientIdentity(int senderOrRecipientId) {
-        withParameter("sender_or_recipient_id", senderOrRecipientId);
+        withParameter("senderOrRecipientId", senderOrRecipientId);
         return this;
     }
 
@@ -105,7 +105,7 @@ public class GetRequests extends PaginationRequest<GetRequests> {
      * @return the builder.
      */
     public GetRequests tokenId(String tokenId) {
-        withParameter("token_id", tokenId);
+        withParameter("tokenId", tokenId);
         return this;
     }
 
@@ -122,18 +122,6 @@ public class GetRequests extends PaginationRequest<GetRequests> {
     }
 
     /**
-     * The request state.
-     *
-     * @param state the request state.
-     *
-     * @return the builder.
-     */
-    public GetRequests state(TransactionState state) {
-        withParameter("state", state);
-        return this;
-    }
-
-    /**
      * A list of states to match.
      *
      * @param stateIn a list of states to match.
@@ -141,7 +129,7 @@ public class GetRequests extends PaginationRequest<GetRequests> {
      * @return the builder.
      */
     public GetRequests stateMatchesAny(List<TransactionState> stateIn) {
-        withParameter("state_in", stateIn);
+        withParameter("states", stateIn);
         return this;
     }
 
@@ -153,7 +141,7 @@ public class GetRequests extends PaginationRequest<GetRequests> {
      * @return the builder.
      */
     public GetRequests stateMatchesAny(TransactionState... stateIn) {
-        withParameter("state_in", stateIn);
+        withParameter("states", stateIn);
         return this;
     }
 
@@ -163,7 +151,7 @@ public class GetRequests extends PaginationRequest<GetRequests> {
      * @return the builder.
      */
     public GetRequests canBroadcastOnly() {
-        withParameter("can_broadcast_only", true);
+        withParameter("onlyBroadcastable", true);
         return this;
     }
 

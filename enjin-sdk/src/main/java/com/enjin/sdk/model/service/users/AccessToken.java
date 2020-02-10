@@ -21,7 +21,6 @@ public class AccessToken {
      *
      * @return the app id.
      */
-    @SerializedName("app_id")
     private Integer appId;
 
     /**
@@ -29,7 +28,7 @@ public class AccessToken {
      *
      * @return the access token.
      */
-    @SerializedName("access_token")
+    @SerializedName("accessToken")
     private String token;
 
     /**
@@ -37,7 +36,6 @@ public class AccessToken {
      *
      * @return the refresh token.
      */
-    @SerializedName("refresh_token")
     private String refreshToken;
 
 }

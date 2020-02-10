@@ -11,6 +11,11 @@ import com.enjin.sdk.service.tokens.TokensService;
  */
 public class GetTokens extends PaginationRequest<GetTokens> {
 
+    public GetTokens appId(Integer appId) {
+        withParameter("appId", appId);
+        return this;
+    }
+
     /**
      * The token id.
      *
@@ -19,19 +24,7 @@ public class GetTokens extends PaginationRequest<GetTokens> {
      * @return the builder.
      */
     public GetTokens tokenId(String tokenId) {
-        withParameter("token_id", tokenId);
-        return this;
-    }
-
-    /**
-     * The token index.
-     *
-     * @param tokenIndex the token index.
-     *
-     * @return the builder.
-     */
-    public GetTokens tokenIndex(String tokenIndex) {
-        withParameter("token_index", tokenIndex);
+        withParameter("id", tokenId);
         return this;
     }
 
@@ -120,30 +113,6 @@ public class GetTokens extends PaginationRequest<GetTokens> {
     }
 
     /**
-     * The transferable type.
-     *
-     * @param transferable the type.
-     *
-     * @return the builder.
-     */
-    public GetTokens transferable(TokenTransferable transferable) {
-        withParameter("transferable", transferable);
-        return this;
-    }
-
-    /**
-     * The transfer fee settings.
-     *
-     * @param transferFeeSettings the settings.
-     *
-     * @return the builder.
-     */
-    public GetTokens transferFeeSettings(TokenTransferFeeSettings transferFeeSettings) {
-        withParameter("transferFeeSettings", transferFeeSettings);
-        return this;
-    }
-
-    /**
      * Whether non-fungible or not.
      *
      * @return the builder.
@@ -174,26 +143,6 @@ public class GetTokens extends PaginationRequest<GetTokens> {
      */
     public GetTokens blockHeight(int blockHeight) {
         withParameter("blockHeight", blockHeight);
-        return this;
-    }
-
-    /**
-     * Whether to return the token id as an int.
-     *
-     * @return the builder.
-     */
-    public GetTokens getTokenIdAsInt() {
-        withParameter("token_id_as_int", true);
-        return this;
-    }
-
-    /**
-     * Whether to return the token index as an int.
-     *
-     * @return the builder.
-     */
-    public GetTokens getTokenIndexAsInt() {
-        withParameter("token_index_as_int", true);
         return this;
     }
 

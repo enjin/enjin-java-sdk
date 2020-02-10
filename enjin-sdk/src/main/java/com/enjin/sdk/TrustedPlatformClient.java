@@ -19,16 +19,12 @@ import com.enjin.sdk.service.apps.impl.AppsServiceImpl;
 import com.enjin.sdk.service.auth.AuthRetrofitService;
 import com.enjin.sdk.service.balances.BalancesService;
 import com.enjin.sdk.service.balances.impl.BalancesServiceImpl;
-import com.enjin.sdk.service.ethereum.EthereumService;
-import com.enjin.sdk.service.ethereum.impl.EthereumServiceImpl;
 import com.enjin.sdk.service.identities.IdentitiesService;
 import com.enjin.sdk.service.identities.impl.IdentitiesServiceImpl;
 import com.enjin.sdk.service.platform.PlatformService;
 import com.enjin.sdk.service.platform.impl.PlatformServiceImpl;
 import com.enjin.sdk.service.requests.RequestsService;
 import com.enjin.sdk.service.requests.impl.RequestsServiceImpl;
-import com.enjin.sdk.service.roles.RolesService;
-import com.enjin.sdk.service.roles.impl.RolesServiceImpl;
 import com.enjin.sdk.service.tokens.TokensService;
 import com.enjin.sdk.service.tokens.impl.TokensServiceImpl;
 import com.enjin.sdk.service.users.UsersService;
@@ -69,15 +65,11 @@ public final class TrustedPlatformClient implements Closeable {
     @Getter
     private BalancesService balancesService;
     @Getter
-    private EthereumService ethereumService;
-    @Getter
     private IdentitiesService identitiesService;
     @Getter
     private PlatformService platformService;
     @Getter
     private RequestsService requestsService;
-    @Getter
-    private RolesService rolesService;
     @Getter
     private TokensService tokensService;
     @Getter
@@ -121,9 +113,7 @@ public final class TrustedPlatformClient implements Closeable {
 
         this.authService = retrofit.create(AuthRetrofitService.class);
         this.platformService = new PlatformServiceImpl(retrofit);
-        this.ethereumService = new EthereumServiceImpl(retrofit);
         this.appsService = new AppsServiceImpl(retrofit);
-        this.rolesService = new RolesServiceImpl(retrofit);
         this.usersService = new UsersServiceImpl(retrofit);
         this.identitiesService = new IdentitiesServiceImpl(retrofit);
         this.requestsService = new RequestsServiceImpl(retrofit);

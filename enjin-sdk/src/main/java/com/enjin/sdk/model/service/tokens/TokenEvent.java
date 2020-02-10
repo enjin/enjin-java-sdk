@@ -1,7 +1,5 @@
 package com.enjin.sdk.model.service.tokens;
 
-import com.google.gson.annotations.SerializedName;
-
 import lombok.Getter;
 import lombok.ToString;
 
@@ -11,7 +9,6 @@ public class TokenEvent {
 
     private Integer id;
 
-    @SerializedName("token_id")
     private String tokenId;
 
     private TokenEventType event;

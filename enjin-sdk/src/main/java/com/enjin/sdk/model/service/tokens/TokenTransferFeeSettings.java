@@ -28,7 +28,6 @@ public class TokenTransferFeeSettings {
      *
      * @return the token id.
      */
-    @SerializedName("token_id")
     private String tokenId;
 
     /**

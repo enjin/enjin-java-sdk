@@ -31,11 +31,6 @@ public interface TokensRetrofitService {
     Call<GraphQLResponse<Token>> updateToken(@Body GraphQLRequest request);
 
     @POST("graphql")
-    @GraphQuery("DeleteToken")
-    @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<Token>> deleteToken(@Body GraphQLRequest request);
-
-    @POST("graphql")
     @GraphQuery("GetTokenEvents")
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<List<TokenEvent>>> getTokenEvents(@Body GraphQLRequest request);

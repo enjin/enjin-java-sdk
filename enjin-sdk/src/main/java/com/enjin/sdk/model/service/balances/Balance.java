@@ -1,7 +1,8 @@
 package com.enjin.sdk.model.service.balances;
 
+import com.enjin.sdk.model.service.identities.Identity;
+import com.enjin.sdk.model.service.wallets.Wallet;
 import com.enjin.sdk.model.service.tokens.Token;
-import com.google.gson.annotations.SerializedName;
 
 import lombok.Getter;
 import lombok.ToString;
@@ -10,21 +11,16 @@ import lombok.ToString;
 @ToString
 public class Balance {
 
-    @SerializedName("ethereum_adddress")
-    private String ethAddr;
+    private String id;
 
-    @SerializedName("token_id")
-    private String tokenId;
+    private String index;
 
-    @SerializedName("token_index")
-    private String tokenIndex;
-
-    @SerializedName("identity_id")
-    private Integer identityId;
-
-    @SerializedName("balance")
-    private Integer amount;
+    private Integer value;
 
     private Token token;
+
+    private Identity identity;
+
+    private Wallet wallet;
 
 }

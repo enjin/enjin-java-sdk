@@ -11,6 +11,11 @@ import com.enjin.sdk.service.identities.IdentitiesService;
  */
 public class CreateIdentity extends GraphQLRequest<CreateIdentity> {
 
+    public CreateIdentity appId(Integer appId) {
+        withParameter("appId", appId);
+        return this;
+    }
+
     /**
      * The user id to create the new identity for.
      *
@@ -43,7 +48,7 @@ public class CreateIdentity extends GraphQLRequest<CreateIdentity> {
      * @return the builder.
      */
     public CreateIdentity ethAddr(String ethereumAddress) {
-        withParameter("ethereum_address", ethereumAddress);
+        withParameter("ethAddress", ethereumAddress);
         return this;
     }
 

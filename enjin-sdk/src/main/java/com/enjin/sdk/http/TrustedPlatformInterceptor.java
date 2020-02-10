@@ -13,7 +13,6 @@ import okhttp3.Response;
 
 public class TrustedPlatformInterceptor implements Interceptor {
 
-    public static final String APP_ID = "X-App-Id";
     public static final String AUTHORIZATION = "Authorization";
 
     @Setter
@@ -27,10 +26,6 @@ public class TrustedPlatformInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request.Builder builder = chain.request().newBuilder();
-
-        if (appId != null) {
-            builder.header(APP_ID, String.valueOf(appId));
-        }
 
         if (!StringUtils.isEmpty(tokenType) && !StringUtils.isEmpty(token)) {
             builder.header(AUTHORIZATION, String.format("%s %s", tokenType, token));

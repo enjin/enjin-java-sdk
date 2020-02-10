@@ -45,7 +45,6 @@ public class PlatformDetails {
      *
      * @return the network block height.
      */
-    @SerializedName("blockheight")
     private Integer blockHeight;
 
     /**

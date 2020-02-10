@@ -6,7 +6,6 @@ import java.util.List;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpResponse;
 import com.enjin.sdk.model.service.tokens.CreateToken;
-import com.enjin.sdk.model.service.tokens.DeleteToken;
 import com.enjin.sdk.model.service.tokens.GetTokenEvents;
 import com.enjin.sdk.model.service.tokens.GetTokens;
 import com.enjin.sdk.model.service.tokens.Token;
@@ -47,8 +46,6 @@ public interface SynchronousTokensService {
      * @throws IOException if a communication error occurred.
      */
     HttpResponse<GraphQLResponse<Token>> updateTokenSync(UpdateToken query) throws IOException;
-
-    HttpResponse<GraphQLResponse<Token>> deleteTokenSync(DeleteToken query) throws IOException;
 
     HttpResponse<GraphQLResponse<List<TokenEvent>>> getTokenEventsSync(GetTokenEvents query) throws IOException;
 

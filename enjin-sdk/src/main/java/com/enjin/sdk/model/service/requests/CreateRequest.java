@@ -5,6 +5,7 @@ import com.enjin.sdk.model.service.requests.data.AddLogData;
 import com.enjin.sdk.model.service.requests.data.AdvancedSendTokenData;
 import com.enjin.sdk.model.service.requests.data.ApproveEnjData;
 import com.enjin.sdk.model.service.requests.data.ApproveItemData;
+import com.enjin.sdk.model.service.requests.data.BatchApproveData;
 import com.enjin.sdk.model.service.requests.data.CompleteTradeData;
 import com.enjin.sdk.model.service.requests.data.CreateTokenData;
 import com.enjin.sdk.model.service.requests.data.CreateTradeData;
@@ -13,7 +14,10 @@ import com.enjin.sdk.model.service.requests.data.DecreaseMaxTransferFeeData;
 import com.enjin.sdk.model.service.requests.data.MeltTokenData;
 import com.enjin.sdk.model.service.requests.data.MessageData;
 import com.enjin.sdk.model.service.requests.data.MintTokenData;
+import com.enjin.sdk.model.service.requests.data.ReleaseReserveData;
+import com.enjin.sdk.model.service.requests.data.SendEnjData;
 import com.enjin.sdk.model.service.requests.data.SendTokenData;
+import com.enjin.sdk.model.service.requests.data.SetApprovalData;
 import com.enjin.sdk.model.service.requests.data.SetApprovalForAllData;
 import com.enjin.sdk.model.service.requests.data.SetItemUriData;
 import com.enjin.sdk.model.service.requests.data.SetMeltFeeData;
@@ -31,6 +35,16 @@ import com.enjin.sdk.service.requests.RequestsService;
  */
 public class CreateRequest extends GraphQLRequest<CreateRequest> {
 
+    private CreateRequest appId(Integer appId) {
+        withParameter("appId", appId);
+        return this;
+    }
+
+    private CreateRequest ethAddr(String ethAddr) {
+        withParameter("ethAddress", ethAddr);
+        return this;
+    }
+
     /**
      * The id of the identity this request was created for.
      *
@@ -39,7 +53,7 @@ public class CreateRequest extends GraphQLRequest<CreateRequest> {
      * @return builder.
      */
     public CreateRequest identityId(int identityId) {
-        withParameter("identity_id", identityId);
+        withParameter("identityId", identityId);
         return this;
     }
 
@@ -153,6 +167,12 @@ public class CreateRequest extends GraphQLRequest<CreateRequest> {
     public CreateRequest sendToken(SendTokenData sendTokenData) {
         withParameter("send_token_data", sendTokenData);
         transactionType(TransactionType.SEND);
+        return this;
+    }
+
+    public CreateRequest sendEnj(SendEnjData sendEnjData) {
+        withParameter("send_enj_data", sendEnjData);
+        transactionType(TransactionType.SEND_ENJ);
         return this;
     }
 
@@ -296,6 +316,12 @@ public class CreateRequest extends GraphQLRequest<CreateRequest> {
     public CreateRequest decreaseMaxTransferFee(DecreaseMaxTransferFeeData decreaseMaxTransferFeeData) {
         withParameter("decrease_max_transfer_fee_data", decreaseMaxTransferFeeData);
         transactionType(TransactionType.DECREASE_MAX_TRANSFER_FEE);
+        return this;
+    }
+
+    public CreateRequest releaseReserve(ReleaseReserveData releaseReserveData) {
+        withParameter("release_reserve_data", releaseReserveData);
+        transactionType(TransactionType.RELEASE_RESERVE);
         return this;
     }
 

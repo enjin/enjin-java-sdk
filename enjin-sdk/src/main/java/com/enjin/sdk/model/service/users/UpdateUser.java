@@ -1,9 +1,6 @@
 package com.enjin.sdk.model.service.users;
 
-import java.util.List;
-
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.model.service.roles.Role;
 import com.enjin.sdk.service.users.UsersService;
 
 /**
@@ -56,27 +53,7 @@ public class UpdateUser extends GraphQLRequest<UpdateUser> {
     }
 
     public UpdateUser identityId(int identityId) {
-        withParameter("identity_id", identityId);
-        return this;
-    }
-
-    public UpdateUser roles(Role... roles) {
-        withParameter("roles", roles);
-        return this;
-    }
-
-    public UpdateUser roles(List<Role> roles) {
-        withParameter("roles", roles);
-        return this;
-    }
-
-    public UpdateUser resetPassword() {
-        withParameter("reset_password", true);
-        return this;
-    }
-
-    public UpdateUser resetPasswordToken(String token) {
-        withParameter("reset_password_token", token);
+        withParameter("identityId", identityId);
         return this;
     }
 

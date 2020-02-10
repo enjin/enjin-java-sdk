@@ -8,7 +8,6 @@ import com.enjin.sdk.http.HttpCallback;
 import com.enjin.sdk.http.HttpResponse;
 import com.enjin.sdk.model.service.users.AuthUser;
 import com.enjin.sdk.model.service.users.CreateUser;
-import com.enjin.sdk.model.service.users.DeleteUser;
 import com.enjin.sdk.model.service.users.GetUsers;
 import com.enjin.sdk.model.service.users.UpdateUser;
 import com.enjin.sdk.model.service.users.User;
@@ -43,11 +42,6 @@ public class UsersServiceImpl extends GraphQLServiceBase implements UsersService
     }
 
     @Override
-    public void deleteUserAsync(DeleteUser query, HttpCallback<GraphQLResponse<User>> callback) {
-        enqueueGraphQLCall(this.service.deleteUser(query), callback);
-    }
-
-    @Override
     public void authUserAsync(AuthUser query,
                               HttpCallback<GraphQLResponse<User>> callback) {
         enqueueGraphQLCall(this.service.authUser(query), callback);
@@ -66,11 +60,6 @@ public class UsersServiceImpl extends GraphQLServiceBase implements UsersService
     @Override
     public HttpResponse<GraphQLResponse<User>> updateUserSync(UpdateUser query) throws IOException {
         return executeGraphQLCall(this.service.updateUser(query));
-    }
-
-    @Override
-    public HttpResponse<GraphQLResponse<User>> deleteUserSync(DeleteUser query) throws IOException {
-        return executeGraphQLCall(this.service.deleteUser(query));
     }
 
     @Override

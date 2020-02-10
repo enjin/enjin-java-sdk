@@ -7,7 +7,6 @@ import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpResponse;
 import com.enjin.sdk.model.service.users.AuthUser;
 import com.enjin.sdk.model.service.users.CreateUser;
-import com.enjin.sdk.model.service.users.DeleteUser;
 import com.enjin.sdk.model.service.users.GetUsers;
 import com.enjin.sdk.model.service.users.UpdateUser;
 import com.enjin.sdk.model.service.users.User;
@@ -37,8 +36,6 @@ public interface SynchronousUsersService {
     HttpResponse<GraphQLResponse<User>> createUserSync(CreateUser query) throws IOException;
 
     HttpResponse<GraphQLResponse<User>> updateUserSync(UpdateUser query) throws IOException;
-
-    HttpResponse<GraphQLResponse<User>> deleteUserSync(DeleteUser query) throws IOException;
 
     /**
      * Authenticates a user and returns the users access tokens.

@@ -7,7 +7,6 @@ import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpCallback;
 import com.enjin.sdk.http.HttpResponse;
 import com.enjin.sdk.model.service.tokens.CreateToken;
-import com.enjin.sdk.model.service.tokens.DeleteToken;
 import com.enjin.sdk.model.service.tokens.GetTokenEvents;
 import com.enjin.sdk.model.service.tokens.GetTokens;
 import com.enjin.sdk.model.service.tokens.Token;
@@ -46,11 +45,6 @@ public class TokensServiceImpl extends GraphQLServiceBase implements TokensServi
     }
 
     @Override
-    public void deleteTokenAsync(DeleteToken query, HttpCallback<GraphQLResponse<Token>> callback) {
-        enqueueGraphQLCall(getDeleteTokenCall(query), callback);
-    }
-
-    @Override
     public void getTokenEventsAsync(GetTokenEvents query, HttpCallback<GraphQLResponse<List<TokenEvent>>> callback) {
         enqueueGraphQLCall(getTokenEventsCall(query), callback);
     }
@@ -71,11 +65,6 @@ public class TokensServiceImpl extends GraphQLServiceBase implements TokensServi
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<Token>> deleteTokenSync(DeleteToken query) throws IOException {
-        return executeGraphQLCall(getDeleteTokenCall(query));
-    }
-
-    @Override
     public HttpResponse<GraphQLResponse<List<TokenEvent>>> getTokenEventsSync(GetTokenEvents query) throws IOException {
         return executeGraphQLCall(getTokenEventsCall(query));
     }
@@ -90,10 +79,6 @@ public class TokensServiceImpl extends GraphQLServiceBase implements TokensServi
 
     private Call<GraphQLResponse<Token>> getUpdateTokenCall(UpdateToken query) {
         return this.service.updateToken(query);
-    }
-
-    private Call<GraphQLResponse<Token>> getDeleteTokenCall(DeleteToken query) {
-        return this.service.deleteToken(query);
     }
 
     private Call<GraphQLResponse<List<TokenEvent>>> getTokenEventsCall(GetTokenEvents query) {

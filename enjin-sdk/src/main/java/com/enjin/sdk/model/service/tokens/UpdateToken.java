@@ -19,7 +19,7 @@ public class UpdateToken extends GraphQLRequest<UpdateToken> {
      * @return the builder.
      */
     public UpdateToken tokenId(String tokenId) {
-        withParameter("token_id", tokenId);
+        withParameter("id", tokenId);
         return this;
     }
 
@@ -31,17 +31,7 @@ public class UpdateToken extends GraphQLRequest<UpdateToken> {
      * @return the builder.
      */
     public UpdateToken appId(int appId) {
-        withParameter("app_id", appId);
-        return this;
-    }
-
-    /**
-     * Whether the token should be updated from the blockchain or not.
-     *
-     * @return the builder.
-     */
-    public UpdateToken updateFromBlockchain() {
-        withParameter("fromBlockchain", true);
+        withParameter("appId", appId);
         return this;
     }
 

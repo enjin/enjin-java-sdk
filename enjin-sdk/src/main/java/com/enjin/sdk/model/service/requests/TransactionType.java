@@ -14,6 +14,7 @@ public enum TransactionType {
     CREATE,
     MINT,
     SEND,
+    SEND_ENJ,
     ADVANCED_SEND,
     CREATE_TRADE,
     COMPLETE_TRADE,

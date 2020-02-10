@@ -14,9 +14,4 @@ public class GetApps extends PaginationRequest<GetApps> {
         return this;
     }
 
-    public GetApps me() {
-        withParameter("me", true);
-        return this;
-    }
-
 }

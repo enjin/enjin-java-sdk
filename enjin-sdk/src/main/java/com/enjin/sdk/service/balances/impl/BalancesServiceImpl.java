@@ -11,7 +11,6 @@ import com.enjin.sdk.model.service.balances.GetBalances;
 import com.enjin.sdk.service.GraphQLServiceBase;
 import com.enjin.sdk.service.balances.BalancesService;
 
-import retrofit2.Call;
 import retrofit2.Retrofit;
 
 public class BalancesServiceImpl extends GraphQLServiceBase implements BalancesService {
@@ -24,16 +23,12 @@ public class BalancesServiceImpl extends GraphQLServiceBase implements BalancesS
 
     @Override
     public HttpResponse<GraphQLResponse<List<Balance>>> getBalancesSync(GetBalances query) throws IOException {
-        return execute(getBalancesCall(query));
+        return execute(this.service.getBalances(query));
     }
 
     @Override
     public void getBalancesAsync(GetBalances query, HttpCallback<GraphQLResponse<List<Balance>>> callback) {
-        enqueueGraphQLCall(getBalancesCall(query), callback);
-    }
-
-    private Call<GraphQLResponse<List<Balance>>> getBalancesCall(GetBalances query) {
-        return this.service.getBalances(query);
+        enqueueGraphQLCall(this.service.getBalances(query), callback);
     }
 
 }

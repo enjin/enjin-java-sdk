@@ -3,9 +3,7 @@ package com.enjin.sdk.model.service.users;
 import java.util.List;
 
 import com.enjin.sdk.model.service.identities.Identity;
-import com.enjin.sdk.model.service.roles.Role;
 import com.enjin.sdk.service.users.UsersService;
-import com.google.gson.annotations.SerializedName;
 
 import lombok.Getter;
 import lombok.ToString;
@@ -35,26 +33,11 @@ public class User {
     private String name;
 
     /**
-     * The user email.
-     *
-     * @return the email.
-     */
-    private String email;
-
-    /**
      * The users access tokens.
      *
      * @return the access tokens.
      */
-    @SerializedName("access_tokens")
     private List<AccessToken> accessTokens;
-
-    /**
-     * The users roles.
-     *
-     * @return the roles.
-     */
-    private List<Role> roles;
 
     /**
      * The users identities.

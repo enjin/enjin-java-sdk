@@ -6,7 +6,6 @@ import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpCallback;
 import com.enjin.sdk.model.service.users.AuthUser;
 import com.enjin.sdk.model.service.users.CreateUser;
-import com.enjin.sdk.model.service.users.DeleteUser;
 import com.enjin.sdk.model.service.users.GetUsers;
 import com.enjin.sdk.model.service.users.UpdateUser;
 import com.enjin.sdk.model.service.users.User;
@@ -37,9 +36,6 @@ public interface AsynchronousUsersService {
                          HttpCallback<GraphQLResponse<User>> callback);
 
     void updateUserAsync(UpdateUser query,
-                         HttpCallback<GraphQLResponse<User>> callback);
-
-    void deleteUserAsync(DeleteUser query,
                          HttpCallback<GraphQLResponse<User>> callback);
 
     /**

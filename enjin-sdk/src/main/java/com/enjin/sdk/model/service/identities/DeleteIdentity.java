@@ -23,28 +23,4 @@ public class DeleteIdentity extends GraphQLRequest<DeleteIdentity> {
         return this;
     }
 
-    /**
-     * Whether to unlink or delete an identity.
-     *
-     * @return the builder.
-     */
-    public DeleteIdentity unlink() {
-        withParameter("unlink", true);
-        return this;
-    }
-
-    /**
-     * Unlinks an ethereum address from an identity.
-     *
-     * <p>Sets the identity id and unlink to true.
-     *
-     * @param id the identity id.
-     *
-     * @return the builder.
-     */
-    public static DeleteIdentity unlink(int id) {
-        return new DeleteIdentity().identityId(id)
-                                   .unlink();
-    }
-
 }

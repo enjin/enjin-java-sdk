@@ -10,32 +10,12 @@ public class GetTokenEvents extends PaginationRequest<GetTokenEvents> {
     }
 
     public GetTokenEvents tokenId(String tokenId) {
-        withParameter("token_id", tokenId);
+        withParameter("tokenId", tokenId);
         return this;
     }
 
     public GetTokenEvents eventType(TokenEventType event) {
         withParameter("event", event);
-        return this;
-    }
-
-    public GetTokenEvents param1(String param) {
-        withParameter("param1", param);
-        return this;
-    }
-
-    public GetTokenEvents param2(String param) {
-        withParameter("param2", param);
-        return this;
-    }
-
-    public GetTokenEvents param3(String param) {
-        withParameter("param3", param);
-        return this;
-    }
-
-    public GetTokenEvents param4(String param) {
-        withParameter("param4", param);
         return this;
     }
 

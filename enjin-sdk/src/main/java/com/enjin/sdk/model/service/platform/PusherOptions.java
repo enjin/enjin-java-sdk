@@ -7,11 +7,11 @@ import lombok.ToString;
  * Will contain settings for the sdk notification driver.
  *
  * @author Evan Lindsay
- * @see SdkDetails
+ * @see PusherDetails
  */
 @ToString
 @Getter
-public class SdkOptions {
+public class PusherOptions {
 
     /**
      * The cluster to use.

@@ -11,6 +11,11 @@ import com.enjin.sdk.service.users.UsersService;
  */
 public class CreateUser extends GraphQLRequest<CreateUser> {
 
+    public CreateUser appId(Integer appId) {
+        withParameter("appId", appId);
+        return this;
+    }
+
     /**
      * The name of the user.
      *

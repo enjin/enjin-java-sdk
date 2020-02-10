@@ -9,7 +9,7 @@ import com.enjin.sdk.service.users.UsersService;
  * @author Evan Lindsay
  * @see UsersService
  */
-public class GetUsers extends PaginationRequest<GetUsers> {
+public class GetUser extends PaginationRequest<GetUser> {
 
     /**
      * The id of the user.
@@ -18,7 +18,7 @@ public class GetUsers extends PaginationRequest<GetUsers> {
      *
      * @return the builder.
      */
-    public GetUsers userId(Integer userId) {
+    public GetUser userId(Integer userId) {
         withParameter("id", userId);
         return this;
     }
@@ -30,20 +30,18 @@ public class GetUsers extends PaginationRequest<GetUsers> {
      *
      * @return the builder.
      */
-    public GetUsers name(String name) {
+    public GetUser name(String name) {
         withParameter("name", name);
         return this;
     }
 
     /**
-     * The email of the user.
-     *
-     * @param email the email.
+     * Whether to only get the currently authenticated user.
      *
      * @return the builder.
      */
-    public GetUsers email(String email) {
-        withParameter("email", email);
+    public GetUser me() {
+        withParameter("me", true);
         return this;
     }
 

@@ -14,15 +14,13 @@ public class Token {
      *
      * @return the token id.
      */
-    @SerializedName("token_id")
-    private String tokenId;
+    private String id;
 
     /**
      * The app id.
      *
      * @return the app id.
      */
-    @SerializedName("app_id")
     private Integer appId;
 
     /**

@@ -22,7 +22,6 @@ public class App {
 
     private User owner;
 
-    @SerializedName("token_count")
     private int tokenCount;
 
 }
