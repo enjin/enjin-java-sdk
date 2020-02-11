@@ -209,6 +209,7 @@ public final class TrustedPlatformClient implements Closeable {
 
         if (!executorService.isShutdown()) {
             executorService.shutdown();
+            httpClient.connectionPool().evictAll();
         }
     }
 
