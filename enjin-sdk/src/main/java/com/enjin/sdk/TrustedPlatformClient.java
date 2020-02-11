@@ -12,6 +12,7 @@ import com.enjin.sdk.http.SimpleCallback;
 import com.enjin.sdk.http.TrustedPlatformInterceptor;
 import com.enjin.sdk.model.service.auth.AuthBody;
 import com.enjin.sdk.model.service.auth.AuthResult;
+import com.enjin.sdk.model.service.users.AccessToken;
 import com.enjin.sdk.serialization.converter.GraphConverter;
 import com.enjin.sdk.serialization.converter.JsonStringConverter;
 import com.enjin.sdk.service.apps.AppsService;
@@ -200,6 +201,11 @@ public final class TrustedPlatformClient implements Closeable {
             trustedPlatformInterceptor.auth(body);
             setAppId(appId);
         }
+    }
+
+    public void authUser(int appId, AccessToken token) {
+        trustedPlatformInterceptor.auth(token);
+        setAppId(appId);
     }
 
     @Override

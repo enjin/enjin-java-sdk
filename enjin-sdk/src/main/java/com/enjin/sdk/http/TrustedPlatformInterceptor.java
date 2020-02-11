@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.enjin.sdk.model.service.auth.AuthResult;
 import com.enjin.java_commons.StringUtils;
 
+import com.enjin.sdk.model.service.users.AccessToken;
 import lombok.Getter;
 import lombok.Setter;
 import okhttp3.Interceptor;
@@ -37,6 +38,11 @@ public class TrustedPlatformInterceptor implements Interceptor {
     public void auth(AuthResult result) {
         tokenType = result.getTokenType();
         token = result.getAccessToken();
+    }
+
+    public void auth(AccessToken accessToken) {
+        tokenType = "Bearer";
+        token = accessToken.getToken();
     }
 
 }
