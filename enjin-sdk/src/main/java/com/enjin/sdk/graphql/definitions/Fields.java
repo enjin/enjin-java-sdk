@@ -60,6 +60,8 @@ public final class Fields {
     public static final GraphQLTemplateField IMAGE = GraphQLTemplateField.of("image");
     public static final GraphQLTemplateField TOKEN_COUNT = GraphQLTemplateField.of("token_count");
     public static final GraphQLTemplateField ITEM_URI = GraphQLTemplateField.of("itemURI");
+    public static final GraphQLTemplateField WALLETS = GraphQLTemplateField.of("wallets")
+                                                                           .withChild(ETH_ADDR);
     public static final GraphQLTemplateField OWNER = GraphQLTemplateField.of("owner")
                                                                          .withChild(ID)
                                                                          .withChild(NAME);
@@ -109,7 +111,8 @@ public final class Fields {
                                                                           .withChild(BLOCK_NUMBER);
     public static final GraphQLTemplateField USER_APPS = GraphQLTemplateField.of("apps")
                                                                              .withChild(ID)
-                                                                             .withChild(NAME);
+                                                                             .withChild(NAME)
+                                                                             .withChild(WALLETS);
 
     private Fields() {
         throw new UnsupportedOperationException("Utility Class");

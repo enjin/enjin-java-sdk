@@ -62,7 +62,7 @@ public class GraphQLParameters {
 
             builder.append(parameter.getKey())
                    .append(": ")
-                   .append(toGraphQLFormat(parameter.getValue()));
+                   .append(new GraphQLObjectSerializer(parameter.getValue()).serialize());
         }
 
         return builder.toString();

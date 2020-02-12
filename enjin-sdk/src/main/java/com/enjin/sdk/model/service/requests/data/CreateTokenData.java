@@ -1,7 +1,7 @@
 package com.enjin.sdk.model.service.requests.data;
 
+import com.enjin.sdk.model.service.requests.TokenTransferFeeSettingsInput;
 import com.enjin.sdk.model.service.tokens.TokenSupplyModel;
-import com.enjin.sdk.model.service.tokens.TokenTransferFeeSettings;
 import com.enjin.sdk.model.service.tokens.TokenTransferable;
 
 import com.enjin.sdk.service.requests.RequestsService;
@@ -94,7 +94,7 @@ public class CreateTokenData {
      * @param transferFeeSettings the settings.
      * @return the builder.
      */
-    private TokenTransferFeeSettings transferFeeSettings;
+    private TokenTransferFeeSettingsInput transferFeeSettings;
 
     /**
      * Whether the toke is fungible or non-fungible.
