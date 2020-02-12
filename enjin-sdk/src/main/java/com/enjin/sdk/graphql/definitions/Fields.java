@@ -36,7 +36,7 @@ public final class Fields {
     public static final GraphQLTemplateField ENJ_ALLOWANCE = GraphQLTemplateField.of("enjAllowance");
     public static final GraphQLTemplateField NETWORK = GraphQLTemplateField.of("network");
     public static final GraphQLTemplateField NOTIFICATIONS = GraphQLTemplateField.of("notifications");
-    public static final GraphQLTemplateField TRANSACTION_ID = GraphQLTemplateField.of("transactionI d");
+    public static final GraphQLTemplateField TRANSACTION_ID = GraphQLTemplateField.of("transactionId");
     public static final GraphQLTemplateField RECIPIENT_ID = GraphQLTemplateField.of("recipientId");
     public static final GraphQLTemplateField RECIPIENT_ADDR = GraphQLTemplateField.of("recipientAddress");
     public static final GraphQLTemplateField ENCODED_DATA = GraphQLTemplateField.of("encodedData");
@@ -107,6 +107,9 @@ public final class Fields {
                                                                           .withChild(PARAM3)
                                                                           .withChild(PARAM4)
                                                                           .withChild(BLOCK_NUMBER);
+    public static final GraphQLTemplateField USER_APPS = GraphQLTemplateField.of("apps")
+                                                                             .withChild(ID)
+                                                                             .withChild(NAME);
 
     private Fields() {
         throw new UnsupportedOperationException("Utility Class");

@@ -2,6 +2,7 @@ package com.enjin.sdk.model.service.users;
 
 import java.util.List;
 
+import com.enjin.sdk.model.service.apps.App;
 import com.enjin.sdk.model.service.identities.Identity;
 import com.enjin.sdk.service.users.UsersService;
 
@@ -45,5 +46,7 @@ public class User {
      * @return the identities.
      */
     private List<Identity> identities;
+
+    private List<App> apps;
 
 }

@@ -43,7 +43,8 @@ public final class Templates {
                                                                    .withField(Fields.ID)
                                                                    .withField(Fields.NAME)
                                                                    .withField(Fields.ACCESS_TOKENS)
-                                                                   .withField(Fields.IDENT_BASE);
+                                                                   .withField(Fields.IDENT_BASE)
+                                                                   .withField(Fields.USER_APPS);
     public static final GraphQLTemplate AUTH_USER = GraphQLTemplate.of("AuthUser", false, Methods.ENJIN_OAUTH)
                                                                    .copyFields(GET_USERS);
     public static final GraphQLTemplate CREATE_USER = GraphQLTemplate.of("CreateUser", true, Methods.CREATE_ENJIN_USER)
@@ -52,7 +53,9 @@ public final class Templates {
                                                                      .copyFields(GET_USERS);
 
     // Identities
-    public static final GraphQLTemplate GET_IDENTITIES = GraphQLTemplate.of("GetIdentities", false, Methods.ENJIN_IDENTITIES)
+    public static final GraphQLTemplate GET_IDENTITIES = GraphQLTemplate.of("GetIdentities",
+                                                                            false,
+                                                                            Methods.ENJIN_IDENTITIES)
                                                                         .copyChildren(Fields.IDENT_W_BALS);
     public static final GraphQLTemplate CREATE_IDENTITY = GraphQLTemplate.of("CreateIdentity",
                                                                              true,
@@ -92,15 +95,23 @@ public final class Templates {
                                                                     .withField(Fields.BLOCK_HEIGHT)
                                                                     .withField(Fields.MARKED_FOR_DELETE)
                                                                     .withField(Fields.ITEM_URI);
-    public static final GraphQLTemplate CREATE_TOKEN = GraphQLTemplate.of("CreateToken", true, Methods.CREATE_ENJIN_TOKEN)
+    public static final GraphQLTemplate CREATE_TOKEN = GraphQLTemplate.of("CreateToken",
+                                                                          true,
+                                                                          Methods.CREATE_ENJIN_TOKEN)
                                                                       .copyFields(GET_TOKENS);
-    public static final GraphQLTemplate UPDATE_TOKEN = GraphQLTemplate.of("UpdateToken", true, Methods.UPDATE_ENJIN_TOKEN)
+    public static final GraphQLTemplate UPDATE_TOKEN = GraphQLTemplate.of("UpdateToken",
+                                                                          true,
+                                                                          Methods.UPDATE_ENJIN_TOKEN)
                                                                       .copyFields(GET_TOKENS);
-    public static final GraphQLTemplate GET_TOKEN_EVENTS = GraphQLTemplate.of("GetTokenEvents", false, Methods.ENJIN_TOKEN_EVENTS)
+    public static final GraphQLTemplate GET_TOKEN_EVENTS = GraphQLTemplate.of("GetTokenEvents",
+                                                                              false,
+                                                                              Methods.ENJIN_TOKEN_EVENTS)
                                                                           .copyChildren(Fields.EVENTS);
 
     // Requests
-    public static final GraphQLTemplate GET_REQUESTS = GraphQLTemplate.of("GetRequests", false, Methods.ENJIN_TRANSACTIONS)
+    public static final GraphQLTemplate GET_REQUESTS = GraphQLTemplate.of("GetRequests",
+                                                                          false,
+                                                                          Methods.ENJIN_TRANSACTIONS)
                                                                       .withField(Fields.ID)
                                                                       .withField(Fields.TRANSACTION_ID)
                                                                       .withField(Fields.APP_ID)
@@ -118,11 +129,17 @@ public final class Templates {
                                                                       .withField(Fields.STATE)
                                                                       .withField(Fields.ACCEPTED)
                                                                       .withField(Fields.EVENTS);
-    public static final GraphQLTemplate CREATE_REQUEST = GraphQLTemplate.of("CreateRequest", true, Methods.CREATE_ENJIN_REQUEST)
+    public static final GraphQLTemplate CREATE_REQUEST = GraphQLTemplate.of("CreateRequest",
+                                                                            true,
+                                                                            Methods.CREATE_ENJIN_REQUEST)
                                                                         .copyFields(GET_REQUESTS);
-    public static final GraphQLTemplate UPDATE_REQUEST = GraphQLTemplate.of("UpdateRequest", true, Methods.UPDATE_ENJIN_REQUEST)
+    public static final GraphQLTemplate UPDATE_REQUEST = GraphQLTemplate.of("UpdateRequest",
+                                                                            true,
+                                                                            Methods.UPDATE_ENJIN_REQUEST)
                                                                         .copyFields(GET_REQUESTS);
-    public static final GraphQLTemplate DELETE_REQUEST = GraphQLTemplate.of("DeleteRequest", true, Methods.DELETE_ENJIN_REQUEST)
+    public static final GraphQLTemplate DELETE_REQUEST = GraphQLTemplate.of("DeleteRequest",
+                                                                            true,
+                                                                            Methods.DELETE_ENJIN_REQUEST)
                                                                         .copyFields(GET_REQUESTS);
 
     // Balances
