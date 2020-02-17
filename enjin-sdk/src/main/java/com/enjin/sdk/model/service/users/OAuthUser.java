@@ -9,14 +9,14 @@ import com.enjin.sdk.service.users.UsersService;
  * @author Evan Lindsay
  * @see UsersService
  */
-public class AuthUser extends GraphQLRequest<AuthUser> {
+public class OAuthUser extends GraphQLRequest<OAuthUser> {
 
-    public AuthUser appId(int id) {
+    public OAuthUser appId(int id) {
         withParameter("app_id", id);
         return this;
     }
 
-    public AuthUser name(String name) {
+    public OAuthUser name(String name) {
         withParameter("name", name);
         return this;
     }
@@ -28,7 +28,7 @@ public class AuthUser extends GraphQLRequest<AuthUser> {
      *
      * @return the builder.
      */
-    public AuthUser email(String email) {
+    public OAuthUser email(String email) {
         withParameter("email", email);
         return this;
     }
@@ -40,7 +40,7 @@ public class AuthUser extends GraphQLRequest<AuthUser> {
      *
      * @return the builder.
      */
-    public AuthUser password(String password) {
+    public OAuthUser password(String password) {
         withParameter("password", password);
         return this;
     }

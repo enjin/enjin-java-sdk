@@ -9,6 +9,8 @@ import com.enjin.sdk.model.service.apps.CreateApp;
 import com.enjin.sdk.model.service.apps.DeleteApp;
 import com.enjin.sdk.model.service.apps.GetApps;
 import com.enjin.sdk.model.service.apps.UpdateApp;
+import com.enjin.sdk.model.service.auth.AuthApp;
+import com.enjin.sdk.model.service.auth.AuthTokens;
 
 public interface AsynchronousAppsService {
 
@@ -23,5 +25,8 @@ public interface AsynchronousAppsService {
 
     void updateAppAsync(UpdateApp query,
                         HttpCallback<GraphQLResponse<App>> callback);
+
+    void authAppAsync(AuthApp query,
+                      HttpCallback<GraphQLResponse<AuthTokens>> callback);
 
 }
