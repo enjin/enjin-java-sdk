@@ -6,7 +6,9 @@ import java.util.List;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpCallback;
 import com.enjin.sdk.http.HttpResponse;
-import com.enjin.sdk.model.service.users.AuthUser;
+import com.enjin.sdk.model.service.auth.AuthTokens;
+import com.enjin.sdk.model.service.auth.AuthUser;
+import com.enjin.sdk.model.service.users.OAuthUser;
 import com.enjin.sdk.model.service.users.CreateUser;
 import com.enjin.sdk.model.service.users.GetUser;
 import com.enjin.sdk.model.service.users.GetUsers;
@@ -42,8 +44,13 @@ public class UsersServiceImpl extends GraphQLServiceBase implements UsersService
     }
 
     @Override
-    public void authUserAsync(AuthUser query,
-                              HttpCallback<GraphQLResponse<User>> callback) {
+    public void oAuthUserAsync(OAuthUser query,
+                               HttpCallback<GraphQLResponse<User>> callback) {
+        enqueueGraphQLCall(this.service.oAuthUser(query), callback);
+    }
+
+    @Override
+    public void authUserAsync(AuthUser query, HttpCallback<GraphQLResponse<AuthTokens>> callback) {
         enqueueGraphQLCall(this.service.authUser(query), callback);
     }
 
@@ -63,7 +70,12 @@ public class UsersServiceImpl extends GraphQLServiceBase implements UsersService
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<User>> authUserSync(AuthUser query) throws IOException {
+    public HttpResponse<GraphQLResponse<User>> oAuthUserSync(OAuthUser query) throws IOException {
+        return executeGraphQLCall(this.service.oAuthUser(query));
+    }
+
+    @Override
+    public HttpResponse<GraphQLResponse<AuthTokens>> authUserSync(AuthUser query) throws IOException {
         return executeGraphQLCall(this.service.authUser(query));
     }
 

@@ -12,6 +12,8 @@ import com.enjin.sdk.model.service.apps.DeleteApp;
 import com.enjin.sdk.model.service.apps.GetApp;
 import com.enjin.sdk.model.service.apps.GetApps;
 import com.enjin.sdk.model.service.apps.UpdateApp;
+import com.enjin.sdk.model.service.auth.AuthApp;
+import com.enjin.sdk.model.service.auth.AuthTokens;
 import com.enjin.sdk.service.GraphQLServiceBase;
 import com.enjin.sdk.service.apps.AppsService;
 
@@ -51,6 +53,11 @@ public class AppsServiceImpl extends GraphQLServiceBase implements AppsService {
     }
 
     @Override
+    public void authAppAsync(AuthApp query, HttpCallback<GraphQLResponse<AuthTokens>> callback) {
+        enqueueGraphQLCall(this.service.authApp(query), callback);
+    }
+
+    @Override
     public HttpResponse<GraphQLResponse<List<App>>> getAppsSync(GetApps query) throws IOException {
         return executeGraphQLCall(this.service.getApps(query));
     }
@@ -73,5 +80,10 @@ public class AppsServiceImpl extends GraphQLServiceBase implements AppsService {
     @Override
     public HttpResponse<GraphQLResponse<App>> updateAppSync(UpdateApp query) throws IOException {
         return executeGraphQLCall(this.service.updateApps(query));
+    }
+
+    @Override
+    public HttpResponse<GraphQLResponse<AuthTokens>> authAppSync(AuthApp query) throws IOException {
+        return executeGraphQLCall(this.service.authApp(query));
     }
 }

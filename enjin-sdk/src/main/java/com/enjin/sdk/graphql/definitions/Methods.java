@@ -14,11 +14,14 @@ public final class Methods {
     public static final String CREATE_ENJIN_APP = "CreateEnjinApp";
     public static final String UPDATE_ENJIN_APP = "UpdateEnjinApp";
     public static final String DELETE_ENJIN_APP = "DeleteEnjinApp";
+    public static final String AUTH_APP = "AuthApp";
 
     // Users
     public static final String ENJIN_USERS = "EnjinUsers";
     public static final String ENJIN_USER = "EnjinUser";
     public static final String CREATE_ENJIN_USER = "CreateEnjinUser";
+    public static final String UPDATE_ENJIN_USER = "UpdateEnjinUser";
+    public static final String AUTH_USER = "AuthUser";
 
     // Identities
     public static final String ENJIN_IDENTITIES = "EnjinIdentities";

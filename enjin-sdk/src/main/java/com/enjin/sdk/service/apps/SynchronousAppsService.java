@@ -11,6 +11,8 @@ import com.enjin.sdk.model.service.apps.DeleteApp;
 import com.enjin.sdk.model.service.apps.GetApp;
 import com.enjin.sdk.model.service.apps.GetApps;
 import com.enjin.sdk.model.service.apps.UpdateApp;
+import com.enjin.sdk.model.service.auth.AuthApp;
+import com.enjin.sdk.model.service.auth.AuthTokens;
 
 public interface SynchronousAppsService {
 
@@ -23,5 +25,7 @@ public interface SynchronousAppsService {
     HttpResponse<GraphQLResponse<App>> deleteAppSync(DeleteApp query) throws IOException;
 
     HttpResponse<GraphQLResponse<App>> updateAppSync(UpdateApp query) throws IOException;
+
+    HttpResponse<GraphQLResponse<AuthTokens>> authAppSync(AuthApp query) throws IOException;
 
 }

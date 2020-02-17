@@ -7,6 +7,7 @@ import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.graphql.GraphQuery;
 import com.enjin.sdk.model.service.apps.App;
 
+import com.enjin.sdk.model.service.auth.AuthTokens;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Headers;
@@ -38,5 +39,10 @@ public interface AppsRetrofitService {
     @GraphQuery("UpdateApp")
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<App>> updateApps(@Body GraphQLRequest request);
+
+    @POST("graphql")
+    @GraphQuery("AuthApp")
+    @Headers("Content-Type: application/json")
+    Call<GraphQLResponse<AuthTokens>> authApp(@Body GraphQLRequest request);
 
 }

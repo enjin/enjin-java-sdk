@@ -7,6 +7,8 @@ public final class Fields {
     public static final GraphQLTemplateField ID = GraphQLTemplateField.of("id");
     public static final GraphQLTemplateField NAME = GraphQLTemplateField.of("name");
     public static final GraphQLTemplateField ACCESS_TOKENS = GraphQLTemplateField.of("accessTokens");
+    public static final GraphQLTemplateField ACCESS_TOKEN = GraphQLTemplateField.of("accessToken");
+    public static final GraphQLTemplateField REFRESH_TOKEN = GraphQLTemplateField.of("refreshToken");
     public static final GraphQLTemplateField APP_ID = GraphQLTemplateField.of("appId");
     public static final GraphQLTemplateField ETH_ADDR = GraphQLTemplateField.of("ethAddress");
     public static final GraphQLTemplateField LINKING_CODE = GraphQLTemplateField.of("linkingCode");

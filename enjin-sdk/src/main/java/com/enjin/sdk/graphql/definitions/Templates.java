@@ -39,6 +39,9 @@ public final class Templates {
                                                                     .copyFields(GET_APPS);
     public static final GraphQLTemplate DELETE_APP = GraphQLTemplate.of("DeleteApp", true, Methods.DELETE_ENJIN_APP)
                                                                     .copyFields(GET_APPS);
+    public static final GraphQLTemplate AUTH_APP = GraphQLTemplate.of("AuthApp", false, Methods.AUTH_USER)
+                                                                  .withField(Fields.ACCESS_TOKEN)
+                                                                  .withField(Fields.REFRESH_TOKEN);
 
     // Users
     public static final GraphQLTemplate GET_USERS = GraphQLTemplate.of("GetUsers", false, Methods.ENJIN_USERS)
@@ -49,10 +52,15 @@ public final class Templates {
                                                                    .withField(Fields.USER_APPS);
     public static final GraphQLTemplate GET_USER = GraphQLTemplate.of("GetUser", false, Methods.ENJIN_USER)
                                                                   .copyFields(GET_USERS);
-    public static final GraphQLTemplate AUTH_USER = GraphQLTemplate.of("AuthUser", false, Methods.ENJIN_OAUTH)
+    public static final GraphQLTemplate OAUTH_USER = GraphQLTemplate.of("OAuthUser", false, Methods.ENJIN_OAUTH)
                                                                    .copyFields(GET_USERS);
     public static final GraphQLTemplate CREATE_USER = GraphQLTemplate.of("CreateUser", true, Methods.CREATE_ENJIN_USER)
                                                                      .copyFields(GET_USERS);
+    public static final GraphQLTemplate UPDATE_USER = GraphQLTemplate.of("UpdateUser", true, Methods.UPDATE_ENJIN_USER)
+                                                                     .copyFields(GET_USERS);
+    public static final GraphQLTemplate AUTH_USER = GraphQLTemplate.of("AuthUser", false, Methods.AUTH_USER)
+                                                                  .withField(Fields.ACCESS_TOKEN)
+                                                                  .withField(Fields.REFRESH_TOKEN);
 
     // Identities
     public static final GraphQLTemplate GET_IDENTITIES = GraphQLTemplate.of("GetIdentities",

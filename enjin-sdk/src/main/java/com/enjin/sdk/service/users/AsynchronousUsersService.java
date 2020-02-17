@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpCallback;
-import com.enjin.sdk.model.service.users.AuthUser;
+import com.enjin.sdk.model.service.auth.AuthTokens;
+import com.enjin.sdk.model.service.auth.AuthUser;
+import com.enjin.sdk.model.service.users.OAuthUser;
 import com.enjin.sdk.model.service.users.CreateUser;
 import com.enjin.sdk.model.service.users.GetUser;
 import com.enjin.sdk.model.service.users.GetUsers;
@@ -44,7 +46,10 @@ public interface AsynchronousUsersService {
      * @param query    the query.
      * @param callback the callback.
      */
+    void oAuthUserAsync(OAuthUser query,
+                        HttpCallback<GraphQLResponse<User>> callback);
+
     void authUserAsync(AuthUser query,
-                       HttpCallback<GraphQLResponse<User>> callback);
+                       HttpCallback<GraphQLResponse<AuthTokens>> callback);
 
 }

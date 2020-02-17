@@ -5,7 +5,9 @@ import java.util.List;
 
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpResponse;
-import com.enjin.sdk.model.service.users.AuthUser;
+import com.enjin.sdk.model.service.auth.AuthTokens;
+import com.enjin.sdk.model.service.auth.AuthUser;
+import com.enjin.sdk.model.service.users.OAuthUser;
 import com.enjin.sdk.model.service.users.CreateUser;
 import com.enjin.sdk.model.service.users.GetUser;
 import com.enjin.sdk.model.service.users.GetUsers;
@@ -46,6 +48,8 @@ public interface SynchronousUsersService {
      *
      * @throws IOException if a communication error occurred.
      */
-    HttpResponse<GraphQLResponse<User>> authUserSync(AuthUser query) throws IOException;
+    HttpResponse<GraphQLResponse<User>> oAuthUserSync(OAuthUser query) throws IOException;
+
+    HttpResponse<GraphQLResponse<AuthTokens>> authUserSync(AuthUser query) throws IOException;
 
 }
