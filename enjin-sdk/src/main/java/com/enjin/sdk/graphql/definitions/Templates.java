@@ -146,6 +146,10 @@ public final class Templates {
     public static final GraphQLTemplate GET_BALANCES = GraphQLTemplate.of("GetBalances", false, Methods.ENJIN_BALANCES)
                                                                       .copyChildren(Fields.BALANCES);
 
+    // Wallets
+    public static final GraphQLTemplate GET_WALLET = GraphQLTemplate.of("GetWallet", false, Methods.ENJIN_WALLET)
+                                                                    .copyChildren(Fields.WALLET);
+
     private Templates() {
         throw new UnsupportedOperationException("Utility Class");
     }

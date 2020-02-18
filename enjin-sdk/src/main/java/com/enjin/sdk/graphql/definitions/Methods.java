@@ -42,6 +42,9 @@ public final class Methods {
     // Balances
     public static final String ENJIN_BALANCES = "EnjinBalances";
 
+    // Wallets
+    public static final String ENJIN_WALLET = "EnjinWallet";
+
     private Methods() {
         throw new UnsupportedOperationException("Utility Class");
     }
