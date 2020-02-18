@@ -5,6 +5,7 @@ import java.util.List;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpCallback;
 import com.enjin.sdk.model.service.tokens.CreateToken;
+import com.enjin.sdk.model.service.tokens.GetToken;
 import com.enjin.sdk.model.service.tokens.GetTokenEvents;
 import com.enjin.sdk.model.service.tokens.GetTokens;
 import com.enjin.sdk.model.service.tokens.Token;
@@ -26,6 +27,9 @@ public interface AsynchronousTokensService {
      */
     void getTokensAsync(GetTokens query,
                         HttpCallback<GraphQLResponse<List<Token>>> callback);
+
+    void getTokenAsync(GetToken query,
+                       HttpCallback<GraphQLResponse<Token>> callback);
 
     /**
      * Imports a token from the blockchain.

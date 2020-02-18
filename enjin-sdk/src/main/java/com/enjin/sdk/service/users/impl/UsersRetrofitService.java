@@ -25,13 +25,13 @@ public interface UsersRetrofitService {
     Call<GraphQLResponse<List<User>>> getUsers(@Body GraphQLRequest request);
 
     @POST("graphql")
+    @GraphQuery("GetUser")
+    @Headers("Content-Type: application/json")
+    Call<GraphQLResponse<User>> getUser(@Body GraphQLRequest request);
+
+    @POST("graphql")
     @GraphQuery("CreateUser")
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<User>> createUser(@Body GraphQLRequest request);
-
-    @POST("graphql")
-    @GraphQuery("UpdateUser")
-    @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<User>> updateUser(@Body GraphQLRequest request);
 
 }

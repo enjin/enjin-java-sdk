@@ -20,6 +20,11 @@ public interface AppsRetrofitService {
     Call<GraphQLResponse<List<App>>> getApps(@Body GraphQLRequest request);
 
     @POST("graphql")
+    @GraphQuery("GetApp")
+    @Headers("Content-Type: application/json")
+    Call<GraphQLResponse<App>> getApp(@Body GraphQLRequest request);
+
+    @POST("graphql")
     @GraphQuery("CreateApp")
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<App>> createApps(@Body GraphQLRequest request);

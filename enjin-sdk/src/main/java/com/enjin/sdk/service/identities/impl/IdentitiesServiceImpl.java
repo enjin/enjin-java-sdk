@@ -9,6 +9,7 @@ import com.enjin.sdk.http.HttpResponse;
 import com.enjin.sdk.model.service.identities.CreateIdentity;
 import com.enjin.sdk.model.service.identities.DeleteIdentity;
 import com.enjin.sdk.model.service.identities.GetIdentities;
+import com.enjin.sdk.model.service.identities.GetIdentity;
 import com.enjin.sdk.model.service.identities.Identity;
 import com.enjin.sdk.model.service.identities.UnlinkIdentity;
 import com.enjin.sdk.model.service.identities.UpdateIdentity;
@@ -29,6 +30,11 @@ public class IdentitiesServiceImpl extends GraphQLServiceBase implements Identit
     public void getIdentitiesAsync(GetIdentities query,
                                    HttpCallback<GraphQLResponse<List<Identity>>> callback) {
         enqueueGraphQLCall(this.service.getIdentities(query), callback);
+    }
+
+    @Override
+    public void getIdentityAsync(GetIdentity query, HttpCallback<GraphQLResponse<Identity>> callback) {
+        enqueueGraphQLCall(this.service.getIdentity(query), callback);
     }
 
     @Override
@@ -57,6 +63,11 @@ public class IdentitiesServiceImpl extends GraphQLServiceBase implements Identit
     @Override
     public HttpResponse<GraphQLResponse<List<Identity>>> getIdentitiesSync(GetIdentities query) throws IOException {
         return executeGraphQLCall(this.service.getIdentities(query));
+    }
+
+    @Override
+    public HttpResponse<GraphQLResponse<Identity>> getIdentitySync(GetIdentity query) throws IOException {
+        return executeGraphQLCall(this.service.getIdentity(query));
     }
 
     @Override

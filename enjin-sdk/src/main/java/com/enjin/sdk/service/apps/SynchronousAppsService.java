@@ -8,12 +8,15 @@ import com.enjin.sdk.http.HttpResponse;
 import com.enjin.sdk.model.service.apps.App;
 import com.enjin.sdk.model.service.apps.CreateApp;
 import com.enjin.sdk.model.service.apps.DeleteApp;
+import com.enjin.sdk.model.service.apps.GetApp;
 import com.enjin.sdk.model.service.apps.GetApps;
 import com.enjin.sdk.model.service.apps.UpdateApp;
 
 public interface SynchronousAppsService {
 
     HttpResponse<GraphQLResponse<List<App>>> getAppsSync(GetApps query) throws IOException;
+
+    HttpResponse<GraphQLResponse<App>> getAppSync(GetApp query) throws IOException;
 
     HttpResponse<GraphQLResponse<App>> createAppSync(CreateApp query) throws IOException;
 

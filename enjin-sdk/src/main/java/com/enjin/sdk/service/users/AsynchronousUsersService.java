@@ -6,8 +6,8 @@ import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpCallback;
 import com.enjin.sdk.model.service.users.AuthUser;
 import com.enjin.sdk.model.service.users.CreateUser;
+import com.enjin.sdk.model.service.users.GetUser;
 import com.enjin.sdk.model.service.users.GetUsers;
-import com.enjin.sdk.model.service.users.UpdateUser;
 import com.enjin.sdk.model.service.users.User;
 
 /**
@@ -26,6 +26,9 @@ public interface AsynchronousUsersService {
     void getUsersAsync(GetUsers query,
                        HttpCallback<GraphQLResponse<List<User>>> callback);
 
+    void getUserAsync(GetUser query,
+                      HttpCallback<GraphQLResponse<User>> callback);
+
     /**
      * Creates a new user.
      *
@@ -33,9 +36,6 @@ public interface AsynchronousUsersService {
      * @param callback the callback.
      */
     void createUserAsync(CreateUser query,
-                         HttpCallback<GraphQLResponse<User>> callback);
-
-    void updateUserAsync(UpdateUser query,
                          HttpCallback<GraphQLResponse<User>> callback);
 
     /**

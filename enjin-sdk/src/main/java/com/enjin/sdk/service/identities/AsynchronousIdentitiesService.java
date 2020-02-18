@@ -8,6 +8,7 @@ import com.enjin.sdk.http.HttpResponse;
 import com.enjin.sdk.model.service.identities.CreateIdentity;
 import com.enjin.sdk.model.service.identities.DeleteIdentity;
 import com.enjin.sdk.model.service.identities.GetIdentities;
+import com.enjin.sdk.model.service.identities.GetIdentity;
 import com.enjin.sdk.model.service.identities.Identity;
 import com.enjin.sdk.model.service.identities.UnlinkIdentity;
 import com.enjin.sdk.model.service.identities.UpdateIdentity;
@@ -27,6 +28,9 @@ public interface AsynchronousIdentitiesService {
      */
     void getIdentitiesAsync(GetIdentities query,
                             HttpCallback<GraphQLResponse<List<Identity>>> callback);
+
+    void getIdentityAsync(GetIdentity query,
+                            HttpCallback<GraphQLResponse<Identity>> callback);
 
     /**
      * Creates a new identity.

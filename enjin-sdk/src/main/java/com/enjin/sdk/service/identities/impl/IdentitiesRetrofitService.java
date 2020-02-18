@@ -20,6 +20,11 @@ public interface IdentitiesRetrofitService {
     Call<GraphQLResponse<List<Identity>>> getIdentities(@Body GraphQLRequest request);
 
     @POST("graphql")
+    @GraphQuery("GetIdentity")
+    @Headers("Content-Type: application/json")
+    Call<GraphQLResponse<Identity>> getIdentity(@Body GraphQLRequest request);
+
+    @POST("graphql")
     @GraphQuery("CreateIdentity")
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<Identity>> createIdentity(@Body GraphQLRequest request);

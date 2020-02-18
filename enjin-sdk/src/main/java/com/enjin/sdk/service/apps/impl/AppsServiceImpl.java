@@ -9,6 +9,7 @@ import com.enjin.sdk.http.HttpResponse;
 import com.enjin.sdk.model.service.apps.App;
 import com.enjin.sdk.model.service.apps.CreateApp;
 import com.enjin.sdk.model.service.apps.DeleteApp;
+import com.enjin.sdk.model.service.apps.GetApp;
 import com.enjin.sdk.model.service.apps.GetApps;
 import com.enjin.sdk.model.service.apps.UpdateApp;
 import com.enjin.sdk.service.GraphQLServiceBase;
@@ -30,6 +31,11 @@ public class AppsServiceImpl extends GraphQLServiceBase implements AppsService {
     }
 
     @Override
+    public void getAppAsync(GetApp query, HttpCallback<GraphQLResponse<App>> callback) {
+        enqueueGraphQLCall(this.service.getApp(query), callback);
+    }
+
+    @Override
     public void createAppAsync(CreateApp query, HttpCallback<GraphQLResponse<App>> callback) {
         enqueueGraphQLCall(this.service.createApps(query), callback);
     }
@@ -47,6 +53,11 @@ public class AppsServiceImpl extends GraphQLServiceBase implements AppsService {
     @Override
     public HttpResponse<GraphQLResponse<List<App>>> getAppsSync(GetApps query) throws IOException {
         return executeGraphQLCall(this.service.getApps(query));
+    }
+
+    @Override
+    public HttpResponse<GraphQLResponse<App>> getAppSync(GetApp query) throws IOException {
+        return executeGraphQLCall(this.service.getApp(query));
     }
 
     @Override
