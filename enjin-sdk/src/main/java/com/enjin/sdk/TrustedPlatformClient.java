@@ -30,6 +30,8 @@ import com.enjin.sdk.service.tokens.TokensService;
 import com.enjin.sdk.service.tokens.impl.TokensServiceImpl;
 import com.enjin.sdk.service.users.UsersService;
 import com.enjin.sdk.service.users.impl.UsersServiceImpl;
+import com.enjin.sdk.service.wallets.WalletService;
+import com.enjin.sdk.service.wallets.impl.WalletServiceImpl;
 import com.github.dmstocking.optional.java.util.Optional;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -75,6 +77,8 @@ public final class TrustedPlatformClient implements Closeable {
     private TokensService tokensService;
     @Getter
     private UsersService usersService;
+    @Getter
+    private WalletService walletService;
 
     private TrustedPlatformClient(Builder builder) {
         baseUrl = builder.baseUrl.orElse(MAIN_NET);
@@ -120,6 +124,7 @@ public final class TrustedPlatformClient implements Closeable {
         this.requestsService = new RequestsServiceImpl(retrofit);
         this.tokensService = new TokensServiceImpl(retrofit);
         this.balancesService = new BalancesServiceImpl(retrofit);
+        this.walletService = new WalletServiceImpl(retrofit);
     }
 
     public OkHttpClient getHttpClient() {
