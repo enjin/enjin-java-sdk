@@ -8,8 +8,8 @@ import com.enjin.sdk.http.HttpCallback;
 import com.enjin.sdk.http.HttpResponse;
 import com.enjin.sdk.model.service.users.AuthUser;
 import com.enjin.sdk.model.service.users.CreateUser;
+import com.enjin.sdk.model.service.users.GetUser;
 import com.enjin.sdk.model.service.users.GetUsers;
-import com.enjin.sdk.model.service.users.UpdateUser;
 import com.enjin.sdk.model.service.users.User;
 import com.enjin.sdk.service.GraphQLServiceBase;
 import com.enjin.sdk.service.users.UsersService;
@@ -31,14 +31,14 @@ public class UsersServiceImpl extends GraphQLServiceBase implements UsersService
     }
 
     @Override
-    public void createUserAsync(CreateUser query,
-                                HttpCallback<GraphQLResponse<User>> callback) {
-        enqueueGraphQLCall(this.service.createUser(query), callback);
+    public void getUserAsync(GetUser query, HttpCallback<GraphQLResponse<User>> callback) {
+        enqueueGraphQLCall(this.service.getUser(query), callback);
     }
 
     @Override
-    public void updateUserAsync(UpdateUser query, HttpCallback<GraphQLResponse<User>> callback) {
-        enqueueGraphQLCall(this.service.updateUser(query), callback);
+    public void createUserAsync(CreateUser query,
+                                HttpCallback<GraphQLResponse<User>> callback) {
+        enqueueGraphQLCall(this.service.createUser(query), callback);
     }
 
     @Override
@@ -53,13 +53,13 @@ public class UsersServiceImpl extends GraphQLServiceBase implements UsersService
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<User>> createUserSync(CreateUser query) throws IOException {
-        return executeGraphQLCall(this.service.createUser(query));
+    public HttpResponse<GraphQLResponse<User>> getUserSync(GetUser query) throws IOException {
+        return executeGraphQLCall(this.service.getUser(query));
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<User>> updateUserSync(UpdateUser query) throws IOException {
-        return executeGraphQLCall(this.service.updateUser(query));
+    public HttpResponse<GraphQLResponse<User>> createUserSync(CreateUser query) throws IOException {
+        return executeGraphQLCall(this.service.createUser(query));
     }
 
     @Override

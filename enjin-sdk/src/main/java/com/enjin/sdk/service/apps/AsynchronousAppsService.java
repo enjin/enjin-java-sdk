@@ -7,6 +7,7 @@ import com.enjin.sdk.http.HttpCallback;
 import com.enjin.sdk.model.service.apps.App;
 import com.enjin.sdk.model.service.apps.CreateApp;
 import com.enjin.sdk.model.service.apps.DeleteApp;
+import com.enjin.sdk.model.service.apps.GetApp;
 import com.enjin.sdk.model.service.apps.GetApps;
 import com.enjin.sdk.model.service.apps.UpdateApp;
 
@@ -14,6 +15,9 @@ public interface AsynchronousAppsService {
 
     void getAppsAsync(GetApps query,
                       HttpCallback<GraphQLResponse<List<App>>> callback);
+
+    void getAppAsync(GetApp query,
+                     HttpCallback<GraphQLResponse<App>> callback);
 
     void createAppAsync(CreateApp query,
                         HttpCallback<GraphQLResponse<App>> callback);

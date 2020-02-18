@@ -31,6 +31,8 @@ public final class Templates {
                                                                   .withField(Fields.IMAGE)
                                                                   .withField(Fields.OWNER)
                                                                   .withField(Fields.TOKEN_COUNT);
+    public static final GraphQLTemplate GET_APP = GraphQLTemplate.of("GetApp", false, Methods.ENJIN_APP)
+                                                                 .copyFields(GET_APPS);
     public static final GraphQLTemplate CREATE_APP = GraphQLTemplate.of("CreateApp", true, Methods.CREATE_ENJIN_APP)
                                                                     .copyFields(GET_APPS);
     public static final GraphQLTemplate UPDATE_APP = GraphQLTemplate.of("UpdateApp", true, Methods.UPDATE_ENJIN_APP)
@@ -45,11 +47,11 @@ public final class Templates {
                                                                    .withField(Fields.ACCESS_TOKENS)
                                                                    .withField(Fields.IDENT_BASE)
                                                                    .withField(Fields.USER_APPS);
+    public static final GraphQLTemplate GET_USER = GraphQLTemplate.of("GetUser", false, Methods.ENJIN_USER)
+                                                                  .copyFields(GET_USERS);
     public static final GraphQLTemplate AUTH_USER = GraphQLTemplate.of("AuthUser", false, Methods.ENJIN_OAUTH)
                                                                    .copyFields(GET_USERS);
     public static final GraphQLTemplate CREATE_USER = GraphQLTemplate.of("CreateUser", true, Methods.CREATE_ENJIN_USER)
-                                                                     .copyFields(GET_USERS);
-    public static final GraphQLTemplate UPDATE_USER = GraphQLTemplate.of("UpdateUser", true, Methods.UPDATE_ENJIN_USER)
                                                                      .copyFields(GET_USERS);
 
     // Identities
@@ -57,6 +59,10 @@ public final class Templates {
                                                                             false,
                                                                             Methods.ENJIN_IDENTITIES)
                                                                         .copyChildren(Fields.IDENT_W_BALS);
+    public static final GraphQLTemplate GET_IDENTITY = GraphQLTemplate.of("GetIdentity",
+                                                                          false,
+                                                                          Methods.ENJIN_IDENTITY)
+                                                                      .copyChildren(Fields.IDENT_W_BALS);
     public static final GraphQLTemplate CREATE_IDENTITY = GraphQLTemplate.of("CreateIdentity",
                                                                              true,
                                                                              Methods.CREATE_ENJIN_IDENTITY)
@@ -95,6 +101,8 @@ public final class Templates {
                                                                     .withField(Fields.BLOCK_HEIGHT)
                                                                     .withField(Fields.MARKED_FOR_DELETE)
                                                                     .withField(Fields.ITEM_URI);
+    public static final GraphQLTemplate GET_TOKEN = GraphQLTemplate.of("GetToken", false, Methods.ENJIN_TOKEN)
+                                                                   .copyFields(GET_TOKENS);
     public static final GraphQLTemplate CREATE_TOKEN = GraphQLTemplate.of("CreateToken",
                                                                           true,
                                                                           Methods.CREATE_ENJIN_TOKEN)
