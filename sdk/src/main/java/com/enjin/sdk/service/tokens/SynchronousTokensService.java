@@ -24,9 +24,9 @@ public interface SynchronousTokensService {
      *
      * @throws IOException if a communication error occurred.
      */
-    HttpResponse<GraphQLResponse<List<Token>>> getTokensSync(GetTokens query) throws IOException;
+    HttpResponse<GraphQLResponse<List<Token>>> getTokensSync(GetTokens query);
 
-    HttpResponse<GraphQLResponse<Token>> getTokenSync(GetToken query) throws IOException;
+    HttpResponse<GraphQLResponse<Token>> getTokenSync(GetToken query);
 
     /**
      * Imports a token from the blockchain.
@@ -37,7 +37,7 @@ public interface SynchronousTokensService {
      *
      * @throws IOException if a communication error occurred.
      */
-    HttpResponse<GraphQLResponse<Token>> createTokenSync(CreateToken query) throws IOException;
+    HttpResponse<GraphQLResponse<Token>> createTokenSync(CreateToken query);
 
     /**
      * Updates an app token.
@@ -48,8 +48,8 @@ public interface SynchronousTokensService {
      *
      * @throws IOException if a communication error occurred.
      */
-    HttpResponse<GraphQLResponse<Token>> updateTokenSync(UpdateToken query) throws IOException;
+    HttpResponse<GraphQLResponse<Token>> updateTokenSync(UpdateToken query);
 
-    HttpResponse<GraphQLResponse<List<TokenEvent>>> getTokenEventsSync(GetTokenEvents query) throws IOException;
+    HttpResponse<GraphQLResponse<List<TokenEvent>>> getTokenEventsSync(GetTokenEvents query);
 
 }

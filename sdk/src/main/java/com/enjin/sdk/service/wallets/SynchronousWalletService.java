@@ -9,6 +9,6 @@ import java.io.IOException;
 
 public interface SynchronousWalletService {
 
-    HttpResponse<GraphQLResponse<Wallet>> getWalletSync(GetWallet query) throws IOException;
+    HttpResponse<GraphQLResponse<Wallet>> getWalletSync(GetWallet query);
 
 }

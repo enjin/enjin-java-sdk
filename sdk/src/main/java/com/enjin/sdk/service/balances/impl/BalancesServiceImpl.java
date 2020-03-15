@@ -22,7 +22,7 @@ public class BalancesServiceImpl extends GraphQLServiceBase implements BalancesS
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<List<Balance>>> getBalancesSync(GetBalances query) throws IOException {
+    public HttpResponse<GraphQLResponse<List<Balance>>> getBalancesSync(GetBalances query) {
         return execute(this.service.getBalances(query));
     }
 

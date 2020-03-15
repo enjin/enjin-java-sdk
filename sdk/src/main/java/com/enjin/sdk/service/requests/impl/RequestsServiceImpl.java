@@ -48,22 +48,22 @@ public class RequestsServiceImpl extends GraphQLServiceBase implements RequestsS
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<List<Transaction>>> getRequestsSync(GetRequests query) throws IOException {
+    public HttpResponse<GraphQLResponse<List<Transaction>>> getRequestsSync(GetRequests query) {
         return executeGraphQLCall(this.service.getRequests(query));
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<Transaction>> createRequestSync(CreateRequest query) throws IOException {
+    public HttpResponse<GraphQLResponse<Transaction>> createRequestSync(CreateRequest query) {
         return executeGraphQLCall(this.service.createRequest(query));
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<Transaction>> updateRequestSync(UpdateRequest query) throws IOException {
+    public HttpResponse<GraphQLResponse<Transaction>> updateRequestSync(UpdateRequest query) {
         return executeGraphQLCall(this.service.updateRequest(query));
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<Transaction>> deleteRequestSync(DeleteRequest query) throws IOException {
+    public HttpResponse<GraphQLResponse<Transaction>> deleteRequestSync(DeleteRequest query) {
         return executeGraphQLCall(this.service.deleteRequest(query));
     }
 

@@ -25,7 +25,7 @@ public class WalletServiceImpl extends GraphQLServiceBase implements WalletServi
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<Wallet>> getWalletSync(GetWallet query) throws IOException {
+    public HttpResponse<GraphQLResponse<Wallet>> getWalletSync(GetWallet query) {
         return executeGraphQLCall(this.service.getWallet(query));
     }
 

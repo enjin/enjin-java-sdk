@@ -10,6 +10,6 @@ import com.enjin.sdk.model.service.balances.GetBalances;
 
 public interface SynchronousBalancesService {
 
-    HttpResponse<GraphQLResponse<List<Balance>>> getBalancesSync(GetBalances query) throws IOException;
+    HttpResponse<GraphQLResponse<List<Balance>>> getBalancesSync(GetBalances query);
 
 }

@@ -55,27 +55,27 @@ public class UsersServiceImpl extends GraphQLServiceBase implements UsersService
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<List<User>>> getUsersSync(GetUsers query) throws IOException {
+    public HttpResponse<GraphQLResponse<List<User>>> getUsersSync(GetUsers query) {
         return executeGraphQLCall(this.service.getUsers(query));
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<User>> getUserSync(GetUser query) throws IOException {
+    public HttpResponse<GraphQLResponse<User>> getUserSync(GetUser query) {
         return executeGraphQLCall(this.service.getUser(query));
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<User>> createUserSync(CreateUser query) throws IOException {
+    public HttpResponse<GraphQLResponse<User>> createUserSync(CreateUser query) {
         return executeGraphQLCall(this.service.createUser(query));
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<User>> oAuthUserSync(OAuthUser query) throws IOException {
+    public HttpResponse<GraphQLResponse<User>> oAuthUserSync(OAuthUser query) {
         return executeGraphQLCall(this.service.oAuthUser(query));
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<AuthTokens>> authUserSync(AuthUser query) throws IOException {
+    public HttpResponse<GraphQLResponse<AuthTokens>> authUserSync(AuthUser query) {
         return executeGraphQLCall(this.service.authUser(query));
     }
 

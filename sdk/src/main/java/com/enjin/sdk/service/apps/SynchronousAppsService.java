@@ -16,16 +16,16 @@ import com.enjin.sdk.model.service.auth.AuthTokens;
 
 public interface SynchronousAppsService {
 
-    HttpResponse<GraphQLResponse<List<App>>> getAppsSync(GetApps query) throws IOException;
+    HttpResponse<GraphQLResponse<List<App>>> getAppsSync(GetApps query);
 
-    HttpResponse<GraphQLResponse<App>> getAppSync(GetApp query) throws IOException;
+    HttpResponse<GraphQLResponse<App>> getAppSync(GetApp query);
 
-    HttpResponse<GraphQLResponse<App>> createAppSync(CreateApp query) throws IOException;
+    HttpResponse<GraphQLResponse<App>> createAppSync(CreateApp query);
 
-    HttpResponse<GraphQLResponse<App>> deleteAppSync(DeleteApp query) throws IOException;
+    HttpResponse<GraphQLResponse<App>> deleteAppSync(DeleteApp query);
 
-    HttpResponse<GraphQLResponse<App>> updateAppSync(UpdateApp query) throws IOException;
+    HttpResponse<GraphQLResponse<App>> updateAppSync(UpdateApp query);
 
-    HttpResponse<GraphQLResponse<AuthTokens>> authAppSync(AuthApp query) throws IOException;
+    HttpResponse<GraphQLResponse<AuthTokens>> authAppSync(AuthApp query);
 
 }

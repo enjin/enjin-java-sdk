@@ -29,9 +29,9 @@ public interface SynchronousIdentitiesService {
      *
      * @throws IOException if a communication error occurred.
      */
-    HttpResponse<GraphQLResponse<List<Identity>>> getIdentitiesSync(GetIdentities query) throws IOException;
+    HttpResponse<GraphQLResponse<List<Identity>>> getIdentitiesSync(GetIdentities query);
 
-    HttpResponse<GraphQLResponse<Identity>> getIdentitySync(GetIdentity query) throws IOException;
+    HttpResponse<GraphQLResponse<Identity>> getIdentitySync(GetIdentity query);
 
     /**
      * Creates a new identity.
@@ -42,7 +42,7 @@ public interface SynchronousIdentitiesService {
      *
      * @throws IOException if a communication error occurred.
      */
-    HttpResponse<GraphQLResponse<Identity>> createIdentitySync(CreateIdentity query) throws IOException;
+    HttpResponse<GraphQLResponse<Identity>> createIdentitySync(CreateIdentity query);
 
     /**
      * Deletes or unlinks an identity.
@@ -53,7 +53,7 @@ public interface SynchronousIdentitiesService {
      *
      * @throws IOException if a communication error occurred.
      */
-    HttpResponse<GraphQLResponse<Identity>> deleteIdentitySync(DeleteIdentity query) throws IOException;
+    HttpResponse<GraphQLResponse<Identity>> deleteIdentitySync(DeleteIdentity query);
 
     /**
      * Updates an identity.
@@ -64,8 +64,8 @@ public interface SynchronousIdentitiesService {
      *
      * @throws IOException if a communication error occurred.
      */
-    HttpResponse<GraphQLResponse<Identity>> updateIdentitySync(UpdateIdentity query) throws IOException;
+    HttpResponse<GraphQLResponse<Identity>> updateIdentitySync(UpdateIdentity query);
 
-    HttpResponse<GraphQLResponse<Identity>> unlinkIdentitySync(UnlinkIdentity query) throws IOException;
+    HttpResponse<GraphQLResponse<Identity>> unlinkIdentitySync(UnlinkIdentity query);
 
 }

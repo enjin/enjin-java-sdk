@@ -61,32 +61,32 @@ public class IdentitiesServiceImpl extends GraphQLServiceBase implements Identit
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<List<Identity>>> getIdentitiesSync(GetIdentities query) throws IOException {
+    public HttpResponse<GraphQLResponse<List<Identity>>> getIdentitiesSync(GetIdentities query) {
         return executeGraphQLCall(this.service.getIdentities(query));
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<Identity>> getIdentitySync(GetIdentity query) throws IOException {
+    public HttpResponse<GraphQLResponse<Identity>> getIdentitySync(GetIdentity query) {
         return executeGraphQLCall(this.service.getIdentity(query));
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<Identity>> createIdentitySync(CreateIdentity query) throws IOException {
+    public HttpResponse<GraphQLResponse<Identity>> createIdentitySync(CreateIdentity query) {
         return executeGraphQLCall(this.service.createIdentity(query));
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<Identity>> deleteIdentitySync(DeleteIdentity query) throws IOException {
+    public HttpResponse<GraphQLResponse<Identity>> deleteIdentitySync(DeleteIdentity query) {
         return executeGraphQLCall(this.service.deleteIdentity(query));
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<Identity>> updateIdentitySync(UpdateIdentity query) throws IOException {
+    public HttpResponse<GraphQLResponse<Identity>> updateIdentitySync(UpdateIdentity query) {
         return executeGraphQLCall(this.service.updateIdentity(query));
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<Identity>> unlinkIdentitySync(UnlinkIdentity query) throws IOException {
+    public HttpResponse<GraphQLResponse<Identity>> unlinkIdentitySync(UnlinkIdentity query) {
         return executeGraphQLCall(this.service.updateIdentity(query));
     }
 

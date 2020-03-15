@@ -6,14 +6,15 @@ import java.util.logging.Level;
 import com.enjin.sdk.http.HttpCallback;
 import com.enjin.sdk.http.HttpResponse;
 
+import com.github.nocatch.NoCatch;
 import lombok.extern.java.Log;
 import retrofit2.Call;
 
 @Log
 public class ServiceBase {
 
-    protected <T> HttpResponse<T> execute(Call<T> call) throws IOException {
-        retrofit2.Response<T> response = call.execute();
+    protected <T> HttpResponse<T> execute(Call<T> call) {
+        retrofit2.Response<T> response = NoCatch.noCatch(() -> call.execute());
         return new HttpResponse<>(response.code(), response.body());
     }
 

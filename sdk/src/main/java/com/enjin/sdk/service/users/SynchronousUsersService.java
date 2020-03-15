@@ -24,9 +24,9 @@ public interface SynchronousUsersService {
      *
      * @throws IOException if a communication error occurred.
      */
-    HttpResponse<GraphQLResponse<List<User>>> getUsersSync(GetUsers query) throws IOException;
+    HttpResponse<GraphQLResponse<List<User>>> getUsersSync(GetUsers query);
 
-    HttpResponse<GraphQLResponse<User>> getUserSync(GetUser query) throws IOException;
+    HttpResponse<GraphQLResponse<User>> getUserSync(GetUser query);
 
     /**
      * Creates a new user.
@@ -37,7 +37,7 @@ public interface SynchronousUsersService {
      *
      * @throws IOException if a communication error occurred.
      */
-    HttpResponse<GraphQLResponse<User>> createUserSync(CreateUser query) throws IOException;
+    HttpResponse<GraphQLResponse<User>> createUserSync(CreateUser query);
 
     /**
      * Authenticates a user and returns the users access tokens.
@@ -48,8 +48,8 @@ public interface SynchronousUsersService {
      *
      * @throws IOException if a communication error occurred.
      */
-    HttpResponse<GraphQLResponse<User>> oAuthUserSync(OAuthUser query) throws IOException;
+    HttpResponse<GraphQLResponse<User>> oAuthUserSync(OAuthUser query);
 
-    HttpResponse<GraphQLResponse<AuthTokens>> authUserSync(AuthUser query) throws IOException;
+    HttpResponse<GraphQLResponse<AuthTokens>> authUserSync(AuthUser query);
 
 }

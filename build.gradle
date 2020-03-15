@@ -14,7 +14,8 @@ buildscript {
             'toStringVerifier': '1.4.5',
             'equalsVerifier'  : '3.1.10',
             'mockito'         : '3.0.0',
-            'powermock'       : '2.0.2'
+            'powermock'       : '2.0.2',
+            'nocatch'         : '1.1'
     ]
 
     ext.deps = [
@@ -35,7 +36,8 @@ buildscript {
             'equalsVerifier'          : "nl.jqno.equalsverifier:equalsverifier:${versions.equalsVerifier}",
             'mockito'                 : "org.mockito:mockito-core:${versions.mockito}",
             'powermockJunit4'         : "org.powermock:powermock-module-junit4:${versions.powermock}",
-            'powermockMockito2'       : "org.powermock:powermock-api-mockito2:${versions.powermock}"
+            'powermockMockito2'       : "org.powermock:powermock-api-mockito2:${versions.powermock}",
+            'nocatch'                 : "com.github.micheljung:nocatch:${versions.nocatch}"
     ]
 
     ext.local = new Properties()
@@ -80,8 +82,6 @@ allprojects {
     version = VERSION_NAME
 
     repositories {
-        jcenter()
-        mavenCentral()
         maven {
             url 'https://oss.sonatype.org/content/groups/public/'
         }

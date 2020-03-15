@@ -27,7 +27,7 @@ public class PlatformServiceImpl extends GraphQLServiceBase implements PlatformS
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<PlatformDetails>> getPlatformSync() throws IOException {
+    public HttpResponse<GraphQLResponse<PlatformDetails>> getPlatformSync() {
         return executeGraphQLCall(getPlatform());
     }
 

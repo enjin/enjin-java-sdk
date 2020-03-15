@@ -58,32 +58,32 @@ public class AppsServiceImpl extends GraphQLServiceBase implements AppsService {
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<List<App>>> getAppsSync(GetApps query) throws IOException {
+    public HttpResponse<GraphQLResponse<List<App>>> getAppsSync(GetApps query) {
         return executeGraphQLCall(this.service.getApps(query));
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<App>> getAppSync(GetApp query) throws IOException {
+    public HttpResponse<GraphQLResponse<App>> getAppSync(GetApp query) {
         return executeGraphQLCall(this.service.getApp(query));
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<App>> createAppSync(CreateApp query) throws IOException {
+    public HttpResponse<GraphQLResponse<App>> createAppSync(CreateApp query) {
         return executeGraphQLCall(this.service.createApps(query));
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<App>> deleteAppSync(DeleteApp query) throws IOException {
+    public HttpResponse<GraphQLResponse<App>> deleteAppSync(DeleteApp query) {
         return executeGraphQLCall(this.service.deleteApps(query));
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<App>> updateAppSync(UpdateApp query) throws IOException {
+    public HttpResponse<GraphQLResponse<App>> updateAppSync(UpdateApp query) {
         return executeGraphQLCall(this.service.updateApps(query));
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<AuthTokens>> authAppSync(AuthApp query) throws IOException {
+    public HttpResponse<GraphQLResponse<AuthTokens>> authAppSync(AuthApp query) {
         return executeGraphQLCall(this.service.authApp(query));
     }
 }

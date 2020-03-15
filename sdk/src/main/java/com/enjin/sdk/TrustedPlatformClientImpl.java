@@ -152,7 +152,7 @@ public final class TrustedPlatformClientImpl implements TrustedPlatformClient {
      *
      * @throws IOException if network exception is encountered
      */
-    public HttpResponse<GraphQLResponse<AuthTokens>>  authAppSync(int appId, String appSecret) throws IOException {
+    public HttpResponse<GraphQLResponse<AuthTokens>> authAppSync(int appId, String appSecret) {
         HttpResponse<GraphQLResponse<AuthTokens>> httpResponse = appService.authAppSync(new AuthApp().id(appId)
                                                                                                      .secret(appSecret));
         authApp(appId, httpResponse);
@@ -171,10 +171,10 @@ public final class TrustedPlatformClientImpl implements TrustedPlatformClient {
                              String appSecret,
                              HttpCallback<GraphQLResponse<AuthTokens>> callback) {
         appService.authAppAsync(new AuthApp().id(appId).secret(appSecret),
-                                 response -> {
-                                     authApp(appId, response);
-                                     callback.onComplete(response);
-                                 });
+                                response -> {
+                                    authApp(appId, response);
+                                    callback.onComplete(response);
+                                });
     }
 
     private void authApp(int appId, HttpResponse<GraphQLResponse<AuthTokens>> response) {
@@ -186,7 +186,7 @@ public final class TrustedPlatformClientImpl implements TrustedPlatformClient {
     }
 
     @Override
-    public void close() throws IOException {
+    public void close() {
         ExecutorService executorService = this.httpClient.dispatcher()
                                                          .executorService();
 

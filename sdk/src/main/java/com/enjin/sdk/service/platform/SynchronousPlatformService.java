@@ -15,5 +15,5 @@ public interface SynchronousPlatformService {
      *
      * @throws IOException if a communication error occurred.
      */
-    HttpResponse<GraphQLResponse<PlatformDetails>> getPlatformSync() throws IOException;
+    HttpResponse<GraphQLResponse<PlatformDetails>> getPlatformSync();
 }

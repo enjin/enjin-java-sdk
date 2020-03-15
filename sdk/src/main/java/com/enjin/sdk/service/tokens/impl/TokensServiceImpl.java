@@ -56,27 +56,27 @@ public class TokensServiceImpl extends GraphQLServiceBase implements TokensServi
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<List<Token>>> getTokensSync(GetTokens query) throws IOException {
+    public HttpResponse<GraphQLResponse<List<Token>>> getTokensSync(GetTokens query) {
         return executeGraphQLCall(this.service.getTokens(query));
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<Token>> getTokenSync(GetToken query) throws IOException {
+    public HttpResponse<GraphQLResponse<Token>> getTokenSync(GetToken query) {
         return executeGraphQLCall(this.service.getToken(query));
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<Token>> createTokenSync(CreateToken query) throws IOException {
+    public HttpResponse<GraphQLResponse<Token>> createTokenSync(CreateToken query) {
         return executeGraphQLCall(this.service.createToken(query));
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<Token>> updateTokenSync(UpdateToken query) throws IOException {
+    public HttpResponse<GraphQLResponse<Token>> updateTokenSync(UpdateToken query) {
         return executeGraphQLCall(this.service.updateToken(query));
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<List<TokenEvent>>> getTokenEventsSync(GetTokenEvents query) throws IOException {
+    public HttpResponse<GraphQLResponse<List<TokenEvent>>> getTokenEventsSync(GetTokenEvents query) {
         return executeGraphQLCall(this.service.getTokenEvents(query));
     }
 

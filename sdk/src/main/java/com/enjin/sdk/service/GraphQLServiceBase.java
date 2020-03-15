@@ -6,6 +6,7 @@ import java.util.logging.Level;
 
 import com.enjin.sdk.http.HttpCallback;
 import com.enjin.sdk.http.HttpResponse;
+import com.github.nocatch.NoCatch;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -21,8 +22,8 @@ public class GraphQLServiceBase extends ServiceBase {
     private static final Gson GSON = new GsonBuilder().create();
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
-    protected <T> HttpResponse<T> executeGraphQLCall(Call<T> call) throws IOException {
-        retrofit2.Response<T> response = call.execute();
+    protected <T> HttpResponse<T> executeGraphQLCall(Call<T> call) {
+        retrofit2.Response<T> response = NoCatch.noCatch(() -> call.execute());
         return createResult(response);
     }
 
@@ -32,7 +33,7 @@ public class GraphQLServiceBase extends ServiceBase {
             public void onResponse(Call<T> call, retrofit2.Response<T> response) {
                 try {
                     callback.onComplete(createResult(response));
-                } catch (IOException e) {
+                } catch (Exception e) {
                     GraphQLServiceBase.log.log(Level.SEVERE, "An exception occurred:", e);
                 }
             }
@@ -45,7 +46,7 @@ public class GraphQLServiceBase extends ServiceBase {
         });
     }
 
-    protected <T> HttpResponse<T> createResult(retrofit2.Response<T> response) throws IOException {
+    protected <T> HttpResponse<T> createResult(retrofit2.Response<T> response) {
         int code = response.code();
         T body = null;
 
@@ -55,7 +56,7 @@ public class GraphQLServiceBase extends ServiceBase {
             ResponseBody errorBody = response.errorBody();
             if (errorBody.contentType().equals(JSON)) {
                 Type type = new TypeToken<T>() {}.getType();
-                body = GSON.fromJson(errorBody.string(), type);
+                body = GSON.fromJson(NoCatch.noCatch(() -> errorBody.string()), type);
             }
         }
 

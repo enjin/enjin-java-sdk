@@ -22,7 +22,7 @@ public interface SynchronousRequestsService {
      *
      * @throws IOException if a communication error occurred.
      */
-    HttpResponse<GraphQLResponse<List<Transaction>>> getRequestsSync(GetRequests query) throws IOException;
+    HttpResponse<GraphQLResponse<List<Transaction>>> getRequestsSync(GetRequests query);
 
     /**
      * Creates a new app request.
@@ -33,7 +33,7 @@ public interface SynchronousRequestsService {
      *
      * @throws IOException if a communication error occurred.
      */
-    HttpResponse<GraphQLResponse<Transaction>> createRequestSync(CreateRequest query) throws IOException;
+    HttpResponse<GraphQLResponse<Transaction>> createRequestSync(CreateRequest query);
 
     /**
      * Updates an app request.
@@ -44,8 +44,8 @@ public interface SynchronousRequestsService {
      *
      * @throws IOException if a communication error occurred.
      */
-    HttpResponse<GraphQLResponse<Transaction>> updateRequestSync(UpdateRequest query) throws IOException;
+    HttpResponse<GraphQLResponse<Transaction>> updateRequestSync(UpdateRequest query);
 
-    HttpResponse<GraphQLResponse<Transaction>> deleteRequestSync(DeleteRequest query) throws IOException;
+    HttpResponse<GraphQLResponse<Transaction>> deleteRequestSync(DeleteRequest query);
 
 }
