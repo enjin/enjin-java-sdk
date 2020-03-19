@@ -38,7 +38,7 @@ public interface TrustedPlatformClient extends Closeable {
 
     Integer getAppId();
 
-    HttpResponse<GraphQLResponse<AuthTokens>> authAppSync(int id, String secret) throws IOException;
+    HttpResponse<GraphQLResponse<AuthTokens>> authAppSync(int id, String secret);
 
     void authAppAsync(int id, String secret, HttpCallback<GraphQLResponse<AuthTokens>> callback);
 
