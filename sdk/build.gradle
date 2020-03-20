@@ -1,7 +1,13 @@
+plugins {
+    id 'io.freefair.code-generator' version '5.0.0-rc6'
+}
+
 apply from: "${rootProject.rootDir}/gradle/ghPages.gradle"
 
 dependencies {
     api deps.okhttpLoggingInterceptor
+
+    codeGenerator project(':template-generator')
 
     implementation deps.enjinCommons
     implementation deps.gson

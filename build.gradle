@@ -15,7 +15,8 @@ buildscript {
             'equalsVerifier'  : '3.1.10',
             'mockito'         : '3.0.0',
             'powermock'       : '2.0.2',
-            'nocatch'         : '1.1'
+            'nocatch'         : '1.1',
+            'codeGen'         : '5.0.0-rc6'
     ]
 
     ext.deps = [
@@ -37,7 +38,8 @@ buildscript {
             'mockito'                 : "org.mockito:mockito-core:${versions.mockito}",
             'powermockJunit4'         : "org.powermock:powermock-module-junit4:${versions.powermock}",
             'powermockMockito2'       : "org.powermock:powermock-api-mockito2:${versions.powermock}",
-            'nocatch'                 : "com.github.micheljung:nocatch:${versions.nocatch}"
+            'nocatch'                 : "com.github.micheljung:nocatch:${versions.nocatch}",
+            'codeGenApi'              : "io.freefair.gradle:code-generator-api:${versions.codeGen}"
     ]
 
     ext.local = new Properties()
@@ -51,7 +53,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.vanniktech:gradle-maven-publish-plugin:0.8.0'
+        classpath 'com.vanniktech:gradle-maven-publish-plugin:0.9.0'
         classpath 'org.ajoberstar:gradle-git-publish:2.1.1'
         classpath 'com.diffplug.spotless:spotless-plugin-gradle:3.24.3'
     }
@@ -64,15 +66,8 @@ plugins {
     id 'io.codearte.nexus-staging' version '0.21.1'
     id 'net.ltgt.errorprone' version '0.8.1'
     id 'jacoco'
-    id 'org.sonarqube' version '2.7.1'
     id 'checkstyle'
     id 'com.github.ben-manes.versions' version '0.25.0'
-}
-
-sonarqube {
-    properties {
-        property 'sonar.sourceEncoding', 'UTF-8'
-    }
 }
 
 allprojects {
@@ -143,14 +138,6 @@ subprojects {
         reports {
             xml.enabled = true
             html.destination file("${buildDir}/reports/tests/test")
-        }
-    }
-
-    sonarqube {
-        properties {
-            property 'sonar.sources', 'src'
-            property 'sonar.exclusions', '**/*{!.java},**/build/**,**/test/**'
-            property 'sonar.jacoco.xmlReportsPath', 'build/reports/jacoco/jacocoTestReport.xml'
         }
     }
 
