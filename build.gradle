@@ -16,7 +16,8 @@ buildscript {
             'mockito'         : '3.0.0',
             'powermock'       : '2.0.2',
             'nocatch'         : '1.1',
-            'codeGen'         : '5.0.0-rc6'
+            'codeGen'         : '5.0.0-rc6',
+            'javapoet'        : '1.12.1'
     ]
 
     ext.deps = [
@@ -39,7 +40,8 @@ buildscript {
             'powermockJunit4'         : "org.powermock:powermock-module-junit4:${versions.powermock}",
             'powermockMockito2'       : "org.powermock:powermock-api-mockito2:${versions.powermock}",
             'nocatch'                 : "com.github.micheljung:nocatch:${versions.nocatch}",
-            'codeGenApi'              : "io.freefair.gradle:code-generator-api:${versions.codeGen}"
+            'codeGenApi'              : "io.freefair.gradle:code-generator-api:${versions.codeGen}",
+            'javapoet'                : "com.squareup:javapoet:${versions.javapoet}"
     ]
 
     ext.local = new Properties()

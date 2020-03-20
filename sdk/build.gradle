@@ -4,6 +4,8 @@ plugins {
 
 apply from: "${rootProject.rootDir}/gradle/ghPages.gradle"
 
+generateTestCode.enabled = false
+
 dependencies {
     api deps.okhttpLoggingInterceptor
 
