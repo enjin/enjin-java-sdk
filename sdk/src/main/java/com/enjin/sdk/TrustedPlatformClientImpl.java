@@ -177,6 +177,11 @@ public final class TrustedPlatformClientImpl implements TrustedPlatformClient {
                                 });
     }
 
+    @Override
+    public boolean isAuthenticated() {
+        return trustedPlatformInterceptor.isAuthenticated();
+    }
+
     private void authApp(int appId, HttpResponse<GraphQLResponse<AuthTokens>> response) {
         if (response.isSuccess() && response.body().isSuccess()) {
             AuthTokens body = response.body().getData();

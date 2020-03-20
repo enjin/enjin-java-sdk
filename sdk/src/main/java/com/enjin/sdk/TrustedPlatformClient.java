@@ -42,6 +42,8 @@ public interface TrustedPlatformClient extends Closeable {
 
     void authAppAsync(int id, String secret, HttpCallback<GraphQLResponse<AuthTokens>> callback);
 
+    boolean isAuthenticated();
+
     boolean isClosed();
 
 }

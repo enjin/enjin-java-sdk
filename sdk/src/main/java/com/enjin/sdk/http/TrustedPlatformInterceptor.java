@@ -39,4 +39,8 @@ public class TrustedPlatformInterceptor implements Interceptor {
         token = data.getAccessToken();
     }
 
+    public boolean isAuthenticated() {
+        return !(token == null || token.isEmpty());
+    }
+
 }
