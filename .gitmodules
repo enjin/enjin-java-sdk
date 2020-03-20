@@ -1,0 +1,3 @@
+[submodule "sdk/src/main/resources/templates"]
+	path = sdk/src/main/resources/templates
+	url = git@github.com:enjin/Enjin-SDK-GraphQL-Templates.git
