@@ -19,12 +19,12 @@ public class UpdateIdentity extends GraphQLRequest<UpdateIdentity> {
      * @return the builder.
      */
     public UpdateIdentity identityId(int identityId) {
-        withParameter("id", identityId);
+        withVariable("id", identityId);
         return this;
     }
 
     public UpdateIdentity linkingCode(String linkingCode) {
-        withParameter("linkingCode", linkingCode);
+        withVariable("linkingCode", linkingCode);
         return this;
     }
 
@@ -36,7 +36,7 @@ public class UpdateIdentity extends GraphQLRequest<UpdateIdentity> {
      * @return the builder.
      */
     public UpdateIdentity ethAddr(String ethAddr) {
-        withParameter("ethAddress", ethAddr);
+        withVariable("ethAddress", ethAddr);
         return this;
     }
 

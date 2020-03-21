@@ -15,7 +15,7 @@ import retrofit2.http.POST;
 public interface BalancesRetrofitService {
 
     @POST("graphql")
-    @GraphQuery("GetBalances")
+    @GraphQuery("GetBalancesPaginated")
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<List<Balance>>> getBalances(@Body GraphQLRequest request);
 

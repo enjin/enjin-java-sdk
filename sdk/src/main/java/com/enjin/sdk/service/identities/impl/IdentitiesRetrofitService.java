@@ -15,7 +15,7 @@ import retrofit2.http.POST;
 public interface IdentitiesRetrofitService {
 
     @POST("graphql")
-    @GraphQuery("GetIdentities")
+    @GraphQuery("GetIdentitiesPaginated")
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<List<Identity>>> getIdentities(@Body GraphQLRequest request);
 

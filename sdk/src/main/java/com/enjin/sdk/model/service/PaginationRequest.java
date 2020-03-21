@@ -14,7 +14,7 @@ public class PaginationRequest<T extends GraphQLRequest<T>> extends GraphQLReque
      * @return the builder.
      */
     public T paginate(PaginationInput pagination) {
-        withParameter("pagination", pagination);
+        withVariable("pagination", pagination);
         return (T) this;
     }
 

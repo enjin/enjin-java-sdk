@@ -19,7 +19,7 @@ public class GetUsers extends PaginationRequest<GetUsers> {
      * @return the builder.
      */
     public GetUsers userId(Integer userId) {
-        withParameter("id", userId);
+        withVariable("id", userId);
         return this;
     }
 
@@ -31,7 +31,7 @@ public class GetUsers extends PaginationRequest<GetUsers> {
      * @return the builder.
      */
     public GetUsers name(String name) {
-        withParameter("name", name);
+        withVariable("name", name);
         return this;
     }
 
@@ -43,7 +43,7 @@ public class GetUsers extends PaginationRequest<GetUsers> {
      * @return the builder.
      */
     public GetUsers email(String email) {
-        withParameter("email", email);
+        withVariable("email", email);
         return this;
     }
 

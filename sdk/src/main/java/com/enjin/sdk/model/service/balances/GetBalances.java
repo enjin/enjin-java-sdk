@@ -7,42 +7,42 @@ import java.util.List;
 public class GetBalances extends PaginationRequest<GetBalances> {
 
     public GetBalances appIds(List<Integer> ids) {
-        withParameter("appIds", ids);
+        withVariable("appIds", ids);
         return this;
     }
 
     public GetBalances ethAddr(String ethAddr) {
-        withParameter("ethAddress", ethAddr);
+        withVariable("ethAddress", ethAddr);
         return this;
     }
 
     public GetBalances tokenId(String tokenId) {
-        withParameter("tokenId", tokenId);
+        withVariable("tokenId", tokenId);
         return this;
     }
 
     public GetBalances value(Integer value) {
-        withParameter("value", value);
+        withVariable("value", value);
         return this;
     }
 
     public GetBalances valueGreaterThan(Integer value) {
-        withParameter("value_gt", value);
+        withVariable("value_gt", value);
         return this;
     }
 
     public GetBalances valueGreaterThanOrEqual(Integer value) {
-        withParameter("value_gte", value);
+        withVariable("value_gte", value);
         return this;
     }
 
     public GetBalances valueLessThan(Integer value) {
-        withParameter("value_lt", value);
+        withVariable("value_lt", value);
         return this;
     }
 
     public GetBalances valueLessThanOrEqual(Integer value) {
-        withParameter("value_lte", value);
+        withVariable("value_lte", value);
         return this;
     }
 

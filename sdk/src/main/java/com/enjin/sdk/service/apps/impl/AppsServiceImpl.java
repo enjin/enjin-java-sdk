@@ -1,6 +1,5 @@
 package com.enjin.sdk.service.apps.impl;
 
-import java.io.IOException;
 import java.util.List;
 
 import com.enjin.sdk.graphql.GraphQLResponse;
@@ -11,6 +10,7 @@ import com.enjin.sdk.model.service.apps.CreateApp;
 import com.enjin.sdk.model.service.apps.DeleteApp;
 import com.enjin.sdk.model.service.apps.GetApp;
 import com.enjin.sdk.model.service.apps.GetApps;
+import com.enjin.sdk.model.service.apps.UnlinkApp;
 import com.enjin.sdk.model.service.apps.UpdateApp;
 import com.enjin.sdk.model.service.auth.AuthApp;
 import com.enjin.sdk.model.service.auth.AuthTokens;
@@ -39,22 +39,27 @@ public class AppsServiceImpl extends GraphQLServiceBase implements AppsService {
 
     @Override
     public void createAppAsync(CreateApp query, HttpCallback<GraphQLResponse<App>> callback) {
-        enqueueGraphQLCall(this.service.createApps(query), callback);
+        enqueueGraphQLCall(this.service.createApp(query), callback);
     }
 
     @Override
     public void deleteAppAsync(DeleteApp query, HttpCallback<GraphQLResponse<App>> callback) {
-        enqueueGraphQLCall(this.service.deleteApps(query), callback);
+        enqueueGraphQLCall(this.service.deleteApp(query), callback);
     }
 
     @Override
     public void updateAppAsync(UpdateApp query, HttpCallback<GraphQLResponse<App>> callback) {
-        enqueueGraphQLCall(this.service.updateApps(query), callback);
+        enqueueGraphQLCall(this.service.updateApp(query), callback);
     }
 
     @Override
     public void authAppAsync(AuthApp query, HttpCallback<GraphQLResponse<AuthTokens>> callback) {
         enqueueGraphQLCall(this.service.authApp(query), callback);
+    }
+
+    @Override
+    public void unlinkAppAsync(UnlinkApp query, HttpCallback<GraphQLResponse<App>> callback) {
+        enqueueGraphQLCall(this.service.unlinkApp(query), callback);
     }
 
     @Override
@@ -69,21 +74,26 @@ public class AppsServiceImpl extends GraphQLServiceBase implements AppsService {
 
     @Override
     public HttpResponse<GraphQLResponse<App>> createAppSync(CreateApp query) {
-        return executeGraphQLCall(this.service.createApps(query));
+        return executeGraphQLCall(this.service.createApp(query));
     }
 
     @Override
     public HttpResponse<GraphQLResponse<App>> deleteAppSync(DeleteApp query) {
-        return executeGraphQLCall(this.service.deleteApps(query));
+        return executeGraphQLCall(this.service.deleteApp(query));
     }
 
     @Override
     public HttpResponse<GraphQLResponse<App>> updateAppSync(UpdateApp query) {
-        return executeGraphQLCall(this.service.updateApps(query));
+        return executeGraphQLCall(this.service.updateApp(query));
     }
 
     @Override
     public HttpResponse<GraphQLResponse<AuthTokens>> authAppSync(AuthApp query) {
         return executeGraphQLCall(this.service.authApp(query));
+    }
+
+    @Override
+    public HttpResponse<GraphQLResponse<App>> unlinkAppSync(UnlinkApp query) {
+        return executeGraphQLCall(this.service.unlinkApp(query));
     }
 }

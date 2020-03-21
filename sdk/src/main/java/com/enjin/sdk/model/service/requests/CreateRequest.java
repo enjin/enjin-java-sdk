@@ -5,7 +5,6 @@ import com.enjin.sdk.model.service.requests.data.AddLogData;
 import com.enjin.sdk.model.service.requests.data.AdvancedSendTokenData;
 import com.enjin.sdk.model.service.requests.data.ApproveEnjData;
 import com.enjin.sdk.model.service.requests.data.ApproveItemData;
-import com.enjin.sdk.model.service.requests.data.BatchApproveData;
 import com.enjin.sdk.model.service.requests.data.CompleteTradeData;
 import com.enjin.sdk.model.service.requests.data.CreateTokenData;
 import com.enjin.sdk.model.service.requests.data.CreateTradeData;
@@ -17,7 +16,6 @@ import com.enjin.sdk.model.service.requests.data.MintTokenData;
 import com.enjin.sdk.model.service.requests.data.ReleaseReserveData;
 import com.enjin.sdk.model.service.requests.data.SendEnjData;
 import com.enjin.sdk.model.service.requests.data.SendTokenData;
-import com.enjin.sdk.model.service.requests.data.SetApprovalData;
 import com.enjin.sdk.model.service.requests.data.SetApprovalForAllData;
 import com.enjin.sdk.model.service.requests.data.SetItemUriData;
 import com.enjin.sdk.model.service.requests.data.SetMeltFeeData;
@@ -36,12 +34,12 @@ import com.enjin.sdk.service.requests.RequestsService;
 public class CreateRequest extends GraphQLRequest<CreateRequest> {
 
     public CreateRequest appId(Integer appId) {
-        withParameter("appId", appId);
+        withVariable("appId", appId);
         return this;
     }
 
     public CreateRequest ethAddr(String ethAddr) {
-        withParameter("ethAddress", ethAddr);
+        withVariable("ethAddress", ethAddr);
         return this;
     }
 
@@ -53,7 +51,7 @@ public class CreateRequest extends GraphQLRequest<CreateRequest> {
      * @return builder.
      */
     public CreateRequest identityId(int identityId) {
-        withParameter("identityId", identityId);
+        withVariable("identityId", identityId);
         return this;
     }
 
@@ -65,7 +63,7 @@ public class CreateRequest extends GraphQLRequest<CreateRequest> {
      * @return the builder.
      */
     public CreateRequest transactionType(TransactionType type) {
-        withParameter("type", type);
+        withVariable("type", type);
         return this;
     }
 
@@ -77,7 +75,7 @@ public class CreateRequest extends GraphQLRequest<CreateRequest> {
      * @return the builder.
      */
     public CreateRequest disableTest() {
-        withParameter("test", false);
+        withVariable("test", false);
         return this;
     }
 
@@ -88,7 +86,7 @@ public class CreateRequest extends GraphQLRequest<CreateRequest> {
      * @return the builder.
      */
     public CreateRequest testOnly() {
-        withParameter("dummy", true);
+        withVariable("dummy", true);
         return this;
     }
 
@@ -100,7 +98,7 @@ public class CreateRequest extends GraphQLRequest<CreateRequest> {
      * @return the builder.
      */
     public CreateRequest createToken(CreateTokenData createTokenData) {
-        withParameter("create_token_data", createTokenData);
+        withVariable("create_token_data", createTokenData);
         transactionType(TransactionType.CREATE);
         return this;
     }
@@ -113,7 +111,7 @@ public class CreateRequest extends GraphQLRequest<CreateRequest> {
      * @return the builder.
      */
     public CreateRequest createTrade(CreateTradeData createTradeData) {
-        withParameter("create_trade_data", createTradeData);
+        withVariable("create_trade_data", createTradeData);
         transactionType(TransactionType.CREATE_TRADE);
         return this;
     }
@@ -126,7 +124,7 @@ public class CreateRequest extends GraphQLRequest<CreateRequest> {
      * @return the builder.
      */
     public CreateRequest completeTrade(CompleteTradeData completeTradeData) {
-        withParameter("complete_trade_data", completeTradeData);
+        withVariable("complete_trade_data", completeTradeData);
         transactionType(TransactionType.COMPLETE_TRADE);
         return this;
     }
@@ -139,7 +137,7 @@ public class CreateRequest extends GraphQLRequest<CreateRequest> {
      * @return the builder.
      */
     public CreateRequest mintToken(MintTokenData mintTokenData) {
-        withParameter("mint_token_data", mintTokenData);
+        withVariable("mint_token_data", mintTokenData);
         transactionType(TransactionType.MINT);
         return this;
     }
@@ -152,7 +150,7 @@ public class CreateRequest extends GraphQLRequest<CreateRequest> {
      * @return the builder.
      */
     public CreateRequest meltToken(MeltTokenData meltTokenData) {
-        withParameter("melt_token_data", meltTokenData);
+        withVariable("melt_token_data", meltTokenData);
         transactionType(TransactionType.MELT);
         return this;
     }
@@ -165,13 +163,13 @@ public class CreateRequest extends GraphQLRequest<CreateRequest> {
      * @return the builder.
      */
     public CreateRequest sendToken(SendTokenData sendTokenData) {
-        withParameter("send_token_data", sendTokenData);
+        withVariable("send_token_data", sendTokenData);
         transactionType(TransactionType.SEND);
         return this;
     }
 
     public CreateRequest sendEnj(SendEnjData sendEnjData) {
-        withParameter("send_enj_data", sendEnjData);
+        withVariable("send_enj_data", sendEnjData);
         transactionType(TransactionType.SEND_ENJ);
         return this;
     }
@@ -184,7 +182,7 @@ public class CreateRequest extends GraphQLRequest<CreateRequest> {
      * @return the builder.
      */
     public CreateRequest advancedSendToken(AdvancedSendTokenData advancedSendTokenData) {
-        withParameter("advanced_send_token_data", advancedSendTokenData);
+        withVariable("advanced_send_token_data", advancedSendTokenData);
         transactionType(TransactionType.ADVANCED_SEND);
         return this;
     }
@@ -197,7 +195,7 @@ public class CreateRequest extends GraphQLRequest<CreateRequest> {
      * @return the builder.
      */
     public CreateRequest updateItemName(UpdateItemNameData updateItemNameData) {
-        withParameter("update_item_name_data", updateItemNameData);
+        withVariable("update_item_name_data", updateItemNameData);
         transactionType(TransactionType.UPDATE_NAME);
         return this;
     }
@@ -210,7 +208,7 @@ public class CreateRequest extends GraphQLRequest<CreateRequest> {
      * @return the builder.
      */
     public CreateRequest setItemUri(SetItemUriData setItemUriData) {
-        withParameter("set_item_uri_data", setItemUriData);
+        withVariable("set_item_uri_data", setItemUriData);
         transactionType(TransactionType.SET_ITEM_URI);
         return this;
     }
@@ -223,7 +221,7 @@ public class CreateRequest extends GraphQLRequest<CreateRequest> {
      * @return the builder.
      */
     public CreateRequest setWhitelisted(SetWhitelistedData setWhitelistedData) {
-        withParameter("set_whitelisted_data", setWhitelistedData);
+        withVariable("set_whitelisted_data", setWhitelistedData);
         transactionType(TransactionType.SET_WHITELISTED);
         return this;
     }
@@ -236,7 +234,7 @@ public class CreateRequest extends GraphQLRequest<CreateRequest> {
      * @return the builder.
      */
     public CreateRequest approveEnj(ApproveEnjData approveEnjData) {
-        withParameter("approve_enj_data", approveEnjData);
+        withVariable("approve_enj_data", approveEnjData);
         transactionType(TransactionType.APPROVE);
         return this;
     }
@@ -249,7 +247,7 @@ public class CreateRequest extends GraphQLRequest<CreateRequest> {
      * @return the builder.
      */
     public CreateRequest approveItem(ApproveItemData approveItemData) {
-        withParameter("approve_item_data", approveItemData);
+        withVariable("approve_item_data", approveItemData);
         transactionType(TransactionType.APPROVE);
         return this;
     }
@@ -262,7 +260,7 @@ public class CreateRequest extends GraphQLRequest<CreateRequest> {
      * @return the builder.
      */
     public CreateRequest setTransferable(SetTransferableData setTransferableData) {
-        withParameter("set_transferable_data", setTransferableData);
+        withVariable("set_transferable_data", setTransferableData);
         transactionType(TransactionType.SET_TRANSFERABLE);
         return this;
     }
@@ -275,7 +273,7 @@ public class CreateRequest extends GraphQLRequest<CreateRequest> {
      * @return the builder.
      */
     public CreateRequest setMeltFee(SetMeltFeeData setMeltFeeData) {
-        withParameter("set_melt_fee_data", setMeltFeeData);
+        withVariable("set_melt_fee_data", setMeltFeeData);
         transactionType(TransactionType.SET_MELT_FEE);
         return this;
     }
@@ -288,7 +286,7 @@ public class CreateRequest extends GraphQLRequest<CreateRequest> {
      * @return the builder.
      */
     public CreateRequest decreaseMaxMeltFee(DecreaseMaxMeltFeeData decreaseMaxMeltFeeData) {
-        withParameter("decrease_max_melt_fee_data", decreaseMaxMeltFeeData);
+        withVariable("decrease_max_melt_fee_data", decreaseMaxMeltFeeData);
         transactionType(TransactionType.DECREASE_MAX_MELT_FEE);
         return this;
     }
@@ -301,7 +299,7 @@ public class CreateRequest extends GraphQLRequest<CreateRequest> {
      * @return the builder.
      */
     public CreateRequest setTransferFee(SetTransferFeeData setTransferFeeData) {
-        withParameter("set_transfer_fee_data", setTransferFeeData);
+        withVariable("set_transfer_fee_data", setTransferFeeData);
         transactionType(TransactionType.SET_TRANSFER_FEE);
         return this;
     }
@@ -314,13 +312,13 @@ public class CreateRequest extends GraphQLRequest<CreateRequest> {
      * @return the builder.
      */
     public CreateRequest decreaseMaxTransferFee(DecreaseMaxTransferFeeData decreaseMaxTransferFeeData) {
-        withParameter("decrease_max_transfer_fee_data", decreaseMaxTransferFeeData);
+        withVariable("decrease_max_transfer_fee_data", decreaseMaxTransferFeeData);
         transactionType(TransactionType.DECREASE_MAX_TRANSFER_FEE);
         return this;
     }
 
     public CreateRequest releaseReserve(ReleaseReserveData releaseReserveData) {
-        withParameter("release_reserve_data", releaseReserveData);
+        withVariable("release_reserve_data", releaseReserveData);
         transactionType(TransactionType.RELEASE_RESERVE);
         return this;
     }
@@ -333,7 +331,7 @@ public class CreateRequest extends GraphQLRequest<CreateRequest> {
      * @return the builder.
      */
     public CreateRequest addLog(AddLogData addLogData) {
-        withParameter("add_log_data", addLogData);
+        withVariable("add_log_data", addLogData);
         transactionType(TransactionType.ADD_LOG);
         return this;
     }
@@ -346,7 +344,7 @@ public class CreateRequest extends GraphQLRequest<CreateRequest> {
      * @return the builder.
      */
     public CreateRequest setApprovalForAll(SetApprovalForAllData setApprovalForAllData) {
-        withParameter("set_approval_for_all_data", setApprovalForAllData);
+        withVariable("set_approval_for_all_data", setApprovalForAllData);
         transactionType(TransactionType.SET_APPROVAL_FOR_ALL);
         return this;
     }
@@ -359,7 +357,7 @@ public class CreateRequest extends GraphQLRequest<CreateRequest> {
      * @return the builder.
      */
     public CreateRequest message(MessageData messageData) {
-        withParameter("message_data", messageData);
+        withVariable("message_data", messageData);
         transactionType(TransactionType.MESSAGE);
         return this;
     }

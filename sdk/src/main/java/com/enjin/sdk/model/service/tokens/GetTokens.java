@@ -12,7 +12,7 @@ import com.enjin.sdk.service.tokens.TokensService;
 public class GetTokens extends PaginationRequest<GetTokens> {
 
     public GetTokens appId(Integer appId) {
-        withParameter("appId", appId);
+        withVariable("appId", appId);
         return this;
     }
 
@@ -24,7 +24,7 @@ public class GetTokens extends PaginationRequest<GetTokens> {
      * @return the builder.
      */
     public GetTokens tokenId(String tokenId) {
-        withParameter("id", tokenId);
+        withVariable("id", tokenId);
         return this;
     }
 
@@ -36,7 +36,7 @@ public class GetTokens extends PaginationRequest<GetTokens> {
      * @return the builder.
      */
     public GetTokens name(String name) {
-        withParameter("name", name);
+        withVariable("name", name);
         return this;
     }
 
@@ -48,7 +48,7 @@ public class GetTokens extends PaginationRequest<GetTokens> {
      * @return the builder.
      */
     public GetTokens creator(String creator) {
-        withParameter("creator", creator);
+        withVariable("creator", creator);
         return this;
     }
 
@@ -60,7 +60,7 @@ public class GetTokens extends PaginationRequest<GetTokens> {
      * @return the builder.
      */
     public GetTokens totalSupply(String totalSupply) {
-        withParameter("totalSupply", totalSupply);
+        withVariable("totalSupply", totalSupply);
         return this;
     }
 
@@ -72,7 +72,7 @@ public class GetTokens extends PaginationRequest<GetTokens> {
      * @return the builder.
      */
     public GetTokens reserve(String reserve) {
-        withParameter("reserve", reserve);
+        withVariable("reserve", reserve);
         return this;
     }
 
@@ -84,7 +84,7 @@ public class GetTokens extends PaginationRequest<GetTokens> {
      * @return the builder.
      */
     public GetTokens supplyModel(TokenSupplyModel supplyModel) {
-        withParameter("supplyModel", supplyModel);
+        withVariable("supplyModel", supplyModel);
         return this;
     }
 
@@ -96,7 +96,7 @@ public class GetTokens extends PaginationRequest<GetTokens> {
      * @return the builder.
      */
     public GetTokens meltValue(String meltValue) {
-        withParameter("meltValue", meltValue);
+        withVariable("meltValue", meltValue);
         return this;
     }
 
@@ -108,7 +108,7 @@ public class GetTokens extends PaginationRequest<GetTokens> {
      * @return the builder.
      */
     public GetTokens meltFeeRatio(String meltFeeRatio) {
-        withParameter("meltFeeRatio", meltFeeRatio);
+        withVariable("meltFeeRatio", meltFeeRatio);
         return this;
     }
 
@@ -118,7 +118,7 @@ public class GetTokens extends PaginationRequest<GetTokens> {
      * @return the builder.
      */
     public GetTokens nonFungibleOnly() {
-        withParameter("nonFungible", true);
+        withVariable("nonFungible", true);
         return this;
     }
 
@@ -130,7 +130,7 @@ public class GetTokens extends PaginationRequest<GetTokens> {
      * @return the builder.
      */
     public GetTokens firstBlock(int firstBlock) {
-        withParameter("firstBlock", firstBlock);
+        withVariable("firstBlock", firstBlock);
         return this;
     }
 
@@ -142,7 +142,7 @@ public class GetTokens extends PaginationRequest<GetTokens> {
      * @return the builder.
      */
     public GetTokens blockHeight(int blockHeight) {
-        withParameter("blockHeight", blockHeight);
+        withVariable("blockHeight", blockHeight);
         return this;
     }
 
@@ -152,7 +152,7 @@ public class GetTokens extends PaginationRequest<GetTokens> {
      * @return the builder.
      */
     public GetTokens markForDelete() {
-        withParameter("markedForDelete", true);
+        withVariable("markedForDelete", true);
         return this;
     }
 

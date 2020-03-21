@@ -19,7 +19,7 @@ public class DeleteRequest extends PaginationRequest<DeleteRequest> {
      * @return the builder.
      */
     public DeleteRequest id(int id) {
-        withParameter("id", id);
+        withVariable("id", id);
         return this;
     }
 

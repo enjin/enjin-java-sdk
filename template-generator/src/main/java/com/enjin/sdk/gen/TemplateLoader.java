@@ -8,12 +8,14 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.SortedMap;
 import java.util.Stack;
+import java.util.TreeMap;
 
 public class TemplateLoader {
 
     private Map<String, Template> fragments = new HashMap<>();
-    private Map<String, Template> operations = new HashMap<>();
+    private SortedMap<String, Template> operations = new TreeMap<>();
 
     private final File resourcesDir;
 
@@ -36,6 +38,7 @@ public class TemplateLoader {
             else if (file.getName().endsWith(".gql"))
                 loadRawTemplate(file);
         }
+
     }
 
     private void loadRawTemplate(File file) {

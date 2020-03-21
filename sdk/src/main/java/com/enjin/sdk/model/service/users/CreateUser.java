@@ -19,7 +19,7 @@ public class CreateUser extends GraphQLRequest<CreateUser> {
      * @return the builder.
      */
     public CreateUser name(String name) {
-        withParameter("name", name);
+        withVariable("name", name);
         return this;
     }
 

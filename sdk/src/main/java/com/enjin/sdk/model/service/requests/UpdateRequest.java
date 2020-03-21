@@ -34,7 +34,7 @@ import com.enjin.sdk.service.requests.RequestsService;
 public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
 
     private UpdateRequest id(Integer id) {
-        withParameter("id", id);
+        withVariable("id", id);
         return this;
     }
 
@@ -46,7 +46,7 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      * @return the builder.
      */
     public UpdateRequest rebroadcast(RebroadcastType rebroadcast) {
-        withParameter("rebroadcast", rebroadcast);
+        withVariable("rebroadcast", rebroadcast);
         return this;
     }
 
@@ -58,7 +58,7 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      * @return the builder.
      */
     public UpdateRequest createToken(CreateTokenData createTokenData) {
-        withParameter("create_token_data", createTokenData);
+        withVariable("create_token_data", createTokenData);
         return this;
     }
 
@@ -70,7 +70,7 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      * @return the builder.
      */
     public UpdateRequest createTrade(CreateTradeData createTradeData) {
-        withParameter("create_trade_data", createTradeData);
+        withVariable("create_trade_data", createTradeData);
         return this;
     }
 
@@ -82,7 +82,7 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      * @return the builder.
      */
     public UpdateRequest completeTrade(CompleteTradeData completeTradeData) {
-        withParameter("complete_trade_data", completeTradeData);
+        withVariable("complete_trade_data", completeTradeData);
         return this;
     }
 
@@ -94,7 +94,7 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      * @return the builder.
      */
     public UpdateRequest mintToken(MintTokenData mintTokenData) {
-        withParameter("mint_token_data", mintTokenData);
+        withVariable("mint_token_data", mintTokenData);
         return this;
     }
 
@@ -106,7 +106,7 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      * @return the builder.
      */
     public UpdateRequest meltToken(MeltTokenData meltTokenData) {
-        withParameter("melt_token_data", meltTokenData);
+        withVariable("melt_token_data", meltTokenData);
         return this;
     }
 
@@ -118,12 +118,12 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      * @return the builder.
      */
     public UpdateRequest sendToken(SendTokenData sendTokenData) {
-        withParameter("send_token_data", sendTokenData);
+        withVariable("send_token_data", sendTokenData);
         return this;
     }
 
     public UpdateRequest sendEnj(SendEnjData sendEnjData) {
-        withParameter("send_enj_data", sendEnjData);
+        withVariable("send_enj_data", sendEnjData);
         return this;
     }
 
@@ -135,7 +135,7 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      * @return the builder.
      */
     public UpdateRequest advancedSendToken(AdvancedSendTokenData advancedSendTokenData) {
-        withParameter("advanced_send_token_data", advancedSendTokenData);
+        withVariable("advanced_send_token_data", advancedSendTokenData);
         return this;
     }
 
@@ -147,7 +147,7 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      * @return the builder.
      */
     public UpdateRequest updateItemName(UpdateItemNameData updateItemNameData) {
-        withParameter("update_item_name_data", updateItemNameData);
+        withVariable("update_item_name_data", updateItemNameData);
         return this;
     }
 
@@ -159,7 +159,7 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      * @return the builder.
      */
     public UpdateRequest setItemUri(SetItemUriData setItemUriData) {
-        withParameter("set_item_uri_data", setItemUriData);
+        withVariable("set_item_uri_data", setItemUriData);
         return this;
     }
 
@@ -171,7 +171,7 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      * @return the builder.
      */
     public UpdateRequest setWhitelisted(SetWhitelistedData setWhitelistedData) {
-        withParameter("set_whitelisted_data", setWhitelistedData);
+        withVariable("set_whitelisted_data", setWhitelistedData);
         return this;
     }
 
@@ -183,7 +183,7 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      * @return the builder.
      */
     public UpdateRequest approveEnj(ApproveEnjData approveEnjData) {
-        withParameter("approve_enj_data", approveEnjData);
+        withVariable("approve_enj_data", approveEnjData);
         return this;
     }
 
@@ -195,7 +195,7 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      * @return the builder.
      */
     public UpdateRequest approveItem(ApproveItemData approveItemData) {
-        withParameter("approve_item_data", approveItemData);
+        withVariable("approve_item_data", approveItemData);
         return this;
     }
 
@@ -207,7 +207,7 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      * @return the builder.
      */
     public UpdateRequest setTransferable(SetTransferableData setTransferableData) {
-        withParameter("set_transferable_data", setTransferableData);
+        withVariable("set_transferable_data", setTransferableData);
         return this;
     }
 
@@ -219,7 +219,7 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      * @return the builder.
      */
     public UpdateRequest setMeltFee(SetMeltFeeData setMeltFeeData) {
-        withParameter("set_melt_fee_data", setMeltFeeData);
+        withVariable("set_melt_fee_data", setMeltFeeData);
         return this;
     }
 
@@ -231,7 +231,7 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      * @return the builder.
      */
     public UpdateRequest decreaseMaxMeltFee(DecreaseMaxMeltFeeData decreaseMaxMeltFeeData) {
-        withParameter("decrease_max_melt_fee_data", decreaseMaxMeltFeeData);
+        withVariable("decrease_max_melt_fee_data", decreaseMaxMeltFeeData);
         return this;
     }
 
@@ -243,7 +243,7 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      * @return the builder.
      */
     public UpdateRequest setTransferFee(SetTransferFeeData setTransferFeeData) {
-        withParameter("set_transfer_fee_data", setTransferFeeData);
+        withVariable("set_transfer_fee_data", setTransferFeeData);
         return this;
     }
 
@@ -255,12 +255,12 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      * @return the builder.
      */
     public UpdateRequest decreaseMaxTransferFee(DecreaseMaxTransferFeeData decreaseMaxTransferFeeData) {
-        withParameter("decrease_max_transfer_fee_data", decreaseMaxTransferFeeData);
+        withVariable("decrease_max_transfer_fee_data", decreaseMaxTransferFeeData);
         return this;
     }
 
     public UpdateRequest releaseReserve(ReleaseReserveData releaseReserveData) {
-        withParameter("release_reserve_data", releaseReserveData);
+        withVariable("release_reserve_data", releaseReserveData);
         return this;
     }
 
@@ -272,7 +272,7 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      * @return the builder.
      */
     public UpdateRequest addLog(AddLogData addLogData) {
-        withParameter("add_log_data", addLogData);
+        withVariable("add_log_data", addLogData);
         return this;
     }
 
@@ -284,7 +284,7 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      * @return the builder.
      */
     public UpdateRequest setApprovalForAll(SetApprovalForAllData setApprovalForAllData) {
-        withParameter("set_approval_for_all_data", setApprovalForAllData);
+        withVariable("set_approval_for_all_data", setApprovalForAllData);
         return this;
     }
 
@@ -296,7 +296,7 @@ public class UpdateRequest extends GraphQLRequest<UpdateRequest> {
      * @return the builder.
      */
     public UpdateRequest message(MessageData messageData) {
-        withParameter("message_data", messageData);
+        withVariable("message_data", messageData);
         return this;
     }
 

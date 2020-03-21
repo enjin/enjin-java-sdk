@@ -12,8 +12,8 @@ import java.util.logging.Level;
 import com.enjin.sdk.graphql.GraphQLError;
 import com.enjin.sdk.graphql.GraphQLProcessor;
 import com.enjin.sdk.graphql.GraphQLRequest;
+import com.enjin.sdk.graphql.GraphQLRequestBody;
 import com.enjin.sdk.graphql.GraphQLResponse;
-import com.enjin.sdk.graphql.GraphQLTemplate;
 import com.enjin.sdk.model.service.PaginationCursor;
 import com.enjin.sdk.serialization.BigIntegerDeserializer;
 import com.enjin.sdk.utils.GsonUtil;
@@ -226,12 +226,15 @@ public class GraphConverter extends Converter.Factory {
          */
         @Override
         public RequestBody convert(GraphQLRequest<?> request) {
-            GraphQLTemplate template = graphProcessor.getTemplate(methodAnnotations);
+            String queryName = graphProcessor.getQueryName(methodAnnotations);
+            String query = graphProcessor.getQuery(queryName);
 
-            JsonObject body = new JsonObject();
-            body.addProperty("query", template.serialize(request.parameters()));
-            String queryJson = gson.toJson(body);
-            return RequestBody.create(MediaType.parse("application/graphql"), queryJson);
+            if (query == null) {
+                throw new RuntimeException(String.format("Query not registered: %s", queryName));
+            }
+
+            GraphQLRequestBody body = new GraphQLRequestBody(query, request.getVariables());
+            return RequestBody.create(gson.toJson(body), MediaType.parse("application/graphql"));
         }
     }
 }

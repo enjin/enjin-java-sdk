@@ -16,7 +16,7 @@ import retrofit2.http.POST;
 public interface TokensRetrofitService {
 
     @POST("graphql")
-    @GraphQuery("GetTokens")
+    @GraphQuery("GetTokensPaginated")
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<List<Token>>> getTokens(@Body GraphQLRequest request);
 
@@ -26,18 +26,13 @@ public interface TokensRetrofitService {
     Call<GraphQLResponse<Token>> getToken(@Body GraphQLRequest request);
 
     @POST("graphql")
-    @GraphQuery("CreateToken")
-    @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<Token>> createToken(@Body GraphQLRequest request);
-
-    @POST("graphql")
-    @GraphQuery("UpdateToken")
-    @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<Token>> updateToken(@Body GraphQLRequest request);
-
-    @POST("graphql")
-    @GraphQuery("GetTokenEvents")
+    @GraphQuery("GetTokenEventsPaginated")
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<List<TokenEvent>>> getTokenEvents(@Body GraphQLRequest request);
+
+    @POST("graphql")
+    @GraphQuery("InvalidateTokenMetadata")
+    @Headers("Content-Type: application/json")
+    Call<GraphQLResponse<Boolean>> invalidateTokenMetadata(@Body GraphQLRequest request);
 
 }

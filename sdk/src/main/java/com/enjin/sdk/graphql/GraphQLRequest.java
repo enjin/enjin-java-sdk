@@ -2,19 +2,21 @@ package com.enjin.sdk.graphql;
 
 import lombok.NonNull;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Represents a model of a GraphQL request and
  * facilitates the serialization of the query.
  *
  * @author Evan Lindsay
- * @see GraphQLParameters
  */
 public class GraphQLRequest<T extends GraphQLRequest<T>> {
 
-    private GraphQLParameters parameters;
+    private Map<String, Object> variables;
 
     public GraphQLRequest() {
-        this.parameters = new GraphQLParameters();
+        this.variables = new HashMap<>();
     }
 
     /**
@@ -28,18 +30,18 @@ public class GraphQLRequest<T extends GraphQLRequest<T>> {
      * @throws NullPointerException     if key is null
      * @throws IllegalArgumentException if key is empty
      */
-    public T withParameter(@NonNull String key, @NonNull Object value) {
+    public T withVariable(@NonNull String key, @NonNull Object value) {
         if (key.isEmpty()) {
             throw new IllegalArgumentException("Key is empty");
         }
 
-        this.parameters.getParameters().put(key, value);
+        this.variables.put(key, value);
 
         return (T) this;
     }
 
-    public GraphQLParameters parameters() {
-        return this.parameters;
+    public Map<String, Object> getVariables() {
+        return variables;
     }
 
 }

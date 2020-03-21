@@ -10,6 +10,7 @@ import com.enjin.sdk.model.service.apps.CreateApp;
 import com.enjin.sdk.model.service.apps.DeleteApp;
 import com.enjin.sdk.model.service.apps.GetApp;
 import com.enjin.sdk.model.service.apps.GetApps;
+import com.enjin.sdk.model.service.apps.UnlinkApp;
 import com.enjin.sdk.model.service.apps.UpdateApp;
 import com.enjin.sdk.model.service.auth.AuthApp;
 import com.enjin.sdk.model.service.auth.AuthTokens;
@@ -27,5 +28,7 @@ public interface SynchronousAppsService {
     HttpResponse<GraphQLResponse<App>> updateAppSync(UpdateApp query);
 
     HttpResponse<GraphQLResponse<AuthTokens>> authAppSync(AuthApp query);
+
+    HttpResponse<GraphQLResponse<App>> unlinkAppSync(UnlinkApp query);
 
 }

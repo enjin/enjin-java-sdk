@@ -12,7 +12,7 @@ import com.enjin.sdk.service.tokens.TokensService;
 public class GetToken extends PaginationRequest<GetToken> {
 
     public GetToken appId(Integer appId) {
-        withParameter("appId", appId);
+        withVariable("appId", appId);
         return this;
     }
 
@@ -24,7 +24,7 @@ public class GetToken extends PaginationRequest<GetToken> {
      * @return the builder.
      */
     public GetToken tokenId(String tokenId) {
-        withParameter("id", tokenId);
+        withVariable("id", tokenId);
         return this;
     }
 

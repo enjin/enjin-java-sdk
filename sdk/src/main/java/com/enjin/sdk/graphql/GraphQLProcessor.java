@@ -2,8 +2,6 @@ package com.enjin.sdk.graphql;
 
 import java.lang.annotation.Annotation;
 
-import com.enjin.sdk.graphql.definitions.Templates;
-
 /**
  * Loads and manages GraphQL template files used by various
  * service classes.
@@ -15,13 +13,10 @@ public final class GraphQLProcessor {
 
     private static GraphQLProcessor ourInstance;
 
-    private GraphQLTemplateRegistry templateRegistry;
+    private GraphQLQueryRegistry queryRegistry;
 
     private GraphQLProcessor() {
-        this.templateRegistry = new GraphQLTemplateRegistry();
-        for (GraphQLTemplate template : Templates.getTemplates()) {
-            this.templateRegistry.register(template);
-        }
+        this.queryRegistry = new GraphQLQueryRegistry();
     }
 
     /**
@@ -34,10 +29,24 @@ public final class GraphQLProcessor {
      *
      * @return the contents of a template file or null if no entry is found.
      */
-    public GraphQLTemplate getTemplate(Annotation[] annotations) {
+    public String getQuery(Annotation[] annotations) {
         for (Annotation annotation : annotations) {
             if (annotation instanceof GraphQuery) {
-                return templateRegistry.get(((GraphQuery) annotation).value());
+                return queryRegistry.get(((GraphQuery) annotation).value());
+            }
+        }
+
+        return null;
+    }
+
+    public String getQuery(String name) {
+        return queryRegistry.get(name);
+    }
+
+    public String getQueryName(Annotation[] annotations) {
+        for (Annotation annotation : annotations) {
+            if (annotation instanceof  GraphQuery) {
+                return ((GraphQuery) annotation).value();
             }
         }
 

@@ -19,7 +19,7 @@ public class DeleteIdentity extends GraphQLRequest<DeleteIdentity> {
      * @return the builder.
      */
     public DeleteIdentity identityId(int identityId) {
-        withParameter("id", identityId);
+        withVariable("id", identityId);
         return this;
     }
 

@@ -12,7 +12,7 @@ import com.enjin.sdk.service.identities.IdentitiesService;
 public class CreateIdentity extends GraphQLRequest<CreateIdentity> {
 
     public CreateIdentity appId(Integer appId) {
-        withParameter("appId", appId);
+        withVariable("appId", appId);
         return this;
     }
 
@@ -24,7 +24,7 @@ public class CreateIdentity extends GraphQLRequest<CreateIdentity> {
      * @return the builder.
      */
     public CreateIdentity userId(int userId) {
-        withParameter("user_id", userId);
+        withVariable("user_id", userId);
         return this;
     }
 
@@ -36,7 +36,7 @@ public class CreateIdentity extends GraphQLRequest<CreateIdentity> {
      * @return the builder.
      */
     public CreateIdentity email(String email) {
-        withParameter("email", email);
+        withVariable("email", email);
         return this;
     }
 
@@ -48,7 +48,7 @@ public class CreateIdentity extends GraphQLRequest<CreateIdentity> {
      * @return the builder.
      */
     public CreateIdentity ethAddr(String ethereumAddress) {
-        withParameter("ethAddress", ethereumAddress);
+        withVariable("ethAddress", ethereumAddress);
         return this;
     }
 

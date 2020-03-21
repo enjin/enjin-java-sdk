@@ -16,7 +16,7 @@ import retrofit2.http.POST;
 public interface AppsRetrofitService {
 
     @POST("graphql")
-    @GraphQuery("GetApps")
+    @GraphQuery("GetAppsPaginated")
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<List<App>>> getApps(@Body GraphQLRequest request);
 
@@ -28,21 +28,26 @@ public interface AppsRetrofitService {
     @POST("graphql")
     @GraphQuery("CreateApp")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<App>> createApps(@Body GraphQLRequest request);
+    Call<GraphQLResponse<App>> createApp(@Body GraphQLRequest request);
 
     @POST("graphql")
     @GraphQuery("DeleteApp")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<App>> deleteApps(@Body GraphQLRequest request);
+    Call<GraphQLResponse<App>> deleteApp(@Body GraphQLRequest request);
 
     @POST("graphql")
     @GraphQuery("UpdateApp")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<App>> updateApps(@Body GraphQLRequest request);
+    Call<GraphQLResponse<App>> updateApp(@Body GraphQLRequest request);
 
     @POST("graphql")
     @GraphQuery("AuthApp")
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<AuthTokens>> authApp(@Body GraphQLRequest request);
+
+    @POST("graphql")
+    @GraphQuery("UnlinkApp")
+    @Headers("Content-Type: application/json")
+    Call<GraphQLResponse<App>> unlinkApp(@Body GraphQLRequest request);
 
 }

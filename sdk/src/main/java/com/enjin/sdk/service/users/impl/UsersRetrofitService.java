@@ -16,12 +16,12 @@ import retrofit2.http.POST;
 public interface UsersRetrofitService {
 
     @POST("graphql")
-    @GraphQuery("OAuthUser")
+    @GraphQuery("LoginUser")
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<User>> oAuthUser(@Body GraphQLRequest request);
 
     @POST("graphql")
-    @GraphQuery("GetUsers")
+    @GraphQuery("GetUsersPaginated")
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<List<User>>> getUsers(@Body GraphQLRequest request);
 

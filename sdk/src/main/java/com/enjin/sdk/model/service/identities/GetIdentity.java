@@ -19,7 +19,7 @@ public class GetIdentity extends PaginationRequest<GetIdentity> {
      * @return the builder.
      */
     public GetIdentity id(Integer identityId) {
-        withParameter("id", identityId);
+        withVariable("id", identityId);
         return this;
     }
 
