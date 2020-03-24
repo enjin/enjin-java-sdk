@@ -106,4 +106,6 @@ public class CreateTokenData {
      */
     private Boolean nonFungible;
 
+    private String icon;
+
 }

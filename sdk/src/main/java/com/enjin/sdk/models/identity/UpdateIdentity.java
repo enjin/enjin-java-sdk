@@ -9,7 +9,7 @@ import com.enjin.sdk.services.identity.IdentitiesService;
  * @author Evan Lindsay
  * @see IdentitiesService
  */
-public class UpdateIdentity extends GraphQLRequest<UpdateIdentity> {
+public class UpdateIdentity extends GraphQLRequest<UpdateIdentity> implements IdentityFragment<UpdateIdentity> {
 
     /**
      * The identity id.

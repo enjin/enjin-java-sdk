@@ -9,7 +9,7 @@ import com.enjin.sdk.services.identity.IdentitiesService;
  * @author Evan Lindsay
  * @see IdentitiesService
  */
-public class CreateIdentity extends GraphQLRequest<CreateIdentity> {
+public class CreateIdentity extends GraphQLRequest<CreateIdentity> implements IdentityFragment<CreateIdentity> {
 
     public CreateIdentity appId(Integer appId) {
         set("appId", appId);
@@ -24,7 +24,7 @@ public class CreateIdentity extends GraphQLRequest<CreateIdentity> {
      * @return the builder.
      */
     public CreateIdentity userId(int userId) {
-        set("user_id", userId);
+        set("userId", userId);
         return this;
     }
 

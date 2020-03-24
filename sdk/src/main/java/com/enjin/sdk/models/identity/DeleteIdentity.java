@@ -9,7 +9,7 @@ import com.enjin.sdk.services.identity.IdentitiesService;
  * @author Evan Lindsay
  * @see IdentitiesService
  */
-public class DeleteIdentity extends GraphQLRequest<DeleteIdentity> {
+public class DeleteIdentity extends GraphQLRequest<DeleteIdentity> implements IdentityFragment<DeleteIdentity> {
 
     /**
      * The identity id.

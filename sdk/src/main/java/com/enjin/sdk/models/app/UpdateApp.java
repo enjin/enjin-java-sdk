@@ -24,14 +24,4 @@ public class UpdateApp extends GraphQLRequest<UpdateApp> implements AppFragment<
         return this;
     }
 
-    public UpdateApp generateSecret(boolean secret) {
-        set("secret", secret);
-        return this;
-    }
-
-    public UpdateApp revokeSecret(boolean revoke) {
-        set("revoke", revoke);
-        return this;
-    }
-
 }

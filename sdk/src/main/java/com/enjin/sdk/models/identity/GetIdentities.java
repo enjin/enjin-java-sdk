@@ -9,7 +9,7 @@ import com.enjin.sdk.services.identity.IdentitiesService;
  * @author Evan Lindsay
  * @see IdentitiesService
  */
-public class GetIdentities extends PaginationRequest<GetIdentities> {
+public class GetIdentities extends PaginationRequest<GetIdentities> implements IdentityFragment<GetIdentities> {
 
     /**
      * The identity id.

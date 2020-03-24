@@ -5,6 +5,7 @@ import com.enjin.sdk.models.request.data.AddLogData;
 import com.enjin.sdk.models.request.data.AdvancedSendTokenData;
 import com.enjin.sdk.models.request.data.ApproveEnjData;
 import com.enjin.sdk.models.request.data.ApproveItemData;
+import com.enjin.sdk.models.request.data.BatchApproveData;
 import com.enjin.sdk.models.request.data.CompleteTradeData;
 import com.enjin.sdk.models.request.data.CreateTokenData;
 import com.enjin.sdk.models.request.data.CreateTradeData;
