@@ -2,7 +2,7 @@ package com.enjin.sdk.graphql;
 
 import java.util.List;
 
-import com.enjin.sdk.model.service.PaginationCursor;
+import com.enjin.sdk.models.PaginationCursor;
 
 import lombok.ToString;
 

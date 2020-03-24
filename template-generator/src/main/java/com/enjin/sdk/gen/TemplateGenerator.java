@@ -45,6 +45,7 @@ public class TemplateGenerator implements Generator {
         }
 
         JavaFile javaFile = JavaFile.builder("com.enjin.sdk.graphql", typeSpec.build())
+                                    .indent("    ")
                                     .build();
 
         try {

@@ -14,7 +14,7 @@ import com.enjin.sdk.graphql.GraphQLProcessor;
 import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.graphql.GraphQLRequestBody;
 import com.enjin.sdk.graphql.GraphQLResponse;
-import com.enjin.sdk.model.service.PaginationCursor;
+import com.enjin.sdk.models.PaginationCursor;
 import com.enjin.sdk.serialization.BigIntegerDeserializer;
 import com.enjin.sdk.utils.GsonUtil;
 import com.github.dmstocking.optional.java.util.Optional;

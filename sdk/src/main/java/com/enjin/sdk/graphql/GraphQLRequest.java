@@ -11,12 +11,16 @@ import java.util.Map;
  *
  * @author Evan Lindsay
  */
-public class GraphQLRequest<T extends GraphQLRequest<T>> {
+public class GraphQLRequest<T extends GraphQLRequest<T>> implements GraphQLVariableHolder<T> {
 
     private Map<String, Object> variables;
 
     public GraphQLRequest() {
-        this.variables = new HashMap<>();
+        this(new HashMap<>());
+    }
+
+    public GraphQLRequest(Map<String, Object> variables) {
+        this.variables = variables;
     }
 
     /**
@@ -30,7 +34,7 @@ public class GraphQLRequest<T extends GraphQLRequest<T>> {
      * @throws NullPointerException     if key is null
      * @throws IllegalArgumentException if key is empty
      */
-    public T withVariable(@NonNull String key, @NonNull Object value) {
+    public T set(@NonNull String key, @NonNull Object value) {
         if (key.isEmpty()) {
             throw new IllegalArgumentException("Key is empty");
         }

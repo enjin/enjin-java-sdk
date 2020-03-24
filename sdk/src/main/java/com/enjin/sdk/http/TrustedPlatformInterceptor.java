@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import com.enjin.java_commons.StringUtils;
 
-import com.enjin.sdk.model.service.auth.AuthTokens;
+import com.enjin.sdk.models.AuthTokens;
 import lombok.Getter;
 import lombok.Setter;
 import okhttp3.Interceptor;
