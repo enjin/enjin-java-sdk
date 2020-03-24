@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpResponse;
+import com.enjin.sdk.models.platform.GetPlatform;
 import com.enjin.sdk.models.platform.PlatformDetails;
 
 public interface SynchronousPlatformService {
@@ -15,5 +16,5 @@ public interface SynchronousPlatformService {
      *
      * @throws IOException if a communication error occurred.
      */
-    HttpResponse<GraphQLResponse<PlatformDetails>> getPlatformSync();
+    HttpResponse<GraphQLResponse<PlatformDetails>> getPlatformSync(GetPlatform query);
 }

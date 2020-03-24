@@ -2,6 +2,7 @@ package com.enjin.sdk.services.platform;
 
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpCallback;
+import com.enjin.sdk.models.platform.GetPlatform;
 import com.enjin.sdk.models.platform.PlatformDetails;
 
 /**
@@ -16,5 +17,5 @@ public interface AsynchronousPlatformService {
      *
      * @param callback the callback.
      */
-    void getPlatformAsync(HttpCallback<GraphQLResponse<PlatformDetails>> callback);
+    void getPlatformAsync(GetPlatform query, HttpCallback<GraphQLResponse<PlatformDetails>> callback);
 }

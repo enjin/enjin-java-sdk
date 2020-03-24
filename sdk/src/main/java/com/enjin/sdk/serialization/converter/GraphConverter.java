@@ -51,10 +51,15 @@ public class GraphConverter extends Converter.Factory {
     protected GraphQLProcessor graphProcessor;
 
     protected final JsonParser parser = new JsonParser();
-    protected final Gson gson = new GsonBuilder()
+    protected final Gson toJson = new GsonBuilder()
             .enableComplexMapKeySerialization()
-            .serializeNulls()
             .setLenient()
+            .registerTypeAdapter(BigInteger.class, new BigIntegerDeserializer())
+            .create();
+    protected final Gson fromJson = new GsonBuilder()
+            .enableComplexMapKeySerialization()
+            .setLenient()
+            .serializeNulls()
             .registerTypeAdapter(BigInteger.class, new BigIntegerDeserializer())
             .create();
 
@@ -174,11 +179,11 @@ public class GraphConverter extends Converter.Factory {
                 JsonObject result = optional.get().getAsJsonObject();
 
                 if (result.has(ITEM_KEY) && result.has(CURSOR_KEY))
-                    return gson.fromJson(result.get(ITEM_KEY), resultType);
+                    return fromJson.fromJson(result.get(ITEM_KEY), resultType);
 
-                return gson.fromJson(result, resultType);
+                return fromJson.fromJson(result, resultType);
             } else if (GsonUtil.isJsonArray(optional)) {
-                return gson.fromJson(optional.get(), resultType);
+                return fromJson.fromJson(optional.get(), resultType);
             }
 
             return null;
@@ -188,8 +193,8 @@ public class GraphConverter extends Converter.Factory {
             List<GraphQLError> errors = null;
 
             if (root.has(ERRORS_KEY)) {
-                errors = gson.fromJson(root.get(ERRORS_KEY),
-                                       TypeToken.getParameterized(ArrayList.class, GraphQLError.class).getType());
+                errors = fromJson.fromJson(root.get(ERRORS_KEY),
+                                         TypeToken.getParameterized(ArrayList.class, GraphQLError.class).getType());
             }
 
             return errors;
@@ -201,7 +206,7 @@ public class GraphConverter extends Converter.Factory {
             if (!optional.isPresent())
                 return null;
 
-            return gson.fromJson(optional.get(), PaginationCursor.class);
+            return fromJson.fromJson(optional.get(), PaginationCursor.class);
         }
     }
 
@@ -234,7 +239,7 @@ public class GraphConverter extends Converter.Factory {
             }
 
             GraphQLRequestBody body = new GraphQLRequestBody(query, request.getVariables());
-            return RequestBody.create(gson.toJson(body), MediaType.parse("application/graphql"));
+            return RequestBody.create(toJson.toJson(body), MediaType.parse("application/graphql"));
         }
     }
 }

@@ -68,7 +68,7 @@ public class Template {
 
             String template = builder.toString();
             return template.replace(type.name().toLowerCase(),
-                                    String.format("%s(%s)", type.name().toLowerCase(), String.join(", ", parameters)));
+                                    String.format("%s %s(%s)", type.name().toLowerCase(), key, String.join(", ", parameters)));
         }
 
         return builder.toString();
