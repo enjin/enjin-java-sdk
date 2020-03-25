@@ -8,15 +8,15 @@ import java.util.concurrent.TimeUnit;
 
 public class TrustedPlatformClientBuilder {
 
+    public static final HttpUrl MAIN_NET = HttpUrl.get("https://cloud.enjin.io/");
+    public static final HttpUrl KOVAN = HttpUrl.get("https://kovan.cloud.enjin.io/");
+
     protected Optional<HttpUrl> baseUrl = Optional.empty();
     protected Optional<Level> httpLogLevel = Optional.empty();
     protected Optional<Long> connectTimeoutMillis = Optional.empty();
     protected Optional<Long> callTimeoutMillis = Optional.empty();
     protected Optional<Long> readTimeoutMillis = Optional.empty();
     protected Optional<Long> writeTimeoutMillis = Optional.empty();
-
-    public TrustedPlatformClientBuilder() {
-    }
 
     public TrustedPlatformClientBuilder httpLogLevel(Level level) {
         httpLogLevel = Optional.ofNullable(level);

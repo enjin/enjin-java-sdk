@@ -1,3 +1,5 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
 plugins {
     id 'io.freefair.code-generator' version '5.0.0-rc6'
 }
@@ -33,4 +35,15 @@ dependencies {
 
     errorproneJavac 'com.google.errorprone:javac:9+181-r4173-1'
     errorprone 'com.google.errorprone:error_prone_core:2.3.3'
+}
+
+task processSource(type: Sync) {
+    from sourceSets.main.java
+    inputs.property 'version', version
+    filter(ReplaceTokens, tokens: ["version": version])
+    into "$buildDir/src"
+}
+
+compileJava {
+    source = processSource.outputs
 }

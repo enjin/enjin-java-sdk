@@ -43,9 +43,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public final class TrustedPlatformClientImpl implements TrustedPlatformClient {
 
-    // Trusted Platform Base URLs
-    public static final HttpUrl MAIN_NET = HttpUrl.get("https://cloud.enjin.io/");
-    public static final HttpUrl KOVAN = HttpUrl.get("https://kovan.cloud.enjin.io/");
     // Keys
     private static final String CLIENT_CREDENTIALS = "client_credentials";
 
@@ -73,7 +70,7 @@ public final class TrustedPlatformClientImpl implements TrustedPlatformClient {
     private WalletService walletService;
 
     TrustedPlatformClientImpl(TrustedPlatformClientBuilder builder) {
-        baseUrl = builder.baseUrl.orElse(MAIN_NET);
+        baseUrl = builder.baseUrl.orElse(TrustedPlatformClientBuilder.MAIN_NET);
         // Cookie Jar
         SessionCookieJar cookieJar = new SessionCookieJar();
 
