@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.enjin.java_commons.StringUtils;
 
+import com.enjin.sdk.TrustedPlatformClient;
 import com.enjin.sdk.models.AuthTokens;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +15,8 @@ import okhttp3.Response;
 public class TrustedPlatformInterceptor implements Interceptor {
 
     public static final String AUTHORIZATION = "Authorization";
+    public static final String USER_AGENT = "User-Agent";
+    public static final String USER_AGENT_VAL = "Enjin Java SDK v%s";
 
     @Setter
     private String tokenType;
@@ -26,6 +29,8 @@ public class TrustedPlatformInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request.Builder builder = chain.request().newBuilder();
+
+        builder.header(USER_AGENT, String.format(USER_AGENT_VAL, TrustedPlatformClient.version()));
 
         if (!StringUtils.isEmpty(tokenType) && !StringUtils.isEmpty(token)) {
             builder.header(AUTHORIZATION, String.format("%s %s", tokenType, token));

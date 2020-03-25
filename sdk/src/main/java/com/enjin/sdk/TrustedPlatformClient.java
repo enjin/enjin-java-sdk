@@ -45,7 +45,7 @@ public interface TrustedPlatformClient extends Closeable {
 
     boolean isClosed();
 
-    default String version() {
+    static String version() {
         return "@version@";
     }
 
