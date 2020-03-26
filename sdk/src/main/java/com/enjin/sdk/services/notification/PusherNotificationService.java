@@ -15,8 +15,6 @@ import com.enjin.sdk.services.notification.NotificationListenerRegistration.Regi
 import com.enjin.sdk.services.notification.subscriptions.AppChannel;
 import com.enjin.sdk.services.notification.subscriptions.IdentityChannel;
 import com.enjin.sdk.services.notification.subscriptions.UserChannel;
-import com.enjin.java_commons.ObjectUtils;
-import com.enjin.java_commons.StringUtils;
 import com.pusher.client.Pusher;
 import com.pusher.client.PusherOptions;
 import com.pusher.client.channel.Channel;
@@ -54,7 +52,7 @@ public class PusherNotificationService implements NotificationsService {
                 String cluster = pusherDetails.getOptions().getCluster();
                 boolean encrypted = pusherDetails.getOptions().getEncrypted();
 
-                if (!StringUtils.isEmpty(appKey) && !StringUtils.isEmpty(cluster)) {
+                if (appKey != null && !appKey.isEmpty() && cluster != null && !cluster.isEmpty()) {
                     PusherOptions options = new PusherOptions()
                             .setCluster(cluster)
                             .setEncrypted(encrypted);
@@ -95,7 +93,7 @@ public class PusherNotificationService implements NotificationsService {
 
     @Override
     public void shutdown() {
-        if (!ObjectUtils.isNull(pusher)) {
+        if (pusher != null) {
             pusher.disconnect();
         }
     }

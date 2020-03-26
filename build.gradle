@@ -1,6 +1,5 @@
 buildscript {
     ext.versions = [
-            'enjinCommons'    : '0.3.0-SNAPSHOT',
             'gson'            : '2.8.6',
             'pusher'          : '2.0.1',
             'okhttp'          : '4.3.1',
@@ -21,7 +20,6 @@ buildscript {
     ]
 
     ext.deps = [
-            'enjinCommons'            : "com.enjin:java_commons:${versions.enjinCommons}",
             'gson'                    : "com.google.code.gson:gson:${versions.gson}",
             'pusher'                  : "com.pusher:pusher-java-client:${versions.pusher}",
             'okhttp'                  : "com.squareup.okhttp3:okhttp:${versions.okhttp}",

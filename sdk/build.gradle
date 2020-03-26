@@ -13,7 +13,6 @@ dependencies {
 
     codeGenerator project(':template-generator')
 
-    implementation deps.enjinCommons
     implementation deps.gson
     implementation deps.pusher
     implementation deps.okhttp

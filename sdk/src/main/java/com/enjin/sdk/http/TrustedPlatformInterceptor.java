@@ -2,8 +2,6 @@ package com.enjin.sdk.http;
 
 import java.io.IOException;
 
-import com.enjin.java_commons.StringUtils;
-
 import com.enjin.sdk.TrustedPlatformClient;
 import com.enjin.sdk.models.AuthTokens;
 import lombok.Getter;
@@ -32,7 +30,7 @@ public class TrustedPlatformInterceptor implements Interceptor {
 
         builder.header(USER_AGENT, String.format(USER_AGENT_VAL, TrustedPlatformClient.version()));
 
-        if (!StringUtils.isEmpty(tokenType) && !StringUtils.isEmpty(token)) {
+        if (tokenType != null && !tokenType.isEmpty() && token != null && !token.isEmpty()) {
             builder.header(AUTHORIZATION, String.format("%s %s", tokenType, token));
         }
 

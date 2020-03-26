@@ -4,7 +4,6 @@ import java.util.logging.Level;
 
 import com.enjin.sdk.models.notification.NotificationEvent;
 import com.enjin.sdk.models.notification.NotificationType;
-import com.enjin.java_commons.CollectionUtils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -37,7 +36,7 @@ public class PusherEventListener implements SubscriptionEventListener {
     }
 
     private void call(String sourceData, String channel, String eventType) {
-        if (CollectionUtils.isEmpty(service.listeners))
+        if (service.listeners.isEmpty())
             return;
 
         JsonElement dataElement = GSON.fromJson(sourceData, JsonElement.class);
