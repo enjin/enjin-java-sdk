@@ -6,13 +6,13 @@ gitPublish {
 
     contents {
         from(javadoc) {
-            into "/javadocs/${project.name}/${version}"
+            into "/${project.name}/${version}"
         }
     }
 
     preserve {
         include '**/*'
-        exclude "/javadocs/${project.name}/${version}"
+        exclude "/${project.name}/${version}"
     }
 
     commitMessage = "Publishing javadocs of ${project.name} version ${version}."
