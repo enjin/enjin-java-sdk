@@ -94,7 +94,6 @@ subprojects {
     apply plugin: 'com.github.johnrengelman.shadow'
     apply plugin: 'jacoco'
     apply plugin: 'checkstyle'
-    apply from: "${rootProject.rootDir}/gradle/deploy.gradle"
 
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
