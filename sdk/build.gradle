@@ -5,6 +5,7 @@ plugins {
 }
 
 apply from: "${rootProject.rootDir}/gradle/ghPages.gradle"
+apply from: "${rootProject.rootDir}/gradle/deploy.gradle"
 
 generateTestCode.enabled = false
 
