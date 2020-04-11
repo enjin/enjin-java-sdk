@@ -56,7 +56,9 @@ public class PacketFactory implements TypeAdapterFactory {
 
             int id = prim.getAsInt();
             PacketType type = PacketType.of(id);
-            return GSON.fromJson(elem, (Type) type.getClazz());
+            Packet packet = GSON.fromJson(elem, (Type) type.getClazz());
+            packet.setRaw(obj);
+            return (T) packet;
         }
 
     }

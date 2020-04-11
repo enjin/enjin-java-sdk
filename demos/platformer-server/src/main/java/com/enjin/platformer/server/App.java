@@ -1,10 +1,15 @@
 package com.enjin.platformer.server;
 
 import com.enjin.platformer.server.conf.Config;
+import lombok.Getter;
 import lombok.SneakyThrows;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 public class App {
 
+    @Getter
     private static App instance;
 
     private boolean running;
@@ -21,10 +26,14 @@ public class App {
     private void start() {
         server.start();
 
-        while (running)
-            continue;
-
-        server.stop();
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+            while (running) {
+                String in = reader.readLine();
+                if (in.equals("exit") || in.equals("stop")) {
+                    exit();
+                }
+            }
+        }
     }
 
     public static void main(String... args) {
@@ -32,8 +41,10 @@ public class App {
         instance.start();
     }
 
-    public static void exit() {
-        instance.running = true;
+    @SneakyThrows
+    public void exit() {
+        running = false;
+        server.stop(1000);
     }
 
 }
