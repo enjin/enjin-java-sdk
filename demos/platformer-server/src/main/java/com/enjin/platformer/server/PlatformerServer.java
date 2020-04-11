@@ -30,7 +30,10 @@ public class PlatformerServer extends WebSocketServer {
 
     @Override
     public void onClose(WebSocket conn, int code, String reason, boolean remote) {
-        System.out.println("Connection Closed: " + conn.getRemoteSocketAddress());
+        InetSocketAddress addr = conn.getRemoteSocketAddress();
+        System.out.println("Connection Closed: " + addr);
+        if (addressToName.containsKey(addr))
+            nameToAddress.remove(addressToName.remove(addr));
     }
 
     @Override
@@ -48,8 +51,11 @@ public class PlatformerServer extends WebSocketServer {
         System.out.println("WebSocket Server Started!");
     }
 
-    public void onHandshake(WebSocket socket, PacketInHandshake packet) {
-        System.out.println("Handshake Received: " + socket.getRemoteSocketAddress());
+    public void onHandshake(WebSocket conn, PacketInHandshake packet) {
+        InetSocketAddress addr = conn.getRemoteSocketAddress();
+        System.out.println("Handshake Received: " + addr);
+        addressToName.put(addr, packet.getName());
+        nameToAddress.put(packet.getName(), addr);
     }
 
 }
