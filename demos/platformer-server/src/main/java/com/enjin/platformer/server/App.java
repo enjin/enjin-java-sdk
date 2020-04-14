@@ -19,11 +19,14 @@ public class App {
     public App() {
         running = true;
         config = Config.load();
-        server = new PlatformerServer(config.getAddress());
+        server = new PlatformerServer(config);
     }
 
     @SneakyThrows
     private void start() {
+        if (!config.validate())
+            return;
+
         server.start();
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
