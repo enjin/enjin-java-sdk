@@ -39,6 +39,7 @@ public class App {
         }
     }
 
+    @SneakyThrows
     public static void main(String... args) {
         instance = new App();
         instance.start();
@@ -47,7 +48,7 @@ public class App {
     @SneakyThrows
     public void exit() {
         running = false;
-        server.stop(1000);
+        server.stop();
     }
 
 }

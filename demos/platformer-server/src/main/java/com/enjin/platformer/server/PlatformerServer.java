@@ -4,6 +4,11 @@ import com.enjin.platformer.server.conf.Config;
 import com.enjin.platformer.server.data.PacketInHandshake;
 import com.enjin.platformer.server.data.PacketProcessor;
 import com.enjin.platformer.server.data.PacketType;
+import com.enjin.platformer.server.tasks.SdkUpdateTask;
+import com.enjin.sdk.TrustedPlatformClient;
+import com.enjin.sdk.TrustedPlatformClientBuilder;
+import lombok.SneakyThrows;
+import okhttp3.logging.HttpLoggingInterceptor.Level;
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
@@ -11,12 +16,19 @@ import org.java_websocket.server.WebSocketServer;
 import java.net.InetSocketAddress;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 public class PlatformerServer extends WebSocketServer {
 
+    private static final long UPDATE_INTERVAL = TimeUnit.HOURS.toMillis(6);
+
     private final Config config;
-    private final SdkManager sdkManager;
     private final PacketProcessor processor;
+    private final TrustedPlatformClient sdk;
+    private Timer updateTimer;
+    private TimerTask updateTask;
 
     private Map<InetSocketAddress, String> addressToName = new HashMap<>();
     private Map<String, InetSocketAddress> nameToAddress = new HashMap<>();
@@ -24,9 +36,18 @@ public class PlatformerServer extends WebSocketServer {
     public PlatformerServer(Config config) {
         super(config.getAddress());
         this.config = config;
-        this.sdkManager = new SdkManager(config);
         this.processor = new PacketProcessor();
+        this.sdk = new TrustedPlatformClientBuilder().baseUrl(TrustedPlatformClientBuilder.KOVAN)
+                                                     .httpLogLevel(Level.BODY)
+                                                     .build();
+        this.updateTimer = new Timer();
+        this.updateTask = new SdkUpdateTask(sdk, config);
+        init();
+    }
+
+    private void init() {
         registerPacketDelegates();
+        updateTimer.schedule(updateTask, 0, UPDATE_INTERVAL);
     }
 
     private void registerPacketDelegates() {
@@ -63,14 +84,15 @@ public class PlatformerServer extends WebSocketServer {
 
     @Override
     public void start() {
-        sdkManager.start();
         super.start();
     }
 
     @Override
-    public void stop(int timeout) throws InterruptedException {
-        super.stop(timeout);
-        sdkManager.setRunning(false);
+    @SneakyThrows
+    public void stop() {
+        super.stop();
+        sdk.close();
+        updateTimer.cancel();
     }
 
     public void onHandshake(WebSocket conn, PacketInHandshake packet) {
