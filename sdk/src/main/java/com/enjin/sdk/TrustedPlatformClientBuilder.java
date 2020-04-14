@@ -48,6 +48,11 @@ public class TrustedPlatformClientBuilder {
         return this;
     }
 
+    public TrustedPlatformClientBuilder baseUrl(HttpUrl url) {
+        baseUrl = Optional.ofNullable(url);
+        return this;
+    }
+
     public TrustedPlatformClient build() {
         return new TrustedPlatformClientImpl(this);
     }

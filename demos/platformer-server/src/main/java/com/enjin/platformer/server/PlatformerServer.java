@@ -1,5 +1,6 @@
 package com.enjin.platformer.server;
 
+import com.enjin.platformer.server.conf.Config;
 import com.enjin.platformer.server.data.PacketInHandshake;
 import com.enjin.platformer.server.data.PacketProcessor;
 import com.enjin.platformer.server.data.PacketType;
@@ -13,13 +14,22 @@ import java.util.Map;
 
 public class PlatformerServer extends WebSocketServer {
 
-    private final PacketProcessor processor = new PacketProcessor();
+    private final Config config;
+    private final SdkManager sdkManager;
+    private final PacketProcessor processor;
 
     private Map<InetSocketAddress, String> addressToName = new HashMap<>();
     private Map<String, InetSocketAddress> nameToAddress = new HashMap<>();
 
-    public PlatformerServer(InetSocketAddress address) {
-        super(address);
+    public PlatformerServer(Config config) {
+        super(config.getAddress());
+        this.config = config;
+        this.sdkManager = new SdkManager(config);
+        this.processor = new PacketProcessor();
+        registerPacketDelegates();
+    }
+
+    private void registerPacketDelegates() {
         processor.register(PacketType.HANDSHAKE, this::onHandshake);
     }
 
@@ -49,6 +59,18 @@ public class PlatformerServer extends WebSocketServer {
     @Override
     public void onStart() {
         System.out.println("WebSocket Server Started!");
+    }
+
+    @Override
+    public void start() {
+        sdkManager.start();
+        super.start();
+    }
+
+    @Override
+    public void stop(int timeout) throws InterruptedException {
+        super.stop(timeout);
+        sdkManager.setRunning(false);
     }
 
     public void onHandshake(WebSocket conn, PacketInHandshake packet) {

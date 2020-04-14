@@ -1,4 +1,5 @@
 dependencies {
     implementation deps.websocket
     implementation deps.gson
+    implementation project(':sdk')
 }
