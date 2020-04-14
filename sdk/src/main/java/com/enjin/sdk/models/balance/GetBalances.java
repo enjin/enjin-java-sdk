@@ -27,22 +27,22 @@ public class GetBalances extends PaginationRequest<GetBalances> implements Balan
     }
 
     public GetBalances valGt(Integer value) {
-        set("value_gt", value);
+        set("valueGt", value);
         return this;
     }
 
     public GetBalances valGte(Integer value) {
-        set("value_gte", value);
+        set("valueGte", value);
         return this;
     }
 
     public GetBalances valLt(Integer value) {
-        set("value_lt", value);
+        set("valueLt", value);
         return this;
     }
 
     public GetBalances valLte(Integer value) {
-        set("value_lte", value);
+        set("valueLte", value);
         return this;
     }
 
