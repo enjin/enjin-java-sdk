@@ -4,18 +4,21 @@ import com.enjin.platformer.server.conf.Config;
 import com.enjin.platformer.server.data.PacketInHandshake;
 import com.enjin.platformer.server.data.PacketProcessor;
 import com.enjin.platformer.server.data.PacketType;
+import com.enjin.platformer.server.game.Player;
 import com.enjin.platformer.server.tasks.SdkUpdateTask;
+import com.enjin.platformer.server.websocket.Peer;
 import com.enjin.sdk.TrustedPlatformClient;
 import com.enjin.sdk.TrustedPlatformClientBuilder;
+import lombok.Getter;
 import lombok.SneakyThrows;
 import okhttp3.logging.HttpLoggingInterceptor.Level;
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
 
-import java.net.InetSocketAddress;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
@@ -24,14 +27,17 @@ public class PlatformerServer extends WebSocketServer {
 
     private static final long UPDATE_INTERVAL = TimeUnit.HOURS.toMillis(6);
 
+    @Getter
     private final Config config;
     private final PacketProcessor processor;
+    @Getter
     private final TrustedPlatformClient sdk;
+
     private Timer updateTimer;
     private TimerTask updateTask;
-
-    private Map<InetSocketAddress, String> addressToName = new HashMap<>();
-    private Map<String, InetSocketAddress> nameToAddress = new HashMap<>();
+    private Map<Integer, Peer> peers;
+    @Getter
+    private Map<Integer, Player> players;
 
     public PlatformerServer(Config config) {
         super(config.getAddress());
@@ -42,6 +48,8 @@ public class PlatformerServer extends WebSocketServer {
                                                      .build();
         this.updateTimer = new Timer();
         this.updateTask = new SdkUpdateTask(sdk, config);
+        this.peers = new HashMap<>();
+        this.players = new HashMap<>();
         init();
     }
 
@@ -56,15 +64,18 @@ public class PlatformerServer extends WebSocketServer {
 
     @Override
     public void onOpen(WebSocket conn, ClientHandshake handshake) {
-        System.out.println("Connection Established: " + conn.getRemoteSocketAddress());
+        Peer peer = new Peer(conn);
+        peers.put(peer.getId(), peer);
     }
 
     @Override
     public void onClose(WebSocket conn, int code, String reason, boolean remote) {
-        InetSocketAddress addr = conn.getRemoteSocketAddress();
-        System.out.println("Connection Closed: " + addr);
-        if (addressToName.containsKey(addr))
-            nameToAddress.remove(addressToName.remove(addr));
+        Optional<Peer> attachment = Optional.ofNullable(conn.getAttachment());
+        attachment.ifPresent(peer -> {
+            System.out.println(String.format("Connection With Peer %s Closed!", peer.getId()));
+            peers.remove(peer.getId());
+            players.remove(peer.getId());
+        });
     }
 
     @Override
@@ -83,11 +94,6 @@ public class PlatformerServer extends WebSocketServer {
     }
 
     @Override
-    public void start() {
-        super.start();
-    }
-
-    @Override
     @SneakyThrows
     public void stop() {
         super.stop();
@@ -95,11 +101,14 @@ public class PlatformerServer extends WebSocketServer {
         updateTimer.cancel();
     }
 
-    public void onHandshake(WebSocket conn, PacketInHandshake packet) {
-        InetSocketAddress addr = conn.getRemoteSocketAddress();
-        System.out.println("Handshake Received: " + addr);
-        addressToName.put(addr, packet.getName());
-        nameToAddress.put(packet.getName(), addr);
+    private void onHandshake(WebSocket conn, PacketInHandshake packet) {
+        Optional<Peer> attachment = Optional.ofNullable(conn.getAttachment());
+        attachment.ifPresent(peer -> {
+            System.out.println(String.format("Received Handshake From Peer %s", peer.getId()));
+            Player player = new Player(packet.getName(), peer, this);
+            players.put(peer.getId(), player);
+            player.auth();
+        });
     }
 
 }

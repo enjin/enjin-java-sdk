@@ -5,8 +5,8 @@ import java.util.List;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpCallback;
 import com.enjin.sdk.http.HttpResponse;
-import com.enjin.sdk.models.AuthTokens;
-import com.enjin.sdk.models.user.AuthUser;
+import com.enjin.sdk.models.AccessToken;
+import com.enjin.sdk.models.user.AuthPlayer;
 import com.enjin.sdk.models.user.OAuthUser;
 import com.enjin.sdk.models.user.CreateUser;
 import com.enjin.sdk.models.user.GetUser;
@@ -49,7 +49,7 @@ public class UsersServiceImpl extends GraphQLServiceBase implements UsersService
     }
 
     @Override
-    public void authUserAsync(AuthUser query, HttpCallback<GraphQLResponse<AuthTokens>> callback) {
+    public void authUserAsync(AuthPlayer query, HttpCallback<GraphQLResponse<AccessToken>> callback) {
         enqueueGraphQLCall(this.service.authUser(query), callback);
     }
 
@@ -74,7 +74,7 @@ public class UsersServiceImpl extends GraphQLServiceBase implements UsersService
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<AuthTokens>> authUserSync(AuthUser query) {
+    public HttpResponse<GraphQLResponse<AccessToken>> authUserSync(AuthPlayer query) {
         return executeGraphQLCall(this.service.authUser(query));
     }
 

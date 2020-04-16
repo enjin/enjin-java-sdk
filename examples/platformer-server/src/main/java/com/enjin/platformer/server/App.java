@@ -12,21 +12,18 @@ public class App {
     @Getter
     private static App instance;
 
-    private boolean running;
+    private boolean running = true;
     private Config config;
     private PlatformerServer server;
 
-    public App() {
-        running = true;
-        config = Config.load();
-        server = new PlatformerServer(config);
-    }
-
     @SneakyThrows
     private void start() {
+        config = Config.load();
+
         if (!config.validate())
             return;
 
+        server = new PlatformerServer(config);
         server.start();
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {

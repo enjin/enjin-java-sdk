@@ -5,7 +5,7 @@ import java.util.List;
 import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.graphql.GraphQuery;
-import com.enjin.sdk.models.AuthTokens;
+import com.enjin.sdk.models.AccessToken;
 import com.enjin.sdk.models.user.User;
 
 import retrofit2.Call;
@@ -36,8 +36,8 @@ public interface UsersRetrofitService {
     Call<GraphQLResponse<User>> createUser(@Body GraphQLRequest request);
 
     @POST("graphql")
-    @GraphQuery("AuthUser")
+    @GraphQuery("AuthPlayer")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<AuthTokens>> authUser(@Body GraphQLRequest request);
+    Call<GraphQLResponse<AccessToken>> authUser(@Body GraphQLRequest request);
 
 }

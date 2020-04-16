@@ -2,9 +2,9 @@ package com.enjin.sdk.models.user;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
 
-public class AuthUser extends GraphQLRequest<AuthUser> {
+public class AuthPlayer extends GraphQLRequest<AuthPlayer> {
 
-    public AuthUser id(String id) {
+    public AuthPlayer id(String id) {
         set("id", id);
         return this;
     }

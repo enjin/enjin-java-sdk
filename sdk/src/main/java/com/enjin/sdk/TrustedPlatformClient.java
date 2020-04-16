@@ -3,7 +3,7 @@ package com.enjin.sdk;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpCallback;
 import com.enjin.sdk.http.HttpResponse;
-import com.enjin.sdk.models.AuthTokens;
+import com.enjin.sdk.models.AccessToken;
 import com.enjin.sdk.services.app.AppsService;
 import com.enjin.sdk.services.balance.BalancesService;
 import com.enjin.sdk.services.identity.IdentitiesService;
@@ -37,9 +37,9 @@ public interface TrustedPlatformClient extends Closeable {
 
     Integer getAppId();
 
-    HttpResponse<GraphQLResponse<AuthTokens>> authAppSync(int id, String secret);
+    HttpResponse<GraphQLResponse<AccessToken>> authAppSync(int id, String secret);
 
-    void authAppAsync(int id, String secret, HttpCallback<GraphQLResponse<AuthTokens>> callback);
+    void authAppAsync(int id, String secret, HttpCallback<GraphQLResponse<AccessToken>> callback);
 
     boolean isAuthenticated();
 
