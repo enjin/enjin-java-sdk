@@ -3,7 +3,7 @@ package com.enjin.sdk.http;
 import java.io.IOException;
 
 import com.enjin.sdk.TrustedPlatformClient;
-import com.enjin.sdk.models.AuthTokens;
+import com.enjin.sdk.models.AccessToken;
 import lombok.Getter;
 import lombok.Setter;
 import okhttp3.Interceptor;
@@ -37,7 +37,7 @@ public class TrustedPlatformInterceptor implements Interceptor {
         return chain.proceed(builder.build());
     }
 
-    public void auth(AuthTokens data) {
+    public void auth(AccessToken data) {
         tokenType = "Bearer";
         token = data.getAccessToken();
     }

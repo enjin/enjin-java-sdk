@@ -5,7 +5,8 @@ import lombok.Getter;
 public enum PacketType {
 
     UNKNOWN(-0x1, Packet.class),
-    HANDSHAKE(0x0, PacketInHandshake.class);
+    HANDSHAKE(0x0, PacketInHandshake.class),
+    AUTHENTICATED(0x1, PacketOutAuthenticated.class);
 
     @Getter
     private int id;

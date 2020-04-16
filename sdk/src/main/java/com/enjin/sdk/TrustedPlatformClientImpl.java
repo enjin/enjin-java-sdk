@@ -10,7 +10,7 @@ import com.enjin.sdk.http.HttpResponse;
 import com.enjin.sdk.http.SessionCookieJar;
 import com.enjin.sdk.http.TrustedPlatformInterceptor;
 import com.enjin.sdk.models.app.AuthApp;
-import com.enjin.sdk.models.AuthTokens;
+import com.enjin.sdk.models.AccessToken;
 import com.enjin.sdk.serialization.converter.GraphConverter;
 import com.enjin.sdk.serialization.converter.JsonStringConverter;
 import com.enjin.sdk.services.app.AppsService;
@@ -149,9 +149,9 @@ public final class TrustedPlatformClientImpl implements TrustedPlatformClient {
      *
      * @throws IOException if network exception is encountered
      */
-    public HttpResponse<GraphQLResponse<AuthTokens>> authAppSync(int appId, String appSecret) {
-        HttpResponse<GraphQLResponse<AuthTokens>> httpResponse = appService.authAppSync(new AuthApp().id(appId)
-                                                                                                     .secret(appSecret));
+    public HttpResponse<GraphQLResponse<AccessToken>> authAppSync(int appId, String appSecret) {
+        HttpResponse<GraphQLResponse<AccessToken>> httpResponse = appService.authAppSync(new AuthApp().id(appId)
+                                                                                                      .secret(appSecret));
         authApp(appId, httpResponse);
         return httpResponse;
     }
@@ -166,7 +166,7 @@ public final class TrustedPlatformClientImpl implements TrustedPlatformClient {
      */
     public void authAppAsync(int appId,
                              String appSecret,
-                             HttpCallback<GraphQLResponse<AuthTokens>> callback) {
+                             HttpCallback<GraphQLResponse<AccessToken>> callback) {
         appService.authAppAsync(new AuthApp().id(appId).secret(appSecret),
                                 response -> {
                                     authApp(appId, response);
@@ -179,9 +179,9 @@ public final class TrustedPlatformClientImpl implements TrustedPlatformClient {
         return trustedPlatformInterceptor.isAuthenticated();
     }
 
-    private void authApp(int appId, HttpResponse<GraphQLResponse<AuthTokens>> response) {
+    private void authApp(int appId, HttpResponse<GraphQLResponse<AccessToken>> response) {
         if (response.isSuccess() && response.body().isSuccess()) {
-            AuthTokens body = response.body().getData();
+            AccessToken body = response.body().getData();
             trustedPlatformInterceptor.auth(body);
             setAppId(appId);
         }

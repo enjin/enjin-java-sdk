@@ -3,7 +3,7 @@ package com.enjin.sdk.models;
 import lombok.Getter;
 
 @Getter
-public class AuthTokens {
+public class AccessToken {
 
     private String accessToken;
 

@@ -12,7 +12,7 @@ import com.enjin.sdk.models.app.GetApps;
 import com.enjin.sdk.models.app.UnlinkApp;
 import com.enjin.sdk.models.app.UpdateApp;
 import com.enjin.sdk.models.app.AuthApp;
-import com.enjin.sdk.models.AuthTokens;
+import com.enjin.sdk.models.AccessToken;
 
 public interface AsynchronousAppsService {
 
@@ -32,7 +32,7 @@ public interface AsynchronousAppsService {
                         HttpCallback<GraphQLResponse<App>> callback);
 
     void authAppAsync(AuthApp query,
-                      HttpCallback<GraphQLResponse<AuthTokens>> callback);
+                      HttpCallback<GraphQLResponse<AccessToken>> callback);
 
     void unlinkAppAsync(UnlinkApp query,
                         HttpCallback<GraphQLResponse<App>> callback);

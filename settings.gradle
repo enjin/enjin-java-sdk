@@ -2,4 +2,4 @@ rootProject.name = 'enjin-java-sdk'
 
 include ':sdk'
 include ':template-generator'
-include ':demos:platformer-server'
+include ':examples:platformer-server'

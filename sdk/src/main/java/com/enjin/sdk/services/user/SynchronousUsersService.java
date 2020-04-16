@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpResponse;
-import com.enjin.sdk.models.AuthTokens;
-import com.enjin.sdk.models.user.AuthUser;
+import com.enjin.sdk.models.AccessToken;
+import com.enjin.sdk.models.user.AuthPlayer;
 import com.enjin.sdk.models.user.OAuthUser;
 import com.enjin.sdk.models.user.CreateUser;
 import com.enjin.sdk.models.user.GetUser;
@@ -50,6 +50,6 @@ public interface SynchronousUsersService {
      */
     HttpResponse<GraphQLResponse<User>> oAuthUserSync(OAuthUser query);
 
-    HttpResponse<GraphQLResponse<AuthTokens>> authUserSync(AuthUser query);
+    HttpResponse<GraphQLResponse<AccessToken>> authUserSync(AuthPlayer query);
 
 }
