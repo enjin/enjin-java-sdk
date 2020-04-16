@@ -127,10 +127,8 @@ public class PlatformerServer extends WebSocketServer {
                                               .tokenId(packet.getToken())
                                               .value(packet.getAmount())
                                               .build();
-            CreateRequest query = new CreateRequest()
-//                    .ethAddr(config.getDevWallet())
-                    .identityId(config.getDevId())
-                    .sendToken(data);
+            CreateRequest query = new CreateRequest().ethAddr(config.getDevWallet())
+                                                     .sendToken(data);
             sdk.getRequestService().createRequestAsync(query, this::onSendTokenComplete);
         });
     }
