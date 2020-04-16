@@ -37,6 +37,8 @@ public class Config implements PostProcessable {
     private String appSecret = "";
     private Map<String, Token> tokens = getTokens();
     @Getter
+    private int devId = 0;
+    @Getter
     private String devWallet = "";
 
     @Getter
@@ -73,7 +75,7 @@ public class Config implements PostProcessable {
         boolean validPort = validatePort();
         boolean validAppId = appId >= MIN_APP_ID;
         boolean validAppSecret = !appSecret.isEmpty();
-        boolean validDevWallet = !(devWallet == null || devWallet.isEmpty());
+        boolean validDevId = devId > 0;
         boolean validTokens = validateTokens();
 
         if (!validPort)
@@ -85,10 +87,10 @@ public class Config implements PostProcessable {
         if (!validAppSecret)
             System.out.println("App secret must be provided.");
 
-        if (!validDevWallet)
-            System.out.println("Developer wallet address must be provided.");
+        if (!validDevId)
+            System.out.println("Developer id must be number greater than 0.");
 
-        return validPort && validAppId && validAppSecret && validDevWallet && validTokens;
+        return validPort && validAppId && validAppSecret && validDevId && validTokens;
     }
 
     public boolean validatePort() {

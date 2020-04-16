@@ -2,6 +2,7 @@ package com.enjin.platformer.server;
 
 import com.enjin.platformer.server.conf.Config;
 import com.enjin.platformer.server.data.PacketInHandshake;
+import com.enjin.platformer.server.data.PacketInSendToken;
 import com.enjin.platformer.server.data.PacketProcessor;
 import com.enjin.platformer.server.data.PacketType;
 import com.enjin.platformer.server.game.Player;
@@ -9,6 +10,12 @@ import com.enjin.platformer.server.tasks.SdkUpdateTask;
 import com.enjin.platformer.server.websocket.Peer;
 import com.enjin.sdk.TrustedPlatformClient;
 import com.enjin.sdk.TrustedPlatformClientBuilder;
+import com.enjin.sdk.graphql.GraphQLError;
+import com.enjin.sdk.graphql.GraphQLResponse;
+import com.enjin.sdk.http.HttpResponse;
+import com.enjin.sdk.models.request.CreateRequest;
+import com.enjin.sdk.models.request.Transaction;
+import com.enjin.sdk.models.request.data.SendTokenData;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import okhttp3.logging.HttpLoggingInterceptor.Level;
@@ -60,6 +67,7 @@ public class PlatformerServer extends WebSocketServer {
 
     private void registerPacketDelegates() {
         processor.register(PacketType.HANDSHAKE, this::onHandshake);
+        processor.register(PacketType.SEND_TOKEN, this::onSendToken);
     }
 
     @Override
@@ -109,6 +117,29 @@ public class PlatformerServer extends WebSocketServer {
             players.put(peer.getId(), player);
             player.auth();
         });
+    }
+
+    private void onSendToken(WebSocket conn, PacketInSendToken packet) {
+        Optional<Peer> attachment = Optional.ofNullable(conn.getAttachment());
+        attachment.ifPresent(peer -> {
+            SendTokenData data = SendTokenData.builder()
+                                              .recipientAddress(packet.getRecipientWallet())
+                                              .tokenId(packet.getToken())
+                                              .value(packet.getAmount())
+                                              .build();
+            CreateRequest query = new CreateRequest()
+//                    .ethAddr(config.getDevWallet())
+                    .identityId(config.getDevId())
+                    .sendToken(data);
+            sdk.getRequestService().createRequestAsync(query, this::onSendTokenComplete);
+        });
+    }
+
+    private void onSendTokenComplete(HttpResponse<GraphQLResponse<Transaction>> httpResponse) {
+        if (httpResponse.isSuccess() && httpResponse.body().hasErrors()) {
+            for (GraphQLError error : httpResponse.body().getErrors())
+                System.out.println(String.format("Error %s: %s", error.getCode(), error.getMessage()));
+        }
     }
 
 }
