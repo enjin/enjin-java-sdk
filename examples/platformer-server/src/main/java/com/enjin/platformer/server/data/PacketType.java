@@ -6,7 +6,8 @@ public enum PacketType {
 
     UNKNOWN(-0x1, Packet.class),
     HANDSHAKE(0x0, PacketInHandshake.class),
-    AUTHENTICATED(0x1, PacketOutAuthenticated.class);
+    AUTHENTICATED(0x1, PacketOutAuthenticated.class),
+    SEND_TOKEN(0x2, PacketInSendToken.class);
 
     @Getter
     private int id;
