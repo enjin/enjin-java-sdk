@@ -28,10 +28,7 @@ public class PusherEventListener implements SubscriptionEventListener {
         String channelName = event.getChannelName();
         String data = event.getData();
 
-        PusherNotificationService.logger()
-                                 .log(Level.FINE,
-                                      "Received event {0} on channel {1} with results {2}",
-                                      new Object[] {eventName, channelName, data});
+        service.getLoggerProvider().debug(String.format("Received event %s on channel %s with results %s", eventName, channelName, data));
         call(data, channelName, eventName);
     }
 
@@ -60,10 +57,7 @@ public class PusherEventListener implements SubscriptionEventListener {
         }
 
         if (notificationType == NotificationType.UNKNOWN_EVENT) {
-            PusherNotificationService.logger()
-                                     .log(Level.WARNING,
-                                          "UNKNOWN_EVENT NotificationType {0} returned for the eventType of {1}",
-                                          new Object[] {eventTypeString, eventType});
+            service.getLoggerProvider().log(Level.WARNING, String.format("UNKNOWN_EVENT NotificationType %s returned for eventType of %s", eventTypeString, eventType));
             return;
         }
 

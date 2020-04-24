@@ -15,6 +15,7 @@ import com.enjin.sdk.services.notification.NotificationListenerRegistration.Regi
 import com.enjin.sdk.services.notification.subscriptions.AppChannel;
 import com.enjin.sdk.services.notification.subscriptions.IdentityChannel;
 import com.enjin.sdk.services.notification.subscriptions.UserChannel;
+import com.enjin.sdk.utils.LoggerProvider;
 import com.pusher.client.Pusher;
 import com.pusher.client.PusherOptions;
 import com.pusher.client.channel.Channel;
@@ -22,13 +23,15 @@ import com.pusher.client.connection.ConnectionEventListener;
 import com.pusher.client.connection.ConnectionState;
 import com.pusher.client.connection.ConnectionStateChange;
 
+import lombok.Getter;
 import lombok.NonNull;
 import lombok.extern.java.Log;
 
-@Log
 public class PusherNotificationService implements NotificationsService {
 
     protected List<NotificationListenerRegistration> listeners = new ArrayList<>();
+    @Getter
+    private LoggerProvider loggerProvider;
     private PlatformDetails platformDetails;
     private Pusher pusher;
     private PusherEventListener listener;
@@ -36,6 +39,11 @@ public class PusherNotificationService implements NotificationsService {
     private Map<String, Channel> subscribed = new HashMap<>();
 
     public PusherNotificationService(@NonNull PlatformDetails platformDetails) {
+        this(new LoggerProvider(Logger.getGlobal()), platformDetails);
+    }
+
+    public PusherNotificationService(@NonNull LoggerProvider loggerProvider, @NonNull PlatformDetails platformDetails) {
+        this.loggerProvider = loggerProvider;
         this.platformDetails = platformDetails;
     }
 
@@ -65,14 +73,14 @@ public class PusherNotificationService implements NotificationsService {
                             ConnectionState previous = change.getPreviousState();
                             ConnectionState current = change.getCurrentState();
 
-                            PusherNotificationService.log.fine(String.format("State changed from %s to %s.",
+                            loggerProvider.debug(String.format("State changed from %s to %s.",
                                                                              previous,
                                                                              current));
                         }
 
                         @Override
                         public void onError(String message, String code, Exception e) {
-                            PusherNotificationService.log.log(Level.SEVERE, "Unable to connect to pusher service.", e);
+                            loggerProvider.log(Level.SEVERE, "Unable to connect to pusher service.", e);
                         }
                     }, ConnectionState.ALL);
                 }
@@ -227,20 +235,16 @@ public class PusherNotificationService implements NotificationsService {
 
     private void bind(@NonNull Channel channel) {
         for (ChannelEvent channelEvent : ChannelEvent.values()) {
-            PusherNotificationService.log.fine(String.format("Event Channel Bound: %s", channelEvent.getKey()));
+            loggerProvider.debug(String.format("Event Channel Bound: %s", channelEvent.getKey()));
             channel.bind(channelEvent.getKey(), this.listener);
         }
     }
 
     private void unbind(@NonNull Channel channel) {
         for (ChannelEvent channelEvent : ChannelEvent.values()) {
-            PusherNotificationService.log.fine(String.format("Event Channel Unbound: %s", channelEvent.getKey()));
+            loggerProvider.debug(String.format("Event Channel Unbound: %s", channelEvent.getKey()));
             channel.unbind(channelEvent.getKey(), this.listener);
         }
-    }
-
-    public static Logger logger() {
-        return log;
     }
 
 }

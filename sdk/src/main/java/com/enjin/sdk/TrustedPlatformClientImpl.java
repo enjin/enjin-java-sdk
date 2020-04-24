@@ -3,6 +3,7 @@ package com.enjin.sdk;
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpCallback;
@@ -29,6 +30,7 @@ import com.enjin.sdk.services.user.UsersService;
 import com.enjin.sdk.services.user.impl.UsersServiceImpl;
 import com.enjin.sdk.services.wallet.WalletService;
 import com.enjin.sdk.services.wallet.impl.WalletServiceImpl;
+import com.enjin.sdk.utils.LoggerProvider;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -47,6 +49,7 @@ public final class TrustedPlatformClientImpl implements TrustedPlatformClient {
     private static final String CLIENT_CREDENTIALS = "client_credentials";
 
     private HttpUrl baseUrl;
+    private LoggerProvider loggerProvider;
     // Http Client
     private TrustedPlatformInterceptor trustedPlatformInterceptor;
     private HttpLoggingInterceptor httpLogInterceptor;
@@ -71,6 +74,7 @@ public final class TrustedPlatformClientImpl implements TrustedPlatformClient {
 
     TrustedPlatformClientImpl(TrustedPlatformClientBuilder builder) {
         baseUrl = builder.baseUrl.orElse(TrustedPlatformClientBuilder.MAIN_NET);
+        loggerProvider = builder.loggerProvider.orElse(new LoggerProvider(Logger.getGlobal()));
         // Cookie Jar
         SessionCookieJar cookieJar = new SessionCookieJar();
 

@@ -1,5 +1,6 @@
 package com.enjin.sdk;
 
+import com.enjin.sdk.utils.LoggerProvider;
 import com.github.dmstocking.optional.java.util.Optional;
 import okhttp3.HttpUrl;
 import okhttp3.logging.HttpLoggingInterceptor.Level;
@@ -17,6 +18,7 @@ public class TrustedPlatformClientBuilder {
     protected Optional<Long> callTimeoutMillis = Optional.empty();
     protected Optional<Long> readTimeoutMillis = Optional.empty();
     protected Optional<Long> writeTimeoutMillis = Optional.empty();
+    protected Optional<LoggerProvider> loggerProvider = Optional.empty();
 
     public TrustedPlatformClientBuilder httpLogLevel(Level level) {
         httpLogLevel = Optional.ofNullable(level);
@@ -50,6 +52,11 @@ public class TrustedPlatformClientBuilder {
 
     public TrustedPlatformClientBuilder baseUrl(HttpUrl url) {
         baseUrl = Optional.ofNullable(url);
+        return this;
+    }
+
+    public TrustedPlatformClientBuilder loggerProvider(LoggerProvider provider) {
+        loggerProvider = Optional.ofNullable(provider);
         return this;
     }
 
