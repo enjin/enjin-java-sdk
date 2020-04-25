@@ -1,6 +1,6 @@
 package com.enjin.sdk.services.notification;
 
-import com.enjin.sdk.models.notification.NotificationType;
+import com.enjin.sdk.models.notification.EventType;
 import com.enjin.sdk.models.platform.PlatformDetails;
 
 /**
@@ -58,7 +58,7 @@ public interface NotificationsService {
      * @return the listener registration.
      */
     NotificationListenerRegistration registerListenerIncludingTypes(NotificationListener listener,
-                                                                    NotificationType... allowed);
+                                                                    EventType... allowed);
 
     /**
      * Adds a notification listener with an array of types to ignore.
@@ -69,7 +69,7 @@ public interface NotificationsService {
      * @return the listener registration.
      */
     NotificationListenerRegistration registerListenerExcludingTypes(NotificationListener listener,
-                                                                    NotificationType... ignored);
+                                                                    EventType... ignored);
 
     /**
      * Removes a notification listener registration.
@@ -114,5 +114,55 @@ public interface NotificationsService {
      * @return true if listening, else false.
      */
     boolean isSubscribedToIdentity(int identityId);
+
+    /**
+     * Opens a channel for the specified token id, allowing listeners
+     * to receive link events for that token.
+     *
+     * @param tokenId the token id.
+     */
+    void subscribeToToken(String tokenId);
+
+    /**
+     * Closes a channel for the specified token id, preventing listeners
+     * from receiving link events for that token.
+     *
+     * @param tokenId the token id.
+     */
+    void unsubscribeToToken(String tokenId);
+
+    /**
+     * Returns whether or not a channel is open for the specified token id.
+     *
+     * @param tokenId the token id.
+     *
+     * @return true if listening, else false.
+     */
+    boolean isSubscribedToToken(String tokenId);
+
+    /**
+     * Opens a channel for the specified Ethereum address, allowing listeners
+     * to receive link events for that address.
+     *
+     * @param ethAddress the Ethereum address.
+     */
+    void subscribeToWallet(String ethAddress);
+
+    /**
+     * Closes a channel for the specified Ethereum address, preventing listeners
+     * from receiving link events for that address.
+     *
+     * @param ethAddress the Ethereum address.
+     */
+    void unsubscribeToWallet(String ethAddress);
+
+    /**
+     * Returns whether or not a channel is open for the specified Ethereum address.
+     *
+     * @param ethAddress the Ethereum address.
+     *
+     * @return true if listening, else false.
+     */
+    boolean isSubscribedToWallet(String ethAddress);
 
 }

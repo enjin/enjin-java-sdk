@@ -15,7 +15,7 @@ import lombok.ToString;
  *
  * @author Evan Lindsay
  * @see NotificationsService
- * @see NotificationType
+ * @see EventType
  */
 @ToString
 @Getter
@@ -36,7 +36,7 @@ public class NotificationEvent {
      * @param type the notification type.
      * @return the builder.
      */
-    private NotificationType type;
+    private EventType type;
 
     /**
      * The channel the notification was received.

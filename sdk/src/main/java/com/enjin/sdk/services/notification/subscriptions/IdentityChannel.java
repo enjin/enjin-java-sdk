@@ -16,9 +16,8 @@ public class IdentityChannel implements Channel {
 
     @Override
     public String channel() {
-        return String.format("enjin.server.%s.%s.identity.%s",
+        return String.format("enjincloud.%s.identity.%s",
                              details.getNetwork().toLowerCase(),
-                             details.getId(),
                              identityId);
     }
 

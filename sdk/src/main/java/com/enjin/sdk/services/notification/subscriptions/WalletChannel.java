@@ -2,23 +2,21 @@ package com.enjin.sdk.services.notification.subscriptions;
 
 import com.enjin.sdk.models.platform.PlatformDetails;
 
-import lombok.NonNull;
-
-public class UserChannel implements Channel {
+public class WalletChannel implements Channel {
 
     private PlatformDetails details;
-    private int userId;
+    private String ethAddress;
 
-    public UserChannel(@NonNull PlatformDetails details, int userId) {
+    public WalletChannel(PlatformDetails details, String ethAddress) {
         this.details = details;
-        this.userId = userId;
+        this.ethAddress = ethAddress;
     }
 
     @Override
     public String channel() {
-        return String.format("enjincloud.%s.user.%s",
+        return String.format("enjincloud.%s.wallet.%s",
                              details.getNetwork().toLowerCase(),
-                             userId);
+                             ethAddress);
     }
 
 }

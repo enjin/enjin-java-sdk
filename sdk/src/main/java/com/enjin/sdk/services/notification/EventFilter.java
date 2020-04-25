@@ -5,7 +5,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.enjin.sdk.models.notification.NotificationType;
+import com.enjin.sdk.models.notification.EventType;
 
 /**
  * Annotation for filtering listener events.
@@ -21,7 +21,7 @@ public @interface EventFilter {
      *
      * @return the filtered notification types.
      */
-    NotificationType[] value();
+    EventType[] value();
 
     /**
      * Whether the filtered types are whitelisted or blacklisted.

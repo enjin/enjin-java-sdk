@@ -16,9 +16,8 @@ public class AppChannel implements Channel {
 
     @Override
     public String channel() {
-        return String.format("enjin.server.%s.%s.%s",
+        return String.format("enjincloud.%s.app.%s",
                              details.getNetwork().toLowerCase(),
-                             details.getId(),
                              appId);
     }
 

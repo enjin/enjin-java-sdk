@@ -1,5 +1,6 @@
 package com.enjin.sdk.models.notification;
 
+import com.enjin.sdk.models.notification.data.EventData;
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Getter;

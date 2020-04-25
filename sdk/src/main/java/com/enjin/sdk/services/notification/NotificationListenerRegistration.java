@@ -1,7 +1,7 @@
 package com.enjin.sdk.services.notification;
 
 import com.enjin.sdk.models.notification.NotificationEvent;
-import com.enjin.sdk.models.notification.NotificationType;
+import com.enjin.sdk.models.notification.EventType;
 
 /**
  * Registration wrapper for notification listeners that extracts any metadata
@@ -101,7 +101,7 @@ public class NotificationListenerRegistration {
          *
          * @return the configuration.
          */
-        public T withAllowedEvents(final NotificationType... types) {
+        public T withAllowedEvents(final EventType... types) {
             return this.withMatcher(types == null ? null : new EventMatcher() {
                 @Override
                 public boolean matches(NotificationEvent event) {
@@ -117,7 +117,7 @@ public class NotificationListenerRegistration {
          *
          * @return the configuration.
          */
-        public T withIgnoredEvents(final NotificationType... types) {
+        public T withIgnoredEvents(final EventType... types) {
             return this.withMatcher(types == null ? null : new EventMatcher() {
                 @Override
                 public boolean matches(NotificationEvent event) {
