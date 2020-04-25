@@ -2,23 +2,21 @@ package com.enjin.sdk.services.notification.subscriptions;
 
 import com.enjin.sdk.models.platform.PlatformDetails;
 
-import lombok.NonNull;
-
-public class UserChannel implements Channel {
+public class TokenChannel implements Channel {
 
     private PlatformDetails details;
-    private int userId;
+    private String tokenId;
 
-    public UserChannel(@NonNull PlatformDetails details, int userId) {
+    public TokenChannel(PlatformDetails details, String tokenId) {
         this.details = details;
-        this.userId = userId;
+        this.tokenId = tokenId;
     }
 
     @Override
     public String channel() {
-        return String.format("enjincloud.%s.user.%s",
+        return String.format("enjincloud.%s.token.%s",
                              details.getNetwork().toLowerCase(),
-                             userId);
+                             tokenId);
     }
 
 }

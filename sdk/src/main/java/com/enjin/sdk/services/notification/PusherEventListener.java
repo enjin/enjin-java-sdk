@@ -3,7 +3,7 @@ package com.enjin.sdk.services.notification;
 import java.util.logging.Level;
 
 import com.enjin.sdk.models.notification.NotificationEvent;
-import com.enjin.sdk.models.notification.NotificationType;
+import com.enjin.sdk.models.notification.EventType;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -32,37 +32,34 @@ public class PusherEventListener implements SubscriptionEventListener {
         call(data, channelName, eventName);
     }
 
-    private void call(String sourceData, String channel, String eventType) {
+    private void call(String sourceData, String channel, String eventName) {
         if (service.listeners.isEmpty())
             return;
 
         JsonElement dataElement = GSON.fromJson(sourceData, JsonElement.class);
-        NotificationType notificationType = NotificationType.UNKNOWN_EVENT;
+        EventType eventType = EventType.UNKNOWN_EVENT;
 
-        if (dataElement == null
-                || !dataElement.isJsonObject()
-                || !dataElement.getAsJsonObject().has(EVENT_TYPE_KEY)) {
+        if (dataElement == null || !dataElement.isJsonObject())
             return;
-        }
 
         JsonObject dataObject = dataElement.getAsJsonObject();
         JsonElement eventTypeElement = dataObject.get(EVENT_TYPE_KEY);
         String eventTypeString = eventTypeElement.getAsString();
 
-        for (NotificationType type : NotificationType.values()) {
+        for (EventType type : EventType.values()) {
             if (type.getEventType().equalsIgnoreCase(eventTypeString)) {
-                notificationType = type;
+                eventType = type;
                 break;
             }
         }
 
-        if (notificationType == NotificationType.UNKNOWN_EVENT) {
-            service.getLoggerProvider().log(Level.WARNING, String.format("UNKNOWN_EVENT NotificationType %s returned for eventType of %s", eventTypeString, eventType));
+        if (eventType == EventType.UNKNOWN_EVENT) {
+            service.getLoggerProvider().log(Level.WARNING, String.format("UNKNOWN_EVENT NotificationType %s returned for eventType of %s", eventTypeString, eventName));
             return;
         }
 
         NotificationEvent notificationEvent = NotificationEvent.builder()
-                                                               .type(notificationType)
+                                                               .type(eventType)
                                                                .channel(channel)
                                                                .data(sourceData)
                                                                .build();

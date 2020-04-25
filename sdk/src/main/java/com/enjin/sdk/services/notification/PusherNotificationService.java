@@ -7,14 +7,16 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.enjin.sdk.models.notification.NotificationType;
+import com.enjin.sdk.models.notification.EventType;
 import com.enjin.sdk.models.platform.NotificationDetails;
 import com.enjin.sdk.models.platform.PlatformDetails;
 import com.enjin.sdk.models.platform.PusherDetails;
 import com.enjin.sdk.services.notification.NotificationListenerRegistration.RegistrationListenerConfiguration;
 import com.enjin.sdk.services.notification.subscriptions.AppChannel;
 import com.enjin.sdk.services.notification.subscriptions.IdentityChannel;
+import com.enjin.sdk.services.notification.subscriptions.TokenChannel;
 import com.enjin.sdk.services.notification.subscriptions.UserChannel;
+import com.enjin.sdk.services.notification.subscriptions.WalletChannel;
 import com.enjin.sdk.utils.LoggerProvider;
 import com.pusher.client.Pusher;
 import com.pusher.client.PusherOptions;
@@ -25,7 +27,6 @@ import com.pusher.client.connection.ConnectionStateChange;
 
 import lombok.Getter;
 import lombok.NonNull;
-import lombok.extern.java.Log;
 
 public class PusherNotificationService implements NotificationsService {
 
@@ -119,13 +120,13 @@ public class PusherNotificationService implements NotificationsService {
 
     @Override
     public NotificationListenerRegistration registerListenerIncludingTypes(@NonNull NotificationListener listener,
-                                                                           NotificationType... allowed) {
+                                                                           EventType... allowed) {
         return register(configureListener(listener).withAllowedEvents(allowed));
     }
 
     @Override
     public NotificationListenerRegistration registerListenerExcludingTypes(@NonNull NotificationListener listener,
-                                                                           NotificationType... ignored) {
+                                                                           EventType... ignored) {
         return register(configureListener(listener).withIgnoredEvents(ignored));
     }
 
@@ -209,6 +210,36 @@ public class PusherNotificationService implements NotificationsService {
         return subscribed.containsKey(new IdentityChannel(platformDetails, identityId).channel());
     }
 
+    @Override
+    public void subscribeToToken(String tokenId) {
+        subscribe(new TokenChannel(platformDetails, tokenId).channel());
+    }
+
+    @Override
+    public void unsubscribeToToken(String tokenId) {
+        unsubscribe(new TokenChannel(platformDetails, tokenId).channel());
+    }
+
+    @Override
+    public boolean isSubscribedToToken(String tokenId) {
+        return subscribed.containsKey(new TokenChannel(platformDetails, tokenId).channel());
+    }
+
+    @Override
+    public void subscribeToWallet(String ethAddress) {
+        subscribe(new WalletChannel(platformDetails, ethAddress).channel());
+    }
+
+    @Override
+    public void unsubscribeToWallet(String ethAddress) {
+        unsubscribe(new WalletChannel(platformDetails, ethAddress).channel());
+    }
+
+    @Override
+    public boolean isSubscribedToWallet(String ethAddress) {
+        return subscribed.containsKey(new WalletChannel(platformDetails, ethAddress).channel());
+    }
+
     private void subscribe(@NonNull String channel) {
         if (pusher == null)
             return;
@@ -234,16 +265,16 @@ public class PusherNotificationService implements NotificationsService {
     }
 
     private void bind(@NonNull Channel channel) {
-        for (ChannelEvent channelEvent : ChannelEvent.values()) {
-            loggerProvider.debug(String.format("Event Channel Bound: %s", channelEvent.getKey()));
-            channel.bind(channelEvent.getKey(), this.listener);
+        for (EventType event : EventType.values()) {
+            loggerProvider.debug(String.format("Event Channel Bound: %s", event.getEventType()));
+            channel.bind(event.getEventType(), this.listener);
         }
     }
 
     private void unbind(@NonNull Channel channel) {
-        for (ChannelEvent channelEvent : ChannelEvent.values()) {
-            loggerProvider.debug(String.format("Event Channel Unbound: %s", channelEvent.getKey()));
-            channel.unbind(channelEvent.getKey(), this.listener);
+        for (EventType channelEvent : EventType.values()) {
+            loggerProvider.debug(String.format("Event Channel Unbound: %s", channelEvent.getEventType()));
+            channel.unbind(channelEvent.getEventType(), this.listener);
         }
     }
 
