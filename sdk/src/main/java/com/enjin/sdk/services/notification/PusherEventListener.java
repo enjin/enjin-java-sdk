@@ -13,9 +13,6 @@ import com.pusher.client.channel.SubscriptionEventListener;
 
 public class PusherEventListener implements SubscriptionEventListener {
 
-    private static final Gson GSON = new GsonBuilder().create();
-    private static final String EVENT_TYPE_KEY = "event_type";
-
     private PusherNotificationService service;
 
     public PusherEventListener(PusherNotificationService service) {
@@ -33,28 +30,22 @@ public class PusherEventListener implements SubscriptionEventListener {
     }
 
     private void call(String sourceData, String channel, String eventName) {
-        if (service.listeners.isEmpty())
+        if (service.listeners.isEmpty()) {
+            service.getLoggerProvider().log(Level.INFO, "No registered listeners received on event");
             return;
+        }
 
-        JsonElement dataElement = GSON.fromJson(sourceData, JsonElement.class);
-        EventType eventType = EventType.UNKNOWN_EVENT;
-
-        if (dataElement == null || !dataElement.isJsonObject())
-            return;
-
-        JsonObject dataObject = dataElement.getAsJsonObject();
-        JsonElement eventTypeElement = dataObject.get(EVENT_TYPE_KEY);
-        String eventTypeString = eventTypeElement.getAsString();
+        EventType eventType = null;
 
         for (EventType type : EventType.values()) {
-            if (type.getEventType().equalsIgnoreCase(eventTypeString)) {
+            if (type.getEventType().equals(eventName)) {
                 eventType = type;
                 break;
             }
         }
 
-        if (eventType == EventType.UNKNOWN_EVENT) {
-            service.getLoggerProvider().log(Level.WARNING, String.format("UNKNOWN_EVENT NotificationType %s returned for eventType of %s", eventTypeString, eventName));
+        if (eventType == null) {
+            service.getLoggerProvider().log(Level.WARNING, String.format("UNKNOWN_EVENT event type of %s", eventName));
             return;
         }
 
@@ -69,7 +60,6 @@ public class PusherEventListener implements SubscriptionEventListener {
                 registration.getListener().notificationReceived(notificationEvent);
             }
         }
-
     }
 
 }

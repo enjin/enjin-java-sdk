@@ -134,7 +134,6 @@ public class PusherNotificationService implements NotificationsService {
         return NotificationListenerRegistration.configure(listener);
     }
 
-
     protected NotificationListenerRegistration register(@NonNull RegistrationListenerConfiguration configuration) {
         NotificationListenerRegistration registration = null;
 

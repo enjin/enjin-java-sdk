@@ -6,6 +6,7 @@ import com.enjin.sdk.services.notification.NotificationsService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import com.google.gson.JsonObject;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
@@ -72,10 +73,10 @@ public class NotificationEvent {
      * @return the builder.
      */
     @Getter(lazy = true)
-    private final Event event = event();
+    private final JsonObject eventData = eventData();
 
-    private Event event() {
-        return GSON.fromJson(data, Event.class);
+    private JsonObject eventData() {
+        return GSON.fromJson(data, JsonObject.class);
     }
 
 }
