@@ -10,7 +10,6 @@ import com.enjin.sdk.services.notification.EventFilter;
  */
 public enum EventType {
 
-    UNKNOWN_EVENT("unknown"),
     APP_CREATED("EnjinCloud\\Events\\AppCreated"),
     APP_DELETED("EnjinCloud\\Events\\AppDeleted"),
     APP_LINKED("EnjinCloud\\Events\\AppLinked"),
@@ -102,7 +101,7 @@ public enum EventType {
         try {
             type = valueOf(name);
         } catch (IllegalArgumentException e) {
-            type = UNKNOWN_EVENT;
+            type = null;
         }
 
         return type;
