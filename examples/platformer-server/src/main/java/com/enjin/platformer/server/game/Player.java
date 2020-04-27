@@ -40,7 +40,7 @@ public class Player {
     }
 
     private void onAuth(HttpResponse<GraphQLResponse<AccessToken>> httpResponse) {
-        if (!httpResponse.isSuccess())
+        if (httpResponse.isEmpty())
             return;
 
         GraphQLResponse<AccessToken> graphQLResponse = httpResponse.body();
@@ -62,7 +62,7 @@ public class Player {
     }
 
     private void onRegister(HttpResponse<GraphQLResponse<User>> httpResponse) {
-        if (!httpResponse.isSuccess())
+        if (httpResponse.isEmpty())
             return;
 
         GraphQLResponse<User> graphQLResponse = httpResponse.body();
