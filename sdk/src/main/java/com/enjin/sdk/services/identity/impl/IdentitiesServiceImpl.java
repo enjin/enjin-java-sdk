@@ -86,7 +86,7 @@ public class IdentitiesServiceImpl extends GraphQLServiceBase implements Identit
 
     @Override
     public HttpResponse<GraphQLResponse<Identity>> unlinkIdentitySync(UnlinkIdentity query) {
-        return executeGraphQLCall(this.service.updateIdentity(query));
+        return executeGraphQLCall(this.service.unlinkIdentity(query));
     }
 
 }
