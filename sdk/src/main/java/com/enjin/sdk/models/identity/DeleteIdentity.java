@@ -4,7 +4,7 @@ import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.services.identity.IdentitiesService;
 
 /**
- * A builder for deleting an identity from the Trusted platform.
+ * An object class for deleting an identity from the Trusted Platform.
  *
  * @author Evan Lindsay
  * @see IdentitiesService
@@ -16,7 +16,7 @@ public class DeleteIdentity extends GraphQLRequest<DeleteIdentity> implements Id
      *
      * @param identityId the identity id.
      *
-     * @return the builder.
+     * @return this request.
      */
     public DeleteIdentity identityId(int identityId) {
         set("id", identityId);

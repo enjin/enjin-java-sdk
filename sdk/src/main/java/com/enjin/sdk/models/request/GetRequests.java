@@ -6,7 +6,7 @@ import com.enjin.sdk.models.PaginationRequest;
 import com.enjin.sdk.services.request.RequestsService;
 
 /**
- * A builder for requests from the Trusted platform.
+ * An object class for requests from the Trusted Platform.
  *
  * @author Evan Lindsay
  * @see RequestsService
@@ -18,7 +18,7 @@ public class GetRequests extends PaginationRequest<GetRequests> implements Trans
      *
      * @param requestId the request id.
      *
-     * @return the builder.
+     * @return this request.
      */
     public GetRequests requestId(int requestId) {
         set("id", requestId);
@@ -30,7 +30,7 @@ public class GetRequests extends PaginationRequest<GetRequests> implements Trans
      *
      * @param transactionId the transaction id.
      *
-     * @return the builder.
+     * @return this request.
      */
     public GetRequests transactionId(String transactionId) {
         set("transactionId", transactionId);
@@ -42,7 +42,7 @@ public class GetRequests extends PaginationRequest<GetRequests> implements Trans
      *
      * @param identityId the identity id.
      *
-     * @return the builder.
+     * @return this request.
      */
     public GetRequests identityId(int identityId) {
         set("identityId", identityId);
@@ -54,7 +54,7 @@ public class GetRequests extends PaginationRequest<GetRequests> implements Trans
      *
      * @param type the transaction type.
      *
-     * @return the builder.
+     * @return this request.
      */
     public GetRequests transactionType(TransactionType type) {
         set("type", type);
@@ -66,7 +66,7 @@ public class GetRequests extends PaginationRequest<GetRequests> implements Trans
      *
      * @param recipientId the recipients identity id.
      *
-     * @return the builder.
+     * @return this request.
      */
     public GetRequests recipientId(int recipientId) {
         set("recipientId", recipientId);
@@ -74,11 +74,11 @@ public class GetRequests extends PaginationRequest<GetRequests> implements Trans
     }
 
     /**
-     * The recipients ethereum address.
+     * The recipient's Ethereum address.
      *
-     * @param recipientAddress the recipients ethereum address.
+     * @param recipientAddress the recipient's Ethereum address.
      *
-     * @return the builder.
+     * @return this request.
      */
     public GetRequests recipientAddress(String recipientAddress) {
         set("recipientAddress", recipientAddress);
@@ -86,11 +86,11 @@ public class GetRequests extends PaginationRequest<GetRequests> implements Trans
     }
 
     /**
-     * The sender or recipients identity id.
+     * The sender or recipient's identity id.
      *
-     * @param senderOrRecipientId the sender or recipients identity id.
+     * @param senderOrRecipientId the sender or recipient's identity id.
      *
-     * @return the builder.
+     * @return this request.
      */
     public GetRequests senderOrRecipientIdentity(int senderOrRecipientId) {
         set("senderOrRecipientId", senderOrRecipientId);
@@ -102,7 +102,7 @@ public class GetRequests extends PaginationRequest<GetRequests> implements Trans
      *
      * @param tokenId the token id.
      *
-     * @return the builder.
+     * @return this request.
      */
     public GetRequests tokenId(String tokenId) {
         set("tokenId", tokenId);
@@ -114,7 +114,7 @@ public class GetRequests extends PaginationRequest<GetRequests> implements Trans
      *
      * @param value the token value.
      *
-     * @return the builder.
+     * @return this request.
      */
     public GetRequests value(String value) {
         set("value", value);
@@ -126,7 +126,7 @@ public class GetRequests extends PaginationRequest<GetRequests> implements Trans
      *
      * @param stateIn a list of states to match.
      *
-     * @return the builder.
+     * @return this request.
      */
     public GetRequests stateMatchesAny(List<TransactionState> stateIn) {
         set("states", stateIn);
@@ -138,7 +138,7 @@ public class GetRequests extends PaginationRequest<GetRequests> implements Trans
      *
      * @param stateIn a list of states to match.
      *
-     * @return the builder.
+     * @return this request.
      */
     public GetRequests stateMatchesAny(TransactionState... stateIn) {
         set("states", stateIn);
@@ -148,7 +148,7 @@ public class GetRequests extends PaginationRequest<GetRequests> implements Trans
     /**
      * Whether the transactions can only broadcast.
      *
-     * @return the builder.
+     * @return this request.
      */
     public GetRequests canBroadcastOnly() {
         set("onlyBroadcastable", true);

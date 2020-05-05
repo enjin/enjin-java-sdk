@@ -41,6 +41,12 @@ public class JsonStringConverter extends Converter.Factory {
         return null;
     }
 
+    /**
+     * Creates a new factory instance.
+     *
+     * @param delegate the delegate converter factory.
+     * @return         a new json string convert
+     */
     public static JsonStringConverter create(Converter.Factory delegate) {
         return new JsonStringConverter(delegate);
     }

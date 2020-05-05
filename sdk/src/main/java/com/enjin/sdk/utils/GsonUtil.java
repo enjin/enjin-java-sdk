@@ -4,12 +4,23 @@ import com.github.dmstocking.optional.java.util.Optional;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+/**
+ * Utility class for use with Gson.
+ */
 public final class GsonUtil {
 
     private GsonUtil() {
         throw new IllegalStateException("Utility Class");
     }
 
+    /**
+     * Determines if a json element exists in the provided path for the provided object.
+     *
+     * @param root the object to search in
+     * @param path the path to fetch
+     *
+     * @return true if the path exists, false otherwise
+     */
     public static boolean pathExists(JsonObject root, String path) {
         String[] keys = path.split("\\.");
         return pathExists(root, keys, 0);
@@ -58,10 +69,24 @@ public final class GsonUtil {
         return getJsonElement(obj.get(keys[keyIndex]), keys, keyIndex + 1);
     }
 
+    /**
+     * Checks if a json element is a json object.
+     *
+     * @param optional the element
+     *
+     * @return true if the element is a json object, false otherwise
+     */
     public static boolean isJsonObject(Optional<JsonElement> optional) {
         return optional.isPresent() && optional.get().isJsonObject();
     }
 
+    /**
+     * Checks if a json element is a json array.
+     *
+     * @param optional the element
+     *
+     * @return true if the element is a json array, false otherwise
+     */
     public static boolean isJsonArray(Optional<JsonElement> optional) {
         return optional.isPresent() && optional.get().isJsonArray();
     }

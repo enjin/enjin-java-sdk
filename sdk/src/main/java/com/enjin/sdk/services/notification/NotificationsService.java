@@ -22,6 +22,11 @@ public interface NotificationsService {
      */
     void start(PlatformDetails details);
 
+    /**
+     * Checks if the service is connected to the platform.
+     *
+     * @return true if connected, else false.
+     */
     boolean isConnected();
 
     /**
@@ -78,21 +83,59 @@ public interface NotificationsService {
      */
     void unregisterListener(NotificationListener registration);
 
+    /**
+     * Opens a channel for the specified application id, allowing listeners
+     * to receive events for that application.
+     *
+     * @param appId the app id.
+     */
     void subscribeToApp(int appId);
 
+    /**
+     * Closes a channel for the specified application id, preventing listeners
+     * from receiving events for that application.
+     *
+     * @param appId the app id.
+     */
     void unsubscribeToApp(int appId);
 
+    /**
+     * Returns whether or not a channel is open for the specified application id.
+     *
+     * @param appId the app id.
+     *
+     * @return true if listening, else false.
+     */
     boolean isSubscribedToApp(int appId);
 
+    /**
+     * Opens a channel for the specified user id, allowing listeners
+     * to receive events for that user.
+     *
+     * @param userId the user id.
+     */
     void subscribeToUser(int userId);
 
+    /**
+     * Closes a channel for the specified user id, preventing listeners
+     * from receiving events for that user.
+     *
+     * @param userId the user id.
+     */
     void unsubscribeToUser(int userId);
 
+    /**
+     * Returns whether or not a channel is open for the specified user id.
+     *
+     * @param userId the user id.
+     *
+     * @return true if listening, else false.
+     */
     boolean isSubscribedToUser(int userId);
 
     /**
      * Opens a channel for the specified identity id, allowing listeners
-     * to receive link events for that identity.
+     * to receive events for that identity.
      *
      * @param identityId the identity id.
      */
@@ -100,7 +143,7 @@ public interface NotificationsService {
 
     /**
      * Closes a channel for the specified identity id, preventing listeners
-     * from receiving link events for that identity.
+     * from receiving events for that identity.
      *
      * @param identityId the identity id.
      */
@@ -117,7 +160,7 @@ public interface NotificationsService {
 
     /**
      * Opens a channel for the specified token id, allowing listeners
-     * to receive link events for that token.
+     * to receive events for that token.
      *
      * @param tokenId the token id.
      */
@@ -125,7 +168,7 @@ public interface NotificationsService {
 
     /**
      * Closes a channel for the specified token id, preventing listeners
-     * from receiving link events for that token.
+     * from receiving events for that token.
      *
      * @param tokenId the token id.
      */
@@ -142,7 +185,7 @@ public interface NotificationsService {
 
     /**
      * Opens a channel for the specified Ethereum address, allowing listeners
-     * to receive link events for that address.
+     * to receive events for that address.
      *
      * @param ethAddress the Ethereum address.
      */
@@ -150,7 +193,7 @@ public interface NotificationsService {
 
     /**
      * Closes a channel for the specified Ethereum address, preventing listeners
-     * from receiving link events for that address.
+     * from receiving events for that address.
      *
      * @param ethAddress the Ethereum address.
      */

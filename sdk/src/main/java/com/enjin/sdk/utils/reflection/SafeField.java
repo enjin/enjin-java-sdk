@@ -8,12 +8,26 @@ import com.github.dmstocking.optional.java.util.Optional;
 import lombok.Getter;
 import lombok.extern.java.Log;
 
+/**
+ * Class providing for safe reflection of class fields.
+ */
 @Log
 public class SafeField {
 
+    /**
+     * -- GETTER --
+     * Returns the reflected field.
+     *
+     * @return the field
+     */
     @Getter
     private Field field;
 
+    /**
+     * Constructor for safe field reflection.
+     *
+     * @param field the field
+     */
     public SafeField(Field field) {
         this.field = field;
     }
@@ -39,6 +53,14 @@ public class SafeField {
         return Optional.empty();
     }
 
+    /**
+     * Gets the value assigned to a class field and casts it to the provided type.
+     *
+     * @param type the value type
+     * @param <T>  the type to cast to
+     *
+     * @return empty optional if unable to get value or value is null, else wrapped value
+     */
     public <T> Optional<T> getStatic(Class<T> type) {
         return get(null, type);
     }

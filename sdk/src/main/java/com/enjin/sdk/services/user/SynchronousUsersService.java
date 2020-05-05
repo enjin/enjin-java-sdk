@@ -1,6 +1,5 @@
 package com.enjin.sdk.services.user;
 
-import java.io.IOException;
 import java.util.List;
 
 import com.enjin.sdk.graphql.GraphQLResponse;
@@ -13,6 +12,9 @@ import com.enjin.sdk.models.user.GetUser;
 import com.enjin.sdk.models.user.GetUsers;
 import com.enjin.sdk.models.user.User;
 
+/**
+ * Synchronous methods for querying and mutating users.
+ */
 public interface SynchronousUsersService {
 
     /**
@@ -21,11 +23,16 @@ public interface SynchronousUsersService {
      * @param query the query.
      *
      * @return the response.
-     *
-     * @throws IOException if a communication error occurred.
      */
     HttpResponse<GraphQLResponse<List<User>>> getUsersSync(GetUsers query);
 
+    /**
+     * Gets a user that matches the query parameters.
+     *
+     * @param query the query.
+     *
+     * @return the response.
+     */
     HttpResponse<GraphQLResponse<User>> getUserSync(GetUser query);
 
     /**
@@ -34,8 +41,6 @@ public interface SynchronousUsersService {
      * @param query the query.
      *
      * @return the response.
-     *
-     * @throws IOException if a communication error occurred.
      */
     HttpResponse<GraphQLResponse<User>> createUserSync(CreateUser query);
 
@@ -45,11 +50,16 @@ public interface SynchronousUsersService {
      * @param query the query.
      *
      * @return the response.
-     *
-     * @throws IOException if a communication error occurred.
      */
     HttpResponse<GraphQLResponse<User>> oAuthUserSync(OAuthUser query);
 
+    /**
+     * Gets the access tokens of the player that matches the query parameters.
+     *
+     * @param query the query.
+     *
+     * @return the response.
+     */
     HttpResponse<GraphQLResponse<AccessToken>> authUserSync(AuthPlayer query);
 
 }

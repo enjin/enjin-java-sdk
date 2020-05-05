@@ -11,14 +11,14 @@ import com.enjin.sdk.models.request.Transaction;
 import com.enjin.sdk.models.request.UpdateRequest;
 
 /**
- * Asynchronous methods for querying and mutating app requests.
+ * Asynchronous methods for querying and mutating application requests.
  *
  * @author Evan Lindsay
  */
 public interface AsynchronousRequestsService {
 
     /**
-     * Gets app requests that match the query parameters.
+     * Gets application requests that match the query parameters.
      *
      * @param query    the query.
      * @param callback the callback.
@@ -27,7 +27,7 @@ public interface AsynchronousRequestsService {
                           HttpCallback<GraphQLResponse<List<Transaction>>> callback);
 
     /**
-     * Creates a new app request.
+     * Creates a new application request.
      *
      * @param query    the query.
      * @param callback the callback.
@@ -36,7 +36,7 @@ public interface AsynchronousRequestsService {
                             HttpCallback<GraphQLResponse<Transaction>> callback);
 
     /**
-     * Updates an app request.
+     * Updates an application request.
      *
      * @param query    the query.
      * @param callback the callback.
@@ -44,6 +44,12 @@ public interface AsynchronousRequestsService {
     void updateRequestAsync(UpdateRequest query,
                             HttpCallback<GraphQLResponse<Transaction>> callback);
 
+    /**
+     * Deletes an application request.
+     *
+     * @param query    the query.
+     * @param callback the callback.
+     */
     void deleteRequestAsync(DeleteRequest query,
                             HttpCallback<GraphQLResponse<Transaction>> callback);
 

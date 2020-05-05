@@ -4,7 +4,7 @@ import com.enjin.sdk.models.PaginationRequest;
 import com.enjin.sdk.services.user.UsersService;
 
 /**
- * A builder for getting users on the Trusted platform.
+ * An object class for getting users on the Trusted Platform.
  *
  * @author Evan Lindsay
  * @see UsersService
@@ -16,7 +16,7 @@ public class GetUser extends PaginationRequest<GetUser> implements UserFragment<
      *
      * @param userId the user id.
      *
-     * @return the builder.
+     * @return this request.
      */
     public GetUser userId(Integer userId) {
         set("id", userId);
@@ -28,7 +28,7 @@ public class GetUser extends PaginationRequest<GetUser> implements UserFragment<
      *
      * @param name the name.
      *
-     * @return the builder.
+     * @return this request.
      */
     public GetUser name(String name) {
         set("name", name);
@@ -38,7 +38,7 @@ public class GetUser extends PaginationRequest<GetUser> implements UserFragment<
     /**
      * Whether to only get the currently authenticated user.
      *
-     * @return the builder.
+     * @return this request.
      */
     public GetUser me() {
         set("me", true);

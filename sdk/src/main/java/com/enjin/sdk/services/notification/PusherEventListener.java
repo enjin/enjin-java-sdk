@@ -4,17 +4,24 @@ import java.util.logging.Level;
 
 import com.enjin.sdk.models.notification.NotificationEvent;
 import com.enjin.sdk.models.notification.EventType;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.pusher.client.channel.PusherEvent;
 import com.pusher.client.channel.SubscriptionEventListener;
 
+/**
+ * Event listener class for subscribed pusher events.
+ *
+ * @see PusherNotificationService
+ * @see PusherEvent
+ */
 public class PusherEventListener implements SubscriptionEventListener {
 
     private PusherNotificationService service;
 
+    /**
+     * Constructs a pusher event listener for the pusher service.
+     *
+     * @param service the notification service
+     */
     public PusherEventListener(PusherNotificationService service) {
         this.service = service;
     }

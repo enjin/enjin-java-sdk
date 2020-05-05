@@ -41,7 +41,7 @@ public interface AsynchronousIdentitiesService {
                              HttpCallback<GraphQLResponse<Identity>> callback);
 
     /**
-     * Deletes or unlinks an identity.
+     * Deletes an identity.
      *
      * @param query    the query.
      * @param callback the callback.
@@ -58,6 +58,12 @@ public interface AsynchronousIdentitiesService {
     void updateIdentityAsync(UpdateIdentity query,
                              HttpCallback<GraphQLResponse<Identity>> callback);
 
+    /**
+     * Unlinks an identity.
+     *
+     * @param query    the query.
+     * @param callback the callback.
+     */
     void unlinkIdentityAsync(UnlinkIdentity query,
                              HttpCallback<GraphQLResponse<Identity>> callback);
 

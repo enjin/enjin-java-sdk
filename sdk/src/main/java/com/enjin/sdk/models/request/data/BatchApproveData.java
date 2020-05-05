@@ -17,19 +17,15 @@ import lombok.Builder;
 public class BatchApproveData {
 
     /**
-     * The ethereum address of the operator.
+     * The Ethereum address of the operator.
      *
-     * -- SETTER --
-     *
-     * @param operator the ethereum address.
+     * @param operator the Ethereum address.
      * @return the builder.
      */
     private String operator;
 
     /**
      * The identity id of the operator.
-     *
-     * -- SETTER --
      *
      * @param operatorId the identity id.
      * @return the builder.
@@ -39,8 +35,6 @@ public class BatchApproveData {
 
     /**
      * The different items that the operator is permitted to transfer.
-     *
-     * -- SETTER --
      *
      * @param approve list of items.
      * @return the builder.

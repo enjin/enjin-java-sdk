@@ -19,37 +19,42 @@ import lombok.ToString;
 public class PlatformDetails {
 
     /**
-     * The name of the trusted platform.
+     * -- GETTER --
+     * Returns the name of the Trusted Platform.
      *
-     * @return the trusted platform name.
+     * @return the Trusted Platform name.
      */
     private String name;
 
     /**
-     * The trusted platform id.
+     * -- GETTER --
+     * Returns the Trusted Platform id.
      *
-     * @return the trusted platform id.
+     * @return the Trusted Platform id.
      */
     private Integer id;
 
     /**
-     * The blockchain network the trusted platform operates on.
+     * -- GETTER --
+     * Returns the blockchain network the Trusted Platform operates on.
      *
-     * @return the trusted platform network.
+     * @return the Trusted Platform network.
      */
     private String network;
 
     /**
-     * The network block height.
+     * -- GETTER --
+     * Returns the network block height.
      *
      * @return the network block height.
      */
     private Integer blockHeight;
 
     /**
-     * The notification details.
+     * -- GETTER --
+     * Returns the notification details.
      *
-     * @return the trusted platform notification details.
+     * @return the Trusted Platform notification details.
      */
     private NotificationDetails notifications;
 

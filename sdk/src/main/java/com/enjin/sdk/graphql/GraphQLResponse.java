@@ -23,7 +23,7 @@ public class GraphQLResponse<T> {
     private PaginationCursor cursor;
 
     /**
-     * Represents a response of a GraphQL request.
+     * Constructs a representation of a response from a GraphQL request.
      *
      * @param raw    the raw response body
      * @param data   the deserialized response data
@@ -37,6 +37,11 @@ public class GraphQLResponse<T> {
         this.cursor = cursor;
     }
 
+    /**
+     * Returns the raw response data.
+     *
+     * @return the raw data.
+     */
     public String getRaw() {
         return raw;
     }
@@ -59,6 +64,11 @@ public class GraphQLResponse<T> {
         return errors;
     }
 
+    /**
+     * Returns the pagination cursor.
+     *
+     * @return the cursor.
+     */
     public PaginationCursor getCursor() {
         return cursor;
     }
@@ -81,6 +91,11 @@ public class GraphQLResponse<T> {
         return errors != null && !errors.isEmpty();
     }
 
+    /**
+     * Returns whether the response is paginated.
+     *
+     * @return true if the response is paginated, false otherwise.
+     */
     public boolean isPaginated() {
         return cursor != null;
     }

@@ -7,13 +7,15 @@ import com.enjin.sdk.models.notification.EventType;
  * Registration wrapper for notification listeners that extracts any metadata
  * from the notification listener that may be used in event handling.
  *
+ * @see NotificationListener
+ *
  * @author Evan Lindsay
  */
 public class NotificationListenerRegistration {
 
     /**
      * A matcher that matches all events.
-     **/
+     */
     public static final EventMatcher ALLOW_ALL_MATCHER = new EventMatcher() {
         @Override
         public boolean matches(NotificationEvent event) {
@@ -24,10 +26,21 @@ public class NotificationListenerRegistration {
     private NotificationListener listener;
     private EventMatcher eventMatcher = ALLOW_ALL_MATCHER;
 
+    /**
+     * Constructs the registration for the specified listener.
+     *
+     * @param listener the listener.
+     */
     protected NotificationListenerRegistration(NotificationListener listener) {
         this.listener = listener;
     }
 
+    /**
+     * Constructs the registration for the specified listener with the specified event matcher.
+     *
+     * @param listener     the listener.
+     * @param eventMatcher the event matcher.
+     */
     protected NotificationListenerRegistration(NotificationListener listener, EventMatcher eventMatcher) {
         this(listener);
         this.eventMatcher = eventMatcher;
@@ -72,9 +85,20 @@ public class NotificationListenerRegistration {
      */
     public static class RegistrationListenerConfiguration<T extends RegistrationListenerConfiguration<T>> {
 
+        /**
+         * The notification listener of the configuration.
+         */
         protected NotificationListener listener;
+        /**
+         * The event matcher of the configuration.
+         */
         protected EventMatcher eventMatcher = ALLOW_ALL_MATCHER;
 
+        /**
+         *
+         *
+         * @param listener the listener.
+         */
         protected RegistrationListenerConfiguration(NotificationListener listener) {
             this.listener = listener;
             this.detectAndApplyListenerAnnotations();

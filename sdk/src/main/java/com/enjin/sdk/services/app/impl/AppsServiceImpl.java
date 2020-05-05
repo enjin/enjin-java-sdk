@@ -19,10 +19,20 @@ import com.enjin.sdk.services.app.AppsService;
 
 import retrofit2.Retrofit;
 
+/**
+ * Implementation class of {@link AppsService}.
+ *
+ * @see AppsService
+ */
 public class AppsServiceImpl extends GraphQLServiceBase implements AppsService {
 
     private AppsRetrofitService service;
 
+    /**
+     * Sole constructor.
+     *
+     * @param retrofit the retrofit adapter
+     */
     public AppsServiceImpl(Retrofit retrofit) {
         this.service = retrofit.create(AppsRetrofitService.class);
     }

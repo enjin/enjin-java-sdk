@@ -16,20 +16,42 @@ import lombok.Builder;
 @Builder
 public class TransferData {
 
+    /**
+     * Source of the funds.
+     *
+     * @param from the source
+     * @return     the builder
+     */
     private String from;
 
+    /**
+     * Source of the funds.
+     *
+     * @param fromId the source id
+     * @return       the builder
+     */
     @SerializedName("from_id")
     private Integer fromId;
 
+    /**
+     * Destination of the funds.
+     *
+     * @param to the destination
+     * @return   the builder
+     */
     private String to;
 
+    /**
+     * Destination of the funds.
+     *
+     * @param toId the destination id
+     * @return     the builder
+     */
     @SerializedName("to_id")
     private Integer toId;
 
     /**
      * The token id.
-     *
-     * -- SETTER --
      *
      * @param tokenId the token id.
      * @return the builder.
@@ -40,8 +62,6 @@ public class TransferData {
     /**
      * The token index.
      *
-     * -- SETTER --
-     *
      * @param tokenIndex the token index.
      * @return the builder.
      */
@@ -50,8 +70,6 @@ public class TransferData {
 
     /**
      * The amount of the token.
-     *
-     * -- SETTER --
      *
      * @param value the amount.
      * @return the builder.

@@ -1,5 +1,10 @@
 package com.enjin.sdk.models.token.event;
 
+/**
+ * Represent a type of token event.
+ *
+ * @see TokenEvent
+ */
 public enum TokenEventType {
 
     UNKNOWN_EVENT,

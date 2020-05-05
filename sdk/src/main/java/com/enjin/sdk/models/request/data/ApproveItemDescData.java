@@ -19,8 +19,6 @@ public class ApproveItemDescData {
     /**
      * The token id.
      *
-     * -- SETTER --
-     *
      * @param tokenId the token id.
      * @return the builder.
      */
@@ -29,8 +27,6 @@ public class ApproveItemDescData {
 
     /**
      * The token index.
-     *
-     * -- SETTER --
      *
      * @param tokenIndex the token index.
      * @return the builder.
@@ -41,8 +37,6 @@ public class ApproveItemDescData {
     /**
      * The current approved value prior to this transaction.
      *
-     * -- SETTER --
-     *
      * @param currentValue the current approved value.
      * @return the builder.
      */
@@ -51,8 +45,6 @@ public class ApproveItemDescData {
 
     /**
      * The amount to be approved.
-     *
-     * -- SETTER --
      *
      * @param value the amount to approve.
      * @return the builder.

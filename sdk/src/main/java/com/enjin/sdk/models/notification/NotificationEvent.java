@@ -12,7 +12,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 /**
- * Represents a trusted platform event.
+ * Represents a Trusted Platform Event.
  *
  * @author Evan Lindsay
  * @see NotificationsService
@@ -23,43 +23,54 @@ import lombok.ToString;
 @Builder
 public class NotificationEvent {
 
+    /**
+     * The Gson instance used to deserialize event data.
+     *
+     * -- GETTER --
+     * Returns the Gson instance used to deserialize event data.
+     *
+     * @return the Gson instance.
+     */
     private static final Gson GSON = new GsonBuilder()
             .registerTypeAdapter(TransactionType.class, new TransactionTypeDeserializer())
             .create();
 
     /**
-     * The type of notification.
+     * The event type.
      *
-     * -- GETTER --
-     *
-     * @return the type.
-     * -- SETTER --
      * @param type the notification type.
      * @return the builder.
+     *
+     * -- GETTER --
+     * Returns the event type.
+     *
+     * @return the type.
      */
     private EventType type;
 
     /**
-     * The channel the notification was received.
+     * The notification channel.
      *
-     * -- GETTER --
-     *
-     * @return the channel.
-     * -- SETTER --
      * @param channel the channel.
      * @return the builder.
+     *
+     * -- GETTER --
+     * Returns the notification channel.
+     *
+     * @return the channel.
      */
     private String channel;
 
     /**
-     * The notification data.
+     * The data.
      *
-     * -- GETTER --
-     *
-     * @return the data.
-     * -- SETTER --
      * @param data the notification data.
      * @return the builder.
+     *
+     * -- GETTER --
+     * Returns the data.
+     *
+     * @return the data.
      */
     private String data;
 
@@ -68,9 +79,6 @@ public class NotificationEvent {
      * The deserialized data. Lazy loaded.
      *
      * @return the deserialized data
-     * -- SETTER --
-     * @param event the deserialized event data.
-     * @return the builder.
      */
     @Getter(lazy = true)
     private final JsonObject eventData = eventData();

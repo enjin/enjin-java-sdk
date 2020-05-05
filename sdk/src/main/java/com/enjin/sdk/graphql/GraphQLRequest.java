@@ -15,10 +15,18 @@ public class GraphQLRequest<T extends GraphQLRequest<T>> implements GraphQLVaria
 
     private Map<String, Object> variables;
 
+    /**
+     * Default constructor.
+     */
     public GraphQLRequest() {
         this(new HashMap<>());
     }
 
+    /**
+     * Constructs a request with the passed parameter mapping.
+     *
+     * @param variables mapping of parameter keys and values.
+     */
     public GraphQLRequest(Map<String, Object> variables) {
         this.variables = variables;
     }
@@ -44,6 +52,11 @@ public class GraphQLRequest<T extends GraphQLRequest<T>> implements GraphQLVaria
         return (T) this;
     }
 
+    /**
+     * Gets the mapping of parameter keys and their values.
+     *
+     * @return the map of parameter keys and values.
+     */
     public Map<String, Object> getVariables() {
         return variables;
     }

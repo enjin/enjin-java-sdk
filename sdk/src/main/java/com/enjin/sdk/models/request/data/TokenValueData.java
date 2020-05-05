@@ -17,8 +17,6 @@ public class TokenValueData {
     /**
      * The token id.
      *
-     * -- SETTER --
-     *
      * @param id the token id.
      * @return the builder.
      */
@@ -27,8 +25,6 @@ public class TokenValueData {
     /**
      * The token index.
      *
-     * -- SETTER --
-     *
      * @param index the token index.
      * @return the builder.
      */
@@ -36,8 +32,6 @@ public class TokenValueData {
 
     /**
      * The amount of the token.
-     *
-     * -- SETTER --
      *
      * @param value the amount.
      * @return the builder.

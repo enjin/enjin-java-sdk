@@ -19,8 +19,6 @@ public class CreateTokenData {
     /**
      * The name of the token.
      *
-     * -- SETTER --
-     *
      * @param name the token name.
      * @return the builder.
      */
@@ -28,8 +26,6 @@ public class CreateTokenData {
 
     /**
      * The total supply.
-     *
-     * -- SETTER --
      *
      * @param totalSupply the total supply.
      * @return the builder.
@@ -39,8 +35,6 @@ public class CreateTokenData {
     /**
      * The initial reserve.
      *
-     * -- SETTER --
-     *
      * @param initialReserve the initial reserve.
      * @return the builder.
      */
@@ -48,8 +42,6 @@ public class CreateTokenData {
 
     /**
      * The supply model to use.
-     *
-     * -- SETTER --
      *
      * @param supplyModel the supply model.
      * @return the builder.
@@ -59,8 +51,6 @@ public class CreateTokenData {
     /**
      * The melt value.
      *
-     * -- SETTER --
-     *
      * @param meltValue the melt value.
      * @return the builder.
      */
@@ -68,8 +58,6 @@ public class CreateTokenData {
 
     /**
      * The melt fee ratio.
-     *
-     * -- SETTER --
      *
      * @param meltFeeRatio the melt fee ratio.
      * @return the builder.
@@ -79,8 +67,6 @@ public class CreateTokenData {
     /**
      * Whether the token is transferable or not.
      *
-     * -- SETTER --
-     *
      * @param transferable the type.
      * @return the builder.
      */
@@ -88,8 +74,6 @@ public class CreateTokenData {
 
     /**
      * The transfer fee settings.
-     *
-     * -- SETTER --
      *
      * @param transferFeeSettings the settings.
      * @return the builder.
@@ -99,13 +83,17 @@ public class CreateTokenData {
     /**
      * Whether the toke is fungible or non-fungible.
      *
-     * -- SETTER --
-     *
      * @param nonFungible is it a non-fungible?
      * @return the builder.
      */
     private Boolean nonFungible;
 
+    /**
+     * The icon.
+     *
+     * @param icon the icon.
+     * @return the builder.
+     */
     private String icon;
 
 }

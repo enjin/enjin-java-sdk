@@ -14,13 +14,15 @@ import lombok.ToString;
 public class PusherOptions {
 
     /**
-     * The cluster to use.
+     * -- GETTER --
+     * Returns the cluster to use.
      *
      * @return the cluster
      */
     private String cluster;
 
     /**
+     * -- GETTER --
      * Returns whether the notification service is encrypted.
      *
      * @return true if encrypted, else false

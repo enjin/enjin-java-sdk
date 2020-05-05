@@ -17,8 +17,6 @@ public class SetItemUriData {
     /**
      * The token id.
      *
-     * -- SETTER --
-     *
      * @param tokenId the token id.
      * @return the builder.
      */
@@ -28,8 +26,6 @@ public class SetItemUriData {
     /**
      * The token index.
      *
-     * -- SETTER --
-     *
      * @param tokenIndex the token index.
      * @return the builder.
      */
@@ -38,8 +34,6 @@ public class SetItemUriData {
 
     /**
      * The new uri for the item.
-     *
-     * -- SETTER --
      *
      * @param itemUri the uri.
      * @return the builder.

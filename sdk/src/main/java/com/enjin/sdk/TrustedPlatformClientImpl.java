@@ -1,6 +1,5 @@
 package com.enjin.sdk;
 
-import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
@@ -43,6 +42,12 @@ import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * Implementation class of the {@link TrustedPlatformClient}.
+ *
+ * @see TrustedPlatformClient
+ * @see TrustedPlatformClientBuilder
+ */
 public final class TrustedPlatformClientImpl implements TrustedPlatformClient {
 
     // Keys
@@ -55,23 +60,76 @@ public final class TrustedPlatformClientImpl implements TrustedPlatformClient {
     private HttpLoggingInterceptor httpLogInterceptor;
     private OkHttpClient httpClient;
     // Services
+    /**
+     * -- GETTER --
+     * Returns the applications service.
+     *
+     * @return the app service
+     */
     @Getter
     private AppsService appService;
+    /**
+     * -- GETTER --
+     * Returns the balances service.
+     *
+     * @return the balance service
+     */
     @Getter
     private BalancesService balanceService;
+    /**
+     * -- GETTER --
+     * Returns the identities service.
+     *
+     * @return the identity service
+     */
     @Getter
     private IdentitiesService identityService;
+    /**
+     * -- GETTER --
+     * Returns the platform service.
+     *
+     * @return the platform service
+     */
     @Getter
     private PlatformService platformService;
+    /**
+     * -- GETTER --
+     * Returns the requests service.
+     *
+     * @return the requests service
+     */
     @Getter
     private RequestsService requestService;
+    /**
+     * -- GETTER --
+     * Returns the tokens service.
+     *
+     * @return the token service
+     */
     @Getter
     private TokensService tokenService;
+    /**
+     * -- GETTER --
+     * Returns the users service.
+     *
+     * @return the user service
+     */
     @Getter
     private UsersService userService;
+    /**
+     * -- GETTER --
+     * Returns the wallet service.
+     *
+     * @return the wallet service
+     */
     @Getter
     private WalletService walletService;
 
+    /**
+     * Constructs the Trusted Platform client using the provided builder.
+     *
+     * @param builder the tp client builder
+     */
     TrustedPlatformClientImpl(TrustedPlatformClientBuilder builder) {
         baseUrl = builder.baseUrl.orElse(TrustedPlatformClientBuilder.MAIN_NET);
         loggerProvider = builder.loggerProvider.orElse(new LoggerProvider(Logger.getGlobal()));
@@ -119,26 +177,48 @@ public final class TrustedPlatformClientImpl implements TrustedPlatformClient {
         this.walletService = new WalletServiceImpl(retrofit);
     }
 
+    /**
+     * Returns the http client.
+     *
+     * @return the http client
+     */
     public OkHttpClient getHttpClient() {
         return httpClient;
     }
 
+    /**
+     * Returns the base url.
+     *
+     * @return the base url
+     */
     public HttpUrl getBaseUrl() {
         return baseUrl;
     }
 
+    @Override
     public void setAppId(Integer id) {
         this.trustedPlatformInterceptor.setAppId(id);
     }
 
+    @Override
     public Integer getAppId() {
         return this.trustedPlatformInterceptor.getAppId();
     }
 
+    /**
+     * Sets the http log level.
+     *
+     * @param level the http log level
+     */
     public void setHttpLogLevel(Level level) {
         this.httpLogInterceptor.setLevel(level == null ? Level.NONE : level);
     }
 
+    /**
+     * Returns the http log level.
+     *
+     * @return the http log level
+     */
     public Level getHttpLogLevel() {
         return this.httpLogInterceptor.getLevel();
     }
@@ -148,11 +228,9 @@ public final class TrustedPlatformClientImpl implements TrustedPlatformClient {
      *
      * @param appId     the app id
      * @param appSecret the app secret
-     *
-     * @return the response
-     *
-     * @throws IOException if network exception is encountered
+     * @return          the response
      */
+    @Override
     public HttpResponse<GraphQLResponse<AccessToken>> authAppSync(int appId, String appSecret) {
         HttpResponse<GraphQLResponse<AccessToken>> httpResponse = appService.authAppSync(new AuthApp().id(appId)
                                                                                                       .secret(appSecret));
@@ -161,13 +239,14 @@ public final class TrustedPlatformClientImpl implements TrustedPlatformClient {
     }
 
     /**
-     * Aynchronously authenticates the trusted platform using the provided app id and secret and calls the callback
+     * Asynchronously authenticates the trusted platform using the provided app id and secret and calls the callback
      * with the response result.
      *
      * @param appId     the app id
      * @param appSecret the app secret
      * @param callback  the callback
      */
+    @Override
     public void authAppAsync(int appId,
                              String appSecret,
                              HttpCallback<GraphQLResponse<AccessToken>> callback) {
@@ -202,11 +281,7 @@ public final class TrustedPlatformClientImpl implements TrustedPlatformClient {
         }
     }
 
-    /**
-     * Checks if the client is closed.
-     *
-     * @return true if the dispatcher executor service is shutdown, else false
-     */
+    @Override
     public boolean isClosed() {
         return this.httpClient.dispatcher()
                               .executorService()

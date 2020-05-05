@@ -4,13 +4,20 @@ import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.services.identity.IdentitiesService;
 
 /**
- * A builder for creating a new identity on the Trusted platform.
+ * An object class for creating a new identity on the Trusted Platform.
  *
  * @author Evan Lindsay
  * @see IdentitiesService
  */
 public class CreateIdentity extends GraphQLRequest<CreateIdentity> implements IdentityFragment<CreateIdentity> {
 
+    /**
+     * The id of the application.
+     *
+     * @param appId the app id.
+     *
+     * @return this request.
+     */
     public CreateIdentity appId(Integer appId) {
         set("appId", appId);
         return this;
@@ -19,9 +26,9 @@ public class CreateIdentity extends GraphQLRequest<CreateIdentity> implements Id
     /**
      * The user id to create the new identity for.
      *
-     * @param userId the users id.
+     * @param userId the user's id.
      *
-     * @return the builder.
+     * @return this request.
      */
     public CreateIdentity userId(int userId) {
         set("userId", userId);
@@ -33,7 +40,7 @@ public class CreateIdentity extends GraphQLRequest<CreateIdentity> implements Id
      *
      * @param email the users email.
      *
-     * @return the builder.
+     * @return this request.
      */
     public CreateIdentity email(String email) {
         set("email", email);
@@ -41,14 +48,14 @@ public class CreateIdentity extends GraphQLRequest<CreateIdentity> implements Id
     }
 
     /**
-     * The ethereum address to assign to the created identity.
+     * The Ethereum address to assign to the created identity.
      *
-     * @param ethereumAddress the ethereum address.
+     * @param ethAddr the Ethereum address.
      *
-     * @return the builder.
+     * @return this request.
      */
-    public CreateIdentity ethAddr(String ethereumAddress) {
-        set("ethAddress", ethereumAddress);
+    public CreateIdentity ethAddr(String ethAddr) {
+        set("ethAddress", ethAddr);
         return this;
     }
 

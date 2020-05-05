@@ -28,6 +28,12 @@ public interface AsynchronousUsersService {
     void getUsersAsync(GetUsers query,
                        HttpCallback<GraphQLResponse<List<User>>> callback);
 
+    /**
+     * Gets a user that matches the query parameters.
+     *
+     * @param query    the query.
+     * @param callback the callback.
+     */
     void getUserAsync(GetUser query,
                       HttpCallback<GraphQLResponse<User>> callback);
 
@@ -49,6 +55,12 @@ public interface AsynchronousUsersService {
     void oAuthUserAsync(OAuthUser query,
                         HttpCallback<GraphQLResponse<User>> callback);
 
+    /**
+     * Gets the access tokens of the player that matches the query parameters.
+     *
+     * @param query    the query.
+     * @param callback the callback.
+     */
     void authUserAsync(AuthPlayer query,
                        HttpCallback<GraphQLResponse<AccessToken>> callback);
 
