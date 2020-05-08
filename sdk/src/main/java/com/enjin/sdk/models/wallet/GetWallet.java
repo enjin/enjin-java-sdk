@@ -13,7 +13,7 @@ public class GetWallet extends GraphQLRequest<GetWallet> implements WalletFragme
     /**
      * The wallet's Ethereum address.
      *
-     * @param ethAddr the Ethereum address
+     * @param ethAddress the Ethereum address
      * @return           this request
      */
     public GetWallet ethAddress(String ethAddress) {
