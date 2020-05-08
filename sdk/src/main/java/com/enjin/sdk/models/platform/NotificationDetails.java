@@ -16,14 +16,16 @@ import lombok.ToString;
 public class NotificationDetails {
 
     /**
-     * The sdk notification details.
+     * -- GETTER --
+     * Returns the sdk notification details.
      *
      * @return the sdk details.
      */
     private PusherDetails pusher;
 
     /**
-     * The mobile notification details.
+     * -- GETTER --
+     * Returns the mobile notification details.
      *
      * @return the mobile details.
      */

@@ -4,6 +4,9 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Utility class providing methods for safe reflections.
+ */
 public final class SafeReflection {
 
     private SafeReflection() {

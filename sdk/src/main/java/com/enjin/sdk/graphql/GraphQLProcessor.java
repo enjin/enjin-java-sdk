@@ -3,8 +3,7 @@ package com.enjin.sdk.graphql;
 import java.lang.annotation.Annotation;
 
 /**
- * Loads and manages GraphQL template files used by various
- * service classes.
+ * Singleton class, loads and manages GraphQL template files used by various service classes.
  *
  * @author Evan Lindsay
  * @see GraphQuery
@@ -39,10 +38,25 @@ public final class GraphQLProcessor {
         return null;
     }
 
+    /**
+     * Gets the query using the query name.
+     *
+     * @param name the query name.
+     * @return     the query.
+     */
     public String getQuery(String name) {
         return queryRegistry.get(name);
     }
 
+    /**
+     * Takes an array of annotations and searches for a {@link GraphQuery}
+     * instance. If an instance is found it will then look for an entry
+     * that matches {@link GraphQuery#value()} and if not found will return
+     * null.
+     *
+     * @param annotations an array of annotations that should contain {@link GraphQuery}.
+     * @return            the query name.
+     */
     public String getQueryName(Annotation[] annotations) {
         for (Annotation annotation : annotations) {
             if (annotation instanceof  GraphQuery) {

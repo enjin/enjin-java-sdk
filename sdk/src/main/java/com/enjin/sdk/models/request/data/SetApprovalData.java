@@ -17,19 +17,15 @@ import lombok.Builder;
 public class SetApprovalData {
 
     /**
-     * The ethereum address of the operator.
+     * The Ethereum address of the operator.
      *
-     * -- SETTER --
-     *
-     * @param operator the ethereum address.
+     * @param operator the Ethereum address.
      * @return the builder.
      */
     private String operator;
 
     /**
      * The identity id of the operator.
-     *
-     * -- SETTER --
      *
      * @param operatorId the identity id.
      * @return the builder.
@@ -40,8 +36,6 @@ public class SetApprovalData {
     /**
      * The tokens to approve for.
      *
-     * -- SETTER --
-     *
      * @param tokens the tokens.
      * @return the builder.
      */
@@ -49,8 +43,6 @@ public class SetApprovalData {
 
     /**
      * Whether to be approved or not.
-     *
-     * -- SETTER --
      *
      * @param approved whether approved or not.
      * @return the builder.

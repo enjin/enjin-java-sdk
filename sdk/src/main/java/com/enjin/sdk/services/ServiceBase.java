@@ -9,14 +9,31 @@ import com.github.nocatch.NoCatch;
 import lombok.extern.java.Log;
 import retrofit2.Call;
 
+/**
+ * Base class for services.
+ */
 @Log
 public class ServiceBase {
 
+    /**
+     * Executes a http request.
+     *
+     * @param call the request call
+     * @param <T>  the type of the request and response
+     * @return     the response
+     */
     protected <T> HttpResponse<T> execute(Call<T> call) {
         retrofit2.Response<T> response = NoCatch.noCatch(() -> call.execute());
         return new HttpResponse<>(response.code(), response.body());
     }
 
+    /**
+     * Queues a http request.
+     *
+     * @param call     the request call
+     * @param callback the callback
+     * @param <T>      the type of the request and response
+     */
     protected <T> void enqueue(Call<T> call, final HttpCallback<T> callback) {
         call.enqueue(new retrofit2.Callback<T>() {
             @Override

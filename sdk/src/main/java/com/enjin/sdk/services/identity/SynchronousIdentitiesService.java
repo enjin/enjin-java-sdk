@@ -1,6 +1,5 @@
 package com.enjin.sdk.services.identity;
 
-import java.io.IOException;
 import java.util.List;
 
 import com.enjin.sdk.graphql.GraphQLResponse;
@@ -26,8 +25,6 @@ public interface SynchronousIdentitiesService {
      * @param query the query.
      *
      * @return the response.
-     *
-     * @throws IOException if a communication error occurred.
      */
     HttpResponse<GraphQLResponse<List<Identity>>> getIdentitiesSync(GetIdentities query);
 
@@ -39,19 +36,15 @@ public interface SynchronousIdentitiesService {
      * @param query the query.
      *
      * @return the response.
-     *
-     * @throws IOException if a communication error occurred.
      */
     HttpResponse<GraphQLResponse<Identity>> createIdentitySync(CreateIdentity query);
 
     /**
-     * Deletes or unlinks an identity.
+     * Deletes an identity.
      *
      * @param query the query.
      *
      * @return the response.
-     *
-     * @throws IOException if a communication error occurred.
      */
     HttpResponse<GraphQLResponse<Identity>> deleteIdentitySync(DeleteIdentity query);
 
@@ -61,11 +54,16 @@ public interface SynchronousIdentitiesService {
      * @param query the query.
      *
      * @return the response.
-     *
-     * @throws IOException if a communication error occurred.
      */
     HttpResponse<GraphQLResponse<Identity>> updateIdentitySync(UpdateIdentity query);
 
+    /**
+     * Unlinks an identity.
+     *
+     * @param query the query.
+     *
+     * @return the response.
+     */
     HttpResponse<GraphQLResponse<Identity>> unlinkIdentitySync(UnlinkIdentity query);
 
 }

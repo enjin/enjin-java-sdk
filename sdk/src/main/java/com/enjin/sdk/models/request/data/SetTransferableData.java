@@ -18,8 +18,6 @@ public class SetTransferableData {
     /**
      * The token id.
      *
-     * -- SETTER --
-     *
      * @param tokenId the token id.
      * @return the builder.
      */
@@ -29,8 +27,6 @@ public class SetTransferableData {
     /**
      * The token index.
      *
-     * -- SETTER --
-     *
      * @param tokenIndex the token index.
      * @return the builder.
      */
@@ -39,8 +35,6 @@ public class SetTransferableData {
 
     /**
      * The transferable type.
-     *
-     * -- SETTER --
      *
      * @param transferable the type.
      * @return the builder.

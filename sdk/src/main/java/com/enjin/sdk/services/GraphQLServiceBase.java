@@ -1,6 +1,5 @@
 package com.enjin.sdk.services;
 
-import java.lang.reflect.Type;
 import java.util.logging.Level;
 
 import com.enjin.sdk.graphql.GraphQLResponse;
@@ -16,17 +15,36 @@ import okhttp3.MediaType;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 
+/**
+ * Base class for GraphQL services.
+ *
+ * @see ServiceBase
+ */
 @Log
 public class GraphQLServiceBase extends ServiceBase {
 
     private static final Gson GSON = new GsonBuilder().create();
     private static final MediaType JSON = MediaType.parse("application/json");
 
+    /**
+     * Executes a GraphQL request.
+     *
+     * @param call the request call
+     * @param <T>  the type of the request and response
+     * @return     the response
+     */
     protected <T> HttpResponse<GraphQLResponse<T>> executeGraphQLCall(Call<GraphQLResponse<T>> call) {
         retrofit2.Response<GraphQLResponse<T>> response = NoCatch.noCatch(() -> call.execute());
         return createResult(response);
     }
 
+    /**
+     * Queues a GraphQL request.
+     *
+     * @param call     the request call
+     * @param callback the callback
+     * @param <T>      the type of the request and response
+     */
     protected <T> void enqueueGraphQLCall(Call<GraphQLResponse<T>> call, final HttpCallback<GraphQLResponse<T>> callback) {
         call.enqueue(new retrofit2.Callback<GraphQLResponse<T>>() {
             @Override
@@ -47,6 +65,13 @@ public class GraphQLServiceBase extends ServiceBase {
         });
     }
 
+    /**
+     * Wraps an http response.
+     *
+     * @param response the response
+     * @param <T>      the type of the response
+     * @return         the response wrapper
+     */
     protected <T> HttpResponse<GraphQLResponse<T>> createResult(retrofit2.Response<GraphQLResponse<T>> response) {
         int code = response.code();
         GraphQLResponse<T> body = null;

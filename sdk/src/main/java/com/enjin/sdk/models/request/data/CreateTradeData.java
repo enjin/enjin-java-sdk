@@ -19,8 +19,6 @@ public class CreateTradeData {
     /**
      * The tokens the first party is asking for.
      *
-     * -- SETTER --
-     *
      * @param askingTokens the tokens.
      * @return the builder.
      */
@@ -30,8 +28,6 @@ public class CreateTradeData {
     /**
      * The tokens the first party is offering.
      *
-     * -- SETTER --
-     *
      * @param offeringTokens the tokens.
      * @return the builder.
      */
@@ -39,11 +35,9 @@ public class CreateTradeData {
     private List<TokenValueData> offeringTokens;
 
     /**
-     * The second party ethereum address.
+     * The second party Ethereum address.
      *
-     * -- SETTER --
-     *
-     * @param secondPartyAddress the ethereum address.
+     * @param secondPartyAddress the Ethereum address.
      * @return the builder.
      */
     @SerializedName("second_party_address")
@@ -51,8 +45,6 @@ public class CreateTradeData {
 
     /**
      * The second party identity id.
-     *
-     * -- SETTER --
      *
      * @param secondPartyIdentityId the identity id.
      * @return the builder.

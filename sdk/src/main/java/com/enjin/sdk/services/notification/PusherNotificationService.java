@@ -21,6 +21,7 @@ import com.enjin.sdk.utils.LoggerProvider;
 import com.pusher.client.Pusher;
 import com.pusher.client.PusherOptions;
 import com.pusher.client.channel.Channel;
+import com.pusher.client.channel.PusherEvent;
 import com.pusher.client.connection.ConnectionEventListener;
 import com.pusher.client.connection.ConnectionState;
 import com.pusher.client.connection.ConnectionStateChange;
@@ -28,9 +29,25 @@ import com.pusher.client.connection.ConnectionStateChange;
 import lombok.Getter;
 import lombok.NonNull;
 
+/**
+ * Implementation class of {@link NotificationsService} for Pusher events.
+ *
+ * @see NotificationsService
+ * @see PusherEvent
+ * @see PusherEventListener
+ */
 public class PusherNotificationService implements NotificationsService {
 
+    /**
+     * The list of registered listeners.
+     */
     protected List<NotificationListenerRegistration> listeners = new ArrayList<>();
+    /**
+     * -- GETTER --
+     * Returns the logger provider.
+     *
+     * @return the logger provider
+     */
     @Getter
     private LoggerProvider loggerProvider;
     private PlatformDetails platformDetails;
@@ -39,10 +56,21 @@ public class PusherNotificationService implements NotificationsService {
 
     private Map<String, Channel> subscribed = new HashMap<>();
 
+    /**
+     * Constructs the notification service using the platform details.
+     *
+     * @param platformDetails the platform details
+     */
     public PusherNotificationService(@NonNull PlatformDetails platformDetails) {
         this(new LoggerProvider(Logger.getGlobal()), platformDetails);
     }
 
+    /**
+     * Constructs the notification service using the platform details and logger provider.
+     *
+     * @param loggerProvider  the logger provider
+     * @param platformDetails the platform details
+     */
     public PusherNotificationService(@NonNull LoggerProvider loggerProvider, @NonNull PlatformDetails platformDetails) {
         this.loggerProvider = loggerProvider;
         this.platformDetails = platformDetails;
@@ -130,10 +158,22 @@ public class PusherNotificationService implements NotificationsService {
         return register(configureListener(listener).withIgnoredEvents(ignored));
     }
 
+    /**
+     * Configures a notification listener.
+     *
+     * @param listener the listener
+     * @return         the listener configuration
+     */
     protected RegistrationListenerConfiguration configureListener(@NonNull NotificationListener listener) {
         return NotificationListenerRegistration.configure(listener);
     }
 
+    /**
+     * Registers a notification listener.
+     *
+     * @param configuration the listener configuration
+     * @return              the registration wrapper, or null if registration failed
+     */
     protected NotificationListenerRegistration register(@NonNull RegistrationListenerConfiguration configuration) {
         NotificationListenerRegistration registration = null;
 

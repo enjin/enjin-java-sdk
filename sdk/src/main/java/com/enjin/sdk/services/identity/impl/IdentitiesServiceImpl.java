@@ -17,10 +17,20 @@ import com.enjin.sdk.services.identity.IdentitiesService;
 
 import retrofit2.Retrofit;
 
+/**
+ * Implementation class of {@link IdentitiesService}.
+ *
+ * @see IdentitiesService
+ */
 public class IdentitiesServiceImpl extends GraphQLServiceBase implements IdentitiesService {
 
     private final IdentitiesRetrofitService service;
 
+    /**
+     * Sole constructor.
+     *
+     * @param retrofit the retrofit adapter
+     */
     public IdentitiesServiceImpl(Retrofit retrofit) {
         this.service = retrofit.create(IdentitiesRetrofitService.class);
     }

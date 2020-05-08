@@ -27,25 +27,34 @@ import com.enjin.sdk.models.request.data.UpdateItemNameData;
 import com.enjin.sdk.services.request.RequestsService;
 
 /**
- * A builder for creating a new request on the Trusted platform.
+ * An object class for creating a new request on the Trusted platform.
  *
  * @author Evan Lindsay
  * @see RequestsService
+ *
+ * @param <T> the type of the request.
  */
 public class BaseRequest<T extends BaseRequest<T>> extends GraphQLRequest<T> implements TransactionFragment<T> {
 
     private final boolean setType;
 
+    /**
+     * Constructor for the base request.
+     *
+     * @param setType if the transaction type may be set.
+     */
     public BaseRequest(boolean setType) {
         this.setType = setType;
     }
 
     /**
-     * The transaction type.
+     * Sets the transaction type.
      *
+     * @param key  the key.
+     * @param val  the value.
      * @param type the transaction type.
      *
-     * @return the builder.
+     * @return this request.
      */
     public T set(String key, Object val, TransactionType type) {
         if (setType)
@@ -59,7 +68,7 @@ public class BaseRequest<T extends BaseRequest<T>> extends GraphQLRequest<T> imp
      *
      * @param createTokenData the data.
      *
-     * @return the builder.
+     * @return this request.
      */
     public T createToken(CreateTokenData createTokenData) {
         return set("createTokenData", createTokenData, CREATE);
@@ -70,7 +79,7 @@ public class BaseRequest<T extends BaseRequest<T>> extends GraphQLRequest<T> imp
      *
      * @param createTradeData the data.
      *
-     * @return the builder.
+     * @return this request.
      */
     public T createTrade(CreateTradeData createTradeData) {
         return set("createTradeData", createTradeData, CREATE_TRADE);
@@ -81,7 +90,7 @@ public class BaseRequest<T extends BaseRequest<T>> extends GraphQLRequest<T> imp
      *
      * @param completeTradeData the data.
      *
-     * @return the builder.
+     * @return this request.
      */
     public T completeTrade(CompleteTradeData completeTradeData) {
         return set("completeTradeData", completeTradeData, COMPLETE_TRADE);
@@ -92,7 +101,7 @@ public class BaseRequest<T extends BaseRequest<T>> extends GraphQLRequest<T> imp
      *
      * @param mintTokenData the data.
      *
-     * @return the builder.
+     * @return this request.
      */
     public T mintToken(MintTokenData mintTokenData) {
         return set("mintTokenData", mintTokenData, MINT);
@@ -103,7 +112,7 @@ public class BaseRequest<T extends BaseRequest<T>> extends GraphQLRequest<T> imp
      *
      * @param meltTokenData the data.
      *
-     * @return the builder.
+     * @return this request.
      */
     public T meltToken(MeltTokenData meltTokenData) {
         return set("meltTokenData", meltTokenData, MELT);
@@ -114,12 +123,19 @@ public class BaseRequest<T extends BaseRequest<T>> extends GraphQLRequest<T> imp
      *
      * @param sendTokenData the data.
      *
-     * @return the builder.
+     * @return this request.
      */
     public T sendToken(SendTokenData sendTokenData) {
         return set("sendTokenData", sendTokenData, SEND);
     }
 
+    /**
+     * Sets the send ENJ data.
+     *
+     * @param sendEnjData the data.
+     *
+     * @return this request.
+     */
     public T sendEnj(SendEnjData sendEnjData) {
         return set("sendEnjData", sendEnjData, SEND_ENJ);
     }
@@ -129,7 +145,7 @@ public class BaseRequest<T extends BaseRequest<T>> extends GraphQLRequest<T> imp
      *
      * @param advancedSendTokenData the data.
      *
-     * @return the builder.
+     * @return this request.
      */
     public T advancedSendToken(AdvancedSendTokenData advancedSendTokenData) {
         return set("advancedSendTokenData", advancedSendTokenData, ADVANCED_SEND);
@@ -140,7 +156,7 @@ public class BaseRequest<T extends BaseRequest<T>> extends GraphQLRequest<T> imp
      *
      * @param updateItemNameData the data.
      *
-     * @return the builder.
+     * @return this request.
      */
     public T updateItemName(UpdateItemNameData updateItemNameData) {
         return set("updateItemNameData", updateItemNameData, UPDATE_NAME);
@@ -151,7 +167,7 @@ public class BaseRequest<T extends BaseRequest<T>> extends GraphQLRequest<T> imp
      *
      * @param setItemUriData the data.
      *
-     * @return the builder.
+     * @return this request.
      */
     public T setItemUri(SetItemUriData setItemUriData) {
         return set("setItemUriData", setItemUriData, SET_ITEM_URI);
@@ -162,7 +178,7 @@ public class BaseRequest<T extends BaseRequest<T>> extends GraphQLRequest<T> imp
      *
      * @param setWhitelistedData the data.
      *
-     * @return the builder.
+     * @return this request.
      */
     public T setWhitelisted(SetWhitelistedData setWhitelistedData) {
         return set("setWhitelistedData", setWhitelistedData, SET_WHITELISTED);
@@ -173,7 +189,7 @@ public class BaseRequest<T extends BaseRequest<T>> extends GraphQLRequest<T> imp
      *
      * @param approveEnjData the data.
      *
-     * @return the builder.
+     * @return this request.
      */
     public T approveEnj(ApproveEnjData approveEnjData) {
         return set("approveEnjData", approveEnjData, APPROVE);
@@ -184,7 +200,7 @@ public class BaseRequest<T extends BaseRequest<T>> extends GraphQLRequest<T> imp
      *
      * @param approveItemData the data.
      *
-     * @return the builder.
+     * @return this request.
      */
     public T approveItem(ApproveItemData approveItemData) {
         return set("approveItemData", approveItemData, APPROVE);
@@ -195,7 +211,7 @@ public class BaseRequest<T extends BaseRequest<T>> extends GraphQLRequest<T> imp
      *
      * @param setTransferableData the data.
      *
-     * @return the builder.
+     * @return this request.
      */
     public T setTransferable(SetTransferableData setTransferableData) {
         return set("setTransferableData", setTransferableData, SET_TRANSFERABLE);
@@ -206,7 +222,7 @@ public class BaseRequest<T extends BaseRequest<T>> extends GraphQLRequest<T> imp
      *
      * @param setMeltFeeData the data.
      *
-     * @return the builder.
+     * @return this request.
      */
     public T setMeltFee(SetMeltFeeData setMeltFeeData) {
         return set("setMeltFeeData", setMeltFeeData, SET_MELT_FEE);
@@ -217,7 +233,7 @@ public class BaseRequest<T extends BaseRequest<T>> extends GraphQLRequest<T> imp
      *
      * @param decreaseMaxMeltFeeData the data.
      *
-     * @return the builder.
+     * @return this request.
      */
     public T decreaseMaxMeltFee(DecreaseMaxMeltFeeData decreaseMaxMeltFeeData) {
         return set("decreaseMaxMeltFeeData", decreaseMaxMeltFeeData, DECREASE_MAX_MELT_FEE);
@@ -228,7 +244,7 @@ public class BaseRequest<T extends BaseRequest<T>> extends GraphQLRequest<T> imp
      *
      * @param setTransferFeeData the data.
      *
-     * @return the builder.
+     * @return this request.
      */
     public T setTransferFee(SetTransferFeeData setTransferFeeData) {
         return set("setTransferFeeData", setTransferFeeData, SET_TRANSFER_FEE);
@@ -239,12 +255,19 @@ public class BaseRequest<T extends BaseRequest<T>> extends GraphQLRequest<T> imp
      *
      * @param decreaseMaxTransferFeeData the data.
      *
-     * @return the builder.
+     * @return this request.
      */
     public T decreaseMaxTransferFee(DecreaseMaxTransferFeeData decreaseMaxTransferFeeData) {
         return set("decreaseMaxTransferFeeData", decreaseMaxTransferFeeData, DECREASE_MAX_TRANSFER_FEE);
     }
 
+    /**
+     * Sets the release reserve data.
+     *
+     * @param releaseReserveData the data.
+     *
+     * @return this request.
+     */
     public T releaseReserve(ReleaseReserveData releaseReserveData) {
         return set("releaseReserveData", releaseReserveData, RELEASE_RESERVE);
     }
@@ -254,7 +277,7 @@ public class BaseRequest<T extends BaseRequest<T>> extends GraphQLRequest<T> imp
      *
      * @param addLogData the data.
      *
-     * @return the builder.
+     * @return this request.
      */
     public T addLog(AddLogData addLogData) {
         return set("addLogData", addLogData, ADD_LOG);
@@ -265,7 +288,7 @@ public class BaseRequest<T extends BaseRequest<T>> extends GraphQLRequest<T> imp
      *
      * @param setApprovalForAllData the data.
      *
-     * @return the builder.
+     * @return this request.
      */
     public T setApprovalForAll(SetApprovalForAllData setApprovalForAllData) {
         return set("setApprovalForAllData", setApprovalForAllData, SET_APPROVAL_FOR_ALL);
@@ -276,7 +299,7 @@ public class BaseRequest<T extends BaseRequest<T>> extends GraphQLRequest<T> imp
      *
      * @param messageData the data.
      *
-     * @return the builder.
+     * @return this request.
      */
     public T message(MessageData messageData) {
         return set("messageDate", messageData, MESSAGE);

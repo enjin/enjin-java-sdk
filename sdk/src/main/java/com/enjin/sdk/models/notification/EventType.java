@@ -43,6 +43,11 @@ public enum EventType {
 
     private final String eventType;
 
+    /**
+     * Sole constructor.
+     *
+     * @param eventType the type of the enum
+     */
     EventType(String eventType) {
         this.eventType = eventType;
     }
@@ -59,7 +64,7 @@ public enum EventType {
     /**
      * Checks if this type is value in the given filter.
      *
-     * @param filter - filter being processed
+     * @param filter filter being processed
      *
      * @return boolean
      */

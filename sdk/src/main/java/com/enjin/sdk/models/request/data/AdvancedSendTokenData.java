@@ -17,8 +17,6 @@ public class AdvancedSendTokenData {
     /**
      * The different transfers to perform.
      *
-     * -- SETTER --
-     *
      * @param transfers the transfers.
      * @return the builder.
      */
@@ -26,8 +24,6 @@ public class AdvancedSendTokenData {
 
     /**
      * The data to forward with the safe callbacks.
-     *
-     * -- SETTER --
      *
      * @param data the data to forward.
      * @return the builder.

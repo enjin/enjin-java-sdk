@@ -4,7 +4,7 @@ import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.services.user.UsersService;
 
 /**
- * A builder for creating a new user on the Trusted platform.
+ * An object class for creating a new user on the Trusted Platform.
  *
  * @author Evan Lindsay
  * @see UsersService
@@ -16,7 +16,7 @@ public class CreateUser extends GraphQLRequest<CreateUser> implements UserFragme
      *
      * @param name the name.
      *
-     * @return the builder.
+     * @return this request.
      */
     public CreateUser name(String name) {
         set("name", name);

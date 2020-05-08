@@ -15,21 +15,24 @@ import lombok.ToString;
 public class TokenTransferFeeSettings {
 
     /**
-     * The transfer fee strategy type.
+     * -- GETTER --
+     * Returns the transfer fee strategy type.
      *
      * @return the strategy type.
      */
     private TokenTransferFeeType type;
 
     /**
-     * The token id.
+     * -- GETTER --
+     * Returns the token id.
      *
      * @return the token id.
      */
     private String tokenId;
 
     /**
-     * The fee value.
+     * -- GETTER --
+     * Returns the fee value.
      *
      * @return the fee value.
      */

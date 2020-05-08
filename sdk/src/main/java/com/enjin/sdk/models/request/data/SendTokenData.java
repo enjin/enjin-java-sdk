@@ -17,8 +17,6 @@ public class SendTokenData {
     /**
      * The token id.
      *
-     * -- SETTER --
-     *
      * @param tokenId the token id.
      * @return the builder.
      */
@@ -28,8 +26,6 @@ public class SendTokenData {
     /**
      * The token index.
      *
-     * -- SETTER --
-     *
      * @param tokenIndex the token index.
      * @return the builder.
      */
@@ -37,11 +33,9 @@ public class SendTokenData {
     private String tokenIndex;
 
     /**
-     * The ethereum address to send the token to.
+     * The Ethereum address to send the token to.
      *
-     * -- SETTER --
-     *
-     * @param recipientAddress the ethereum address.
+     * @param recipientAddress the Ethereum address.
      * @return the builder.
      */
     @SerializedName("recipient_address")
@@ -49,8 +43,6 @@ public class SendTokenData {
 
     /**
      * The identity id linked to the wallet to send to.
-     *
-     * -- SETTER --
      *
      * @param recipientIdentityId the identity id.
      * @return the builder.
@@ -60,8 +52,6 @@ public class SendTokenData {
 
     /**
      * The amount to send.
-     *
-     * -- SETTER --
      *
      * @param value the amount to send.
      * @return the builder.

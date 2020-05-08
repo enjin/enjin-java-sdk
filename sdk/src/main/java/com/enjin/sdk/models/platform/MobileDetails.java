@@ -14,7 +14,8 @@ import lombok.ToString;
 public class MobileDetails {
 
     /**
-     * The type of mobile notifications.
+     * -- GETTER --
+     * Returns the type of mobile notification.
      *
      * @return the mobile notification type.
      */

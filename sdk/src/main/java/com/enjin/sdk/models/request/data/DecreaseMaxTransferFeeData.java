@@ -17,8 +17,6 @@ public class DecreaseMaxTransferFeeData {
     /**
      * The token id.
      *
-     * -- SETTER --
-     *
      * @param tokenId the token id.
      * @return the builder.
      */
@@ -28,8 +26,6 @@ public class DecreaseMaxTransferFeeData {
     /**
      * The token index.
      *
-     * -- SETTER --
-     *
      * @param tokenIndex the token index.
      * @return the builder.
      */
@@ -38,8 +34,6 @@ public class DecreaseMaxTransferFeeData {
 
     /**
      * The new max transfer fee.
-     *
-     * -- SETTER --
      *
      * @param maxTransferFee the new fee amount.
      * @return the builder.

@@ -16,28 +16,32 @@ import lombok.ToString;
 public final class GraphQLError {
 
     /**
-     * The response error message.
+     * -- GETTER --
+     * Returns the response error message.
      *
      * @return the error message.
      */
     private String message;
 
     /**
-     * The response error code.
+     * -- GETTER --
+     * Returns the response error code.
      *
      * @return the error code.
      */
     private int code;
 
     /**
-     * The response error locations.
+     * -- GETTER --
+     * Returns the response error locations.
      *
      * @return the error locations.
      */
     private List<Map<String, Integer>> locations;
 
     /**
-     * The response error details.
+     * -- GETTER --
+     * Returns the response error details.
      *
      * @return the error details.
      */

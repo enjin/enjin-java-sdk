@@ -15,6 +15,7 @@ public interface AsynchronousPlatformService {
     /**
      * Gets the platform details and settings.
      *
+     * @param query    the query.
      * @param callback the callback.
      */
     void getPlatformAsync(GetPlatform query, HttpCallback<GraphQLResponse<PlatformDetails>> callback);

@@ -15,10 +15,20 @@ import com.enjin.sdk.services.request.RequestsService;
 
 import retrofit2.Retrofit;
 
+/**
+ * Implementation class of {@link RequestsService}.
+ *
+ * @see RequestsService
+ */
 public class RequestsServiceImpl extends GraphQLServiceBase implements RequestsService {
 
     private final RequestsRetrofitService service;
 
+    /**
+     * Sole constructor.
+     *
+     * @param retrofit the retrofit adapter
+     */
     public RequestsServiceImpl(Retrofit retrofit) {
         this.service = retrofit.create(RequestsRetrofitService.class);
     }

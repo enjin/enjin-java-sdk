@@ -1,35 +1,51 @@
 package com.enjin.sdk.models.request;
 
+import com.enjin.sdk.models.app.App;
+import com.enjin.sdk.models.identity.Identity;
 import com.enjin.sdk.services.request.RequestsService;
 
 /**
- * A builder for creating a new request on the Trusted platform.
+ * An object class for creating a new request on the Trusted Platform.
  *
  * @author Evan Lindsay
  * @see RequestsService
  */
 public class CreateRequest extends BaseRequest<CreateRequest> {
 
+    /**
+     * Sole constructor.
+     */
     public CreateRequest() {
         super(true);
     }
 
+    /**
+     * The id of the {@link App}.
+     *
+     * @param appId the app id.
+     * @return      this request.
+     */
     public CreateRequest appId(Integer appId) {
         set("appId", appId);
         return this;
     }
 
+    /**
+     * The Ethereum address of the {@link Identity} the request was created for.
+     *
+     * @param ethAddr the Ethereum address.
+     * @return        this request.
+     */
     public CreateRequest ethAddr(String ethAddr) {
         set("ethAddr", ethAddr);
         return this;
     }
 
     /**
-     * The id of the identity this request was created for.
+     * The id of the {@link Identity} this request was created for.
      *
      * @param identityId the identity id.
-     *
-     * @return builder.
+     * @return           this request.
      */
     public CreateRequest identityId(int identityId) {
         set("identityId", identityId);
@@ -41,7 +57,7 @@ public class CreateRequest extends BaseRequest<CreateRequest> {
      * Disabling tests means that gas fees will be lost if a transaction fails on the
      * blockchain. Disable with caution.
      *
-     * @return the builder.
+     * @return this request.
      */
     public CreateRequest disableTest() {
         set("test", false);
@@ -52,7 +68,7 @@ public class CreateRequest extends BaseRequest<CreateRequest> {
      * When true a transaction will be tested, but won't be saved or sent. This is handy
      * if you wish test settings without submitting any blockchain transactions.
      *
-     * @return the builder.
+     * @return this request.
      */
     public CreateRequest testOnly() {
         set("dummy", true);

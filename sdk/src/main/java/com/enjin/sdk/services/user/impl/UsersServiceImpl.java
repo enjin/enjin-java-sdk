@@ -17,10 +17,20 @@ import com.enjin.sdk.services.user.UsersService;
 
 import retrofit2.Retrofit;
 
+/**
+ * Implementation class of {@link UsersService}.
+ *
+ * @see UsersService
+ */
 public class UsersServiceImpl extends GraphQLServiceBase implements UsersService {
 
     private final UsersRetrofitService service;
 
+    /**
+     * Sole constructor.
+     *
+     * @param retrofit the retrofit adapter.
+     */
     public UsersServiceImpl(Retrofit retrofit) {
         this.service = retrofit.create(UsersRetrofitService.class);
     }

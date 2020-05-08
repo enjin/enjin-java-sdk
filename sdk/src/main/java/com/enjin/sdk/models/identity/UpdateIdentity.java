@@ -4,7 +4,7 @@ import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.services.identity.IdentitiesService;
 
 /**
- * A builder for updating an identity on the Trusted platform.
+ * An object class for updating an identity on the Trusted Platform.
  *
  * @author Evan Lindsay
  * @see IdentitiesService
@@ -16,24 +16,31 @@ public class UpdateIdentity extends GraphQLRequest<UpdateIdentity> implements Id
      *
      * @param identityId the identity id.
      *
-     * @return the builder.
+     * @return this request.
      */
     public UpdateIdentity identityId(int identityId) {
         set("id", identityId);
         return this;
     }
 
+    /**
+     * The linking code for the identity.
+     *
+     * @param linkingCode the linking code.
+     *
+     * @return this request.
+     */
     public UpdateIdentity linkingCode(String linkingCode) {
         set("linkingCode", linkingCode);
         return this;
     }
 
     /**
-     * The ethereum address linked to the identity.
+     * The Ethereum address linked to the identity.
      *
-     * @param ethAddr the ethereum address.
+     * @param ethAddr the Ethereum address.
      *
-     * @return the builder.
+     * @return this request.
      */
     public UpdateIdentity ethAddr(String ethAddr) {
         set("ethAddress", ethAddr);

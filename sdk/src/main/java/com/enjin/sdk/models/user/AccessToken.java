@@ -17,14 +17,16 @@ import lombok.ToString;
 public class AccessToken {
 
     /**
-     * The app id the token is for.
+     * -- GETTER --
+     * Returns the application id the token is for.
      *
      * @return the app id.
      */
     private Integer appId;
 
     /**
-     * The access token.
+     * -- GETTER --
+     * Returns the access token.
      *
      * @return the access token.
      */
@@ -32,7 +34,8 @@ public class AccessToken {
     private String token;
 
     /**
-     * The refresh token.
+     * -- GETTER --
+     * Returns the refresh token.
      *
      * @return the refresh token.
      */

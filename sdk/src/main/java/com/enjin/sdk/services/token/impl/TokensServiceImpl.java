@@ -16,10 +16,20 @@ import com.enjin.sdk.services.token.TokensService;
 
 import retrofit2.Retrofit;
 
+/**
+ * Implementation class of {@link TokensService}.
+ *
+ * @see TokensService
+ */
 public class TokensServiceImpl extends GraphQLServiceBase implements TokensService {
 
     private final TokensRetrofitService service;
 
+    /**
+     * Sole constructor.
+     *
+     * @param retrofit a retrofit adapter
+     */
     public TokensServiceImpl(Retrofit retrofit) {
         this.service = retrofit.create(TokensRetrofitService.class);
     }

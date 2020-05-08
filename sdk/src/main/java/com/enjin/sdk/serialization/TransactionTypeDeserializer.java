@@ -7,6 +7,9 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 
+/**
+ * A Gson serializer that can deserialize a {@link TransactionType}.
+ */
 public class TransactionTypeDeserializer implements JsonDeserializer<TransactionType> {
 
     @Override

@@ -4,7 +4,7 @@ import com.enjin.sdk.models.PaginationRequest;
 import com.enjin.sdk.services.identity.IdentitiesService;
 
 /**
- * A builder for getting identities from the Trusted platform.
+ * An object class for getting identities from the Trusted Platform.
  *
  * @author Evan Lindsay
  * @see IdentitiesService
@@ -16,24 +16,31 @@ public class GetIdentities extends PaginationRequest<GetIdentities> implements I
      *
      * @param identityId the identity id.
      *
-     * @return the builder.
+     * @return this request.
      */
     public GetIdentities identityId(Integer identityId) {
         set("id", identityId);
         return this;
     }
 
+    /**
+     * The id of the application.
+     *
+     * @param appId the app id.
+     *
+     * @return this request.
+     */
     public GetIdentities appId(Integer appId) {
         set("appId", appId);
         return this;
     }
 
     /**
-     * The ethereum address linked to the identity.
+     * The Ethereum address linked to the identity.
      *
-     * @param ethAddr the ethereum address.
+     * @param ethAddr the Ethereum address.
      *
-     * @return the builder.
+     * @return this request.
      */
     public GetIdentities ethAddr(String ethAddr) {
         set("ethAddress", ethAddr);
@@ -45,7 +52,7 @@ public class GetIdentities extends PaginationRequest<GetIdentities> implements I
      *
      * @param linkingCode the linking code.
      *
-     * @return the builder.
+     * @return this request.
      */
     public GetIdentities linkingCode(String linkingCode) {
         set("linkingCode", linkingCode);

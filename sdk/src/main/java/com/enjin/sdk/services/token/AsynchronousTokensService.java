@@ -19,7 +19,7 @@ import com.enjin.sdk.models.token.event.TokenEvent;
 public interface AsynchronousTokensService {
 
     /**
-     * Gets app tokens that match the query parameters.
+     * Gets application tokens that match the query parameters.
      *
      * @param query    the query.
      * @param callback the callback.
@@ -27,12 +27,30 @@ public interface AsynchronousTokensService {
     void getTokensAsync(GetTokens query,
                         HttpCallback<GraphQLResponse<List<Token>>> callback);
 
+    /**
+     * Gets an application token that matches the query parameters.
+     *
+     * @param query    the query.
+     * @param callback the callback.
+     */
     void getTokenAsync(GetToken query,
                        HttpCallback<GraphQLResponse<Token>> callback);
 
+    /**
+     * Gets token events that match the query parameters.
+     *
+     * @param query    the query.
+     * @param callback the callback.
+     */
     void getTokenEventsAsync(GetTokenEvents query,
                              HttpCallback<GraphQLResponse<List<TokenEvent>>> callback);
 
+    /**
+     * Invalidates a token's cached metadata.
+     *
+     * @param query    the query.
+     * @param callback the callback.
+     */
     void invalidateTokenMetaAsync(InvalidateTokenMetadata query,
                                   HttpCallback<GraphQLResponse<Boolean>> callback);
 

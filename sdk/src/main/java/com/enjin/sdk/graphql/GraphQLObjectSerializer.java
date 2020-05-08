@@ -6,15 +6,28 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 
+/**
+ * A class for serializing objects in a GraphQL format.
+ */
 public class GraphQLObjectSerializer {
 
     private Object obj;
     private StringBuilder builder;
 
+    /**
+     * Constructs the serializer around the provided object.
+     *
+     * @param obj the object to be serialized.
+     */
     public GraphQLObjectSerializer(Object obj) {
         this.obj = obj;
     }
 
+    /**
+     * Serializes the object.
+     *
+     * @return the serialized object.
+     */
     public String serialize() {
         builder = new StringBuilder();
         serialize(obj);

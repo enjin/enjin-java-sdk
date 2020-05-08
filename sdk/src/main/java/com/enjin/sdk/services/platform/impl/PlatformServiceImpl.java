@@ -10,10 +10,20 @@ import com.enjin.sdk.services.platform.PlatformService;
 
 import retrofit2.Retrofit;
 
+/**
+ * Implementation class of {@link PlatformService}.
+ *
+ * @see PlatformService
+ */
 public class PlatformServiceImpl extends GraphQLServiceBase implements PlatformService {
 
     private PlatformRetrofitService service;
 
+    /**
+     * Sole constructor.
+     *
+     * @param retrofit a retrofit adapter.
+     */
     public PlatformServiceImpl(Retrofit retrofit) {
         this.service = retrofit.create(PlatformRetrofitService.class);
     }

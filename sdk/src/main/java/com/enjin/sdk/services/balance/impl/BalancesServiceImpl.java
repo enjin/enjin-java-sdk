@@ -12,10 +12,20 @@ import com.enjin.sdk.services.balance.BalancesService;
 
 import retrofit2.Retrofit;
 
+/**
+ * Implementation class of {@link BalancesService}.
+ *
+ * @see BalancesService
+ */
 public class BalancesServiceImpl extends GraphQLServiceBase implements BalancesService {
 
     private final BalancesRetrofitService service;
 
+    /**
+     * Sole constructor.
+     *
+     * @param retrofit the retrofit adapter
+     */
     public BalancesServiceImpl(Retrofit retrofit) {
         this.service = retrofit.create(BalancesRetrofitService.class);
     }

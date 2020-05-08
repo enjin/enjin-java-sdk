@@ -4,13 +4,20 @@ import com.enjin.sdk.models.PaginationRequest;
 import com.enjin.sdk.services.token.TokensService;
 
 /**
- * The results of a get token request.
+ * An object class for getting tokens from the Trusted Platform.
  *
  * @author Evan Lindsay
  * @see TokensService
  */
 public class GetTokens extends PaginationRequest<GetTokens> implements TokenFragment<GetTokens> {
 
+    /**
+     * The application's id.
+     *
+     * @param appId the app id.
+     *
+     * @return this request.
+     */
     public GetTokens appId(Integer appId) {
         set("appId", appId);
         return this;
@@ -21,7 +28,7 @@ public class GetTokens extends PaginationRequest<GetTokens> implements TokenFrag
      *
      * @param tokenId the token id.
      *
-     * @return the builder.
+     * @return this request.
      */
     public GetTokens tokenId(String tokenId) {
         set("id", tokenId);
@@ -33,7 +40,7 @@ public class GetTokens extends PaginationRequest<GetTokens> implements TokenFrag
      *
      * @param name the token name.
      *
-     * @return the builder.
+     * @return this request.
      */
     public GetTokens name(String name) {
         set("name", name);
@@ -43,9 +50,9 @@ public class GetTokens extends PaginationRequest<GetTokens> implements TokenFrag
     /**
      * The token creator.
      *
-     * @param creator creator ethereum address.
+     * @param creator the creator's Ethereum address.
      *
-     * @return the builder.
+     * @return this request.
      */
     public GetTokens creator(String creator) {
         set("creator", creator);
@@ -57,7 +64,7 @@ public class GetTokens extends PaginationRequest<GetTokens> implements TokenFrag
      *
      * @param totalSupply the total supply.
      *
-     * @return the builder.
+     * @return this request.
      */
     public GetTokens totalSupply(String totalSupply) {
         set("totalSupply", totalSupply);
@@ -69,7 +76,7 @@ public class GetTokens extends PaginationRequest<GetTokens> implements TokenFrag
      *
      * @param reserve the reserve amount.
      *
-     * @return the builder.
+     * @return this request.
      */
     public GetTokens reserve(String reserve) {
         set("reserve", reserve);
@@ -81,7 +88,7 @@ public class GetTokens extends PaginationRequest<GetTokens> implements TokenFrag
      *
      * @param supplyModel the supply model.
      *
-     * @return the builder.
+     * @return this request.
      */
     public GetTokens supplyModel(TokenSupplyModel supplyModel) {
         set("supplyModel", supplyModel);
@@ -93,7 +100,7 @@ public class GetTokens extends PaginationRequest<GetTokens> implements TokenFrag
      *
      * @param meltValue the melt value.
      *
-     * @return the builder.
+     * @return this request.
      */
     public GetTokens meltValue(String meltValue) {
         set("meltValue", meltValue);
@@ -105,7 +112,7 @@ public class GetTokens extends PaginationRequest<GetTokens> implements TokenFrag
      *
      * @param meltFeeRatio the fee ratio.
      *
-     * @return the builder.
+     * @return this request.
      */
     public GetTokens meltFeeRatio(String meltFeeRatio) {
         set("meltFeeRatio", meltFeeRatio);
@@ -115,7 +122,7 @@ public class GetTokens extends PaginationRequest<GetTokens> implements TokenFrag
     /**
      * Whether non-fungible or not.
      *
-     * @return the builder.
+     * @return this request.
      */
     public GetTokens nonFungibleOnly() {
         set("nonFungible", true);
@@ -127,7 +134,7 @@ public class GetTokens extends PaginationRequest<GetTokens> implements TokenFrag
      *
      * @param firstBlock the block.
      *
-     * @return the builder.
+     * @return this request.
      */
     public GetTokens firstBlock(int firstBlock) {
         set("firstBlock", firstBlock);
@@ -139,7 +146,7 @@ public class GetTokens extends PaginationRequest<GetTokens> implements TokenFrag
      *
      * @param blockHeight the block height.
      *
-     * @return the builder.
+     * @return this request.
      */
     public GetTokens blockHeight(int blockHeight) {
         set("blockHeight", blockHeight);
@@ -149,7 +156,7 @@ public class GetTokens extends PaginationRequest<GetTokens> implements TokenFrag
     /**
      * Whether the token is marked for deletion or not.
      *
-     * @return the builder.
+     * @return this request.
      */
     public GetTokens markForDelete() {
         set("markedForDelete", true);
