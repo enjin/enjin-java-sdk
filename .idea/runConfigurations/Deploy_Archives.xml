@@ -10,7 +10,10 @@
       </option>
       <option name="taskNames">
         <list>
+          <option value="clean" />
           <option value="build" />
+          <option value="javadocsJar" />
+          <option value="sourcesJar" />
           <option value="uploadArchives" />
         </list>
       </option>

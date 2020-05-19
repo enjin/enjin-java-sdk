@@ -66,15 +66,10 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '5.0.0'
     id 'com.bmuschko.nexus' version '2.3.1'
     id 'io.codearte.nexus-staging' version '0.21.1'
-    id 'net.ltgt.errorprone' version '1.1.1'
-    id 'jacoco'
-    id 'checkstyle'
     id 'com.github.ben-manes.versions' version '0.25.0'
 }
 
 allprojects {
-    apply from: "${rootProject.rootDir}/gradle/spotless.gradle"
-
     group = GROUP
     version = VERSION_NAME
 
@@ -92,21 +87,10 @@ subprojects {
     apply plugin: 'java-library'
     apply plugin: 'maven'
     apply plugin: 'io.freefair.lombok'
-    apply plugin: 'net.ltgt.errorprone'
     apply plugin: 'com.github.johnrengelman.shadow'
-    apply plugin: 'jacoco'
-    apply plugin: 'checkstyle'
 
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
-
-    tasks.withType(JavaCompile).configureEach {
-        options.errorprone {
-            enabled = JavaVersion.current() < JavaVersion.VERSION_12
-            disable('UnusedVariable')
-            disable('UnusedMethod')
-        }
-    }
 
     javadoc {
         dependsOn delombok
@@ -123,40 +107,6 @@ subprojects {
 
     lombok {
         config['lombok.addLombokGeneratedAnnotation'] = 'false'
-    }
-
-    test {
-        reports {
-            html.enabled = false
-        }
-    }
-
-    jacoco {
-        toolVersion = '0.8.4'
-    }
-
-    jacocoTestReport {
-        reports {
-            xml.enabled = true
-            html.destination file("${buildDir}/reports/tests/test")
-        }
-    }
-
-    checkstyle {
-        toolVersion = '8.24'
-        sourceSets = [project.sourceSets.main]
-    }
-
-    tasks.withType(Checkstyle) {
-        reports {
-            xml.enabled false
-            html.enabled true
-        }
-    }
-
-    dependencies {
-        errorproneJavac 'com.google.errorprone:javac:9+181-r4173-1'
-        errorprone 'com.google.errorprone:error_prone_core:2.3.3'
     }
 }
 
