@@ -20,18 +20,6 @@ dependencies {
     implementation deps.okhttpUrlConnection
     implementation deps.retrofit
     implementation deps.retrofitGson
-    implementation deps.supportOptional
-    implementation deps.nocatch
-
-    testImplementation deps.junit
-    testImplementation deps.truth
-    testImplementation deps.mockWebServer
-    testImplementation deps.awaitility
-    testImplementation deps.toStringVerifier
-    testImplementation deps.equalsVerifier
-    testImplementation deps.mockito
-    testImplementation deps.powermockJunit4
-    testImplementation deps.powermockMockito2
 }
 
 task processSource(type: Sync) {

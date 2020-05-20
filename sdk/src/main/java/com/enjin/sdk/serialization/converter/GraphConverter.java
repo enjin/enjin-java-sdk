@@ -7,6 +7,7 @@ import java.lang.reflect.Type;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 
 import com.enjin.sdk.graphql.GraphQLError;
@@ -17,7 +18,6 @@ import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.models.PaginationCursor;
 import com.enjin.sdk.serialization.BigIntegerDeserializer;
 import com.enjin.sdk.utils.GsonUtil;
-import com.github.dmstocking.optional.java.util.Optional;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;

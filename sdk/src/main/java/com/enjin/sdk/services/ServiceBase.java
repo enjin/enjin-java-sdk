@@ -5,7 +5,7 @@ import java.util.logging.Level;
 import com.enjin.sdk.http.HttpCallback;
 import com.enjin.sdk.http.HttpResponse;
 
-import com.github.nocatch.NoCatch;
+import lombok.SneakyThrows;
 import lombok.extern.java.Log;
 import retrofit2.Call;
 
@@ -22,8 +22,9 @@ public class ServiceBase {
      * @param <T>  the type of the request and response
      * @return     the response
      */
+    @SneakyThrows
     protected <T> HttpResponse<T> execute(Call<T> call) {
-        retrofit2.Response<T> response = NoCatch.noCatch(() -> call.execute());
+        retrofit2.Response<T> response = call.execute();
         return new HttpResponse<>(response.code(), response.body());
     }
 

@@ -1,10 +1,10 @@
 package com.enjin.sdk;
 
 import com.enjin.sdk.utils.LoggerProvider;
-import com.github.dmstocking.optional.java.util.Optional;
 import okhttp3.HttpUrl;
 import okhttp3.logging.HttpLoggingInterceptor.Level;
 
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 /**

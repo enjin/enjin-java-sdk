@@ -1,9 +1,8 @@
 package com.enjin.sdk.utils.reflection;
 
 import java.lang.reflect.Field;
+import java.util.Optional;
 import java.util.logging.Level;
-
-import com.github.dmstocking.optional.java.util.Optional;
 
 import lombok.Getter;
 import lombok.extern.java.Log;

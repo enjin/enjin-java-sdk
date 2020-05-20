@@ -1,8 +1,9 @@
 package com.enjin.sdk.utils;
 
-import com.github.dmstocking.optional.java.util.Optional;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+
+import java.util.Optional;
 
 /**
  * Utility class for use with Gson.

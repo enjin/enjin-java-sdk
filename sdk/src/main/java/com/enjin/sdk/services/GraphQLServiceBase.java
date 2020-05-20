@@ -5,11 +5,11 @@ import java.util.logging.Level;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpCallback;
 import com.enjin.sdk.http.HttpResponse;
-import com.github.nocatch.NoCatch;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import lombok.SneakyThrows;
 import lombok.extern.java.Log;
 import okhttp3.MediaType;
 import okhttp3.ResponseBody;
@@ -33,8 +33,9 @@ public class GraphQLServiceBase extends ServiceBase {
      * @param <T>  the type of the request and response
      * @return     the response
      */
+    @SneakyThrows
     protected <T> HttpResponse<GraphQLResponse<T>> executeGraphQLCall(Call<GraphQLResponse<T>> call) {
-        retrofit2.Response<GraphQLResponse<T>> response = NoCatch.noCatch(() -> call.execute());
+        retrofit2.Response<GraphQLResponse<T>> response = call.execute();
         return createResult(response);
     }
 
@@ -72,6 +73,7 @@ public class GraphQLServiceBase extends ServiceBase {
      * @param <T>      the type of the response
      * @return         the response wrapper
      */
+    @SneakyThrows
     protected <T> HttpResponse<GraphQLResponse<T>> createResult(retrofit2.Response<GraphQLResponse<T>> response) {
         int code = response.code();
         GraphQLResponse<T> body = null;
@@ -82,7 +84,7 @@ public class GraphQLServiceBase extends ServiceBase {
             ResponseBody errorBody = response.errorBody();
             if (errorBody.contentType().equals(JSON)) {
                 TypeToken token = new TypeToken<GraphQLResponse<T>>(){};
-                String rawBody = NoCatch.noCatch(() -> errorBody.string());
+                String rawBody = errorBody.string();
                 body = (GraphQLResponse<T>) GSON.fromJson(rawBody, token.getRawType());
             }
         }

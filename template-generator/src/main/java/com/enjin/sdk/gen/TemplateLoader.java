@@ -1,6 +1,6 @@
 package com.enjin.sdk.gen;
 
-import com.github.nocatch.NoCatch;
+import lombok.SneakyThrows;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -41,8 +41,9 @@ public class TemplateLoader {
 
     }
 
+    @SneakyThrows
     private void loadRawTemplate(File file) {
-        List<String> lines = NoCatch.noCatch(() -> Files.readAllLines(file.toPath()));
+        List<String> lines = Files.readAllLines(file.toPath());
         String key = file.getName().replace(".gql", "");
 
         if (key.endsWith("Fragment"))
