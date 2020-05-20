@@ -12,7 +12,6 @@
         <list>
           <option value="build" />
           <option value="installArchive" />
-          <option value="install" />
         </list>
       </option>
       <option name="vmOptions" value="" />

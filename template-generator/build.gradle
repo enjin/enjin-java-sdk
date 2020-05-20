@@ -1,5 +1,3 @@
-POM_ARTIFACT_ID = 'template-generator'
-
 dependencies {
     implementation deps.codeGenApi
     implementation deps.javapoet

@@ -1,7 +1,13 @@
 import org.apache.tools.ant.filters.ReplaceTokens
 
+buildscript {
+    dependencies {
+        classpath "com.vanniktech:gradle-maven-publish-plugin:${mavenPublishVersion}"
+    }
+}
+
 plugins {
-    id 'io.freefair.code-generator' version '5.0.0-rc6'
+    id 'io.freefair.code-generator' version "${codeGenVersion}"
 }
 
 apply from: "${rootProject.rootDir}/gradle/ghPages.gradle"
