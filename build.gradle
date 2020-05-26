@@ -15,6 +15,11 @@ buildscript {
     ext.local = new Properties()
     File file = project.rootProject.file('local.properties')
     if (file.exists()) local.load(file.newDataInputStream())
+
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
 }
 
 plugins {
