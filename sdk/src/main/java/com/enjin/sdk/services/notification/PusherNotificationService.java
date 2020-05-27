@@ -101,10 +101,6 @@ public class PusherNotificationService implements NotificationsService {
                         public void onConnectionStateChange(ConnectionStateChange change) {
                             ConnectionState previous = change.getPreviousState();
                             ConnectionState current = change.getCurrentState();
-
-                            loggerProvider.debug(String.format("State changed from %s to %s.",
-                                                                             previous,
-                                                                             current));
                         }
 
                         @Override
