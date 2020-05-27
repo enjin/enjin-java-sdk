@@ -305,14 +305,12 @@ public class PusherNotificationService implements NotificationsService {
 
     private void bind(@NonNull Channel channel) {
         for (EventType event : EventType.filterByChannelTypes(channel.getName())) {
-            loggerProvider.debug(String.format("Event Channel Bound: %s", event.getEventType()));
             channel.bind(event.getEventType(), this.listener);
         }
     }
 
     private void unbind(@NonNull Channel channel) {
         for (EventType channelEvent : EventType.filterByChannelTypes(channel.getName())) {
-            loggerProvider.debug(String.format("Event Channel Unbound: %s", channelEvent.getEventType()));
             channel.unbind(channelEvent.getEventType(), this.listener);
         }
     }
