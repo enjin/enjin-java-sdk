@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
+import java.util.stream.Collectors;
 
 public class Template {
 
@@ -60,7 +61,7 @@ public class Template {
                 for (String reference : fragment.referencedFragments)
                     fragmentsQueue.add(fragments.get(reference));
 
-                parameters.addAll(fragment.parameters);
+                parameters.addAll(fragment.parameters.stream().filter(p -> !parameters.contains(p)).collect(Collectors.toList()));
 
                 builder.append('\n').append(fragment.compile());
                 processedFragments.add(fragment.key);
