@@ -80,14 +80,9 @@ public class TrustedPlatformInterceptor implements Interceptor {
         return chain.proceed(builder.build());
     }
 
-    /**
-     * Sets the authentication data.
-     *
-     * @param data the data
-     */
-    public void auth(AccessToken data) {
-        tokenType = "Bearer";
-        token = data.getAccessToken();
+    public void auth(String token) {
+        this.tokenType = "Bearer";
+        this.token = token;
     }
 
     /**
