@@ -258,6 +258,16 @@ public final class TrustedPlatformClientImpl implements TrustedPlatformClient {
     }
 
     @Override
+    public void auth(AccessToken token) {
+        auth(token.getAccessToken());
+    }
+
+    @Override
+    public void auth(String token) {
+        trustedPlatformInterceptor.auth(token);
+    }
+
+    @Override
     public boolean isAuthenticated() {
         return trustedPlatformInterceptor.isAuthenticated();
     }
@@ -265,7 +275,7 @@ public final class TrustedPlatformClientImpl implements TrustedPlatformClient {
     private void authApp(int appId, HttpResponse<GraphQLResponse<AccessToken>> response) {
         if (response.isSuccess() && response.body().isSuccess()) {
             AccessToken body = response.body().getData();
-            trustedPlatformInterceptor.auth(body);
+            auth(body.getAccessToken());
             setAppId(appId);
         }
     }

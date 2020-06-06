@@ -110,6 +110,20 @@ public interface TrustedPlatformClient extends Closeable {
     void authAppAsync(int id, String secret, HttpCallback<GraphQLResponse<AccessToken>> callback);
 
     /**
+     * Configures the client to use the specified access token instance.
+     *
+     * @param token the token instance
+     */
+    void auth(AccessToken token);
+
+    /**
+     * Configures the client to use the specified access token string.
+     *
+     * @param token the access token
+     */
+    void auth(String token);
+
+    /**
      * Checks if the client is authenticated.
      *
      * @return true if the client is authenticated, else false
