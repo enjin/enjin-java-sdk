@@ -1,7 +1,10 @@
 package com.enjin.sdk.models.token;
 
 import com.enjin.sdk.models.app.App;
+import com.enjin.sdk.models.user.User;
+import com.enjin.sdk.models.wallet.Wallet;
 import com.enjin.sdk.services.token.TokensService;
+import com.google.gson.JsonElement;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -42,7 +45,7 @@ public class Token {
 
     /**
      * -- GETTER --
-     * Returns the {@link App} the token belongs.
+     * Returns the id of the {@link App} the token belongs to.
      *
      * @return the app id
      */
@@ -58,9 +61,9 @@ public class Token {
 
     /**
      * -- GETTER --
-     * Returns the user who created the item.
+     * Returns the {@link Wallet} address of the {@link User} who created the token.
      *
-     * @return the user
+     * @return the wallet address
      */
     private String creator;
 
@@ -189,6 +192,22 @@ public class Token {
      * @return the uri
      */
     private String itemURI;
+
+    /**
+     * -- GETTER --
+     * Returns the hosted metadata for the token.
+     *
+     * @return the metadata
+     */
+    private JsonElement metadata;
+
+    /**
+     * -- GETTER --
+     * Returns the variant mode of the token.
+     *
+     * @return the variant mode
+     */
+    private TokenVariantMode variantMode;
 
     /**
      * -- GETTER --

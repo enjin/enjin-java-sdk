@@ -2,6 +2,7 @@ package com.enjin.sdk.models.user;
 
 import java.util.List;
 
+import com.enjin.sdk.models.app.App;
 import com.enjin.sdk.models.identity.Identity;
 import com.enjin.sdk.services.user.UsersService;
 
@@ -57,6 +58,14 @@ public class User {
      * @return true when this user has a verified email address, false otherwise.
      */
     private Boolean emailVerified;
+
+    /**
+     * -- GETTER --
+     * Returns the application the user belongs to.
+     *
+     * @return the app.
+     */
+    private App app;
 
     /**
      * -- GETTER --

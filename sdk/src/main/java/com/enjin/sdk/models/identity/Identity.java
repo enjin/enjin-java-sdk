@@ -1,8 +1,8 @@
 package com.enjin.sdk.models.identity;
 
+import com.enjin.sdk.models.user.User;
 import com.enjin.sdk.models.wallet.Wallet;
 import com.enjin.sdk.services.identity.IdentitiesService;
-
 import lombok.Getter;
 import lombok.ToString;
 
@@ -47,6 +47,14 @@ public class Identity {
      * @return the url.
      */
     private String linkingCodeQr;
+
+    /**
+     * -- GETTER --
+     * Returns the user linked to the identity.
+     *
+     * @return the user.
+     */
+    private User user;
 
     /**
      * -- GETTER --
