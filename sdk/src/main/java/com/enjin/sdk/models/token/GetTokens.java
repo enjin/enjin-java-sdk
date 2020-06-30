@@ -1,6 +1,7 @@
 package com.enjin.sdk.models.token;
 
 import com.enjin.sdk.models.PaginationRequest;
+import com.enjin.sdk.models.token.data.TokenFilter;
 import com.enjin.sdk.services.token.TokensService;
 
 /**
@@ -160,6 +161,30 @@ public class GetTokens extends PaginationRequest<GetTokens> implements TokenFrag
      */
     public GetTokens markForDelete() {
         set("markedForDelete", true);
+        return this;
+    }
+
+    /**
+     * Sets the request to filter to the transferable settings.
+     *
+     * @param transferable the transferable setting.
+     *
+     * @return this request.
+     */
+    public GetTokens transferable(TokenTransferable transferable) {
+        set("transferable", transferable);
+        return this;
+    }
+
+    /**
+     * Sets the token filter data.
+     *
+     * @param data the data.
+     *
+     * @return this request.
+     */
+    public GetTokens filter(TokenFilter data) {
+        set("filter", data);
         return this;
     }
 
