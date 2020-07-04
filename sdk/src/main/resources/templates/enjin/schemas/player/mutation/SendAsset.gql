@@ -1,0 +1,20 @@
+#namespace enjin.sdk.player.SendAsset
+#import enjin.sdk.shared.Transaction
+
+#arg recipientAddress EthAddress!
+#arg assetId String!
+#arg assetIndex String
+#arg value BigInt
+#arg data String
+
+mutation {
+    result: SendAsset(
+        to: $recipientAddress,
+        assetId: $assetId,
+        assetIndex: $assetIndex,
+        value: $value,
+        data: $data
+    ) {
+        ...Transaction
+    }
+}

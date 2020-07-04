@@ -1,9 +1,0 @@
-query {
-    result: EnjinIdentity(
-        id: $id
-    ) {
-        ...IdentityFragment
-    }
-}
-
-$id: Int

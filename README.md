@@ -19,7 +19,7 @@ Sign up to Enjin Cloud: [Kovan (Testnet)](https://kovan.cloud.enjin.io/),
     * [Maven](#maven)
     * [Gradle](#gradle)
     * [Git](#git)
-* [Example Project](#example-project)
+* [Quick Start](#quick-start)
 * [Contributing](#contributing)
     * [Issues](#issues)
     * [Pull Requests](#pull-requests)
@@ -38,7 +38,7 @@ The Enjin Java SDK requires at a minimum Java 8.
 <dependency>
     <groupId>com.enjin</groupId>
     <artifactId>blockchain-sdk</artifactId>
-    <version>1.0.6</version>
+    <version>2.0.0-alpha.1</version>
 </dependency>
 ```
 
@@ -46,7 +46,7 @@ The Enjin Java SDK requires at a minimum Java 8.
 
 ```groovy
 dependencies {
-    implementation 'com.enjin:blockchain-sdk:1.0.6'
+    implementation 'com.enjin:blockchain-sdk:2.0.0-alpha.1'
 }
 ```
 
@@ -61,50 +61,57 @@ For those that do not use Maven or Gradle, the SDK may be built manually and add
 3. Navigate to the `build/libs` folder in the `sdk` module.
 4. Add the jar ending in `-all` to your project's classpath.
 
-## Example Project
+## Quick Start
 
-### Create the Example Project
+This example showcases how to quickly create and authenticate a client on the project schema which will then allow us to
+make further requests to the platform.
 
-1. Register if you have not done so already.
-2. Select `Create Project` from the `Platform` page.
-3. Give the project a name and description (the image is optional).
-4. Select `Save Changes` to create the project.
+```java
+import com.enjin.sdk.EnjinHosts;
+import com.enjin.sdk.ProjectClient;
+import com.enjin.sdk.graphql.GraphQLResponse;
+import com.enjin.sdk.models.AccessToken;
+import com.enjin.sdk.schemas.project.queries.AuthProject;
 
-### Create Example Assets
+public class Main {
 
-1. Open your project by selecting it from the `Platform` page.
-2. Go to `Assets` and select create `Create Asset`.
-3. Set the name, total supply, value per asset, ENJ returned on melt, and the starting supply. All other details may be
-   left as their default values.
-4. Select `Create Asset`.
+    public static void main(String... args) {
+        // Builds the project client to run on the Kovan test network.
+        // See: https://kovan.cloud.enjin.io to sign up for the test network.
+        ProjectClient client = new ProjectClient(EnjinHosts.KOVAN);
 
-### Configuring the Example
+        // Creates the request to authenticate the client.
+        // Replace the appropriate strings with the project's UUID and secret.
+        AuthProject req = new AuthProject()
+                .uuid("<the-project's-uuid>")
+                .secret("<the-project's-secret>");
 
-Next we need the required details to use for our project. You will need the project's UUID, the project's secret, and
-the IDs of the assets you created.
+        // Sends the request to the platform and gets the response.
+        GraphQLResponse<AccessToken> res = client.authProject(req);
 
-#### Getting the Project UUID and Secret
+        // Checks if the request was successful.
+        if (!res.isSuccess()) {
+            System.out.println("AuthProject request failed");
+            client.close();
+            return;
+        }
 
-To get the ID and secret of your project by using the query below on the Enjin GraphQL Playground.
+        // Authenticates the client with the access token in the response.
+        client.auth(res.getData().getToken());
 
-```graphql
-query {
-  EnjinApp {
-    id
-    secret
-    identity {
-      wallet {
-        ethAddress
-      }
+        // Checks if the client was authenticated.
+        if (client.isAuthenticated()) {
+            System.out.println("Client is now authenticated");
+        } else {
+            System.out.println("Client was not authenticated");
+        }
+
+        // Closes client as part of cleanup and free any resources.
+        client.close();
     }
-  }
+
 }
 ```
-
-#### Getting the Asset IDs
-
-You can find the IDs of the assets you created by going to the `Assets` tab of your project. The IDs are under the
-`Item ID` column.
 
 ## Contributing
 

@@ -1,3 +1,18 @@
+/* Copyright 2021 Enjin Pte. Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.enjin.sdk.serialization.converter;
 
 import java.io.IOException;
@@ -8,16 +23,14 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Level;
 
 import com.enjin.sdk.graphql.GraphQLError;
-import com.enjin.sdk.graphql.GraphQLProcessor;
-import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.graphql.GraphQLRequestBody;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.models.PaginationCursor;
 import com.enjin.sdk.serialization.BigIntegerDeserializer;
 import com.enjin.sdk.utils.GsonUtil;
+import com.enjin.sdk.utils.LogLevel;
+import com.enjin.sdk.utils.LoggerProvider;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -25,18 +38,14 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
-import lombok.extern.java.Log;
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
+import lombok.Getter;
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
 
 /**
- * Body for GraphQL requests and responses, closed for modification
- * but open for extension.
+ * Body for GraphQL requests and responses, closed for modification but open for extension.
  */
-@Log
 public class GraphConverter extends Converter.Factory {
 
     private static final String DATA_KEY = "data";
@@ -49,23 +58,6 @@ public class GraphConverter extends Converter.Factory {
     private static final String CURSOR_PATH = RESULT_PATH + '.' + CURSOR_KEY;
 
     /**
-     * Protected GraphQL processor.
-     */
-    protected GraphQLProcessor graphProcessor;
-
-    /**
-     * Protected parser to make use of the default parse settings.
-     */
-    protected final JsonParser parser = new JsonParser();
-    /**
-     * Protected gson builder to make use of custom builder settings for serialization.
-     */
-    protected final Gson toJson = new GsonBuilder()
-            .enableComplexMapKeySerialization()
-            .setLenient()
-            .registerTypeAdapter(BigInteger.class, new BigIntegerDeserializer())
-            .create();
-    /**
      * Protected gson builder to make use of custom builder settings for deserialization.
      */
     protected final Gson fromJson = new GsonBuilder()
@@ -76,24 +68,37 @@ public class GraphConverter extends Converter.Factory {
             .create();
 
     /**
-     * Protected constructor because we want to make use of the
-     * Factory Pattern to create our converter.
-     * <br>
+     * -- Getter --
+     * @return the logger provider
+     */
+    @Getter
+    private final LoggerProvider loggerProvider;
+
+    /**
+     * Protected constructor because we want to make use of the Factory Pattern to create our converter.
      */
     protected GraphConverter() {
-        this.graphProcessor = GraphQLProcessor.getInstance();
+        this(null);
     }
 
     /**
-     * HttpResponse body converter delegates logic processing to a child class that handles
-     * wrapping and deserialization of the json response results.
+     * Constructs a graph converter that uses the given logger provider.
      *
-     * @param annotations All the annotation applied to the requesting Call method
-     * @param retrofit    The retrofit object representing the response
-     * @param type        The generic type declared on the Call method
+     * @param loggerProvider the logger provider
+     */
+    protected GraphConverter(LoggerProvider loggerProvider) {
+        this.loggerProvider = loggerProvider;
+    }
+
+    /**
+     * HttpResponse body converter delegates logic processing to a child class that handles wrapping and deserialization
+     * of the json response results.
+     *
+     * @param annotations all the annotation applied to the requesting Call method
+     * @param retrofit the retrofit object representing the response
+     * @param type the generic type declared on the Call method
      *
      * @see GraphResponseConverter
-     * <br>
      * @see retrofit2.Call
      */
     @Override
@@ -110,41 +115,27 @@ public class GraphConverter extends Converter.Factory {
     }
 
     /**
-     * HttpResponse body converter delegates logic processing to a child class that handles
-     * wrapping and deserialization of the json response results.
-     *
-     * @param parameterAnnotations All the annotation applied to request parameters
-     * @param methodAnnotations    All the annotation applied to the requesting method
-     * @param retrofit             The retrofit object representing the response
-     * @param type                 The type of the parameter of the request
-     *
-     * @see GraphRequestConverter
-     * <br>
-     */
-    @Override
-    public Converter<GraphQLRequest<?>, RequestBody> requestBodyConverter(Type type,
-                                                                          Annotation[] parameterAnnotations,
-                                                                          Annotation[] methodAnnotations,
-                                                                          Retrofit retrofit) {
-        if (GraphQLRequest.class.isAssignableFrom((Class<?>) type)) {
-            return new GraphRequestConverter(methodAnnotations);
-        }
-
-        return null;
-    }
-
-    /**
      * Returns a new graph converter.
      *
-     * @return the created graph converter.
+     * @return the created graph converter
      */
     public static GraphConverter create() {
         return new GraphConverter();
     }
 
     /**
-     * GraphQL response body converter to unwrap nested object results,
-     * resulting in a smaller generic tree for requests.
+     * Returns a new graph converter that uses the given logger provider.
+     *
+     * @param loggerProvider the logger provider
+     * @return the created graph converter
+     */
+    public static GraphConverter create(LoggerProvider loggerProvider) {
+        return new GraphConverter(loggerProvider);
+    }
+
+    /**
+     * GraphQL response body converter to unwrap nested object results, resulting in a smaller generic tree for
+     * requests.
      */
     protected class GraphResponseConverter<T> implements Converter<ResponseBody, GraphQLResponse<T>> {
         protected ParameterizedType graphResponseType;
@@ -153,7 +144,7 @@ public class GraphConverter extends Converter.Factory {
         /**
          * Sole constructor.
          *
-         * @param graphResponseType The graph response type.
+         * @param graphResponseType the graph response type
          */
         protected GraphResponseConverter(ParameterizedType graphResponseType) {
             this.graphResponseType = graphResponseType;
@@ -161,14 +152,12 @@ public class GraphConverter extends Converter.Factory {
         }
 
         /**
-         * Converter contains logic on how to handle responses, since GraphQL responses follow
-         * the JsonAPI spec it makes sense to wrap our base query response results and errors response
-         * in here, the logic remains open to the implementation.
-         * <br>
+         * Converter contains logic on how to handle responses, since GraphQL responses follow the JsonAPI spec it makes
+         * sense to wrap our base query response results and errors response in here, the logic remains open to the
+         * implementation.
          *
-         * @param responseBody The retrofit response body received from the network
-         *
-         * @return The type declared in the Call of the request
+         * @param responseBody the retrofit response body received from the network
+         * @return the type declared in the Call of the request
          */
         @Override
         public GraphQLResponse<T> convert(ResponseBody responseBody) {
@@ -180,7 +169,7 @@ public class GraphConverter extends Converter.Factory {
             try {
                 raw = responseBody.string();
 
-                JsonElement elem = parser.parse(raw);
+                JsonElement elem = JsonParser.parseString(raw);
                 if (elem.isJsonObject()) {
                     JsonObject root = elem.getAsJsonObject();
                     result = getResult(root);
@@ -188,7 +177,8 @@ public class GraphConverter extends Converter.Factory {
                     cursor = getCursor(root);
                 }
             } catch (IOException e) {
-                GraphConverter.log.log(Level.SEVERE, "An exception occurred:", e);
+                if (loggerProvider != null)
+                    loggerProvider.log(LogLevel.SEVERE, "An exception occurred:", e);
             }
 
             return new GraphQLResponse<>(raw, result, errors, cursor);
@@ -205,6 +195,8 @@ public class GraphConverter extends Converter.Factory {
 
                 return fromJson.fromJson(result, resultType);
             } else if (GsonUtil.isJsonArray(optional)) {
+                return fromJson.fromJson(optional.get(), resultType);
+            } else if (GsonUtil.isJsonPrimitive(optional)) {
                 return fromJson.fromJson(optional.get(), resultType);
             }
 
@@ -225,43 +217,8 @@ public class GraphConverter extends Converter.Factory {
         private PaginationCursor getCursor(JsonObject root) {
             Optional<JsonElement> optional = GsonUtil.getJsonElement(root, CURSOR_PATH);
 
-            if (!optional.isPresent())
-                return null;
-
-            return fromJson.fromJson(optional.get(), PaginationCursor.class);
+            return optional.map(jsonElement -> fromJson.fromJson(jsonElement, PaginationCursor.class)).orElse(null);
         }
     }
 
-    /**
-     * GraphQL request body converter and injector, uses method annotation for a given retrofit call.
-     */
-    protected class GraphRequestConverter implements Converter<GraphQLRequest<?>, RequestBody> {
-        protected Annotation[] methodAnnotations;
-
-        protected GraphRequestConverter(Annotation[] methodAnnotations) {
-            this.methodAnnotations = methodAnnotations;
-        }
-
-        /**
-         * Converter for the request body, gets the GraphQL query from the method annotation
-         * and constructs a GraphQL request body to send over the network.
-         * <br>
-         *
-         * @param request The constructed builder method of your query with variables
-         *
-         * @return Request body
-         */
-        @Override
-        public RequestBody convert(GraphQLRequest<?> request) {
-            String queryName = graphProcessor.getQueryName(methodAnnotations);
-            String query = graphProcessor.getQuery(queryName);
-
-            if (query == null) {
-                throw new RuntimeException(String.format("Query not registered: %s", queryName));
-            }
-
-            GraphQLRequestBody body = new GraphQLRequestBody(query, request.getVariables());
-            return RequestBody.create(toJson.toJson(body), MediaType.parse("application/graphql"));
-        }
-    }
 }

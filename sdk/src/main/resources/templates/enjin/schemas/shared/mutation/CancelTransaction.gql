@@ -1,0 +1,9 @@
+#namespace enjin.sdk.shared.CancelTransaction
+
+#arg id Int
+
+mutation {
+    result: CancelTransaction(
+        id: $id
+    )
+}

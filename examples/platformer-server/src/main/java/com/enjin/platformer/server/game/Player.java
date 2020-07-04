@@ -1,3 +1,18 @@
+/* Copyright 2021 Enjin Pte. Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.enjin.platformer.server.game;
 
 
@@ -8,9 +23,8 @@ import com.enjin.sdk.graphql.GraphQLError;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpResponse;
 import com.enjin.sdk.models.AccessToken;
-import com.enjin.sdk.models.user.AuthPlayer;
-import com.enjin.sdk.models.user.CreateUser;
-import com.enjin.sdk.models.user.User;
+import com.enjin.sdk.schemas.project.mutations.CreatePlayer;
+import com.enjin.sdk.schemas.project.queries.AuthPlayer;
 import lombok.Getter;
 
 public class Player {
@@ -30,13 +44,13 @@ public class Player {
     }
 
     public void auth() {
-        AuthPlayer input = new AuthPlayer().id(name);
-        server.getSdk().getUserService().authUserAsync(input, this::onAuth);
+        AuthPlayer request = new AuthPlayer().id(name);
+        server.getSdk().authPlayer(request, this::onAuth);
     }
 
     private void register() {
-        CreateUser input = new CreateUser().name(name);
-        server.getSdk().getUserService().createUserAsync(input, this::onRegister);
+        CreatePlayer request = new CreatePlayer().id(name);
+        server.getSdk().createPlayer(request, this::onAuth);
     }
 
     private void onAuth(HttpResponse<GraphQLResponse<AccessToken>> httpResponse) {
@@ -57,19 +71,8 @@ public class Player {
 
         accessToken = graphQLResponse.getData();
         peer.send(new PacketOutAuthenticated(accessToken,
-                                             server.getConfig().getAppId(),
-                                             server.getConfig().getTokens()));
-    }
-
-    private void onRegister(HttpResponse<GraphQLResponse<User>> httpResponse) {
-        if (httpResponse.isEmpty())
-            return;
-
-        GraphQLResponse<User> graphQLResponse = httpResponse.body();
-        if (!graphQLResponse.isSuccess())
-            return;
-
-        auth();
+                                             server.getConfig().getAppUuid(),
+                                             server.getConfig().getAssets()));
     }
 
 }

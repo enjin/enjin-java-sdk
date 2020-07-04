@@ -1,0 +1,12 @@
+#namespace enjin.sdk.project.AuthPlayer
+
+#arg id String!
+
+query {
+    result: AuthPlayer(
+        id: $id
+    ) {
+        accessToken
+        expiresIn
+    }
+}

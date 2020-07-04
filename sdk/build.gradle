@@ -31,6 +31,21 @@ dependencies {
     implementation deps.okhttpUrlConnection
     implementation deps.retrofit
     implementation deps.retrofitGson
+    implementation deps.log4j2Api
+    implementation deps.log4j2Core
+
+    testImplementation(
+            deps.junitPlatform,
+            deps.junitJupiter,
+            deps.mockito,
+            deps.mockitoInline,
+            deps.mockitoJupiter,
+            deps.retrofitMock,
+            deps.awaitility,
+    )
+    testImplementation(deps.mockWebServer) {
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
+    }
 }
 
 task processSource(type: Sync) {
@@ -42,4 +57,10 @@ task processSource(type: Sync) {
 
 compileJava {
     source = processSource.outputs
+}
+
+test {
+    useJUnitPlatform()
+    ignoreFailures true
+    systemProperty 'junit.jupiter.execution.timeout.mode', 'disabled_on_debug'
 }

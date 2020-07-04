@@ -1,121 +1,138 @@
+/* Copyright 2021 Enjin Pte. Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.enjin.sdk.utils;
 
 import lombok.Getter;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
- * Provider class for a {@link Logger}.
+ * Provider class for an object implementing {@link ILogger}.
  *
- * @see Logger
+ * @see ILogger
  */
 public class LoggerProvider {
 
     /**
      * -- GETTER --
-     * Returns the logger object.
      *
      * @return the logger
      */
     @Getter
-    private Logger logger;
-    private Level defaultLevel;
+    private final ILogger logger;
+
     /**
      * -- GETTER --
-     * Determines if the debug level is used.
      *
-     * @return true if the debug level is used, false otherwise
+     * @return the default logging level
      */
     @Getter
-    private boolean debug;
-    private Level debugLevel;
+    private final LogLevel defaultLevel;
 
     /**
-     * Constructs the provider with the specified logger.
+     * -- GETTER --
      *
-     * @param logger the provider
+     * @return the debug logging level
      */
-    public LoggerProvider(Logger logger) {
-        this(logger, false);
+    @Getter
+    private final LogLevel debugLevel;
+
+    /**
+     * Constructs the provider with the given logger.
+     * <p>
+     * The default logging level is set to {@link LogLevel#INFO} and the debug logging level is set to
+     * {@link LogLevel#DEBUG}.
+     * </p>
+     *
+     * @param logger the logger
+     */
+    public LoggerProvider(final ILogger logger) {
+        this(logger, LogLevel.INFO, LogLevel.DEBUG);
     }
 
     /**
-     * Constructs the provider with the specified logger and sets if debug is enabled.
+     * Constructs the provider with the given logger and logging levels.
      *
-     * @param logger the provider
-     * @param debug  if the debug level is used
+     * @param logger       the logger
+     * @param defaultLevel the default logging level
+     * @param debugLevel   the debug logging level
      */
-    public LoggerProvider(Logger logger, boolean debug) {
-        this(logger, debug, Level.FINE);
-    }
-
-    /**
-     * Constructs the provider with the specified logger and debug settings.
-     *
-     * @param logger     the logger
-     * @param debug      if the debug level is used
-     * @param debugLevel the debug log level
-     */
-    public LoggerProvider(Logger logger, boolean debug, Level debugLevel) {
+    public LoggerProvider(final ILogger logger, final LogLevel defaultLevel, final LogLevel debugLevel) {
         this.logger = logger;
-        this.defaultLevel = debugLevel;
-        this.debug = debug;
+        this.defaultLevel = defaultLevel;
         this.debugLevel = debugLevel;
     }
 
     /**
-     * Sets whether the debug level should be used.
+     * Logs the message at the default logging level.
      *
-     * @param debug if the debug level is used
+     * @param message the message
      */
-    public void setDebug(boolean debug) {
-        this.debug = debug;
-
-        if (debug)
-            logger.setLevel(debugLevel);
-        else
-            logger.setLevel(defaultLevel);
+    public void log(final String message) {
+        log(defaultLevel, message);
     }
 
     /**
-     * Logs the message in the logger at the provided log level.
+     * Logs the message at the debug logging level.
      *
-     * @param level   the log level
      * @param message the message
      */
-    public void log(Level level, String message) {
+    public void debug(final String message) {
+        log(debugLevel, message);
+    }
+
+    /**
+     * Logs the message at the given logging level.
+     *
+     * @param level   the logging level
+     * @param message the message
+     */
+    public void log(final LogLevel level, final String message) {
         if (logger.isLoggable(level))
             logger.log(level, message);
     }
 
     /**
-     * Logs the message and exception in the logger at the provided log level.
+     * Formats and logs the message and exception at the default logging level.
      *
-     * @param level   the log level
      * @param message the message
      * @param e       the exception
      */
-    public void log(Level level, String message, Exception e) {
+    public void log(final String message, final Exception e) {
+        log(defaultLevel, message, e);
+    }
+
+    /**
+     * Formats and logs the message and exception at the debug logging level.
+     *
+     * @param message the message
+     * @param e       the exception
+     */
+    public void debug(final String message, final Exception e) {
+        log(debugLevel, message, e);
+    }
+
+    /**
+     * Formats and logs the message and exception at the given logging level.
+     *
+     * @param level   the logging level
+     * @param message the message
+     * @param e       the exception
+     */
+    public void log(final LogLevel level, final String message, final Exception e) {
         if (logger.isLoggable(level))
             logger.log(level, message, e);
     }
 
-    /**
-     * Logs a message at the default level.
-     *
-     * @param message the message
-     */
-    public void log(String message) {
-        log(defaultLevel, message);
-    }
-
-    /**
-     * Logs a message at the debug level.
-     *
-     * @param message the message
-     */
-    public void debug(String message) {
-        log(debugLevel, message);
-    }
 }

@@ -1,6 +1,21 @@
+/* Copyright 2021 Enjin Pte. Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.enjin.platformer.server.data;
 
-import com.enjin.platformer.server.game.Token;
+import com.enjin.platformer.server.game.Asset;
 import com.enjin.sdk.models.AccessToken;
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
@@ -11,15 +26,15 @@ import java.util.Map;
 public class PacketOutAuthenticated extends Packet {
 
     private AccessToken session;
-    @SerializedName("app_id")
-    private int appId;
-    private Map<String, Token> tokens;
+    @SerializedName("app_uuid")
+    private String appUuid;
+    private Map<String, Asset> assets;
 
-    public PacketOutAuthenticated(AccessToken session, int appId, Map<String, Token> tokens) {
+    public PacketOutAuthenticated(AccessToken session, String appUuid, Map<String, Asset> assets) {
         super(PacketType.AUTHENTICATED);
         this.session = session;
-        this.appId = appId;
-        this.tokens = tokens;
+        this.appUuid = appUuid;
+        this.assets = assets;
     }
 
 }

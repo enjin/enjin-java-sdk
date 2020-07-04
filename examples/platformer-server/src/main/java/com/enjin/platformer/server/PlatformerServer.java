@@ -1,24 +1,37 @@
+/* Copyright 2021 Enjin Pte. Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.enjin.platformer.server;
 
 import com.enjin.platformer.server.conf.Config;
 import com.enjin.platformer.server.data.PacketInHandshake;
-import com.enjin.platformer.server.data.PacketInSendToken;
+import com.enjin.platformer.server.data.PacketInSendAsset;
 import com.enjin.platformer.server.data.PacketProcessor;
 import com.enjin.platformer.server.data.PacketType;
 import com.enjin.platformer.server.game.Player;
 import com.enjin.platformer.server.tasks.SdkUpdateTask;
 import com.enjin.platformer.server.websocket.Peer;
-import com.enjin.sdk.TrustedPlatformClient;
-import com.enjin.sdk.TrustedPlatformClientBuilder;
+import com.enjin.sdk.EnjinHosts;
+import com.enjin.sdk.ProjectClient;
 import com.enjin.sdk.graphql.GraphQLError;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpResponse;
-import com.enjin.sdk.models.request.CreateRequest;
-import com.enjin.sdk.models.request.Transaction;
-import com.enjin.sdk.models.request.data.SendTokenData;
+import com.enjin.sdk.models.Request;
+import com.enjin.sdk.schemas.project.mutations.SendAsset;
 import lombok.Getter;
 import lombok.SneakyThrows;
-import okhttp3.logging.HttpLoggingInterceptor.Level;
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
@@ -38,7 +51,7 @@ public class PlatformerServer extends WebSocketServer {
     private final Config config;
     private final PacketProcessor processor;
     @Getter
-    private final TrustedPlatformClient sdk;
+    private final ProjectClient sdk;
 
     private Timer updateTimer;
     private TimerTask updateTask;
@@ -50,9 +63,7 @@ public class PlatformerServer extends WebSocketServer {
         super(config.getAddress());
         this.config = config;
         this.processor = new PacketProcessor();
-        this.sdk = new TrustedPlatformClientBuilder().baseUrl(TrustedPlatformClientBuilder.KOVAN)
-                                                     .httpLogLevel(Level.BODY)
-                                                     .build();
+        this.sdk = new ProjectClient(EnjinHosts.KOVAN, true);
         this.updateTimer = new Timer();
         this.updateTask = new SdkUpdateTask(sdk, config);
         this.peers = new HashMap<>();
@@ -67,7 +78,7 @@ public class PlatformerServer extends WebSocketServer {
 
     private void registerPacketDelegates() {
         processor.register(PacketType.HANDSHAKE, this::onHandshake);
-        processor.register(PacketType.SEND_TOKEN, this::onSendToken);
+        processor.register(PacketType.SEND_ASSET, this::onSendAsset);
     }
 
     @Override
@@ -80,7 +91,7 @@ public class PlatformerServer extends WebSocketServer {
     public void onClose(WebSocket conn, int code, String reason, boolean remote) {
         Optional<Peer> attachment = Optional.ofNullable(conn.getAttachment());
         attachment.ifPresent(peer -> {
-            System.out.println(String.format("Connection With Peer %s Closed!", peer.getId()));
+            System.out.printf("Connection With Peer %s Closed!\n", peer.getId());
             peers.remove(peer.getId());
             players.remove(peer.getId());
         });
@@ -119,21 +130,18 @@ public class PlatformerServer extends WebSocketServer {
         });
     }
 
-    private void onSendToken(WebSocket conn, PacketInSendToken packet) {
+    private void onSendAsset(WebSocket conn, PacketInSendAsset packet) {
         Optional<Peer> attachment = Optional.ofNullable(conn.getAttachment());
         attachment.ifPresent(peer -> {
-            SendTokenData data = SendTokenData.builder()
-                                              .recipientAddress(packet.getRecipientWallet())
-                                              .tokenId(packet.getToken())
-                                              .value(packet.getAmount())
-                                              .build();
-            CreateRequest query = new CreateRequest().ethAddr(config.getDevWallet())
-                                                     .sendToken(data);
-            sdk.getRequestService().createRequestAsync(query, this::onSendTokenComplete);
+            SendAsset request = new SendAsset().assetId(packet.getAsset())
+                                               .value(String.valueOf(packet.getAmount()))
+                                               .ethAddress(config.getDevWallet())
+                                               .recipientAddress(packet.getRecipientWallet());
+            sdk.sendAsset(request, this::onSendAssetComplete);
         });
     }
 
-    private void onSendTokenComplete(HttpResponse<GraphQLResponse<Transaction>> httpResponse) {
+    private void onSendAssetComplete(HttpResponse<GraphQLResponse<Request>> httpResponse) {
         if (httpResponse.isSuccess() && httpResponse.body().hasErrors()) {
             for (GraphQLError error : httpResponse.body().getErrors())
                 System.out.println(String.format("Error %s: %s", error.getCode(), error.getMessage()));
