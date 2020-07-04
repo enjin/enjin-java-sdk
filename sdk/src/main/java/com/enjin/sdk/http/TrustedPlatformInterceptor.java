@@ -94,4 +94,10 @@ public class TrustedPlatformInterceptor implements Interceptor {
         return !(token == null || token.isEmpty());
     }
 
+    public void clearAuth() {
+        token = null;
+        tokenType = null;
+        appId = null;
+    }
+
 }

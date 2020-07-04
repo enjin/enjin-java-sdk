@@ -232,6 +232,7 @@ public final class TrustedPlatformClientImpl implements TrustedPlatformClient {
      */
     @Override
     public HttpResponse<GraphQLResponse<AccessToken>> authAppSync(int appId, String appSecret) {
+        trustedPlatformInterceptor.clearAuth();
         HttpResponse<GraphQLResponse<AccessToken>> httpResponse = appService.authAppSync(new AuthApp().id(appId)
                                                                                                       .secret(appSecret));
         authApp(appId, httpResponse);
@@ -250,6 +251,7 @@ public final class TrustedPlatformClientImpl implements TrustedPlatformClient {
     public void authAppAsync(int appId,
                              String appSecret,
                              HttpCallback<GraphQLResponse<AccessToken>> callback) {
+        trustedPlatformInterceptor.clearAuth();
         appService.authAppAsync(new AuthApp().id(appId).secret(appSecret),
                                 response -> {
                                     authApp(appId, response);
