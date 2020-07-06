@@ -1,11 +1,14 @@
-package com.enjin.sdk.models.gas;
+package com.enjin.sdk.models.platform;
 
+import com.enjin.sdk.services.platform.PlatformService;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
  * Models gas prices on the platform.
+ * 
+ * @see PlatformService
  */
 @Getter
 @ToString
