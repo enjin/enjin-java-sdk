@@ -3,6 +3,7 @@ package com.enjin.sdk.services.platform.impl;
 import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.graphql.GraphQuery;
+import com.enjin.sdk.models.platform.GasPrices;
 import com.enjin.sdk.models.platform.GetPlatform;
 import com.enjin.sdk.models.platform.PlatformDetails;
 
@@ -28,5 +29,13 @@ public interface PlatformRetrofitService {
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<PlatformDetails>> getPlatform(@Body GraphQLRequest request);
 
-
+    /**
+     *
+     * @param request
+     * @return
+     */
+    @POST("graphql")
+    @GraphQuery("GetGasPrice")
+    @Headers("Content-Type: application/json")
+    Call<GraphQLResponse<GasPrices>> getGasPrice(@Body GraphQLRequest request);
 }

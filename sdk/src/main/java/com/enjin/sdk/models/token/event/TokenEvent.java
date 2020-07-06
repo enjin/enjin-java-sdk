@@ -1,5 +1,7 @@
 package com.enjin.sdk.models.token.event;
 
+import com.enjin.sdk.models.request.Transaction;
+import com.enjin.sdk.models.token.Token;
 import com.enjin.sdk.services.token.TokensService;
 import lombok.Getter;
 import lombok.ToString;
@@ -76,5 +78,21 @@ public class TokenEvent {
      * @return the block number
      */
     private Integer blockNumber;
+
+    /**
+     * -- GETTER --
+     * Returns the token the event belongs to.
+     *
+     * @return the token
+     */
+    private Token token;
+
+    /**
+     * -- GETTER --
+     * Returns the transaction relating to the event.
+     *
+     * @return the transaction
+     */
+    private Transaction transaction;
 
 }

@@ -25,6 +25,17 @@ public interface UserFragment<T extends GraphQLRequest<T>>
     }
 
     /**
+     * Sets the request to filter the application the user is linked to in the response to the provided id.
+     *
+     * @param  id the app id
+     * @return this request
+     */
+    default T userAppId(int id) {
+        set("userAppId", id);
+        return (T) this;
+    }
+
+    /**
      * Sets the request to include the user's identities in the response.
      *
      * @return this request

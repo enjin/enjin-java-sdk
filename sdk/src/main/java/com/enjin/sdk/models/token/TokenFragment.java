@@ -123,6 +123,26 @@ public interface TokenFragment<T extends GraphQLVariableHolder<T>> extends Graph
     }
 
     /**
+     * Sets the request to include the token's hosted metadata in the response.
+     *
+     * @return this request
+     */
+    default T withMetadata() {
+        set("withTokenMetadata", true);
+        return (T) this;
+    }
+
+    /**
+     * Sets the request to include the token's variant mode in the response.
+     *
+     * @return this request
+     */
+    default T withVariantMode() {
+        set("withTokenVariantMode", true);
+        return (T) this;
+    }
+
+    /**
      * Sets the request to include the token's timestamps in the response.
      *
      * @return this request

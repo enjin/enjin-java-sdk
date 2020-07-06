@@ -2,7 +2,6 @@ package com.enjin.sdk.models.app;
 
 import com.enjin.sdk.models.identity.Identity;
 import com.enjin.sdk.models.user.User;
-
 import com.enjin.sdk.services.app.AppsService;
 import lombok.Getter;
 import lombok.ToString;
@@ -74,7 +73,7 @@ public class App {
 
     /**
      * -- GETTER --
-     * Returns the current user linked to the application.
+     * Returns the identity of the current user linked to the application.
      *
      * @return the current identity
      */

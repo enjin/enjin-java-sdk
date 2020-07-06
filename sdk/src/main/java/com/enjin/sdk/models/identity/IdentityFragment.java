@@ -44,6 +44,16 @@ public interface IdentityFragment<T extends GraphQLVariableHolder<T>> extends Gr
     }
 
     /**
+     * Sets the request to include the user linked to the identity in the response.
+     *
+     * @return this request
+     */
+    default T withIdentityUser() {
+        set("withIdentityUser", true);
+        return (T) this;
+    }
+
+    /**
      * Sets the request to include the wallet linked to the identity in the response.
      *
      * @return this request
