@@ -57,6 +57,7 @@ public class User {
      *
      * @return true when this user has a verified email address, false otherwise.
      */
+    @Deprecated
     private Boolean emailVerified;
 
     /**
