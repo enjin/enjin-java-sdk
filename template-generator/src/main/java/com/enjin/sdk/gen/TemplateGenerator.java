@@ -6,9 +6,12 @@ import com.squareup.javapoet.TypeSpec;
 import io.freefair.gradle.codegenerator.api.Generator;
 import io.freefair.gradle.codegenerator.api.ProjectContext;
 import io.freefair.gradle.codegenerator.api.annotations.CodeGenerator;
+import lombok.SneakyThrows;
 
 import javax.lang.model.element.Modifier;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
 
@@ -25,6 +28,7 @@ public class TemplateGenerator implements Generator {
         generateTemplateClass(context, templateLoader);
     }
 
+    @SneakyThrows
     private void generateTemplateClass(ProjectContext context, TemplateLoader templateLoader) {
         TypeSpec.Builder typeSpec = TypeSpec.classBuilder("TemplateConstants")
                                             .addModifiers(Modifier.PUBLIC, Modifier.FINAL);
@@ -42,6 +46,17 @@ public class TemplateGenerator implements Generator {
                                       .initializer("$S", fieldValue)
                                       .build();
             typeSpec.addField(spec);
+
+            File dir = new File(context.getOutputDir(), "../../../gql/compiled-templates/");
+            dir.mkdirs();
+            File file = new File(dir, fieldName + ".gql");
+            file.delete();
+            file.createNewFile();
+            try (FileWriter fw = new FileWriter(file)){
+                try (BufferedWriter bw = new BufferedWriter(fw)) {
+                    bw.write(entry.getValue().compile());
+                }
+            }
         }
 
         JavaFile javaFile = JavaFile.builder("com.enjin.sdk.graphql", typeSpec.build())
