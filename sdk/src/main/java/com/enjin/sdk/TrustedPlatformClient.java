@@ -4,14 +4,8 @@ import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpCallback;
 import com.enjin.sdk.http.HttpResponse;
 import com.enjin.sdk.models.AccessToken;
-import com.enjin.sdk.services.app.AppsService;
-import com.enjin.sdk.services.balance.BalancesService;
-import com.enjin.sdk.services.identity.IdentitiesService;
-import com.enjin.sdk.services.platform.PlatformService;
-import com.enjin.sdk.services.request.RequestsService;
-import com.enjin.sdk.services.token.TokensService;
-import com.enjin.sdk.services.user.UsersService;
-import com.enjin.sdk.services.wallet.WalletService;
+import com.enjin.sdk.schemas.shared.SharedSchema;
+import okhttp3.HttpUrl;
 
 import java.io.Closeable;
 
@@ -21,60 +15,25 @@ import java.io.Closeable;
 public interface TrustedPlatformClient extends Closeable {
 
     /**
-     * Returns the application service.
-     *
-     * @return the app service
+     * The URL for the main Enjin Cloud.
      */
-    AppsService getAppService();
+    HttpUrl MAIN_NET = HttpUrl.get("https://cloud.enjin.io/");
+    /**
+     * The URL for the kovan Enjin Cloud.
+     */
+    HttpUrl KOVAN = HttpUrl.get("https://kovan.cloud.enjin.io/");
 
     /**
-     * Returns the balance service.
-     *
-     * @return the balance service
+     * TODO
+     * @return
      */
-    BalancesService getBalanceService();
+    TrustedPlatformMiddleware getMiddleware();
 
     /**
-     * Returns the identity service.
-     *
-     * @return the identity service
+     * TODO
+     * @return
      */
-    IdentitiesService getIdentityService();
-
-    /**
-     * Returns the platform service.
-     *
-     * @return the platform service
-     */
-    PlatformService getPlatformService();
-
-    /**
-     * Returns the request service.
-     *
-     * @return the request service
-     */
-    RequestsService getRequestService();
-
-    /**
-     * Returns the token service.
-     *
-     * @return the token service
-     */
-    TokensService getTokenService();
-
-    /**
-     * Returns the user service.
-     *
-     * @return the user service
-     */
-    UsersService getUserService();
-
-    /**
-     * Returns the wallet service.
-     *
-     * @return the wallet service.
-     */
-    WalletService getWalletService();
+    SharedSchema getSchema();
 
     /**
      * Sets the application id.

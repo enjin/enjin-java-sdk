@@ -5,6 +5,7 @@ import java.util.logging.Level;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpCallback;
 import com.enjin.sdk.http.HttpResponse;
+import com.enjin.sdk.schemas.BaseService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -18,10 +19,10 @@ import retrofit2.Call;
 /**
  * Base class for GraphQL services.
  *
- * @see ServiceBase
+ * @see BaseService
  */
 @Log
-public class GraphQLServiceBase extends ServiceBase {
+public class GraphQLBaseService extends BaseService {
 
     private static final Gson GSON = new GsonBuilder().create();
     private static final MediaType JSON = MediaType.parse("application/json");
@@ -54,14 +55,14 @@ public class GraphQLServiceBase extends ServiceBase {
                     HttpResponse<GraphQLResponse<T>> res = createResult(response);
                     callback.onComplete(res);
                 } catch (Exception e) {
-                    GraphQLServiceBase.log.log(Level.SEVERE, "An exception occurred:", e);
+                    GraphQLBaseService.log.log(Level.SEVERE, "An exception occurred:", e);
                 }
             }
 
             @Override
             public void onFailure(Call<GraphQLResponse<T>> call, Throwable t) {
                 Exception exception = new Exception("Request Failed: " + call.request().toString(), t);
-                GraphQLServiceBase.log.log(Level.SEVERE, "An exception occurred:", exception);
+                GraphQLBaseService.log.log(Level.SEVERE, "An exception occurred:", exception);
             }
         });
     }
