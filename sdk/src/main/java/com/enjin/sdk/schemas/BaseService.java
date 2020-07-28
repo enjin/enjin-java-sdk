@@ -93,4 +93,5 @@ public class BaseService {
     protected <T> Object createService(@NotNull Class<T> service) {
         return retrofit.create(service);
     }
+
 }

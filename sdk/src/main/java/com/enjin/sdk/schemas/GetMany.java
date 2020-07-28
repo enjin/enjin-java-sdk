@@ -12,7 +12,6 @@ import java.util.Collection;
 interface GetMany<T> {
 
     @POST("graphql")
-    // TODO: Add the @GraphQuery annotation for the appropriate template, if necessary.
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<Collection<T>>> getMany(@Body GraphQLRequest request);
 

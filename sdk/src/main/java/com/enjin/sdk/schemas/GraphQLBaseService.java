@@ -1,13 +1,13 @@
-package com.enjin.sdk.services;
+package com.enjin.sdk.schemas;
 
-import java.util.logging.Level;
-
+import com.enjin.sdk.TrustedPlatformMiddleware;
+import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpCallback;
 import com.enjin.sdk.http.HttpResponse;
-import com.enjin.sdk.schemas.BaseService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import lombok.SneakyThrows;
@@ -15,6 +15,8 @@ import lombok.extern.java.Log;
 import okhttp3.MediaType;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+
+import java.util.logging.Level;
 
 /**
  * Base class for GraphQL services.
@@ -26,6 +28,14 @@ public class GraphQLBaseService extends BaseService {
 
     private static final Gson GSON = new GsonBuilder().create();
     private static final MediaType JSON = MediaType.parse("application/json");
+
+    /**
+     * TODO
+     * @param middleware
+     */
+    public GraphQLBaseService(TrustedPlatformMiddleware middleware) {
+        super(middleware);
+    }
 
     /**
      * Executes a GraphQL request.
@@ -65,6 +75,25 @@ public class GraphQLBaseService extends BaseService {
                 GraphQLBaseService.log.log(Level.SEVERE, "An exception occurred:", exception);
             }
         });
+    }
+
+    /**
+     * TODO
+     * @param request
+     * @param template
+     * @param <T>
+     * @return
+     */
+    protected <T extends GraphQLRequest<T>> JsonObject createRequestBody(GraphQLRequest<T> request, String template) {
+        JsonObject requestBody = new JsonObject();
+
+        JsonObject variables = new JsonObject();
+        request.getVariables().forEach((key, value) -> variables.add(key, GSON.toJsonTree(value)));
+
+        requestBody.addProperty("query", getMiddleware().getQueryRegistry().get(template));
+        requestBody.add("variables", variables);
+
+        return requestBody;
     }
 
     /**
