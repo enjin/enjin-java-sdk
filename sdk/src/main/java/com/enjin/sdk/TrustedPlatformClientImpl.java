@@ -9,17 +9,10 @@ import com.enjin.sdk.models.app.AuthApp;
 import com.enjin.sdk.models.AccessToken;
 import com.enjin.sdk.schemas.SchemaImpl;
 import com.enjin.sdk.schemas.shared.SharedSchema;
-import com.enjin.sdk.serialization.converter.GraphConverter;
-import com.enjin.sdk.serialization.converter.JsonStringConverter;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import lombok.Getter;
 import lombok.NonNull;
 import okhttp3.OkHttpClient;
-import retrofit2.Converter;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * TODO: Update.
