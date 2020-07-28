@@ -1,5 +1,7 @@
 package com.enjin.sdk;
 
+import com.enjin.sdk.graphql.GraphQLProcessor;
+import com.enjin.sdk.graphql.GraphQLQueryRegistry;
 import com.enjin.sdk.http.SessionCookieJar;
 import com.enjin.sdk.http.TrustedPlatformInterceptor;
 import com.enjin.sdk.utils.LoggerProvider;
@@ -42,6 +44,15 @@ public class TrustedPlatformMiddleware {
     @Getter
     private final OkHttpClient httpClient;
 
+    /**
+     * -- Getter --
+     * Returns the graphQL query registry.
+     *
+     * @return the query registry
+     */
+    @Getter
+    private final GraphQLQueryRegistry queryRegistry;
+
     private TrustedPlatformMiddleware() {
         throw new IllegalStateException(/* TODO: Exception message. */);
     }
@@ -74,6 +85,7 @@ public class TrustedPlatformMiddleware {
         builder.getWriteTimeoutMillis()
                .ifPresent(aLong -> httpClientBuilder.writeTimeout(aLong, TimeUnit.MILLISECONDS));
         this.httpClient = httpClientBuilder.build();
+        this.queryRegistry = GraphQLProcessor.getInstance().getQueryRegistry();
     }
 
     /**

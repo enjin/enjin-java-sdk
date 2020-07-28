@@ -11,7 +11,6 @@ import retrofit2.http.POST;
 interface Auth {
 
     @POST("graphql")
-    // TODO: Add the @GraphQuery annotation for the appropriate template, if necessary.
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<AccessToken>> getAuth(@Body GraphQLRequest request);
 

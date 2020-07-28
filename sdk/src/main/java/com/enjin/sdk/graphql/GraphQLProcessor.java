@@ -1,5 +1,7 @@
 package com.enjin.sdk.graphql;
 
+import lombok.Getter;
+
 import java.lang.annotation.Annotation;
 
 /**
@@ -12,6 +14,13 @@ public final class GraphQLProcessor {
 
     private static GraphQLProcessor ourInstance;
 
+    /**
+     * -- Getter --
+     * TODO
+     *
+     * @return the query registry
+     */
+    @Getter
     private GraphQLQueryRegistry queryRegistry;
 
     private GraphQLProcessor() {
