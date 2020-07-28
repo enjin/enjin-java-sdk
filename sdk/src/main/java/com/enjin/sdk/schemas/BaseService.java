@@ -13,6 +13,7 @@ import com.google.gson.GsonBuilder;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import lombok.extern.java.Log;
+import org.jetbrains.annotations.NotNull;
 import retrofit2.Call;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
@@ -83,7 +84,13 @@ public class BaseService {
         });
     }
 
-    protected T CreateService<T>() {
-        return
+    /**
+     * TODO
+     * @param service
+     * @param <T>
+     * @return
+     */
+    protected <T> Object createService(@NotNull Class<T> service) {
+        return retrofit.create(service);
     }
 }
