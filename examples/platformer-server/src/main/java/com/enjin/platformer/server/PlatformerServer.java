@@ -9,7 +9,7 @@ import com.enjin.platformer.server.game.Player;
 import com.enjin.platformer.server.tasks.SdkUpdateTask;
 import com.enjin.platformer.server.websocket.Peer;
 import com.enjin.sdk.TrustedPlatformClient;
-import com.enjin.sdk.TrustedPlatformClientBuilder;
+import com.enjin.sdk.TrustedPlatformMiddlewareBuilder;
 import com.enjin.sdk.graphql.GraphQLError;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpResponse;
@@ -50,9 +50,9 @@ public class PlatformerServer extends WebSocketServer {
         super(config.getAddress());
         this.config = config;
         this.processor = new PacketProcessor();
-        this.sdk = new TrustedPlatformClientBuilder().baseUrl(TrustedPlatformClientBuilder.KOVAN)
-                                                     .httpLogLevel(Level.BODY)
-                                                     .build();
+        this.sdk = new TrustedPlatformMiddlewareBuilder().baseUrl(TrustedPlatformMiddlewareBuilder.KOVAN)
+                                                         .httpLogLevel(Level.BODY)
+                                                         .build();
         this.updateTimer = new Timer();
         this.updateTask = new SdkUpdateTask(sdk, config);
         this.peers = new HashMap<>();
