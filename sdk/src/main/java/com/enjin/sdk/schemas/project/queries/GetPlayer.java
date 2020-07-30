@@ -1,4 +1,22 @@
 package com.enjin.sdk.schemas.project.queries;
 
-public class GetPlayer {
+import com.enjin.sdk.graphql.GraphQLRequest;
+import com.enjin.sdk.schemas.shared.fragments.inputs.PlayerFragmentArguments;
+
+/**
+ * TODO
+ */
+public class GetPlayer
+        extends GraphQLRequest<GetPlayer>
+        implements PlayerFragmentArguments<GetPlayer> {
+
+    /**
+     * TODO
+     * @param id
+     * @return
+     */
+    public GetPlayer id(String id) {
+        return set("id", id);
+    }
+
 }

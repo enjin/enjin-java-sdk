@@ -1,4 +1,19 @@
 package com.enjin.sdk.schemas.project.mutations;
 
-public class UnlinkWallet {
+import com.enjin.sdk.graphql.GraphQLRequest;
+
+/**
+ * TODO
+ */
+public class UnlinkWallet extends GraphQLRequest<UnlinkWallet> {
+
+    /**
+     * TODO
+     * @param ethAddress
+     * @return
+     */
+    public UnlinkWallet ethAddress(String ethAddress) {
+        return set("ethAddress", ethAddress);
+    }
+
 }
