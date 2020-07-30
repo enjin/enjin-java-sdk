@@ -1,5 +1,6 @@
 package com.enjin.sdk.schemas;
 
+import java.io.IOException;
 import java.util.Objects;
 import java.util.logging.Level;
 
@@ -96,9 +97,23 @@ public class BaseService {
         return retrofit.create(service);
     }
 
+    @NotNull
+    protected <T> GraphQLResponse<T> sendRequest(Call<GraphQLResponse<T>> call) throws IOException {
+        Response<GraphQLResponse<T>> response = call.execute();
+        if (!response.isSuccessful()) {
+            // TODO: Throw exception.
+        }
+
+        GraphQLResponse<T> graphQLResponse = response.body();
+        if (graphQLResponse == null) {
+            throw new IOException(); // TODO: Switch to more appropriate exception.
+        }
+
+        return graphQLResponse;
+    }
+
     /**
-     * Queues a GraphQL request.
-     *
+     * TODO
      * @param call the request call
      * @param callback the callback
      * @param <T> the type of the request and response
