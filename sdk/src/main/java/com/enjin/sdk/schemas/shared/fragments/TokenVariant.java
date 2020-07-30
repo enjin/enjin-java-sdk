@@ -1,12 +1,13 @@
 package com.enjin.sdk.schemas.shared.fragments;
 
+import com.google.gson.JsonObject;
 import lombok.Getter;
 
 /**
  * TODO
  */
 @Getter
-public class Project {
+public final class TokenVariant {
 
     /**
      * -- Getter --
@@ -21,50 +22,21 @@ public class Project {
      *
      * @return
      */
-    private String name;
+    private String tokenId;
     /**
      * -- Getter --
      * TODO
      *
      * @return
      */
-    private String secret;
+    private JsonObject variantMetadata;
     /**
      * -- Getter --
      * TODO
      *
      * @return
      */
-    private String description;
-    /**
-     * -- Getter --
-     * TODO
-     *
-     * @return
-     */
-    private String image;
-    /**
-     * -- Getter --
-     * TODO
-     *
-     * @return
-     */
-    private String linkingCode;
-    /**
-     * -- Getter --
-     * TODO
-     *
-     * @return
-     */
-    private String linkingCodeQr;
-    // TODO: Add identity and owner.
-    /**
-     * -- Getter --
-     * TODO
-     *
-     * @return
-     */
-    private Integer tokenCount;
+    private Integer usageCount;
     /**
      * -- Getter --
      * TODO

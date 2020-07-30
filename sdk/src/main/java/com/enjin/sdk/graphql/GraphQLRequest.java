@@ -11,7 +11,7 @@ import java.util.Map;
  *
  * @author Evan Lindsay
  */
-public class GraphQLRequest<T extends GraphQLRequest<T>> implements GraphQLVariableHolder<T> {
+public class GraphQLRequest<T extends GraphQLRequest<T>> implements VariableHolder<T> {
 
     private Map<String, Object> variables;
 

@@ -7,7 +7,7 @@ import lombok.Getter;
  * TODO
  */
 @Getter
-public class Balance {
+public class PusherChannels {
 
     /**
      * -- Getter --
@@ -15,35 +15,28 @@ public class Balance {
      *
      * @return
      */
-    private String id;
-    /**
-     * -- Getter --
-     * TODO
-     *
-     * @return
-     */
-    private String index;
-    /**
-     * -- Getter --
-     * TODO
-     *
-     * @return
-     */
-    private Integer value;
-    /**
-     * -- Getter --
-     * TODO
-     *
-     * @return
-     */
     @SerializedName("app")
-    private Project project;
+    private String project;
     /**
      * -- Getter --
      * TODO
      *
      * @return
      */
-    private Wallet wallet;
+    private String player;
+    /**
+     * -- Getter --
+     * TODO
+     *
+     * @return
+     */
+    private String token;
+    /**
+     * -- Getter --
+     * TODO
+     *
+     * @return
+     */
+    private String wallet;
 
 }

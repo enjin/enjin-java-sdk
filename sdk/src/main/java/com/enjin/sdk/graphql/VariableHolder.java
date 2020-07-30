@@ -5,7 +5,7 @@ package com.enjin.sdk.graphql;
  *
  * @param <T> the super type of the interface
  */
-public interface GraphQLVariableHolder<T> {
+public interface VariableHolder<T> {
 
     /**
      * Sets a variable.
