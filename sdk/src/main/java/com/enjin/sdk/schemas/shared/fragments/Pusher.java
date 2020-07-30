@@ -1,13 +1,12 @@
 package com.enjin.sdk.schemas.shared.fragments;
 
-import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 
 /**
  * TODO
  */
 @Getter
-public class Balance {
+public class Pusher {
 
     /**
      * -- Getter --
@@ -15,35 +14,27 @@ public class Balance {
      *
      * @return
      */
-    private String id;
+    private String key;
     /**
      * -- Getter --
      * TODO
      *
      * @return
      */
-    private String index;
+    private String namespace;
     /**
      * -- Getter --
      * TODO
      *
      * @return
      */
-    private Integer value;
+    private PusherChannels channels;
     /**
      * -- Getter --
      * TODO
      *
      * @return
      */
-    @SerializedName("app")
-    private Project project;
-    /**
-     * -- Getter --
-     * TODO
-     *
-     * @return
-     */
-    private Wallet wallet;
+    private PusherOptions options;
 
 }

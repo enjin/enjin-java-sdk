@@ -1,13 +1,12 @@
 package com.enjin.sdk.schemas.shared.fragments;
 
-import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 
 /**
  * TODO
  */
 @Getter
-public class Balance {
+public class Contracts {
 
     /**
      * -- Getter --
@@ -15,35 +14,27 @@ public class Balance {
      *
      * @return
      */
-    private String id;
+    private String enj;
     /**
      * -- Getter --
      * TODO
      *
      * @return
      */
-    private String index;
+    private String cryptoItems;
     /**
      * -- Getter --
      * TODO
      *
      * @return
      */
-    private Integer value;
+    private String platformRegistry;
     /**
      * -- Getter --
      * TODO
      *
      * @return
      */
-    @SerializedName("app")
-    private Project project;
-    /**
-     * -- Getter --
-     * TODO
-     *
-     * @return
-     */
-    private Wallet wallet;
+    private SupplyModels supplyModels;
 
 }

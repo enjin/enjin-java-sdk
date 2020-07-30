@@ -2,26 +2,26 @@ package com.enjin.sdk.serialization;
 
 import java.lang.reflect.Type;
 
-import com.enjin.sdk.models.request.TransactionType;
+import com.enjin.sdk.schemas.shared.fragments.RequestType;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 
 /**
- * A Gson serializer that can deserialize a {@link TransactionType}.
+ * A Gson serializer that can deserialize a {@link RequestType}.
  */
-public class TransactionTypeDeserializer implements JsonDeserializer<TransactionType> {
+public class TransactionTypeDeserializer implements JsonDeserializer<RequestType> {
 
     @Override
-    public TransactionType deserialize(JsonElement json,
-                                       Type typeOfT,
-                                       JsonDeserializationContext context) {
-        TransactionType out = TransactionType.UNKNOWN;
+    public RequestType deserialize(JsonElement json,
+                                   Type typeOfT,
+                                   JsonDeserializationContext context) {
+        RequestType out = RequestType.UNKNOWN;
 
         if (json.isJsonPrimitive()) {
             String value = json.getAsString();
 
-            for (TransactionType type : TransactionType.values()) {
+            for (RequestType type : RequestType.values()) {
                 if (type.name().equalsIgnoreCase(value)) {
                     out = type;
                     break;
