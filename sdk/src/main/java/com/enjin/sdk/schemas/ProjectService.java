@@ -1,6 +1,6 @@
 package com.enjin.sdk.schemas;
 
-import com.enjin.sdk.schemas.shared.fragments.Project;
+import com.enjin.sdk.models.Project;
 
 /**
  * TODO
