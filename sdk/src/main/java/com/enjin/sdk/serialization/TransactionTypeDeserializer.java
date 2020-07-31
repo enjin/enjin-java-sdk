@@ -2,7 +2,7 @@ package com.enjin.sdk.serialization;
 
 import java.lang.reflect.Type;
 
-import com.enjin.sdk.schemas.shared.fragments.RequestType;
+import com.enjin.sdk.models.RequestType;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;

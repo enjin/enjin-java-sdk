@@ -1,8 +1,8 @@
 package com.enjin.sdk.schemas.project.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.schemas.project.inputs.Whitelisted;
-import com.enjin.sdk.schemas.shared.fragments.inputs.TransactionRequestArguments;
+import com.enjin.sdk.models.Whitelisted;
+import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 /**
  * TODO

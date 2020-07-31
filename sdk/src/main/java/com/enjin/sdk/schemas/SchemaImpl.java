@@ -24,9 +24,9 @@ import com.enjin.sdk.schemas.project.queries.AuthPlayer;
 import com.enjin.sdk.schemas.project.queries.AuthProject;
 import com.enjin.sdk.schemas.project.queries.GetPlayer;
 import com.enjin.sdk.schemas.project.queries.GetPlayers;
-import com.enjin.sdk.schemas.shared.AccessToken;
-import com.enjin.sdk.schemas.shared.fragments.Player;
-import com.enjin.sdk.schemas.shared.fragments.Request;
+import com.enjin.sdk.models.AccessToken;
+import com.enjin.sdk.models.Player;
+import com.enjin.sdk.models.Request;
 
 import java.io.IOException;
 import java.util.Collection;
