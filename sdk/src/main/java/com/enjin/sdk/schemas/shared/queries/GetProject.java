@@ -9,6 +9,13 @@ public final class GetProject extends GraphQLRequest<GetProject> {
 
     /**
      * TODO
+     */
+    public GetProject() {
+        super("enjin.sdk.shared.GetProject");
+    }
+
+    /**
+     * TODO
      * @param id
      * @return
      */

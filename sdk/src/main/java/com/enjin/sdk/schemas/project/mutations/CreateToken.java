@@ -15,6 +15,13 @@ public class CreateToken
 
     /**
      * TODO
+     */
+    public CreateToken() {
+        super("enjin.sdk.project.CreateToken");
+    }
+
+    /**
+     * TODO
      * @param name
      * @return
      */

@@ -9,6 +9,13 @@ public class UnlinkWallet extends GraphQLRequest<UnlinkWallet> {
 
     /**
      * TODO
+     */
+    public UnlinkWallet() {
+        super("enjin.sdk.project.UnlinkWallet");
+    }
+
+    /**
+     * TODO
      * @param ethAddress
      * @return
      */

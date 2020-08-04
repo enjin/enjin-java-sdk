@@ -9,6 +9,13 @@ public class AuthProject extends GraphQLRequest<AuthProject> {
 
     /**
      * TODO
+     */
+    public AuthProject() {
+        super("enjin.sdk.project.AuthProject");
+    }
+
+    /**
+     * TODO
      * @param appId
      * @return
      */

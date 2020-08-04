@@ -9,6 +9,13 @@ public class AuthPlayer extends GraphQLRequest<AuthPlayer> {
 
     /**
      * TODO
+     */
+    public AuthPlayer() {
+        super("enjin.sdk.project.AuthPlayer");
+    }
+
+    /**
+     * TODO
      * @param id
      * @return
      */

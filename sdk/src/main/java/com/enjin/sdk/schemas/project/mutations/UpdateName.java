@@ -12,6 +12,13 @@ public class UpdateName
 
     /**
      * TODO
+     */
+    public UpdateName() {
+        super("enjin.sdk.project.UpdateName");
+    }
+
+    /**
+     * TODO
      * @param tokenId
      * @return
      */

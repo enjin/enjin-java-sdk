@@ -15,6 +15,13 @@ public class MintToken
 
     /**
      * TODO
+     */
+    public MintToken() {
+        super("enjin.sdk.project.MintToken");
+    }
+
+    /**
+     * TODO
      * @param tokenId
      * @return
      */

@@ -13,6 +13,13 @@ public class SetTransferFee
 
     /**
      * TODO
+     */
+    public SetTransferFee() {
+        super("enjin.sdk.project.SetTransferFee");
+    }
+
+    /**
+     * TODO
      * @param tokenId
      * @return
      */

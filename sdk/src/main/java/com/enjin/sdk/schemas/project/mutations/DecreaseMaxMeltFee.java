@@ -12,6 +12,13 @@ public class DecreaseMaxMeltFee
 
     /**
      * TODO
+     */
+    public DecreaseMaxMeltFee() {
+        super("enjin.sdk.project.DecreaseMaxMeltFee");
+    }
+
+    /**
+     * TODO
      * @param tokenId
      * @return
      */

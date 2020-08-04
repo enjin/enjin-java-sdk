@@ -12,6 +12,13 @@ public class SetMeltFee
 
     /**
      * TODO
+     */
+    public SetMeltFee() {
+        super("enjin.sdk.project.SetMeltFee");
+    }
+
+    /**
+     * TODO
      * @param tokenId
      * @return
      */

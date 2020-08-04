@@ -12,6 +12,13 @@ public class DecreaseMaxTransferFee
 
     /**
      * TODO
+     */
+    public DecreaseMaxTransferFee() {
+        super("enjin.sdk.project.DecreaseMaxTransferFee");
+    }
+
+    /**
+     * TODO
      * @param tokenId
      * @return
      */
