@@ -13,6 +13,13 @@ public class SetTransferable
 
     /**
      * TODO
+     */
+    public SetTransferable() {
+        super("enjin.sdk.project.SetTransferable");
+    }
+
+    /**
+     * TODO
      * @param tokenId
      * @return
      */

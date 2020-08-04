@@ -32,7 +32,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * TODO
  */
 @Log
-public class BaseService {
+public class BaseSchema {
 
     private static final MediaType JSON = MediaType.parse("application/json");
 
@@ -43,7 +43,7 @@ public class BaseService {
      */
     protected final TrustedPlatformMiddleware middleware;
 
-    private BaseService() {
+    private BaseSchema() {
         throw new IllegalStateException(/* TODO: Exception message. */);
     }
 
@@ -51,7 +51,7 @@ public class BaseService {
      * TODO
      * @param middleware
      */
-    public BaseService(TrustedPlatformMiddleware middleware) {
+    public BaseSchema(TrustedPlatformMiddleware middleware) {
         this.gson = new GsonBuilder()
                 .serializeSpecialFloatingPointValues()
                 .create();
@@ -70,18 +70,16 @@ public class BaseService {
     /**
      * TODO
      * @param request
-     * @param template
      * @param <T>
      * @return
      */
-    protected <T extends GraphQLRequest<T>> JsonObject createRequestBody(GraphQLRequest<T> request,
-                                                                         String template) {
+    protected <T extends GraphQLRequest<T>> JsonObject createRequestBody(GraphQLRequest<T> request) {
         JsonObject requestBody = new JsonObject();
 
         JsonObject variables = new JsonObject();
         request.getVariables().forEach((key, value) -> variables.add(key, gson.toJsonTree(value)));
 
-        requestBody.addProperty("query", middleware.getQueryRegistry().get(template));
+        requestBody.addProperty("query", middleware.getQueryRegistry().get(request.getNamespace()));
         requestBody.add("variables", variables);
 
         return requestBody;

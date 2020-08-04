@@ -12,6 +12,13 @@ public class SetUri
 
     /**
      * TODO
+     */
+    public SetUri() {
+        super("enjin.sdk.project.SetUri");
+    }
+
+    /**
+     * TODO
      * @param tokenId
      * @return
      */

@@ -9,6 +9,13 @@ public class DeletePlayer extends GraphQLRequest<DeletePlayer> {
 
     /**
      * TODO
+     */
+    public DeletePlayer() {
+        super("enjin.sdk.project.DeletePlayer");
+    }
+
+    /**
+     * TODO
      * @param id
      * @return
      */

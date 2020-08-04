@@ -12,6 +12,13 @@ public class ReleaseReserve
 
     /**
      * TODO
+     */
+    public ReleaseReserve() {
+        super("enjin.sdk.project.ReleaseReserve");
+    }
+
+    /**
+     * TODO
      * @param tokenId
      * @return
      */

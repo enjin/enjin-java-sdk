@@ -9,6 +9,13 @@ public class CreatePlayer extends GraphQLRequest<CreatePlayer> {
 
     /**
      * TODO
+     */
+    public CreatePlayer() {
+        super("enjin.sdk.project.CreatePlayer");
+    }
+
+    /**
+     * TODO
      * @param id
      * @return
      */

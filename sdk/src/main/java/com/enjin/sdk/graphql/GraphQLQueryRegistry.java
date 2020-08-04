@@ -5,13 +5,14 @@ import lombok.SneakyThrows;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  * Class for registering and storing GraphQL templates.
  */
 public class GraphQLQueryRegistry {
 
-    private Map<String, String> registered = new HashMap<>();
+    private final Map<String, String> registered = new HashMap<>();
 
     /**
      * Sole constructor.
@@ -29,14 +30,12 @@ public class GraphQLQueryRegistry {
      * @return true if registered, false if already exists
      */
     public boolean register(String name, String query) {
-        boolean result = false;
-
         if (!registered.containsKey(query)) {
             registered.put(name, query);
-            result = true;
+            return true;
         }
 
-        return result;
+        return false;
     }
 
     /**

@@ -13,6 +13,13 @@ public class SetWhitelisted
 
     /**
      * TODO
+     */
+    public SetWhitelisted() {
+        super("enjin.sdk.project.SetWhitelisted");
+    }
+
+    /**
+     * TODO
      * @param tokenId
      * @return
      */

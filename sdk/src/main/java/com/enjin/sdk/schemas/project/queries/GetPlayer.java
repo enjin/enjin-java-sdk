@@ -12,6 +12,13 @@ public class GetPlayer
 
     /**
      * TODO
+     */
+    public GetPlayer() {
+        super("enjin.sdk.project.GetPlayer");
+    }
+
+    /**
+     * TODO
      * @param id
      * @return
      */

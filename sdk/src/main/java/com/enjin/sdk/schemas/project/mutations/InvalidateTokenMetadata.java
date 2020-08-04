@@ -9,6 +9,13 @@ public class InvalidateTokenMetadata extends GraphQLRequest<InvalidateTokenMetad
 
     /**
      * TODO
+     */
+    public InvalidateTokenMetadata() {
+        super("enjin.sdk.project.InvalidateTokenMetadata");
+    }
+
+    /**
+     * TODO
      * @param id
      * @return
      */

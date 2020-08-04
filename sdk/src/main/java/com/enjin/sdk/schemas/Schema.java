@@ -34,7 +34,7 @@ import java.util.Collection;
 /**
  * TODO
  */
-public class SchemaImpl extends BaseService implements PlayerSchema, ProjectSchema {
+public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
 
     private final PlayerService playerService;
     private final ProjectService projectService;
@@ -43,7 +43,7 @@ public class SchemaImpl extends BaseService implements PlayerSchema, ProjectSche
      * TODO
      * @param middleware
      */
-    public SchemaImpl(TrustedPlatformMiddleware middleware) {
+    public Schema(TrustedPlatformMiddleware middleware) {
         super(middleware);
         this.playerService = (PlayerService) createService(PlayerService.class);
         this.projectService = (ProjectService) createService(ProjectService.class);
@@ -51,35 +51,35 @@ public class SchemaImpl extends BaseService implements PlayerSchema, ProjectSche
 
     @Override
     public GraphQLResponse<AccessToken> authPlayer(AuthPlayer query) throws IOException {
-        return sendRequest(playerService.getAuth(createRequestBody(query, "")));
+        return sendRequest(playerService.getAuth(middleware.getSchema(), createRequestBody(query)));
     }
 
     @Override
     public void authPlayer(AuthPlayer query,
                            HttpCallback<GraphQLResponse<AccessToken>> callback) {
-        sendRequest(playerService.getAuth(createRequestBody(query, "")), callback);
+        sendRequest(playerService.getAuth(middleware.getSchema(), createRequestBody(query)), callback);
     }
 
     @Override
     public GraphQLResponse<AccessToken> authProject(AuthProject query) throws IOException {
-        return sendRequest(projectService.getAuth(createRequestBody(query, "")));
+        return sendRequest(projectService.getAuth(middleware.getSchema(), createRequestBody(query)));
     }
 
     @Override
     public void authProject(AuthProject query,
                             HttpCallback<GraphQLResponse<AccessToken>> callback) {
-        sendRequest(projectService.getAuth(createRequestBody(query, "")), callback);
+        sendRequest(projectService.getAuth(middleware.getSchema(), createRequestBody(query)), callback);
     }
 
     @Override
     public GraphQLResponse<AccessToken> createPlayer(CreatePlayer mutation) throws IOException {
-        return sendRequest(playerService.getAuth(createRequestBody(mutation, "")));
+        return sendRequest(playerService.getAuth(middleware.getSchema(), createRequestBody(mutation)));
     }
 
     @Override
     public void createPlayer(CreatePlayer mutation,
                              HttpCallback<GraphQLResponse<AccessToken>> callback) {
-        sendRequest(playerService.getAuth(createRequestBody(mutation, "")), callback);
+        sendRequest(playerService.getAuth(middleware.getSchema(), createRequestBody(mutation)), callback);
     }
 
     @Override
@@ -128,24 +128,24 @@ public class SchemaImpl extends BaseService implements PlayerSchema, ProjectSche
 
     @Override
     public GraphQLResponse<Player> getPlayer(GetPlayer query) throws IOException {
-        return sendRequest(playerService.getOne(createRequestBody(query, "")));
+        return sendRequest(playerService.getOne(middleware.getSchema(), createRequestBody(query)));
     }
 
     @Override
     public void getPlayer(GetPlayer query,
                           HttpCallback<GraphQLResponse<Player>> callback) {
-        sendRequest(playerService.getOne(createRequestBody(query, "")), callback);
+        sendRequest(playerService.getOne(middleware.getSchema(), createRequestBody(query)), callback);
     }
 
     @Override
     public GraphQLResponse<Collection<Player>> getPlayers(GetPlayers query) throws IOException {
-        return sendRequest(playerService.getMany(createRequestBody(query, "")));
+        return sendRequest(playerService.getMany(middleware.getSchema(), createRequestBody(query)));
     }
 
     @Override
     public void getPlayers(GetPlayers query,
                            HttpCallback<GraphQLResponse<Collection<Player>>> callback) {
-        sendRequest(playerService.getMany(createRequestBody(query, "")), callback);
+        sendRequest(playerService.getMany(middleware.getSchema(), createRequestBody(query)), callback);
     }
 
     @Override
@@ -257,4 +257,5 @@ public class SchemaImpl extends BaseService implements PlayerSchema, ProjectSche
                            HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
+
 }
