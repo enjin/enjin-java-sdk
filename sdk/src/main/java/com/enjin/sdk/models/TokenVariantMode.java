@@ -10,6 +10,6 @@ public enum TokenVariantMode {
     NONE,
     BEAM,
     ONCE,
-    ALWAYS
+    ALWAYS,
 
 }

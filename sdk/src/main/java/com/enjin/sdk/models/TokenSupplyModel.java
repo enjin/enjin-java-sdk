@@ -13,6 +13,6 @@ public enum TokenSupplyModel {
     INFINITE,
     COLLAPSING,
     ANNUAL_VALUE,
-    ANNUAL_PERCENTAGE
+    ANNUAL_PERCENTAGE,
 
 }

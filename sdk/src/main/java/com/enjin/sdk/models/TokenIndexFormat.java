@@ -12,6 +12,6 @@ public enum TokenIndexFormat {
     @SerializedName("hex64")
     HEX64,
     @SerializedName("uint64")
-    UINT64
+    UINT64,
 
 }

@@ -10,8 +10,8 @@ import com.enjin.sdk.schemas.shared.arguments.PlayerFragmentArguments;
  */
 public class GetPlayers
         extends GraphQLRequest<GetPlayers>
-        implements PaginationArguments<GetPlayers>,
-        PlayerFragmentArguments<GetPlayers> {
+        implements PlayerFragmentArguments<GetPlayers>,
+        PaginationArguments<GetPlayers> {
 
     /**
      * TODO
