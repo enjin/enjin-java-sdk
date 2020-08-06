@@ -2,6 +2,7 @@ package com.enjin.sdk.schemas.project.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.models.TokenTransferFeeSettings;
+import com.enjin.sdk.schemas.shared.arguments.TransactionFragmentArguments;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 /**
@@ -9,7 +10,8 @@ import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
  */
 public class SetTransferFee
         extends GraphQLRequest<SetTransferFee>
-        implements TransactionRequestArguments<SetTransferFee> {
+        implements TransactionFragmentArguments<SetTransferFee>,
+        TransactionRequestArguments<SetTransferFee> {
 
     /**
      * TODO
