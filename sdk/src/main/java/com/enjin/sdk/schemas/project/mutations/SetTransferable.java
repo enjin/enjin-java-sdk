@@ -2,6 +2,7 @@ package com.enjin.sdk.schemas.project.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.models.TokenTransferable;
+import com.enjin.sdk.schemas.shared.arguments.TransactionFragmentArguments;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 /**
@@ -9,7 +10,8 @@ import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
  */
 public class SetTransferable
         extends GraphQLRequest<SetTransferable>
-        implements TransactionRequestArguments<SetTransferable> {
+        implements TransactionFragmentArguments<SetTransferable>,
+        TransactionRequestArguments<SetTransferable> {
 
     /**
      * TODO
