@@ -14,6 +14,6 @@ public enum TokenIdFormat {
     @SerializedName("hex256")
     HEX256,
     @SerializedName("uint256")
-    UINT256
+    UINT256,
 
 }

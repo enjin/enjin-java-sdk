@@ -50,7 +50,7 @@ public class Request {
      *
      * @return
      */
-    private RequestType type;
+    private TransactionType type;
     /**
      * -- Getter --
      * TODO
@@ -113,7 +113,7 @@ public class Request {
      *
      * @return
      */
-    private RequestState state;
+    private TransactionState state;
     /**
      * -- Getter --
      * TODO

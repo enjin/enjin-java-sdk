@@ -10,6 +10,6 @@ public enum Whitelisted {
     SEND,
     RECEIVE,
     NO_FEES,
-    ADDRESS
+    ADDRESS,
 
 }

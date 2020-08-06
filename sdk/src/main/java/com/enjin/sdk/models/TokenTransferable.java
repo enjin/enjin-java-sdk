@@ -10,6 +10,6 @@ public enum TokenTransferable {
 
     PERMANENT,
     TEMPORARY,
-    BOUND
+    BOUND,
 
 }

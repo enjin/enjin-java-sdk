@@ -6,7 +6,7 @@ package com.enjin.sdk.models;
  * @author Evan Lindsay
  * @see Request
  */
-public enum RequestState {
+public enum TransactionState {
 
     PENDING,
     BROADCAST,
@@ -15,6 +15,6 @@ public enum RequestState {
     CANCELED_USER,
     CANCELED_PLATFORM,
     DROPPED,
-    FAILED
+    FAILED,
 
 }

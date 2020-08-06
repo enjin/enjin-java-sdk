@@ -2,18 +2,17 @@ package com.enjin.sdk.models;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Collection;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * TODO
  */
-public class PlayerFilter {
+public class PlayerFilter extends Filter<PlayerFilter> {
 
     private String id;
     @SerializedName("id_in")
-    private Collection<String> idIn;
-    private Collection<PlayerFilter> and;
-    private Collection<PlayerFilter> or;
+    private List<String> idIn;
 
     /**
      * TODO
@@ -30,28 +29,8 @@ public class PlayerFilter {
      * @param ids
      * @return
      */
-    public PlayerFilter idIn(Collection<String> ids) {
-        idIn = ids;
-        return this;
-    }
-
-    /**
-     * TODO
-     * @param filters
-     * @return
-     */
-    public PlayerFilter and(Collection<PlayerFilter> filters) {
-        and = filters;
-        return this;
-    }
-
-    /**
-     * TODO
-     * @param filters
-     * @return
-     */
-    public PlayerFilter or(Collection<PlayerFilter> filters) {
-        or = filters;
+    public PlayerFilter idIn(String... ids) {
+        idIn = Arrays.asList(ids);
         return this;
     }
 

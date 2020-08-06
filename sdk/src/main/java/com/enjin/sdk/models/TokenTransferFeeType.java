@@ -13,6 +13,6 @@ public enum TokenTransferFeeType {
     PER_TRANSFER,
     PER_CRYPTO_ITEM,
     RATIO_CUT,
-    RATIO_EXTRA
+    RATIO_EXTRA,
 
 }

@@ -6,7 +6,7 @@ package com.enjin.sdk.models;
  * @author Evan Lindsay
  * @see Request
  */
-public enum RequestType {
+public enum TransactionType {
 
     UNKNOWN,
     APPROVE,
@@ -33,6 +33,6 @@ public enum RequestType {
     MANAGER_UPDATE,
     SET_DECIMALS,
     SET_SYMBOL,
-    MESSAGE
+    MESSAGE,
 
 }
