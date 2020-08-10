@@ -17,6 +17,14 @@ public final class PlayerClient extends TrustedPlatformClient {
     /**
      * TODO
      * @param baseUrl
+     */
+    public PlayerClient(@NonNull HttpUrl baseUrl) {
+        this(baseUrl, false);
+    }
+
+    /**
+     * TODO
+     * @param baseUrl
      * @param debug
      */
     public PlayerClient(@NonNull HttpUrl baseUrl, boolean debug) {

@@ -17,9 +17,17 @@ public final class ProjectClient extends TrustedPlatformClient {
     /**
      * TODO
      * @param baseUrl
+     */
+    public ProjectClient(@NonNull HttpUrl baseUrl) {
+        this(baseUrl, false);
+    }
+
+    /**
+     * TODO
+     * @param baseUrl
      * @param debug
      */
-    ProjectClient(@NonNull HttpUrl baseUrl, boolean debug) {
+    public ProjectClient(@NonNull HttpUrl baseUrl, boolean debug) {
         super(baseUrl, debug, SCHEMA);
     }
 
