@@ -34,9 +34,7 @@ public class TemplateGenerator implements Generator {
                                             .addModifiers(Modifier.PUBLIC, Modifier.FINAL);
 
         for (Map.Entry<String, Template> entry : templateLoader.getOperations().entrySet()) {
-            String fieldName = entry.getKey()
-                                    .replace("Mutation", "")
-                                    .replace("Query", "");
+            String fieldName = entry.getKey();
             String fieldValue = entry.getValue().compile().replace("\n", " ");
             FieldSpec spec = FieldSpec.builder(String.class,
                                                fieldName,
