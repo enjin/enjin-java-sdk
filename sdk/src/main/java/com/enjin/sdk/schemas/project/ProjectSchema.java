@@ -27,7 +27,7 @@ import com.enjin.sdk.models.Player;
 import com.enjin.sdk.models.Request;
 
 import java.io.IOException;
-import java.util.Collection;
+import java.util.List;
 
 /**
  * TODO
@@ -160,14 +160,14 @@ public interface ProjectSchema extends SharedSchema {
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Collection<Player>> getPlayers(GetPlayers query) throws IOException;
+    GraphQLResponse<List<Player>> getPlayers(GetPlayers query) throws IOException;
 
     /**
      * TODO
      * @param query
      * @param callback
      */
-    void getPlayers(GetPlayers query, HttpCallback<GraphQLResponse<Collection<Player>>> callback);
+    void getPlayers(GetPlayers query, HttpCallback<GraphQLResponse<List<Player>>> callback);
 
     /**
      * TODO

@@ -53,7 +53,6 @@ import com.enjin.sdk.schemas.shared.queries.GetToken;
 import com.enjin.sdk.schemas.shared.queries.GetTokens;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -251,13 +250,13 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Collection<Player>> getPlayers(GetPlayers query) throws IOException {
+    public GraphQLResponse<List<Player>> getPlayers(GetPlayers query) throws IOException {
         return sendRequest(playerService.getMany(middleware.getSchema(), createRequestBody(query)));
     }
 
     @Override
     public void getPlayers(GetPlayers query,
-                           HttpCallback<GraphQLResponse<Collection<Player>>> callback) {
+                           HttpCallback<GraphQLResponse<List<Player>>> callback) {
         sendRequest(playerService.getMany(middleware.getSchema(), createRequestBody(query)), callback);
     }
 
