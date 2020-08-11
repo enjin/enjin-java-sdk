@@ -1,11 +1,7 @@
 package com.enjin.sdk.graphql;
 
-import lombok.SneakyThrows;
-
-import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Pattern;
 
 /**
  * Class for registering and storing GraphQL templates.
@@ -58,14 +54,8 @@ public class GraphQLQueryRegistry {
         return registered.get(key);
     }
 
-    @SneakyThrows
     private void registerTemplateConstants() {
-        Field[] fields = TemplateConstants.class.getDeclaredFields();
-        for (Field field : fields) {
-            String name = field.getName();
-            String query = (String) field.get(null);
-            register(name, query);
-        }
+        TemplateConstants.TEMPLATES.forEach(this::register);
     }
 
 }

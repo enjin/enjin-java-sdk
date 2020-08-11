@@ -1,5 +1,7 @@
 package com.enjin.sdk.gen;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -12,8 +14,11 @@ public class Template {
     private static final String IMPORT_KEY = "#import";
     private static final String ARG_KEY = "#arg";
 
+    @Getter
     private final String namespace;
+    @Getter
     private final String name;
+    @Getter
     private final TemplateType type;
     private final Map<String, Template> fragments;
     private final List<String> contents = new ArrayList<>();
@@ -81,7 +86,7 @@ public class Template {
         return template.replace(type.name().toLowerCase(),
                                 String.format("%s %s(\n    %s\n)",
                                               type.name().toLowerCase(),
-                                              namespace,
+                                              name,
                                               String.join(",\n    ", parameters)));
     }
 

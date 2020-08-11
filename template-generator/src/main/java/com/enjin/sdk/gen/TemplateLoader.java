@@ -7,7 +7,6 @@ import java.io.File;
 import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.Stack;
@@ -17,13 +16,10 @@ import java.util.regex.Pattern;
 
 public class TemplateLoader {
 
-    private static final Pattern TEMPLATE_REGEX =
-            Pattern.compile(new StringBuilder()
-                                    .append("^(?:[.a-zA-Z]{0,}\\.)") // Handles arbitrary number of path elements
-                                    .append("schema\\.(?:project|player|shared)\\.") // Validates the schema
-                                    .append("(?<type>fragment|mutation|query)\\.") // Gets the template type
-                                    .append("(?:[a-zA-Z]{1,}?)\\.gql$") // Validates the query name
-                                    .toString());
+    // This pattern handles arbitrary paths, validates the schema, gets the type, and validates the template name
+    private static final Pattern TEMPLATE_REGEX = Pattern.compile(
+            "^(?:[a-zA-Z\\\\:-]*schemas\\\\)(?:project|player|shared)\\\\(?<type>fragment|query|mutation)\\\\(?:[a-zA-Z]+)\\.gql$"
+    );
 
     private final Map<String, Template> fragments = new HashMap<>();
     @Getter
@@ -85,15 +81,14 @@ public class TemplateLoader {
                 operations.put(namespace, new Template(namespace, type, contents, fragments));
                 break;
             default:
-                // TODO: Throw exception.
-                break;
+                throw new IllegalArgumentException(String.format("Unknown template type: %s", type));
         }
 
     }
 
     @SneakyThrows
     private String[] loadTemplateContents(File file) {
-        return (String[]) Files.readAllLines(file.toPath()).toArray();
+        return Files.readAllLines(file.toPath()).toArray(new String[0]);
     }
 
 }
