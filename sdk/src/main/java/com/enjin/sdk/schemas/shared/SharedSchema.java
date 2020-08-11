@@ -49,8 +49,7 @@ public interface SharedSchema {
      * @param mutation
      * @param callback
      */
-    void advancedSendToken(AdvancedSendToken mutation,
-                           HttpCallback<GraphQLResponse<Request>> callback);
+    void advancedSendToken(AdvancedSendToken mutation, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
@@ -65,8 +64,7 @@ public interface SharedSchema {
      * @param mutation
      * @param callback
      */
-    void approveEnj(ApproveEnj mutation,
-                    HttpCallback<GraphQLResponse<Request>> callback);
+    void approveEnj(ApproveEnj mutation, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
@@ -81,8 +79,7 @@ public interface SharedSchema {
      * @param mutation
      * @param callback
      */
-    void approveMaxEnj(ApproveMaxEnj mutation,
-                       HttpCallback<GraphQLResponse<Request>> callback);
+    void approveMaxEnj(ApproveMaxEnj mutation, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
@@ -97,8 +94,7 @@ public interface SharedSchema {
      * @param mutation
      * @param callback
      */
-    void completeTrade(CompleteTrade mutation,
-                       HttpCallback<GraphQLResponse<Request>> callback);
+    void completeTrade(CompleteTrade mutation, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
@@ -113,8 +109,7 @@ public interface SharedSchema {
      * @param mutation
      * @param callback
      */
-    void createTrade(CreateTrade mutation,
-                     HttpCallback<GraphQLResponse<Request>> callback);
+    void createTrade(CreateTrade mutation, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
@@ -129,8 +124,7 @@ public interface SharedSchema {
      * @param query
      * @param callback
      */
-    void getBalances(GetBalances query,
-                     HttpCallback<GraphQLResponse<List<Balance>>> callback);
+    void getBalances(GetBalances query, HttpCallback<GraphQLResponse<List<Balance>>> callback);
 
     /**
      * TODO
@@ -145,8 +139,7 @@ public interface SharedSchema {
      * @param query
      * @param callback
      */
-    void getGasPrices(GetGasPrices query,
-                      HttpCallback<GraphQLResponse<GasPrices>> callback);
+    void getGasPrices(GetGasPrices query, HttpCallback<GraphQLResponse<GasPrices>> callback);
 
     /**
      * TODO
@@ -161,8 +154,7 @@ public interface SharedSchema {
      * @param query
      * @param callback
      */
-    void getPlatform(GetPlatform query,
-                     HttpCallback<GraphQLResponse<Platform>> callback);
+    void getPlatform(GetPlatform query, HttpCallback<GraphQLResponse<Platform>> callback);
 
     /**
      * TODO
@@ -177,8 +169,7 @@ public interface SharedSchema {
      * @param query
      * @param callback
      */
-    void getProject(GetProject query,
-                    HttpCallback<GraphQLResponse<Project>> callback);
+    void getProject(GetProject query, HttpCallback<GraphQLResponse<Project>> callback);
 
     /**
      * TODO
@@ -193,8 +184,7 @@ public interface SharedSchema {
      * @param query
      * @param callback
      */
-    void getRequest(GetRequest query,
-                    HttpCallback<GraphQLResponse<Request>> callback);
+    void getRequest(GetRequest query, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
@@ -209,8 +199,7 @@ public interface SharedSchema {
      * @param query
      * @param callback
      */
-    void getRequests(GetRequests query,
-                     HttpCallback<GraphQLResponse<List<Request>>> callback);
+    void getRequests(GetRequests query, HttpCallback<GraphQLResponse<List<Request>>> callback);
 
     /**
      * TODO
@@ -225,8 +214,7 @@ public interface SharedSchema {
      * @param query
      * @param callback
      */
-    void getToken(GetToken query,
-                  HttpCallback<GraphQLResponse<Token>> callback);
+    void getToken(GetToken query, HttpCallback<GraphQLResponse<Token>> callback);
 
     /**
      * TODO
@@ -241,8 +229,7 @@ public interface SharedSchema {
      * @param query
      * @param callback
      */
-    void getTokens(GetTokens query,
-                   HttpCallback<GraphQLResponse<List<Token>>> callback);
+    void getTokens(GetTokens query, HttpCallback<GraphQLResponse<List<Token>>> callback);
 
     /**
      * TODO
@@ -257,8 +244,7 @@ public interface SharedSchema {
      * @param mutation
      * @param callback
      */
-    void meltToken(MeltToken mutation,
-                   HttpCallback<GraphQLResponse<Request>> callback);
+    void meltToken(MeltToken mutation, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
@@ -273,8 +259,7 @@ public interface SharedSchema {
      * @param mutation
      * @param callback
      */
-    void message(Message mutation,
-                 HttpCallback<GraphQLResponse<Request>> callback);
+    void message(Message mutation, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
@@ -289,8 +274,7 @@ public interface SharedSchema {
      * @param mutation
      * @param callback
      */
-    void resetEnjApproval(ResetEnjApproval mutation,
-                          HttpCallback<GraphQLResponse<Request>> callback);
+    void resetEnjApproval(ResetEnjApproval mutation, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
@@ -305,8 +289,7 @@ public interface SharedSchema {
      * @param mutation
      * @param callback
      */
-    void sendEnj(SendEnj mutation,
-                 HttpCallback<GraphQLResponse<Request>> callback);
+    void sendEnj(SendEnj mutation, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
@@ -321,8 +304,7 @@ public interface SharedSchema {
      * @param mutation
      * @param callback
      */
-    void sendToken(SendToken mutation,
-                   HttpCallback<GraphQLResponse<Request>> callback);
+    void sendToken(SendToken mutation, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
@@ -337,7 +319,6 @@ public interface SharedSchema {
      * @param mutation
      * @param callback
      */
-    void setApprovalForAll(SetApprovalForAll mutation,
-                           HttpCallback<GraphQLResponse<Request>> callback);
+    void setApprovalForAll(SetApprovalForAll mutation, HttpCallback<GraphQLResponse<Request>> callback);
 
 }
