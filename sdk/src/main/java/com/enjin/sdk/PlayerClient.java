@@ -1,6 +1,6 @@
 package com.enjin.sdk;
 
-import com.enjin.sdk.schemas.player.PlayerSchema;
+import com.enjin.sdk.schemas.Schema;
 import lombok.NonNull;
 import okhttp3.HttpUrl;
 
@@ -32,8 +32,8 @@ public final class PlayerClient extends TrustedPlatformClient {
     }
 
     @Override
-    public PlayerSchema getSchema() {
-        return (PlayerSchema) schema;
+    public Schema getSchema() {
+        return schema;
     }
 
 }
