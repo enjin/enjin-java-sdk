@@ -23,11 +23,9 @@ import com.enjin.sdk.schemas.project.mutations.SetTransferFee;
 import com.enjin.sdk.schemas.project.mutations.SetTransferable;
 import com.enjin.sdk.schemas.project.mutations.SetUri;
 import com.enjin.sdk.schemas.project.mutations.SetWhitelisted;
-import com.enjin.sdk.schemas.project.mutations.UnlinkWallet;
 import com.enjin.sdk.schemas.project.mutations.UpdateName;
 import com.enjin.sdk.schemas.project.queries.AuthPlayer;
 import com.enjin.sdk.schemas.project.queries.AuthProject;
-import com.enjin.sdk.schemas.project.queries.GetPlayer;
 import com.enjin.sdk.schemas.project.queries.GetPlayers;
 import com.enjin.sdk.models.AccessToken;
 import com.enjin.sdk.models.Player;
@@ -91,7 +89,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
 
     @Override
     public void approveEnj(ApproveEnj mutation,
-                    HttpCallback<GraphQLResponse<Request>> callback) {
+                           HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
@@ -102,7 +100,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
 
     @Override
     public void approveMaxEnj(ApproveMaxEnj mutation,
-                       HttpCallback<GraphQLResponse<Request>> callback) {
+                              HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
@@ -135,7 +133,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
 
     @Override
     public void completeTrade(CompleteTrade mutation,
-                       HttpCallback<GraphQLResponse<Request>> callback) {
+                              HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
@@ -157,7 +155,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
 
     @Override
     public void createTrade(CreateTrade mutation,
-                     HttpCallback<GraphQLResponse<Request>> callback) {
+                            HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
@@ -212,7 +210,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
 
     @Override
     public void getBalances(GetBalances query,
-                     HttpCallback<GraphQLResponse<List<Balance>>> callback) {
+                            HttpCallback<GraphQLResponse<List<Balance>>> callback) {
 
     }
 
@@ -223,7 +221,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
 
     @Override
     public void getGasPrices(GetGasPrices query,
-                      HttpCallback<GraphQLResponse<GasPrices>> callback) {
+                             HttpCallback<GraphQLResponse<GasPrices>> callback) {
 
     }
 
@@ -234,17 +232,28 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
 
     @Override
     public void getPlatform(GetPlatform query,
-                     HttpCallback<GraphQLResponse<Platform>> callback) {
+                            HttpCallback<GraphQLResponse<Platform>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<Player> getPlayer(GetPlayer query) throws IOException {
+    public GraphQLResponse<Player> getPlayer(com.enjin.sdk.schemas.player.queries.GetPlayer query) throws IOException {
+        return null;
+    }
+
+    @Override
+    public void getPlayer(com.enjin.sdk.schemas.player.queries.GetPlayer query,
+                          HttpCallback<GraphQLResponse<Player>> callback) {
+
+    }
+
+    @Override
+    public GraphQLResponse<Player> getPlayer(com.enjin.sdk.schemas.project.queries.GetPlayer query) throws IOException {
         return sendRequest(playerService.getOne(middleware.getSchema(), createRequestBody(query)));
     }
 
     @Override
-    public void getPlayer(GetPlayer query,
+    public void getPlayer(com.enjin.sdk.schemas.project.queries.GetPlayer query,
                           HttpCallback<GraphQLResponse<Player>> callback) {
         sendRequest(playerService.getOne(middleware.getSchema(), createRequestBody(query)), callback);
     }
@@ -267,7 +276,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
 
     @Override
     public void getProject(GetProject query,
-                    HttpCallback<GraphQLResponse<Project>> callback) {
+                           HttpCallback<GraphQLResponse<Project>> callback) {
 
     }
 
@@ -278,7 +287,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
 
     @Override
     public void getRequest(GetRequest query,
-                    HttpCallback<GraphQLResponse<Request>> callback) {
+                           HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
@@ -289,7 +298,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
 
     @Override
     public void getRequests(GetRequests query,
-                     HttpCallback<GraphQLResponse<List<Request>>> callback) {
+                            HttpCallback<GraphQLResponse<List<Request>>> callback) {
 
     }
 
@@ -300,7 +309,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
 
     @Override
     public void getToken(GetToken query,
-                  HttpCallback<GraphQLResponse<Token>> callback) {
+                         HttpCallback<GraphQLResponse<Token>> callback) {
 
     }
 
@@ -311,7 +320,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
 
     @Override
     public void getTokens(GetTokens query,
-                   HttpCallback<GraphQLResponse<List<Token>>> callback) {
+                          HttpCallback<GraphQLResponse<List<Token>>> callback) {
 
     }
 
@@ -333,7 +342,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
 
     @Override
     public void meltToken(MeltToken mutation,
-                   HttpCallback<GraphQLResponse<Request>> callback) {
+                          HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
@@ -344,7 +353,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
 
     @Override
     public void message(Message mutation,
-                 HttpCallback<GraphQLResponse<Request>> callback) {
+                        HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
@@ -377,7 +386,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
 
     @Override
     public void resetEnjApproval(ResetEnjApproval mutation,
-                          HttpCallback<GraphQLResponse<Request>> callback) {
+                                 HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
@@ -388,7 +397,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
 
     @Override
     public void sendEnj(SendEnj mutation,
-                 HttpCallback<GraphQLResponse<Request>> callback) {
+                        HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
@@ -399,7 +408,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
 
     @Override
     public void sendToken(SendToken mutation,
-                   HttpCallback<GraphQLResponse<Request>> callback) {
+                          HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
@@ -410,7 +419,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
 
     @Override
     public void setApprovalForAll(SetApprovalForAll mutation,
-                           HttpCallback<GraphQLResponse<Request>> callback) {
+                                  HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
@@ -470,12 +479,23 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Boolean> unlinkWallet(UnlinkWallet mutation) throws IOException {
+    public GraphQLResponse<Boolean> unlinkWallet(com.enjin.sdk.schemas.player.mutations.UnlinkWallet mutation) throws IOException {
         return null;
     }
 
     @Override
-    public void unlinkWallet(UnlinkWallet mutation,
+    public void unlinkWallet(com.enjin.sdk.schemas.player.mutations.UnlinkWallet mutation,
+                             HttpCallback<GraphQLResponse<Boolean>> callback) {
+
+    }
+
+    @Override
+    public GraphQLResponse<Boolean> unlinkWallet(com.enjin.sdk.schemas.project.mutations.UnlinkWallet mutation) throws IOException {
+        return null;
+    }
+
+    @Override
+    public void unlinkWallet(com.enjin.sdk.schemas.project.mutations.UnlinkWallet mutation,
                              HttpCallback<GraphQLResponse<Boolean>> callback) {
 
     }
