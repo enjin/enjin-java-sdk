@@ -72,441 +72,441 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Request> advancedSendToken(AdvancedSendToken mutation) throws IOException {
+    public GraphQLResponse<Request> advancedSendToken(AdvancedSendToken request) throws IOException {
         return null;
     }
 
     @Override
-    public void advancedSendToken(AdvancedSendToken mutation,
+    public void advancedSendToken(AdvancedSendToken request,
                                   HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<Request> approveEnj(ApproveEnj mutation) throws IOException {
+    public GraphQLResponse<Request> approveEnj(ApproveEnj request) throws IOException {
         return null;
     }
 
     @Override
-    public void approveEnj(ApproveEnj mutation,
+    public void approveEnj(ApproveEnj request,
                            HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<Request> approveMaxEnj(ApproveMaxEnj mutation) throws IOException {
+    public GraphQLResponse<Request> approveMaxEnj(ApproveMaxEnj request) throws IOException {
         return null;
     }
 
     @Override
-    public void approveMaxEnj(ApproveMaxEnj mutation,
+    public void approveMaxEnj(ApproveMaxEnj request,
                               HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<AccessToken> authPlayer(AuthPlayer query) throws IOException {
-        return sendRequest(playerService.getAuth(middleware.getSchema(), createRequestBody(query)));
+    public GraphQLResponse<AccessToken> authPlayer(AuthPlayer request) throws IOException {
+        return sendRequest(playerService.getAuth(middleware.getSchema(), createRequestBody(request)));
     }
 
     @Override
-    public void authPlayer(AuthPlayer query,
+    public void authPlayer(AuthPlayer request,
                            HttpCallback<GraphQLResponse<AccessToken>> callback) {
-        sendRequest(playerService.getAuth(middleware.getSchema(), createRequestBody(query)), callback);
+        sendRequest(playerService.getAuth(middleware.getSchema(), createRequestBody(request)), callback);
     }
 
     @Override
-    public GraphQLResponse<AccessToken> authProject(AuthProject query) throws IOException {
-        return sendRequest(projectService.getAuth(middleware.getSchema(), createRequestBody(query)));
+    public GraphQLResponse<AccessToken> authProject(AuthProject request) throws IOException {
+        return sendRequest(projectService.getAuth(middleware.getSchema(), createRequestBody(request)));
     }
 
     @Override
-    public void authProject(AuthProject query,
+    public void authProject(AuthProject request,
                             HttpCallback<GraphQLResponse<AccessToken>> callback) {
-        sendRequest(projectService.getAuth(middleware.getSchema(), createRequestBody(query)), callback);
+        sendRequest(projectService.getAuth(middleware.getSchema(), createRequestBody(request)), callback);
     }
 
     @Override
-    public GraphQLResponse<Request> completeTrade(CompleteTrade mutation) throws IOException {
+    public GraphQLResponse<Request> completeTrade(CompleteTrade request) throws IOException {
         return null;
     }
 
     @Override
-    public void completeTrade(CompleteTrade mutation,
+    public void completeTrade(CompleteTrade request,
                               HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<AccessToken> createPlayer(CreatePlayer mutation) throws IOException {
-        return sendRequest(playerService.getAuth(middleware.getSchema(), createRequestBody(mutation)));
+    public GraphQLResponse<AccessToken> createPlayer(CreatePlayer request) throws IOException {
+        return sendRequest(playerService.getAuth(middleware.getSchema(), createRequestBody(request)));
     }
 
     @Override
-    public void createPlayer(CreatePlayer mutation,
+    public void createPlayer(CreatePlayer request,
                              HttpCallback<GraphQLResponse<AccessToken>> callback) {
-        sendRequest(playerService.getAuth(middleware.getSchema(), createRequestBody(mutation)), callback);
+        sendRequest(playerService.getAuth(middleware.getSchema(), createRequestBody(request)), callback);
     }
 
     @Override
-    public GraphQLResponse<Request> createTrade(CreateTrade mutation) throws IOException {
+    public GraphQLResponse<Request> createTrade(CreateTrade request) throws IOException {
         return null;
     }
 
     @Override
-    public void createTrade(CreateTrade mutation,
+    public void createTrade(CreateTrade request,
                             HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<Request> createToken(CreateToken mutation) throws IOException {
+    public GraphQLResponse<Request> createToken(CreateToken request) throws IOException {
         return null;
     }
 
     @Override
-    public void createToken(CreateToken mutation,
+    public void createToken(CreateToken request,
                             HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<Request> decreaseMaxMeltFee(DecreaseMaxMeltFee mutation) throws IOException {
+    public GraphQLResponse<Request> decreaseMaxMeltFee(DecreaseMaxMeltFee request) throws IOException {
         return null;
     }
 
     @Override
-    public void decreaseMaxMeltFee(DecreaseMaxMeltFee mutation,
+    public void decreaseMaxMeltFee(DecreaseMaxMeltFee request,
                                    HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<Request> decreaseMaxTransferFee(DecreaseMaxTransferFee mutation) throws IOException {
+    public GraphQLResponse<Request> decreaseMaxTransferFee(DecreaseMaxTransferFee request) throws IOException {
         return null;
     }
 
     @Override
-    public void decreaseMaxTransferFee(DecreaseMaxTransferFee mutation,
+    public void decreaseMaxTransferFee(DecreaseMaxTransferFee request,
                                        HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<Boolean> deletePlayer(DeletePlayer mutation) throws IOException {
+    public GraphQLResponse<Boolean> deletePlayer(DeletePlayer request) throws IOException {
         return null;
     }
 
     @Override
-    public void deletePlayer(DeletePlayer mutation,
+    public void deletePlayer(DeletePlayer request,
                              HttpCallback<GraphQLResponse<Boolean>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<List<Balance>> getBalances(GetBalances query) throws IOException {
+    public GraphQLResponse<List<Balance>> getBalances(GetBalances request) throws IOException {
         return null;
     }
 
     @Override
-    public void getBalances(GetBalances query,
+    public void getBalances(GetBalances request,
                             HttpCallback<GraphQLResponse<List<Balance>>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<GasPrices> getGasPrices(GetGasPrices query) throws IOException {
+    public GraphQLResponse<GasPrices> getGasPrices(GetGasPrices request) throws IOException {
         return null;
     }
 
     @Override
-    public void getGasPrices(GetGasPrices query,
+    public void getGasPrices(GetGasPrices request,
                              HttpCallback<GraphQLResponse<GasPrices>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<Platform> getPlatform(GetPlatform query) throws IOException {
+    public GraphQLResponse<Platform> getPlatform(GetPlatform request) throws IOException {
         return null;
     }
 
     @Override
-    public void getPlatform(GetPlatform query,
+    public void getPlatform(GetPlatform request,
                             HttpCallback<GraphQLResponse<Platform>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<Player> getPlayer(com.enjin.sdk.schemas.player.queries.GetPlayer query) throws IOException {
+    public GraphQLResponse<Player> getPlayer(com.enjin.sdk.schemas.player.queries.GetPlayer request) throws IOException {
         return null;
     }
 
     @Override
-    public void getPlayer(com.enjin.sdk.schemas.player.queries.GetPlayer query,
+    public void getPlayer(com.enjin.sdk.schemas.player.queries.GetPlayer request,
                           HttpCallback<GraphQLResponse<Player>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<Player> getPlayer(com.enjin.sdk.schemas.project.queries.GetPlayer query) throws IOException {
-        return sendRequest(playerService.getOne(middleware.getSchema(), createRequestBody(query)));
+    public GraphQLResponse<Player> getPlayer(com.enjin.sdk.schemas.project.queries.GetPlayer request) throws IOException {
+        return sendRequest(playerService.getOne(middleware.getSchema(), createRequestBody(request)));
     }
 
     @Override
-    public void getPlayer(com.enjin.sdk.schemas.project.queries.GetPlayer query,
+    public void getPlayer(com.enjin.sdk.schemas.project.queries.GetPlayer request,
                           HttpCallback<GraphQLResponse<Player>> callback) {
-        sendRequest(playerService.getOne(middleware.getSchema(), createRequestBody(query)), callback);
+        sendRequest(playerService.getOne(middleware.getSchema(), createRequestBody(request)), callback);
     }
 
     @Override
-    public GraphQLResponse<List<Player>> getPlayers(GetPlayers query) throws IOException {
-        return sendRequest(playerService.getMany(middleware.getSchema(), createRequestBody(query)));
+    public GraphQLResponse<List<Player>> getPlayers(GetPlayers request) throws IOException {
+        return sendRequest(playerService.getMany(middleware.getSchema(), createRequestBody(request)));
     }
 
     @Override
-    public void getPlayers(GetPlayers query,
+    public void getPlayers(GetPlayers request,
                            HttpCallback<GraphQLResponse<List<Player>>> callback) {
-        sendRequest(playerService.getMany(middleware.getSchema(), createRequestBody(query)), callback);
+        sendRequest(playerService.getMany(middleware.getSchema(), createRequestBody(request)), callback);
     }
 
     @Override
-    public GraphQLResponse<Project> getProject(GetProject query) throws IOException {
+    public GraphQLResponse<Project> getProject(GetProject request) throws IOException {
         return null;
     }
 
     @Override
-    public void getProject(GetProject query,
+    public void getProject(GetProject request,
                            HttpCallback<GraphQLResponse<Project>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<Request> getRequest(GetRequest query) throws IOException {
+    public GraphQLResponse<Request> getRequest(GetRequest request) throws IOException {
         return null;
     }
 
     @Override
-    public void getRequest(GetRequest query,
+    public void getRequest(GetRequest request,
                            HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<List<Request>> getRequests(GetRequests query) throws IOException {
+    public GraphQLResponse<List<Request>> getRequests(GetRequests request) throws IOException {
         return null;
     }
 
     @Override
-    public void getRequests(GetRequests query,
+    public void getRequests(GetRequests request,
                             HttpCallback<GraphQLResponse<List<Request>>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<Token> getToken(GetToken query) throws IOException {
+    public GraphQLResponse<Token> getToken(GetToken request) throws IOException {
         return null;
     }
 
     @Override
-    public void getToken(GetToken query,
+    public void getToken(GetToken request,
                          HttpCallback<GraphQLResponse<Token>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<List<Token>> getTokens(GetTokens query) throws IOException {
+    public GraphQLResponse<List<Token>> getTokens(GetTokens request) throws IOException {
         return null;
     }
 
     @Override
-    public void getTokens(GetTokens query,
+    public void getTokens(GetTokens request,
                           HttpCallback<GraphQLResponse<List<Token>>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<Boolean> invalidateTokenMetadata(InvalidateTokenMetadata mutation) throws IOException {
+    public GraphQLResponse<Boolean> invalidateTokenMetadata(InvalidateTokenMetadata request) throws IOException {
         return null;
     }
 
     @Override
-    public void invalidateTokenMetadata(InvalidateTokenMetadata mutation,
+    public void invalidateTokenMetadata(InvalidateTokenMetadata request,
                                         HttpCallback<GraphQLResponse<Boolean>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<Request> meltToken(MeltToken mutation) throws IOException {
+    public GraphQLResponse<Request> meltToken(MeltToken request) throws IOException {
         return null;
     }
 
     @Override
-    public void meltToken(MeltToken mutation,
+    public void meltToken(MeltToken request,
                           HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<Request> message(Message mutation) throws IOException {
+    public GraphQLResponse<Request> message(Message request) throws IOException {
         return null;
     }
 
     @Override
-    public void message(Message mutation,
+    public void message(Message request,
                         HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<Request> mintToken(MintToken mutation) throws IOException {
+    public GraphQLResponse<Request> mintToken(MintToken request) throws IOException {
         return null;
     }
 
     @Override
-    public void mintToken(MintToken mutation,
+    public void mintToken(MintToken request,
                           HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<Request> releaseReserve(ReleaseReserve mutation) throws IOException {
+    public GraphQLResponse<Request> releaseReserve(ReleaseReserve request) throws IOException {
         return null;
     }
 
     @Override
-    public void releaseReserve(ReleaseReserve mutation,
+    public void releaseReserve(ReleaseReserve request,
                                HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<Request> resetEnjApproval(ResetEnjApproval mutation) throws IOException {
+    public GraphQLResponse<Request> resetEnjApproval(ResetEnjApproval request) throws IOException {
         return null;
     }
 
     @Override
-    public void resetEnjApproval(ResetEnjApproval mutation,
+    public void resetEnjApproval(ResetEnjApproval request,
                                  HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<Request> sendEnj(SendEnj mutation) throws IOException {
+    public GraphQLResponse<Request> sendEnj(SendEnj request) throws IOException {
         return null;
     }
 
     @Override
-    public void sendEnj(SendEnj mutation,
+    public void sendEnj(SendEnj request,
                         HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<Request> sendToken(SendToken mutation) throws IOException {
+    public GraphQLResponse<Request> sendToken(SendToken request) throws IOException {
         return null;
     }
 
     @Override
-    public void sendToken(SendToken mutation,
+    public void sendToken(SendToken request,
                           HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<Request> setApprovalForAll(SetApprovalForAll mutation) throws IOException {
+    public GraphQLResponse<Request> setApprovalForAll(SetApprovalForAll request) throws IOException {
         return null;
     }
 
     @Override
-    public void setApprovalForAll(SetApprovalForAll mutation,
+    public void setApprovalForAll(SetApprovalForAll request,
                                   HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<Request> setMeltFee(SetMeltFee mutation) throws IOException {
+    public GraphQLResponse<Request> setMeltFee(SetMeltFee request) throws IOException {
         return null;
     }
 
     @Override
-    public void setMeltFee(SetMeltFee mutation,
+    public void setMeltFee(SetMeltFee request,
                            HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<Request> setTransferable(SetTransferable mutation) throws IOException {
+    public GraphQLResponse<Request> setTransferable(SetTransferable request) throws IOException {
         return null;
     }
 
     @Override
-    public void setTransferable(SetTransferable mutation,
+    public void setTransferable(SetTransferable request,
                                 HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<Request> setTransferFee(SetTransferFee mutation) throws IOException {
+    public GraphQLResponse<Request> setTransferFee(SetTransferFee request) throws IOException {
         return null;
     }
 
     @Override
-    public void setTransferFee(SetTransferFee mutation,
+    public void setTransferFee(SetTransferFee request,
                                HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<Request> setUri(SetUri mutation) throws IOException {
+    public GraphQLResponse<Request> setUri(SetUri request) throws IOException {
         return null;
     }
 
     @Override
-    public void setUri(SetUri mutation,
+    public void setUri(SetUri request,
                        HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<Request> setWhitelisted(SetWhitelisted mutation) throws IOException {
+    public GraphQLResponse<Request> setWhitelisted(SetWhitelisted request) throws IOException {
         return null;
     }
 
     @Override
-    public void setWhitelisted(SetWhitelisted mutation,
+    public void setWhitelisted(SetWhitelisted request,
                                HttpCallback<GraphQLResponse<Request>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<Boolean> unlinkWallet(com.enjin.sdk.schemas.player.mutations.UnlinkWallet mutation) throws IOException {
+    public GraphQLResponse<Boolean> unlinkWallet(com.enjin.sdk.schemas.player.mutations.UnlinkWallet request) throws IOException {
         return null;
     }
 
     @Override
-    public void unlinkWallet(com.enjin.sdk.schemas.player.mutations.UnlinkWallet mutation,
+    public void unlinkWallet(com.enjin.sdk.schemas.player.mutations.UnlinkWallet request,
                              HttpCallback<GraphQLResponse<Boolean>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<Boolean> unlinkWallet(com.enjin.sdk.schemas.project.mutations.UnlinkWallet mutation) throws IOException {
+    public GraphQLResponse<Boolean> unlinkWallet(com.enjin.sdk.schemas.project.mutations.UnlinkWallet request) throws IOException {
         return null;
     }
 
     @Override
-    public void unlinkWallet(com.enjin.sdk.schemas.project.mutations.UnlinkWallet mutation,
+    public void unlinkWallet(com.enjin.sdk.schemas.project.mutations.UnlinkWallet request,
                              HttpCallback<GraphQLResponse<Boolean>> callback) {
 
     }
 
     @Override
-    public GraphQLResponse<Request> updateName(UpdateName mutation) throws IOException {
+    public GraphQLResponse<Request> updateName(UpdateName request) throws IOException {
         return null;
     }
 
     @Override
-    public void updateName(UpdateName mutation,
+    public void updateName(UpdateName request,
                            HttpCallback<GraphQLResponse<Request>> callback) {
 
     }

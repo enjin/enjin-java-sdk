@@ -36,287 +36,287 @@ public interface ProjectSchema extends SharedSchema {
 
     /**
      * TODO
-     * @param query
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<AccessToken> authPlayer(AuthPlayer query) throws IOException;
+    GraphQLResponse<AccessToken> authPlayer(AuthPlayer request) throws IOException;
 
     /**
      * TODO
-     * @param query
+     * @param request
      * @param callback
      */
-    void authPlayer(AuthPlayer query, HttpCallback<GraphQLResponse<AccessToken>> callback);
+    void authPlayer(AuthPlayer request, HttpCallback<GraphQLResponse<AccessToken>> callback);
 
     /**
      * TODO
-     * @param query
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<AccessToken> authProject(AuthProject query) throws IOException;
+    GraphQLResponse<AccessToken> authProject(AuthProject request) throws IOException;
 
     /**
      * TODO
-     * @param query
+     * @param request
      * @param callback
      */
-    void authProject(AuthProject query, HttpCallback<GraphQLResponse<AccessToken>> callback);
+    void authProject(AuthProject request, HttpCallback<GraphQLResponse<AccessToken>> callback);
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<AccessToken> createPlayer(CreatePlayer mutation) throws IOException;
+    GraphQLResponse<AccessToken> createPlayer(CreatePlayer request) throws IOException;
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @param callback
      */
-    void createPlayer(CreatePlayer mutation, HttpCallback<GraphQLResponse<AccessToken>> callback);
+    void createPlayer(CreatePlayer request, HttpCallback<GraphQLResponse<AccessToken>> callback);
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> createToken(CreateToken mutation) throws IOException;
+    GraphQLResponse<Request> createToken(CreateToken request) throws IOException;
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @param callback
      */
-    void createToken(CreateToken mutation, HttpCallback<GraphQLResponse<Request>> callback);
+    void createToken(CreateToken request, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> decreaseMaxMeltFee(DecreaseMaxMeltFee mutation) throws IOException;
+    GraphQLResponse<Request> decreaseMaxMeltFee(DecreaseMaxMeltFee request) throws IOException;
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @param callback
      */
-    void decreaseMaxMeltFee(DecreaseMaxMeltFee mutation, HttpCallback<GraphQLResponse<Request>> callback);
+    void decreaseMaxMeltFee(DecreaseMaxMeltFee request, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> decreaseMaxTransferFee(DecreaseMaxTransferFee mutation) throws IOException;
+    GraphQLResponse<Request> decreaseMaxTransferFee(DecreaseMaxTransferFee request) throws IOException;
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @param callback
      */
-    void decreaseMaxTransferFee(DecreaseMaxTransferFee mutation, HttpCallback<GraphQLResponse<Request>> callback);
+    void decreaseMaxTransferFee(DecreaseMaxTransferFee request, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Boolean> deletePlayer(DeletePlayer mutation) throws IOException;
+    GraphQLResponse<Boolean> deletePlayer(DeletePlayer request) throws IOException;
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @param callback
      */
-    void deletePlayer(DeletePlayer mutation, HttpCallback<GraphQLResponse<Boolean>> callback);
+    void deletePlayer(DeletePlayer request, HttpCallback<GraphQLResponse<Boolean>> callback);
 
     /**
      * TODO
-     * @param query
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Player> getPlayer(GetPlayer query) throws IOException;
+    GraphQLResponse<Player> getPlayer(GetPlayer request) throws IOException;
 
     /**
      * TODO
-     * @param query
+     * @param request
      * @param callback
      */
-    void getPlayer(GetPlayer query, HttpCallback<GraphQLResponse<Player>> callback);
+    void getPlayer(GetPlayer request, HttpCallback<GraphQLResponse<Player>> callback);
 
     /**
      * TODO
-     * @param query
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<List<Player>> getPlayers(GetPlayers query) throws IOException;
+    GraphQLResponse<List<Player>> getPlayers(GetPlayers request) throws IOException;
 
     /**
      * TODO
-     * @param query
+     * @param request
      * @param callback
      */
-    void getPlayers(GetPlayers query, HttpCallback<GraphQLResponse<List<Player>>> callback);
+    void getPlayers(GetPlayers request, HttpCallback<GraphQLResponse<List<Player>>> callback);
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Boolean> invalidateTokenMetadata(InvalidateTokenMetadata mutation) throws IOException;
+    GraphQLResponse<Boolean> invalidateTokenMetadata(InvalidateTokenMetadata request) throws IOException;
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @param callback
      */
-    void invalidateTokenMetadata(InvalidateTokenMetadata mutation, HttpCallback<GraphQLResponse<Boolean>> callback);
+    void invalidateTokenMetadata(InvalidateTokenMetadata request, HttpCallback<GraphQLResponse<Boolean>> callback);
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> mintToken(MintToken mutation) throws IOException;
+    GraphQLResponse<Request> mintToken(MintToken request) throws IOException;
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @param callback
      */
-    void mintToken(MintToken mutation, HttpCallback<GraphQLResponse<Request>> callback);
+    void mintToken(MintToken request, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> releaseReserve(ReleaseReserve mutation) throws IOException;
+    GraphQLResponse<Request> releaseReserve(ReleaseReserve request) throws IOException;
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @param callback
      */
-    void releaseReserve(ReleaseReserve mutation, HttpCallback<GraphQLResponse<Request>> callback);
+    void releaseReserve(ReleaseReserve request, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> setMeltFee(SetMeltFee mutation) throws IOException;
+    GraphQLResponse<Request> setMeltFee(SetMeltFee request) throws IOException;
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @param callback
      */
-    void setMeltFee(SetMeltFee mutation, HttpCallback<GraphQLResponse<Request>> callback);
+    void setMeltFee(SetMeltFee request, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> setTransferable(SetTransferable mutation) throws IOException;
+    GraphQLResponse<Request> setTransferable(SetTransferable request) throws IOException;
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @param callback
      */
-    void setTransferable(SetTransferable mutation, HttpCallback<GraphQLResponse<Request>> callback);
+    void setTransferable(SetTransferable request, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> setTransferFee(SetTransferFee mutation) throws IOException;
+    GraphQLResponse<Request> setTransferFee(SetTransferFee request) throws IOException;
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @param callback
      */
-    void setTransferFee(SetTransferFee mutation, HttpCallback<GraphQLResponse<Request>> callback);
+    void setTransferFee(SetTransferFee request, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> setUri(SetUri mutation) throws IOException;
+    GraphQLResponse<Request> setUri(SetUri request) throws IOException;
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @param callback
      */
-    void setUri(SetUri mutation, HttpCallback<GraphQLResponse<Request>> callback);
+    void setUri(SetUri request, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> setWhitelisted(SetWhitelisted mutation) throws IOException;
+    GraphQLResponse<Request> setWhitelisted(SetWhitelisted request) throws IOException;
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @param callback
      */
-    void setWhitelisted(SetWhitelisted mutation, HttpCallback<GraphQLResponse<Request>> callback);
+    void setWhitelisted(SetWhitelisted request, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Boolean> unlinkWallet(UnlinkWallet mutation) throws IOException;
+    GraphQLResponse<Boolean> unlinkWallet(UnlinkWallet request) throws IOException;
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @param callback
      */
-    void unlinkWallet(UnlinkWallet mutation, HttpCallback<GraphQLResponse<Boolean>> callback);
+    void unlinkWallet(UnlinkWallet request, HttpCallback<GraphQLResponse<Boolean>> callback);
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> updateName(UpdateName mutation) throws IOException;
+    GraphQLResponse<Request> updateName(UpdateName request) throws IOException;
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @param callback
      */
-    void updateName(UpdateName mutation, HttpCallback<GraphQLResponse<Request>> callback);
+    void updateName(UpdateName request, HttpCallback<GraphQLResponse<Request>> callback);
 
 }
