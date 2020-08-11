@@ -38,287 +38,287 @@ public interface SharedSchema {
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> advancedSendToken(AdvancedSendToken mutation) throws IOException;
+    GraphQLResponse<Request> advancedSendToken(AdvancedSendToken request) throws IOException;
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @param callback
      */
-    void advancedSendToken(AdvancedSendToken mutation, HttpCallback<GraphQLResponse<Request>> callback);
+    void advancedSendToken(AdvancedSendToken request, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> approveEnj(ApproveEnj mutation) throws IOException;
+    GraphQLResponse<Request> approveEnj(ApproveEnj request) throws IOException;
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @param callback
      */
-    void approveEnj(ApproveEnj mutation, HttpCallback<GraphQLResponse<Request>> callback);
+    void approveEnj(ApproveEnj request, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> approveMaxEnj(ApproveMaxEnj mutation) throws IOException;
+    GraphQLResponse<Request> approveMaxEnj(ApproveMaxEnj request) throws IOException;
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @param callback
      */
-    void approveMaxEnj(ApproveMaxEnj mutation, HttpCallback<GraphQLResponse<Request>> callback);
+    void approveMaxEnj(ApproveMaxEnj request, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> completeTrade(CompleteTrade mutation) throws IOException;
+    GraphQLResponse<Request> completeTrade(CompleteTrade request) throws IOException;
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @param callback
      */
-    void completeTrade(CompleteTrade mutation, HttpCallback<GraphQLResponse<Request>> callback);
+    void completeTrade(CompleteTrade request, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> createTrade(CreateTrade mutation) throws IOException;
+    GraphQLResponse<Request> createTrade(CreateTrade request) throws IOException;
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @param callback
      */
-    void createTrade(CreateTrade mutation, HttpCallback<GraphQLResponse<Request>> callback);
+    void createTrade(CreateTrade request, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
-     * @param query
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<List<Balance>> getBalances(GetBalances query) throws IOException;
+    GraphQLResponse<List<Balance>> getBalances(GetBalances request) throws IOException;
 
     /**
      * TODO
-     * @param query
+     * @param request
      * @param callback
      */
-    void getBalances(GetBalances query, HttpCallback<GraphQLResponse<List<Balance>>> callback);
+    void getBalances(GetBalances request, HttpCallback<GraphQLResponse<List<Balance>>> callback);
 
     /**
      * TODO
-     * @param query
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<GasPrices> getGasPrices(GetGasPrices query) throws IOException;
+    GraphQLResponse<GasPrices> getGasPrices(GetGasPrices request) throws IOException;
 
     /**
      * TODO
-     * @param query
+     * @param request
      * @param callback
      */
-    void getGasPrices(GetGasPrices query, HttpCallback<GraphQLResponse<GasPrices>> callback);
+    void getGasPrices(GetGasPrices request, HttpCallback<GraphQLResponse<GasPrices>> callback);
 
     /**
      * TODO
-     * @param query
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Platform> getPlatform(GetPlatform query) throws IOException;
+    GraphQLResponse<Platform> getPlatform(GetPlatform request) throws IOException;
 
     /**
      * TODO
-     * @param query
+     * @param request
      * @param callback
      */
-    void getPlatform(GetPlatform query, HttpCallback<GraphQLResponse<Platform>> callback);
+    void getPlatform(GetPlatform request, HttpCallback<GraphQLResponse<Platform>> callback);
 
     /**
      * TODO
-     * @param query
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Project> getProject(GetProject query) throws IOException;
+    GraphQLResponse<Project> getProject(GetProject request) throws IOException;
 
     /**
      * TODO
-     * @param query
+     * @param request
      * @param callback
      */
-    void getProject(GetProject query, HttpCallback<GraphQLResponse<Project>> callback);
+    void getProject(GetProject request, HttpCallback<GraphQLResponse<Project>> callback);
 
     /**
      * TODO
-     * @param query
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> getRequest(GetRequest query) throws IOException;
+    GraphQLResponse<Request> getRequest(GetRequest request) throws IOException;
 
     /**
      * TODO
-     * @param query
+     * @param request
      * @param callback
      */
-    void getRequest(GetRequest query, HttpCallback<GraphQLResponse<Request>> callback);
+    void getRequest(GetRequest request, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
-     * @param query
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<List<Request>> getRequests(GetRequests query) throws IOException;
+    GraphQLResponse<List<Request>> getRequests(GetRequests request) throws IOException;
 
     /**
      * TODO
-     * @param query
+     * @param request
      * @param callback
      */
-    void getRequests(GetRequests query, HttpCallback<GraphQLResponse<List<Request>>> callback);
+    void getRequests(GetRequests request, HttpCallback<GraphQLResponse<List<Request>>> callback);
 
     /**
      * TODO
-     * @param query
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Token> getToken(GetToken query) throws IOException;
+    GraphQLResponse<Token> getToken(GetToken request) throws IOException;
 
     /**
      * TODO
-     * @param query
+     * @param request
      * @param callback
      */
-    void getToken(GetToken query, HttpCallback<GraphQLResponse<Token>> callback);
+    void getToken(GetToken request, HttpCallback<GraphQLResponse<Token>> callback);
 
     /**
      * TODO
-     * @param query
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<List<Token>> getTokens(GetTokens query) throws IOException;
+    GraphQLResponse<List<Token>> getTokens(GetTokens request) throws IOException;
 
     /**
      * TODO
-     * @param query
+     * @param request
      * @param callback
      */
-    void getTokens(GetTokens query, HttpCallback<GraphQLResponse<List<Token>>> callback);
+    void getTokens(GetTokens request, HttpCallback<GraphQLResponse<List<Token>>> callback);
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> meltToken(MeltToken mutation) throws IOException;
+    GraphQLResponse<Request> meltToken(MeltToken request) throws IOException;
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @param callback
      */
-    void meltToken(MeltToken mutation, HttpCallback<GraphQLResponse<Request>> callback);
+    void meltToken(MeltToken request, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> message(Message mutation) throws IOException;
+    GraphQLResponse<Request> message(Message request) throws IOException;
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @param callback
      */
-    void message(Message mutation, HttpCallback<GraphQLResponse<Request>> callback);
+    void message(Message request, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> resetEnjApproval(ResetEnjApproval mutation) throws IOException;
+    GraphQLResponse<Request> resetEnjApproval(ResetEnjApproval request) throws IOException;
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @param callback
      */
-    void resetEnjApproval(ResetEnjApproval mutation, HttpCallback<GraphQLResponse<Request>> callback);
+    void resetEnjApproval(ResetEnjApproval request, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> sendEnj(SendEnj mutation) throws IOException;
+    GraphQLResponse<Request> sendEnj(SendEnj request) throws IOException;
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @param callback
      */
-    void sendEnj(SendEnj mutation, HttpCallback<GraphQLResponse<Request>> callback);
+    void sendEnj(SendEnj request, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> sendToken(SendToken mutation) throws IOException;
+    GraphQLResponse<Request> sendToken(SendToken request) throws IOException;
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @param callback
      */
-    void sendToken(SendToken mutation, HttpCallback<GraphQLResponse<Request>> callback);
+    void sendToken(SendToken request, HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> setApprovalForAll(SetApprovalForAll mutation) throws IOException;
+    GraphQLResponse<Request> setApprovalForAll(SetApprovalForAll request) throws IOException;
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @param callback
      */
-    void setApprovalForAll(SetApprovalForAll mutation, HttpCallback<GraphQLResponse<Request>> callback);
+    void setApprovalForAll(SetApprovalForAll request, HttpCallback<GraphQLResponse<Request>> callback);
 
 }

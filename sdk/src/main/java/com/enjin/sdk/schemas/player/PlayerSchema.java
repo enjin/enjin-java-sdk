@@ -16,32 +16,32 @@ public interface PlayerSchema extends SharedSchema {
 
     /**
      * TODO
-     * @param query
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Player> getPlayer(GetPlayer query) throws IOException;
+    GraphQLResponse<Player> getPlayer(GetPlayer request) throws IOException;
 
     /**
      * TODO
-     * @param query
+     * @param request
      * @param callback
      */
-    void getPlayer(GetPlayer query, HttpCallback<GraphQLResponse<Player>> callback);
+    void getPlayer(GetPlayer request, HttpCallback<GraphQLResponse<Player>> callback);
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Boolean> unlinkWallet(UnlinkWallet mutation) throws IOException;
+    GraphQLResponse<Boolean> unlinkWallet(UnlinkWallet request) throws IOException;
 
     /**
      * TODO
-     * @param mutation
+     * @param request
      * @param callback
      */
-    void unlinkWallet(UnlinkWallet mutation, HttpCallback<GraphQLResponse<Boolean>> callback);
+    void unlinkWallet(UnlinkWallet request, HttpCallback<GraphQLResponse<Boolean>> callback);
 
 }
