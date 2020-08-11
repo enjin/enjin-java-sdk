@@ -1,6 +1,6 @@
 package com.enjin.sdk;
 
-import com.enjin.sdk.schemas.project.ProjectSchema;
+import com.enjin.sdk.schemas.Schema;
 import lombok.NonNull;
 import okhttp3.HttpUrl;
 
@@ -32,8 +32,8 @@ public final class ProjectClient extends TrustedPlatformClient {
     }
 
     @Override
-    public ProjectSchema getSchema() {
-        return (ProjectSchema) schema;
+    public Schema getSchema() {
+        return schema;
     }
 
 }
