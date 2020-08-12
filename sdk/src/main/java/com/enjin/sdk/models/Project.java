@@ -57,7 +57,6 @@ public class Project {
      * @return
      */
     private String linkingCodeQr;
-    // TODO: Add identity and owner.
     /**
      * -- Getter --
      * TODO

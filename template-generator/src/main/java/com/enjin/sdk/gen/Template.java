@@ -107,7 +107,7 @@ public class Template {
             case 4:
                 return String.format("$%s: %s = %s", parts[1], parts[2], parts[3]);
             default:
-                throw new IllegalArgumentException(/* TODO: Exception message. */);
+                throw new IllegalArgumentException("Argument is of incorrect format");
         }
     }
 

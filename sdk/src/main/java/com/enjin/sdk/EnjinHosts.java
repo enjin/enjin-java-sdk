@@ -17,7 +17,7 @@ public final class EnjinHosts {
     public static final HttpUrl KOVAN = HttpUrl.get("https://kovan.cloud.enjin.io/");
 
     private EnjinHosts() {
-        throw new IllegalStateException(/* TODO: Exception message. */);
+        throw new IllegalStateException("Utility class");
     }
 
 }

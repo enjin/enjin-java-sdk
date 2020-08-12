@@ -1,7 +1,6 @@
 package com.enjin.sdk;
 
 import com.enjin.sdk.schemas.Schema;
-import com.enjin.sdk.schemas.shared.SharedSchema;
 
 import lombok.Getter;
 import lombok.NonNull;
@@ -27,7 +26,7 @@ public abstract class TrustedPlatformClient {
      * @return
      */
     @Getter
-    protected final SharedSchema schema;
+    protected final Schema schema;
 
     /**
      * TODO
