@@ -46,6 +46,6 @@ public interface SynchronousRequestsService {
      *
      * @return the response.
      */
-    HttpResponse<GraphQLResponse<Transaction>> deleteRequestSync(DeleteRequest query);
+    HttpResponse<GraphQLResponse<Boolean>> deleteRequestSync(DeleteRequest query);
 
 }

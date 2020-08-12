@@ -52,7 +52,7 @@ public class RequestsServiceImpl extends GraphQLServiceBase implements RequestsS
     }
 
     @Override
-    public void deleteRequestAsync(DeleteRequest query, HttpCallback<GraphQLResponse<Transaction>> callback) {
+    public void deleteRequestAsync(DeleteRequest query, HttpCallback<GraphQLResponse<Boolean>> callback) {
         enqueueGraphQLCall(this.service.deleteRequest(query), callback);
     }
 
@@ -72,7 +72,7 @@ public class RequestsServiceImpl extends GraphQLServiceBase implements RequestsS
     }
 
     @Override
-    public HttpResponse<GraphQLResponse<Transaction>> deleteRequestSync(DeleteRequest query) {
+    public HttpResponse<GraphQLResponse<Boolean>> deleteRequestSync(DeleteRequest query) {
         return executeGraphQLCall(this.service.deleteRequest(query));
     }
 

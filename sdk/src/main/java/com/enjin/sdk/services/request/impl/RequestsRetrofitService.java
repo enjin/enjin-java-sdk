@@ -62,11 +62,11 @@ public interface RequestsRetrofitService {
      *
      * @see DeleteRequest
      * @param request the request
-     * @return        the request call
+     * @return        true if deleted, false otherwise
      */
     @POST("graphql")
     @GraphQuery("DeleteRequest")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<Transaction>> deleteRequest(@Body GraphQLRequest request);
+    Call<GraphQLResponse<Boolean>> deleteRequest(@Body GraphQLRequest request);
 
 }
