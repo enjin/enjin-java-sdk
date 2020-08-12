@@ -51,6 +51,6 @@ public interface AsynchronousRequestsService {
      * @param callback the callback.
      */
     void deleteRequestAsync(DeleteRequest query,
-                            HttpCallback<GraphQLResponse<Transaction>> callback);
+                            HttpCallback<GraphQLResponse<Boolean>> callback);
 
 }
