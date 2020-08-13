@@ -2,7 +2,6 @@ package com.enjin.sdk.schemas.project.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.models.MintInput;
-import com.enjin.sdk.schemas.shared.arguments.TransactionFragmentArguments;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 import java.util.Collection;
@@ -12,8 +11,7 @@ import java.util.Collection;
  */
 public class MintToken
         extends GraphQLRequest<MintToken>
-        implements TransactionFragmentArguments<MintToken>,
-        TransactionRequestArguments<MintToken> {
+        implements TransactionRequestArguments<MintToken> {
 
     /**
      * TODO

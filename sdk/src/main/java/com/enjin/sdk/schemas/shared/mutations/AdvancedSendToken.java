@@ -2,7 +2,6 @@ package com.enjin.sdk.schemas.shared.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.models.Transfers;
-import com.enjin.sdk.schemas.shared.arguments.TransactionFragmentArguments;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 /**
@@ -10,8 +9,7 @@ import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
  */
 public class AdvancedSendToken
         extends GraphQLRequest<AdvancedSendToken>
-        implements TransactionFragmentArguments<AdvancedSendToken>,
-        TransactionRequestArguments<AdvancedSendToken> {
+        implements TransactionRequestArguments<AdvancedSendToken> {
 
     /**
      * TODO

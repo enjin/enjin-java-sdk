@@ -2,7 +2,6 @@ package com.enjin.sdk.schemas.project.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.models.Whitelisted;
-import com.enjin.sdk.schemas.shared.arguments.TransactionFragmentArguments;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 /**
@@ -10,8 +9,7 @@ import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
  */
 public class SetWhitelisted
         extends GraphQLRequest<SetWhitelisted>
-        implements TransactionFragmentArguments<SetWhitelisted>,
-        TransactionRequestArguments<SetWhitelisted> {
+        implements TransactionRequestArguments<SetWhitelisted> {
 
     /**
      * TODO

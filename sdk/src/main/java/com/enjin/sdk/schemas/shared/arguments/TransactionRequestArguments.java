@@ -6,7 +6,7 @@ import com.enjin.sdk.graphql.VariableHolder;
  * TODO
  * @param <T>
  */
-public interface TransactionRequestArguments<T extends VariableHolder<T>> extends VariableHolder<T> {
+public interface TransactionRequestArguments<T extends VariableHolder<T>> extends TransactionFragmentArguments<T> {
 
     /**
      * TODO

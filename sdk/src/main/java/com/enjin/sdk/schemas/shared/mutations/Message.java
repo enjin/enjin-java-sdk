@@ -1,7 +1,6 @@
 package com.enjin.sdk.schemas.shared.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.schemas.shared.arguments.TransactionFragmentArguments;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 /**
@@ -9,8 +8,7 @@ import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
  */
 public class Message
         extends GraphQLRequest<Message>
-        implements TransactionFragmentArguments<Message>,
-        TransactionRequestArguments<Message> {
+        implements TransactionRequestArguments<Message> {
 
     /**
      * TODO
