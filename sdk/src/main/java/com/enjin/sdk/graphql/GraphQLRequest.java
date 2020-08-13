@@ -1,5 +1,6 @@
 package com.enjin.sdk.graphql;
 
+import lombok.Getter;
 import lombok.NonNull;
 
 import java.util.HashMap;
@@ -11,24 +12,36 @@ import java.util.Map;
  *
  * @author Evan Lindsay
  */
-public class GraphQLRequest<T extends GraphQLRequest<T>> implements GraphQLVariableHolder<T> {
+public class GraphQLRequest<T extends GraphQLRequest<T>> implements VariableHolder<T> {
 
-    private Map<String, Object> variables;
+    private final Map<String, Object> variables;
 
     /**
-     * Default constructor.
+     * -- Getter --
+     * TODO
+     *
+     * @return
      */
-    public GraphQLRequest() {
-        this(new HashMap<>());
+    @Getter
+    private final String namespace;
+
+    /**
+     * TODO
+     * @param namespace
+     */
+    public GraphQLRequest(String namespace) {
+        this(new HashMap<>(), namespace);
     }
 
     /**
      * Constructs a request with the passed parameter mapping.
      *
      * @param variables mapping of parameter keys and values.
+     * @param namespace
      */
-    public GraphQLRequest(Map<String, Object> variables) {
+    public GraphQLRequest(Map<String, Object> variables, String namespace) {
         this.variables = variables;
+        this.namespace = namespace;
     }
 
     /**
@@ -52,11 +65,12 @@ public class GraphQLRequest<T extends GraphQLRequest<T>> implements GraphQLVaria
         return (T) this;
     }
 
-    /**
-     * Gets the mapping of parameter keys and their values.
-     *
-     * @return the map of parameter keys and values.
-     */
+    @Override
+    public boolean isSet(String key) {
+        return variables.containsKey(key);
+    }
+
+    @Override
     public Map<String, Object> getVariables() {
         return variables;
     }

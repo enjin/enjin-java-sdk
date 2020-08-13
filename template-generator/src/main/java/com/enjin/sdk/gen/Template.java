@@ -1,5 +1,7 @@
 package com.enjin.sdk.gen;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -8,71 +10,109 @@ import java.util.stream.Collectors;
 
 public class Template {
 
-    private String key;
-    private TemplateType type;
-    private Map<String, Template> fragments;
-    private List<String> contents;
-    private List<String> parameters;
-    private List<String> referencedFragments;
+    private static final String NAMESPACE_KEY = "#namespace";
+    private static final String IMPORT_KEY = "#import";
+    private static final String ARG_KEY = "#arg";
 
-    public Template(String key, List<String> rawContents, Map<String, Template> fragments) {
-        this.key = key;
-        this.type = TemplateType.fromKey(key);
+    @Getter
+    private final String namespace;
+    @Getter
+    private final String name;
+    @Getter
+    private final TemplateType type;
+    private final Map<String, Template> fragments;
+    private final List<String> contents = new ArrayList<>();
+    private final List<String> parameters = new ArrayList<>();
+    private final List<String> referencedFragments = new ArrayList<>();
+
+    public Template(String namespace,
+                    TemplateType type,
+                    String[] contents,
+                    Map<String, Template> fragments) {
+        String[] parts = namespace.split("\\.");
+
+        this.namespace = namespace;
+        this.name = parts[parts.length - 1];
+        this.type = type;
         this.fragments = fragments;
-        this.contents = new ArrayList<>();
-        this.parameters = new ArrayList<>();
-        this.referencedFragments = new ArrayList<>();
-        parseTemplate(rawContents);
+        parseContents(contents);
     }
 
-    protected void parseTemplate(List<String> contents) {
+    protected void parseContents(String[] contents) {
         for (String line : contents) {
-            if (!line.startsWith("$")) {
-                if (!line.equals("\n")) {
-                    this.contents.add(line);
-                    if (line.trim().startsWith("..."))
-                        referencedFragments.add(line.trim().replace("...", ""));
-                }
-
-                continue;
+            String trimmed = line.trim();
+            if (trimmed.startsWith(IMPORT_KEY)) {
+                referencedFragments.add(processImport(trimmed));
+            } else if (trimmed.startsWith(ARG_KEY)) {
+                parameters.add(processArg(trimmed));
+            } else if (!trimmed.isEmpty() && !trimmed.startsWith("#")) {
+                this.contents.add(trimmed);
             }
-
-            parameters.add(line);
         }
     }
 
     protected String compile() {
         StringBuilder builder = new StringBuilder(String.join("\n", contents));
+        
+        if (type == TemplateType.FRAGMENT)
+            return builder.toString();
 
-        if (type != TemplateType.FRAGMENT) {
-            List<String> parameters = new ArrayList<>(this.parameters);
-            List<String> processedFragments = new ArrayList<>();
-            Stack<Template> fragmentsQueue = new Stack<>();
+        List<String> parameters = new ArrayList<>(this.parameters);
+        List<String> processedFragments = new ArrayList<>();
+        Stack<Template> fragmentsQueue = new Stack<>();
 
-            for (String reference : referencedFragments)
+        for (String reference : referencedFragments)
+            fragmentsQueue.add(fragments.get(reference));
+
+        while (!fragmentsQueue.empty()) {
+            Template fragment = fragmentsQueue.pop();
+
+            if (processedFragments.contains(fragment.namespace))
+                continue;
+
+            for (String reference : fragment.referencedFragments)
                 fragmentsQueue.add(fragments.get(reference));
 
-            while (!fragmentsQueue.empty()) {
-                Template fragment = fragmentsQueue.pop();
+            parameters.addAll(fragment.parameters
+                                      .stream()
+                                      .filter(p -> !parameters.contains(p))
+                                      .collect(Collectors.toList()));
 
-                if (processedFragments.contains(fragment.key))
-                    continue;
-
-                for (String reference : fragment.referencedFragments)
-                    fragmentsQueue.add(fragments.get(reference));
-
-                parameters.addAll(fragment.parameters.stream().filter(p -> !parameters.contains(p)).collect(Collectors.toList()));
-
-                builder.append('\n').append(fragment.compile());
-                processedFragments.add(fragment.key);
-            }
-
-            String template = builder.toString();
-            return template.replace(type.name().toLowerCase(),
-                                    String.format("%s %s(\n    %s\n)", type.name().toLowerCase(), key, String.join(",\n    ", parameters)));
+            builder.append(fragment.compile()).append('\n');
+            processedFragments.add(fragment.namespace);
         }
 
-        return builder.toString();
+        String template = builder.toString();
+        return template.replace(type.name().toLowerCase(),
+                                String.format("%s %s(\n    %s\n)",
+                                              type.name().toLowerCase(),
+                                              name,
+                                              String.join(",\n    ", parameters)));
+    }
+
+    protected static String readNamespace(String[] contents) {
+        for (String line : contents) {
+            if (line.startsWith(NAMESPACE_KEY))
+                return line.split(" ")[1];
+        }
+
+        return null;
+    }
+
+    private static String processArg(String line) {
+        String[] parts = line.split(" ");
+        switch (parts.length) {
+            case 3:
+                return String.format("$%s: %s", parts[1], parts[2]);
+            case 4:
+                return String.format("$%s: %s = %s", parts[1], parts[2], parts[3]);
+            default:
+                throw new IllegalArgumentException("Argument is of incorrect format");
+        }
+    }
+
+    private static String processImport(String line) {
+        return line.split(" ")[1];
     }
 
 }

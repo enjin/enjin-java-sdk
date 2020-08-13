@@ -1,5 +1,6 @@
 package com.enjin.sdk.schemas;
 
+import java.io.IOException;
 import java.util.Objects;
 import java.util.logging.Level;
 
@@ -31,7 +32,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * TODO
  */
 @Log
-public class BaseService {
+public class BaseSchema {
 
     private static final MediaType JSON = MediaType.parse("application/json");
 
@@ -42,15 +43,11 @@ public class BaseService {
      */
     protected final TrustedPlatformMiddleware middleware;
 
-    private BaseService() {
-        throw new IllegalStateException(/* TODO: Exception message. */);
-    }
-
     /**
      * TODO
      * @param middleware
      */
-    public BaseService(TrustedPlatformMiddleware middleware) {
+    public BaseSchema(TrustedPlatformMiddleware middleware) {
         this.gson = new GsonBuilder()
                 .serializeSpecialFloatingPointValues()
                 .create();
@@ -69,18 +66,16 @@ public class BaseService {
     /**
      * TODO
      * @param request
-     * @param template
      * @param <T>
      * @return
      */
-    protected <T extends GraphQLRequest<T>> JsonObject createRequestBody(GraphQLRequest<T> request,
-                                                                         String template) {
+    protected <T extends GraphQLRequest<T>> JsonObject createRequestBody(GraphQLRequest<T> request) {
         JsonObject requestBody = new JsonObject();
 
         JsonObject variables = new JsonObject();
         request.getVariables().forEach((key, value) -> variables.add(key, gson.toJsonTree(value)));
 
-        requestBody.addProperty("query", middleware.getQueryRegistry().get(template));
+        requestBody.addProperty("query", middleware.getQueryRegistry().get(request.getNamespace()));
         requestBody.add("variables", variables);
 
         return requestBody;
@@ -97,14 +92,26 @@ public class BaseService {
     }
 
     /**
-     * Queues a GraphQL request.
-     *
+     * TODO
+     * @param call
+     * @param <T>
+     * @return
+     * @throws IOException
+     */
+    @NotNull
+    @SneakyThrows
+    protected <T> GraphQLResponse<T> sendRequest(Call<GraphQLResponse<T>> call) {
+        Response<GraphQLResponse<T>> response = call.execute();
+        return createResult(response).body();
+    }
+
+    /**
+     * TODO
      * @param call the request call
      * @param callback the callback
      * @param <T> the type of the request and response
      */
-    protected <T> void sendRequest(Call<GraphQLResponse<T>> call,
-                                   final HttpCallback<GraphQLResponse<T>> callback) {
+    protected <T> void sendRequest(Call<GraphQLResponse<T>> call, final HttpCallback<GraphQLResponse<T>> callback) {
         call.enqueue(new Callback<GraphQLResponse<T>>() {
             @Override
             public void onResponse(@NotNull Call<GraphQLResponse<T>> call,
