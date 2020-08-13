@@ -54,7 +54,9 @@ public class TransactionFilter extends Filter<TransactionFilter> {
      * @return
      */
     public TransactionFilter idIn(String... ids) {
-        idIn = Arrays.asList(ids);
+        idIn = ids == null
+                ? null
+                : Arrays.asList(ids);
         return this;
     }
 
@@ -74,7 +76,9 @@ public class TransactionFilter extends Filter<TransactionFilter> {
      * @return
      */
     public TransactionFilter transactionIdIn(String... transactionIds) {
-        transactionIdIn = Arrays.asList(transactionIds);
+        transactionIdIn = transactionIds == null
+                ? null
+                : Arrays.asList(transactionIds);
         return this;
     }
 
@@ -94,7 +98,9 @@ public class TransactionFilter extends Filter<TransactionFilter> {
      * @return
      */
     public TransactionFilter tokenIdIn(String... tokenIds) {
-        tokenIdIn = Arrays.asList(tokenIds);
+        tokenIdIn = tokenIds == null
+                ? null
+                : Arrays.asList(tokenIds);
         return this;
     }
 
@@ -114,7 +120,9 @@ public class TransactionFilter extends Filter<TransactionFilter> {
      * @return
      */
     public TransactionFilter typeIn(TransactionType... types) {
-        typeIn = Arrays.asList(types);
+        typeIn = types == null
+                ? null
+                : Arrays.asList(types);
         return this;
     }
 
@@ -133,7 +141,7 @@ public class TransactionFilter extends Filter<TransactionFilter> {
      * @param value
      * @return
      */
-    public TransactionFilter valueGt(int value) {
+    public TransactionFilter valueGreaterThan(int value) {
         valueGt = value;
         return this;
     }
@@ -143,7 +151,7 @@ public class TransactionFilter extends Filter<TransactionFilter> {
      * @param value
      * @return
      */
-    public TransactionFilter valueGte(int value) {
+    public TransactionFilter valueGreaterThanOrEqual(int value) {
         valueGte = value;
         return this;
     }
@@ -153,7 +161,7 @@ public class TransactionFilter extends Filter<TransactionFilter> {
      * @param value
      * @return
      */
-    public TransactionFilter valueLt(int value) {
+    public TransactionFilter valueLessThan(int value) {
         valueLt = value;
         return this;
     }
@@ -163,7 +171,7 @@ public class TransactionFilter extends Filter<TransactionFilter> {
      * @param value
      * @return
      */
-    public TransactionFilter valueLte(int value) {
+    public TransactionFilter valueLessThanOrEqual(int value) {
         valueLte = value;
         return this;
     }
@@ -184,7 +192,9 @@ public class TransactionFilter extends Filter<TransactionFilter> {
      * @return
      */
     public TransactionFilter stateIn(TransactionState... states) {
-        stateIn = Arrays.asList(states);
+        stateIn = states == null
+                ? null
+                : Arrays.asList(states);
         return this;
     }
 
@@ -204,7 +214,9 @@ public class TransactionFilter extends Filter<TransactionFilter> {
      * @return
      */
     public TransactionFilter walletIn(String... wallets) {
-        walletIn = Arrays.asList(wallets);
+        walletIn = wallets == null
+                ? null
+                : Arrays.asList(wallets);
         return this;
     }
 

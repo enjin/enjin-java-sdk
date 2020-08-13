@@ -62,7 +62,9 @@ public class TokenFilter extends Filter<TokenFilter> {
      * @return
      */
     public TokenFilter idId(String... ids) {
-        idIn = Arrays.asList(ids);
+        idIn = ids == null
+                ? null
+                : Arrays.asList(ids);
         return this;
     }
 
@@ -72,7 +74,9 @@ public class TokenFilter extends Filter<TokenFilter> {
      * @return
      */
     public TokenFilter nameIn(String... names) {
-        nameIn = Arrays.asList(names);
+        nameIn = names == null
+                ? null
+                : Arrays.asList(names);
         return this;
     }
 
@@ -112,7 +116,9 @@ public class TokenFilter extends Filter<TokenFilter> {
      * @return
      */
     public TokenFilter walletIn(String... addresses) {
-        walletIn = Arrays.asList(addresses);
+        walletIn = addresses == null
+                ? null
+                : Arrays.asList(addresses);
         return this;
     }
 
