@@ -28,6 +28,7 @@ import com.enjin.sdk.schemas.shared.queries.GetRequests;
 import com.enjin.sdk.schemas.shared.queries.GetToken;
 import com.enjin.sdk.schemas.shared.queries.GetTokens;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -39,6 +40,7 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<Request> advancedSendToken(AdvancedSendToken request);
 
@@ -53,6 +55,7 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<Request> approveEnj(ApproveEnj request);
 
@@ -67,6 +70,7 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<Request> approveMaxEnj(ApproveMaxEnj request);
 
@@ -81,6 +85,7 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<Request> completeTrade(CompleteTrade request);
 
@@ -95,6 +100,7 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<Request> createTrade(CreateTrade request);
 
@@ -109,6 +115,7 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<List<Balance>> getBalances(GetBalances request);
 
@@ -123,6 +130,7 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<GasPrices> getGasPrices(GetGasPrices request);
 
@@ -137,6 +145,7 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<Platform> getPlatform(GetPlatform request);
 
@@ -151,6 +160,7 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<Project> getProject(GetProject request);
 
@@ -165,6 +175,7 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<Request> getRequest(GetRequest request);
 
@@ -179,6 +190,7 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<List<Request>> getRequests(GetRequests request);
 
@@ -193,6 +205,7 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<Token> getToken(GetToken request);
 
@@ -207,6 +220,7 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<List<Token>> getTokens(GetTokens request);
 
@@ -221,6 +235,7 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<Request> meltToken(MeltToken request);
 
@@ -235,6 +250,7 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<Request> message(Message request);
 
@@ -249,6 +265,7 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<Request> resetEnjApproval(ResetEnjApproval request);
 
@@ -263,6 +280,7 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<Request> sendEnj(SendEnj request);
 
@@ -277,6 +295,7 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<Request> sendToken(SendToken request);
 
@@ -291,6 +310,7 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<Request> setApprovalForAll(SetApprovalForAll request);
 
