@@ -1,15 +1,14 @@
 package com.enjin.sdk.schemas.shared.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.schemas.shared.arguments.TransactionFragmentArguments;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 /**
  * TODO
  */
-public class ApproveEnj extends GraphQLRequest<ApproveEnj>
-        implements TransactionFragmentArguments<ApproveEnj>,
-        TransactionRequestArguments<ApproveEnj> {
+public class ApproveEnj
+        extends GraphQLRequest<ApproveEnj>
+        implements TransactionRequestArguments<ApproveEnj> {
 
     /**
      * TODO

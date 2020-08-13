@@ -4,7 +4,6 @@ import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.models.TokenSupplyModel;
 import com.enjin.sdk.models.TokenTransferFeeSettings;
 import com.enjin.sdk.models.TokenTransferable;
-import com.enjin.sdk.schemas.shared.arguments.TransactionFragmentArguments;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 /**
@@ -12,8 +11,7 @@ import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
  */
 public class CreateToken
         extends GraphQLRequest<CreateToken>
-        implements TransactionFragmentArguments<CreateToken>,
-        TransactionRequestArguments<CreateToken> {
+        implements TransactionRequestArguments<CreateToken> {
 
     /**
      * TODO

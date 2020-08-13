@@ -1,7 +1,6 @@
 package com.enjin.sdk.schemas.project.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.schemas.shared.arguments.TransactionFragmentArguments;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 /**
@@ -9,8 +8,7 @@ import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
  */
 public class SetMeltFee
         extends GraphQLRequest<SetMeltFee>
-        implements TransactionFragmentArguments<SetMeltFee>,
-        TransactionRequestArguments<SetMeltFee> {
+        implements TransactionRequestArguments<SetMeltFee> {
 
     /**
      * TODO

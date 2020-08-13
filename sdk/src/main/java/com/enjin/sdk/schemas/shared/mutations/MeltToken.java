@@ -2,7 +2,6 @@ package com.enjin.sdk.schemas.shared.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.models.Melt;
-import com.enjin.sdk.schemas.shared.arguments.TransactionFragmentArguments;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 /**
@@ -10,8 +9,7 @@ import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
  */
 public class MeltToken
         extends GraphQLRequest<MeltToken>
-        implements TransactionFragmentArguments<MeltToken>,
-        TransactionRequestArguments<MeltToken> {
+        implements TransactionRequestArguments<MeltToken> {
 
     /**
      * TODO
