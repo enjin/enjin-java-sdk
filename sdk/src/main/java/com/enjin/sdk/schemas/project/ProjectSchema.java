@@ -26,6 +26,7 @@ import com.enjin.sdk.schemas.shared.SharedSchema;
 import com.enjin.sdk.models.Player;
 import com.enjin.sdk.models.Request;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -37,6 +38,7 @@ public interface ProjectSchema extends SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<AccessToken> authPlayer(AuthPlayer request);
 
@@ -51,6 +53,7 @@ public interface ProjectSchema extends SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<AccessToken> authProject(AuthProject request);
 
@@ -65,6 +68,7 @@ public interface ProjectSchema extends SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<AccessToken> createPlayer(CreatePlayer request);
 
@@ -79,6 +83,7 @@ public interface ProjectSchema extends SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<Request> createToken(CreateToken request);
 
@@ -93,6 +98,7 @@ public interface ProjectSchema extends SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<Request> decreaseMaxMeltFee(DecreaseMaxMeltFee request);
 
@@ -107,6 +113,7 @@ public interface ProjectSchema extends SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<Request> decreaseMaxTransferFee(DecreaseMaxTransferFee request);
 
@@ -121,6 +128,7 @@ public interface ProjectSchema extends SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<Boolean> deletePlayer(DeletePlayer request);
 
@@ -135,6 +143,7 @@ public interface ProjectSchema extends SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<Player> getPlayer(GetPlayer request);
 
@@ -149,6 +158,7 @@ public interface ProjectSchema extends SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<List<Player>> getPlayers(GetPlayers request);
 
@@ -163,6 +173,7 @@ public interface ProjectSchema extends SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<Boolean> invalidateTokenMetadata(InvalidateTokenMetadata request);
 
@@ -177,6 +188,7 @@ public interface ProjectSchema extends SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<Request> mintToken(MintToken request);
 
@@ -191,6 +203,7 @@ public interface ProjectSchema extends SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<Request> releaseReserve(ReleaseReserve request);
 
@@ -205,6 +218,7 @@ public interface ProjectSchema extends SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<Request> setMeltFee(SetMeltFee request);
 
@@ -219,6 +233,7 @@ public interface ProjectSchema extends SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<Request> setTransferable(SetTransferable request);
 
@@ -233,6 +248,7 @@ public interface ProjectSchema extends SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<Request> setTransferFee(SetTransferFee request);
 
@@ -247,6 +263,7 @@ public interface ProjectSchema extends SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<Request> setUri(SetUri request);
 
@@ -261,6 +278,7 @@ public interface ProjectSchema extends SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<Request> setWhitelisted(SetWhitelisted request);
 
@@ -275,6 +293,7 @@ public interface ProjectSchema extends SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<Boolean> unlinkWallet(UnlinkWallet request);
 
@@ -289,6 +308,7 @@ public interface ProjectSchema extends SharedSchema {
      * TODO
      * @param request
      * @return
+     * @throws IOException
      */
     GraphQLResponse<Request> updateName(UpdateName request);
 

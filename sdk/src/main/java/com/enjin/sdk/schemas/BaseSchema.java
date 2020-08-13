@@ -1,5 +1,6 @@
 package com.enjin.sdk.schemas;
 
+import java.io.IOException;
 import java.util.Objects;
 import java.util.logging.Level;
 
@@ -90,6 +91,13 @@ public class BaseSchema {
         return retrofit.create(service);
     }
 
+    /**
+     * TODO
+     * @param call
+     * @param <T>
+     * @return
+     * @throws IOException
+     */
     @NotNull
     @SneakyThrows
     protected <T> GraphQLResponse<T> sendRequest(Call<GraphQLResponse<T>> call) {
