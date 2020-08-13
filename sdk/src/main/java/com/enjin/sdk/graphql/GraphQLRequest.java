@@ -27,13 +27,6 @@ public class GraphQLRequest<T extends GraphQLRequest<T>> implements VariableHold
 
     /**
      * TODO
-     */
-    private GraphQLRequest() {
-        throw new IllegalStateException(/* TODO: Exception message */);
-    }
-
-    /**
-     * TODO
      * @param namespace
      */
     public GraphQLRequest(String namespace) {

@@ -10,18 +10,8 @@ import retrofit2.http.Path;
 
 import java.util.List;
 
-/**
- * TODO
- * @param <T>
- */
 interface GetMany<T> {
 
-    /**
-     * TODO
-     * @param schema
-     * @param request
-     * @return
-     */
     @POST("/graphql/{schema}")
     @Headers("Content-Type: application/json")
     Call<GraphQLResponse<List<T>>> getMany(@Path("schema") String schema,

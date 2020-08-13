@@ -45,12 +45,13 @@ public class TemplateGenerator implements Generator {
                                             Modifier.FINAL)
                                    .build());
 
-        CodeBlock.Builder staticBlockBuilder = CodeBlock.builder();
-        staticBlockBuilder.addStatement("$T<$T, $T> map = new $T<>()",
-                                        Map.class,
-                                        String.class,
-                                        String.class,
-                                        HashMap.class);
+        // Builds the statements used to put the template namespace and compiled contents into the templates map
+        CodeBlock.Builder staticBlockBuilder = CodeBlock.builder()
+                                                        .addStatement("$T<$T, $T> map = new $T<>()",
+                                                                      Map.class,
+                                                                      String.class,
+                                                                      String.class,
+                                                                      HashMap.class);
 
         for (Template template : templateLoader.getOperations().values()) {
             String key   = template.getNamespace();
@@ -69,11 +70,11 @@ public class TemplateGenerator implements Generator {
             }
         }
 
-        staticBlockBuilder.addStatement("$L = $T.unmodifiableMap($L)",
-                                        "TEMPLATES",
-                                        Collections.class,
-                                        "map");
-        typeSpec.addStaticBlock(staticBlockBuilder.build());
+        typeSpec.addStaticBlock(staticBlockBuilder.addStatement("$L = $T.unmodifiableMap($L)",
+                                                                "TEMPLATES",
+                                                                Collections.class,
+                                                                "map")
+                                                  .build());
 
         JavaFile javaFile = JavaFile.builder("com.enjin.sdk.graphql", typeSpec.build())
                                     .indent("    ")

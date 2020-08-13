@@ -56,10 +56,6 @@ public class TrustedPlatformMiddleware implements Closeable {
     @Getter
     private final GraphQLQueryRegistry queryRegistry;
 
-    private TrustedPlatformMiddleware() {
-        throw new IllegalStateException(/* TODO: Exception message. */);
-    }
-
     /**
      * TODO
      * @param baseUrl

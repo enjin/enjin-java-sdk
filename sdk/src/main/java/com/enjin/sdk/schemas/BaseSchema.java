@@ -42,10 +42,6 @@ public class BaseSchema {
      */
     protected final TrustedPlatformMiddleware middleware;
 
-    private BaseSchema() {
-        throw new IllegalStateException(/* TODO: Exception message. */);
-    }
-
     /**
      * TODO
      * @param middleware
