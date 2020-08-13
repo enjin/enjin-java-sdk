@@ -19,7 +19,9 @@ public abstract class Filter<T extends Filter<T>> {
      */
     @SafeVarargs
     public final T and(T... others) {
-        and = Arrays.asList(others);
+        and = others == null
+                ? null
+                : Arrays.asList(others);
         return (T) this;
     }
 
@@ -30,7 +32,9 @@ public abstract class Filter<T extends Filter<T>> {
      */
     @SafeVarargs
     public final T or(T... others) {
-        or = Arrays.asList(others);
+        or = others == null
+                ? null
+                : Arrays.asList(others);
         return (T) this;
     }
 

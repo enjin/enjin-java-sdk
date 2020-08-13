@@ -42,7 +42,9 @@ public class BalanceFilter extends Filter<BalanceFilter> {
      * @return
      */
     public BalanceFilter tokenIdIn(String... tokenIds) {
-        tokenIdIn = Arrays.asList(tokenIds);
+        tokenIdIn = tokenIds == null
+                ? null
+                : Arrays.asList(tokenIds);
         return this;
     }
 
@@ -61,7 +63,7 @@ public class BalanceFilter extends Filter<BalanceFilter> {
      * @param value
      * @return
      */
-    public BalanceFilter valueGt(int value) {
+    public BalanceFilter valueGreaterThan(int value) {
         valueGt = value;
         return this;
     }
@@ -71,7 +73,7 @@ public class BalanceFilter extends Filter<BalanceFilter> {
      * @param value
      * @return
      */
-    public BalanceFilter valueGte(int value) {
+    public BalanceFilter valueGreaterThanOrEqual(int value) {
         valueGte = value;
         return this;
     }
@@ -81,7 +83,7 @@ public class BalanceFilter extends Filter<BalanceFilter> {
      * @param value
      * @return
      */
-    public BalanceFilter valueLt(int value) {
+    public BalanceFilter valueLessThan(int value) {
         valueLt = value;
         return this;
     }
@@ -91,7 +93,7 @@ public class BalanceFilter extends Filter<BalanceFilter> {
      * @param value
      * @return
      */
-    public BalanceFilter valueLte(int value) {
+    public BalanceFilter valueLessThanOrEqual(int value) {
         valueLte = value;
         return this;
     }
@@ -112,7 +114,9 @@ public class BalanceFilter extends Filter<BalanceFilter> {
      * @return
      */
     public BalanceFilter walletIn(String... wallets) {
-        walletIn = Arrays.asList(wallets);
+        walletIn = wallets == null
+                ? null
+                : Arrays.asList(wallets);
         return this;
     }
 

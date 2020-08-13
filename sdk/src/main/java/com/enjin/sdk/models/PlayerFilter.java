@@ -30,7 +30,9 @@ public class PlayerFilter extends Filter<PlayerFilter> {
      * @return
      */
     public PlayerFilter idIn(String... ids) {
-        idIn = Arrays.asList(ids);
+        idIn = ids == null
+                ? null
+                : Arrays.asList(ids);
         return this;
     }
 
