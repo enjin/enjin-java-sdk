@@ -14,27 +14,27 @@ public class GasPrices {
      *
      * @return
      */
-    private Float safeLow;
+    private float safeLow;
     /**
      * -- Getter --
      * TODO
      *
      * @return
      */
-    private Float average;
+    private float average;
     /**
      * -- Getter --
      * TODO
      *
      * @return
      */
-    private Float fast;
+    private float fast;
     /**
      * -- Getter --
      * TODO
      *
      * @return
      */
-    private Float fastest;
+    private float fastest;
 
 }
