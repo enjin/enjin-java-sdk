@@ -1,6 +1,8 @@
 package com.enjin.sdk.graphql;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.lang.annotation.Annotation;
 
@@ -10,6 +12,7 @@ import java.lang.annotation.Annotation;
  * @author Evan Lindsay
  * @see GraphQuery
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class GraphQLProcessor {
 
     private static GraphQLProcessor ourInstance;
@@ -22,9 +25,6 @@ public final class GraphQLProcessor {
      */
     @Getter
     private final GraphQLQueryRegistry queryRegistry = new GraphQLQueryRegistry();
-
-    private GraphQLProcessor() {
-    }
 
     /**
      * Takes an array of annotations and searches for a {@link GraphQuery}
