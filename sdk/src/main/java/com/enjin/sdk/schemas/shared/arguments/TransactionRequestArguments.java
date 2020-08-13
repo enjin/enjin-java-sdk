@@ -1,12 +1,11 @@
 package com.enjin.sdk.schemas.shared.arguments;
 
-import com.enjin.sdk.graphql.VariableHolder;
-
 /**
  * TODO
  * @param <T>
  */
-public interface TransactionRequestArguments<T extends VariableHolder<T>> extends TransactionFragmentArguments<T> {
+public interface TransactionRequestArguments<T extends TransactionFragmentArguments<T>>
+        extends TransactionFragmentArguments<T> {
 
     /**
      * TODO
