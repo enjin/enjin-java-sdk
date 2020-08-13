@@ -28,7 +28,6 @@ import com.enjin.sdk.schemas.shared.queries.GetRequests;
 import com.enjin.sdk.schemas.shared.queries.GetToken;
 import com.enjin.sdk.schemas.shared.queries.GetTokens;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -40,9 +39,8 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
-     * @throws IOException
      */
-    GraphQLResponse<Request> advancedSendToken(AdvancedSendToken request) throws IOException;
+    GraphQLResponse<Request> advancedSendToken(AdvancedSendToken request);
 
     /**
      * TODO
@@ -55,9 +53,8 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
-     * @throws IOException
      */
-    GraphQLResponse<Request> approveEnj(ApproveEnj request) throws IOException;
+    GraphQLResponse<Request> approveEnj(ApproveEnj request);
 
     /**
      * TODO
@@ -70,9 +67,8 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
-     * @throws IOException
      */
-    GraphQLResponse<Request> approveMaxEnj(ApproveMaxEnj request) throws IOException;
+    GraphQLResponse<Request> approveMaxEnj(ApproveMaxEnj request);
 
     /**
      * TODO
@@ -85,9 +81,8 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
-     * @throws IOException
      */
-    GraphQLResponse<Request> completeTrade(CompleteTrade request) throws IOException;
+    GraphQLResponse<Request> completeTrade(CompleteTrade request);
 
     /**
      * TODO
@@ -100,9 +95,8 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
-     * @throws IOException
      */
-    GraphQLResponse<Request> createTrade(CreateTrade request) throws IOException;
+    GraphQLResponse<Request> createTrade(CreateTrade request);
 
     /**
      * TODO
@@ -115,9 +109,8 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
-     * @throws IOException
      */
-    GraphQLResponse<List<Balance>> getBalances(GetBalances request) throws IOException;
+    GraphQLResponse<List<Balance>> getBalances(GetBalances request);
 
     /**
      * TODO
@@ -130,9 +123,8 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
-     * @throws IOException
      */
-    GraphQLResponse<GasPrices> getGasPrices(GetGasPrices request) throws IOException;
+    GraphQLResponse<GasPrices> getGasPrices(GetGasPrices request);
 
     /**
      * TODO
@@ -145,9 +137,8 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
-     * @throws IOException
      */
-    GraphQLResponse<Platform> getPlatform(GetPlatform request) throws IOException;
+    GraphQLResponse<Platform> getPlatform(GetPlatform request);
 
     /**
      * TODO
@@ -160,9 +151,8 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
-     * @throws IOException
      */
-    GraphQLResponse<Project> getProject(GetProject request) throws IOException;
+    GraphQLResponse<Project> getProject(GetProject request);
 
     /**
      * TODO
@@ -175,9 +165,8 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
-     * @throws IOException
      */
-    GraphQLResponse<Request> getRequest(GetRequest request) throws IOException;
+    GraphQLResponse<Request> getRequest(GetRequest request);
 
     /**
      * TODO
@@ -190,9 +179,8 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
-     * @throws IOException
      */
-    GraphQLResponse<List<Request>> getRequests(GetRequests request) throws IOException;
+    GraphQLResponse<List<Request>> getRequests(GetRequests request);
 
     /**
      * TODO
@@ -205,9 +193,8 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
-     * @throws IOException
      */
-    GraphQLResponse<Token> getToken(GetToken request) throws IOException;
+    GraphQLResponse<Token> getToken(GetToken request);
 
     /**
      * TODO
@@ -220,9 +207,8 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
-     * @throws IOException
      */
-    GraphQLResponse<List<Token>> getTokens(GetTokens request) throws IOException;
+    GraphQLResponse<List<Token>> getTokens(GetTokens request);
 
     /**
      * TODO
@@ -235,9 +221,8 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
-     * @throws IOException
      */
-    GraphQLResponse<Request> meltToken(MeltToken request) throws IOException;
+    GraphQLResponse<Request> meltToken(MeltToken request);
 
     /**
      * TODO
@@ -250,9 +235,8 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
-     * @throws IOException
      */
-    GraphQLResponse<Request> message(Message request) throws IOException;
+    GraphQLResponse<Request> message(Message request);
 
     /**
      * TODO
@@ -265,9 +249,8 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
-     * @throws IOException
      */
-    GraphQLResponse<Request> resetEnjApproval(ResetEnjApproval request) throws IOException;
+    GraphQLResponse<Request> resetEnjApproval(ResetEnjApproval request);
 
     /**
      * TODO
@@ -280,9 +263,8 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
-     * @throws IOException
      */
-    GraphQLResponse<Request> sendEnj(SendEnj request) throws IOException;
+    GraphQLResponse<Request> sendEnj(SendEnj request);
 
     /**
      * TODO
@@ -295,9 +277,8 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
-     * @throws IOException
      */
-    GraphQLResponse<Request> sendToken(SendToken request) throws IOException;
+    GraphQLResponse<Request> sendToken(SendToken request);
 
     /**
      * TODO
@@ -310,9 +291,8 @@ public interface SharedSchema {
      * TODO
      * @param request
      * @return
-     * @throws IOException
      */
-    GraphQLResponse<Request> setApprovalForAll(SetApprovalForAll request) throws IOException;
+    GraphQLResponse<Request> setApprovalForAll(SetApprovalForAll request);
 
     /**
      * TODO
