@@ -2,7 +2,6 @@ package com.enjin.sdk;
 
 import com.enjin.sdk.schemas.Schema;
 import lombok.NonNull;
-import okhttp3.HttpUrl;
 
 /**
  * TODO
@@ -18,7 +17,7 @@ public final class ProjectClient extends TrustedPlatformClient {
      * TODO
      * @param baseUrl
      */
-    public ProjectClient(@NonNull HttpUrl baseUrl) {
+    public ProjectClient(@NonNull String baseUrl) {
         this(baseUrl, false);
     }
 
@@ -27,7 +26,7 @@ public final class ProjectClient extends TrustedPlatformClient {
      * @param baseUrl
      * @param debug
      */
-    public ProjectClient(@NonNull HttpUrl baseUrl, boolean debug) {
+    public ProjectClient(@NonNull String baseUrl, boolean debug) {
         super(baseUrl, debug, SCHEMA);
     }
 
