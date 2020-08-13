@@ -6,7 +6,7 @@ package com.enjin.sdk.models;
  * @author Evan Lindsay
  * @see Request
  */
-public enum TransactionState {
+public enum RequestState {
 
     PENDING,
     BROADCAST,

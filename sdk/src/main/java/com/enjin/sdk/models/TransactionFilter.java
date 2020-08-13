@@ -19,9 +19,9 @@ public class TransactionFilter extends Filter<TransactionFilter> {
     private String tokenId;
     @SerializedName("tokenId_in")
     private List<String> tokenIdIn;
-    private TransactionType type;
+    private RequestType type;
     @SerializedName("type_in")
-    private List<TransactionType> typeIn;
+    private List<RequestType> typeIn;
     private Integer value;
     @SerializedName("value_gt")
     private Integer valueGt;
@@ -31,9 +31,9 @@ public class TransactionFilter extends Filter<TransactionFilter> {
     private Integer valueLt;
     @SerializedName("value_lte")
     private Integer valueLte;
-    private TransactionState state;
+    private RequestState state;
     @SerializedName("state_in")
-    private List<TransactionState> stateIn;
+    private List<RequestState> stateIn;
     private String wallet;
     @SerializedName("wallet_in")
     private List<String> walletIn;
@@ -109,7 +109,7 @@ public class TransactionFilter extends Filter<TransactionFilter> {
      * @param type
      * @return
      */
-    public TransactionFilter type(TransactionType type) {
+    public TransactionFilter type(RequestType type) {
         this.type = type;
         return this;
     }
@@ -119,7 +119,7 @@ public class TransactionFilter extends Filter<TransactionFilter> {
      * @param types
      * @return
      */
-    public TransactionFilter typeIn(TransactionType... types) {
+    public TransactionFilter typeIn(RequestType... types) {
         typeIn = types == null
                 ? null
                 : Arrays.asList(types);
@@ -181,7 +181,7 @@ public class TransactionFilter extends Filter<TransactionFilter> {
      * @param state
      * @return
      */
-    public TransactionFilter state(TransactionState state) {
+    public TransactionFilter state(RequestState state) {
         this.state = state;
         return this;
     }
@@ -191,7 +191,7 @@ public class TransactionFilter extends Filter<TransactionFilter> {
      * @param states
      * @return
      */
-    public TransactionFilter stateIn(TransactionState... states) {
+    public TransactionFilter stateIn(RequestState... states) {
         stateIn = states == null
                 ? null
                 : Arrays.asList(states);
