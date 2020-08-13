@@ -21,10 +21,9 @@ public final class GraphQLProcessor {
      * @return the query registry
      */
     @Getter
-    private final GraphQLQueryRegistry queryRegistry;
+    private final GraphQLQueryRegistry queryRegistry = new GraphQLQueryRegistry();
 
     private GraphQLProcessor() {
-        this.queryRegistry = new GraphQLQueryRegistry();
     }
 
     /**
