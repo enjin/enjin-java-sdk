@@ -2,7 +2,6 @@ package com.enjin.sdk;
 
 import com.enjin.sdk.schemas.Schema;
 import lombok.NonNull;
-import okhttp3.HttpUrl;
 
 /**
  * TODO
@@ -18,7 +17,7 @@ public final class PlayerClient extends TrustedPlatformClient {
      * TODO
      * @param baseUrl
      */
-    public PlayerClient(@NonNull HttpUrl baseUrl) {
+    public PlayerClient(@NonNull String baseUrl) {
         this(baseUrl, false);
     }
 
@@ -27,7 +26,7 @@ public final class PlayerClient extends TrustedPlatformClient {
      * @param baseUrl
      * @param debug
      */
-    public PlayerClient(@NonNull HttpUrl baseUrl, boolean debug) {
+    public PlayerClient(@NonNull String baseUrl, boolean debug) {
         super(baseUrl, debug, SCHEMA);
     }
 

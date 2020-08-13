@@ -66,11 +66,11 @@ public class TrustedPlatformMiddleware implements Closeable {
      * @param debug
      * @param schema
      */
-    public TrustedPlatformMiddleware(HttpUrl baseUrl, boolean debug, String schema) {
+    protected TrustedPlatformMiddleware(String baseUrl, boolean debug, String schema) {
         // Cookie Jar
         SessionCookieJar cookieJar = new SessionCookieJar();
 
-        this.baseUrl = baseUrl;
+        this.baseUrl = HttpUrl.get(baseUrl);
         this.schema = schema;
         this.trustedPlatformInterceptor = new TrustedPlatformInterceptor();
         this.httpClient = debug

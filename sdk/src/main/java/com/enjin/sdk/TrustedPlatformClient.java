@@ -4,7 +4,6 @@ import com.enjin.sdk.schemas.Schema;
 
 import lombok.Getter;
 import lombok.NonNull;
-import okhttp3.HttpUrl;
 
 /**
  * TODO
@@ -34,7 +33,7 @@ public abstract class TrustedPlatformClient {
      * @param debug
      * @param schema
      */
-    TrustedPlatformClient(@NonNull HttpUrl baseUrl, boolean debug, String schema) {
+    protected TrustedPlatformClient(@NonNull String baseUrl, boolean debug, String schema) {
         this.middleware = new TrustedPlatformMiddleware(baseUrl, debug, schema);
         this.schema = new Schema(this.middleware);
     }
@@ -47,4 +46,5 @@ public abstract class TrustedPlatformClient {
     public static String version() {
         return "@version@";
     }
+
 }
