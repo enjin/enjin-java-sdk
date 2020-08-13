@@ -50,7 +50,6 @@ import com.enjin.sdk.schemas.shared.queries.GetRequests;
 import com.enjin.sdk.schemas.shared.queries.GetToken;
 import com.enjin.sdk.schemas.shared.queries.GetTokens;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -72,7 +71,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Request> advancedSendToken(AdvancedSendToken request) throws IOException {
+    public GraphQLResponse<Request> advancedSendToken(AdvancedSendToken request) {
         return null;
     }
 
@@ -83,7 +82,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Request> approveEnj(ApproveEnj request) throws IOException {
+    public GraphQLResponse<Request> approveEnj(ApproveEnj request) {
         return null;
     }
 
@@ -94,7 +93,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Request> approveMaxEnj(ApproveMaxEnj request) throws IOException {
+    public GraphQLResponse<Request> approveMaxEnj(ApproveMaxEnj request) {
         return null;
     }
 
@@ -105,7 +104,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<AccessToken> authPlayer(AuthPlayer request) throws IOException {
+    public GraphQLResponse<AccessToken> authPlayer(AuthPlayer request) {
         return sendRequest(playerService.getAuth(middleware.getSchema(), createRequestBody(request)));
     }
 
@@ -116,7 +115,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<AccessToken> authProject(AuthProject request) throws IOException {
+    public GraphQLResponse<AccessToken> authProject(AuthProject request) {
         return sendRequest(projectService.getAuth(middleware.getSchema(), createRequestBody(request)));
     }
 
@@ -127,7 +126,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Request> completeTrade(CompleteTrade request) throws IOException {
+    public GraphQLResponse<Request> completeTrade(CompleteTrade request) {
         return null;
     }
 
@@ -138,7 +137,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<AccessToken> createPlayer(CreatePlayer request) throws IOException {
+    public GraphQLResponse<AccessToken> createPlayer(CreatePlayer request) {
         return sendRequest(playerService.getAuth(middleware.getSchema(), createRequestBody(request)));
     }
 
@@ -149,7 +148,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Request> createTrade(CreateTrade request) throws IOException {
+    public GraphQLResponse<Request> createTrade(CreateTrade request) {
         return null;
     }
 
@@ -160,7 +159,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Request> createToken(CreateToken request) throws IOException {
+    public GraphQLResponse<Request> createToken(CreateToken request) {
         return null;
     }
 
@@ -171,7 +170,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Request> decreaseMaxMeltFee(DecreaseMaxMeltFee request) throws IOException {
+    public GraphQLResponse<Request> decreaseMaxMeltFee(DecreaseMaxMeltFee request) {
         return null;
     }
 
@@ -182,7 +181,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Request> decreaseMaxTransferFee(DecreaseMaxTransferFee request) throws IOException {
+    public GraphQLResponse<Request> decreaseMaxTransferFee(DecreaseMaxTransferFee request) {
         return null;
     }
 
@@ -193,7 +192,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Boolean> deletePlayer(DeletePlayer request) throws IOException {
+    public GraphQLResponse<Boolean> deletePlayer(DeletePlayer request) {
         return null;
     }
 
@@ -204,7 +203,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<List<Balance>> getBalances(GetBalances request) throws IOException {
+    public GraphQLResponse<List<Balance>> getBalances(GetBalances request) {
         return null;
     }
 
@@ -215,7 +214,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<GasPrices> getGasPrices(GetGasPrices request) throws IOException {
+    public GraphQLResponse<GasPrices> getGasPrices(GetGasPrices request) {
         return null;
     }
 
@@ -226,7 +225,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Platform> getPlatform(GetPlatform request) throws IOException {
+    public GraphQLResponse<Platform> getPlatform(GetPlatform request) {
         return null;
     }
 
@@ -237,7 +236,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Player> getPlayer(com.enjin.sdk.schemas.player.queries.GetPlayer request) throws IOException {
+    public GraphQLResponse<Player> getPlayer(com.enjin.sdk.schemas.player.queries.GetPlayer request) {
         return null;
     }
 
@@ -248,7 +247,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Player> getPlayer(com.enjin.sdk.schemas.project.queries.GetPlayer request) throws IOException {
+    public GraphQLResponse<Player> getPlayer(com.enjin.sdk.schemas.project.queries.GetPlayer request) {
         return sendRequest(playerService.getOne(middleware.getSchema(), createRequestBody(request)));
     }
 
@@ -259,7 +258,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<List<Player>> getPlayers(GetPlayers request) throws IOException {
+    public GraphQLResponse<List<Player>> getPlayers(GetPlayers request) {
         return sendRequest(playerService.getMany(middleware.getSchema(), createRequestBody(request)));
     }
 
@@ -270,7 +269,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Project> getProject(GetProject request) throws IOException {
+    public GraphQLResponse<Project> getProject(GetProject request) {
         return null;
     }
 
@@ -281,7 +280,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Request> getRequest(GetRequest request) throws IOException {
+    public GraphQLResponse<Request> getRequest(GetRequest request) {
         return null;
     }
 
@@ -292,7 +291,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<List<Request>> getRequests(GetRequests request) throws IOException {
+    public GraphQLResponse<List<Request>> getRequests(GetRequests request) {
         return null;
     }
 
@@ -303,7 +302,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Token> getToken(GetToken request) throws IOException {
+    public GraphQLResponse<Token> getToken(GetToken request) {
         return null;
     }
 
@@ -314,7 +313,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<List<Token>> getTokens(GetTokens request) throws IOException {
+    public GraphQLResponse<List<Token>> getTokens(GetTokens request) {
         return null;
     }
 
@@ -325,7 +324,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Boolean> invalidateTokenMetadata(InvalidateTokenMetadata request) throws IOException {
+    public GraphQLResponse<Boolean> invalidateTokenMetadata(InvalidateTokenMetadata request) {
         return null;
     }
 
@@ -336,7 +335,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Request> meltToken(MeltToken request) throws IOException {
+    public GraphQLResponse<Request> meltToken(MeltToken request) {
         return null;
     }
 
@@ -347,7 +346,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Request> message(Message request) throws IOException {
+    public GraphQLResponse<Request> message(Message request) {
         return null;
     }
 
@@ -358,7 +357,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Request> mintToken(MintToken request) throws IOException {
+    public GraphQLResponse<Request> mintToken(MintToken request) {
         return null;
     }
 
@@ -369,7 +368,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Request> releaseReserve(ReleaseReserve request) throws IOException {
+    public GraphQLResponse<Request> releaseReserve(ReleaseReserve request) {
         return null;
     }
 
@@ -380,7 +379,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Request> resetEnjApproval(ResetEnjApproval request) throws IOException {
+    public GraphQLResponse<Request> resetEnjApproval(ResetEnjApproval request) {
         return null;
     }
 
@@ -391,7 +390,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Request> sendEnj(SendEnj request) throws IOException {
+    public GraphQLResponse<Request> sendEnj(SendEnj request) {
         return null;
     }
 
@@ -402,7 +401,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Request> sendToken(SendToken request) throws IOException {
+    public GraphQLResponse<Request> sendToken(SendToken request) {
         return null;
     }
 
@@ -413,7 +412,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Request> setApprovalForAll(SetApprovalForAll request) throws IOException {
+    public GraphQLResponse<Request> setApprovalForAll(SetApprovalForAll request) {
         return null;
     }
 
@@ -424,7 +423,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Request> setMeltFee(SetMeltFee request) throws IOException {
+    public GraphQLResponse<Request> setMeltFee(SetMeltFee request) {
         return null;
     }
 
@@ -435,7 +434,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Request> setTransferable(SetTransferable request) throws IOException {
+    public GraphQLResponse<Request> setTransferable(SetTransferable request) {
         return null;
     }
 
@@ -446,7 +445,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Request> setTransferFee(SetTransferFee request) throws IOException {
+    public GraphQLResponse<Request> setTransferFee(SetTransferFee request) {
         return null;
     }
 
@@ -457,7 +456,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Request> setUri(SetUri request) throws IOException {
+    public GraphQLResponse<Request> setUri(SetUri request) {
         return null;
     }
 
@@ -468,7 +467,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Request> setWhitelisted(SetWhitelisted request) throws IOException {
+    public GraphQLResponse<Request> setWhitelisted(SetWhitelisted request) {
         return null;
     }
 
@@ -479,7 +478,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Boolean> unlinkWallet(com.enjin.sdk.schemas.player.mutations.UnlinkWallet request) throws IOException {
+    public GraphQLResponse<Boolean> unlinkWallet(com.enjin.sdk.schemas.player.mutations.UnlinkWallet request) {
         return null;
     }
 
@@ -490,7 +489,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Boolean> unlinkWallet(com.enjin.sdk.schemas.project.mutations.UnlinkWallet request) throws IOException {
+    public GraphQLResponse<Boolean> unlinkWallet(com.enjin.sdk.schemas.project.mutations.UnlinkWallet request) {
         return null;
     }
 
@@ -501,7 +500,7 @@ public class Schema extends BaseSchema implements PlayerSchema, ProjectSchema {
     }
 
     @Override
-    public GraphQLResponse<Request> updateName(UpdateName request) throws IOException {
+    public GraphQLResponse<Request> updateName(UpdateName request) {
         return null;
     }
 

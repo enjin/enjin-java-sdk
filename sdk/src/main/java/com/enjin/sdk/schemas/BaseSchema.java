@@ -1,6 +1,5 @@
 package com.enjin.sdk.schemas;
 
-import java.io.IOException;
 import java.util.Objects;
 import java.util.logging.Level;
 
@@ -96,18 +95,10 @@ public class BaseSchema {
     }
 
     @NotNull
-    protected <T> GraphQLResponse<T> sendRequest(Call<GraphQLResponse<T>> call) throws IOException {
+    @SneakyThrows
+    protected <T> GraphQLResponse<T> sendRequest(Call<GraphQLResponse<T>> call) {
         Response<GraphQLResponse<T>> response = call.execute();
-        if (!response.isSuccessful()) {
-            // TODO: Throw exception.
-        }
-
-        GraphQLResponse<T> graphQLResponse = response.body();
-        if (graphQLResponse == null) {
-            throw new IOException(); // TODO: Switch to more appropriate exception.
-        }
-
-        return graphQLResponse;
+        return createResult(response).body();
     }
 
     /**
@@ -116,8 +107,7 @@ public class BaseSchema {
      * @param callback the callback
      * @param <T> the type of the request and response
      */
-    protected <T> void sendRequest(Call<GraphQLResponse<T>> call,
-                                   final HttpCallback<GraphQLResponse<T>> callback) {
+    protected <T> void sendRequest(Call<GraphQLResponse<T>> call, final HttpCallback<GraphQLResponse<T>> callback) {
         call.enqueue(new Callback<GraphQLResponse<T>>() {
             @Override
             public void onResponse(@NotNull Call<GraphQLResponse<T>> call,
