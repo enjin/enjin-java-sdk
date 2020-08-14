@@ -5,5 +5,5 @@ import com.enjin.sdk.models.Player;
 /**
  * TODO
  */
-interface PlayerService extends Auth, GetOne<Player>, GetMany<Player> {
+public interface PlayerService extends Auth, GetOne<Player>, GetMany<Player> {
 }
