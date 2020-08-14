@@ -38,16 +38,15 @@ public class BaseSchema {
 
     private final Gson gson;
     private final Retrofit retrofit;
-    /**
-     * TODO
-     */
     protected final TrustedPlatformMiddleware middleware;
+    protected final String schema;
 
     /**
      * TODO
      * @param middleware
      */
-    public BaseSchema(TrustedPlatformMiddleware middleware) {
+    public BaseSchema(TrustedPlatformMiddleware middleware, String schema) {
+        this.schema = schema;
         this.gson = new GsonBuilder()
                 .serializeSpecialFloatingPointValues()
                 .create();
@@ -156,6 +155,15 @@ public class BaseSchema {
         }
 
         return new HttpResponse<>(code, body);
+    }
+
+    /**
+     * Returns the version.
+     *
+     * @return the version
+     */
+    public static String version() {
+        return "@version@";
     }
 
 }

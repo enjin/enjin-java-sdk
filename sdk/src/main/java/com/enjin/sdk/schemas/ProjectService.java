@@ -5,5 +5,5 @@ import com.enjin.sdk.models.Project;
 /**
  * TODO
  */
-interface ProjectService extends Auth, GetOne<Project> {
+public interface ProjectService extends Auth, GetOne<Project> {
 }
