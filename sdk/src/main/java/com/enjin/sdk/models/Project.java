@@ -28,13 +28,6 @@ public class Project {
      *
      * @return
      */
-    private String secret;
-    /**
-     * -- Getter --
-     * TODO
-     *
-     * @return
-     */
     private String description;
     /**
      * -- Getter --
@@ -43,27 +36,6 @@ public class Project {
      * @return
      */
     private String image;
-    /**
-     * -- Getter --
-     * TODO
-     *
-     * @return
-     */
-    private String linkingCode;
-    /**
-     * -- Getter --
-     * TODO
-     *
-     * @return
-     */
-    private String linkingCodeQr;
-    /**
-     * -- Getter --
-     * TODO
-     *
-     * @return
-     */
-    private Integer tokenCount;
     /**
      * -- Getter --
      * TODO
