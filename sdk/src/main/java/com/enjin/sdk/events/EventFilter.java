@@ -1,4 +1,4 @@
-package com.enjin.sdk.services.notification;
+package com.enjin.sdk.events;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

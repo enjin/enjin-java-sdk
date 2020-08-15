@@ -1,4 +1,4 @@
-package com.enjin.sdk.services.notification;
+package com.enjin.sdk.events;
 
 import java.util.logging.Level;
 
