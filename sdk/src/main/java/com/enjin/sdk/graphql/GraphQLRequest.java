@@ -55,12 +55,14 @@ public class GraphQLRequest<T extends GraphQLRequest<T>> implements VariableHold
      * @throws NullPointerException     if key is null
      * @throws IllegalArgumentException if key is empty
      */
-    public T set(@NonNull String key, @NonNull Object value) {
-        if (key.isEmpty()) {
+    public T set(@NonNull String key, Object value) {
+        if (key.isEmpty())
             throw new IllegalArgumentException("Key is empty");
-        }
 
-        this.variables.put(key, value);
+        if (value == null)
+            variables.remove(key);
+        else
+            variables.put(key, value);
 
         return (T) this;
     }

@@ -19,7 +19,7 @@ public final class GetProject extends GraphQLRequest<GetProject> {
      * @param id
      * @return
      */
-    public GetProject id(int id) {
+    public GetProject id(Integer id) {
         return set("id", id);
     }
 

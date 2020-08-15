@@ -28,7 +28,7 @@ public interface PlayerFragmentArguments<T extends VariableHolder<T>> extends Va
      * @param size
      * @return
      */
-    default T qrSize(int size) {
+    default T qrSize(Integer size) {
         return set("linkingCodeQrSize", size);
     }
 

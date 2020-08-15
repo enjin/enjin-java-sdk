@@ -53,7 +53,7 @@ public class BalanceFilter extends Filter<BalanceFilter> {
      * @param value
      * @return
      */
-    public BalanceFilter value(int value) {
+    public BalanceFilter value(Integer value) {
         this.value = value;
         return this;
     }
@@ -63,7 +63,7 @@ public class BalanceFilter extends Filter<BalanceFilter> {
      * @param value
      * @return
      */
-    public BalanceFilter valueGreaterThan(int value) {
+    public BalanceFilter valueGreaterThan(Integer value) {
         valueGt = value;
         return this;
     }
@@ -73,7 +73,7 @@ public class BalanceFilter extends Filter<BalanceFilter> {
      * @param value
      * @return
      */
-    public BalanceFilter valueGreaterThanOrEqual(int value) {
+    public BalanceFilter valueGreaterThanOrEqual(Integer value) {
         valueGte = value;
         return this;
     }
@@ -83,7 +83,7 @@ public class BalanceFilter extends Filter<BalanceFilter> {
      * @param value
      * @return
      */
-    public BalanceFilter valueLessThan(int value) {
+    public BalanceFilter valueLessThan(Integer value) {
         valueLt = value;
         return this;
     }
@@ -93,7 +93,7 @@ public class BalanceFilter extends Filter<BalanceFilter> {
      * @param value
      * @return
      */
-    public BalanceFilter valueLessThanOrEqual(int value) {
+    public BalanceFilter valueLessThanOrEqual(Integer value) {
         valueLte = value;
         return this;
     }

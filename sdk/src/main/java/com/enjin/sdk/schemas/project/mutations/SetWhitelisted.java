@@ -59,7 +59,7 @@ public class SetWhitelisted
      * @param on
      * @return
      */
-    public SetWhitelisted on(boolean on) {
+    public SetWhitelisted on(Boolean on) {
         return set("on", on);
     }
 

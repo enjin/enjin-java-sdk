@@ -24,7 +24,7 @@ public interface PaginationArguments<T extends VariableHolder<T>> extends Variab
      * @param limit
      * @return
      */
-    default T paginate(int page, int limit) {
+    default T paginate(Integer page, Integer limit) {
         PaginationOptions options = new PaginationOptions()
                                         .page(page)
                                         .limit(limit);
