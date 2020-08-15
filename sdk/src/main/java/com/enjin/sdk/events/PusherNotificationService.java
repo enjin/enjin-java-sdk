@@ -1,4 +1,4 @@
-package com.enjin.sdk.services.notification;
+package com.enjin.sdk.events;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,11 +10,11 @@ import java.util.logging.Logger;
 import com.enjin.sdk.models.EventType;
 import com.enjin.sdk.models.Notifications;
 import com.enjin.sdk.models.Platform;
-import com.enjin.sdk.services.notification.NotificationListenerRegistration.RegistrationListenerConfiguration;
-import com.enjin.sdk.services.notification.subscriptions.AppChannel;
-import com.enjin.sdk.services.notification.subscriptions.PlayerChannel;
-import com.enjin.sdk.services.notification.subscriptions.TokenChannel;
-import com.enjin.sdk.services.notification.subscriptions.WalletChannel;
+import com.enjin.sdk.events.NotificationListenerRegistration.RegistrationListenerConfiguration;
+import com.enjin.sdk.events.subscriptions.AppChannel;
+import com.enjin.sdk.events.subscriptions.PlayerChannel;
+import com.enjin.sdk.events.subscriptions.TokenChannel;
+import com.enjin.sdk.events.subscriptions.WalletChannel;
 import com.enjin.sdk.utils.LoggerProvider;
 import com.pusher.client.Pusher;
 import com.pusher.client.PusherOptions;

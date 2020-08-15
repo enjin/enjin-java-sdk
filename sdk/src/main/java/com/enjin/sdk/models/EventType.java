@@ -1,6 +1,6 @@
 package com.enjin.sdk.models;
 
-import com.enjin.sdk.services.notification.EventFilter;
+import com.enjin.sdk.events.EventFilter;
 
 import java.util.ArrayList;
 import java.util.List;

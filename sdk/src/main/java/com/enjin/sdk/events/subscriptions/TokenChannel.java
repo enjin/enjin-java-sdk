@@ -1,4 +1,4 @@
-package com.enjin.sdk.services.notification.subscriptions;
+package com.enjin.sdk.events.subscriptions;
 
 import com.enjin.sdk.models.Platform;
 import lombok.NonNull;

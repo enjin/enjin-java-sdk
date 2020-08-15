@@ -1,7 +1,7 @@
 package com.enjin.sdk.models;
 
 import com.enjin.sdk.serialization.RequestTypeDeserializer;
-import com.enjin.sdk.services.notification.NotificationsService;
+import com.enjin.sdk.events.NotificationsService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
