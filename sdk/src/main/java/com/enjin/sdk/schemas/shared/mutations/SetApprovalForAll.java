@@ -31,7 +31,7 @@ public class SetApprovalForAll
      * @param approved
      * @return
      */
-    public SetApprovalForAll approved(boolean approved) {
+    public SetApprovalForAll approved(Boolean approved) {
         return set("approved", approved);
     }
 

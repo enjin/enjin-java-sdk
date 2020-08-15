@@ -40,7 +40,7 @@ public class SetMeltFee
      * @param meltFee
      * @return
      */
-    public SetMeltFee meltFee(int meltFee) {
+    public SetMeltFee meltFee(Integer meltFee) {
         return set("meltFee", meltFee);
     }
 

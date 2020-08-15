@@ -22,7 +22,7 @@ public class GetRequest
      * @param id
      * @return
      */
-    public GetRequest id(int id) {
+    public GetRequest id(Integer id) {
         return set("id", id);
     }
 
