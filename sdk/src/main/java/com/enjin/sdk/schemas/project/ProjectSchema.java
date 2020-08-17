@@ -59,7 +59,7 @@ public class ProjectSchema extends SharedSchema {
      * @throws IOException
      */
     public GraphQLResponse<AccessToken> authPlayer(AuthPlayer request) {
-        return sendRequest(playerService.getAuth(SCHEMA, createRequestBody(request)));
+        return sendRequest(playerService.getAuth(schema, createRequestBody(request)));
     }
 
     /**
@@ -69,7 +69,7 @@ public class ProjectSchema extends SharedSchema {
      */
     public void authPlayer(AuthPlayer request,
                            HttpCallback<GraphQLResponse<AccessToken>> callback) {
-        sendRequest(playerService.getAuth(SCHEMA, createRequestBody(request)), callback);
+        sendRequest(playerService.getAuth(schema, createRequestBody(request)), callback);
     }
 
     /**
@@ -79,7 +79,7 @@ public class ProjectSchema extends SharedSchema {
      * @throws IOException
      */
     public GraphQLResponse<AccessToken> authProject(AuthProject request) {
-        return sendRequest(projectService.getAuth(SCHEMA, createRequestBody(request)));
+        return sendRequest(projectService.getAuth(schema, createRequestBody(request)));
     }
 
     /**
@@ -89,7 +89,7 @@ public class ProjectSchema extends SharedSchema {
      */
     public void authProject(AuthProject request,
                             HttpCallback<GraphQLResponse<AccessToken>> callback) {
-        sendRequest(projectService.getAuth(SCHEMA, createRequestBody(request)), callback);
+        sendRequest(projectService.getAuth(schema, createRequestBody(request)), callback);
     }
 
     /**
@@ -99,7 +99,7 @@ public class ProjectSchema extends SharedSchema {
      * @throws IOException
      */
     public GraphQLResponse<AccessToken> createPlayer(CreatePlayer request) {
-        return sendRequest(playerService.getAuth(SCHEMA, createRequestBody(request)));
+        return sendRequest(playerService.getAuth(schema, createRequestBody(request)));
     }
 
     /**
@@ -109,7 +109,7 @@ public class ProjectSchema extends SharedSchema {
      */
     public void createPlayer(CreatePlayer request,
                              HttpCallback<GraphQLResponse<AccessToken>> callback) {
-        sendRequest(playerService.getAuth(SCHEMA, createRequestBody(request)), callback);
+        sendRequest(playerService.getAuth(schema, createRequestBody(request)), callback);
     }
 
     /**
@@ -199,7 +199,7 @@ public class ProjectSchema extends SharedSchema {
      * @throws IOException
      */
     public GraphQLResponse<Player> getPlayer(GetPlayer request) {
-        return sendRequest(playerService.getOne(SCHEMA, createRequestBody(request)));
+        return sendRequest(playerService.getOne(schema, createRequestBody(request)));
     }
 
     /**
@@ -209,7 +209,7 @@ public class ProjectSchema extends SharedSchema {
      */
     public void getPlayer(GetPlayer request,
                           HttpCallback<GraphQLResponse<Player>> callback) {
-        sendRequest(playerService.getOne(SCHEMA, createRequestBody(request)), callback);
+        sendRequest(playerService.getOne(schema, createRequestBody(request)), callback);
     }
 
     /**
@@ -219,7 +219,7 @@ public class ProjectSchema extends SharedSchema {
      * @throws IOException
      */
     public GraphQLResponse<List<Player>> getPlayers(GetPlayers request) {
-        return sendRequest(playerService.getMany(SCHEMA, createRequestBody(request)));
+        return sendRequest(playerService.getMany(schema, createRequestBody(request)));
     }
 
     /**
@@ -229,7 +229,7 @@ public class ProjectSchema extends SharedSchema {
      */
     public void getPlayers(GetPlayers request,
                            HttpCallback<GraphQLResponse<List<Player>>> callback) {
-        sendRequest(playerService.getMany(SCHEMA, createRequestBody(request)), callback);
+        sendRequest(playerService.getMany(schema, createRequestBody(request)), callback);
     }
 
     /**

@@ -39,7 +39,7 @@ public class PlayerSchema extends SharedSchema {
      * @throws IOException
      */
     public GraphQLResponse<Player> getPlayer(GetPlayer request) {
-        return sendRequest(playerService.getOne(SCHEMA, createRequestBody(request)));
+        return sendRequest(playerService.getOne(schema, createRequestBody(request)));
     }
 
     /**
@@ -49,7 +49,7 @@ public class PlayerSchema extends SharedSchema {
      */
     public void getPlayer(GetPlayer request,
                           HttpCallback<GraphQLResponse<Player>> callback) {
-        sendRequest(playerService.getOne(SCHEMA, createRequestBody(request)), callback);
+        sendRequest(playerService.getOne(schema, createRequestBody(request)), callback);
     }
 
     /**
