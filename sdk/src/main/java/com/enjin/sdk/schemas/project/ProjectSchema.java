@@ -179,7 +179,7 @@ public class ProjectSchema extends SharedSchema {
      * @throws IOException
      */
     public GraphQLResponse<Boolean> deletePlayer(DeletePlayer request) {
-        return null;
+        return sendRequest(playerService.delete(schema, createRequestBody(request)));
     }
 
     /**
@@ -189,7 +189,7 @@ public class ProjectSchema extends SharedSchema {
      */
     public void deletePlayer(DeletePlayer request,
                              HttpCallback<GraphQLResponse<Boolean>> callback) {
-
+        sendRequest(playerService.delete(schema, createRequestBody(request)), callback);
     }
 
     /**
@@ -399,7 +399,7 @@ public class ProjectSchema extends SharedSchema {
      * @throws IOException
      */
     public GraphQLResponse<Boolean> unlinkWallet(UnlinkWallet request) {
-        return null;
+        return sendRequest(playerService.delete(schema, createRequestBody(request)));
     }
 
     /**
@@ -409,7 +409,7 @@ public class ProjectSchema extends SharedSchema {
      */
     public void unlinkWallet(UnlinkWallet request,
                              HttpCallback<GraphQLResponse<Boolean>> callback) {
-
+        sendRequest(playerService.delete(schema, createRequestBody(request)), callback);
     }
 
     /**
