@@ -1,6 +1,7 @@
 package com.enjin.sdk.schemas;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.Objects;
 import java.util.logging.Level;
 
@@ -10,6 +11,7 @@ import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpCallback;
 import com.enjin.sdk.http.HttpResponse;
 
+import com.enjin.sdk.serialization.BigIntegerDeserializer;
 import com.enjin.sdk.serialization.converter.GraphConverter;
 import com.enjin.sdk.serialization.converter.JsonStringConverter;
 import com.google.gson.Gson;
@@ -34,9 +36,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Log
 public class BaseSchema {
 
+    private static final Gson GSON = new GsonBuilder()
+            .registerTypeAdapter(BigInteger.class, new BigIntegerDeserializer())
+            .serializeSpecialFloatingPointValues()
+            .enableComplexMapKeySerialization()
+            .setLenient()
+            .create();
     private static final MediaType JSON = MediaType.parse("application/json");
 
-    private final Gson gson;
     private final Retrofit retrofit;
     protected final TrustedPlatformMiddleware middleware;
     protected final String schema;
@@ -47,12 +54,9 @@ public class BaseSchema {
      */
     public BaseSchema(TrustedPlatformMiddleware middleware, String schema) {
         this.schema = schema;
-        this.gson = new GsonBuilder()
-                .serializeSpecialFloatingPointValues()
-                .create();
-        Converter.Factory gsonFactory = GsonConverterFactory.create(gson);
-
         this.middleware = middleware;
+
+        Converter.Factory gsonFactory = GsonConverterFactory.create(GSON);
         this.retrofit = new Retrofit.Builder()
                 .baseUrl(this.middleware.getBaseUrl())
                 .client(this.middleware.getHttpClient())
@@ -72,7 +76,7 @@ public class BaseSchema {
         JsonObject requestBody = new JsonObject();
 
         JsonObject variables = new JsonObject();
-        request.getVariables().forEach((key, value) -> variables.add(key, gson.toJsonTree(value)));
+        request.getVariables().forEach((key, value) -> variables.add(key, GSON.toJsonTree(value)));
 
         requestBody.addProperty("query", middleware.getQueryRegistry().get(request.getNamespace()));
         requestBody.add("variables", variables);
@@ -150,7 +154,7 @@ public class BaseSchema {
             if (Objects.equals(errorBody.contentType(), JSON)) {
                 TypeToken<GraphQLResponse<T>> token = new TypeToken<GraphQLResponse<T>>(){};
                 String rawBody = errorBody.string();
-                body = (GraphQLResponse<T>) gson.fromJson(rawBody, token.getRawType());
+                body = (GraphQLResponse<T>) GSON.fromJson(rawBody, token.getRawType());
             }
         }
 

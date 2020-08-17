@@ -8,12 +8,14 @@ import java.util.Map;
  */
 public class GraphQLQueryRegistry {
 
+    private static final GraphQLQueryRegistry INSTANCE = new GraphQLQueryRegistry();
+
     private final Map<String, String> registered = new HashMap<>();
 
     /**
      * Sole constructor.
      */
-    public GraphQLQueryRegistry() {
+    private GraphQLQueryRegistry() {
         registerTemplateConstants();
     }
 
@@ -56,6 +58,13 @@ public class GraphQLQueryRegistry {
 
     private void registerTemplateConstants() {
         TemplateConstants.TEMPLATES.forEach(this::register);
+    }
+
+    /**
+     * @return TODO
+     */
+    public static GraphQLQueryRegistry getInstance() {
+        return INSTANCE;
     }
 
 }

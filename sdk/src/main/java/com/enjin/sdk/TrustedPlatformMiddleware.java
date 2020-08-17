@@ -1,6 +1,5 @@
 package com.enjin.sdk;
 
-import com.enjin.sdk.graphql.GraphQLProcessor;
 import com.enjin.sdk.graphql.GraphQLQueryRegistry;
 import com.enjin.sdk.http.SessionCookieJar;
 import com.enjin.sdk.http.TrustedPlatformInterceptor;
@@ -69,7 +68,7 @@ public class TrustedPlatformMiddleware implements Closeable {
                                   .cookieJar(cookieJar)
                                   .addInterceptor(this.trustedPlatformInterceptor)
                                   .build();
-        this.queryRegistry = GraphQLProcessor.getInstance().getQueryRegistry();
+        this.queryRegistry = GraphQLQueryRegistry.getInstance();
     }
 
     @Override

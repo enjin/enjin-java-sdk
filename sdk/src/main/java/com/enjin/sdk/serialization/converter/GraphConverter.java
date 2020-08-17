@@ -11,9 +11,6 @@ import java.util.Optional;
 import java.util.logging.Level;
 
 import com.enjin.sdk.graphql.GraphQLError;
-import com.enjin.sdk.graphql.GraphQLProcessor;
-import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.graphql.GraphQLRequestBody;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.models.PaginationCursor;
 import com.enjin.sdk.serialization.BigIntegerDeserializer;
@@ -26,8 +23,6 @@ import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
 import lombok.extern.java.Log;
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
@@ -49,22 +44,10 @@ public class GraphConverter extends Converter.Factory {
     private static final String CURSOR_PATH = RESULT_PATH + '.' + CURSOR_KEY;
 
     /**
-     * Protected GraphQL processor.
-     */
-    protected GraphQLProcessor graphProcessor;
-
-    /**
      * Protected parser to make use of the default parse settings.
      */
     protected final JsonParser parser = new JsonParser();
-    /**
-     * Protected gson builder to make use of custom builder settings for serialization.
-     */
-    protected final Gson toJson = new GsonBuilder()
-            .enableComplexMapKeySerialization()
-            .setLenient()
-            .registerTypeAdapter(BigInteger.class, new BigIntegerDeserializer())
-            .create();
+
     /**
      * Protected gson builder to make use of custom builder settings for deserialization.
      */
@@ -81,7 +64,6 @@ public class GraphConverter extends Converter.Factory {
      * <br>
      */
     protected GraphConverter() {
-        this.graphProcessor = GraphQLProcessor.getInstance();
     }
 
     /**
@@ -104,30 +86,6 @@ public class GraphConverter extends Converter.Factory {
             if (rawType == GraphQLResponse.class) {
                 return new GraphResponseConverter<>(parameterizedType);
             }
-        }
-
-        return null;
-    }
-
-    /**
-     * HttpResponse body converter delegates logic processing to a child class that handles
-     * wrapping and deserialization of the json response results.
-     *
-     * @param parameterAnnotations All the annotation applied to request parameters
-     * @param methodAnnotations    All the annotation applied to the requesting method
-     * @param retrofit             The retrofit object representing the response
-     * @param type                 The type of the parameter of the request
-     *
-     * @see GraphRequestConverter
-     * <br>
-     */
-    @Override
-    public Converter<GraphQLRequest<?>, RequestBody> requestBodyConverter(Type type,
-                                                                          Annotation[] parameterAnnotations,
-                                                                          Annotation[] methodAnnotations,
-                                                                          Retrofit retrofit) {
-        if (GraphQLRequest.class.isAssignableFrom((Class<?>) type)) {
-            return new GraphRequestConverter(methodAnnotations);
         }
 
         return null;
@@ -232,36 +190,4 @@ public class GraphConverter extends Converter.Factory {
         }
     }
 
-    /**
-     * GraphQL request body converter and injector, uses method annotation for a given retrofit call.
-     */
-    protected class GraphRequestConverter implements Converter<GraphQLRequest<?>, RequestBody> {
-        protected Annotation[] methodAnnotations;
-
-        protected GraphRequestConverter(Annotation[] methodAnnotations) {
-            this.methodAnnotations = methodAnnotations;
-        }
-
-        /**
-         * Converter for the request body, gets the GraphQL query from the method annotation
-         * and constructs a GraphQL request body to send over the network.
-         * <br>
-         *
-         * @param request The constructed builder method of your query with variables
-         *
-         * @return Request body
-         */
-        @Override
-        public RequestBody convert(GraphQLRequest<?> request) {
-            String queryName = graphProcessor.getQueryName(methodAnnotations);
-            String query = graphProcessor.getQuery(queryName);
-
-            if (query == null) {
-                throw new RuntimeException(String.format("Query not registered: %s", queryName));
-            }
-
-            GraphQLRequestBody body = new GraphQLRequestBody(query, request.getVariables());
-            return RequestBody.create(toJson.toJson(body), MediaType.parse("application/graphql"));
-        }
-    }
 }
