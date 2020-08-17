@@ -1,17 +1,12 @@
 package com.enjin.sdk;
 
-import com.enjin.sdk.schemas.Schema;
+import com.enjin.sdk.schemas.player.PlayerSchema;
 import lombok.NonNull;
 
 /**
  * TODO
  */
-public final class PlayerClient extends TrustedPlatformClient {
-
-    /**
-     * TODO
-     */
-    public static final String SCHEMA = "player";
+public final class PlayerClient extends PlayerSchema {
 
     /**
      * TODO
@@ -27,12 +22,7 @@ public final class PlayerClient extends TrustedPlatformClient {
      * @param debug
      */
     public PlayerClient(@NonNull String baseUrl, boolean debug) {
-        super(baseUrl, debug, SCHEMA);
-    }
-
-    @Override
-    public Schema getSchema() {
-        return schema;
+        super(new TrustedPlatformMiddleware(baseUrl, debug));
     }
 
 }

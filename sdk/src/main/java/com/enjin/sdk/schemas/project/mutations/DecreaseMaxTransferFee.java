@@ -40,7 +40,7 @@ public class DecreaseMaxTransferFee
      * @param maxTransferFee
      * @return
      */
-    public DecreaseMaxTransferFee maxTransferFee(int maxTransferFee) {
+    public DecreaseMaxTransferFee maxTransferFee(Integer maxTransferFee) {
         return set("maxTransferFee", maxTransferFee);
     }
 

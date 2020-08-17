@@ -2,8 +2,7 @@ package com.enjin.sdk.http;
 
 import java.io.IOException;
 
-import com.enjin.sdk.TrustedPlatformClient;
-import com.enjin.sdk.models.AccessToken;
+import com.enjin.sdk.schemas.BaseSchema;
 import lombok.Getter;
 import lombok.Setter;
 import okhttp3.Interceptor;
@@ -71,7 +70,7 @@ public class TrustedPlatformInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         Request.Builder builder = chain.request().newBuilder();
 
-        builder.header(USER_AGENT, String.format(USER_AGENT_VAL, TrustedPlatformClient.version()));
+        builder.header(USER_AGENT, String.format(USER_AGENT_VAL, BaseSchema.version()));
 
         if (tokenType != null && !tokenType.isEmpty() && token != null && !token.isEmpty()) {
             builder.header(AUTHORIZATION, String.format("%s %s", tokenType, token));

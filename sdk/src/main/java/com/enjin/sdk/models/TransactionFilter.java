@@ -131,7 +131,7 @@ public class TransactionFilter extends Filter<TransactionFilter> {
      * @param value
      * @return
      */
-    public TransactionFilter value(int value) {
+    public TransactionFilter value(Integer value) {
         this.value = value;
         return this;
     }
@@ -141,7 +141,7 @@ public class TransactionFilter extends Filter<TransactionFilter> {
      * @param value
      * @return
      */
-    public TransactionFilter valueGreaterThan(int value) {
+    public TransactionFilter valueGreaterThan(Integer value) {
         valueGt = value;
         return this;
     }
@@ -151,7 +151,7 @@ public class TransactionFilter extends Filter<TransactionFilter> {
      * @param value
      * @return
      */
-    public TransactionFilter valueGreaterThanOrEqual(int value) {
+    public TransactionFilter valueGreaterThanOrEqual(Integer value) {
         valueGte = value;
         return this;
     }
@@ -161,7 +161,7 @@ public class TransactionFilter extends Filter<TransactionFilter> {
      * @param value
      * @return
      */
-    public TransactionFilter valueLessThan(int value) {
+    public TransactionFilter valueLessThan(Integer value) {
         valueLt = value;
         return this;
     }
@@ -171,7 +171,7 @@ public class TransactionFilter extends Filter<TransactionFilter> {
      * @param value
      * @return
      */
-    public TransactionFilter valueLessThanOrEqual(int value) {
+    public TransactionFilter valueLessThanOrEqual(Integer value) {
         valueLte = value;
         return this;
     }

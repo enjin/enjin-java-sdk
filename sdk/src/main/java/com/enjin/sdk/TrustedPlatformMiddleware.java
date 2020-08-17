@@ -26,14 +26,6 @@ public class TrustedPlatformMiddleware implements Closeable {
      */
     @Getter
     private final HttpUrl baseUrl;
-    /**
-     * -- Getter --
-     * TODO
-     *
-     * @return
-     */
-    @Getter
-    private final String schema;
 
     // Http Client
     @Getter(AccessLevel.PACKAGE)
@@ -60,14 +52,12 @@ public class TrustedPlatformMiddleware implements Closeable {
      * TODO
      * @param baseUrl
      * @param debug
-     * @param schema
      */
-    protected TrustedPlatformMiddleware(String baseUrl, boolean debug, String schema) {
+    protected TrustedPlatformMiddleware(String baseUrl, boolean debug) {
         // Cookie Jar
         SessionCookieJar cookieJar = new SessionCookieJar();
 
         this.baseUrl = HttpUrl.get(baseUrl);
-        this.schema = schema;
         this.trustedPlatformInterceptor = new TrustedPlatformInterceptor();
         this.httpClient = debug
                 ? new OkHttpClient.Builder()

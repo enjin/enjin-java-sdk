@@ -1,5 +1,6 @@
 package com.enjin.sdk.schemas.shared;
 
+import com.enjin.sdk.TrustedPlatformMiddleware;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpCallback;
 import com.enjin.sdk.models.Balance;
@@ -8,6 +9,8 @@ import com.enjin.sdk.models.Platform;
 import com.enjin.sdk.models.Project;
 import com.enjin.sdk.models.Request;
 import com.enjin.sdk.models.Token;
+import com.enjin.sdk.schemas.BaseSchema;
+import com.enjin.sdk.schemas.ProjectService;
 import com.enjin.sdk.schemas.shared.mutations.AdvancedSendToken;
 import com.enjin.sdk.schemas.shared.mutations.ApproveEnj;
 import com.enjin.sdk.schemas.shared.mutations.ApproveMaxEnj;
@@ -34,7 +37,18 @@ import java.util.List;
 /**
  * TODO
  */
-public interface SharedSchema {
+public class SharedSchema extends BaseSchema {
+
+    protected final ProjectService projectService;
+
+    /**
+     * TODO
+     * @param middleware
+     */
+    public SharedSchema(TrustedPlatformMiddleware middleware, String schema) {
+        super(middleware, schema);
+        projectService = (ProjectService) createService(ProjectService.class);
+    }
 
     /**
      * TODO
@@ -42,14 +56,19 @@ public interface SharedSchema {
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> advancedSendToken(AdvancedSendToken request);
+    public GraphQLResponse<Request> advancedSendToken(AdvancedSendToken request) {
+        return null;
+    }
 
     /**
      * TODO
      * @param request
      * @param callback
      */
-    void advancedSendToken(AdvancedSendToken request, HttpCallback<GraphQLResponse<Request>> callback);
+    public void advancedSendToken(AdvancedSendToken request,
+                                  HttpCallback<GraphQLResponse<Request>> callback) {
+
+    }
 
     /**
      * TODO
@@ -57,14 +76,19 @@ public interface SharedSchema {
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> approveEnj(ApproveEnj request);
+    public GraphQLResponse<Request> approveEnj(ApproveEnj request) {
+        return null;
+    }
 
     /**
      * TODO
      * @param request
      * @param callback
      */
-    void approveEnj(ApproveEnj request, HttpCallback<GraphQLResponse<Request>> callback);
+    public void approveEnj(ApproveEnj request,
+                           HttpCallback<GraphQLResponse<Request>> callback) {
+
+    }
 
     /**
      * TODO
@@ -72,14 +96,19 @@ public interface SharedSchema {
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> approveMaxEnj(ApproveMaxEnj request);
+    public GraphQLResponse<Request> approveMaxEnj(ApproveMaxEnj request) {
+        return null;
+    }
 
     /**
      * TODO
      * @param request
      * @param callback
      */
-    void approveMaxEnj(ApproveMaxEnj request, HttpCallback<GraphQLResponse<Request>> callback);
+    public void approveMaxEnj(ApproveMaxEnj request,
+                              HttpCallback<GraphQLResponse<Request>> callback) {
+
+    }
 
     /**
      * TODO
@@ -87,14 +116,19 @@ public interface SharedSchema {
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> completeTrade(CompleteTrade request);
+    public GraphQLResponse<Request> completeTrade(CompleteTrade request) {
+        return null;
+    }
 
     /**
      * TODO
      * @param request
      * @param callback
      */
-    void completeTrade(CompleteTrade request, HttpCallback<GraphQLResponse<Request>> callback);
+    public void completeTrade(CompleteTrade request,
+                              HttpCallback<GraphQLResponse<Request>> callback) {
+
+    }
 
     /**
      * TODO
@@ -102,14 +136,19 @@ public interface SharedSchema {
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> createTrade(CreateTrade request);
+    public GraphQLResponse<Request> createTrade(CreateTrade request) {
+        return null;
+    }
 
     /**
      * TODO
      * @param request
      * @param callback
      */
-    void createTrade(CreateTrade request, HttpCallback<GraphQLResponse<Request>> callback);
+    public void createTrade(CreateTrade request,
+                            HttpCallback<GraphQLResponse<Request>> callback) {
+
+    }
 
     /**
      * TODO
@@ -117,14 +156,19 @@ public interface SharedSchema {
      * @return
      * @throws IOException
      */
-    GraphQLResponse<List<Balance>> getBalances(GetBalances request);
+    public GraphQLResponse<List<Balance>> getBalances(GetBalances request) {
+        return null;
+    }
 
     /**
      * TODO
      * @param request
      * @param callback
      */
-    void getBalances(GetBalances request, HttpCallback<GraphQLResponse<List<Balance>>> callback);
+    public void getBalances(GetBalances request,
+                            HttpCallback<GraphQLResponse<List<Balance>>> callback) {
+
+    }
 
     /**
      * TODO
@@ -132,14 +176,19 @@ public interface SharedSchema {
      * @return
      * @throws IOException
      */
-    GraphQLResponse<GasPrices> getGasPrices(GetGasPrices request);
+    public GraphQLResponse<GasPrices> getGasPrices(GetGasPrices request) {
+        return null;
+    }
 
     /**
      * TODO
      * @param request
      * @param callback
      */
-    void getGasPrices(GetGasPrices request, HttpCallback<GraphQLResponse<GasPrices>> callback);
+    public void getGasPrices(GetGasPrices request,
+                             HttpCallback<GraphQLResponse<GasPrices>> callback) {
+
+    }
 
     /**
      * TODO
@@ -147,14 +196,19 @@ public interface SharedSchema {
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Platform> getPlatform(GetPlatform request);
+    public GraphQLResponse<Platform> getPlatform(GetPlatform request) {
+        return null;
+    }
 
     /**
      * TODO
      * @param request
      * @param callback
      */
-    void getPlatform(GetPlatform request, HttpCallback<GraphQLResponse<Platform>> callback);
+    public void getPlatform(GetPlatform request,
+                            HttpCallback<GraphQLResponse<Platform>> callback) {
+
+    }
 
     /**
      * TODO
@@ -162,14 +216,19 @@ public interface SharedSchema {
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Project> getProject(GetProject request);
+    public GraphQLResponse<Project> getProject(GetProject request) {
+        return sendRequest(projectService.getOne(schema, createRequestBody(request)));
+    }
 
     /**
      * TODO
      * @param request
      * @param callback
      */
-    void getProject(GetProject request, HttpCallback<GraphQLResponse<Project>> callback);
+    public void getProject(GetProject request,
+                           HttpCallback<GraphQLResponse<Project>> callback) {
+        sendRequest(projectService.getOne(schema, createRequestBody(request)), callback);
+    }
 
     /**
      * TODO
@@ -177,14 +236,19 @@ public interface SharedSchema {
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> getRequest(GetRequest request);
+    public GraphQLResponse<Request> getRequest(GetRequest request) {
+        return null;
+    }
 
     /**
      * TODO
      * @param request
      * @param callback
      */
-    void getRequest(GetRequest request, HttpCallback<GraphQLResponse<Request>> callback);
+    public void getRequest(GetRequest request,
+                           HttpCallback<GraphQLResponse<Request>> callback) {
+
+    }
 
     /**
      * TODO
@@ -192,14 +256,19 @@ public interface SharedSchema {
      * @return
      * @throws IOException
      */
-    GraphQLResponse<List<Request>> getRequests(GetRequests request);
+    public GraphQLResponse<List<Request>> getRequests(GetRequests request) {
+        return null;
+    }
 
     /**
      * TODO
      * @param request
      * @param callback
      */
-    void getRequests(GetRequests request, HttpCallback<GraphQLResponse<List<Request>>> callback);
+    public void getRequests(GetRequests request,
+                            HttpCallback<GraphQLResponse<List<Request>>> callback) {
+
+    }
 
     /**
      * TODO
@@ -207,14 +276,19 @@ public interface SharedSchema {
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Token> getToken(GetToken request);
+    public GraphQLResponse<Token> getToken(GetToken request) {
+        return null;
+    }
 
     /**
      * TODO
      * @param request
      * @param callback
      */
-    void getToken(GetToken request, HttpCallback<GraphQLResponse<Token>> callback);
+    public void getToken(GetToken request,
+                         HttpCallback<GraphQLResponse<Token>> callback) {
+
+    }
 
     /**
      * TODO
@@ -222,14 +296,19 @@ public interface SharedSchema {
      * @return
      * @throws IOException
      */
-    GraphQLResponse<List<Token>> getTokens(GetTokens request);
+    public GraphQLResponse<List<Token>> getTokens(GetTokens request) {
+        return null;
+    }
 
     /**
      * TODO
      * @param request
      * @param callback
      */
-    void getTokens(GetTokens request, HttpCallback<GraphQLResponse<List<Token>>> callback);
+    public void getTokens(GetTokens request,
+                          HttpCallback<GraphQLResponse<List<Token>>> callback) {
+
+    }
 
     /**
      * TODO
@@ -237,14 +316,19 @@ public interface SharedSchema {
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> meltToken(MeltToken request);
+    public GraphQLResponse<Request> meltToken(MeltToken request) {
+        return null;
+    }
 
     /**
      * TODO
      * @param request
      * @param callback
      */
-    void meltToken(MeltToken request, HttpCallback<GraphQLResponse<Request>> callback);
+    public void meltToken(MeltToken request,
+                          HttpCallback<GraphQLResponse<Request>> callback) {
+
+    }
 
     /**
      * TODO
@@ -252,14 +336,19 @@ public interface SharedSchema {
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> message(Message request);
+    public GraphQLResponse<Request> message(Message request) {
+        return null;
+    }
 
     /**
      * TODO
      * @param request
      * @param callback
      */
-    void message(Message request, HttpCallback<GraphQLResponse<Request>> callback);
+    public void message(Message request,
+                        HttpCallback<GraphQLResponse<Request>> callback) {
+
+    }
 
     /**
      * TODO
@@ -267,14 +356,19 @@ public interface SharedSchema {
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> resetEnjApproval(ResetEnjApproval request);
+    public GraphQLResponse<Request> resetEnjApproval(ResetEnjApproval request) {
+        return null;
+    }
 
     /**
      * TODO
      * @param request
      * @param callback
      */
-    void resetEnjApproval(ResetEnjApproval request, HttpCallback<GraphQLResponse<Request>> callback);
+    public void resetEnjApproval(ResetEnjApproval request,
+                                 HttpCallback<GraphQLResponse<Request>> callback) {
+
+    }
 
     /**
      * TODO
@@ -282,14 +376,19 @@ public interface SharedSchema {
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> sendEnj(SendEnj request);
+    public GraphQLResponse<Request> sendEnj(SendEnj request) {
+        return null;
+    }
 
     /**
      * TODO
      * @param request
      * @param callback
      */
-    void sendEnj(SendEnj request, HttpCallback<GraphQLResponse<Request>> callback);
+    public void sendEnj(SendEnj request,
+                        HttpCallback<GraphQLResponse<Request>> callback) {
+
+    }
 
     /**
      * TODO
@@ -297,14 +396,19 @@ public interface SharedSchema {
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> sendToken(SendToken request);
+    public GraphQLResponse<Request> sendToken(SendToken request) {
+        return null;
+    }
 
     /**
      * TODO
      * @param request
      * @param callback
      */
-    void sendToken(SendToken request, HttpCallback<GraphQLResponse<Request>> callback);
+    public void sendToken(SendToken request,
+                          HttpCallback<GraphQLResponse<Request>> callback) {
+
+    }
 
     /**
      * TODO
@@ -312,13 +416,18 @@ public interface SharedSchema {
      * @return
      * @throws IOException
      */
-    GraphQLResponse<Request> setApprovalForAll(SetApprovalForAll request);
+    public GraphQLResponse<Request> setApprovalForAll(SetApprovalForAll request) {
+        return null;
+    }
 
     /**
      * TODO
      * @param request
      * @param callback
      */
-    void setApprovalForAll(SetApprovalForAll request, HttpCallback<GraphQLResponse<Request>> callback);
+    public void setApprovalForAll(SetApprovalForAll request,
+                                  HttpCallback<GraphQLResponse<Request>> callback) {
+
+    }
 
 }
