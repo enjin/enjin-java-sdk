@@ -59,7 +59,7 @@ public class PlayerSchema extends SharedSchema {
      * @throws IOException
      */
     public GraphQLResponse<Boolean> unlinkWallet(UnlinkWallet request) {
-        return null;
+        return sendRequest(playerService.delete(schema, createRequestBody(request)));
     }
 
     /**
@@ -69,7 +69,7 @@ public class PlayerSchema extends SharedSchema {
      */
     public void unlinkWallet(UnlinkWallet request,
                              HttpCallback<GraphQLResponse<Boolean>> callback) {
-
+        sendRequest(playerService.delete(schema, createRequestBody(request)), callback);
     }
 
 }
