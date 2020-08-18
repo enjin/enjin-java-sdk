@@ -1,4 +1,4 @@
-package com.enjin.sdk.schemas;
+package com.enjin.sdk.services;
 
 import com.enjin.sdk.models.Player;
 

@@ -4,7 +4,7 @@ import com.enjin.sdk.TrustedPlatformMiddleware;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpCallback;
 import com.enjin.sdk.models.Player;
-import com.enjin.sdk.schemas.PlayerService;
+import com.enjin.sdk.services.PlayerService;
 import com.enjin.sdk.schemas.player.mutations.UnlinkWallet;
 import com.enjin.sdk.schemas.player.queries.GetPlayer;
 import com.enjin.sdk.schemas.shared.SharedSchema;

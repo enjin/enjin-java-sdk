@@ -3,7 +3,7 @@ package com.enjin.sdk.schemas.project;
 import com.enjin.sdk.TrustedPlatformMiddleware;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpCallback;
-import com.enjin.sdk.schemas.PlayerService;
+import com.enjin.sdk.services.PlayerService;
 import com.enjin.sdk.schemas.project.mutations.CreatePlayer;
 import com.enjin.sdk.schemas.project.mutations.CreateToken;
 import com.enjin.sdk.schemas.project.mutations.DecreaseMaxMeltFee;
