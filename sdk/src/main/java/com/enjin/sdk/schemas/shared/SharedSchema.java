@@ -1,6 +1,7 @@
 package com.enjin.sdk.schemas.shared;
 
 import com.enjin.sdk.TrustedPlatformMiddleware;
+import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpCallback;
 import com.enjin.sdk.models.Balance;
@@ -9,8 +10,12 @@ import com.enjin.sdk.models.Platform;
 import com.enjin.sdk.models.Project;
 import com.enjin.sdk.models.Request;
 import com.enjin.sdk.models.Token;
+import com.enjin.sdk.services.BalanceService;
 import com.enjin.sdk.schemas.BaseSchema;
-import com.enjin.sdk.schemas.ProjectService;
+import com.enjin.sdk.services.PlatformService;
+import com.enjin.sdk.services.ProjectService;
+import com.enjin.sdk.services.RequestService;
+import com.enjin.sdk.services.TokenService;
 import com.enjin.sdk.schemas.shared.mutations.AdvancedSendToken;
 import com.enjin.sdk.schemas.shared.mutations.ApproveEnj;
 import com.enjin.sdk.schemas.shared.mutations.ApproveMaxEnj;
@@ -39,15 +44,24 @@ import java.util.List;
  */
 public class SharedSchema extends BaseSchema {
 
+    protected final BalanceService balanceService;
+    protected final PlatformService platformService;
     protected final ProjectService projectService;
+    protected final RequestService requestService;
+    protected final TokenService tokenService;
 
     /**
      * TODO
      * @param middleware
+     * @param schema
      */
     public SharedSchema(TrustedPlatformMiddleware middleware, String schema) {
         super(middleware, schema);
+        balanceService = (BalanceService) createService(BalanceService.class);
+        platformService = (PlatformService) createService(PlatformService.class);
         projectService = (ProjectService) createService(ProjectService.class);
+        requestService = (RequestService) createService(RequestService.class);
+        tokenService = (TokenService) createService(TokenService.class);
     }
 
     /**
@@ -57,7 +71,7 @@ public class SharedSchema extends BaseSchema {
      * @throws IOException
      */
     public GraphQLResponse<Request> advancedSendToken(AdvancedSendToken request) {
-        return null;
+        return transactionRequest(request);
     }
 
     /**
@@ -67,7 +81,7 @@ public class SharedSchema extends BaseSchema {
      */
     public void advancedSendToken(AdvancedSendToken request,
                                   HttpCallback<GraphQLResponse<Request>> callback) {
-
+        transactionRequest(request, callback);
     }
 
     /**
@@ -77,7 +91,7 @@ public class SharedSchema extends BaseSchema {
      * @throws IOException
      */
     public GraphQLResponse<Request> approveEnj(ApproveEnj request) {
-        return null;
+        return transactionRequest(request);
     }
 
     /**
@@ -87,7 +101,7 @@ public class SharedSchema extends BaseSchema {
      */
     public void approveEnj(ApproveEnj request,
                            HttpCallback<GraphQLResponse<Request>> callback) {
-
+        transactionRequest(request, callback);
     }
 
     /**
@@ -97,7 +111,7 @@ public class SharedSchema extends BaseSchema {
      * @throws IOException
      */
     public GraphQLResponse<Request> approveMaxEnj(ApproveMaxEnj request) {
-        return null;
+        return transactionRequest(request);
     }
 
     /**
@@ -107,7 +121,7 @@ public class SharedSchema extends BaseSchema {
      */
     public void approveMaxEnj(ApproveMaxEnj request,
                               HttpCallback<GraphQLResponse<Request>> callback) {
-
+        transactionRequest(request, callback);
     }
 
     /**
@@ -117,7 +131,7 @@ public class SharedSchema extends BaseSchema {
      * @throws IOException
      */
     public GraphQLResponse<Request> completeTrade(CompleteTrade request) {
-        return null;
+        return transactionRequest(request);
     }
 
     /**
@@ -127,7 +141,7 @@ public class SharedSchema extends BaseSchema {
      */
     public void completeTrade(CompleteTrade request,
                               HttpCallback<GraphQLResponse<Request>> callback) {
-
+        transactionRequest(request, callback);
     }
 
     /**
@@ -137,7 +151,7 @@ public class SharedSchema extends BaseSchema {
      * @throws IOException
      */
     public GraphQLResponse<Request> createTrade(CreateTrade request) {
-        return null;
+        return transactionRequest(request);
     }
 
     /**
@@ -147,7 +161,7 @@ public class SharedSchema extends BaseSchema {
      */
     public void createTrade(CreateTrade request,
                             HttpCallback<GraphQLResponse<Request>> callback) {
-
+        transactionRequest(request, callback);
     }
 
     /**
@@ -157,7 +171,7 @@ public class SharedSchema extends BaseSchema {
      * @throws IOException
      */
     public GraphQLResponse<List<Balance>> getBalances(GetBalances request) {
-        return null;
+        return sendRequest(balanceService.getMany(schema, createRequestBody(request)));
     }
 
     /**
@@ -167,7 +181,7 @@ public class SharedSchema extends BaseSchema {
      */
     public void getBalances(GetBalances request,
                             HttpCallback<GraphQLResponse<List<Balance>>> callback) {
-
+        sendRequest(balanceService.getMany(schema, createRequestBody(request)), callback);
     }
 
     /**
@@ -177,7 +191,7 @@ public class SharedSchema extends BaseSchema {
      * @throws IOException
      */
     public GraphQLResponse<GasPrices> getGasPrices(GetGasPrices request) {
-        return null;
+        return sendRequest(platformService.getGasPrices(schema, createRequestBody(request)));
     }
 
     /**
@@ -187,7 +201,7 @@ public class SharedSchema extends BaseSchema {
      */
     public void getGasPrices(GetGasPrices request,
                              HttpCallback<GraphQLResponse<GasPrices>> callback) {
-
+        sendRequest(platformService.getGasPrices(schema, createRequestBody(request)), callback);
     }
 
     /**
@@ -197,7 +211,7 @@ public class SharedSchema extends BaseSchema {
      * @throws IOException
      */
     public GraphQLResponse<Platform> getPlatform(GetPlatform request) {
-        return null;
+        return sendRequest(platformService.getOne(schema, createRequestBody(request)));
     }
 
     /**
@@ -207,7 +221,7 @@ public class SharedSchema extends BaseSchema {
      */
     public void getPlatform(GetPlatform request,
                             HttpCallback<GraphQLResponse<Platform>> callback) {
-
+        sendRequest(platformService.getOne(schema, createRequestBody(request)), callback);
     }
 
     /**
@@ -237,7 +251,7 @@ public class SharedSchema extends BaseSchema {
      * @throws IOException
      */
     public GraphQLResponse<Request> getRequest(GetRequest request) {
-        return null;
+        return transactionRequest(request);
     }
 
     /**
@@ -247,7 +261,7 @@ public class SharedSchema extends BaseSchema {
      */
     public void getRequest(GetRequest request,
                            HttpCallback<GraphQLResponse<Request>> callback) {
-
+        transactionRequest(request, callback);
     }
 
     /**
@@ -257,7 +271,7 @@ public class SharedSchema extends BaseSchema {
      * @throws IOException
      */
     public GraphQLResponse<List<Request>> getRequests(GetRequests request) {
-        return null;
+        return sendRequest(requestService.getMany(schema, createRequestBody(request)));
     }
 
     /**
@@ -267,7 +281,7 @@ public class SharedSchema extends BaseSchema {
      */
     public void getRequests(GetRequests request,
                             HttpCallback<GraphQLResponse<List<Request>>> callback) {
-
+        sendRequest(requestService.getMany(schema, createRequestBody(request)), callback);
     }
 
     /**
@@ -277,7 +291,7 @@ public class SharedSchema extends BaseSchema {
      * @throws IOException
      */
     public GraphQLResponse<Token> getToken(GetToken request) {
-        return null;
+        return sendRequest(tokenService.getOne(schema, createRequestBody(request)));
     }
 
     /**
@@ -287,7 +301,7 @@ public class SharedSchema extends BaseSchema {
      */
     public void getToken(GetToken request,
                          HttpCallback<GraphQLResponse<Token>> callback) {
-
+        sendRequest(tokenService.getOne(schema, createRequestBody(request)), callback);
     }
 
     /**
@@ -297,7 +311,7 @@ public class SharedSchema extends BaseSchema {
      * @throws IOException
      */
     public GraphQLResponse<List<Token>> getTokens(GetTokens request) {
-        return null;
+        return sendRequest(tokenService.getMany(schema, createRequestBody(request)));
     }
 
     /**
@@ -307,7 +321,7 @@ public class SharedSchema extends BaseSchema {
      */
     public void getTokens(GetTokens request,
                           HttpCallback<GraphQLResponse<List<Token>>> callback) {
-
+        sendRequest(tokenService.getMany(schema, createRequestBody(request)), callback);
     }
 
     /**
@@ -317,7 +331,7 @@ public class SharedSchema extends BaseSchema {
      * @throws IOException
      */
     public GraphQLResponse<Request> meltToken(MeltToken request) {
-        return null;
+        return transactionRequest(request);
     }
 
     /**
@@ -327,7 +341,7 @@ public class SharedSchema extends BaseSchema {
      */
     public void meltToken(MeltToken request,
                           HttpCallback<GraphQLResponse<Request>> callback) {
-
+        transactionRequest(request, callback);
     }
 
     /**
@@ -337,7 +351,7 @@ public class SharedSchema extends BaseSchema {
      * @throws IOException
      */
     public GraphQLResponse<Request> message(Message request) {
-        return null;
+        return transactionRequest(request);
     }
 
     /**
@@ -347,7 +361,7 @@ public class SharedSchema extends BaseSchema {
      */
     public void message(Message request,
                         HttpCallback<GraphQLResponse<Request>> callback) {
-
+        transactionRequest(request, callback);
     }
 
     /**
@@ -357,7 +371,7 @@ public class SharedSchema extends BaseSchema {
      * @throws IOException
      */
     public GraphQLResponse<Request> resetEnjApproval(ResetEnjApproval request) {
-        return null;
+        return transactionRequest(request);
     }
 
     /**
@@ -367,7 +381,7 @@ public class SharedSchema extends BaseSchema {
      */
     public void resetEnjApproval(ResetEnjApproval request,
                                  HttpCallback<GraphQLResponse<Request>> callback) {
-
+        transactionRequest(request, callback);
     }
 
     /**
@@ -377,7 +391,7 @@ public class SharedSchema extends BaseSchema {
      * @throws IOException
      */
     public GraphQLResponse<Request> sendEnj(SendEnj request) {
-        return null;
+        return transactionRequest(request);
     }
 
     /**
@@ -387,7 +401,7 @@ public class SharedSchema extends BaseSchema {
      */
     public void sendEnj(SendEnj request,
                         HttpCallback<GraphQLResponse<Request>> callback) {
-
+        transactionRequest(request, callback);
     }
 
     /**
@@ -397,7 +411,7 @@ public class SharedSchema extends BaseSchema {
      * @throws IOException
      */
     public GraphQLResponse<Request> sendToken(SendToken request) {
-        return null;
+        return transactionRequest(request);
     }
 
     /**
@@ -407,7 +421,7 @@ public class SharedSchema extends BaseSchema {
      */
     public void sendToken(SendToken request,
                           HttpCallback<GraphQLResponse<Request>> callback) {
-
+        transactionRequest(request, callback);
     }
 
     /**
@@ -417,7 +431,7 @@ public class SharedSchema extends BaseSchema {
      * @throws IOException
      */
     public GraphQLResponse<Request> setApprovalForAll(SetApprovalForAll request) {
-        return null;
+        return transactionRequest(request);
     }
 
     /**
@@ -427,7 +441,16 @@ public class SharedSchema extends BaseSchema {
      */
     public void setApprovalForAll(SetApprovalForAll request,
                                   HttpCallback<GraphQLResponse<Request>> callback) {
+        transactionRequest(request, callback);
+    }
 
+    protected <T extends GraphQLRequest<T>> GraphQLResponse<Request> transactionRequest(GraphQLRequest<T> request) {
+        return sendRequest(requestService.getOne(schema, createRequestBody(request)));
+    }
+
+    protected <T extends GraphQLRequest<T>> void transactionRequest(GraphQLRequest<T> request,
+                                                                    HttpCallback<GraphQLResponse<Request>> callback) {
+        sendRequest(requestService.getOne(schema, createRequestBody(request)), callback);
     }
 
 }

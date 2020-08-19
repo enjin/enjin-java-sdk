@@ -4,7 +4,7 @@ import com.enjin.sdk.TrustedPlatformMiddleware;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpCallback;
 import com.enjin.sdk.models.Player;
-import com.enjin.sdk.schemas.PlayerService;
+import com.enjin.sdk.services.PlayerService;
 import com.enjin.sdk.schemas.player.mutations.UnlinkWallet;
 import com.enjin.sdk.schemas.player.queries.GetPlayer;
 import com.enjin.sdk.schemas.shared.SharedSchema;
@@ -39,7 +39,7 @@ public class PlayerSchema extends SharedSchema {
      * @throws IOException
      */
     public GraphQLResponse<Player> getPlayer(GetPlayer request) {
-        return sendRequest(playerService.getOne(SCHEMA, createRequestBody(request)));
+        return sendRequest(playerService.getOne(schema, createRequestBody(request)));
     }
 
     /**
@@ -49,7 +49,7 @@ public class PlayerSchema extends SharedSchema {
      */
     public void getPlayer(GetPlayer request,
                           HttpCallback<GraphQLResponse<Player>> callback) {
-        sendRequest(playerService.getOne(SCHEMA, createRequestBody(request)), callback);
+        sendRequest(playerService.getOne(schema, createRequestBody(request)), callback);
     }
 
     /**
@@ -59,7 +59,7 @@ public class PlayerSchema extends SharedSchema {
      * @throws IOException
      */
     public GraphQLResponse<Boolean> unlinkWallet(UnlinkWallet request) {
-        return null;
+        return sendRequest(playerService.delete(schema, createRequestBody(request)));
     }
 
     /**
@@ -69,7 +69,7 @@ public class PlayerSchema extends SharedSchema {
      */
     public void unlinkWallet(UnlinkWallet request,
                              HttpCallback<GraphQLResponse<Boolean>> callback) {
-
+        sendRequest(playerService.delete(schema, createRequestBody(request)), callback);
     }
 
 }
