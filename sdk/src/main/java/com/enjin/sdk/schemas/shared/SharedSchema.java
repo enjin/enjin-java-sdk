@@ -211,7 +211,7 @@ public class SharedSchema extends BaseSchema {
      * @throws IOException
      */
     public GraphQLResponse<Platform> getPlatform(GetPlatform request) {
-        return sendRequest(platformService.getPlatform(schema, createRequestBody(request)));
+        return sendRequest(platformService.getOne(schema, createRequestBody(request)));
     }
 
     /**
@@ -221,7 +221,7 @@ public class SharedSchema extends BaseSchema {
      */
     public void getPlatform(GetPlatform request,
                             HttpCallback<GraphQLResponse<Platform>> callback) {
-        sendRequest(platformService.getPlatform(schema, createRequestBody(request)), callback);
+        sendRequest(platformService.getOne(schema, createRequestBody(request)), callback);
     }
 
     /**
