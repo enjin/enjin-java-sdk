@@ -68,7 +68,7 @@ public class TrustedPlatformMiddleware implements Closeable {
                                   .cookieJar(cookieJar)
                                   .addInterceptor(this.trustedPlatformInterceptor)
                                   .build();
-        this.queryRegistry = GraphQLQueryRegistry.getInstance();
+        this.queryRegistry = new GraphQLQueryRegistry();
     }
 
     @Override
