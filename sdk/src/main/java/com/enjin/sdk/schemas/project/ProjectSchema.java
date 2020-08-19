@@ -119,7 +119,7 @@ public class ProjectSchema extends SharedSchema {
      * @throws IOException
      */
     public GraphQLResponse<Request> createToken(CreateToken request) {
-        return sendRequest(requestService.getOne(schema, createRequestBody(request)));
+        return transactionRequest(request);
     }
 
     /**
@@ -129,7 +129,7 @@ public class ProjectSchema extends SharedSchema {
      */
     public void createToken(CreateToken request,
                             HttpCallback<GraphQLResponse<Request>> callback) {
-        sendRequest(requestService.getOne(schema, createRequestBody(request)), callback);
+        transactionRequest(request, callback);
     }
 
     /**
@@ -139,7 +139,7 @@ public class ProjectSchema extends SharedSchema {
      * @throws IOException
      */
     public GraphQLResponse<Request> decreaseMaxMeltFee(DecreaseMaxMeltFee request) {
-        return sendRequest(requestService.getOne(schema, createRequestBody(request)));
+        return transactionRequest(request);
     }
 
     /**
@@ -149,7 +149,7 @@ public class ProjectSchema extends SharedSchema {
      */
     public void decreaseMaxMeltFee(DecreaseMaxMeltFee request,
                                    HttpCallback<GraphQLResponse<Request>> callback) {
-        sendRequest(requestService.getOne(schema, createRequestBody(request)), callback);
+        transactionRequest(request, callback);
     }
 
     /**
@@ -159,7 +159,7 @@ public class ProjectSchema extends SharedSchema {
      * @throws IOException
      */
     public GraphQLResponse<Request> decreaseMaxTransferFee(DecreaseMaxTransferFee request) {
-        return sendRequest(requestService.getOne(schema, createRequestBody(request)));
+        return transactionRequest(request);
     }
 
     /**
@@ -169,7 +169,7 @@ public class ProjectSchema extends SharedSchema {
      */
     public void decreaseMaxTransferFee(DecreaseMaxTransferFee request,
                                        HttpCallback<GraphQLResponse<Request>> callback) {
-        sendRequest(requestService.getOne(schema, createRequestBody(request)), callback);
+        transactionRequest(request, callback);
     }
 
     /**
@@ -259,7 +259,7 @@ public class ProjectSchema extends SharedSchema {
      * @throws IOException
      */
     public GraphQLResponse<Request> mintToken(MintToken request) {
-        return sendRequest(requestService.getOne(schema, createRequestBody(request)));
+        return transactionRequest(request);
     }
 
     /**
@@ -269,7 +269,7 @@ public class ProjectSchema extends SharedSchema {
      */
     public void mintToken(MintToken request,
                           HttpCallback<GraphQLResponse<Request>> callback) {
-        sendRequest(requestService.getOne(schema, createRequestBody(request)), callback);
+        transactionRequest(request, callback);
     }
 
     /**
@@ -279,7 +279,7 @@ public class ProjectSchema extends SharedSchema {
      * @throws IOException
      */
     public GraphQLResponse<Request> releaseReserve(ReleaseReserve request) {
-        return sendRequest(requestService.getOne(schema, createRequestBody(request)));
+        return transactionRequest(request);
     }
 
     /**
@@ -289,7 +289,7 @@ public class ProjectSchema extends SharedSchema {
      */
     public void releaseReserve(ReleaseReserve request,
                                HttpCallback<GraphQLResponse<Request>> callback) {
-        sendRequest(requestService.getOne(schema, createRequestBody(request)), callback);
+        transactionRequest(request, callback);
     }
 
     /**
@@ -299,7 +299,7 @@ public class ProjectSchema extends SharedSchema {
      * @throws IOException
      */
     public GraphQLResponse<Request> setMeltFee(SetMeltFee request) {
-        return sendRequest(requestService.getOne(schema, createRequestBody(request)));
+        return transactionRequest(request);
     }
 
     /**
@@ -309,7 +309,7 @@ public class ProjectSchema extends SharedSchema {
      */
     public void setMeltFee(SetMeltFee request,
                            HttpCallback<GraphQLResponse<Request>> callback) {
-        sendRequest(requestService.getOne(schema, createRequestBody(request)), callback);
+        transactionRequest(request, callback);
     }
 
     /**
@@ -319,7 +319,7 @@ public class ProjectSchema extends SharedSchema {
      * @throws IOException
      */
     public GraphQLResponse<Request> setTransferable(SetTransferable request) {
-        return sendRequest(requestService.getOne(schema, createRequestBody(request)));
+        return transactionRequest(request);
     }
 
     /**
@@ -329,7 +329,7 @@ public class ProjectSchema extends SharedSchema {
      */
     public void setTransferable(SetTransferable request,
                                 HttpCallback<GraphQLResponse<Request>> callback) {
-        sendRequest(requestService.getOne(schema, createRequestBody(request)), callback);
+        transactionRequest(request, callback);
     }
 
     /**
@@ -339,7 +339,7 @@ public class ProjectSchema extends SharedSchema {
      * @throws IOException
      */
     public GraphQLResponse<Request> setTransferFee(SetTransferFee request) {
-        return sendRequest(requestService.getOne(schema, createRequestBody(request)));
+        return transactionRequest(request);
     }
 
     /**
@@ -349,7 +349,7 @@ public class ProjectSchema extends SharedSchema {
      */
     public void setTransferFee(SetTransferFee request,
                                HttpCallback<GraphQLResponse<Request>> callback) {
-        sendRequest(requestService.getOne(schema, createRequestBody(request)), callback);
+        transactionRequest(request, callback);
     }
 
     /**
@@ -359,7 +359,7 @@ public class ProjectSchema extends SharedSchema {
      * @throws IOException
      */
     public GraphQLResponse<Request> setUri(SetUri request) {
-        return sendRequest(requestService.getOne(schema, createRequestBody(request)));
+        return transactionRequest(request);
     }
 
     /**
@@ -369,7 +369,7 @@ public class ProjectSchema extends SharedSchema {
      */
     public void setUri(SetUri request,
                        HttpCallback<GraphQLResponse<Request>> callback) {
-        sendRequest(requestService.getOne(schema, createRequestBody(request)), callback);
+        transactionRequest(request, callback);
     }
 
     /**
@@ -379,7 +379,7 @@ public class ProjectSchema extends SharedSchema {
      * @throws IOException
      */
     public GraphQLResponse<Request> setWhitelisted(SetWhitelisted request) {
-        return sendRequest(requestService.getOne(schema, createRequestBody(request)));
+        return transactionRequest(request);
     }
 
     /**
@@ -389,7 +389,7 @@ public class ProjectSchema extends SharedSchema {
      */
     public void setWhitelisted(SetWhitelisted request,
                                HttpCallback<GraphQLResponse<Request>> callback) {
-        sendRequest(requestService.getOne(schema, createRequestBody(request)), callback);
+        transactionRequest(request, callback);
     }
 
     /**
@@ -419,7 +419,7 @@ public class ProjectSchema extends SharedSchema {
      * @throws IOException
      */
     public GraphQLResponse<Request> updateName(UpdateName request) {
-        return sendRequest(requestService.getOne(schema, createRequestBody(request)));
+        return transactionRequest(request);
     }
 
     /**
@@ -429,7 +429,7 @@ public class ProjectSchema extends SharedSchema {
      */
     public void updateName(UpdateName request,
                            HttpCallback<GraphQLResponse<Request>> callback) {
-        sendRequest(requestService.getOne(schema, createRequestBody(request)), callback);
+        transactionRequest(request, callback);
     }
 
 }
