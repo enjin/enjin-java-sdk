@@ -38,7 +38,6 @@ public class BaseSchema {
 
     private static final Gson GSON = new GsonBuilder()
             .registerTypeAdapter(BigInteger.class, new BigIntegerDeserializer())
-            .serializeSpecialFloatingPointValues()
             .enableComplexMapKeySerialization()
             .setLenient()
             .create();
@@ -56,7 +55,10 @@ public class BaseSchema {
         this.schema = schema;
         this.middleware = middleware;
 
-        Converter.Factory gsonFactory = GsonConverterFactory.create(GSON);
+        Gson gson = new GsonBuilder()
+                .serializeSpecialFloatingPointValues()
+                .create();
+        Converter.Factory gsonFactory = GsonConverterFactory.create(gson);
         this.retrofit = new Retrofit.Builder()
                 .baseUrl(this.middleware.getBaseUrl())
                 .client(this.middleware.getHttpClient())
@@ -74,13 +76,8 @@ public class BaseSchema {
      */
     protected <T extends GraphQLRequest<T>> JsonObject createRequestBody(GraphQLRequest<T> request) {
         JsonObject requestBody = new JsonObject();
-
-        JsonObject variables = new JsonObject();
-        request.getVariables().forEach((key, value) -> variables.add(key, GSON.toJsonTree(value)));
-
         requestBody.addProperty("query", middleware.getQueryRegistry().get(request.getNamespace()));
-        requestBody.add("variables", variables);
-
+        requestBody.add("variables", GSON.toJsonTree(request.getVariables()));
         return requestBody;
     }
 
