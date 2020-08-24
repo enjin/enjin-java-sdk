@@ -9,24 +9,24 @@ import lombok.NonNull;
 public class AppChannel implements Channel {
 
     private final Platform platform;
-    private final int appId;
+    private final int app;
 
     /**
      * Constructs a channel for the given network and application.
      *
      * @param platform the platform
-     * @param appId    the app id
+     * @param app    the app id
      */
-    public AppChannel(@NonNull Platform platform, int appId) {
+    public AppChannel(@NonNull Platform platform, int app) {
         this.platform = platform;
-        this.appId = appId;
+        this.app = app;
     }
 
     @Override
     public String channel() {
         return String.format("enjincloud.%s.app.%s",
                              platform.getNetwork().toLowerCase(),
-                             appId);
+                             app);
     }
 
 }

@@ -9,28 +9,28 @@ import lombok.NonNull;
 public class PlayerChannel implements Channel {
 
     private final Platform platform;
-    private final int appId;
-    private final String playerId;
+    private final int app;
+    private final String player;
 
     /**
      * Constructs a channel for the given network and player for the application.
      *
      * @param platform the platform
-     * @param appId    the app id
-     * @param playerId the identity id
+     * @param app    the app id
+     * @param player the identity id
      */
-    public PlayerChannel(@NonNull Platform platform, int appId, String playerId) {
+    public PlayerChannel(@NonNull Platform platform, int app, String player) {
         this.platform = platform;
-        this.appId = appId;
-        this.playerId = playerId;
+        this.app = app;
+        this.player = player;
     }
 
     @Override
     public String channel() {
         return String.format("enjincloud.%s.app.%s.player.%s",
                              platform.getNetwork().toLowerCase(),
-                             appId,
-                             playerId);
+                             app,
+                             player);
     }
 
 }

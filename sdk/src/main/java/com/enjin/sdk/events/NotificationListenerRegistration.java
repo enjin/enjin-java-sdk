@@ -33,11 +33,11 @@ public class NotificationListenerRegistration {
      * Constructs the registration for the specified listener with the specified event matcher.
      *
      * @param listener     the listener.
-     * @param eventMatcher the event matcher.
+     * @param matcher the event matcher.
      */
-    protected NotificationListenerRegistration(NotificationListener listener, EventMatcher eventMatcher) {
+    protected NotificationListenerRegistration(NotificationListener listener, EventMatcher matcher) {
         this(listener);
-        this.eventMatcher = eventMatcher;
+        this.eventMatcher = matcher;
     }
 
     /**
