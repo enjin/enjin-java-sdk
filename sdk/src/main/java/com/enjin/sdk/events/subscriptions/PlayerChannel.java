@@ -10,7 +10,7 @@ public class PlayerChannel implements Channel {
 
     private final Platform platform;
     private final int appId;
-    private final int playerId;
+    private final String playerId;
 
     /**
      * Constructs a channel for the given network and player for the application.
@@ -19,7 +19,7 @@ public class PlayerChannel implements Channel {
      * @param appId    the app id
      * @param playerId the identity id
      */
-    public PlayerChannel(@NonNull Platform platform, int appId, int playerId) {
+    public PlayerChannel(@NonNull Platform platform, int appId, String playerId) {
         this.platform = platform;
         this.appId = appId;
         this.playerId = playerId;

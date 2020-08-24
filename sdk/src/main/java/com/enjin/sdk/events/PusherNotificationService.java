@@ -203,17 +203,17 @@ public class PusherNotificationService implements NotificationsService {
     }
 
     @Override
-    public void subscribeToPlayer(int appId, int playerId) {
+    public void subscribeToPlayer(int appId, String playerId) {
         subscribe(new PlayerChannel(platform, appId, playerId).channel());
     }
 
     @Override
-    public void unsubscribeToPlayer(int appId, int playerId) {
+    public void unsubscribeToPlayer(int appId, String playerId) {
         unsubscribe(new PlayerChannel(platform, appId, playerId).channel());
     }
 
     @Override
-    public boolean isSubscribedToPlayer(int appId, int playerId) {
+    public boolean isSubscribedToPlayer(int appId, String playerId) {
         return subscribed.containsKey(new PlayerChannel(platform, appId, playerId).channel());
     }
 
