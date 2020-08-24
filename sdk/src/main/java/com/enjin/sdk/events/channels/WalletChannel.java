@@ -1,4 +1,4 @@
-package com.enjin.sdk.events.subscriptions;
+package com.enjin.sdk.events.channels;
 
 import com.enjin.sdk.models.Platform;
 import lombok.NonNull;
