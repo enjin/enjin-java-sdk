@@ -1,4 +1,4 @@
-package com.enjin.sdk.events.subscriptions;
+package com.enjin.sdk.events.channels;
 
 /**
  * Interface for Enjin Cloud event channels.
