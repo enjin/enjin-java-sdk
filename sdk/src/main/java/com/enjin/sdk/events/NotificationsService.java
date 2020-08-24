@@ -108,19 +108,17 @@ public interface NotificationsService {
 
     /**
      * Opens a channel for the specified player, allowing listeners to receive events for that identity.
-     *
-     * @param appId the app id.
+     *  @param appId the app id.
      * @param playerId the player id.
      */
-    void subscribeToPlayer(int appId, int playerId);
+    void subscribeToPlayer(int appId, String playerId);
 
     /**
      * Closes a channel for the specified player, preventing listeners from receiving events for that identity.
-     *
-     * @param appId the app id.
+     *  @param appId the app id.
      * @param playerId the player id.
      */
-    void unsubscribeToPlayer(int appId, int playerId);
+    void unsubscribeToPlayer(int appId, String playerId);
 
     /**
      * Returns whether or not a channel is open for the specified player.
@@ -130,7 +128,7 @@ public interface NotificationsService {
      *
      * @return true if listening, else false.
      */
-    boolean isSubscribedToPlayer(int appId, int playerId);
+    boolean isSubscribedToPlayer(int appId, String playerId);
 
     /**
      * Opens a channel for the specified token, allowing listeners to receive events for that token.
