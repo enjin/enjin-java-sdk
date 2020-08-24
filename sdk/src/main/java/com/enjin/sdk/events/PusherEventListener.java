@@ -36,34 +36,22 @@ public class PusherEventListener implements SubscriptionEventListener {
                                                         eventName,
                                                         channelName,
                                                         data));
-        call(data, channelName, eventName);
+        call(eventName, channelName, data);
     }
 
-    private void call(String sourceData, String channel, String eventName) {
+    private void call(String key, String channel, String message) {
         if (service.listeners.isEmpty()) {
             service.getLoggerProvider().log(Level.INFO, "No registered listeners received on event");
             return;
         }
 
-        EventType eventType = null;
-
-        for (EventType type : EventType.values()) {
-            if (type.getEventType().equals(eventName)) {
-                eventType = type;
-                break;
-            }
-        }
-
-        if (eventType == null) {
-            service.getLoggerProvider().log(Level.WARNING, String.format("UNKNOWN_EVENT event type of %s", eventName));
+        EventType type = EventType.getFromKey(key);
+        if (type == EventType.UNKNOWN) {
+            service.getLoggerProvider().log(Level.WARNING, String.format("Unknown event type for key %s", key));
             return;
         }
 
-        NotificationEvent notificationEvent = NotificationEvent.builder()
-                                                               .type(eventType)
-                                                               .channel(channel)
-                                                               .data(sourceData)
-                                                               .build();
+        NotificationEvent notificationEvent = new NotificationEvent(type, channel, message);
 
         for (NotificationListenerRegistration registration : service.listeners) {
             if (registration.getEventMatcher().matches(notificationEvent))

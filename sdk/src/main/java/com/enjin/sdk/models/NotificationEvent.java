@@ -6,8 +6,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import com.google.gson.JsonObject;
-import lombok.Builder;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.ToString;
 
 /**
@@ -19,12 +19,9 @@ import lombok.ToString;
  */
 @ToString
 @Getter
-@Builder
 public class NotificationEvent {
 
     /**
-     * The Gson instance used to deserialize event data.
-     *
      * -- GETTER --
      * @return the Gson instance used to deserialize event data.
      */
@@ -33,44 +30,42 @@ public class NotificationEvent {
             .create();
 
     /**
-     * The event type.
-     *
-     * @param type the notification type.
-     * @return the builder.
-     *
      * -- GETTER --
      * @return the type.
      */
-    private EventType type;
+    private final EventType type;
     /**
-     * The notification channel.
-     *
-     * @param channel the channel.
-     * @return the builder.
-     *
      * -- GETTER --
      * @return the notification channel.
      */
-    private String channel;
+    private final String channel;
     /**
-     * The data.
-     *
-     * @param data the notification data.
-     * @return the builder.
-     *
      * -- GETTER --
      * @return the data.
      */
-    private String data;
+    private final String message;
     /**
      * -- GETTER --
      * @return the deserialized data. Lazy loaded.
      */
     @Getter(lazy = true)
-    private final JsonObject eventData = eventData();
+    private final JsonObject data = eventData();
+
+    /**
+     * Constructor for internal use.
+     *
+     * @param type the notification type.
+     * @param channel the channel.
+     * @param message the notification data.
+     */
+    public NotificationEvent(@NonNull EventType type, @NonNull String channel, @NonNull String message) {
+        this.type = type;
+        this.channel = channel;
+        this.message = message;
+    }
 
     private JsonObject eventData() {
-        return GSON.fromJson(data, JsonObject.class);
+        return GSON.fromJson(message, JsonObject.class);
     }
 
 }
