@@ -47,34 +47,34 @@ public interface NotificationsService {
      * Adds a notification listener with an event matcher.
      *
      * @param listener     the listener to add.
-     * @param eventMatcher the event matcher to use.
+     * @param matcher the event matcher to use.
      *
      * @return the listener registration.
      */
     NotificationListenerRegistration registerListenerWithMatcher(NotificationListener listener,
-                                                                 EventMatcher eventMatcher);
+                                                                 EventMatcher matcher);
 
     /**
      * Adds a notification listener with an array of types to allow.
      *
      * @param listener the listener to add.
-     * @param allowed  the events to listen for.
+     * @param types  the events to listen for.
      *
      * @return the listener registration.
      */
     NotificationListenerRegistration registerListenerIncludingTypes(NotificationListener listener,
-                                                                    EventType... allowed);
+                                                                    EventType... types);
 
     /**
      * Adds a notification listener with an array of types to ignore.
      *
      * @param listener the listener to add.
-     * @param ignored  the events to ignore.
+     * @param types  the events to ignore.
      *
      * @return the listener registration.
      */
     NotificationListenerRegistration registerListenerExcludingTypes(NotificationListener listener,
-                                                                    EventType... ignored);
+                                                                    EventType... types);
 
     /**
      * Removes a notification listener registration.
@@ -86,94 +86,94 @@ public interface NotificationsService {
     /**
      * Opens a channel for the specified application, allowing listeners to receive events for that application.
      *
-     * @param appId the app id.
+     * @param app the app id.
      */
-    void subscribeToApp(int appId);
+    void subscribeToApp(int app);
 
     /**
      * Closes a channel for the specified application, preventing listeners from receiving events for that application.
      *
-     * @param appId the app id.
+     * @param app the app id.
      */
-    void unsubscribeToApp(int appId);
+    void unsubscribeToApp(int app);
 
     /**
      * Returns whether or not a channel is open for the specified application.
      *
-     * @param appId the app id.
+     * @param app the app id.
      *
      * @return true if listening, else false.
      */
-    boolean isSubscribedToApp(int appId);
+    boolean isSubscribedToApp(int app);
 
     /**
      * Opens a channel for the specified player, allowing listeners to receive events for that identity.
-     *  @param appId the app id.
-     * @param playerId the player id.
+     *  @param app the app id.
+     * @param player the player id.
      */
-    void subscribeToPlayer(int appId, String playerId);
+    void subscribeToPlayer(int app, String player);
 
     /**
      * Closes a channel for the specified player, preventing listeners from receiving events for that identity.
-     *  @param appId the app id.
-     * @param playerId the player id.
+     *  @param app the app id.
+     * @param player the player id.
      */
-    void unsubscribeToPlayer(int appId, String playerId);
+    void unsubscribeToPlayer(int app, String player);
 
     /**
      * Returns whether or not a channel is open for the specified player.
      *
-     * @param appId the app id.
-     * @param playerId the player id.
+     * @param app the app id.
+     * @param player the player id.
      *
      * @return true if listening, else false.
      */
-    boolean isSubscribedToPlayer(int appId, String playerId);
+    boolean isSubscribedToPlayer(int app, String player);
 
     /**
      * Opens a channel for the specified token, allowing listeners to receive events for that token.
      *
-     * @param tokenId the token id.
+     * @param token the token id.
      */
-    void subscribeToToken(String tokenId);
+    void subscribeToToken(String token);
 
     /**
      * Closes a channel for the specified token, preventing listeners from receiving events for that token.
      *
-     * @param tokenId the token id.
+     * @param token the token id.
      */
-    void unsubscribeToToken(String tokenId);
+    void unsubscribeToToken(String token);
 
     /**
      * Returns whether or not a channel is open for the specified token.
      *
-     * @param tokenId the token id.
+     * @param token the token id.
      *
      * @return true if listening, else false.
      */
-    boolean isSubscribedToToken(String tokenId);
+    boolean isSubscribedToToken(String token);
 
     /**
      * Opens a channel for the specified wallet, allowing listeners to receive events for that wallet.
      *
-     * @param ethAddress the Ethereum address.
+     * @param wallet the wallet's address.
      */
-    void subscribeToWallet(String ethAddress);
+    void subscribeToWallet(String wallet);
 
     /**
      * Closes a channel for the specified wallet, preventing listeners from receiving events for that wallet.
      *
-     * @param ethAddress the Ethereum address.
+     * @param wallet the wallet's address.
      */
-    void unsubscribeToWallet(String ethAddress);
+    void unsubscribeToWallet(String wallet);
 
     /**
      * Returns whether or not a channel is open for the specified wallet.
      *
-     * @param ethAddress the Ethereum address.
+     * @param wallet the wallet's address.
      *
      * @return true if listening, else false.
      */
-    boolean isSubscribedToWallet(String ethAddress);
+    boolean isSubscribedToWallet(String wallet);
 
 }

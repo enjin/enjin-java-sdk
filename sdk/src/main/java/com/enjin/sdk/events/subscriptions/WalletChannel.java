@@ -9,24 +9,24 @@ import lombok.NonNull;
 public class WalletChannel implements Channel {
 
     private final Platform platform;
-    private final String ethAddress;
+    private final String wallet;
 
     /**
      * Constructs a channel for the given network and wallet.
      *
      * @param platform   the platform
-     * @param ethAddress the wallet's Ethereum address
+     * @param wallet the wallet's address
      */
-    public WalletChannel(@NonNull Platform platform, @NonNull String ethAddress) {
+    public WalletChannel(@NonNull Platform platform, @NonNull String wallet) {
         this.platform = platform;
-        this.ethAddress = ethAddress;
+        this.wallet = wallet;
     }
 
     @Override
     public String channel() {
         return String.format("enjincloud.%s.wallet.%s",
                              platform.getNetwork().toLowerCase(),
-                             ethAddress);
+                             wallet);
     }
 
 }

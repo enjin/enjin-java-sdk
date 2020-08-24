@@ -132,20 +132,20 @@ public class PusherNotificationService implements NotificationsService {
 
     @Override
     public NotificationListenerRegistration registerListenerWithMatcher(@NonNull NotificationListener listener,
-                                                                        EventMatcher eventMatcher) {
-        return register(configureListener(listener).withMatcher(eventMatcher));
+                                                                        EventMatcher matcher) {
+        return register(configureListener(listener).withMatcher(matcher));
     }
 
     @Override
     public NotificationListenerRegistration registerListenerIncludingTypes(@NonNull NotificationListener listener,
-                                                                           EventType... allowed) {
-        return register(configureListener(listener).withAllowedEvents(allowed));
+                                                                           EventType... types) {
+        return register(configureListener(listener).withAllowedEvents(types));
     }
 
     @Override
     public NotificationListenerRegistration registerListenerExcludingTypes(@NonNull NotificationListener listener,
-                                                                           EventType... ignored) {
-        return register(configureListener(listener).withIgnoredEvents(ignored));
+                                                                           EventType... types) {
+        return register(configureListener(listener).withIgnoredEvents(types));
     }
 
     /**
@@ -188,63 +188,63 @@ public class PusherNotificationService implements NotificationsService {
     }
 
     @Override
-    public void subscribeToApp(int appId) {
-        subscribe(new AppChannel(platform, appId).channel());
+    public void subscribeToApp(int app) {
+        subscribe(new AppChannel(platform, app).channel());
     }
 
     @Override
-    public void unsubscribeToApp(int appId) {
-        unsubscribe(new AppChannel(platform, appId).channel());
+    public void unsubscribeToApp(int app) {
+        unsubscribe(new AppChannel(platform, app).channel());
     }
 
     @Override
-    public boolean isSubscribedToApp(int appId) {
-        return subscribed.containsKey(new AppChannel(platform, appId).channel());
+    public boolean isSubscribedToApp(int app) {
+        return subscribed.containsKey(new AppChannel(platform, app).channel());
     }
 
     @Override
-    public void subscribeToPlayer(int appId, String playerId) {
-        subscribe(new PlayerChannel(platform, appId, playerId).channel());
+    public void subscribeToPlayer(int app, String player) {
+        subscribe(new PlayerChannel(platform, app, player).channel());
     }
 
     @Override
-    public void unsubscribeToPlayer(int appId, String playerId) {
-        unsubscribe(new PlayerChannel(platform, appId, playerId).channel());
+    public void unsubscribeToPlayer(int app, String player) {
+        unsubscribe(new PlayerChannel(platform, app, player).channel());
     }
 
     @Override
-    public boolean isSubscribedToPlayer(int appId, String playerId) {
-        return subscribed.containsKey(new PlayerChannel(platform, appId, playerId).channel());
+    public boolean isSubscribedToPlayer(int app, String player) {
+        return subscribed.containsKey(new PlayerChannel(platform, app, player).channel());
     }
 
     @Override
-    public void subscribeToToken(String tokenId) {
-        subscribe(new TokenChannel(platform, tokenId).channel());
+    public void subscribeToToken(String token) {
+        subscribe(new TokenChannel(platform, token).channel());
     }
 
     @Override
-    public void unsubscribeToToken(String tokenId) {
-        unsubscribe(new TokenChannel(platform, tokenId).channel());
+    public void unsubscribeToToken(String token) {
+        unsubscribe(new TokenChannel(platform, token).channel());
     }
 
     @Override
-    public boolean isSubscribedToToken(String tokenId) {
-        return subscribed.containsKey(new TokenChannel(platform, tokenId).channel());
+    public boolean isSubscribedToToken(String token) {
+        return subscribed.containsKey(new TokenChannel(platform, token).channel());
     }
 
     @Override
-    public void subscribeToWallet(String ethAddress) {
-        subscribe(new WalletChannel(platform, ethAddress).channel());
+    public void subscribeToWallet(String wallet) {
+        subscribe(new WalletChannel(platform, wallet).channel());
     }
 
     @Override
-    public void unsubscribeToWallet(String ethAddress) {
-        unsubscribe(new WalletChannel(platform, ethAddress).channel());
+    public void unsubscribeToWallet(String wallet) {
+        unsubscribe(new WalletChannel(platform, wallet).channel());
     }
 
     @Override
-    public boolean isSubscribedToWallet(String ethAddress) {
-        return subscribed.containsKey(new WalletChannel(platform, ethAddress).channel());
+    public boolean isSubscribedToWallet(String wallet) {
+        return subscribed.containsKey(new WalletChannel(platform, wallet).channel());
     }
 
     private void subscribe(@NonNull String channel) {
