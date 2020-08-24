@@ -260,19 +260,13 @@ public class PusherNotificationService implements NotificationsService {
         if (pusher == null || !subscribed.containsKey(channel))
             return;
 
-        Channel pusherChannel = subscribed.remove(channel);
-        unbind(pusherChannel);
+        subscribed.remove(channel);
         pusher.unsubscribe(channel);
     }
 
     private void bind(@NonNull Channel channel) {
         for (EventType event : EventType.filterByChannelTypes(channel.getName()))
             channel.bind(event.getKey(), listener);
-    }
-
-    private void unbind(@NonNull Channel channel) {
-        for (EventType channelEvent : EventType.filterByChannelTypes(channel.getName()))
-            channel.unbind(channelEvent.getKey(), listener);
     }
 
 }
