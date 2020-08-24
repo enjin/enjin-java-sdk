@@ -267,12 +267,12 @@ public class PusherNotificationService implements NotificationsService {
 
     private void bind(@NonNull Channel channel) {
         for (EventType event : EventType.filterByChannelTypes(channel.getName()))
-            channel.bind(event.getEventType(), listener);
+            channel.bind(event.getKey(), listener);
     }
 
     private void unbind(@NonNull Channel channel) {
         for (EventType channelEvent : EventType.filterByChannelTypes(channel.getName()))
-            channel.unbind(channelEvent.getEventType(), listener);
+            channel.unbind(channelEvent.getKey(), listener);
     }
 
 }

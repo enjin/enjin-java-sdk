@@ -1,6 +1,7 @@
 package com.enjin.sdk.models;
 
 import com.enjin.sdk.events.EventFilter;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
  */
 public enum EventType {
 
+    UNKNOWN(null),
     APP_CREATED("EnjinCloud\\Events\\AppCreated", "app"),
     APP_DELETED("EnjinCloud\\Events\\AppDeleted", "app"),
     APP_LINKED("EnjinCloud\\Events\\AppLinked", "app", "wallet"),
@@ -20,13 +22,13 @@ public enum EventType {
     APP_UNLINKED("EnjinCloud\\Events\\AppUnlinked", "app", "wallet"),
     APP_UNLOCKED("EnjinCloud\\Events\\AppUnlocked", "app"),
     APP_UPDATED("EnjinCloud\\Events\\AppUpdated", "app"),
-    BLOCKCHAIN_LOG_PROCESSED("EnjinCloud\\Events\\BlockchainLogProcessed", "app", "identity", "token", "wallet"),
-    IDENTITY_CREATED("EnjinCloud\\Events\\IdentityCreated", "app", "identity", "user"),
-    IDENTITY_DELETED("EnjinCloud\\Events\\IdentityDeleted", "app", "identity", "user"),
-    IDENTITY_LINKED("EnjinCloud\\Events\\IdentityLinked", "app", "identity", "user", "wallet"),
-    IDENTITY_UNLINKED("EnjinCloud\\Events\\IdentityUnlinked", "app", "identity", "user", "wallet"),
-    IDENTITY_UPDATED("EnjinCloud\\Events\\IdentityUpdated", "app", "identity", "user"),
-    MESSAGE_PROCESSED("EnjinCloud\\Events\\MessageProcessed", "app", "identity", "token", "wallet"),
+    BLOCKCHAIN_LOG_PROCESSED("EnjinCloud\\Events\\BlockchainLogProcessed", "app", "token", "wallet"),
+    MESSAGE_PROCESSED("EnjinCloud\\Events\\MessageProcessed", "app", "token", "wallet"),
+    PLAYER_CREATED("EnjinCloud\\Events\\IdentityCreated", "app", "player"),
+    PLAYER_DELETED("EnjinCloud\\Events\\IdentityDeleted", "app", "player"),
+    PLAYER_LINKED("EnjinCloud\\Events\\IdentityLinked", "app", "player", "wallet"),
+    PLAYER_UNLINKED("EnjinCloud\\Events\\IdentityUnlinked", "app", "player", "wallet"),
+    PLAYER_UPDATED("EnjinCloud\\Events\\IdentityUpdated", "app", "player"),
     TOKEN_CREATED("EnjinCloud\\Events\\TokenCreated", "app", "token", "wallet"),
     TOKEN_MELTED("EnjinCloud\\Events\\TokenMelted", "app", "token", "wallet"),
     TOKEN_MINTED("EnjinCloud\\Events\\TokenMinted", "app", "token", "wallet"),
@@ -34,35 +36,31 @@ public enum EventType {
     TOKEN_UPDATED("EnjinCloud\\Events\\TokenUpdated", "app", "token", "wallet"),
     TRADE_COMPLETED("EnjinCloud\\Events\\TradeCompleted", "app", "token", "wallet"),
     TRADE_CREATED("EnjinCloud\\Events\\TradeCreated", "app", "token", "wallet"),
-    TRANSACTION_BROADCAST("EnjinCloud\\Events\\TransactionBroadcast", "app", "identity", "token", "wallet"),
-    TRANSACTION_CANCELED("EnjinCloud\\Events\\TransactionCanceled", "app", "identity", "token", "wallet"),
-    TRANSACTION_DROPPED("EnjinCloud\\Events\\TransactionDropped", "app", "identity", "token", "wallet"),
-    TRANSACTION_EXECUTED("EnjinCloud\\Events\\TransactionExecuted", "app", "identity", "token", "wallet"),
-    TRANSACTION_FAILED("EnjinCloud\\Events\\TransactionFailed", "app", "identity", "token", "wallet"),
-    TRANSACTION_PENDING("EnjinCloud\\Events\\TransactionPending", "app", "identity", "token", "wallet"),
-    TRANSACTION_PROCESSING("EnjinCloud\\Events\\TransactionProcessing", "app", "identity", "token", "wallet"),
-    TRANSACTION_UPDATED("EnjinCloud\\Events\\TransactionUpdated", "app", "identity", "token", "wallet");
+    TRANSACTION_BROADCAST("EnjinCloud\\Events\\TransactionBroadcast", "app", "token", "wallet"),
+    TRANSACTION_CANCELED("EnjinCloud\\Events\\TransactionCanceled", "app", "token", "wallet"),
+    TRANSACTION_DROPPED("EnjinCloud\\Events\\TransactionDropped", "app", "token", "wallet"),
+    TRANSACTION_EXECUTED("EnjinCloud\\Events\\TransactionExecuted", "app", "token", "wallet"),
+    TRANSACTION_FAILED("EnjinCloud\\Events\\TransactionFailed", "app", "token", "wallet"),
+    TRANSACTION_PENDING("EnjinCloud\\Events\\TransactionPending", "app", "token", "wallet"),
+    TRANSACTION_PROCESSING("EnjinCloud\\Events\\TransactionProcessing", "app", "token", "wallet"),
+    TRANSACTION_UPDATED("EnjinCloud\\Events\\TransactionUpdated", "app", "token", "wallet");
 
-    private final String eventType;
-    private final String[] channelTypes;
+    /**
+     * -- GETTER --
+     * @return the event type
+     */
+    @Getter
+    private final String key;
+    private final String[] channels;
 
     /**
      * Sole constructor.
      *
-     * @param eventType the type of the enum
+     * @param key the type of the enum
      */
-    EventType(String eventType, String... channelTypes) {
-        this.eventType = eventType;
-        this.channelTypes = channelTypes;
-    }
-
-    /**
-     * Method to get the eventType.
-     *
-     * @return String
-     */
-    public String getEventType() {
-        return this.eventType;
+    EventType(String key, String... channels) {
+        this.key = key;
+        this.channels = channels;
     }
 
     /**
@@ -103,11 +101,26 @@ public enum EventType {
      * @return NotificationType
      */
     public static EventType getFromName(String name) {
-        try {
-            return valueOf(name);
-        } catch (IllegalArgumentException e) {
-            return null;
+        for (EventType type : EventType.values()) {
+            if (type.name().equalsIgnoreCase(name))
+                return type;
         }
+
+        return UNKNOWN;
+    }
+
+    /**
+     * TODO
+     * @param key
+     * @return
+     */
+    public static EventType getFromKey(String key) {
+        for (EventType type : EventType.values()) {
+            if (type.getKey().equalsIgnoreCase(key))
+                return type;
+        }
+
+        return UNKNOWN;
     }
 
     /**
@@ -119,7 +132,7 @@ public enum EventType {
         List<EventType> types = new ArrayList<>();
 
         for (EventType type : values()) {
-            for (String key : type.channelTypes) {
+            for (String key : type.channels) {
                 if (channel.toLowerCase().contains(key)) {
                     types.add(type);
                     break;
