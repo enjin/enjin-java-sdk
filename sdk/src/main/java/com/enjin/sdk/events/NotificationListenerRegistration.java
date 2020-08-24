@@ -1,6 +1,5 @@
 package com.enjin.sdk.events;
 
-import com.enjin.sdk.models.NotificationEvent;
 import com.enjin.sdk.models.EventType;
 
 /**
@@ -121,12 +120,9 @@ public class NotificationListenerRegistration {
          * @return the configuration.
          */
         public T withAllowedEvents(final EventType... types) {
-            return this.withMatcher(types == null ? null : new EventMatcher() {
-                @Override
-                public boolean matches(NotificationEvent event) {
-                    return event.getType().in(types);
-                }
-            });
+            return this.withMatcher(types == null
+                                            ? null
+                                            : (EventMatcher) event -> event.getType().in(types));
         }
 
         /**
@@ -137,12 +133,9 @@ public class NotificationListenerRegistration {
          * @return the configuration.
          */
         public T withIgnoredEvents(final EventType... types) {
-            return this.withMatcher(types == null ? null : new EventMatcher() {
-                @Override
-                public boolean matches(NotificationEvent event) {
-                    return !event.getType().in(types);
-                }
-            });
+            return this.withMatcher(types == null
+                                            ? null
+                                            : (EventMatcher) event -> !event.getType().in(types));
         }
 
         /**
