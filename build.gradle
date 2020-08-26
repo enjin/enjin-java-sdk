@@ -9,7 +9,9 @@ buildscript {
             'retrofitGson'            : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
             'codeGenApi'              : "io.freefair.gradle:code-generator-api:${codeGenVersion}",
             'javapoet'                : "com.squareup:javapoet:${javapoetVersion}",
-            'websocket'               : "org.java-websocket:Java-WebSocket:${websocketVersion}"
+            'websocket'               : "org.java-websocket:Java-WebSocket:${websocketVersion}",
+            'junitPlatform'           : "org.junit.platform:junit-platform-engine:${junitPlatformVersion}",
+            'junitJupiter'            : "org.junit.jupiter:junit-jupiter:${junitJupiterVersion}",
     ]
 
     ext.local = new Properties()

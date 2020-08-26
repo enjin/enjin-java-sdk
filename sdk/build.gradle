@@ -31,6 +31,8 @@ dependencies {
     implementation deps.okhttpUrlConnection
     implementation deps.retrofit
     implementation deps.retrofitGson
+    implementation deps.junitPlatform
+    implementation deps.junitJupiter
 }
 
 task processSource(type: Sync) {
@@ -42,4 +44,8 @@ task processSource(type: Sync) {
 
 compileJava {
     source = processSource.outputs
+}
+
+test {
+    useJUnitPlatform()
 }
