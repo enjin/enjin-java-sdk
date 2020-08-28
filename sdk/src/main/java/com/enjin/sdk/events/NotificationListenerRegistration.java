@@ -1,6 +1,7 @@
 package com.enjin.sdk.events;
 
 import com.enjin.sdk.models.EventType;
+import lombok.Getter;
 
 /**
  * Registration wrapper for notification listeners that extracts any metadata
@@ -17,7 +18,17 @@ public class NotificationListenerRegistration {
      */
     public static final EventMatcher ALLOW_ALL_MATCHER = event -> true;
 
+    /**
+     * -- GETTER --
+     * @return the listener.
+     */
+    @Getter
     private final NotificationListener listener;
+    /**
+     * -- GETTER --
+     * @return the matcher.
+     */
+    @Getter
     private EventMatcher eventMatcher = ALLOW_ALL_MATCHER;
 
     /**
@@ -38,24 +49,6 @@ public class NotificationListenerRegistration {
     protected NotificationListenerRegistration(NotificationListener listener, EventMatcher matcher) {
         this(listener);
         this.eventMatcher = matcher;
-    }
-
-    /**
-     * Returns the listener that a registration was created for.
-     *
-     * @return the listener.
-     */
-    public NotificationListener getListener() {
-        return this.listener;
-    }
-
-    /**
-     * Returns the event matcher used for the listener.
-     *
-     * @return the listener.
-     */
-    public EventMatcher getEventMatcher() {
-        return this.eventMatcher;
     }
 
     /**
