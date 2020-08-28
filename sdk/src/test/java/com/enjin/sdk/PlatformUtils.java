@@ -15,6 +15,10 @@ public class PlatformUtils {
     public final Platform KOVAN = createMockPlatform("kovan");
     public final Platform MAIN_NET = createMockPlatform("mainnet");
 
+    public TrustedPlatformMiddleware createMockMiddleware() {
+        return new TrustedPlatformMiddleware("http://localhost/", false);
+    }
+
     @SneakyThrows
     public Platform createMockPlatform(String network) {
         Platform platform = new Platform();
