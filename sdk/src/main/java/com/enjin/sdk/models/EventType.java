@@ -51,6 +51,11 @@ public enum EventType {
      */
     @Getter
     private final String key;
+    /**
+     * -- GETTER --
+     * @return the channels
+     */
+    @Getter
     private final String[] channels;
 
     /**
