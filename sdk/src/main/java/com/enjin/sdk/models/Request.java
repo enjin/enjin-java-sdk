@@ -4,149 +4,138 @@ import com.google.gson.JsonObject;
 import lombok.Getter;
 
 /**
- * TODO
+ * Models a transaction on the platform.
  */
 @Getter
 public class Request {
 
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the ID of this transaction
      */
     private Integer id;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the hash ID of this transaction
      */
     private String transactionId;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the title of this transaction
      */
     private String title;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the contract address
      */
     private String contract;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the encoded data, ready for signing
      */
     private String encodedData;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the transaction type
      */
     private RequestType type;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the icon URL for this transaction
      */
     private String icon;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the value of this transaction
      */
     private String value;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the signed transaction string
      */
     private String signedTransaction;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the signed transaction string
      */
     private String signedBackupTransaction;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the signed transaction string
      */
     private String signedCancelTransaction;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the error message
      */
     private String error;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the nonce
      */
     private String nonce;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the retry state
      */
     private String retryState;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the transaction state
      */
     private RequestState state;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return whether the transaction was accepted
      */
     private Boolean accepted;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the receipt
      */
     private JsonObject receipt;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the token (item) ID for this transaction
      */
     private String tokenId;
+
     /**
      * -- Getter --
-     * TODO
+     * <br>
+     * <p>
+     *     Formatted as an ISO 8601 string.
+     * </p>
      *
-     * @return
+     * @return the datetime when this was created
      */
     private String createdAt;
+
     /**
      * -- Getter --
-     * TODO
+     * <br>
+     * <p>
+     *     Formatted as an ISO 8601 string.
+     * </p>
      *
-     * @return
+     * @return the datetime when this was last updated
      */
     private String updatedAt;
 

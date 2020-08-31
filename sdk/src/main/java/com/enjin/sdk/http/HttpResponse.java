@@ -3,10 +3,9 @@ package com.enjin.sdk.http;
 import lombok.ToString;
 
 /**
- * An http response wrapper.
+ * An HTTP response wrapper.
  *
- * @param <T> the type of the body.
- *
+ * @param <T> the type of the body
  * @author Evan Lindsay
  */
 @ToString
@@ -16,11 +15,10 @@ public class HttpResponse<T> {
     private T body;
 
     /**
-     * Creates a new http response with the code returned
-     * by the destination and the deserialized body.
+     * Creates a new http response with the code returned by the destination and the deserialized body.
      *
-     * @param code the response code.
-     * @param body the response body.
+     * @param code the response code
+     * @param body the response body
      */
     public HttpResponse(int code, T body) {
         this.code = code;
@@ -28,9 +26,9 @@ public class HttpResponse<T> {
     }
 
     /**
-     * The code returned by the destination.
+     * The status code returned by the destination.
      *
-     * @return the code.
+     * @return the code
      */
     public int code() {
         return code;
@@ -39,16 +37,16 @@ public class HttpResponse<T> {
     /**
      * The deserialized body returned by the destination.
      *
-     * @return the body.
+     * @return the body
      */
     public T body() {
         return body;
     }
 
     /**
-     * True is the code is in the range [200-300).
+     * True if the code is in the range [200-300).
      *
-     * @return true if 2xx, else false.
+     * @return true if 2xx, else false
      */
     public boolean isSuccess() {
         return code >= 200 && code < 300;
@@ -57,7 +55,7 @@ public class HttpResponse<T> {
     /**
      * Returns whether or not there exists a body or not.
      *
-     * @return true if there is no body, else false.
+     * @return true if there is no body, else false
      */
     public boolean isEmpty() {
         return this.body == null;

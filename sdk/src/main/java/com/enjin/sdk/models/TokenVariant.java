@@ -4,51 +4,56 @@ import com.google.gson.JsonObject;
 import lombok.Getter;
 
 /**
- * TODO
+ * Models a token variant.
+ *
+ * @see Token
  */
 @Getter
 public final class TokenVariant {
 
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the ID of this variant
      */
     private Integer id;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the token ID this variant belongs to
      */
     private String tokenId;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the metadata for this variant
      */
     private JsonObject variantMetadata;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the usage count
      */
     private Integer usageCount;
+
     /**
      * -- Getter --
-     * TODO
+     * <br>
+     * <p>
+     *     Formatted as an ISO 8601 string.
+     * </p>
      *
-     * @return
+     * @return the datetime when this was created
      */
     private String createdAt;
+
     /**
      * -- Getter --
-     * TODO
+     * <br>
+     * <p>
+     *     Formatted as an ISO 8601 string.
+     * </p>
      *
-     * @return
+     * @return the datetime when this was last updated
      */
     private String updatedAt;
 

@@ -18,10 +18,12 @@ public class TrustedPlatformInterceptor implements Interceptor {
      * The authorization key.
      */
     public static final String AUTHORIZATION = "Authorization";
+
     /**
      * The user-agent key.
      */
     public static final String USER_AGENT = "User-Agent";
+
     /**
      * The user-agent value key.
      */
@@ -29,30 +31,23 @@ public class TrustedPlatformInterceptor implements Interceptor {
 
     /**
      * -- SETTER --
-     * Sets the access token type.
-     *
      * @param tokenType the new access token type
      */
     @Setter
     private String tokenType;
+
     /**
      * -- SETTER --
-     * Sets the access token.
-     *
-     * @param token the new access token.
+     * @param token the new access token
      */
     @Setter
     private String token;
+
     /**
      * -- GETTER --
-     * Returns the application id.
-     *
-     * @return the app id.
-     *
+     * @return the app ID
      * -- SETTER --
-     * Sets the application id.
-     *
-     * @param appId the new app id.
+     * @param appId the new app ID
      */
     @Getter
     @Setter
@@ -62,8 +57,7 @@ public class TrustedPlatformInterceptor implements Interceptor {
      * Rewrites calls to the Trusted Platform.
      *
      * @param chain the chain
-     * @return      the response
-     *
+     * @return the response
      * @throws IOException if the chain fails to proceed
      */
     @Override
@@ -79,13 +73,18 @@ public class TrustedPlatformInterceptor implements Interceptor {
         return chain.proceed(builder.build());
     }
 
+    /**
+     * Sets the authentication credentials of the SDK.
+     *
+     * @param token the access token
+     */
     public void auth(String token) {
         this.tokenType = "Bearer";
         this.token = token;
     }
 
     /**
-     * Determines if the sdk is authenticated.
+     * Determines if the SDK is authenticated.
      *
      * @return true if authenticated, false otherwise
      */
@@ -93,6 +92,9 @@ public class TrustedPlatformInterceptor implements Interceptor {
         return !(token == null || token.isEmpty());
     }
 
+    /**
+     * Clears the authentication credentials of the SDK.
+     */
     public void clearAuth() {
         token = null;
         tokenType = null;

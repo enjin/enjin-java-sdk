@@ -3,37 +3,32 @@ package com.enjin.sdk.models;
 import lombok.Getter;
 
 /**
- * TODO
+ * Models a smart contract used by the platform.
  */
 @Getter
 public class Contracts {
 
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return The ENJ contract address
      */
     private String enj;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the crypto items contract address
      */
     private String cryptoItems;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the platform registry contract address
      */
     private String platformRegistry;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the supply models used by the platform
      */
     private SupplyModels supplyModels;
 

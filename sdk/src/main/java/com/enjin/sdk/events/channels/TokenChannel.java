@@ -4,7 +4,9 @@ import com.enjin.sdk.models.Platform;
 import lombok.NonNull;
 
 /**
- * Represents a channel to subscribe to for Enjin Cloud token events.
+ * Represents a channel to subscribe to for Enjin Cloud token (item) events.
+ *
+ * @see com.enjin.sdk.events.NotificationsService
  */
 public class TokenChannel implements Channel {
 
@@ -12,10 +14,10 @@ public class TokenChannel implements Channel {
     private final String token;
 
     /**
-     * Constructs a channel for the given network and token.
+     * Constructs a channel for the given network and token (item).
      *
      * @param platform the platform
-     * @param token  the token id
+     * @param token the token ID
      */
     public TokenChannel(@NonNull Platform platform, @NonNull String token) {
         this.platform = platform;

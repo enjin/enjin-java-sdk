@@ -6,7 +6,9 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * TODO
+ * Models a filter input for player queries.
+ *
+ * @see com.enjin.sdk.schemas.project.queries.GetPlayers
  */
 public class PlayerFilter extends Filter<PlayerFilter> {
 
@@ -15,9 +17,10 @@ public class PlayerFilter extends Filter<PlayerFilter> {
     private List<String> idIn;
 
     /**
-     * TODO
-     * @param id
-     * @return
+     * Sets the player ID to filter for.
+     *
+     * @param id the ID
+     * @return this filter for chaining
      */
     public PlayerFilter id(String id) {
         this.id = id;
@@ -25,9 +28,10 @@ public class PlayerFilter extends Filter<PlayerFilter> {
     }
 
     /**
-     * TODO
-     * @param ids
-     * @return
+     * Sets the player IDs to filter for.
+     *
+     * @param ids the IDs
+     * @return this filter for chaining
      */
     public PlayerFilter idIn(String... ids) {
         idIn = ids == null

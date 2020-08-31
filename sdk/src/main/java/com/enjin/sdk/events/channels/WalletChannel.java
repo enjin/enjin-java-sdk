@@ -5,6 +5,8 @@ import lombok.NonNull;
 
 /**
  * Represents a channel to subscribe to for Enjin Cloud wallet events.
+ *
+ * @see com.enjin.sdk.events.NotificationsService
  */
 public class WalletChannel implements Channel {
 
@@ -14,7 +16,7 @@ public class WalletChannel implements Channel {
     /**
      * Constructs a channel for the given network and wallet.
      *
-     * @param platform   the platform
+     * @param platform the platform
      * @param wallet the wallet's address
      */
     public WalletChannel(@NonNull Platform platform, @NonNull String wallet) {

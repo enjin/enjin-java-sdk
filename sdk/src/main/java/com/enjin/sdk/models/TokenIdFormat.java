@@ -1,11 +1,9 @@
 package com.enjin.sdk.models;
 
-import com.enjin.sdk.schemas.shared.arguments.BalanceFragmentArguments;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * TODO
- * @see BalanceFragmentArguments
+ * Values used specify the format to render an item's ID in.
  */
 public enum TokenIdFormat {
 

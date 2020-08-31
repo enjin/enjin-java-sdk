@@ -5,142 +5,137 @@ import lombok.Getter;
 import java.util.Collection;
 
 /**
- * TODO
+ * Models a item on the platform.
  */
 @Getter
 public class Token {
 
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the base ID of this item
      */
     private String id;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the name of this item
      */
     private String name;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the block number of the last update
      */
     private Integer blockHeight;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the creator of this item
      */
     private String creator;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the first block this item appeared in
      */
     private Integer firstBlock;
+
     /**
      * -- Getter --
-     * TODO
+     * <br>
+     * <p>
+     *     The ratio is in the range of 0-10000 to allow fractional ratios, e.g. 1 = 0.01%, 10000 = 100%, etc...
+     * </p>
      *
-     * @return
+     * @return the melt fee ratio
      */
     private Integer meltFeeRatio;
+
     /**
      * -- Getter --
-     * TODO
+     * <br>
+     * <p>
+     *     The ratio is in the range of 0-10000 to allow fractional ratios, e.g. 1 = 0.01%, 10000 = 100%, etc...
+     * </p>
      *
-     * @return
+     * @return the max melt fee ratio
      */
     private Integer meltFeeMaxRatio;
+
     /**
      * -- Getter --
-     * TODO
+     * <br>
+     * <p>
+     *     Corresponds to this item's exchange rate.
+     * </p>
      *
-     * @return
+     * @return the melt value for this item
      */
     private String meltValue;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the metadata URI for this item
      */
     private String metadataUri;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return whether this item is non-fungible
      */
     private Boolean nonfungible;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the reserve of this item
      */
     private String reserve;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the supply model of this item
      */
     private TokenSupplyModel supplyModel;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the circulating supply of this item
      */
     private String circulatingSupply;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the number of items available to mint
      */
     private String mintableSupply;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the total supply of this item
      */
     private String totalSupply;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the transferable type
      */
     private TokenTransferable transferable;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the fee settings for this item
      */
     private TokenTransferFeeSettings transferFeeSettings;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the token variant mode
      */
     private TokenVariantMode variantMode;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the token variants of this item
      */
     private Collection<TokenVariant> variants;
 

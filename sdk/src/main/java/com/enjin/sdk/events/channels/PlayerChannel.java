@@ -5,6 +5,8 @@ import lombok.NonNull;
 
 /**
  * Represents a channel to subscribe to for Enjin Cloud player events.
+ *
+ * @see com.enjin.sdk.events.NotificationsService
  */
 public class PlayerChannel implements Channel {
 
@@ -13,11 +15,11 @@ public class PlayerChannel implements Channel {
     private final String player;
 
     /**
-     * Constructs a channel for the given network and player for the application.
+     * Constructs a channel for the given network and player on a application.
      *
      * @param platform the platform
-     * @param app    the app id
-     * @param player the identity id
+     * @param app the app ID
+     * @param player the identity ID
      */
     public PlayerChannel(@NonNull Platform platform, int app, String player) {
         this.platform = platform;

@@ -11,7 +11,7 @@ import lombok.NonNull;
 import lombok.ToString;
 
 /**
- * Represents a Trusted Platform Event.
+ * Container class for notification data from the platform.
  *
  * @author Evan Lindsay
  * @see NotificationsService
@@ -31,22 +31,25 @@ public class NotificationEvent {
 
     /**
      * -- GETTER --
-     * @return the type.
+     * @return the event type
      */
     private final EventType type;
+
     /**
      * -- GETTER --
-     * @return the notification channel.
+     * @return the notification channel
      */
     private final String channel;
+
     /**
      * -- GETTER --
-     * @return the data.
+     * @return the raw data
      */
     private final String message;
+
     /**
      * -- GETTER --
-     * @return the deserialized data. Lazy loaded.
+     * @return the deserialized data. Lazy loaded
      */
     @Getter(lazy = true)
     private final JsonObject data = eventData();
@@ -54,9 +57,9 @@ public class NotificationEvent {
     /**
      * Constructor for internal use.
      *
-     * @param type the notification type.
-     * @param channel the channel.
-     * @param message the notification data.
+     * @param type the notification type
+     * @param channel the channel
+     * @param message the notification data
      */
     public NotificationEvent(@NonNull EventType type, @NonNull String channel, @NonNull String message) {
         this.type = type;

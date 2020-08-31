@@ -3,51 +3,44 @@ package com.enjin.sdk.models;
 import lombok.Getter;
 
 /**
- * TODO
+ * Models the supply models used by the platform.
  */
 @Getter
 public class SupplyModels {
 
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the fixed model
      */
     private String fixed;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the settable model
      */
     private String settable;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the infinite model
      */
     private String infinite;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the collapsing model
      */
     private String collapsing;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the annual value model
      */
     private String annualValue;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the annual percentage model
      */
     private String annualPercentage;
 

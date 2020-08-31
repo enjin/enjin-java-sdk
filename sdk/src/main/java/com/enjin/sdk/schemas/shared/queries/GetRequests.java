@@ -7,7 +7,10 @@ import com.enjin.sdk.schemas.shared.arguments.PaginationArguments;
 import com.enjin.sdk.schemas.shared.arguments.TransactionFragmentArguments;
 
 /**
- * TODO
+ * Request for getting transactions on the platform.
+ *
+ * @see com.enjin.sdk.models.Request
+ * @see com.enjin.sdk.schemas.shared.SharedSchema
  */
 public class GetRequests
         extends GraphQLRequest<GetRequests>
@@ -15,25 +18,27 @@ public class GetRequests
         PaginationArguments<GetRequests> {
 
     /**
-     * TODO
+     * Sole constructor.
      */
     public GetRequests() {
         super("enjin.sdk.shared.GetRequests");
     }
 
     /**
-     * TODO
-     * @param filter
-     * @return
+     * Sets the filter the request will use.
+     *
+     * @param filter the filter
+     * @return this request for chaining
      */
     public GetRequests filter(TransactionFilter filter) {
         return set("filter", filter);
     }
 
     /**
-     * TODO
-     * @param sort
-     * @return
+     * Sets the request to sort the results by the specified options.
+     *
+     * @param sort the sort options
+     * @return this request for chaining
      */
     public GetRequests sort(TransactionSort sort) {
         return set("sort", sort);

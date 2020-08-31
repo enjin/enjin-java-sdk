@@ -3,12 +3,15 @@ package com.enjin.sdk.schemas.shared.queries;
 import com.enjin.sdk.graphql.GraphQLRequest;
 
 /**
- * TODO
+ * Request for getting the latest gas prices.
+ *
+ * @see com.enjin.sdk.models.GasPrices
+ * @see com.enjin.sdk.schemas.shared.SharedSchema
  */
 public class GetGasPrices extends GraphQLRequest<GetGasPrices> {
 
     /**
-     * TODO
+     * Sole constructor.
      */
     public GetGasPrices() {
         super("enjin.sdk.shared.GetGasPrices");
