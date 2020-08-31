@@ -14,21 +14,19 @@ public class LoggerProvider {
 
     /**
      * -- GETTER --
-     * Returns the logger object.
-     *
      * @return the logger
      */
     @Getter
     private Logger logger;
-    private Level defaultLevel;
+
     /**
      * -- GETTER --
-     * Determines if the debug level is used.
-     *
-     * @return true if the debug level is used, false otherwise
+     * @return true if the debug level is used, else false
      */
     @Getter
     private boolean debug;
+
+    private Level defaultLevel;
     private Level debugLevel;
 
     /**
@@ -44,7 +42,7 @@ public class LoggerProvider {
      * Constructs the provider with the specified logger and sets if debug is enabled.
      *
      * @param logger the provider
-     * @param debug  if the debug level is used
+     * @param debug if the debug level is used
      */
     public LoggerProvider(Logger logger, boolean debug) {
         this(logger, debug, Level.FINE);
@@ -53,8 +51,8 @@ public class LoggerProvider {
     /**
      * Constructs the provider with the specified logger and debug settings.
      *
-     * @param logger     the logger
-     * @param debug      if the debug level is used
+     * @param logger the logger
+     * @param debug if the debug level is used
      * @param debugLevel the debug log level
      */
     public LoggerProvider(Logger logger, boolean debug, Level debugLevel) {
@@ -65,9 +63,7 @@ public class LoggerProvider {
     }
 
     /**
-     * Sets whether the debug level should be used.
-     *
-     * @param debug if the debug level is used
+     * @param debug whether the debug level is used
      */
     public void setDebug(boolean debug) {
         this.debug = debug;
@@ -81,7 +77,7 @@ public class LoggerProvider {
     /**
      * Logs the message in the logger at the provided log level.
      *
-     * @param level   the log level
+     * @param level the log level
      * @param message the message
      */
     public void log(Level level, String message) {
@@ -92,9 +88,9 @@ public class LoggerProvider {
     /**
      * Logs the message and exception in the logger at the provided log level.
      *
-     * @param level   the log level
+     * @param level the log level
      * @param message the message
-     * @param e       the exception
+     * @param e the exception
      */
     public void log(Level level, String message, Exception e) {
         if (logger.isLoggable(level))
@@ -118,4 +114,5 @@ public class LoggerProvider {
     public void debug(String message) {
         log(debugLevel, message);
     }
+
 }

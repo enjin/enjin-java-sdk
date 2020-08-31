@@ -5,44 +5,38 @@ import lombok.Getter;
 import java.util.Collection;
 
 /**
- * TODO
+ * Models a wallet on the platform.
  */
 @Getter
 public class Wallet {
 
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the Ethereum address of this wallet
      */
     private String ethAddress;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the ENJ allowance given to crypto items
      */
     private Float enjAllowance;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the ENJ balance for this wallet
      */
     private Float enjBalance;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the ETH balance for this wallet
      */
     private Float ethBalance;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the tokens (items) this wallet has created
      */
     private Collection<Token> tokensCreated;
 

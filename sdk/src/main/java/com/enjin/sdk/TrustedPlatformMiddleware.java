@@ -13,26 +13,25 @@ import java.io.Closeable;
 import java.util.concurrent.ExecutorService;
 
 /**
- * TODO
+ * Middleware for communicating with the Trusted Platform.
  */
 public class TrustedPlatformMiddleware implements Closeable {
 
     /**
      * -- Getter --
-     * Returns the base URL.
-     *
      * @return the base URL
      */
     @Getter
     private final HttpUrl baseUrl;
 
-    // Http Client
+    /**
+     * @return the TP interceptor
+     */
     @Getter(AccessLevel.PACKAGE)
     private final TrustedPlatformInterceptor trustedPlatformInterceptor;
+
     /**
      * -- Getter --
-     * Returns the HTTP client.
-     *
      * @return the HTTP client
      */
     @Getter
@@ -40,17 +39,16 @@ public class TrustedPlatformMiddleware implements Closeable {
 
     /**
      * -- Getter --
-     * Returns the graphQL query registry.
-     *
      * @return the query registry
      */
     @Getter
     private final GraphQLQueryRegistry queryRegistry;
 
     /**
-     * TODO
-     * @param baseUrl
-     * @param debug
+     * Sole constructor.
+     *
+     * @param baseUrl the base URL
+     * @param debug whether debugging is enabled
      */
     protected TrustedPlatformMiddleware(String baseUrl, boolean debug) {
         // Cookie Jar

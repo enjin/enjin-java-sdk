@@ -21,7 +21,7 @@ public class JsonStringConverter extends Converter.Factory {
     /**
      * Creates a new factory instance.
      *
-     * @param delegate the delegate converter factory.
+     * @param delegate the delegate converter factory
      */
     protected JsonStringConverter(Converter.Factory delegate) {
         this.delegate = delegate;
@@ -44,8 +44,8 @@ public class JsonStringConverter extends Converter.Factory {
     /**
      * Creates a new factory instance.
      *
-     * @param delegate the delegate converter factory.
-     * @return         a new json string convert
+     * @param delegate the delegate converter factory
+     * @return a new json string convert
      */
     public static JsonStringConverter create(Converter.Factory delegate) {
         return new JsonStringConverter(delegate);
@@ -54,7 +54,7 @@ public class JsonStringConverter extends Converter.Factory {
     /**
      * Converts an object to json.
      *
-     * @param <T> the type of the object being converted.
+     * @param <T> the type of the object being converted
      */
     public static class DelegateToStringConverter<T> implements Converter<T, String> {
 

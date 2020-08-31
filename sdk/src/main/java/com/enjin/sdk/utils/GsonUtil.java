@@ -19,7 +19,6 @@ public final class GsonUtil {
      *
      * @param root the object to search in
      * @param path the path to fetch
-     *
      * @return true if the path exists, false otherwise
      */
     public static boolean pathExists(JsonObject root, String path) {
@@ -47,7 +46,6 @@ public final class GsonUtil {
      *
      * @param root the object to search in
      * @param path the path to fetch
-     *
      * @return empty optional if path does not exist or is null, else optional wrapped element
      */
     public static Optional<JsonElement> getJsonElement(JsonObject root, String path) {
@@ -74,7 +72,6 @@ public final class GsonUtil {
      * Checks if a json element is a json object.
      *
      * @param optional the element
-     *
      * @return true if the element is a json object, false otherwise
      */
     public static boolean isJsonObject(Optional<JsonElement> optional) {
@@ -85,7 +82,6 @@ public final class GsonUtil {
      * Checks if a json element is a json array.
      *
      * @param optional the element
-     *
      * @return true if the element is a json array, false otherwise
      */
     public static boolean isJsonArray(Optional<JsonElement> optional) {

@@ -30,16 +30,15 @@ import lombok.NonNull;
 /**
  * Implementation class of {@link NotificationsService} for Pusher events.
  *
- * @see NotificationsService
- * @see PusherEvent
- * @see PusherEventListener
+ * @see NotificationListener
  */
 public class PusherNotificationService implements NotificationsService {
 
     /**
-     * The list of registered listeners.
+     * The list of listener registrations.
      */
     protected List<NotificationListenerRegistration> listeners = new ArrayList<>();
+
     /**
      * -- GETTER --
      * @return the logger provider
@@ -64,7 +63,7 @@ public class PusherNotificationService implements NotificationsService {
     /**
      * Constructs the notification service using the platform details and logger provider.
      *
-     * @param loggerProvider  the logger provider
+     * @param loggerProvider the logger provider
      * @param platform the platform
      */
     public PusherNotificationService(@NonNull LoggerProvider loggerProvider, @NonNull Platform platform) {
@@ -152,7 +151,7 @@ public class PusherNotificationService implements NotificationsService {
      * Configures a notification listener.
      *
      * @param listener the listener
-     * @return         the listener configuration
+     * @return the listener configuration
      */
     protected RegistrationListenerConfiguration configureListener(@NonNull NotificationListener listener) {
         return NotificationListenerRegistration.configure(listener);
@@ -162,7 +161,7 @@ public class PusherNotificationService implements NotificationsService {
      * Registers a notification listener.
      *
      * @param configuration the listener configuration
-     * @return              the registration wrapper, or null if registration failed
+     * @return the registration wrapper, or null if registration failed
      */
     protected NotificationListenerRegistration register(@NonNull RegistrationListenerConfiguration configuration) {
         for (NotificationListenerRegistration reg : listeners) {

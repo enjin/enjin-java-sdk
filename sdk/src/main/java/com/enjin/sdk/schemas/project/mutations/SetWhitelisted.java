@@ -5,59 +5,66 @@ import com.enjin.sdk.models.Whitelisted;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 /**
- * TODO
+ * Request for setting an item's whitelist.
+ *
+ * @see com.enjin.sdk.schemas.project.ProjectSchema
  */
 public class SetWhitelisted
         extends GraphQLRequest<SetWhitelisted>
         implements TransactionRequestArguments<SetWhitelisted> {
 
     /**
-     * TODO
+     * Sole constructor.
      */
     public SetWhitelisted() {
         super("enjin.sdk.project.SetWhitelisted");
     }
 
     /**
-     * TODO
-     * @param tokenId
-     * @return
+     * Sets the token (item) ID.
+     *
+     * @param tokenId the ID
+     * @return this request for chaining
      */
     public SetWhitelisted tokenId(String tokenId) {
         return set("tokenId", tokenId);
     }
 
     /**
-     * TODO
-     * @param accountAddress
-     * @return
+     * Sets the account address to be added to the whitelist.
+     *
+     * @param accountAddress the address
+     * @return this request for chaining
      */
     public SetWhitelisted accountAddress(String accountAddress) {
         return set("accountAddress", accountAddress);
     }
 
     /**
-     * TODO
-     * @param whitelisted
-     * @return
+     * Sets the whitelisted setting for the account.
+     *
+     * @param whitelisted the setting
+     * @return this request for chaining
      */
     public SetWhitelisted whitelisted(Whitelisted whitelisted) {
         return set("whitelisted", whitelisted);
     }
 
     /**
-     * TODO
-     * @param whitelistedAddress
-     * @return
+     * Sets the specified address for sending or receiving.
+     *
+     * @param whitelistedAddress the address
+     * @return this request for chaining
      */
     public SetWhitelisted whitelistedAddress(String whitelistedAddress) {
         return set("whitelistedAddress", whitelistedAddress);
     }
 
     /**
-     * TODO
-     * @param on
-     * @return
+     * Sets whether the whitelist setting is on or off.
+     *
+     * @param on the setting
+     * @return this request for chaining
      */
     public SetWhitelisted on(Boolean on) {
         return set("on", on);

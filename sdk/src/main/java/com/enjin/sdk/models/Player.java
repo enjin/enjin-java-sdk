@@ -4,51 +4,54 @@ import com.google.gson.JsonObject;
 import lombok.Getter;
 
 /**
- * TODO
+ * Models a player of on a application.
  */
 @Getter
 public class Player {
 
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the ID of this player
      */
     private String id;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the linking code for this player
      */
     private String linkingCode;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the URL for the QR linking code
      */
     private String linkingCodeQr;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the wallet for this player
      */
     private JsonObject wallet;
+
     /**
      * -- Getter --
-     * TODO
+     * <br>
+     * <p>
+     *     Formatted as an ISO 8601 string.
+     * </p>
      *
-     * @return
+     * @return the datetime when this was created
      */
     private String createdAt;
+
     /**
      * -- Getter --
-     * TODO
+     * <br>
+     * <p>
+     *     Formatted as an ISO 8601 string.
+     * </p>
      *
-     * @return
+     * @return the datetime when this was last updated
      */
     private String updatedAt;
 

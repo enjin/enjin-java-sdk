@@ -6,7 +6,9 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * TODO
+ * Models a filter input for token queries.
+ *
+ * @see com.enjin.sdk.schemas.shared.queries.GetTokens
  */
 public class TokenFilter extends Filter<TokenFilter> {
 
@@ -27,9 +29,10 @@ public class TokenFilter extends Filter<TokenFilter> {
     private List<String> walletIn;
 
     /**
-     * TODO
-     * @param id
-     * @return
+     * Sets the token (item) ID to filter for.
+     *
+     * @param id the ID
+     * @return this filter for chaining
      */
     public TokenFilter id(String id) {
         this.id = id;
@@ -37,9 +40,10 @@ public class TokenFilter extends Filter<TokenFilter> {
     }
 
     /**
-     * TODO
-     * @param name
-     * @return
+     * Sets the name to filter for.
+     *
+     * @param name the name
+     * @return this filter for chaining
      */
     public TokenFilter name(String name) {
         this.name = name;
@@ -47,9 +51,10 @@ public class TokenFilter extends Filter<TokenFilter> {
     }
 
     /**
-     * TODO
-     * @param text
-     * @return
+     * Sets the filter to include items with names which include the passed string.
+     *
+     * @param text the text
+     * @return this filter for chaining
      */
     public TokenFilter nameContains(String text) {
         nameContains = text;
@@ -57,9 +62,10 @@ public class TokenFilter extends Filter<TokenFilter> {
     }
 
     /**
-     * TODO
-     * @param ids
-     * @return
+     * Sets the token (item) IDs to filter for.
+     *
+     * @param ids the IDs
+     * @return this filter for chaining
      */
     public TokenFilter idId(String... ids) {
         idIn = ids == null
@@ -69,9 +75,10 @@ public class TokenFilter extends Filter<TokenFilter> {
     }
 
     /**
-     * TODO
-     * @param names
-     * @return
+     * Sets the names to filter for.
+     *
+     * @param names the names
+     * @return this filter for chaining
      */
     public TokenFilter nameIn(String... names) {
         nameIn = names == null
@@ -81,9 +88,10 @@ public class TokenFilter extends Filter<TokenFilter> {
     }
 
     /**
-     * TODO
-     * @param prefix
-     * @return
+     * Sets the filter to include items with names which end with the passed string.
+     *
+     * @param prefix the prefix
+     * @return this filter for chaining
      */
     public TokenFilter nameStartsWith(String prefix) {
         nameStartsWith = prefix;
@@ -91,9 +99,10 @@ public class TokenFilter extends Filter<TokenFilter> {
     }
 
     /**
-     * TODO
-     * @param suffix
-     * @return
+     * Sets the filter to include items with names which start with the passed string.
+     *
+     * @param suffix the suffix
+     * @return this filter for chaining
      */
     public TokenFilter nameEndsWith(String suffix) {
         nameEndsWith = suffix;
@@ -101,9 +110,10 @@ public class TokenFilter extends Filter<TokenFilter> {
     }
 
     /**
-     * TODO
-     * @param wallet
-     * @return
+     * Sets the wallet to filter for.
+     *
+     * @param wallet the wallet address
+     * @return this filter for chaining
      */
     public TokenFilter wallet(String wallet) {
         this.wallet = wallet;
@@ -111,14 +121,15 @@ public class TokenFilter extends Filter<TokenFilter> {
     }
 
     /**
-     * TODO
-     * @param addresses
-     * @return
+     * Sets the wallets to filter for.
+     *
+     * @param wallets the wallet addresses
+     * @return this filter for chaining
      */
-    public TokenFilter walletIn(String... addresses) {
-        walletIn = addresses == null
+    public TokenFilter walletIn(String... wallets) {
+        walletIn = wallets == null
                 ? null
-                : Arrays.asList(addresses);
+                : Arrays.asList(wallets);
         return this;
     }
 

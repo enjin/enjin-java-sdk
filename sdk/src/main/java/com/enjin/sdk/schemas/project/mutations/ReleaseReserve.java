@@ -4,32 +4,36 @@ import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 /**
- * TODO
+ * Request for releasing the reserve of an item.
+ *
+ * @see com.enjin.sdk.schemas.project.ProjectSchema
  */
 public class ReleaseReserve
         extends GraphQLRequest<ReleaseReserve>
         implements TransactionRequestArguments<ReleaseReserve> {
 
     /**
-     * TODO
+     * Sole constructor.
      */
     public ReleaseReserve() {
         super("enjin.sdk.project.ReleaseReserve");
     }
 
     /**
-     * TODO
-     * @param tokenId
-     * @return
+     * Sets the token (item) ID.
+     *
+     * @param tokenId the ID
+     * @return this request for chaining
      */
     public ReleaseReserve tokenId(String tokenId) {
         return set("tokenId", tokenId);
     }
 
     /**
-     * TODO
-     * @param value
-     * @return
+     * Sets the amount to release.
+     *
+     * @param value the amount
+     * @return this request for chaining
      */
     public ReleaseReserve value(String value) {
         return set("value", value);

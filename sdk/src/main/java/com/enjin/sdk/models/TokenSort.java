@@ -1,7 +1,7 @@
 package com.enjin.sdk.models;
 
 /**
- * TODO
+ * Models sorting input for tokens (items).
  */
 public class TokenSort {
 
@@ -9,9 +9,10 @@ public class TokenSort {
     private SortDirection direction;
 
     /**
-     * TODO
-     * @param field
-     * @return
+     * Sets the field to sort by.
+     *
+     * @param field the field
+     * @return this input for chaining
      */
     public TokenSort field(TokenField field) {
         this.field = field;
@@ -19,9 +20,10 @@ public class TokenSort {
     }
 
     /**
-     * TODO
-     * @param direction
-     * @return
+     * Sets the direction to sort by.
+     *
+     * @param direction the direction
+     * @return this input for chaining
      */
     public TokenSort direction(SortDirection direction) {
         this.direction = direction;

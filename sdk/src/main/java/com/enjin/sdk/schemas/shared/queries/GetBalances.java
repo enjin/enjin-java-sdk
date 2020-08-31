@@ -6,7 +6,10 @@ import com.enjin.sdk.schemas.shared.arguments.BalanceFragmentArguments;
 import com.enjin.sdk.schemas.shared.arguments.PaginationArguments;
 
 /**
- * TODO
+ * Request for getting balances on the platform.
+ *
+ * @see com.enjin.sdk.models.Balance
+ * @see com.enjin.sdk.schemas.shared.SharedSchema
  */
 public class GetBalances
         extends GraphQLRequest<GetBalances>
@@ -14,16 +17,17 @@ public class GetBalances
         PaginationArguments<GetBalances> {
 
     /**
-     * TODO
+     * Sole constructor.
      */
     public GetBalances() {
         super("enjin.sdk.shared.GetBalances");
     }
 
     /**
-     * TODO
-     * @param filter
-     * @return
+     * Sets the filter the request will use.
+     *
+     * @param filter the filter
+     * @return this request for chaining
      */
     public GetBalances filter(BalanceFilter filter) {
         return set("filter", filter);

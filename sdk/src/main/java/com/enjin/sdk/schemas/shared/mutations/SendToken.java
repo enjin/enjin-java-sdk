@@ -4,59 +4,67 @@ import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 /**
- * TODO
+ * Request to send a token (item).
+ *
+ * @see AdvancedSendToken
+ * @see com.enjin.sdk.schemas.shared.SharedSchema
  */
 public class SendToken
         extends GraphQLRequest<SendToken>
         implements TransactionRequestArguments<SendToken> {
 
     /**
-     * TODO
+     * Sole constructor.
      */
     public SendToken() {
         super("enjin.sdk.shared.SendToken");
     }
 
     /**
-     * TODO
-     * @param recipientAddress
-     * @return
+     * Sets the wallet address of the recipient.
+     *
+     * @param recipientAddress the address
+     * @return this request for chaining
      */
     public SendToken recipientAddress(String recipientAddress) {
         return set("recipientAddress", recipientAddress);
     }
 
     /**
-     * TODO
-     * @param tokenId
-     * @return
+     * Sets the token (item) ID.
+     *
+     * @param tokenId the ID
+     * @return this request for chaining
      */
     public SendToken tokenId(String tokenId) {
         return set("tokenId", tokenId);
     }
 
     /**
-     * TODO
-     * @param tokenIndex
-     * @return
+     * Sets the index for non-fungible items.
+     *
+     * @param tokenIndex the index
+     * @return this request for chaining
      */
     public SendToken tokenIndex(String tokenIndex) {
         return set("tokenIndex", tokenIndex);
     }
 
     /**
-     * TODO
-     * @param value
-     * @return
+     * Sets the amount to send.
+     *
+     * @param value the amount
+     * @return this request for chaining
      */
     public SendToken value(String value) {
         return set("value", value);
     }
 
     /**
-     * TODO
-     * @param data
-     * @return
+     * Sets the data to forward with the transaction.
+     *
+     * @param data the data
+     * @return this request for chaining
      */
     public SendToken data(String data) {
         return set("data", data);

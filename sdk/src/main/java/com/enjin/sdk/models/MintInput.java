@@ -1,7 +1,9 @@
 package com.enjin.sdk.models;
 
 /**
- * TODO
+ * Models a mint input for mint requests.
+ *
+ * @see com.enjin.sdk.schemas.project.mutations.MintToken
  */
 public class MintInput {
 
@@ -9,9 +11,10 @@ public class MintInput {
     private String value;
 
     /**
-     * TODO
+     * Sets the Ethereum address to mint to.
+     *
      * @param ethAddress
-     * @return
+     * @return this input for chaining
      */
     public MintInput to(String ethAddress) {
         to = ethAddress;
@@ -19,9 +22,10 @@ public class MintInput {
     }
 
     /**
-     * TODO
+     * Sets the number of items to mint.
+     *
      * @param value
-     * @return
+     * @return this input for chaining
      */
     public MintInput value(String value) {
         this.value = value;

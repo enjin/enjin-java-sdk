@@ -4,38 +4,33 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 
 /**
- * TODO
+ * Models Pusher channels used by the platform.
  */
 @Getter
 public class PusherChannels {
 
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the app channel
      */
     @SerializedName("app")
     private String project;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the player channel
      */
     private String player;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the token channel
      */
     private String token;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the wallet channel
      */
     private String wallet;
 

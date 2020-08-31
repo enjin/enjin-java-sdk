@@ -8,19 +8,18 @@ import com.pusher.client.channel.PusherEvent;
 import com.pusher.client.channel.SubscriptionEventListener;
 
 /**
- * Event listener class for subscribed pusher events.
+ * Event listener class for subscribed pusher events. Used internally.
  *
  * @see PusherNotificationService
- * @see PusherEvent
  */
 public class PusherEventListener implements SubscriptionEventListener {
 
     private final PusherNotificationService service;
 
     /**
-     * Constructs a pusher event listener for the pusher service.
+     * Sole constructor.
      *
-     * @param service the notification service
+     * @param service the pusher service
      */
     public PusherEventListener(PusherNotificationService service) {
         this.service = service;

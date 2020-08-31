@@ -3,21 +3,24 @@ package com.enjin.sdk.schemas.project.mutations;
 import com.enjin.sdk.graphql.GraphQLRequest;
 
 /**
- * TODO
+ * Request for invalidating the cached metadata of a token (item) on the platform.
+ *
+ * @see com.enjin.sdk.schemas.project.ProjectSchema
  */
 public class InvalidateTokenMetadata extends GraphQLRequest<InvalidateTokenMetadata> {
 
     /**
-     * TODO
+     * Sole constructor.
      */
     public InvalidateTokenMetadata() {
         super("enjin.sdk.project.InvalidateTokenMetadata");
     }
 
     /**
-     * TODO
-     * @param id
-     * @return
+     * Sets the token (item) ID.
+     *
+     * @param id the ID
+     * @return this request for chaining
      */
     public InvalidateTokenMetadata id(String id) {
         return set("id", id);

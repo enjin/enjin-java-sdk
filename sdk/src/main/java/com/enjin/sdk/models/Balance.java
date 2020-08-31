@@ -4,45 +4,39 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 
 /**
- * TODO
+ * Models a token balance.
  */
 @Getter
 public class Balance {
 
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the token (item) ID for this balance
      */
     private String id;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the token (item) index for this balance
      */
     private String index;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the balance for this token
      */
     private Integer value;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the project for this balance's token
      */
     @SerializedName("app")
     private Project project;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the wallet for this balance
      */
     private Wallet wallet;
 

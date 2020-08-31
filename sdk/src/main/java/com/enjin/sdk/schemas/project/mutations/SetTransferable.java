@@ -5,41 +5,46 @@ import com.enjin.sdk.models.TokenTransferable;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 /**
- * TODO
+ * Request for setting if a item may be transferred.
+ *
+ * @see com.enjin.sdk.schemas.project.ProjectSchema
  */
 public class SetTransferable
         extends GraphQLRequest<SetTransferable>
         implements TransactionRequestArguments<SetTransferable> {
 
     /**
-     * TODO
+     * Sole constructor.
      */
     public SetTransferable() {
         super("enjin.sdk.project.SetTransferable");
     }
 
     /**
-     * TODO
-     * @param tokenId
-     * @return
+     * Sets the token (item) ID.
+     *
+     * @param tokenId the ID
+     * @return this request for chaining
      */
     public SetTransferable tokenId(String tokenId) {
         return set("tokenId", tokenId);
     }
 
     /**
-     * TODO
-     * @param tokenIndex
-     * @return
+     * Sets the index for non-fungible items.
+     *
+     * @param tokenIndex the index
+     * @return this request for chaining
      */
     public SetTransferable tokenIndex(String tokenIndex) {
         return set("tokenIndex", tokenIndex);
     }
 
     /**
-     * TODO
-     * @param transferable
-     * @return
+     * Sets the new transfer mode.
+     *
+     * @param transferable the new mode
+     * @return this request for chaining
      */
     public SetTransferable transferable(TokenTransferable transferable) {
         return set("transferable", transferable);

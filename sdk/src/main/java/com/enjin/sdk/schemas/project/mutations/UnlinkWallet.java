@@ -3,21 +3,24 @@ package com.enjin.sdk.schemas.project.mutations;
 import com.enjin.sdk.graphql.GraphQLRequest;
 
 /**
- * TODO
+ * Request for unlinking a wallet from the application.
+ *
+ * @see com.enjin.sdk.schemas.project.ProjectSchema
  */
 public class UnlinkWallet extends GraphQLRequest<UnlinkWallet> {
 
     /**
-     * TODO
+     * Sole constructor.
      */
     public UnlinkWallet() {
         super("enjin.sdk.project.UnlinkWallet");
     }
 
     /**
-     * TODO
-     * @param ethAddress
-     * @return
+     * Sets the Ethereum address of the wallet to unlink.
+     *
+     * @param ethAddress the address
+     * @return this request for chaining
      */
     public UnlinkWallet ethAddress(String ethAddress) {
         return set("ethAddress", ethAddress);

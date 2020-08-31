@@ -4,8 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * TODO
- * @param <T>
+ * Provides implementation of common filter input functionality.
+ *
+ * @param <T> the type of the implementing class
  */
 public abstract class Filter<T extends Filter<T>> {
 
@@ -13,9 +14,10 @@ public abstract class Filter<T extends Filter<T>> {
     private List<T> or;
 
     /**
-     * TODO
-     * @param others
-     * @return
+     * Sets the filter to include other filters to intersect with.
+     *
+     * @param others the other filters
+     * @return this filter for chaining
      */
     @SafeVarargs
     public final T and(T... others) {
@@ -26,9 +28,10 @@ public abstract class Filter<T extends Filter<T>> {
     }
 
     /**
-     * TODO
-     * @param others
-     * @return
+     * Sets the filter to include other filters to union with.
+     *
+     * @param others the other filters
+     * @return this filter for chaining
      */
     @SafeVarargs
     public final T or(T... others) {

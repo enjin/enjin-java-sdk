@@ -3,51 +3,54 @@ package com.enjin.sdk.models;
 import lombok.Getter;
 
 /**
- * TODO
+ * Models a application on the platform.
  */
 @Getter
 public class Project {
 
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the ID of this app
      */
     private Integer id;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the name of this app
      */
     private String name;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the description of this app
      */
     private String description;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the URL for the image of this app
      */
     private String image;
+
     /**
      * -- Getter --
-     * TODO
+     * <br>
+     * <p>
+     *     Formatted as an ISO 8601 string.
+     * </p>
      *
-     * @return
+     * @return the datetime when this was created
      */
     private String createdAt;
+
     /**
      * -- Getter --
-     * TODO
+     * <br>
+     * <p>
+     *     Formatted as an ISO 8601 string.
+     * </p>
      *
-     * @return
+     * @return the datetime when this was last updated
      */
     private String updatedAt;
 

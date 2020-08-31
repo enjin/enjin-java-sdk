@@ -12,20 +12,21 @@ import com.enjin.sdk.schemas.shared.SharedSchema;
 import java.io.IOException;
 
 /**
- * TODO
+ * Class for sending requests in the player schema.
  */
 public class PlayerSchema extends SharedSchema {
 
     /**
-     * TODO
+     * The name of the schema.
      */
     public static final String SCHEMA = "player";
 
     private final PlayerService playerService;
 
     /**
-     * TODO
-     * @param middleware
+     * Sole constructor.
+     *
+     * @param middleware the middleware
      */
     public PlayerSchema(TrustedPlatformMiddleware middleware) {
         super(middleware, SCHEMA);
@@ -33,19 +34,21 @@ public class PlayerSchema extends SharedSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link GetPlayer} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Player> getPlayer(GetPlayer request) {
         return sendRequest(playerService.getOne(schema, createRequestBody(request)));
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link GetPlayer} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void getPlayer(GetPlayer request,
                           HttpCallback<GraphQLResponse<Player>> callback) {
@@ -53,19 +56,21 @@ public class PlayerSchema extends SharedSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link UnlinkWallet} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Boolean> unlinkWallet(UnlinkWallet request) {
         return sendRequest(playerService.delete(schema, createRequestBody(request)));
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link UnlinkWallet} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void unlinkWallet(UnlinkWallet request,
                              HttpCallback<GraphQLResponse<Boolean>> callback) {

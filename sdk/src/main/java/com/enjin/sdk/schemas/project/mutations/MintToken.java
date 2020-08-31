@@ -7,32 +7,35 @@ import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 import java.util.Collection;
 
 /**
- * TODO
+ * Request for minting a token (item).
+ *
+ * @see com.enjin.sdk.schemas.project.ProjectSchema
  */
 public class MintToken
         extends GraphQLRequest<MintToken>
         implements TransactionRequestArguments<MintToken> {
 
     /**
-     * TODO
+     * Sole constructor.
      */
     public MintToken() {
         super("enjin.sdk.project.MintToken");
     }
 
     /**
-     * TODO
-     * @param tokenId
-     * @return
+     * Sets the token (item) ID.
+     * @param tokenId the ID
+     * @return this request for chaining
      */
     public MintToken tokenId(String tokenId) {
         return set("tokenId", tokenId);
     }
 
     /**
-     * TODO
-     * @param mints
-     * @return
+     * Sets the mints to be performed.
+     *
+     * @param mints the mints
+     * @return this request for chaining
      */
     public MintToken mints(Collection<MintInput> mints) {
         return set("mints", mints);
