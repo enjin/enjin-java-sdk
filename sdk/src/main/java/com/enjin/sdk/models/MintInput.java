@@ -13,7 +13,7 @@ public class MintInput {
     /**
      * Sets the Ethereum address to mint to.
      *
-     * @param ethAddress
+     * @param ethAddress the address
      * @return this input for chaining
      */
     public MintInput to(String ethAddress) {
@@ -24,7 +24,7 @@ public class MintInput {
     /**
      * Sets the number of items to mint.
      *
-     * @param value
+     * @param value the amount to mint
      * @return this input for chaining
      */
     public MintInput value(String value) {
