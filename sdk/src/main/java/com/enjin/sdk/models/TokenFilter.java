@@ -88,7 +88,7 @@ public class TokenFilter extends Filter<TokenFilter> {
     }
 
     /**
-     * Sets the filter to include items with names which end with the passed string.
+     * Sets the filter to include items with names which start with the passed string.
      *
      * @param prefix the prefix
      * @return this filter for chaining
@@ -99,7 +99,7 @@ public class TokenFilter extends Filter<TokenFilter> {
     }
 
     /**
-     * Sets the filter to include items with names which start with the passed string.
+     * Sets the filter to include items with names which end with the passed string.
      *
      * @param suffix the suffix
      * @return this filter for chaining
