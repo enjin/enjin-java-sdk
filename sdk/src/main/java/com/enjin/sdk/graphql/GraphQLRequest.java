@@ -10,6 +10,7 @@ import java.util.Map;
  * Facilitates setting variables to be used in a GraphQL request.
  *
  * @author Evan Lindsay
+ * @param <T> the type of the implementing class
  */
 public class GraphQLRequest<T extends GraphQLRequest<T>> implements VariableHolder<T> {
 
