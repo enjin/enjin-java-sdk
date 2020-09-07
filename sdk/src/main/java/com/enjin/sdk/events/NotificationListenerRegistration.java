@@ -4,8 +4,8 @@ import com.enjin.sdk.models.EventType;
 import lombok.Getter;
 
 /**
- * Registration wrapper for notification listeners that extracts any metadata
- * from the notification listener that may be used in event handling.
+ * Registration wrapper for a {@link NotificationListener} that extracts any metadata from the notification listener
+ * that may be used in event handling.
  *
  * @author Evan Lindsay
  * @see NotificationListener
@@ -24,6 +24,7 @@ public class NotificationListenerRegistration {
      */
     @Getter
     private final NotificationListener listener;
+
     /**
      * -- GETTER --
      * @return the matcher

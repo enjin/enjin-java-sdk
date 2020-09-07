@@ -41,7 +41,7 @@ public class Trade {
      * Sets the number of items to trade.
      * <br>
      * <p>
-     *     If trading ENJ the value is the amount to send in Wei (10^18 e.g. 1 ENJ = 1000000000000000000).
+     *     If trading ENJ, the value is the amount to send in Wei (10^18 e.g. 1 ENJ = 1000000000000000000).
      * </p>
      *
      * @param value the amount

@@ -28,7 +28,7 @@ import lombok.Getter;
 import lombok.NonNull;
 
 /**
- * Implementation class of {@link NotificationsService} for Pusher events.
+ * Implementation class of {@link NotificationsService} utilizing Pusher channel events.
  *
  * @see NotificationListener
  */

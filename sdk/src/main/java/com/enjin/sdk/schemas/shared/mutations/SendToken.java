@@ -4,7 +4,7 @@ import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 /**
- * Request to send a token (item).
+ * Request for sending a token (item).
  *
  * @see AdvancedSendToken
  * @see com.enjin.sdk.schemas.shared.SharedSchema

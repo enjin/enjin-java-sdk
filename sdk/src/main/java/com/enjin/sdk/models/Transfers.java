@@ -65,7 +65,7 @@ public class Transfers {
      * Sets the number of items to transfer.
      * <br>
      * <p>
-     *     If transferring ENJ the value is the amount to send in Wei (10^18 e.g. 1 ENJ = 1000000000000000000).
+     *     If transferring ENJ, the value is the amount to send in Wei (10^18 e.g. 1 ENJ = 1000000000000000000).
      * </p>
      *
      * @param value the amount

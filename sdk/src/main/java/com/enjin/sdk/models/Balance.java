@@ -23,7 +23,7 @@ public class Balance {
 
     /**
      * -- Getter --
-     * @return the balance for this token
+     * @return the balance for the token
      */
     private Integer value;
 

@@ -7,7 +7,7 @@ import com.enjin.sdk.schemas.shared.arguments.PaginationArguments;
 import com.enjin.sdk.schemas.shared.arguments.TokenFragmentArguments;
 
 /**
- * Request for getting tokens on the platform.
+ * Request for getting tokens (items) on the platform.
  *
  * @see com.enjin.sdk.models.Token
  * @see com.enjin.sdk.schemas.shared.SharedSchema
