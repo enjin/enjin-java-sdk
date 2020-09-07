@@ -6,7 +6,6 @@ import lombok.extern.java.Log;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-// TODO: Remove this class.
 /**
  * Provides callback function for simple logging in the sdk.
  *

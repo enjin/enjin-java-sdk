@@ -9,6 +9,7 @@ import lombok.Getter;
  *
  * @author Evan Lindsay
  * @see NotificationListener
+ * @see NotificationsService
  */
 public class NotificationListenerRegistration {
 

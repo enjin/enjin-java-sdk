@@ -5,6 +5,8 @@ import lombok.NonNull;
 
 /**
  * Client for using the player schema.
+ *
+ * @see EnjinHosts
  */
 public final class PlayerClient extends PlayerSchema {
 
