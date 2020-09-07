@@ -77,7 +77,7 @@ public class CreateToken
     }
 
     /**
-     * Sets the ratio of melt the value to be returned to the creator.
+     * Sets the ratio of the melt value to be returned to the creator.
      * <br>
      * <p>
      *     The ratio is in the range 0-5000 to allow fractional ratios, e.g. 1 = 0.01%, 5000 = 50%, ect...

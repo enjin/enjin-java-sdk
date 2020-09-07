@@ -10,7 +10,7 @@ public interface TransactionRequestArguments<T extends TransactionFragmentArgume
         extends TransactionFragmentArguments<T> {
 
     /**
-     * The Ethereum address of the sender.
+     * Sets the Ethereum address of the sender.
      *
      * @param ethAddress the address
      * @return this request for chaining

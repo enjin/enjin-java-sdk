@@ -24,6 +24,7 @@ public class MintToken
 
     /**
      * Sets the token (item) ID.
+     *
      * @param tokenId the ID
      * @return this request for chaining
      */

@@ -4,7 +4,7 @@ import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 /**
- * Request to send ENJ.
+ * Request for sending send ENJ.
  *
  * @see com.enjin.sdk.schemas.shared.SharedSchema
  */

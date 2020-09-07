@@ -4,7 +4,7 @@ import com.enjin.sdk.models.EventType;
 import com.enjin.sdk.models.Platform;
 
 /**
- * A notification service interface.
+ * Notification service interface for subscribing to and registering for events from the Enjin Cloud.
  *
  * @author Evan Lindsay
  */
@@ -94,17 +94,17 @@ public interface NotificationsService {
     void unsubscribeToApp(int app);
 
     /**
-     * Returns whether or not a channel is open for the specified application.
+     * Determines if the channel is open for the specified application.
      *
      * @param app the app ID
-     * @return true if listening, else false
+     * @return true if open, else false
      */
     boolean isSubscribedToApp(int app);
 
     /**
      * Opens a channel for the specified player, allowing listeners to receive events for that identity.
      *
-     * @param app the app ID
+     * @param app the ID of the app the player is on
      * @param player the player ID
      */
     void subscribeToPlayer(int app, String player);
@@ -112,17 +112,17 @@ public interface NotificationsService {
     /**
      * Closes a channel for the specified player, preventing listeners from receiving events for that identity.
      *
-     * @param app the app ID
+     * @param app the ID of the app the player is on
      * @param player the player ID
      */
     void unsubscribeToPlayer(int app, String player);
 
     /**
-     * Returns whether or not a channel is open for the specified player.
+     * Determines if the channel is open for the specified player.
      *
-     * @param app the app ID
+     * @param app the ID of the app the player is on
      * @param player the player ID
-     * @return true if listening, else false
+     * @return true if open, else false
      */
     boolean isSubscribedToPlayer(int app, String player);
 
@@ -141,10 +141,10 @@ public interface NotificationsService {
     void unsubscribeToToken(String token);
 
     /**
-     * Returns whether or not a channel is open for the specified token (item).
+     * Determines if the channel is open for the specified token (item).
      *
      * @param token the token ID
-     * @return true if listening, else false
+     * @return true if open, else false
      */
     boolean isSubscribedToToken(String token);
 
@@ -163,10 +163,10 @@ public interface NotificationsService {
     void unsubscribeToWallet(String wallet);
 
     /**
-     * Returns whether or not a channel is open for the specified wallet address.
+     * Determines if the channel is open for the specified wallet address.
      *
      * @param wallet the address
-     * @return true if listening, else false
+     * @return true if open, else false
      */
     boolean isSubscribedToWallet(String wallet);
 

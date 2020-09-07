@@ -4,7 +4,7 @@ import com.google.gson.JsonObject;
 import lombok.Getter;
 
 /**
- * Models a player of on a application.
+ * Models a player on a application.
  */
 @Getter
 public class Player {

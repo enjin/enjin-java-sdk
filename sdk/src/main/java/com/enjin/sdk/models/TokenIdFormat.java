@@ -3,7 +3,7 @@ package com.enjin.sdk.models;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Values used specify the format to render an item's ID in.
+ * Values used to specify the format to render an item's ID in.
  */
 public enum TokenIdFormat {
 
