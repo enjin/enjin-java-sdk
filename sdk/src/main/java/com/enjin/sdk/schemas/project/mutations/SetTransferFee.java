@@ -42,9 +42,9 @@ public class SetTransferFee
 
     // TODO: Replace this method with one to set the value.
     /**
-     * Sets the
+     * Sets the transfer fee settings.
      *
-     * @param transferFeeSettings
+     * @param transferFeeSettings the settings
      * @return this request for chaining
      */
     public SetTransferFee transferFeeSettings(TokenTransferFeeSettings transferFeeSettings) {
