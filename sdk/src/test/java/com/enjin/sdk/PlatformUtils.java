@@ -12,15 +12,19 @@ import java.lang.reflect.Field;
 @UtilityClass
 public class PlatformUtils {
 
-    public final Platform KOVAN = createMockPlatform("kovan");
-    public final Platform MAIN_NET = createMockPlatform("mainnet");
+    public final Platform KOVAN = createFakePlatform("kovan");
+    public final Platform MAIN_NET = createFakePlatform("mainnet");
 
-    public TrustedPlatformMiddleware createMockMiddleware() {
-        return new TrustedPlatformMiddleware("http://localhost/", false);
+    public TrustedPlatformMiddleware createFakeMiddleware() {
+        return createMiddleware("http://localhost/");
+    }
+
+    public TrustedPlatformMiddleware createMiddleware(String baseUri) {
+        return new TrustedPlatformMiddleware(baseUri, false);
     }
 
     @SneakyThrows
-    public Platform createMockPlatform(String network) {
+    public Platform createFakePlatform(String network) {
         Platform platform = new Platform();
 
         Class<? extends Platform> c = platform.getClass();
