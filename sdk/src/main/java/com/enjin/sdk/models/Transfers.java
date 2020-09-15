@@ -1,7 +1,9 @@
 package com.enjin.sdk.models;
 
 /**
- * TODO
+ * Models transfer input when making requests.
+ *
+ * @see com.enjin.sdk.schemas.shared.mutations.AdvancedSendToken
  */
 public class Transfers {
 
@@ -12,9 +14,10 @@ public class Transfers {
     private String value;
 
     /**
-     * TODO
-     * @param address
-     * @return
+     * Sets the source of the funds.
+     *
+     * @param address the source
+     * @return this input for chaining
      */
     public Transfers from(String address) {
         from = address;
@@ -22,9 +25,10 @@ public class Transfers {
     }
 
     /**
-     * TODO
-     * @param address
-     * @return
+     * Sets the destination of the funds.
+     *
+     * @param address the destination
+     * @return this input for chaining
      */
     public Transfers to(String address) {
         to = address;
@@ -32,9 +36,14 @@ public class Transfers {
     }
 
     /**
-     * TODO
-     * @param id
-     * @return
+     * Sets the token (item) ID to transfer.
+     * <br>
+     * <p>
+     *     If null or omitted then ENJ will be traded instead.
+     * </p>
+     *
+     * @param id the ID
+     * @return this input for chaining
      */
     public Transfers tokenId(String id) {
         tokenId = id;
@@ -42,9 +51,10 @@ public class Transfers {
     }
 
     /**
-     * TODO
-     * @param index
-     * @return
+     * Sets the index for non-fungible items.
+     *
+     * @param index the index
+     * @return this input for chaining
      */
     public Transfers tokenIndex(String index) {
         tokenIndex = index;
@@ -52,9 +62,14 @@ public class Transfers {
     }
 
     /**
-     * TODO
-     * @param value
-     * @return
+     * Sets the number of items to transfer.
+     * <br>
+     * <p>
+     *     If transferring ENJ, the value is the amount to send in Wei (10^18 e.g. 1 ENJ = 1000000000000000000).
+     * </p>
+     *
+     * @param value the amount
+     * @return this input for chaining
      */
     public Transfers value(String value) {
         this.value = value;

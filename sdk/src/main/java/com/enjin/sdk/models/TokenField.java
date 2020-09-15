@@ -3,7 +3,9 @@ package com.enjin.sdk.models;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * TODO
+ * The fields of the {@link Token} type.
+ *
+ * @see TokenSort
  */
 public enum TokenField {
 

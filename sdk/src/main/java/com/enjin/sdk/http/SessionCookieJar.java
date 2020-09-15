@@ -11,7 +11,7 @@ import okhttp3.CookieJar;
 import okhttp3.HttpUrl;
 
 /**
- * Stores the cookies used during a session.
+ * Stores the cookies used during a session. Used internally.
  */
 public class SessionCookieJar implements CookieJar {
 
@@ -19,9 +19,9 @@ public class SessionCookieJar implements CookieJar {
     private final Map<String, List<Cookie>> clientCookieStore = new ConcurrentHashMap<>();
 
     /**
-     * Saves cookies from an http response.
+     * Saves cookies from an HTTP response.
      *
-     * @param url     the url
+     * @param url the URL
      * @param cookies the cookies
      */
     @Override
@@ -30,10 +30,10 @@ public class SessionCookieJar implements CookieJar {
     }
 
     /**
-     * Loads cookies from the jar for an http request to the url.
+     * Loads cookies from the jar for an HTTP request to the URL.
      *
-     * @param url the url
-     * @return    the cookies
+     * @param url the URL
+     * @return the cookies
      */
     @Override
     public List<Cookie> loadForRequest(HttpUrl url) {
@@ -53,33 +53,31 @@ public class SessionCookieJar implements CookieJar {
     }
 
     /**
-     * Returns the cookies for the provided url.
+     * Returns the cookies for the provided URL.
      *
-     * @param url the url
-     * @return    the cookies
+     * @param url the URL
+     * @return the cookies
      */
     public List<Cookie> getCookies(@NonNull String url) {
         return new ArrayList<>(clientCookieStore.get(HttpUrl.get(url).host()));
     }
 
     /**
-     * Returns the cookies for the provided url.
+     * Returns the cookies for the provided URL.
      *
      * @param url the url
-     * @return    the cookies
-     *
-     * @throws NullPointerException if url is null
+     * @return the cookies
+     * @throws NullPointerException if URL is null
      */
     public List<Cookie> getCookies(@NonNull HttpUrl url) {
         return new ArrayList<>(clientCookieStore.get(url.host()));
     }
 
     /**
-     * Sets a cookie for the provided url.
+     * Sets a cookie for the provided URL.
      *
-     * @param url    the url
+     * @param url the URL
      * @param cookie the cookie
-     *
      * @throws NullPointerException if any parameters are null
      */
     public void setCookie(@NonNull String url, @NonNull Cookie cookie) {
@@ -87,11 +85,10 @@ public class SessionCookieJar implements CookieJar {
     }
 
     /**
-     * Sets a cookie for the provided url.
+     * Sets a cookie for the provided URL.
      *
-     * @param url    the url
+     * @param url the URL
      * @param cookie the cookie
-     *
      * @throws NullPointerException if any parameters are null
      */
     public void setCookie(@NonNull HttpUrl url, @NonNull Cookie cookie) {
@@ -108,12 +105,11 @@ public class SessionCookieJar implements CookieJar {
     }
 
     /**
-     * Sets a cookie with the provided name and value for the url.
+     * Sets a cookie with the provided name and value for the URL.
      *
-     * @param url   the url
-     * @param name  the cookie name
+     * @param url the URL
+     * @param name the cookie name
      * @param value the cookie value
-     *
      * @throws NullPointerException if any parameters are null
      */
     public void setCookie(@NonNull String url, @NonNull String name, @NonNull String value) {
@@ -121,12 +117,11 @@ public class SessionCookieJar implements CookieJar {
     }
 
     /**
-     * Sets a cookie with the provided name and value for the url.
+     * Sets a cookie with the provided name and value for the URL.
      *
-     * @param url   the url
-     * @param name  the cookie name
+     * @param url the url
+     * @param name the cookie name
      * @param value the cookie value
-     *
      * @throws NullPointerException if any parameters are null
      */
     public void setCookie(@NonNull HttpUrl url, @NonNull String name, @NonNull String value) {
@@ -134,9 +129,9 @@ public class SessionCookieJar implements CookieJar {
     }
 
     /**
-     * Removes a cookie with the provided name from the url.
+     * Removes a cookie with the provided name from the URL.
      *
-     * @param url  the url
+     * @param url the URL
      * @param name the cookie name
      */
     public void removeCookie(String url, String name) {
@@ -144,9 +139,9 @@ public class SessionCookieJar implements CookieJar {
     }
 
     /**
-     * Removes a cookie with the provided name from the url.
+     * Removes a cookie with the provided name from the URL.
      *
-     * @param url  the url
+     * @param url the URL
      * @param name the cookie name
      */
     public void removeCookie(HttpUrl url, String name) {

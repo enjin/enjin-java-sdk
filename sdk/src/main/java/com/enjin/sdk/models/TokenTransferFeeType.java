@@ -1,10 +1,8 @@
 package com.enjin.sdk.models;
 
 /**
- * The transfer fee strategy type.
+ * Represents the transfer fee type.
  *
- * @author Evan Lindsay
- * @see Token
  * @see TokenTransferFeeSettings
  */
 public enum TokenTransferFeeType {

@@ -4,27 +4,28 @@ import com.enjin.sdk.schemas.project.ProjectSchema;
 import lombok.NonNull;
 
 /**
- * TODO
+ * Client for using the project schema.
+ *
+ * @see EnjinHosts
  */
 public final class ProjectClient extends ProjectSchema {
 
-    /**
-     * TODO
-     */
-    public static final String SCHEMA = "app";
+    public static final String SCHEMA = "app"; // TODO: Remove this field
 
     /**
-     * TODO
-     * @param baseUrl
+     * Constructs a client with the targeted URL.
+     *
+     * @param baseUrl the base URL
      */
     public ProjectClient(@NonNull String baseUrl) {
         this(baseUrl, false);
     }
 
     /**
-     * TODO
-     * @param baseUrl
-     * @param debug
+     * Constructs a client with the targeted URL and debugging state.
+     *
+     * @param baseUrl the base URL
+     * @param debug whether debugging is enabled
      */
     public ProjectClient(@NonNull String baseUrl, boolean debug) {
         super(new TrustedPlatformMiddleware(baseUrl, debug));

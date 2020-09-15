@@ -6,7 +6,9 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * TODO
+ * Models a filter input for balance queries.
+ *
+ * @see com.enjin.sdk.schemas.shared.queries.GetBalances
  */
 public class BalanceFilter extends Filter<BalanceFilter> {
 
@@ -27,9 +29,10 @@ public class BalanceFilter extends Filter<BalanceFilter> {
     private Integer valueLte;
 
     /**
-     * TODO
-     * @param tokenId
-     * @return
+     * Sets the token (item) ID to filter for.
+     *
+     * @param tokenId the token ID
+     * @return this filter for chaining
      */
     public BalanceFilter tokenId(String tokenId) {
         this.tokenId = tokenId;
@@ -37,9 +40,10 @@ public class BalanceFilter extends Filter<BalanceFilter> {
     }
 
     /**
-     * TODO
-     * @param tokenIds
-     * @return
+     * Sets the token (item) IDs to filter for.
+     *
+     * @param tokenIds the token IDs
+     * @return this filter for chaining
      */
     public BalanceFilter tokenIdIn(String... tokenIds) {
         tokenIdIn = tokenIds == null
@@ -49,9 +53,10 @@ public class BalanceFilter extends Filter<BalanceFilter> {
     }
 
     /**
-     * TODO
-     * @param value
-     * @return
+     * Sets the filter to include balances equal to the passed value.
+     *
+     * @param value the value to compare by
+     * @return this filter for chaining
      */
     public BalanceFilter value(Integer value) {
         this.value = value;
@@ -59,9 +64,10 @@ public class BalanceFilter extends Filter<BalanceFilter> {
     }
 
     /**
-     * TODO
-     * @param value
-     * @return
+     * Sets the filter to include balances greater than the passed value.
+     *
+     * @param value the value to compare by
+     * @return this filter for chaining
      */
     public BalanceFilter valueGreaterThan(Integer value) {
         valueGt = value;
@@ -69,9 +75,10 @@ public class BalanceFilter extends Filter<BalanceFilter> {
     }
 
     /**
-     * TODO
-     * @param value
-     * @return
+     * Sets the filter to include balances greater than or equal to the passed value.
+     *
+     * @param value the value to compare by
+     * @return this filter for chaining
      */
     public BalanceFilter valueGreaterThanOrEqual(Integer value) {
         valueGte = value;
@@ -79,9 +86,10 @@ public class BalanceFilter extends Filter<BalanceFilter> {
     }
 
     /**
-     * TODO
-     * @param value
-     * @return
+     * Sets the filter to include balances less than the passed value.
+     *
+     * @param value the value to compare by
+     * @return this filter for chaining
      */
     public BalanceFilter valueLessThan(Integer value) {
         valueLt = value;
@@ -89,9 +97,10 @@ public class BalanceFilter extends Filter<BalanceFilter> {
     }
 
     /**
-     * TODO
-     * @param value
-     * @return
+     * Sets the filter to include balances less than or equal to the passed value.
+     *
+     * @param value the value to compare by
+     * @return this filter for chaining
      */
     public BalanceFilter valueLessThanOrEqual(Integer value) {
         valueLte = value;
@@ -99,9 +108,10 @@ public class BalanceFilter extends Filter<BalanceFilter> {
     }
 
     /**
-     * TODO
-     * @param wallet
-     * @return
+     * Sets the wallet to filter for.
+     *
+     * @param wallet the wallet address
+     * @return this filter for chaining
      */
     public BalanceFilter wallet(String wallet) {
         this.wallet = wallet;
@@ -109,9 +119,10 @@ public class BalanceFilter extends Filter<BalanceFilter> {
     }
 
     /**
-     * TODO
-     * @param wallets
-     * @return
+     * Sets the wallets to filter for.
+     *
+     * @param wallets the wallet addresses
+     * @return this filter for chaining
      */
     public BalanceFilter walletIn(String... wallets) {
         walletIn = wallets == null

@@ -7,10 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Represents a model of a GraphQL request and
- * facilitates the serialization of the query.
+ * Facilitates setting variables to be used in a GraphQL request.
  *
- * @author Evan Lindsay
+ * @param <T> the type of the implementing class
  */
 public class GraphQLRequest<T extends GraphQLRequest<T>> implements VariableHolder<T> {
 
@@ -18,26 +17,25 @@ public class GraphQLRequest<T extends GraphQLRequest<T>> implements VariableHold
 
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the namespace
      */
     @Getter
     private final String namespace;
 
     /**
-     * TODO
-     * @param namespace
+     * Constructs a request with the specified namespace and no predefined variables.
+     *
+     * @param namespace the request namespace
      */
     public GraphQLRequest(String namespace) {
         this(new HashMap<>(), namespace);
     }
 
     /**
-     * Constructs a request with the passed parameter mapping.
+     * Constructs a request with the passed variable mapping and namespace.
      *
-     * @param variables mapping of parameter keys and values.
-     * @param namespace
+     * @param variables the mapping of variable keys and values
+     * @param namespace the request namespace
      */
     public GraphQLRequest(Map<String, Object> variables, String namespace) {
         this.variables = variables;
@@ -45,16 +43,15 @@ public class GraphQLRequest<T extends GraphQLRequest<T>> implements VariableHold
     }
 
     /**
-     * Adds a parameter to be baked into the query.
+     * Sets a variable.
      *
-     * @param key   the parameter key.
-     * @param value the parameter value.
-     *
-     * @return the builder.
-     *
-     * @throws NullPointerException     if key is null
+     * @param key the key
+     * @param value the value
+     * @return this request for chaining
+     * @throws NullPointerException if key is null
      * @throws IllegalArgumentException if key is empty
      */
+    @Override
     public T set(@NonNull String key, Object value) {
         if (key.isEmpty())
             throw new IllegalArgumentException("Key is empty");

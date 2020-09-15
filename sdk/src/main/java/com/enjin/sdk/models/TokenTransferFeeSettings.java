@@ -4,11 +4,9 @@ import lombok.Getter;
 import lombok.ToString;
 
 /**
- * Defines the fee structure for a token.
+ * Models transfer fee settings for an item.
  *
- * @author Evan Lindsay
  * @see Token
- * @see TokenTransferFeeType
  */
 @ToString
 @Getter
@@ -16,25 +14,24 @@ public class TokenTransferFeeSettings {
 
     /**
      * -- GETTER --
-     * Returns the transfer fee strategy type.
-     *
-     * @return the strategy type.
+     * @return the transfer fee type
      */
     private TokenTransferFeeType type;
 
     /**
      * -- GETTER --
-     * Returns the token id.
+     * <br>
+     * <p>
+     *     Will either be the item ID or "0" for ENJ.
+     * </p>
      *
-     * @return the token id.
+     * @return the token (item) ID
      */
     private String tokenId;
 
     /**
      * -- GETTER --
-     * Returns the fee value.
-     *
-     * @return the fee value.
+     * @return the fee value in Wei
      */
     private String value;
 

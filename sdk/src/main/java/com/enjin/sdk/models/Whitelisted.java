@@ -1,7 +1,7 @@
 package com.enjin.sdk.models;
 
 /**
- * TODO
+ * Represents the whitelist settings.
  */
 public enum Whitelisted {
 

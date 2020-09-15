@@ -1,9 +1,8 @@
 package com.enjin.sdk.models;
 
 /**
- * The token supply model used.
+ * Values used to specify the token supply models.
  *
- * @author Evan Lindsay
  * @see Token
  */
 public enum TokenSupplyModel {

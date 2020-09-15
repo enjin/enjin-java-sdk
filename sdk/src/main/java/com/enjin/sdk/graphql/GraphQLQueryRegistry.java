@@ -18,11 +18,10 @@ public class GraphQLQueryRegistry {
     }
 
     /**
-     * Registers a template with a registry.
+     * Registers a new template.
      *
-     * @param name  the template name
+     * @param name the template name
      * @param query the template to register
-     *
      * @return true if registered, false if already exists
      */
     public boolean register(String name, String query) {
@@ -35,10 +34,10 @@ public class GraphQLQueryRegistry {
     }
 
     /**
-     * Returns true if the registry contains the template.
+     * Returns true if this registry contains the template.
      *
      * @param key the template name
-     * @return    true if the template is registered, false otherwise
+     * @return true if the template is registered, false otherwise
      */
     public boolean has(String key) {
         return registered.containsKey(key);
@@ -48,7 +47,7 @@ public class GraphQLQueryRegistry {
      * Returns the query string if the registry contains the template or null if not.
      *
      * @param key the template name
-     * @return    the query
+     * @return the query
      */
     public String get(String key) {
         return registered.get(key);

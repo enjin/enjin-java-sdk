@@ -32,20 +32,21 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * TODO
+ * Class for sending requests in the project schema.
  */
 public class ProjectSchema extends SharedSchema {
 
     /**
-     * TODO
+     * The name of the schema.
      */
     public static final String SCHEMA = "app";
 
     protected final PlayerService playerService;
 
     /**
-     * TODO
-     * @param middleware
+     * Sole constructor.
+     *
+     * @param middleware the middleware
      */
     public ProjectSchema(TrustedPlatformMiddleware middleware) {
         super(middleware, SCHEMA);
@@ -53,19 +54,21 @@ public class ProjectSchema extends SharedSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link AuthPlayer} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<AccessToken> authPlayer(AuthPlayer request) {
         return sendRequest(playerService.getAuth(schema, createRequestBody(request)));
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link AuthPlayer} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void authPlayer(AuthPlayer request,
                            HttpCallback<GraphQLResponse<AccessToken>> callback) {
@@ -73,19 +76,21 @@ public class ProjectSchema extends SharedSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link AuthProject} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<AccessToken> authProject(AuthProject request) {
         return sendRequest(projectService.getAuth(schema, createRequestBody(request)));
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link AuthProject} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void authProject(AuthProject request,
                             HttpCallback<GraphQLResponse<AccessToken>> callback) {
@@ -93,19 +98,21 @@ public class ProjectSchema extends SharedSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link CreatePlayer} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<AccessToken> createPlayer(CreatePlayer request) {
         return sendRequest(playerService.getAuth(schema, createRequestBody(request)));
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link CreatePlayer} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void createPlayer(CreatePlayer request,
                              HttpCallback<GraphQLResponse<AccessToken>> callback) {
@@ -113,19 +120,21 @@ public class ProjectSchema extends SharedSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link CreateToken} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Request> createToken(CreateToken request) {
         return transactionRequest(request);
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link CreateToken} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void createToken(CreateToken request,
                             HttpCallback<GraphQLResponse<Request>> callback) {
@@ -133,19 +142,21 @@ public class ProjectSchema extends SharedSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link DecreaseMaxMeltFee} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Request> decreaseMaxMeltFee(DecreaseMaxMeltFee request) {
         return transactionRequest(request);
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link DecreaseMaxMeltFee} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void decreaseMaxMeltFee(DecreaseMaxMeltFee request,
                                    HttpCallback<GraphQLResponse<Request>> callback) {
@@ -153,19 +164,21 @@ public class ProjectSchema extends SharedSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link DecreaseMaxTransferFee} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Request> decreaseMaxTransferFee(DecreaseMaxTransferFee request) {
         return transactionRequest(request);
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link DecreaseMaxTransferFee} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void decreaseMaxTransferFee(DecreaseMaxTransferFee request,
                                        HttpCallback<GraphQLResponse<Request>> callback) {
@@ -173,19 +186,21 @@ public class ProjectSchema extends SharedSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link DeletePlayer} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Boolean> deletePlayer(DeletePlayer request) {
         return sendRequest(playerService.delete(schema, createRequestBody(request)));
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link DeletePlayer} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void deletePlayer(DeletePlayer request,
                              HttpCallback<GraphQLResponse<Boolean>> callback) {
@@ -193,19 +208,21 @@ public class ProjectSchema extends SharedSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link GetPlayer} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Player> getPlayer(GetPlayer request) {
         return sendRequest(playerService.getOne(schema, createRequestBody(request)));
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link GetPlayer} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void getPlayer(GetPlayer request,
                           HttpCallback<GraphQLResponse<Player>> callback) {
@@ -213,19 +230,21 @@ public class ProjectSchema extends SharedSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link GetPlayers} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<List<Player>> getPlayers(GetPlayers request) {
         return sendRequest(playerService.getMany(schema, createRequestBody(request)));
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link GetPlayers} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void getPlayers(GetPlayers request,
                            HttpCallback<GraphQLResponse<List<Player>>> callback) {
@@ -233,19 +252,21 @@ public class ProjectSchema extends SharedSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link InvalidateTokenMetadata} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Boolean> invalidateTokenMetadata(InvalidateTokenMetadata request) {
         return sendRequest(projectService.delete(schema, createRequestBody(request)));
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link InvalidateTokenMetadata} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void invalidateTokenMetadata(InvalidateTokenMetadata request,
                                         HttpCallback<GraphQLResponse<Boolean>> callback) {
@@ -253,19 +274,21 @@ public class ProjectSchema extends SharedSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link MintToken} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Request> mintToken(MintToken request) {
         return transactionRequest(request);
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link MintToken} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void mintToken(MintToken request,
                           HttpCallback<GraphQLResponse<Request>> callback) {
@@ -273,19 +296,21 @@ public class ProjectSchema extends SharedSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link ReleaseReserve} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Request> releaseReserve(ReleaseReserve request) {
         return transactionRequest(request);
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link ReleaseReserve} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void releaseReserve(ReleaseReserve request,
                                HttpCallback<GraphQLResponse<Request>> callback) {
@@ -293,19 +318,21 @@ public class ProjectSchema extends SharedSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link SetMeltFee} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Request> setMeltFee(SetMeltFee request) {
         return transactionRequest(request);
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link SetMeltFee} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void setMeltFee(SetMeltFee request,
                            HttpCallback<GraphQLResponse<Request>> callback) {
@@ -313,19 +340,21 @@ public class ProjectSchema extends SharedSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link SetTransferable} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Request> setTransferable(SetTransferable request) {
         return transactionRequest(request);
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link SetTransferable} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void setTransferable(SetTransferable request,
                                 HttpCallback<GraphQLResponse<Request>> callback) {
@@ -333,19 +362,21 @@ public class ProjectSchema extends SharedSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link SetTransferFee} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Request> setTransferFee(SetTransferFee request) {
         return transactionRequest(request);
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link SetTransferFee} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void setTransferFee(SetTransferFee request,
                                HttpCallback<GraphQLResponse<Request>> callback) {
@@ -353,19 +384,21 @@ public class ProjectSchema extends SharedSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link SetUri} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Request> setUri(SetUri request) {
         return transactionRequest(request);
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link SetUri} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void setUri(SetUri request,
                        HttpCallback<GraphQLResponse<Request>> callback) {
@@ -373,19 +406,21 @@ public class ProjectSchema extends SharedSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link SetWhitelisted} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Request> setWhitelisted(SetWhitelisted request) {
         return transactionRequest(request);
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link SetWhitelisted} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void setWhitelisted(SetWhitelisted request,
                                HttpCallback<GraphQLResponse<Request>> callback) {
@@ -393,19 +428,21 @@ public class ProjectSchema extends SharedSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link UnlinkWallet} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Boolean> unlinkWallet(UnlinkWallet request) {
         return sendRequest(playerService.delete(schema, createRequestBody(request)));
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link UnlinkWallet} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void unlinkWallet(UnlinkWallet request,
                              HttpCallback<GraphQLResponse<Boolean>> callback) {
@@ -413,19 +450,21 @@ public class ProjectSchema extends SharedSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link UpdateName} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Request> updateName(UpdateName request) {
         return transactionRequest(request);
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link UpdateName} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void updateName(UpdateName request,
                            HttpCallback<GraphQLResponse<Request>> callback) {

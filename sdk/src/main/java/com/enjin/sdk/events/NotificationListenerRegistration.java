@@ -4,12 +4,11 @@ import com.enjin.sdk.models.EventType;
 import lombok.Getter;
 
 /**
- * Registration wrapper for notification listeners that extracts any metadata
- * from the notification listener that may be used in event handling.
+ * Registration wrapper for a {@link NotificationListener} that extracts any metadata from the notification listener
+ * that may be used in event handling.
  *
  * @see NotificationListener
- *
- * @author Evan Lindsay
+ * @see NotificationsService
  */
 public class NotificationListenerRegistration {
 
@@ -20,13 +19,14 @@ public class NotificationListenerRegistration {
 
     /**
      * -- GETTER --
-     * @return the listener.
+     * @return the listener
      */
     @Getter
     private final NotificationListener listener;
+
     /**
      * -- GETTER --
-     * @return the matcher.
+     * @return the matcher
      */
     @Getter
     private EventMatcher eventMatcher = ALLOW_ALL_MATCHER;
@@ -34,7 +34,7 @@ public class NotificationListenerRegistration {
     /**
      * Constructs the registration for the specified listener.
      *
-     * @param listener the listener.
+     * @param listener the listener
      */
     protected NotificationListenerRegistration(NotificationListener listener) {
         this.listener = listener;
@@ -43,7 +43,7 @@ public class NotificationListenerRegistration {
     /**
      * Constructs the registration for the specified listener with the specified event matcher.
      *
-     * @param listener     the listener.
+     * @param listener the listener.
      * @param matcher the event matcher.
      */
     protected NotificationListenerRegistration(NotificationListener listener, EventMatcher matcher) {
@@ -52,11 +52,10 @@ public class NotificationListenerRegistration {
     }
 
     /**
-     * Creates a new listener configuration for the provided notification service.
+     * Creates a new registration configuration for the provided listener.
      *
-     * @param listener the listener to configure.
-     *
-     * @return RegistrationListenerConfiguration
+     * @param listener the listener to configure
+     * @return the configuration
      */
     @SuppressWarnings("rawtypes")
     public static RegistrationListenerConfiguration configure(NotificationListener listener) {
@@ -66,9 +65,7 @@ public class NotificationListenerRegistration {
     /**
      * A registration configuration for listeners.
      *
-     * @param <T> the configuration.
-     *
-     * @author Evan Lindsay
+     * @param <T> the configuration
      */
     public static class RegistrationListenerConfiguration<T extends RegistrationListenerConfiguration<T>> {
 
@@ -76,15 +73,16 @@ public class NotificationListenerRegistration {
          * The notification listener of the configuration.
          */
         protected NotificationListener listener;
+
         /**
          * The event matcher of the configuration.
          */
         protected EventMatcher eventMatcher = ALLOW_ALL_MATCHER;
 
         /**
+         * Sole constructor.
          *
-         *
-         * @param listener the listener.
+         * @param listener the listener
          */
         protected RegistrationListenerConfiguration(NotificationListener listener) {
             this.listener = listener;
@@ -96,8 +94,7 @@ public class NotificationListenerRegistration {
          * is null then the default event matcher that allows all event will be assigned.
          *
          * @param eventMatcher the event matcher
-         *
-         * @return the configuration.
+         * @return this configuration for chaining
          */
         @SuppressWarnings("unchecked")
         public T withMatcher(EventMatcher eventMatcher) {
@@ -106,11 +103,10 @@ public class NotificationListenerRegistration {
         }
 
         /**
-         * Creates an event matcher that will allow the specified event types.
+         * Creates and assigns an event matcher that will allow the specified event types.
          *
-         * @param types the types to allow.
-         *
-         * @return the configuration.
+         * @param types the types to allow
+         * @return this configuration for chaining
          */
         public T withAllowedEvents(final EventType... types) {
             return this.withMatcher(types == null
@@ -119,11 +115,10 @@ public class NotificationListenerRegistration {
         }
 
         /**
-         * Creates an event matcher that will ignore the specified event types.
+         * Creates and assigns an event matcher that will ignore the specified event types.
          *
-         * @param types the types to ignore.
-         *
-         * @return the configuration.
+         * @param types the types to ignore
+         * @return this configuration for chaining
          */
         public T withIgnoredEvents(final EventType... types) {
             return this.withMatcher(types == null

@@ -9,7 +9,6 @@ import java.util.List;
 /**
  * Represent the type of notification received.
  *
- * @author Evan Lindsay
  * @see NotificationEvent
  */
 public enum EventType {
@@ -47,10 +46,11 @@ public enum EventType {
 
     /**
      * -- GETTER --
-     * @return the event type
+     * @return the event key
      */
     @Getter
     private final String key;
+
     /**
      * -- GETTER --
      * @return the channels
@@ -61,7 +61,8 @@ public enum EventType {
     /**
      * Sole constructor.
      *
-     * @param key the type of the enum
+     * @param key the key of the event
+     * @param channels the channels the event is broadcast on
      */
     EventType(String key, String... channels) {
         this.key = key;
@@ -69,11 +70,10 @@ public enum EventType {
     }
 
     /**
-     * Checks if this type is value in the given filter.
+     * Checks if this type is a value in the given filter.
      *
-     * @param filter filter being processed
-     *
-     * @return boolean
+     * @param filter the filter being processed
+     * @return true if this type is in the filter, false otherwise
      */
     public boolean in(EventFilter filter) {
         if (filter != null)
@@ -83,11 +83,10 @@ public enum EventType {
     }
 
     /**
-     * Check if this type is the current type.
+     * Check if this type is present in the passed values.
      *
-     * @param types to check
-     *
-     * @return boolean
+     * @param types the types to check
+     * @return true if this type is present, false otherwise
      */
     public boolean in(EventType... types) {
         for (EventType type : types) {
@@ -99,11 +98,10 @@ public enum EventType {
     }
 
     /**
-     * Method to get the correct enum value.
+     * Returns the event type for the given name.
      *
-     * @param name to get enum for
-     *
-     * @return NotificationType
+     * @param name the name of the type
+     * @return the type if present, or {@link #UNKNOWN}
      */
     public static EventType getFromName(String name) {
         for (EventType type : EventType.values()) {
@@ -115,9 +113,10 @@ public enum EventType {
     }
 
     /**
-     * TODO
-     * @param key
-     * @return
+     * Returns the event type for the given key.
+     *
+     * @param key the key of the type
+     * @return the type if present, or {@link #UNKNOWN}
      */
     public static EventType getFromKey(String key) {
         for (EventType type : EventType.values()) {
@@ -129,9 +128,10 @@ public enum EventType {
     }
 
     /**
-     * TODO
-     * @param channel
-     * @return
+     * Returns a list of event types that broadcast on the specified channel.
+     *
+     * @param channel the channel to filter by
+     * @return the list of types
      */
     public static List<EventType> filterByChannelTypes(String channel) {
         List<EventType> types = new ArrayList<>();

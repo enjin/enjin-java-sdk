@@ -6,7 +6,9 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * TODO
+ * Models a filter input for transaction queries.
+ *
+ * @see com.enjin.sdk.schemas.shared.queries.GetRequests
  */
 public class TransactionFilter extends Filter<TransactionFilter> {
 
@@ -39,9 +41,10 @@ public class TransactionFilter extends Filter<TransactionFilter> {
     private List<String> walletIn;
 
     /**
-     * TODO
-     * @param id
-     * @return
+     * Sets the ID to filter for.
+     *
+     * @param id the ID
+     * @return this filter for chaining
      */
     public TransactionFilter id(String id) {
         this.id = id;
@@ -49,9 +52,10 @@ public class TransactionFilter extends Filter<TransactionFilter> {
     }
 
     /**
-     * TODO
-     * @param ids
-     * @return
+     * Sets the IDs to filter for.
+     *
+     * @param ids the IDs
+     * @return this filter for chaining
      */
     public TransactionFilter idIn(String... ids) {
         idIn = ids == null
@@ -61,9 +65,10 @@ public class TransactionFilter extends Filter<TransactionFilter> {
     }
 
     /**
-     * TODO
-     * @param transactionId
-     * @return
+     * Sets the hash ID to filter for.
+     *
+     * @param transactionId the hash ID
+     * @return this filter for chaining
      */
     public TransactionFilter transactionId(String transactionId) {
         this.transactionId = transactionId;
@@ -71,9 +76,10 @@ public class TransactionFilter extends Filter<TransactionFilter> {
     }
 
     /**
-     * TODO
-     * @param transactionIds
-     * @return
+     * Sets the hash IDs to filter for.
+     *
+     * @param transactionIds the hash IDs
+     * @return this filter for chaining
      */
     public TransactionFilter transactionIdIn(String... transactionIds) {
         transactionIdIn = transactionIds == null
@@ -83,9 +89,10 @@ public class TransactionFilter extends Filter<TransactionFilter> {
     }
 
     /**
-     * TODO
-     * @param tokenId
-     * @return
+     * Sets the token (item) ID to filter for.
+     *
+     * @param tokenId the ID
+     * @return this filter for chaining
      */
     public TransactionFilter tokenId(String tokenId) {
         this.tokenId = tokenId;
@@ -93,9 +100,10 @@ public class TransactionFilter extends Filter<TransactionFilter> {
     }
 
     /**
-     * TODO
-     * @param tokenIds
-     * @return
+     * Sets the token (item) IDs to filter for.
+     *
+     * @param tokenIds the IDs
+     * @return this filter for chaining
      */
     public TransactionFilter tokenIdIn(String... tokenIds) {
         tokenIdIn = tokenIds == null
@@ -105,9 +113,10 @@ public class TransactionFilter extends Filter<TransactionFilter> {
     }
 
     /**
-     * TODO
-     * @param type
-     * @return
+     * Sets the transaction type to filter for.
+     *
+     * @param type the type
+     * @return this filter for chaining
      */
     public TransactionFilter type(RequestType type) {
         this.type = type;
@@ -115,9 +124,10 @@ public class TransactionFilter extends Filter<TransactionFilter> {
     }
 
     /**
-     * TODO
-     * @param types
-     * @return
+     * Sets the transaction types to filter for.
+     *
+     * @param types the types
+     * @return this filter for chaining
      */
     public TransactionFilter typeIn(RequestType... types) {
         typeIn = types == null
@@ -127,9 +137,10 @@ public class TransactionFilter extends Filter<TransactionFilter> {
     }
 
     /**
-     * TODO
-     * @param value
-     * @return
+     * Sets the filter to include transactions equal to the passed value.
+     *
+     * @param value the value to compare by
+     * @return this filter for chaining
      */
     public TransactionFilter value(Integer value) {
         this.value = value;
@@ -137,9 +148,10 @@ public class TransactionFilter extends Filter<TransactionFilter> {
     }
 
     /**
-     * TODO
-     * @param value
-     * @return
+     * Sets the filter to include transactions greater than the passed value.
+     *
+     * @param value the value to compare by
+     * @return this filter for chaining
      */
     public TransactionFilter valueGreaterThan(Integer value) {
         valueGt = value;
@@ -147,9 +159,10 @@ public class TransactionFilter extends Filter<TransactionFilter> {
     }
 
     /**
-     * TODO
-     * @param value
-     * @return
+     * Sets the filter to include transactions greater than or equal to the passed value.
+     *
+     * @param value the value to compare by
+     * @return this filter for chaining
      */
     public TransactionFilter valueGreaterThanOrEqual(Integer value) {
         valueGte = value;
@@ -157,9 +170,10 @@ public class TransactionFilter extends Filter<TransactionFilter> {
     }
 
     /**
-     * TODO
-     * @param value
-     * @return
+     * Sets the filter to include transactions less than the passed value.
+     *
+     * @param value the value to compare by
+     * @return this filter for chaining
      */
     public TransactionFilter valueLessThan(Integer value) {
         valueLt = value;
@@ -167,9 +181,10 @@ public class TransactionFilter extends Filter<TransactionFilter> {
     }
 
     /**
-     * TODO
-     * @param value
-     * @return
+     * Sets the filter to include transactions less than or equal to the passed value.
+     *
+     * @param value the value to compare by
+     * @return this filter for chaining
      */
     public TransactionFilter valueLessThanOrEqual(Integer value) {
         valueLte = value;
@@ -177,9 +192,10 @@ public class TransactionFilter extends Filter<TransactionFilter> {
     }
 
     /**
-     * TODO
-     * @param state
-     * @return
+     * Sets the transaction state to filter for.
+     *
+     * @param state the state
+     * @return this filter for chaining
      */
     public TransactionFilter state(RequestState state) {
         this.state = state;
@@ -187,9 +203,10 @@ public class TransactionFilter extends Filter<TransactionFilter> {
     }
 
     /**
-     * TODO
-     * @param states
-     * @return
+     * Sets the transaction states to filter for.
+     *
+     * @param states the states
+     * @return this filter for chaining
      */
     public TransactionFilter stateIn(RequestState... states) {
         stateIn = states == null
@@ -199,9 +216,10 @@ public class TransactionFilter extends Filter<TransactionFilter> {
     }
 
     /**
-     * TODO
-     * @param wallet
-     * @return
+     * Sets the wallet to filter for.
+     *
+     * @param wallet the wallet address
+     * @return this filter for chaining
      */
     public TransactionFilter wallet(String wallet) {
         this.wallet = wallet;
@@ -209,9 +227,10 @@ public class TransactionFilter extends Filter<TransactionFilter> {
     }
 
     /**
-     * TODO
-     * @param wallets
-     * @return
+     * Sets the wallets to filter for.
+     *
+     * @param wallets the wallet addresses
+     * @return this filter for chaining
      */
     public TransactionFilter walletIn(String... wallets) {
         walletIn = wallets == null

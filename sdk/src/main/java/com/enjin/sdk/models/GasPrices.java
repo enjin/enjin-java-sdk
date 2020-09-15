@@ -3,37 +3,56 @@ package com.enjin.sdk.models;
 import lombok.Getter;
 
 /**
- * TODO
+ * Models a gas prices object.
  */
 @Getter
 public class GasPrices {
 
     /**
      * -- Getter --
-     * TODO
+     * The recommended safe gas price in Gwei.
+     * <br>
+     * <p>
+     *     Expected to be mined in less than 30 minutes.
+     * </p>
      *
-     * @return
+     * @return the gas price
      */
     private float safeLow;
+
     /**
      * -- Getter --
-     * TODO
+     * The recommended average gas price in Gwei.
+     * <br>
+     * <p>
+     *     Expected to be mined in less than 5 minutes.
+     * </p>
      *
-     * @return
+     * @return the gas price
      */
     private float average;
+
     /**
      * -- Getter --
-     * TODO
+     * The recommended fast gas price in Gwei.
+     * <br>
+     * <p>
+     *     Expected to be mined in less than 2 minutes.
+     * </p>
      *
-     * @return
+     * @return the gas price
      */
     private float fast;
+
     /**
      * -- Getter --
-     * TODO
+     * The recommended fastest gas price in Gwei.
+     * <br>
+     * <p>
+     *     Expected to be mined in less than 30 seconds.
+     * </p>
      *
-     * @return
+     * @return the gas price
      */
     private float fastest;
 

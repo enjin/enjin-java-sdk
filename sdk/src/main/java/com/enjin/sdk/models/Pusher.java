@@ -3,37 +3,32 @@ package com.enjin.sdk.models;
 import lombok.Getter;
 
 /**
- * TODO
+ * Models Pusher settings for the platform.
  */
 @Getter
 public class Pusher {
 
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the key for the platform
      */
     private String key;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the namespace the platform broadcasts on
      */
     private String namespace;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the channels the platform broadcasts on
      */
     private PusherChannels channels;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the Pusher options the platform uses
      */
     private PusherOptions options;
 

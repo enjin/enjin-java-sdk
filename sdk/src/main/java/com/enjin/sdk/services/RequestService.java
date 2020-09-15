@@ -3,7 +3,7 @@ package com.enjin.sdk.services;
 import com.enjin.sdk.models.Request;
 
 /**
- * TODO
+ * Used internally for transaction requests.
  */
 public interface RequestService extends GetOne<Request>, GetMany<Request> {
 }

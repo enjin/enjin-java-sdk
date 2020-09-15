@@ -15,15 +15,13 @@ public class SafeField {
 
     /**
      * -- GETTER --
-     * Returns the reflected field.
-     *
      * @return the field
      */
     @Getter
     private Field field;
 
     /**
-     * Constructor for safe field reflection.
+     * Sole constructor.
      *
      * @param field the field
      */
@@ -35,9 +33,8 @@ public class SafeField {
      * Gets the value assigned to the instance field and casts it to the provided type.
      *
      * @param instance the object instance
-     * @param type     the value type
-     * @param <T>      the type to cast to
-     *
+     * @param type the value type
+     * @param <T> the type to cast to
      * @return empty optional if unable to get value or value is null, else wrapped value
      */
     public <T> Optional<T> get(Object instance, Class<T> type) {
@@ -56,8 +53,7 @@ public class SafeField {
      * Gets the value assigned to a class field and casts it to the provided type.
      *
      * @param type the value type
-     * @param <T>  the type to cast to
-     *
+     * @param <T> the type to cast to
      * @return empty optional if unable to get value or value is null, else wrapped value
      */
     public <T> Optional<T> getStatic(Class<T> type) {

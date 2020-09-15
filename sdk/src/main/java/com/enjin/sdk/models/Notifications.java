@@ -3,16 +3,14 @@ package com.enjin.sdk.models;
 import lombok.Getter;
 
 /**
- * TODO
+ * Models the notifications settings for the platform.
  */
 @Getter
 public class Notifications {
 
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the Pusher settings
      */
     private Pusher pusher;
 

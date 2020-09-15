@@ -6,24 +6,21 @@ import lombok.Getter;
 import java.util.Objects;
 
 /**
- * TODO
+ * Models a successful auth object.
  */
 @Getter
 public class AccessToken {
 
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the token for the auth
      */
     @SerializedName("accessToken")
     private String token;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the number of seconds until the auth expires
      */
     private long expiresIn;
 

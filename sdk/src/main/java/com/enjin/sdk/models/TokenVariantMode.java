@@ -1,7 +1,7 @@
 package com.enjin.sdk.models;
 
 /**
- * Represents a variant mode a token may be in.
+ * Represents the mode that determines variant behavior.
  *
  * @see Token
  */

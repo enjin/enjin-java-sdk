@@ -3,7 +3,7 @@ package com.enjin.sdk.services;
 import com.enjin.sdk.models.Token;
 
 /**
- * TODO
+ * Used internally for token requests.
  */
 public interface TokenService extends GetOne<Token>, GetMany<Token> {
 }

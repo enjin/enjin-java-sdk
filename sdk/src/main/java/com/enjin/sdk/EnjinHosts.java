@@ -1,7 +1,7 @@
 package com.enjin.sdk;
 
 /**
- * TODO
+ * The network hosts used by the Enjin Cloud.
  */
 public final class EnjinHosts {
 
@@ -9,6 +9,7 @@ public final class EnjinHosts {
      * The URL for the main Enjin Cloud.
      */
     public static final String MAIN_NET = "https://cloud.enjin.io/";
+
     /**
      * The URL for the kovan Enjin Cloud.
      */

@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * A interface for GraphQL requests to set variables within them.
  *
- * @param <T> the super type of the interface
+ * @param <T> the implementing type of the interface
  */
 public interface VariableHolder<T> {
 
@@ -14,21 +14,22 @@ public interface VariableHolder<T> {
      *
      * @param key the key
      * @param value the value
-     * @return the builder
+     * @return this object for chaining
      */
     T set(String key, Object value);
 
     /**
-     * TODO
-     * @param key
-     * @return
+     * Determines if a variable exists for the specified key.
+     *
+     * @param key the key
+     * @return whether the variable exists
      */
     boolean isSet(String key);
 
     /**
      * Gets the mapping of parameter keys and their values.
      *
-     * @return the map of parameter keys and values.
+     * @return the mapping of parameter keys and values
      */
     Map<String, Object> getVariables();
 

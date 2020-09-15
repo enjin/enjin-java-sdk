@@ -31,7 +31,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * TODO
+ * Base class for schema with functionality to send GraphQL requests to the platform and process the responses.
  */
 @Log
 public class BaseSchema {
@@ -48,8 +48,10 @@ public class BaseSchema {
     protected final String schema;
 
     /**
-     * TODO
-     * @param middleware
+     * Sole constructor.
+     *
+     * @param middleware the middleware
+     * @param schema the schema
      */
     public BaseSchema(TrustedPlatformMiddleware middleware, String schema) {
         this.schema = schema;
@@ -69,10 +71,11 @@ public class BaseSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @param <T>
-     * @return
+     * Creates the serialized request body to be sent to the platform.
+     *
+     * @param request the request
+     * @param <T> the type of the request
+     * @return the serialized request
      */
     protected <T extends GraphQLRequest<T>> JsonObject createRequestBody(GraphQLRequest<T> request) {
         JsonObject requestBody = new JsonObject();
@@ -82,21 +85,23 @@ public class BaseSchema {
     }
 
     /**
-     * TODO
-     * @param service
-     * @param <T>
-     * @return
+     * Creates a retrofit service.
+     *
+     * @param service the service class
+     * @param <T> the type of the service
+     * @return the created service
      */
     protected <T> Object createService(@NotNull Class<T> service) {
         return retrofit.create(service);
     }
 
     /**
-     * TODO
-     * @param call
-     * @param <T>
-     * @return
-     * @throws IOException
+     * Sends a request synchronously.
+     *
+     * @param call the call
+     * @param <T> the type of the response
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     @NotNull
     @SneakyThrows
@@ -106,10 +111,11 @@ public class BaseSchema {
     }
 
     /**
-     * TODO
-     * @param call the request call
+     * Sends a request asynchronously with a callback to be used once a response is received.
+     *
+     * @param call the call
      * @param callback the callback
-     * @param <T> the type of the request and response
+     * @param <T> the type of the response
      */
     protected <T> void sendRequest(Call<GraphQLResponse<T>> call, final HttpCallback<GraphQLResponse<T>> callback) {
         call.enqueue(new Callback<GraphQLResponse<T>>() {
@@ -133,7 +139,7 @@ public class BaseSchema {
     }
 
     /**
-     * Wraps an http response.
+     * Wraps an HTTP response.
      *
      * @param response the response
      * @param <T> the type of the response

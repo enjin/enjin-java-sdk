@@ -40,7 +40,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * TODO
+ * Schema class which implements requests shared across multiple schemas.
  */
 public class SharedSchema extends BaseSchema {
 
@@ -51,9 +51,10 @@ public class SharedSchema extends BaseSchema {
     protected final TokenService tokenService;
 
     /**
-     * TODO
-     * @param middleware
-     * @param schema
+     * Sole constructor.
+     *
+     * @param middleware the middleware
+     * @param schema the schema
      */
     public SharedSchema(TrustedPlatformMiddleware middleware, String schema) {
         super(middleware, schema);
@@ -65,19 +66,21 @@ public class SharedSchema extends BaseSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link AdvancedSendToken} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Request> advancedSendToken(AdvancedSendToken request) {
         return transactionRequest(request);
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link AdvancedSendToken} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void advancedSendToken(AdvancedSendToken request,
                                   HttpCallback<GraphQLResponse<Request>> callback) {
@@ -85,19 +88,21 @@ public class SharedSchema extends BaseSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link ApproveEnj} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Request> approveEnj(ApproveEnj request) {
         return transactionRequest(request);
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link ApproveEnj} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void approveEnj(ApproveEnj request,
                            HttpCallback<GraphQLResponse<Request>> callback) {
@@ -105,19 +110,21 @@ public class SharedSchema extends BaseSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link ApproveMaxEnj} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Request> approveMaxEnj(ApproveMaxEnj request) {
         return transactionRequest(request);
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link ApproveMaxEnj} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void approveMaxEnj(ApproveMaxEnj request,
                               HttpCallback<GraphQLResponse<Request>> callback) {
@@ -125,19 +132,21 @@ public class SharedSchema extends BaseSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link CompleteTrade} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Request> completeTrade(CompleteTrade request) {
         return transactionRequest(request);
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link CompleteTrade} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void completeTrade(CompleteTrade request,
                               HttpCallback<GraphQLResponse<Request>> callback) {
@@ -145,19 +154,21 @@ public class SharedSchema extends BaseSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link CreateTrade} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Request> createTrade(CreateTrade request) {
         return transactionRequest(request);
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link CreateTrade} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void createTrade(CreateTrade request,
                             HttpCallback<GraphQLResponse<Request>> callback) {
@@ -165,19 +176,21 @@ public class SharedSchema extends BaseSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link GetBalances} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<List<Balance>> getBalances(GetBalances request) {
         return sendRequest(balanceService.getMany(schema, createRequestBody(request)));
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link GetBalances} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void getBalances(GetBalances request,
                             HttpCallback<GraphQLResponse<List<Balance>>> callback) {
@@ -185,19 +198,21 @@ public class SharedSchema extends BaseSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link GetGasPrices} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<GasPrices> getGasPrices(GetGasPrices request) {
         return sendRequest(platformService.getGasPrices(schema, createRequestBody(request)));
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link GetGasPrices} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void getGasPrices(GetGasPrices request,
                              HttpCallback<GraphQLResponse<GasPrices>> callback) {
@@ -205,19 +220,21 @@ public class SharedSchema extends BaseSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link GetPlatform} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Platform> getPlatform(GetPlatform request) {
         return sendRequest(platformService.getOne(schema, createRequestBody(request)));
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link GetPlatform} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void getPlatform(GetPlatform request,
                             HttpCallback<GraphQLResponse<Platform>> callback) {
@@ -225,19 +242,21 @@ public class SharedSchema extends BaseSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link GetProject} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Project> getProject(GetProject request) {
         return sendRequest(projectService.getOne(schema, createRequestBody(request)));
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link GetProject} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void getProject(GetProject request,
                            HttpCallback<GraphQLResponse<Project>> callback) {
@@ -245,19 +264,21 @@ public class SharedSchema extends BaseSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link GetRequest} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Request> getRequest(GetRequest request) {
         return transactionRequest(request);
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link GetRequest} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void getRequest(GetRequest request,
                            HttpCallback<GraphQLResponse<Request>> callback) {
@@ -265,19 +286,21 @@ public class SharedSchema extends BaseSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link GetRequests} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<List<Request>> getRequests(GetRequests request) {
         return sendRequest(requestService.getMany(schema, createRequestBody(request)));
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link GetRequests} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void getRequests(GetRequests request,
                             HttpCallback<GraphQLResponse<List<Request>>> callback) {
@@ -285,19 +308,21 @@ public class SharedSchema extends BaseSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link GetToken} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Token> getToken(GetToken request) {
         return sendRequest(tokenService.getOne(schema, createRequestBody(request)));
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link GetToken} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void getToken(GetToken request,
                          HttpCallback<GraphQLResponse<Token>> callback) {
@@ -305,19 +330,21 @@ public class SharedSchema extends BaseSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link GetTokens} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<List<Token>> getTokens(GetTokens request) {
         return sendRequest(tokenService.getMany(schema, createRequestBody(request)));
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link GetTokens} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void getTokens(GetTokens request,
                           HttpCallback<GraphQLResponse<List<Token>>> callback) {
@@ -325,19 +352,21 @@ public class SharedSchema extends BaseSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link MeltToken} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Request> meltToken(MeltToken request) {
         return transactionRequest(request);
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link MeltToken} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void meltToken(MeltToken request,
                           HttpCallback<GraphQLResponse<Request>> callback) {
@@ -345,19 +374,21 @@ public class SharedSchema extends BaseSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link Message} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Request> message(Message request) {
         return transactionRequest(request);
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link Message} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void message(Message request,
                         HttpCallback<GraphQLResponse<Request>> callback) {
@@ -365,19 +396,21 @@ public class SharedSchema extends BaseSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link ResetEnjApproval} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Request> resetEnjApproval(ResetEnjApproval request) {
         return transactionRequest(request);
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link ResetEnjApproval} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void resetEnjApproval(ResetEnjApproval request,
                                  HttpCallback<GraphQLResponse<Request>> callback) {
@@ -385,19 +418,21 @@ public class SharedSchema extends BaseSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link SendEnj} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Request> sendEnj(SendEnj request) {
         return transactionRequest(request);
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link SendEnj} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void sendEnj(SendEnj request,
                         HttpCallback<GraphQLResponse<Request>> callback) {
@@ -405,19 +440,21 @@ public class SharedSchema extends BaseSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link SendToken} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Request> sendToken(SendToken request) {
         return transactionRequest(request);
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link SendToken} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void sendToken(SendToken request,
                           HttpCallback<GraphQLResponse<Request>> callback) {
@@ -425,29 +462,46 @@ public class SharedSchema extends BaseSchema {
     }
 
     /**
-     * TODO
-     * @param request
-     * @return
-     * @throws IOException
+     * Sends {@link SetApprovalForAll} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
      */
     public GraphQLResponse<Request> setApprovalForAll(SetApprovalForAll request) {
         return transactionRequest(request);
     }
 
     /**
-     * TODO
-     * @param request
-     * @param callback
+     * Sends {@link SetApprovalForAll} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
      */
     public void setApprovalForAll(SetApprovalForAll request,
                                   HttpCallback<GraphQLResponse<Request>> callback) {
         transactionRequest(request, callback);
     }
 
+    /**
+     * Helper method for sending synchronous transaction requests.
+     *
+     * @param request the request
+     * @param <T> the type of the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
+     */
     protected <T extends GraphQLRequest<T>> GraphQLResponse<Request> transactionRequest(GraphQLRequest<T> request) {
         return sendRequest(requestService.getOne(schema, createRequestBody(request)));
     }
 
+    /**
+     * Helper method for sending asynchronous transaction requests.
+     *
+     * @param request the request
+     * @param callback the callback
+     * @param <T> the type of the request
+     */
     protected <T extends GraphQLRequest<T>> void transactionRequest(GraphQLRequest<T> request,
                                                                     HttpCallback<GraphQLResponse<Request>> callback) {
         sendRequest(requestService.getOne(schema, createRequestBody(request)), callback);

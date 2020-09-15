@@ -11,7 +11,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 /**
- * TODO
+ * Used internally for platform requests.
  */
 public interface PlatformService extends GetOne<Platform> {
 

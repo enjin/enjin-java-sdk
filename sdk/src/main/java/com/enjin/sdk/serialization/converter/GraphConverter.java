@@ -28,8 +28,7 @@ import retrofit2.Converter;
 import retrofit2.Retrofit;
 
 /**
- * Body for GraphQL requests and responses, closed for modification
- * but open for extension.
+ * Body for GraphQL requests and responses, closed for modification but open for extension.
  */
 @Log
 public class GraphConverter extends Converter.Factory {
@@ -59,23 +58,20 @@ public class GraphConverter extends Converter.Factory {
             .create();
 
     /**
-     * Protected constructor because we want to make use of the
-     * Factory Pattern to create our converter.
-     * <br>
+     * Protected constructor because we want to make use of the Factory Pattern to create our converter.
      */
     protected GraphConverter() {
     }
 
     /**
-     * HttpResponse body converter delegates logic processing to a child class that handles
-     * wrapping and deserialization of the json response results.
+     * HttpResponse body converter delegates logic processing to a child class that handles wrapping and deserialization
+     * of the json response results.
      *
-     * @param annotations All the annotation applied to the requesting Call method
-     * @param retrofit    The retrofit object representing the response
-     * @param type        The generic type declared on the Call method
+     * @param annotations all the annotation applied to the requesting Call method
+     * @param retrofit the retrofit object representing the response
+     * @param type the generic type declared on the Call method
      *
      * @see GraphResponseConverter
-     * <br>
      * @see retrofit2.Call
      */
     @Override
@@ -94,15 +90,15 @@ public class GraphConverter extends Converter.Factory {
     /**
      * Returns a new graph converter.
      *
-     * @return the created graph converter.
+     * @return the created graph converter
      */
     public static GraphConverter create() {
         return new GraphConverter();
     }
 
     /**
-     * GraphQL response body converter to unwrap nested object results,
-     * resulting in a smaller generic tree for requests.
+     * GraphQL response body converter to unwrap nested object results, resulting in a smaller generic tree for
+     * requests.
      */
     protected class GraphResponseConverter<T> implements Converter<ResponseBody, GraphQLResponse<T>> {
         protected ParameterizedType graphResponseType;
@@ -111,7 +107,7 @@ public class GraphConverter extends Converter.Factory {
         /**
          * Sole constructor.
          *
-         * @param graphResponseType The graph response type.
+         * @param graphResponseType the graph response type
          */
         protected GraphResponseConverter(ParameterizedType graphResponseType) {
             this.graphResponseType = graphResponseType;
@@ -119,14 +115,12 @@ public class GraphConverter extends Converter.Factory {
         }
 
         /**
-         * Converter contains logic on how to handle responses, since GraphQL responses follow
-         * the JsonAPI spec it makes sense to wrap our base query response results and errors response
-         * in here, the logic remains open to the implementation.
-         * <br>
+         * Converter contains logic on how to handle responses, since GraphQL responses follow the JsonAPI spec it makes
+         * sense to wrap our base query response results and errors response in here, the logic remains open to the
+         * implementation.
          *
-         * @param responseBody The retrofit response body received from the network
-         *
-         * @return The type declared in the Call of the request
+         * @param responseBody the retrofit response body received from the network
+         * @return the type declared in the Call of the request
          */
         @Override
         public GraphQLResponse<T> convert(ResponseBody responseBody) {

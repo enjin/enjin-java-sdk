@@ -1,7 +1,7 @@
 package com.enjin.sdk.models;
 
 /**
- * TODO
+ * Models sorting input for transactions.
  */
 public class TransactionSort {
 
@@ -9,9 +9,10 @@ public class TransactionSort {
     private SortDirection direction;
 
     /**
-     * TODO
-     * @param field
-     * @return
+     * Sets the field to sort by.
+     *
+     * @param field the field
+     * @return this input for chaining
      */
     public TransactionSort field(TransactionField field) {
         this.field = field;
@@ -19,9 +20,10 @@ public class TransactionSort {
     }
 
     /**
-     * TODO
-     * @param direction
-     * @return
+     * Sets the direction to sort by.
+     *
+     * @param direction the direction
+     * @return this input for chaining
      */
     public TransactionSort direction(SortDirection direction) {
         this.direction = direction;

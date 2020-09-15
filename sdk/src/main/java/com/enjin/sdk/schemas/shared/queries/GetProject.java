@@ -3,30 +3,35 @@ package com.enjin.sdk.schemas.shared.queries;
 import com.enjin.sdk.graphql.GraphQLRequest;
 
 /**
- * TODO
+ * Request for getting a application on the platform.
+ *
+ * @see com.enjin.sdk.models.Project
+ * @see com.enjin.sdk.schemas.shared.SharedSchema
  */
 public final class GetProject extends GraphQLRequest<GetProject> {
 
     /**
-     * TODO
+     * Sole constructor.
      */
     public GetProject() {
         super("enjin.sdk.shared.GetProject");
     }
 
     /**
-     * TODO
-     * @param id
-     * @return
+     * Sets the application ID.
+     *
+     * @param id the ID
+     * @return this request for chaining
      */
     public GetProject id(Integer id) {
         return set("id", id);
     }
 
     /**
-     * TODO
-     * @param name
-     * @return
+     * Sets the application name.
+     *
+     * @param name the name
+     * @return this request for chaining
      */
     public GetProject name(String name) {
         return set("name", name);

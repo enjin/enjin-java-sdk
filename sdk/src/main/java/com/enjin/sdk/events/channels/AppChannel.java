@@ -5,6 +5,8 @@ import lombok.NonNull;
 
 /**
  * Represents a channel to subscribe to for Enjin Cloud application events.
+ *
+ * @see com.enjin.sdk.events.NotificationsService
  */
 public class AppChannel implements Channel {
 
@@ -15,7 +17,7 @@ public class AppChannel implements Channel {
      * Constructs a channel for the given network and application.
      *
      * @param platform the platform
-     * @param app    the app id
+     * @param app the app ID
      */
     public AppChannel(@NonNull Platform platform, int app) {
         this.platform = platform;

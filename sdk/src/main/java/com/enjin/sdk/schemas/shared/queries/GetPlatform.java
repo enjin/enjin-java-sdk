@@ -3,28 +3,33 @@ package com.enjin.sdk.schemas.shared.queries;
 import com.enjin.sdk.graphql.GraphQLRequest;
 
 /**
- * TODO
+ * Request for getting the platform details.
+ *
+ * @see com.enjin.sdk.models.Platform
+ * @see com.enjin.sdk.schemas.shared.SharedSchema
  */
 public class GetPlatform extends GraphQLRequest<GetPlatform> {
 
     /**
-     * TODO
+     * Sole constructor.
      */
     public GetPlatform() {
         super("enjin.sdk.shared.GetPlatform");
     }
 
     /**
-     * TODO
-     * @return
+     * Sets the request to include the contracts with the platform.
+     *
+     * @return this request for chaining
      */
     public GetPlatform withContracts() {
         return set("withContracts", true);
     }
 
     /**
-     * TODO
-     * @return
+     * Sets the request to include the notification drivers with the platform.
+     *
+     * @return this request for chaining
      */
     public GetPlatform withNotificationDrivers() {
         return set("withNotificationDrivers", true);

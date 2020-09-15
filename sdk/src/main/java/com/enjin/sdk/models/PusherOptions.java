@@ -3,23 +3,20 @@ package com.enjin.sdk.models;
 import lombok.Getter;
 
 /**
- * TODO
+ * Models Pusher options used by the platform.
  */
 @Getter
 public class PusherOptions {
 
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return the cluster
      */
     private String cluster;
+
     /**
      * -- Getter --
-     * TODO
-     *
-     * @return
+     * @return whether encryption is used or not
      */
     private Boolean encrypted;
 
