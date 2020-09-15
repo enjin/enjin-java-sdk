@@ -3,7 +3,6 @@ package com.enjin.sdk.models;
 /**
  * Represents the transaction type when creating or updating a transaction.
  *
- * @author Evan Lindsay
  * @see Request
  */
 public enum RequestType {

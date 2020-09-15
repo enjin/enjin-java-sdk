@@ -11,8 +11,6 @@ import com.google.gson.JsonSyntaxException;
 
 /**
  * A Gson serializer that can deserialize an integer from scientific notation.
- *
- * @author Evan Lindsay
  */
 public class BigIntegerDeserializer implements JsonDeserializer<BigInteger> {
 

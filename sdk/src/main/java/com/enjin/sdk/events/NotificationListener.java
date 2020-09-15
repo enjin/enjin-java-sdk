@@ -5,7 +5,6 @@ import com.enjin.sdk.models.NotificationEvent;
 /**
  * Notification event listener.
  *
- * @author Evan Lindsay
  * @see NotificationsService
  */
 public interface NotificationListener {

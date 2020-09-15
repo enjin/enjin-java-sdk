@@ -6,7 +6,6 @@ import lombok.ToString;
  * An HTTP response wrapper.
  *
  * @param <T> the type of the body
- * @author Evan Lindsay
  */
 @ToString
 public class HttpResponse<T> {

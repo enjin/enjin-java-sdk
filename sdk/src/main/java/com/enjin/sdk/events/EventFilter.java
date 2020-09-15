@@ -11,7 +11,6 @@ import com.enjin.sdk.models.EventType;
  * Indicates the events to be filtered by the type. This annotation is intended to be used on the
  * {@link NotificationListener} class type.
  *
- * @author Evan Lindsay
  * @see NotificationListener
  */
 @Retention(RetentionPolicy.RUNTIME)

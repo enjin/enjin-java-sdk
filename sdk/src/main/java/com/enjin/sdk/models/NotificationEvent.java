@@ -13,7 +13,6 @@ import lombok.ToString;
 /**
  * Container class for notification data from the platform.
  *
- * @author Evan Lindsay
  * @see NotificationsService
  * @see EventType
  */

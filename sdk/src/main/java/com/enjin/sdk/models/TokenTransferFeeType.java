@@ -3,7 +3,6 @@ package com.enjin.sdk.models;
 /**
  * Represents the transfer fee type.
  *
- * @author Evan Lindsay
  * @see TokenTransferFeeSettings
  */
 public enum TokenTransferFeeType {

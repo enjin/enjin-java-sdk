@@ -7,7 +7,6 @@ import lombok.Getter;
  * Registration wrapper for a {@link NotificationListener} that extracts any metadata from the notification listener
  * that may be used in event handling.
  *
- * @author Evan Lindsay
  * @see NotificationListener
  * @see NotificationsService
  */
@@ -67,7 +66,6 @@ public class NotificationListenerRegistration {
      * A registration configuration for listeners.
      *
      * @param <T> the configuration
-     * @author Evan Lindsay
      */
     public static class RegistrationListenerConfiguration<T extends RegistrationListenerConfiguration<T>> {
 
