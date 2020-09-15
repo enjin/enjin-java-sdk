@@ -3,7 +3,6 @@ package com.enjin.sdk.models;
 /**
  * Represents the state of a transaction.
  *
- * @author Evan Lindsay
  * @see Request
  */
 public enum RequestState {

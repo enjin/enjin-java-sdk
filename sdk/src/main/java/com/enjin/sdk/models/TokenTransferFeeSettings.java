@@ -6,7 +6,6 @@ import lombok.ToString;
 /**
  * Models transfer fee settings for an item.
  *
- * @author Evan Lindsay
  * @see Token
  */
 @ToString

@@ -11,7 +11,6 @@ import lombok.ToString;
  * Models the body of a GraphQLResponse.
  *
  * @param <T> the model of the data field
- * @author Evan Lindsay
  * @see GraphQLError
  */
 @ToString

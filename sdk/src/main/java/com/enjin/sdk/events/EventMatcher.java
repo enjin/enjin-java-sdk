@@ -5,7 +5,6 @@ import com.enjin.sdk.models.NotificationEvent;
 /**
  * Matches events.
  *
- * @author Evan Lindsay
  * @see NotificationsService
  */
 public interface EventMatcher {

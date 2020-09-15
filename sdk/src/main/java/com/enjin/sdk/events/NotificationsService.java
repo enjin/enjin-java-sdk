@@ -5,8 +5,6 @@ import com.enjin.sdk.models.Platform;
 
 /**
  * Notification service interface for subscribing to and registering for events from the Enjin Cloud.
- *
- * @author Evan Lindsay
  */
 public interface NotificationsService {
 

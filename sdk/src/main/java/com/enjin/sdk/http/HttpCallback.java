@@ -4,7 +4,6 @@ package com.enjin.sdk.http;
  * A callback for HTTP requests.
  *
  * @param <T> the type of the response body
- * @author Evan Lindsay
  */
 public interface HttpCallback<T> {
 

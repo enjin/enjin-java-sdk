@@ -8,8 +8,6 @@ import lombok.ToString;
 
 /**
  * Models the structure of a GraphQL response error.
- *
- * @author Evan Lindsay
  */
 @Getter
 @ToString

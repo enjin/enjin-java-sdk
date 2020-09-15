@@ -9,7 +9,6 @@ import java.util.List;
 /**
  * Represent the type of notification received.
  *
- * @author Evan Lindsay
  * @see NotificationEvent
  */
 public enum EventType {
