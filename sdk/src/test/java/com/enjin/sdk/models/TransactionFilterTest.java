@@ -195,6 +195,7 @@ class TransactionFilterTest implements TestFilterInterface {
 
     @ParameterizedTest
     @EnumSource
+    @NullSource
     void type_FieldContainsArgument(RequestType expected) {
         // Arrange
         final TestableTransactionFilter filter = new TestableTransactionFilter();
@@ -328,6 +329,7 @@ class TransactionFilterTest implements TestFilterInterface {
 
     @ParameterizedTest
     @EnumSource
+    @NullSource
     void state_FieldContainsArgument(RequestState expected) {
         // Arrange
         final TestableTransactionFilter filter = new TestableTransactionFilter();
