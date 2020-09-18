@@ -13,7 +13,7 @@ public interface TestFilterInterface {
     List<String> ids = new ArrayList<>();
 
     @BeforeAll
-    default void setup() {
+    static void setup() {
         ids.add("1");
         ids.add("2");
         ids.add("3");
