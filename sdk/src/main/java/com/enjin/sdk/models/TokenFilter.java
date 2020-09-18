@@ -67,6 +67,7 @@ public class TokenFilter extends Filter<TokenFilter> {
      * @param ids the IDs
      * @return this filter for chaining
      */
+    // TODO: Change method name to 'idIn'.
     public TokenFilter idId(String... ids) {
         idIn = ids == null
                 ? null
