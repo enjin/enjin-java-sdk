@@ -11,25 +11,18 @@ import com.enjin.sdk.graphql.VariableHolder;
 public interface PlayerFragmentArguments<T extends VariableHolder<T>> extends VariableHolder<T> {
 
     /**
-     * Sets the request to include the linking code with the player.
+     * Sets the request to include the linking information with the player.
      *
      * @return this request for chaining
+     * @see PlayerFragmentArguments#qrSize(Integer) 
      */
-    default T withLinkingCode() {
-        return set("withLinkingCode", true);
+    default T withLinkingInfo() {
+        return set("withLinkingInfo", true);
     }
 
     /**
-     * Sets the request to include the URL to the QR linking code with the player.
-     *
-     * @return this request for chaining
-     */
-    default T withLinkingCodeQr() {
-        return set("withLinkingCodeQr", true);
-    }
-
-    /**
-     * Sets the desired size of the QR image in pixels.
+     * Sets the desired size of the QR image in pixels. To be used with
+     * {@link PlayerFragmentArguments#withLinkingInfo()}.
      *
      * @param size the size
      * @return this request for chaining
