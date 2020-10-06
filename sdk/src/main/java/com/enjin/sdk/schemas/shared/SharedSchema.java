@@ -10,6 +10,7 @@ import com.enjin.sdk.models.Platform;
 import com.enjin.sdk.models.Project;
 import com.enjin.sdk.models.Request;
 import com.enjin.sdk.models.Token;
+import com.enjin.sdk.schemas.shared.mutations.CancelTransaction;
 import com.enjin.sdk.services.BalanceService;
 import com.enjin.sdk.schemas.BaseSchema;
 import com.enjin.sdk.services.PlatformService;
@@ -131,6 +132,28 @@ public class SharedSchema extends BaseSchema {
     public void approveMaxEnj(ApproveMaxEnj request,
                               HttpCallback<GraphQLResponse<Request>> callback) {
         transactionRequest(request, callback);
+    }
+
+    /**
+     * Sends {@link CancelTransaction} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
+     */
+    public GraphQLResponse<Boolean> cancelTransaction(CancelTransaction request) {
+        return sendRequest(requestService.delete(schema, createRequestBody(request)));
+    }
+
+    /**
+     * Sends {@link CancelTransaction} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
+     */
+    public void cancelTransaction(CancelTransaction request,
+                                  HttpCallback<GraphQLResponse<Boolean>> callback) {
+        sendRequest(requestService.delete(schema, createRequestBody(request)), callback);
     }
 
     /**
