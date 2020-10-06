@@ -7,13 +7,13 @@ import com.enjin.sdk.graphql.GraphQLRequest;
  *
  * @see com.enjin.sdk.schemas.project.ProjectSchema
  */
-public class UnlinkWallet extends GraphQLRequest<UnlinkWallet> {
+public class UnlinkPlayerWallet extends GraphQLRequest<UnlinkPlayerWallet> {
 
     /**
      * Sole constructor.
      */
-    public UnlinkWallet() {
-        super("enjin.sdk.project.UnlinkWallet");
+    public UnlinkPlayerWallet() {
+        super("enjin.sdk.project.UnlinkPlayerWallet");
     }
 
     /**
@@ -22,7 +22,7 @@ public class UnlinkWallet extends GraphQLRequest<UnlinkWallet> {
      * @param ethAddress the address
      * @return this request for chaining
      */
-    public UnlinkWallet ethAddress(String ethAddress) {
+    public UnlinkPlayerWallet ethAddress(String ethAddress) {
         return set("address", ethAddress);
     }
 
