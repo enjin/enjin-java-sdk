@@ -1,6 +1,5 @@
 package com.enjin.sdk.models;
 
-import com.google.gson.JsonObject;
 import lombok.Getter;
 
 /**
@@ -17,21 +16,15 @@ public class Player {
 
     /**
      * -- Getter --
-     * @return the linking code for this player
+     * @return the linking info for this player
      */
-    private String linkingCode;
-
-    /**
-     * -- Getter --
-     * @return the URL for the QR linking code
-     */
-    private String linkingCodeQr;
+    private LinkingInfo linkingInfo;
 
     /**
      * -- Getter --
      * @return the wallet for this player
      */
-    private JsonObject wallet;
+    private Wallet wallet;
 
     /**
      * -- Getter --

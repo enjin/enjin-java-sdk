@@ -1,6 +1,5 @@
 package com.enjin.sdk.models;
 
-import com.google.gson.JsonObject;
 import lombok.Getter;
 
 /**
@@ -35,12 +34,6 @@ public class Request {
 
     /**
      * -- Getter --
-     * @return the encoded data, ready for signing
-     */
-    private String encodedData;
-
-    /**
-     * -- Getter --
      * @return the transaction type
      */
     private RequestType type;
@@ -56,36 +49,6 @@ public class Request {
      * @return the value of this transaction
      */
     private String value;
-
-    /**
-     * -- Getter --
-     * @return the signed transaction string
-     */
-    private String signedTransaction;
-
-    /**
-     * -- Getter --
-     * @return the signed transaction string
-     */
-    private String signedBackupTransaction;
-
-    /**
-     * -- Getter --
-     * @return the signed transaction string
-     */
-    private String signedCancelTransaction;
-
-    /**
-     * -- Getter --
-     * @return the error message
-     */
-    private String error;
-
-    /**
-     * -- Getter --
-     * @return the nonce
-     */
-    private String nonce;
 
     /**
      * -- Getter --
@@ -107,9 +70,9 @@ public class Request {
 
     /**
      * -- Getter --
-     * @return the receipt
+     * @return the blockchain data of this transaction
      */
-    private JsonObject receipt;
+    private BlockchainData blockchainData;
 
     /**
      * -- Getter --
