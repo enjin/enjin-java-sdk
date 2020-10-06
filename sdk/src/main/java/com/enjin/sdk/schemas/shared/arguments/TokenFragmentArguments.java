@@ -22,7 +22,32 @@ public interface TokenFragmentArguments<T extends VariableHolder<T>> extends Var
     }
 
     /**
-     * Sets the request to include the block data with the token (item).
+     * Sets the request to include state data about the token (item).
+     *
+     * @return this request for chaining
+     * @see TokenFragmentArguments#withCreator()
+     * @see TokenFragmentArguments#withTokenBlocks()
+     * @see TokenFragmentArguments#withSupplyDetails()
+     */
+    default T withStateData() {
+        return set("withStateData", true);
+    }
+
+    /**
+     * Sets the request to include configuration data about the token (item).
+     *
+     * @return this request for chaining
+     * @see TokenFragmentArguments#withMeltDetails()
+     * @see TokenFragmentArguments#withMetadataUri()
+     * @see TokenFragmentArguments#withTransferSettings()
+     */
+    default T withConfigData() {
+        return set("withConfigData", true);
+    }
+
+    /**
+     * Sets the request to include the block data with the token (item) when used with
+     * {@link TokenFragmentArguments#withStateData()}.
      *
      * @return this request for chaining
      */
@@ -31,7 +56,8 @@ public interface TokenFragmentArguments<T extends VariableHolder<T>> extends Var
     }
 
     /**
-     * Sets the request to include the creator with the item.
+     * Sets the request to include the creator with the item when used with
+     * {@link TokenFragmentArguments#withStateData()}.
      *
      * @return this request for chaining
      */
@@ -40,7 +66,8 @@ public interface TokenFragmentArguments<T extends VariableHolder<T>> extends Var
     }
 
     /**
-     * Sets the request to include the melt details with the item.
+     * Sets the request to include the melt details with the item when used with
+     * {@link TokenFragmentArguments#withConfigData()}.
      *
      * @return this request for chaining
      */
@@ -49,7 +76,8 @@ public interface TokenFragmentArguments<T extends VariableHolder<T>> extends Var
     }
 
     /**
-     * Sets the request to include the metadata URI with the item.
+     * Sets the request to include the metadata URI with the item when used with
+     * {@link TokenFragmentArguments#withConfigData()}.
      *
      * @return this request for chaining
      */
@@ -58,7 +86,8 @@ public interface TokenFragmentArguments<T extends VariableHolder<T>> extends Var
     }
 
     /**
-     * Sets the request to include the supply details with the item.
+     * Sets the request to include the supply details with the item when used with
+     * {@link TokenFragmentArguments#withStateData()}.
      *
      * @return this request for chaining
      */
@@ -67,7 +96,8 @@ public interface TokenFragmentArguments<T extends VariableHolder<T>> extends Var
     }
 
     /**
-     * Sets the request to include the transfer settings with the item.
+     * Sets the request to include the transfer settings with the item when used with
+     * {@link TokenFragmentArguments#withConfigData()}.
      *
      * @return this request for chaining
      */
@@ -91,6 +121,16 @@ public interface TokenFragmentArguments<T extends VariableHolder<T>> extends Var
      */
     default T withTokenVariants() {
         return set("withTokenVariants", true);
+    }
+
+    /**
+     * Sets the request to include the metadata for the variant(s) with the item when used with
+     * {@link TokenFragmentArguments#withTokenVariants()}.
+     *
+     * @return this request for chaining
+     */
+    default T withVariantMetadata() {
+        return set("withVariantMetadata", true);
     }
 
 }
