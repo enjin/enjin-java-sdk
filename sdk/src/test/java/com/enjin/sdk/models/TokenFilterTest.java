@@ -3,6 +3,7 @@ package com.enjin.sdk.models;
 import com.enjin.sdk.TestFilterInterface;
 import com.enjin.sdk.Testable;
 import lombok.SneakyThrows;
+import org.junit.Assume;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -65,12 +66,14 @@ class TokenFilterTest implements TestFilterInterface {
         final TestableTokenFilter filter = new TestableTokenFilter();
         final String[] args = ids.toArray(new String[0]);
 
+        Assume.assumeTrue(args.length > 0);
+
         // Act
         filter.idId(args);
         List<String> actual = filter.getIdIn();
 
         // Assert
-        assertTrue(args.length > 0);
+        assertNotNull(actual);
         for (String s : args) {
             assertTrue(actual.contains(s));
         }
@@ -109,12 +112,14 @@ class TokenFilterTest implements TestFilterInterface {
         final TestableTokenFilter filter = new TestableTokenFilter();
         final String[] args = ids.toArray(new String[0]);
 
+        Assume.assumeTrue(args.length > 0);
+
         // Act
         filter.nameIn(args);
         List<String> actual = filter.getNameIn();
 
         // Assert
-        assertTrue(args.length > 0);
+        assertNotNull(actual);
         for (String s : args) {
             assertTrue(actual.contains(s));
         }
@@ -198,12 +203,14 @@ class TokenFilterTest implements TestFilterInterface {
         final TestableTokenFilter filter = new TestableTokenFilter();
         final String[] args = ids.toArray(new String[0]);
 
+        Assume.assumeTrue(args.length > 0);
+
         // Act
         filter.walletIn(args);
         List<String> actual = filter.getWalletIn();
 
         // Assert
-        assertTrue(args.length > 0);
+        assertNotNull(actual);
         for (String s : args) {
             assertTrue(actual.contains(s));
         }
