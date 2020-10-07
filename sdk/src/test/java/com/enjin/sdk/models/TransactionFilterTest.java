@@ -3,6 +3,7 @@ package com.enjin.sdk.models;
 import com.enjin.sdk.TestFilterInterface;
 import com.enjin.sdk.Testable;
 import lombok.SneakyThrows;
+import org.junit.Assume;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -37,12 +38,14 @@ class TransactionFilterTest implements TestFilterInterface {
         final TestableTransactionFilter filter = new TestableTransactionFilter();
         final String[] args = ids.toArray(new String[0]);
 
+        Assume.assumeTrue(args.length > 0);
+
         // Act
         filter.idIn(args);
         List<String> actual = filter.getIdIn();
 
         // Assert
-        assertTrue(args.length > 0);
+        assertNotNull(actual);
         for (String s : args) {
             assertTrue(actual.contains(s));
         }
@@ -96,12 +99,14 @@ class TransactionFilterTest implements TestFilterInterface {
         final TestableTransactionFilter filter = new TestableTransactionFilter();
         final String[] args = ids.toArray(new String[0]);
 
+        Assume.assumeTrue(args.length > 0);
+
         // Act
         filter.transactionIdIn(args);
         List<String> actual = filter.getTransactIdIn();
 
         // Assert
-        assertTrue(args.length > 0);
+        assertNotNull(actual);
         for (String s : args) {
             assertTrue(actual.contains(s));
         }
@@ -155,12 +160,14 @@ class TransactionFilterTest implements TestFilterInterface {
         final TestableTransactionFilter filter = new TestableTransactionFilter();
         final String[] args = ids.toArray(new String[0]);
 
+        Assume.assumeTrue(args.length > 0);
+
         // Act
         filter.tokenIdIn(args);
         List<String> actual = filter.getTokenIdIn();
 
         // Assert
-        assertTrue(args.length > 0);
+        assertNotNull(actual);
         for (String s : args) {
             assertTrue(actual.contains(s));
         }
@@ -214,12 +221,14 @@ class TransactionFilterTest implements TestFilterInterface {
         final TestableTransactionFilter filter = new TestableTransactionFilter();
         final RequestType[] args = RequestType.values();
 
+        Assume.assumeTrue(args.length > 0);
+
         // Act
         filter.typeIn(args);
         List<RequestType> actual = filter.getTypeIn();
 
         // Assert
-        assertTrue(args.length > 0);
+        assertNotNull(actual);
         for (RequestType v : args) {
             assertTrue(actual.contains(v));
         }
@@ -348,12 +357,14 @@ class TransactionFilterTest implements TestFilterInterface {
         final TestableTransactionFilter filter = new TestableTransactionFilter();
         final RequestState[] args = RequestState.values();
 
+        Assume.assumeTrue(args.length > 0);
+
         // Act
         filter.stateIn(args);
         List<RequestState> actual = filter.getStateIn();
 
         // Assert
-        assertTrue(args.length > 0);
+        assertNotNull(actual);
         for (RequestState v : args) {
             assertTrue(actual.contains(v));
         }
@@ -407,12 +418,14 @@ class TransactionFilterTest implements TestFilterInterface {
         final TestableTransactionFilter filter = new TestableTransactionFilter();
         final String[] args = ids.toArray(new String[0]);
 
+        Assume.assumeTrue(args.length > 0);
+
         // Act
         filter.walletIn(args);
         List<String> actual = filter.getWalletIn();
 
         // Assert
-        assertTrue(args.length > 0);
+        assertNotNull(actual);
         for (String s : args) {
             assertTrue(actual.contains(s));
         }
