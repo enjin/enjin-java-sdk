@@ -8,6 +8,7 @@ import com.enjin.sdk.services.PlayerService;
 import com.enjin.sdk.schemas.player.mutations.UnlinkWallet;
 import com.enjin.sdk.schemas.player.queries.GetPlayer;
 import com.enjin.sdk.schemas.shared.SharedSchema;
+import com.enjin.sdk.utils.LoggerProvider;
 
 import java.io.IOException;
 
@@ -24,12 +25,13 @@ public class PlayerSchema extends SharedSchema {
     private final PlayerService playerService;
 
     /**
-     * Sole constructor.
+     * Sole constructor, used internally.
      *
      * @param middleware the middleware
+     * @param loggerProvider the logger provider
      */
-    public PlayerSchema(TrustedPlatformMiddleware middleware) {
-        super(middleware, SCHEMA);
+    public PlayerSchema(TrustedPlatformMiddleware middleware, LoggerProvider loggerProvider) {
+        super(middleware, SCHEMA, loggerProvider);
         playerService = (PlayerService) createService(PlayerService.class);
     }
 

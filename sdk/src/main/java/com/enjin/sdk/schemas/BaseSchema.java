@@ -14,12 +14,13 @@ import com.enjin.sdk.http.HttpResponse;
 import com.enjin.sdk.serialization.BigIntegerDeserializer;
 import com.enjin.sdk.serialization.converter.GraphConverter;
 import com.enjin.sdk.serialization.converter.JsonStringConverter;
+import com.enjin.sdk.utils.LoggerProvider;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
+import lombok.Getter;
 import lombok.SneakyThrows;
-import lombok.extern.java.Log;
 import okhttp3.MediaType;
 import okhttp3.ResponseBody;
 import org.jetbrains.annotations.NotNull;
@@ -33,7 +34,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Base class for schema with functionality to send GraphQL requests to the platform and process the responses.
  */
-@Log
 public class BaseSchema {
 
     private static final Gson GSON = new GsonBuilder()
@@ -43,19 +43,28 @@ public class BaseSchema {
             .create();
     private static final MediaType JSON = MediaType.parse("application/json");
 
+    /**
+     * -- Getter --
+     * @return the logger provider
+     */
+    @Getter
+    private final LoggerProvider loggerProvider;
+
     private final Retrofit retrofit;
     protected final TrustedPlatformMiddleware middleware;
     protected final String schema;
 
     /**
-     * Sole constructor.
+     * Sole constructor, used internally.
      *
      * @param middleware the middleware
      * @param schema the schema
+     * @param loggerProvider the logger provider
      */
-    public BaseSchema(TrustedPlatformMiddleware middleware, String schema) {
+    public BaseSchema(TrustedPlatformMiddleware middleware, String schema, LoggerProvider loggerProvider) {
         this.schema = schema;
         this.middleware = middleware;
+        this.loggerProvider = loggerProvider;
 
         Gson gson = new GsonBuilder()
                 .serializeSpecialFloatingPointValues()
@@ -125,7 +134,8 @@ public class BaseSchema {
                 try {
                     callback.onComplete(createResult(response));
                 } catch (Exception e) {
-                    log.log(Level.SEVERE, "An exception occurred:", e);
+                    loggerProvider.log(Level.SEVERE, "An exception occurred:", e);
+                    callback.onException(e);
                 }
             }
 
@@ -133,7 +143,8 @@ public class BaseSchema {
             public void onFailure(@NotNull Call<GraphQLResponse<T>> call,
                                   @NotNull Throwable throwable) {
                 Exception exception = new Exception("Request Failed: " + call.request().toString(), throwable);
-                log.log(Level.SEVERE, "An exception occurred:", exception);
+                loggerProvider.log(Level.SEVERE, "An exception occurred:", exception);
+                callback.onException(exception);
             }
         });
     }

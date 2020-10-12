@@ -35,6 +35,7 @@ import com.enjin.sdk.schemas.shared.queries.GetRequest;
 import com.enjin.sdk.schemas.shared.queries.GetRequests;
 import com.enjin.sdk.schemas.shared.queries.GetToken;
 import com.enjin.sdk.schemas.shared.queries.GetTokens;
+import com.enjin.sdk.utils.LoggerProvider;
 
 import java.io.IOException;
 import java.util.List;
@@ -51,13 +52,14 @@ public class SharedSchema extends BaseSchema {
     protected final TokenService tokenService;
 
     /**
-     * Sole constructor.
+     * Sole constructor, used internally.
      *
      * @param middleware the middleware
      * @param schema the schema
+     * @param loggerProvider the logger provider
      */
-    public SharedSchema(TrustedPlatformMiddleware middleware, String schema) {
-        super(middleware, schema);
+    public SharedSchema(TrustedPlatformMiddleware middleware, String schema, LoggerProvider loggerProvider) {
+        super(middleware, schema, loggerProvider);
         balanceService = (BalanceService) createService(BalanceService.class);
         platformService = (PlatformService) createService(PlatformService.class);
         projectService = (ProjectService) createService(ProjectService.class);
