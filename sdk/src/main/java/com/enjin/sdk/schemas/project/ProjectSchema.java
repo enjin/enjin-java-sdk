@@ -27,6 +27,7 @@ import com.enjin.sdk.models.AccessToken;
 import com.enjin.sdk.schemas.shared.SharedSchema;
 import com.enjin.sdk.models.Player;
 import com.enjin.sdk.models.Request;
+import com.enjin.sdk.utils.LoggerProvider;
 
 import java.io.IOException;
 import java.util.List;
@@ -44,12 +45,13 @@ public class ProjectSchema extends SharedSchema {
     protected final PlayerService playerService;
 
     /**
-     * Sole constructor.
+     * Sole constructor, used internally.
      *
      * @param middleware the middleware
+     * @param loggerProvider the logger provider
      */
-    public ProjectSchema(TrustedPlatformMiddleware middleware) {
-        super(middleware, SCHEMA);
+    public ProjectSchema(TrustedPlatformMiddleware middleware, LoggerProvider loggerProvider) {
+        super(middleware, SCHEMA, loggerProvider);
         playerService = (PlayerService) createService(PlayerService.class);
     }
 
