@@ -135,6 +135,7 @@ public class BaseSchema {
                     callback.onComplete(createResult(response));
                 } catch (Exception e) {
                     loggerProvider.log(Level.SEVERE, "An exception occurred:", e);
+                    callback.onException(e);
                 }
             }
 
@@ -143,6 +144,7 @@ public class BaseSchema {
                                   @NotNull Throwable throwable) {
                 Exception exception = new Exception("Request Failed: " + call.request().toString(), throwable);
                 loggerProvider.log(Level.SEVERE, "An exception occurred:", exception);
+                callback.onException(exception);
             }
         });
     }
