@@ -2,8 +2,8 @@ package com.enjin.sdk.models;
 
 import com.enjin.sdk.Testable;
 import lombok.SneakyThrows;
-import org.junit.Assume;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +29,7 @@ class FilterTest {
         final TestableFilter filter = new TestableFilter();
         final TestableFilter[] args = filters.toArray(new TestableFilter[0]);
 
-        Assume.assumeTrue(args.length > 0);
+        assumeTrue(args.length > 0);
 
         // Act
         filter.and(args);
@@ -75,7 +75,7 @@ class FilterTest {
         final TestableFilter filter = new TestableFilter();
         final TestableFilter[] args = filters.toArray(new TestableFilter[0]);
 
-        Assume.assumeTrue(args.length > 0);
+        assumeTrue(args.length > 0);
 
         // Act
         filter.or(args);
