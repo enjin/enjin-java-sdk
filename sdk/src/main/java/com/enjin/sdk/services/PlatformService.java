@@ -13,7 +13,12 @@ import retrofit2.http.Path;
 /**
  * Used internally for platform requests.
  */
-public interface PlatformService extends GetOne<Platform> {
+public interface PlatformService {
+
+    @POST("/graphql/{schema}")
+    @Headers("Content-Type: application/json")
+    Call<GraphQLResponse<Platform>> getOne(@Path("schema") String schema,
+                                           @Body JsonObject request);
 
     @POST("/graphql/{schema}")
     @Headers("Content-Type: application/json")
