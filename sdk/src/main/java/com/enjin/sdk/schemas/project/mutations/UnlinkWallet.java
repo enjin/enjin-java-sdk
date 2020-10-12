@@ -23,7 +23,7 @@ public class UnlinkWallet extends GraphQLRequest<UnlinkWallet> {
      * @return this request for chaining
      */
     public UnlinkWallet ethAddress(String ethAddress) {
-        return set("address", ethAddress);
+        return set("ethAddress", ethAddress);
     }
 
 }
