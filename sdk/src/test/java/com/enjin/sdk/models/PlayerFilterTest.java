@@ -3,8 +3,8 @@ package com.enjin.sdk.models;
 import com.enjin.sdk.TestFilterInterface;
 import com.enjin.sdk.Testable;
 import lombok.SneakyThrows;
-import org.junit.Assume;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
@@ -36,7 +36,7 @@ class PlayerFilterTest implements TestFilterInterface {
         final TestablePlayerFilter filter = new TestablePlayerFilter();
         final String[] args = ids.toArray(new String[0]);
 
-        Assume.assumeTrue(args.length > 0);
+        assumeTrue(args.length > 0);
 
         // Act
         filter.idIn(args);

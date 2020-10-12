@@ -3,8 +3,8 @@ package com.enjin.sdk.models;
 import com.enjin.sdk.TestFilterInterface;
 import com.enjin.sdk.Testable;
 import lombok.SneakyThrows;
-import org.junit.Assume;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
@@ -38,7 +38,7 @@ class TransactionFilterTest implements TestFilterInterface {
         final TestableTransactionFilter filter = new TestableTransactionFilter();
         final String[] args = ids.toArray(new String[0]);
 
-        Assume.assumeTrue(args.length > 0);
+        assumeTrue(args.length > 0);
 
         // Act
         filter.idIn(args);
@@ -99,7 +99,7 @@ class TransactionFilterTest implements TestFilterInterface {
         final TestableTransactionFilter filter = new TestableTransactionFilter();
         final String[] args = ids.toArray(new String[0]);
 
-        Assume.assumeTrue(args.length > 0);
+        assumeTrue(args.length > 0);
 
         // Act
         filter.transactionIdIn(args);
@@ -160,7 +160,7 @@ class TransactionFilterTest implements TestFilterInterface {
         final TestableTransactionFilter filter = new TestableTransactionFilter();
         final String[] args = ids.toArray(new String[0]);
 
-        Assume.assumeTrue(args.length > 0);
+        assumeTrue(args.length > 0);
 
         // Act
         filter.tokenIdIn(args);
@@ -221,7 +221,7 @@ class TransactionFilterTest implements TestFilterInterface {
         final TestableTransactionFilter filter = new TestableTransactionFilter();
         final RequestType[] args = RequestType.values();
 
-        Assume.assumeTrue(args.length > 0);
+        assumeTrue(args.length > 0);
 
         // Act
         filter.typeIn(args);
@@ -357,7 +357,7 @@ class TransactionFilterTest implements TestFilterInterface {
         final TestableTransactionFilter filter = new TestableTransactionFilter();
         final RequestState[] args = RequestState.values();
 
-        Assume.assumeTrue(args.length > 0);
+        assumeTrue(args.length > 0);
 
         // Act
         filter.stateIn(args);
@@ -418,7 +418,7 @@ class TransactionFilterTest implements TestFilterInterface {
         final TestableTransactionFilter filter = new TestableTransactionFilter();
         final String[] args = ids.toArray(new String[0]);
 
-        Assume.assumeTrue(args.length > 0);
+        assumeTrue(args.length > 0);
 
         // Act
         filter.walletIn(args);
