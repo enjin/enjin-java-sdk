@@ -15,10 +15,6 @@ public class PlatformUtils {
     public final Platform KOVAN = createFakePlatform("kovan");
     public final Platform MAIN_NET = createFakePlatform("mainnet");
 
-    public TrustedPlatformMiddleware createFakeMiddleware() {
-        return createMiddleware("http://localhost/");
-    }
-
     public TrustedPlatformMiddleware createMiddleware(String baseUri) {
         return new TrustedPlatformMiddleware(baseUri, false);
     }
