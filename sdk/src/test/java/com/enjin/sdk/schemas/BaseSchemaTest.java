@@ -211,7 +211,7 @@ class BaseSchemaTest {
 
     @Test
     @SneakyThrows
-    void sendRequest_SyncRequest_RequestFailed_() {
+    void sendRequest_SyncRequest_RequestFailed_ThrowsException() {
         // Arrange - Data
         final IOException expected = new IOException("STUB EXCEPTION");
         final Call<GraphQLResponse<Object>> mockCall = mock(Call.class);
@@ -228,7 +228,7 @@ class BaseSchemaTest {
     }
 
     @Test
-    void sendRequest_Async_ResponseHasGraphqlData_() {
+    void sendRequest_Async_ResponseHasGraphqlData_CallbackReceivesResponseWithData() {
         // Arrange - Data
         final Object expected = new Object();
         final GraphQLResponse<Object> fakeGraphqlResponse = createGraphQLResponseWithData(expected);
@@ -265,7 +265,7 @@ class BaseSchemaTest {
     }
 
     @Test
-    void sendRequest_Async_ResponseHasGraphqlErrors_() {
+    void sendRequest_Async_ResponseHasGraphqlErrors_CallbackReceivesResponseWithErrors() {
         // Arrange - Data
         final String responseBody = String.format("{\"errors\": %s}", GSON.toJson(DEFAULT_GRAPH_QL_ERRORS));
         final ResponseBody fakeResponseBody = ResponseBody.create(responseBody, MEDIA_TYPE);
@@ -300,7 +300,7 @@ class BaseSchemaTest {
     }
 
     @Test
-    void sendRequest_Async_BadResponse_LogsException() {
+    void sendRequest_Async_BadResponse_LogsExceptionAndNotifiesCallback() {
         // Arrange - Data
         final Response<GraphQLResponse<Object>> stubResponse = createBadStubResponse();
         final Call<GraphQLResponse<Object>> mockCall = mock(Call.class);
@@ -332,7 +332,7 @@ class BaseSchemaTest {
     }
 
     @Test
-    void sendRequest_Async_RequestFailed_() {
+    void sendRequest_Async_RequestFailed_LogsExceptionAndNotifiesCallback() {
         // Arrange - Data
         final Exception dummyException = new Exception("DUMMY EXCEPTION");
         final Request stubRequest = mock(Request.class);
