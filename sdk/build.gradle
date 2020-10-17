@@ -35,8 +35,10 @@ dependencies {
     testImplementation(
             deps.junitPlatform,
             deps.junitJupiter,
-            deps.mockWebServer,
     )
+    testImplementation(deps.mockWebServer) {
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
+    }
     testCompile(
             deps.mockito,
             deps.mockitoInline,
