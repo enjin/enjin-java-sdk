@@ -31,8 +31,17 @@ dependencies {
     implementation deps.okhttpUrlConnection
     implementation deps.retrofit
     implementation deps.retrofitGson
-    implementation deps.junitPlatform
-    implementation deps.junitJupiter
+
+    testImplementation(
+            deps.junitPlatform,
+            deps.junitJupiter,
+            deps.mockWebServer,
+    )
+    testCompile(
+            deps.mockito,
+            deps.mockitoInline,
+            deps.mockitoJupiter,
+    )
 }
 
 task processSource(type: Sync) {
