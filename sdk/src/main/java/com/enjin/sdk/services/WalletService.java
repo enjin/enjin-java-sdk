@@ -1,7 +1,7 @@
 package com.enjin.sdk.services;
 
 import com.enjin.sdk.graphql.GraphQLResponse;
-import com.enjin.sdk.models.Request;
+import com.enjin.sdk.models.Wallet;
 import com.google.gson.JsonObject;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -12,18 +12,18 @@ import retrofit2.http.Path;
 import java.util.List;
 
 /**
- * Used internally for transaction requests.
+ * Used internally for wallet requests.
  */
-public interface RequestService extends Delete {
+public interface WalletService {
 
     @POST("/graphql/{schema}")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<Request>> getOne(@Path("schema") String schema,
-                                          @Body JsonObject request);
+    Call<GraphQLResponse<Wallet>> getOne(@Path("schema") String schema,
+                                         @Body JsonObject request);
 
     @POST("/graphql/{schema}")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<List<Request>>> getMany(@Path("schema") String schema,
-                                                 @Body JsonObject request);
+    Call<GraphQLResponse<List<Wallet>>> getMany(@Path("schema") String schema,
+                                                @Body JsonObject request);
 
 }

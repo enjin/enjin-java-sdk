@@ -3,6 +3,10 @@ package com.enjin.sdk.schemas.project;
 import com.enjin.sdk.TrustedPlatformMiddleware;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpCallback;
+import com.enjin.sdk.models.Wallet;
+import com.enjin.sdk.schemas.project.mutations.UnlinkPlayerWallet;
+import com.enjin.sdk.schemas.project.queries.GetWallet;
+import com.enjin.sdk.schemas.project.queries.GetWallets;
 import com.enjin.sdk.services.PlayerService;
 import com.enjin.sdk.schemas.project.mutations.CreatePlayer;
 import com.enjin.sdk.schemas.project.mutations.CreateToken;
@@ -27,6 +31,7 @@ import com.enjin.sdk.models.AccessToken;
 import com.enjin.sdk.schemas.shared.SharedSchema;
 import com.enjin.sdk.models.Player;
 import com.enjin.sdk.models.Request;
+import com.enjin.sdk.services.WalletService;
 import com.enjin.sdk.utils.LoggerProvider;
 
 import java.io.IOException;
@@ -43,6 +48,7 @@ public class ProjectSchema extends SharedSchema {
     public static final String SCHEMA = "app";
 
     protected final PlayerService playerService;
+    protected final WalletService walletService;
 
     /**
      * Sole constructor, used internally.
@@ -53,6 +59,7 @@ public class ProjectSchema extends SharedSchema {
     public ProjectSchema(TrustedPlatformMiddleware middleware, LoggerProvider loggerProvider) {
         super(middleware, SCHEMA, loggerProvider);
         playerService = (PlayerService) createService(PlayerService.class);
+        walletService = (WalletService) createService(WalletService.class);
     }
 
     /**
@@ -254,6 +261,50 @@ public class ProjectSchema extends SharedSchema {
     }
 
     /**
+     * Sends {@link GetWallet} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
+     */
+    public GraphQLResponse<Wallet> getWallet(GetWallet request) {
+        return sendRequest(walletService.getOne(schema, createRequestBody(request)));
+    }
+
+    /**
+     * Sends {@link GetWallet} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
+     */
+    public void getWallet(GetWallet request,
+                          HttpCallback<GraphQLResponse<Wallet>> callback) {
+        sendRequest(walletService.getOne(schema, createRequestBody(request)), callback);
+    }
+
+    /**
+     * Sends {@link GetWallets} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
+     */
+    public GraphQLResponse<List<Wallet>> getWallets(GetWallets request) {
+        return sendRequest(walletService.getMany(schema, createRequestBody(request)));
+    }
+
+    /**
+     * Sends {@link GetWallets} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
+     */
+    public void getWallets(GetWallets request,
+                           HttpCallback<GraphQLResponse<List<Wallet>>> callback) {
+        sendRequest(walletService.getMany(schema, createRequestBody(request)), callback);
+    }
+
+    /**
      * Sends {@link InvalidateTokenMetadata} request synchronously.
      *
      * @param request the request
@@ -427,6 +478,27 @@ public class ProjectSchema extends SharedSchema {
     public void setWhitelisted(SetWhitelisted request,
                                HttpCallback<GraphQLResponse<Request>> callback) {
         transactionRequest(request, callback);
+    }
+
+    /**
+     * Sends {@link UnlinkPlayerWallet} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
+     */
+    public GraphQLResponse<Boolean> unlinkPlayerWallet(UnlinkPlayerWallet request) {
+        return sendRequest(playerService.delete(schema, createRequestBody(request)));
+    }
+
+    /**
+     * Sends {@link UnlinkPlayerWallet} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
+     */
+    public void unlinkPlayerWallet(UnlinkPlayerWallet request, HttpCallback<GraphQLResponse<Boolean>> callback) {
+        sendRequest(playerService.delete(schema, createRequestBody(request)), callback);
     }
 
     /**

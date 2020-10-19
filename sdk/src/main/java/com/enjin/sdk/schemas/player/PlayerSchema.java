@@ -4,10 +4,13 @@ import com.enjin.sdk.TrustedPlatformMiddleware;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpCallback;
 import com.enjin.sdk.models.Player;
+import com.enjin.sdk.models.Wallet;
+import com.enjin.sdk.schemas.player.queries.GetWallet;
 import com.enjin.sdk.services.PlayerService;
 import com.enjin.sdk.schemas.player.mutations.UnlinkWallet;
 import com.enjin.sdk.schemas.player.queries.GetPlayer;
 import com.enjin.sdk.schemas.shared.SharedSchema;
+import com.enjin.sdk.services.WalletService;
 import com.enjin.sdk.utils.LoggerProvider;
 
 import java.io.IOException;
@@ -22,7 +25,8 @@ public class PlayerSchema extends SharedSchema {
      */
     public static final String SCHEMA = "player";
 
-    private final PlayerService playerService;
+    protected final PlayerService playerService;
+    protected final WalletService walletService;
 
     /**
      * Sole constructor, used internally.
@@ -33,6 +37,7 @@ public class PlayerSchema extends SharedSchema {
     public PlayerSchema(TrustedPlatformMiddleware middleware, LoggerProvider loggerProvider) {
         super(middleware, SCHEMA, loggerProvider);
         playerService = (PlayerService) createService(PlayerService.class);
+        walletService = (WalletService) createService(WalletService.class);
     }
 
     /**
@@ -55,6 +60,28 @@ public class PlayerSchema extends SharedSchema {
     public void getPlayer(GetPlayer request,
                           HttpCallback<GraphQLResponse<Player>> callback) {
         sendRequest(playerService.getOne(schema, createRequestBody(request)), callback);
+    }
+
+    /**
+     * Sends the {@link GetWallet} request synchronously.
+     *
+     * @param request the request
+     * @return the response
+     * @throws IOException if a problem occurred talking to the server
+     */
+    public GraphQLResponse<Wallet> getWallet(GetWallet request) {
+        return sendRequest(walletService.getOne(schema, createRequestBody(request)));
+    }
+
+    /**
+     * Sends the {@link GetWallet} request asynchronously.
+     *
+     * @param request the request
+     * @param callback the callback
+     */
+    public void getWallet(GetWallet request,
+                          HttpCallback<GraphQLResponse<Wallet>> callback) {
+        sendRequest(walletService.getOne(schema, createRequestBody(request)), callback);
     }
 
     /**

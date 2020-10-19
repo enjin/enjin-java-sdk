@@ -11,6 +11,20 @@ import com.enjin.sdk.graphql.VariableHolder;
 public interface TransactionFragmentArguments<T extends VariableHolder<T>> extends VariableHolder<T> {
 
     /**
+     * Sets the request to include the blockchain data with the transaction.
+     *
+     * @return this request for chaining
+     * @see TransactionFragmentArguments#withEncodedData()
+     * @see TransactionFragmentArguments#withSignedTxs()
+     * @see TransactionFragmentArguments#withReceipt()
+     * @see TransactionFragmentArguments#withError()
+     * @see TransactionFragmentArguments#withNonce()
+     */
+    default T withBlockchainData() {
+        return set("withBlockchainData", true);
+    }
+
+    /**
      * Sets the request to include the metadata with the transaction.
      *
      * @return this request for chaining
@@ -20,7 +34,8 @@ public interface TransactionFragmentArguments<T extends VariableHolder<T>> exten
     }
 
     /**
-     * Sets the request to include the encoded data with the transaction.
+     * Sets the request to include the encoded data with the transaction when used with
+     * {@link TransactionFragmentArguments#withBlockchainData()}.
      *
      * @return this request for chaining
      */
@@ -38,7 +53,8 @@ public interface TransactionFragmentArguments<T extends VariableHolder<T>> exten
     }
 
     /**
-     * Sets the request to include the signed transactions with the transaction.
+     * Sets the request to include the signed transactions with the transaction when used with
+     * {@link TransactionFragmentArguments#withBlockchainData()}.
      *
      * @return this request for chaining
      */
@@ -47,7 +63,8 @@ public interface TransactionFragmentArguments<T extends VariableHolder<T>> exten
     }
 
     /**
-     * Sets the request to include the error with the transaction.
+     * Sets the request to include the error with the transaction when used with
+     * {@link TransactionFragmentArguments#withBlockchainData()}.
      *
      * @return this request for chaining
      */
@@ -56,7 +73,8 @@ public interface TransactionFragmentArguments<T extends VariableHolder<T>> exten
     }
 
     /**
-     * Sets the request to include the nonce with the transaction.
+     * Sets the request to include the nonce with the transaction when used with
+     * {@link TransactionFragmentArguments#withBlockchainData()}.
      *
      * @return this request for chaining
      */
@@ -65,7 +83,8 @@ public interface TransactionFragmentArguments<T extends VariableHolder<T>> exten
     }
 
     /**
-     * Sets the request to include the state with the transaction.
+     * Sets the request to include the state with the transaction when used with
+     * {@link TransactionFragmentArguments#withBlockchainData()}.
      *
      * @return this request for chaining
      */
@@ -74,7 +93,8 @@ public interface TransactionFragmentArguments<T extends VariableHolder<T>> exten
     }
 
     /**
-     * Sets the request to include the receipt with the transaction.
+     * Sets the request to include the receipt with the transaction when used with
+     * {@link TransactionFragmentArguments#withBlockchainData()}.
      *
      * @return this request for chaining
      */
