@@ -14,6 +14,7 @@ import com.enjin.sdk.services.PlayerService;
 import com.enjin.sdk.services.ProjectService;
 import com.enjin.sdk.services.RequestService;
 import com.enjin.sdk.services.TokenService;
+import com.enjin.sdk.services.WalletService;
 import com.enjin.sdk.utils.LoggerProvider;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -155,6 +156,15 @@ class BaseSchemaTest {
     void createService_TokenService_CreatesService() {
         // Act
         TokenService actual = (TokenService) classUnderTest.createService(TokenService.class);
+
+        // Assert
+        assertNotNull(actual);
+    }
+
+    @Test
+    void createService_WalletService_CreatesService() {
+        // Act
+        WalletService actual = (WalletService) classUnderTest.createService(WalletService.class);
 
         // Assert
         assertNotNull(actual);
