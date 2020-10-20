@@ -7,7 +7,6 @@ import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpCallback;
 import com.enjin.sdk.http.HttpResponse;
-import com.enjin.sdk.schemas.shared.queries.GetPlatform;
 import com.enjin.sdk.services.BalanceService;
 import com.enjin.sdk.services.PlatformService;
 import com.enjin.sdk.services.PlayerService;
@@ -93,18 +92,22 @@ class BaseSchemaTest {
     }
 
     @Test
-    void createRequestBody_ValidRequest_ReturnBodyHasQueryAndVariables() {
+    void createRequestBody_RegisteredRequest_ReturnBodyWithQueryAndVariables() {
         // Arrange
-        final String QUERY_KEY = "query";
-        final String VARIABLES_KEY = "variables";
-        final GraphQLRequest request = createValidRequest();
+        final String queryName = "test.query";
+        final String queryString = "query string";
+        final String queryKey = "query";
+        final String variablesKey = "variables";
+        final GraphQLRequest request = new GraphQLRequest<>(queryName);
+        classUnderTest.middleware.getQueryRegistry().register(queryName, queryString);
 
         // Act
         JsonObject actual = classUnderTest.createRequestBody(request);
 
         // Assert
-        assertTrue(actual.has(QUERY_KEY));
-        assertTrue(actual.has(VARIABLES_KEY));
+        assertNotNull(actual);
+        assertTrue(actual.has(queryKey));
+        assertTrue(actual.has(variablesKey));
     }
 
     @Test
@@ -374,10 +377,6 @@ class BaseSchemaTest {
 
         // Assert
         assertNotNull(actual);
-    }
-
-    private static GraphQLRequest createValidRequest() {
-        return new GetPlatform();
     }
 
     private static <T> GraphQLResponse<T> createGraphQLResponseWithData(T data) {
