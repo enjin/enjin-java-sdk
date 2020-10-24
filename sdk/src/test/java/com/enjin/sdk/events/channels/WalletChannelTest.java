@@ -7,28 +7,15 @@ import org.junit.jupiter.api.Test;
 
 class WalletChannelTest {
 
+    private static final String PLATFORM_NAME = "test";
+
     @Test
     void channel_Kovan_ReturnCorrectString() {
         // Arrange
-        final String expected = "enjincloud.kovan.wallet.0x0";
-        final String WALLET = "0x0";
-        final Platform platform = PlatformUtils.KOVAN;
-        final Channel channel = new WalletChannel(platform, WALLET);
-
-        // Act
-        String actual = channel.channel();
-
-        // Assert
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    void channel_Mainnet_ReturnCorrectString() {
-        // Arrange
-        final String expected = "enjincloud.mainnet.wallet.0x0";
-        final String WALLET = "0x0";
-        final Platform platform = PlatformUtils.MAIN_NET;
-        final Channel channel = new WalletChannel(platform, WALLET);
+        final String expected = "enjincloud.test.wallet.0";
+        final String wallet = "0";
+        final Platform platform = PlatformUtils.createFakePlatform(PLATFORM_NAME);
+        final Channel channel = new WalletChannel(platform, wallet);
 
         // Act
         String actual = channel.channel();

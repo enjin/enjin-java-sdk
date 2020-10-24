@@ -7,28 +7,15 @@ import org.junit.jupiter.api.Test;
 
 class AppChannelTest {
 
-    @Test
-    void channel_Kovan_ReturnCorrectString() {
-        // Arrange
-        final String expected = "enjincloud.kovan.app.1234";
-        final int APP = 1234;
-        final Platform platform = PlatformUtils.KOVAN;
-        final Channel channel = new AppChannel(platform, APP);
-
-        // Act
-        String actual = channel.channel();
-
-        // Assert
-        assertEquals(expected, actual);
-    }
+    private static final String PLATFORM_NAME = "test";
 
     @Test
-    void channel_Mainnet_ReturnCorrectString() {
+    void channel_ReturnsExpectedString() {
         // Arrange
-        final String expected = "enjincloud.mainnet.app.1234";
-        final int APP = 1234;
-        final Platform platform = PlatformUtils.MAIN_NET;
-        final Channel channel = new AppChannel(platform, APP);
+        final String expected = "enjincloud.test.app.1234";
+        final int app = 1234;
+        final Platform fakePlatform = PlatformUtils.createFakePlatform(PLATFORM_NAME);
+        final Channel channel = new AppChannel(fakePlatform, app);
 
         // Act
         String actual = channel.channel();
