@@ -1,82 +1,50 @@
 package com.enjin.sdk;
 
-import com.enjin.sdk.models.Notifications;
 import com.enjin.sdk.models.Platform;
-import com.enjin.sdk.models.Pusher;
-import com.enjin.sdk.models.PusherOptions;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
-
-import java.lang.reflect.Field;
 
 @UtilityClass
 public class PlatformUtils {
 
-    public final Platform KOVAN = createFakePlatform("kovan");
-    public final Platform MAIN_NET = createFakePlatform("mainnet");
+    private static final Gson GSON = new GsonBuilder()
+            .setLenient()
+            .create();
+
+    public final Platform FAKE_PLATFORM = createFakePlatform("fake");
 
     public TrustedPlatformMiddleware createMiddleware(String baseUri) {
         return new TrustedPlatformMiddleware(baseUri, false);
     }
 
-    @SneakyThrows
     public Platform createFakePlatform(String network) {
-        Platform platform = new Platform();
-
-        Class<? extends Platform> c = platform.getClass();
-        Field networkField = c.getDeclaredField("network");
-        networkField.setAccessible(true);
-        networkField.set(platform, network);
-        Field notificationsField = c.getDeclaredField("notifications");
-        notificationsField.setAccessible(true);
-        notificationsField.set(platform, createNotifications());
-
-        return platform;
+        return createFakePlatform(network, "xyz", "xyz", "xyz", true);
     }
 
     @SneakyThrows
-    private Notifications createNotifications() {
-        Notifications notifications = new Notifications();
-
-        Class<? extends Notifications> c = notifications.getClass();
-        Field pusherField = c.getDeclaredField("pusher");
-        pusherField.setAccessible(true);
-        pusherField.set(notifications, createPusher());
-
-        return notifications;
-    }
-
-    @SneakyThrows
-    private Pusher createPusher() {
-        Pusher pusher = new Pusher();
-
-        Class<? extends Pusher> c = pusher.getClass();
-        Field keyField = c.getDeclaredField("key");
-        keyField.setAccessible(true);
-        keyField.set(pusher, "xyz");
-        Field namespaceField = c.getDeclaredField("namespace");
-        namespaceField.setAccessible(true);
-        namespaceField.set(pusher, "xyz");
-        Field optionsField = c.getDeclaredField("options");
-        optionsField.setAccessible(true);
-        optionsField.set(pusher, createOptions());
-
-        return pusher;
-    }
-
-    @SneakyThrows
-    private PusherOptions createOptions() {
-        PusherOptions options = new PusherOptions();
-
-        Class<? extends PusherOptions> c = options.getClass();
-        Field clusterField = c.getDeclaredField("cluster");
-        clusterField.setAccessible(true);
-        clusterField.set(options, "xyz");
-        Field encryptedField = c.getDeclaredField("encrypted");
-        encryptedField.setAccessible(true);
-        encryptedField.set(options, true);
-
-        return options;
+    public Platform createFakePlatform(String network,
+                                       String key,
+                                       String namespace,
+                                       String cluster,
+                                       boolean encrypted) {
+        StringBuilder builder = new StringBuilder()
+                .append("{\"network\": ")
+                .append(network)
+                .append(", \"notifications\": {")
+                .append("\"pusher\": {")
+                .append("\"key\":")
+                .append(key)
+                .append(", \"namespace\": ")
+                .append(namespace)
+                .append(", \"options\": {")
+                .append("\"cluster\": ")
+                .append(cluster)
+                .append(", \"encrypted\": ")
+                .append(encrypted)
+                .append("}}}}");
+        return GSON.fromJson(builder.toString(), Platform.class);
     }
 
 }

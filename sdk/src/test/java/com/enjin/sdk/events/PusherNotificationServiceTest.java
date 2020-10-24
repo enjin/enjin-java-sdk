@@ -225,7 +225,7 @@ class PusherNotificationServiceTest {
     }
 
     private static PusherNotificationService defaultPusherNotificationService() {
-        return new PusherNotificationService(PlatformUtils.KOVAN);
+        return new PusherNotificationService(PlatformUtils.FAKE_PLATFORM);
     }
 
     private static NotificationEvent createNotificationEvent(EventType type) {
