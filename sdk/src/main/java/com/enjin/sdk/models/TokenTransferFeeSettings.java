@@ -1,5 +1,6 @@
 package com.enjin.sdk.models;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -8,8 +9,9 @@ import lombok.ToString;
  *
  * @see Token
  */
-@ToString
+@EqualsAndHashCode
 @Getter
+@ToString
 public class TokenTransferFeeSettings {
 
     /**

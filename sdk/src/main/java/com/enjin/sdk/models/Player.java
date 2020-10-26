@@ -1,10 +1,12 @@
 package com.enjin.sdk.models;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
  * Models a player on a application.
  */
+@EqualsAndHashCode
 @Getter
 public class Player {
 

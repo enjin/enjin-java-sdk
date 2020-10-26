@@ -1,10 +1,12 @@
 package com.enjin.sdk.models;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
  * Models the linking information for a {@link Player}.
  */
+@EqualsAndHashCode
 @Getter
 public class LinkingInfo {
 

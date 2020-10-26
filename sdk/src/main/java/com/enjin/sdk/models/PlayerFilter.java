@@ -1,6 +1,7 @@
 package com.enjin.sdk.models;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.EqualsAndHashCode;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
  *
  * @see com.enjin.sdk.schemas.project.queries.GetPlayers
  */
+@EqualsAndHashCode(callSuper = true)
 public class PlayerFilter extends Filter<PlayerFilter> {
 
     private String id;

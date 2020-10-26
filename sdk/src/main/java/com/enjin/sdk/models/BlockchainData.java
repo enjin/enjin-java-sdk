@@ -1,11 +1,13 @@
 package com.enjin.sdk.models;
 
 import com.google.gson.JsonObject;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
  * Models the blockchain data of a {@link Request}.
  */
+@EqualsAndHashCode
 @Getter
 public class BlockchainData {
 

@@ -1,10 +1,12 @@
 package com.enjin.sdk.models;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
  * Models a transaction on the platform.
  */
+@EqualsAndHashCode
 @Getter
 public class Request {
 

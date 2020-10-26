@@ -1,5 +1,6 @@
 package com.enjin.sdk.models;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.List;
 /**
  * Models a item on the platform.
  */
+@EqualsAndHashCode
 @Getter
 public class Token {
 

@@ -1,6 +1,7 @@
 package com.enjin.sdk.models;
 
 import com.google.gson.JsonObject;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
@@ -8,6 +9,7 @@ import lombok.Getter;
  *
  * @see Token
  */
+@EqualsAndHashCode
 @Getter
 public final class TokenVariant {
 
