@@ -25,7 +25,7 @@ public class GraphQLQueryRegistry {
      * @return true if registered, false if already exists
      */
     public boolean register(String name, String query) {
-        if (!registered.containsKey(query)) {
+        if (!registered.containsKey(name)) {
             registered.put(name, query);
             return true;
         }

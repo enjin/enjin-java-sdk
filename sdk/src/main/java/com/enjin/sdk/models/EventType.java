@@ -120,7 +120,7 @@ public enum EventType {
      */
     public static EventType getFromKey(String key) {
         for (EventType type : EventType.values()) {
-            if (type.getKey().equalsIgnoreCase(key))
+            if (key.equalsIgnoreCase(type.getKey()))
                 return type;
         }
 
