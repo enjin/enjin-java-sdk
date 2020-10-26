@@ -1,5 +1,7 @@
 package com.enjin.sdk.models;
 
+import lombok.EqualsAndHashCode;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -8,6 +10,7 @@ import java.util.List;
  *
  * @param <T> the type of the implementing class
  */
+@EqualsAndHashCode
 public abstract class Filter<T extends Filter<T>> {
 
     private List<T> and;

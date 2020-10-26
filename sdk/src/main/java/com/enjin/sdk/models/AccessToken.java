@@ -1,6 +1,7 @@
 package com.enjin.sdk.models;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import java.util.Objects;
@@ -8,6 +9,7 @@ import java.util.Objects;
 /**
  * Models a successful auth object.
  */
+@EqualsAndHashCode
 @Getter
 public class AccessToken {
 

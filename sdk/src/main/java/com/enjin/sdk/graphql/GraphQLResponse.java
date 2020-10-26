@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.enjin.sdk.models.PaginationCursor;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -13,6 +14,8 @@ import lombok.ToString;
  * @param <T> the model of the data field
  * @see GraphQLError
  */
+@EqualsAndHashCode
+@Getter
 @ToString
 public class GraphQLResponse<T> {
 
@@ -20,28 +23,24 @@ public class GraphQLResponse<T> {
      * -- GETTER --
      * @return the raw data
      */
-    @Getter
     private String raw;
 
     /**
      * -- GETTER --
      * @return the data object
      */
-    @Getter
     private T data;
 
     /**
      * -- GETTER --
      * @return the errors
      */
-    @Getter
     private List<GraphQLError> errors;
 
     /**
      * -- GETTER --
      * @return the cursor
      */
-    @Getter
     private PaginationCursor cursor;
 
     /**

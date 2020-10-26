@@ -1,8 +1,11 @@
 package com.enjin.sdk.models;
 
+import lombok.EqualsAndHashCode;
+
 /**
  * Models sorting input for transactions.
  */
+@EqualsAndHashCode
 public class TransactionSort {
 
     private TransactionField field;

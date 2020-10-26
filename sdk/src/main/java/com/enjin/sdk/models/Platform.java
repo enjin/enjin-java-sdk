@@ -1,10 +1,12 @@
 package com.enjin.sdk.models;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
  * Models data about the platform.
  */
+@EqualsAndHashCode
 @Getter
 public class Platform {
 

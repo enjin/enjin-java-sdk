@@ -1,11 +1,13 @@
 package com.enjin.sdk.models;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
  * Models a token balance.
  */
+@EqualsAndHashCode
 @Getter
 public class Balance {
 

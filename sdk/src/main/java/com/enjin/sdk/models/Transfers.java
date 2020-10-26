@@ -1,10 +1,13 @@
 package com.enjin.sdk.models;
 
+import lombok.EqualsAndHashCode;
+
 /**
  * Models transfer input when making requests.
  *
  * @see com.enjin.sdk.schemas.shared.mutations.AdvancedSendToken
  */
+@EqualsAndHashCode
 public class Transfers {
 
     private String from;

@@ -1,10 +1,12 @@
 package com.enjin.sdk.models;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
  * Models the state data of a {@link Token}.
  */
+@EqualsAndHashCode
 @Getter
 public class TokenStateData {
 

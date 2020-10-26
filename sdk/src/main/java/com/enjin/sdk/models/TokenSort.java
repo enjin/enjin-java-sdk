@@ -1,8 +1,11 @@
 package com.enjin.sdk.models;
 
+import lombok.EqualsAndHashCode;
+
 /**
  * Models sorting input for tokens (items).
  */
+@EqualsAndHashCode
 public class TokenSort {
 
     private TokenField field;

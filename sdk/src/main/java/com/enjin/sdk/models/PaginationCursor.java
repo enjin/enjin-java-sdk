@@ -1,11 +1,13 @@
 package com.enjin.sdk.models;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 /**
  * Models a pagination cursor for queries.
  */
+@EqualsAndHashCode
 @Getter
 @ToString
 public class PaginationCursor {
