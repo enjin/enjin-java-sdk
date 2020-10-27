@@ -36,7 +36,6 @@ class FilterTest {
         List<TestableFilter> actual = filter.getAnd();
 
         // Assert
-        assertNotNull(actual);
         for (TestableFilter f : args) {
             assertTrue(actual.contains(f));
         }
@@ -52,7 +51,6 @@ class FilterTest {
         List<TestableFilter> actual = filter.getAnd();
 
         // Assert
-        assertNotNull(actual);
         assertTrue(actual.isEmpty());
     }
 
@@ -82,7 +80,6 @@ class FilterTest {
         List<TestableFilter> actual = filter.getOr();
 
         // Assert
-        assertNotNull(actual);
         for (TestableFilter f : args) {
             assertTrue(actual.contains(f));
         }
@@ -98,7 +95,6 @@ class FilterTest {
         List<TestableFilter> actual = filter.getOr();
 
         // Assert
-        assertNotNull(actual);
         assertTrue(actual.isEmpty());
     }
 

@@ -69,7 +69,7 @@ class EventTypeTest {
         // Arrange
         final EventType TYPE = EventType.APP_LINKED;
         final EventType[] VALUES = { EventType.APP_LINKED, EventType.APP_UNLINKED };
-        final EventFilter filter = createdEventFilter(VALUES);
+        final EventFilter filter = createEventFilter(VALUES);
 
         // Act
         boolean actual = TYPE.in(filter);
@@ -83,7 +83,7 @@ class EventTypeTest {
         // Arrange
         final EventType TYPE = EventType.APP_LINKED;
         final EventType[] VALUES = { EventType.APP_CREATED, EventType.APP_UNLINKED };
-        final EventFilter filter = createdEventFilter(VALUES);
+        final EventFilter filter = createEventFilter(VALUES);
 
         // Act
         boolean actual = TYPE.in(filter);
@@ -133,7 +133,7 @@ class EventTypeTest {
         }
     }
 
-    private static EventFilter createdEventFilter(EventType... values) {
+    private static EventFilter createEventFilter(EventType... values) {
         return new EventFilter() {
             @Override
             public Class<? extends Annotation> annotationType() {

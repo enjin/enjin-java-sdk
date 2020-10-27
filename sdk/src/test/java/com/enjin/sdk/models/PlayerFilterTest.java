@@ -25,7 +25,6 @@ class PlayerFilterTest implements TestFilterInterface {
         List<String> actual = filter.getIdIn();
 
         // Assert
-        assertNotNull(actual);
         for (String s : args) {
             assertTrue(actual.contains(s));
         }
@@ -41,7 +40,6 @@ class PlayerFilterTest implements TestFilterInterface {
         List<String> actual = filter.getIdIn();
 
         // Assert
-        assertNotNull(actual);
         assertTrue(actual.isEmpty());
     }
 

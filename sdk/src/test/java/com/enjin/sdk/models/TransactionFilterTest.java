@@ -25,7 +25,6 @@ class TransactionFilterTest implements TestFilterInterface {
         List<String> actual = filter.getIdIn();
 
         // Assert
-        assertNotNull(actual);
         for (String s : args) {
             assertTrue(actual.contains(s));
         }
@@ -41,7 +40,6 @@ class TransactionFilterTest implements TestFilterInterface {
         List<String> actual = filter.getIdIn();
 
         // Assert
-        assertNotNull(actual);
         assertTrue(actual.isEmpty());
     }
 
@@ -71,7 +69,6 @@ class TransactionFilterTest implements TestFilterInterface {
         List<String> actual = filter.getTransactIdIn();
 
         // Assert
-        assertNotNull(actual);
         for (String s : args) {
             assertTrue(actual.contains(s));
         }
@@ -87,7 +84,6 @@ class TransactionFilterTest implements TestFilterInterface {
         List<String> actual = filter.getTransactIdIn();
 
         // Assert
-        assertNotNull(actual);
         assertTrue(actual.isEmpty());
     }
 
@@ -117,7 +113,6 @@ class TransactionFilterTest implements TestFilterInterface {
         List<String> actual = filter.getTokenIdIn();
 
         // Assert
-        assertNotNull(actual);
         for (String s : args) {
             assertTrue(actual.contains(s));
         }
@@ -133,7 +128,6 @@ class TransactionFilterTest implements TestFilterInterface {
         List<String> actual = filter.getTokenIdIn();
 
         // Assert
-        assertNotNull(actual);
         assertTrue(actual.isEmpty());
     }
 
@@ -163,7 +157,6 @@ class TransactionFilterTest implements TestFilterInterface {
         List<RequestType> actual = filter.getTypeIn();
 
         // Assert
-        assertNotNull(actual);
         for (RequestType v : args) {
             assertTrue(actual.contains(v));
         }
@@ -179,7 +172,6 @@ class TransactionFilterTest implements TestFilterInterface {
         List<RequestType> actual = filter.getTypeIn();
 
         // Assert
-        assertNotNull(actual);
         assertTrue(actual.isEmpty());
     }
 
@@ -209,7 +201,6 @@ class TransactionFilterTest implements TestFilterInterface {
         List<RequestState> actual = filter.getStateIn();
 
         // Assert
-        assertNotNull(actual);
         for (RequestState v : args) {
             assertTrue(actual.contains(v));
         }
@@ -225,7 +216,6 @@ class TransactionFilterTest implements TestFilterInterface {
         List<RequestState> actual = filter.getStateIn();
 
         // Assert
-        assertNotNull(actual);
         assertTrue(actual.isEmpty());
     }
 
@@ -255,7 +245,6 @@ class TransactionFilterTest implements TestFilterInterface {
         List<String> actual = filter.getWalletIn();
 
         // Assert
-        assertNotNull(actual);
         for (String s : args) {
             assertTrue(actual.contains(s));
         }
@@ -271,7 +260,6 @@ class TransactionFilterTest implements TestFilterInterface {
         List<String> actual = filter.getWalletIn();
 
         // Assert
-        assertNotNull(actual);
         assertTrue(actual.isEmpty());
     }
 

@@ -25,7 +25,6 @@ class TokenFilterTest implements TestFilterInterface {
         List<String> actual = filter.getIdIn();
 
         // Assert
-        assertNotNull(actual);
         for (String s : args) {
             assertTrue(actual.contains(s));
         }
@@ -41,7 +40,6 @@ class TokenFilterTest implements TestFilterInterface {
         List<String> actual = filter.getIdIn();
 
         // Assert
-        assertNotNull(actual);
         assertTrue(actual.isEmpty());
     }
 
@@ -71,7 +69,6 @@ class TokenFilterTest implements TestFilterInterface {
         List<String> actual = filter.getNameIn();
 
         // Assert
-        assertNotNull(actual);
         for (String s : args) {
             assertTrue(actual.contains(s));
         }
@@ -87,7 +84,6 @@ class TokenFilterTest implements TestFilterInterface {
         List<String> actual = filter.getNameIn();
 
         // Assert
-        assertNotNull(actual);
         assertTrue(actual.isEmpty());
     }
 
@@ -117,7 +113,6 @@ class TokenFilterTest implements TestFilterInterface {
         List<String> actual = filter.getWalletIn();
 
         // Assert
-        assertNotNull(actual);
         for (String s : args) {
             assertTrue(actual.contains(s));
         }
@@ -133,7 +128,6 @@ class TokenFilterTest implements TestFilterInterface {
         List<String> actual = filter.getWalletIn();
 
         // Assert
-        assertNotNull(actual);
         assertTrue(actual.isEmpty());
     }
 
