@@ -25,7 +25,6 @@ class BalanceFilterTest implements TestFilterInterface {
         List<String> actual = filter.getTokenIdIn();
 
         // Assert
-        assertNotNull(actual);
         for (String s : args) {
             assertTrue(actual.contains(s));
         }
@@ -41,7 +40,6 @@ class BalanceFilterTest implements TestFilterInterface {
         List<String> actual = filter.getTokenIdIn();
 
         // Assert
-        assertNotNull(actual);
         assertTrue(actual.isEmpty());
     }
 
@@ -71,7 +69,6 @@ class BalanceFilterTest implements TestFilterInterface {
         List<String> actual = filter.getWalletIn();
 
         // Assert
-        assertNotNull(actual);
         for (String s : args) {
             assertTrue(actual.contains(s));
         }
@@ -87,7 +84,6 @@ class BalanceFilterTest implements TestFilterInterface {
         List<String> actual = filter.getWalletIn();
 
         // Assert
-        assertNotNull(actual);
         assertTrue(actual.isEmpty());
     }
 

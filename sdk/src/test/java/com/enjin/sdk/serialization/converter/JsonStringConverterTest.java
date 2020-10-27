@@ -9,9 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
 
@@ -81,10 +79,6 @@ class JsonStringConverterTest {
         DelegateToStringConverter actual = (DelegateToStringConverter) converter.stringConverter(dummyType,
                                                                                                  fakeAnnotations,
                                                                                                  dummyRetrofit);
-
-        // Verify
-        verify(mockFactory)
-                .requestBodyConverter(any(), any(), any(), any());
 
         // Assert
         assertNotNull(actual);

@@ -42,7 +42,6 @@ class BigIntegerDeserializerTest {
         BigInteger actual = classUnderTest.deserialize(jsonElement, dummyType, dummyContext);
 
         // Assert
-        assertNotNull(actual);
         assertEquals(expected, actual);
     }
 
@@ -58,7 +57,6 @@ class BigIntegerDeserializerTest {
         BigInteger actual = classUnderTest.deserialize(jsonElement, dummyType, dummyContext);
 
         // Assert
-        assertNotNull(actual);
         assertEquals(expected, actual);
     }
 
@@ -74,7 +72,6 @@ class BigIntegerDeserializerTest {
         BigInteger actual = classUnderTest.deserialize(jsonElement, dummyType, dummyContext);
 
         // Assert
-        assertNotNull(actual);
         assertEquals(expected, actual);
     }
 
@@ -90,7 +87,6 @@ class BigIntegerDeserializerTest {
         BigInteger actual = classUnderTest.deserialize(jsonElement, dummyType, dummyContext);
 
         // Assert
-        assertNotNull(actual);
         assertEquals(expected, actual);
     }
 
