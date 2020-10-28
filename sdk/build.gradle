@@ -61,4 +61,5 @@ compileJava {
 
 test {
     useJUnitPlatform()
+    systemProperty 'junit.jupiter.execution.timeout.mode', 'disabled_on_debug'
 }
