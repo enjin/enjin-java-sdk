@@ -1,10 +1,12 @@
 package com.enjin.sdk.models;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
  * Models a gas prices object.
  */
+@EqualsAndHashCode
 @Getter
 public class GasPrices {
 

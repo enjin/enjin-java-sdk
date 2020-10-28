@@ -9,12 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.enjin.sdk.graphql.GraphQLError;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.models.PaginationCursor;
 import com.enjin.sdk.serialization.BigIntegerDeserializer;
 import com.enjin.sdk.utils.GsonUtil;
+import com.enjin.sdk.utils.LoggerProvider;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -22,7 +24,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
-import lombok.extern.java.Log;
+import lombok.Getter;
+import lombok.NonNull;
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
@@ -30,7 +33,6 @@ import retrofit2.Retrofit;
 /**
  * Body for GraphQL requests and responses, closed for modification but open for extension.
  */
-@Log
 public class GraphConverter extends Converter.Factory {
 
     private static final String DATA_KEY = "data";
@@ -58,9 +60,26 @@ public class GraphConverter extends Converter.Factory {
             .create();
 
     /**
+     * -- Getter --
+     * @return the logger provider
+     */
+    @Getter
+    private final LoggerProvider loggerProvider;
+
+    /**
      * Protected constructor because we want to make use of the Factory Pattern to create our converter.
      */
     protected GraphConverter() {
+        this(new LoggerProvider(Logger.getGlobal()));
+    }
+
+    /**
+     * Constructs a graph converter that uses the given logger provider.
+     *
+     * @param loggerProvider the logger provider
+     */
+    protected GraphConverter(@NonNull LoggerProvider loggerProvider) {
+        this.loggerProvider = loggerProvider;
     }
 
     /**
@@ -94,6 +113,16 @@ public class GraphConverter extends Converter.Factory {
      */
     public static GraphConverter create() {
         return new GraphConverter();
+    }
+
+    /**
+     * Returns a new graph converter that uses the given logger provider.
+     *
+     * @param loggerProvider the logger provider
+     * @return the created graph converter
+     */
+    public static GraphConverter create(LoggerProvider loggerProvider) {
+        return new GraphConverter(loggerProvider);
     }
 
     /**
@@ -140,7 +169,7 @@ public class GraphConverter extends Converter.Factory {
                     cursor = getCursor(root);
                 }
             } catch (IOException e) {
-                GraphConverter.log.log(Level.SEVERE, "An exception occurred:", e);
+                loggerProvider.log(Level.SEVERE, "An exception occurred:", e);
             }
 
             return new GraphQLResponse<>(raw, result, errors, cursor);

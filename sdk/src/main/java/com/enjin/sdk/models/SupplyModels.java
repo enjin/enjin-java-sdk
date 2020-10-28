@@ -1,10 +1,12 @@
 package com.enjin.sdk.models;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
  * Models the supply models used by the platform.
  */
+@EqualsAndHashCode
 @Getter
 public class SupplyModels {
 

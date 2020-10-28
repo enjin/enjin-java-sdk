@@ -1,5 +1,6 @@
 package com.enjin.sdk.models;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import java.util.Collection;
@@ -7,6 +8,7 @@ import java.util.Collection;
 /**
  * Models a wallet on the platform.
  */
+@EqualsAndHashCode
 @Getter
 public class Wallet {
 

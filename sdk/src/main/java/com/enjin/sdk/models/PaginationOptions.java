@@ -1,10 +1,13 @@
 package com.enjin.sdk.models;
 
+import lombok.EqualsAndHashCode;
+
 /**
  * Models a pagination input for pagination requests.
  *
  * @see com.enjin.sdk.schemas.shared.arguments.PaginationArguments
  */
+@EqualsAndHashCode
 public class PaginationOptions {
 
     private Integer page;

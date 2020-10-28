@@ -1,10 +1,13 @@
 package com.enjin.sdk.models;
 
+import lombok.EqualsAndHashCode;
+
 /**
  * Models a melt input for melt requests.
  *
  * @see com.enjin.sdk.schemas.shared.mutations.MeltToken
  */
+@EqualsAndHashCode
 public class Melt {
 
     private String tokenId;

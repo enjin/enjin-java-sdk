@@ -1,11 +1,13 @@
 package com.enjin.sdk.models;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
  * Models Pusher channels used by the platform.
  */
+@EqualsAndHashCode
 @Getter
 public class PusherChannels {
 

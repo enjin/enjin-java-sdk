@@ -3,12 +3,14 @@ package com.enjin.sdk.graphql;
 import java.util.List;
 import java.util.Map;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
 /**
  * Models the structure of a GraphQL response error.
  */
+@EqualsAndHashCode
 @Getter
 @ToString
 public final class GraphQLError {

@@ -1,10 +1,13 @@
 package com.enjin.sdk.models;
 
+import lombok.EqualsAndHashCode;
+
 /**
  * Models a mint input for mint requests.
  *
  * @see com.enjin.sdk.schemas.project.mutations.MintToken
  */
+@EqualsAndHashCode
 public class MintInput {
 
     private String to;

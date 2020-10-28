@@ -1,10 +1,13 @@
 package com.enjin.sdk.models;
 
+import lombok.EqualsAndHashCode;
+
 /**
  * Models a trade input for requests.
  *
  * @see com.enjin.sdk.schemas.shared.mutations.CreateTrade
  */
+@EqualsAndHashCode
 public class Trade {
 
     private String tokenId;

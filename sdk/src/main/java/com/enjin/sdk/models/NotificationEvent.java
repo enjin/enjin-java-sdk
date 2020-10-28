@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import com.google.gson.JsonObject;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.ToString;
@@ -16,8 +17,9 @@ import lombok.ToString;
  * @see NotificationsService
  * @see EventType
  */
-@ToString
+@EqualsAndHashCode
 @Getter
+@ToString
 public class NotificationEvent {
 
     /**
