@@ -1,6 +1,7 @@
 package com.enjin.sdk.schemas;
 
 import com.enjin.sdk.PlatformUtils;
+import com.enjin.sdk.Testable;
 import com.enjin.sdk.TrustedPlatformMiddleware;
 import com.enjin.sdk.graphql.GraphQLError;
 import com.enjin.sdk.graphql.GraphQLRequest;
@@ -18,37 +19,39 @@ import com.enjin.sdk.utils.LoggerProvider;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
+import lombok.EqualsAndHashCode;
 import lombok.SneakyThrows;
-import okhttp3.MediaType;
-import okhttp3.Request;
-import okhttp3.ResponseBody;
+import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
-import org.junit.jupiter.api.AfterAll;
+import org.awaitility.Awaitility;
+import static org.awaitility.Awaitility.*;
+import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.*;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import static org.mockito.Mockito.doAnswer;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.http.Body;
+import retrofit2.http.Headers;
+import retrofit2.http.POST;
+import retrofit2.http.Path;
+import retrofit2.mock.MockRetrofit;
+import retrofit2.mock.NetworkBehavior;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Level;
 
 @ExtendWith({MockitoExtension.class,})
@@ -57,38 +60,39 @@ class BaseSchemaTest {
     private static final Gson GSON = new GsonBuilder()
             .setLenient()
             .create();
-    private static final MediaType MEDIA_TYPE = MediaType.parse("application/json");
-    private static final MockWebServer MOCK_WEB_SERVER = new MockWebServer();
-    private static final TrustedPlatformMiddleware MIDDLEWARE =
-            PlatformUtils.createMiddleware(MOCK_WEB_SERVER.url("/").toString());
     private static final String SCHEMA = "test";
     private static final List<GraphQLError> DEFAULT_GRAPH_QL_ERRORS = new ArrayList<>();
+
+    private final MockWebServer mockWebServer = new MockWebServer();
 
     @Mock
     private LoggerProvider mockLoggerProvider;
 
-    private BaseSchema classUnderTest;
+    private TestableBaseSchema classUnderTest;
 
     @BeforeAll
     public static void BeforeAll() {
         DEFAULT_GRAPH_QL_ERRORS.add(new GraphQLError());
         DEFAULT_GRAPH_QL_ERRORS.add(new GraphQLError());
         DEFAULT_GRAPH_QL_ERRORS.add(new GraphQLError());
-        try {
-            MOCK_WEB_SERVER.start();
-        } catch (Exception ignored) {
-        }
     }
 
     @BeforeEach
+    @SneakyThrows
     public void BeforeEach() {
-        classUnderTest = new BaseSchema(MIDDLEWARE, SCHEMA, mockLoggerProvider);
+        try {
+            mockWebServer.start();
+        } catch (Exception ignored) {
+        }
+        TrustedPlatformMiddleware middleware = PlatformUtils.createMiddleware(mockWebServer.url("/").toString());
+        classUnderTest = new TestableBaseSchema(middleware, SCHEMA, mockLoggerProvider);
+        Awaitility.reset();
     }
 
-    @AfterAll
+    @AfterEach
     @SneakyThrows
-    public static void AfterAll() {
-        MOCK_WEB_SERVER.shutdown();
+    public void AfterEach() {
+        mockWebServer.shutdown();
     }
 
     @Test
@@ -105,7 +109,6 @@ class BaseSchemaTest {
         JsonObject actual = classUnderTest.createRequestBody(request);
 
         // Assert
-        assertNotNull(actual);
         assertTrue(actual.has(queryKey));
         assertTrue(actual.has(variablesKey));
     }
@@ -174,217 +177,249 @@ class BaseSchemaTest {
     }
 
     @Test
-    @SneakyThrows
     void sendRequest_SyncRequest_ResponseHasGraphqlData_ReturnsResponseWithData() {
-        // Arrange - Data
-        final Object expected = new Object();
-        final GraphQLResponse<Object> fakeGraphqlResponse = createGraphQLResponseWithData(expected);
-        final Response<GraphQLResponse<Object>> fakeResponse = Response.success(200, fakeGraphqlResponse);
-        final Call<GraphQLResponse<Object>> mockCall = mock(Call.class);
-
-        // Arrange - Stubbing
-        doReturn(fakeResponse).when(mockCall).execute();
+        // Arrange
+        final DummyObject expected = DummyObject.createDefault();
+        final String responseBody = String.format("{\"data\": {\"result\": %s}}", GSON.toJson(expected));
+        final Call<GraphQLResponse<DummyObject>> dummyCall = classUnderTest.fakeService.getDummyObject(classUnderTest.schema,
+                                                                                                       new JsonObject());
+        final MockResponse mockResponse = new MockResponse()
+                .addHeader("Content-Type: application/json")
+                .setResponseCode(200)
+                .setBody(responseBody);
+        mockWebServer.enqueue(mockResponse);
 
         // Act
-        GraphQLResponse<Object> response = classUnderTest.sendRequest(mockCall);
-        Object actual = response.getData();
-
-        // Verify
-        verify(mockCall)
-                .execute();
+        GraphQLResponse<DummyObject> response = classUnderTest.sendRequest(dummyCall);
+        DummyObject actual = response.getData();
 
         // Assert
-        assertFalse(response.hasErrors());
         assertEquals(expected, actual);
     }
 
     @Test
-    @SneakyThrows
     void sendRequest_SyncRequest_ResponseHasGraphqlErrors_ReturnsResponseWithErrors() {
-        // Arrange - Data
+        // Arrange
         final String responseBody = String.format("{\"errors\": %s}", GSON.toJson(DEFAULT_GRAPH_QL_ERRORS));
-        final ResponseBody fakeResponseBody = ResponseBody.create(responseBody, MEDIA_TYPE);
-        final Response<GraphQLResponse<Object>> fakeResponse = Response.error(400, fakeResponseBody);
-        final Call<GraphQLResponse<Object>> mockCall = mock(Call.class);
-
-        // Arrange - Stubbing
-        doReturn(fakeResponse).when(mockCall).execute();
+        final Call<GraphQLResponse<DummyObject>> dummyCall = classUnderTest.fakeService.getDummyObject(classUnderTest.schema,
+                                                                                                       new JsonObject());
+        final MockResponse mockResponse = new MockResponse()
+                .addHeader("Content-Type: application/json")
+                .setResponseCode(400)
+                .setBody(responseBody);
+        mockWebServer.enqueue(mockResponse);
 
         // Act
-        GraphQLResponse<Object> graphQLResponse = classUnderTest.sendRequest(mockCall);
-
-        // Verify
-        verify(mockCall)
-                .execute();
+        GraphQLResponse<DummyObject> response = classUnderTest.sendRequest(dummyCall);
+        boolean actual = response.hasErrors();
 
         // Assert
-        assertNotNull(graphQLResponse);
-        assertTrue(graphQLResponse.hasErrors());
+        assertTrue(actual);
     }
 
     @Test
-    @SneakyThrows
     void sendRequest_SyncRequest_RequestFailed_ThrowsException() {
-        // Arrange - Data
-        final IOException expected = new IOException("STUB EXCEPTION");
-        final Call<GraphQLResponse<Object>> mockCall = mock(Call.class);
-
-        // Arrange - Stubbing
-        doThrow(expected).when(mockCall).execute();
+        // Arrange
+        final Call<GraphQLResponse<DummyObject>> dummyCall = classUnderTest.fakeService.getDummyObject(classUnderTest.schema,
+                                                                                                       new JsonObject());
+        final NetworkBehavior networkBehavior = NetworkBehavior.create();
+        networkBehavior.setErrorPercent(1);
+        final MockRetrofit mockRetrofit = new MockRetrofit.Builder(classUnderTest.getRetrofit())
+                .networkBehavior(networkBehavior)
+                .build();
 
         // Assert
-        assertThrows(expected.getClass(), () -> classUnderTest.sendRequest(mockCall));
-
-        // Verify
-        verify(mockCall)
-                .execute();
+        assertThrows(IOException.class, () -> classUnderTest.sendRequest(dummyCall));
     }
 
     @Test
+    @Timeout(value = 5, unit = TimeUnit.SECONDS)
     void sendRequest_Async_ResponseHasGraphqlData_CallbackReceivesResponseWithData() {
         // Arrange - Data
-        final Object expected = new Object();
-        final GraphQLResponse<Object> fakeGraphqlResponse = createGraphQLResponseWithData(expected);
-        final Response<GraphQLResponse<Object>> fakeResponse = Response.success(200, fakeGraphqlResponse);
-        final Call<GraphQLResponse<Object>> mockCall = mock(Call.class);
-        final HttpCallback<GraphQLResponse<Object>> mockCallback = mock(HttpCallback.class);
-        final ArgumentCaptor<HttpResponse<GraphQLResponse<Object>>> httpResponseCapture =
+        final DummyObject expected = DummyObject.createDefault();
+        final AtomicBoolean flag = new AtomicBoolean();
+        final String responseBody = String.format("{\"data\": {\"result\": %s}}", GSON.toJson(expected));
+        final Call<GraphQLResponse<DummyObject>> dummyCall = classUnderTest.fakeService.getDummyObject(classUnderTest.schema,
+                                                                                                       new JsonObject());
+        final HttpCallback<GraphQLResponse<DummyObject>> mockCallback = mock(HttpCallback.class);
+        final MockResponse mockResponse = new MockResponse()
+                .addHeader("Content-Type: application/json")
+                .setResponseCode(200)
+                .setBody(responseBody);
+        final ArgumentCaptor<HttpResponse<GraphQLResponse<DummyObject>>> httpResponseCapture =
                 ArgumentCaptor.forClass(HttpResponse.class);
+        mockWebServer.enqueue(mockResponse);
 
         // Arrange - Stubbing
         doAnswer(invocation -> {
-            Callback<GraphQLResponse<Object>> callback = invocation.getArgument(0);
-            callback.onResponse(mockCall, fakeResponse);
+            flag.set(true);
             return null;
-        }).when(mockCall).enqueue(any());
+        }).when(mockCallback).onComplete(any());
 
         // Act
-        classUnderTest.sendRequest(mockCall, mockCallback);
+        classUnderTest.sendRequest(dummyCall, mockCallback);
+        await().forever().until(flag::get);
 
         // Verify
-        verify(mockCall)
-                .enqueue(any());
         verify(mockCallback)
                 .onComplete(httpResponseCapture.capture());
 
-        HttpResponse<GraphQLResponse<Object>> httpResponse = httpResponseCapture.getValue();
-        GraphQLResponse<Object> graphQLResponse = httpResponse.body();
-        Object actual = graphQLResponse.getData();
+        HttpResponse<GraphQLResponse<DummyObject>> httpResponse = httpResponseCapture.getValue();
+        GraphQLResponse<DummyObject> graphQLResponse = httpResponse.body();
+        DummyObject actual = graphQLResponse.getData();
 
         // Assert
-        assertTrue(httpResponse.isSuccess(), "HTTP response was not successful.");
-        assertFalse(graphQLResponse.hasErrors(), "GraphQL response has errors.");
         assertEquals(expected, actual);
     }
 
     @Test
+    @Timeout(value = 5, unit = TimeUnit.SECONDS)
     void sendRequest_Async_ResponseHasGraphqlErrors_CallbackReceivesResponseWithErrors() {
         // Arrange - Data
+        final AtomicBoolean flag = new AtomicBoolean();
         final String responseBody = String.format("{\"errors\": %s}", GSON.toJson(DEFAULT_GRAPH_QL_ERRORS));
-        final ResponseBody fakeResponseBody = ResponseBody.create(responseBody, MEDIA_TYPE);
-        final Response<GraphQLResponse<Object>> fakeResponse = Response.error(400, fakeResponseBody);
-        final Call<GraphQLResponse<Object>> mockCall = mock(Call.class);
-        final HttpCallback<GraphQLResponse<Object>> mockCallback = mock(HttpCallback.class);
-        final ArgumentCaptor<HttpResponse<GraphQLResponse<Object>>> httpResponseCapture =
+        final Call<GraphQLResponse<DummyObject>> dummyCall = classUnderTest.fakeService.getDummyObject(classUnderTest.schema,
+                                                                                                       new JsonObject());
+        final HttpCallback<GraphQLResponse<DummyObject>> mockCallback = mock(HttpCallback.class);
+        final MockResponse mockResponse = new MockResponse()
+                .addHeader("Content-Type: application/json")
+                .setResponseCode(400)
+                .setBody(responseBody);
+        final ArgumentCaptor<HttpResponse<GraphQLResponse<DummyObject>>> httpResponseCapture =
                 ArgumentCaptor.forClass(HttpResponse.class);
+        mockWebServer.enqueue(mockResponse);
 
         // Arrange - Stubbing
         doAnswer(invocation -> {
-            Callback<GraphQLResponse<Object>> callback = invocation.getArgument(0);
-            callback.onResponse(mockCall, fakeResponse);
+            flag.set(true);
             return null;
-        }).when(mockCall).enqueue(any());
+        }).when(mockCallback).onComplete(any());
 
         // Act
-        classUnderTest.sendRequest(mockCall, mockCallback);
+        classUnderTest.sendRequest(dummyCall, mockCallback);
+        await().forever().until(flag::get);
 
         // Verify
-        verify(mockCall)
-                .enqueue(any());
         verify(mockCallback)
                 .onComplete(httpResponseCapture.capture());
 
-        HttpResponse<GraphQLResponse<Object>> httpResponse = httpResponseCapture.getValue();
-        GraphQLResponse<Object> graphQLResponse = httpResponse.body();
+        HttpResponse<GraphQLResponse<DummyObject>> httpResponse = httpResponseCapture.getValue();
+        GraphQLResponse<DummyObject> graphQLResponse = httpResponse.body();
 
         // Assert
-        assertNotNull(graphQLResponse);
         assertTrue(graphQLResponse.hasErrors());
     }
 
     @Test
+    @Timeout(value = 20, unit = TimeUnit.SECONDS)
     void sendRequest_Async_BadResponse_LogsExceptionAndNotifiesCallback() {
         // Arrange - Data
-        final Response<GraphQLResponse<Object>> stubResponse = createBadStubResponse();
-        final Call<GraphQLResponse<Object>> mockCall = mock(Call.class);
-        final HttpCallback<GraphQLResponse<Object>> mockCallback = mock(HttpCallback.class);
-        final ArgumentCaptor<Exception> exceptionCapture = ArgumentCaptor.forClass(Exception.class);
+        final AtomicBoolean flag = new AtomicBoolean();
+        final Call<GraphQLResponse<DummyObject>> dummyCall = classUnderTest.fakeService.getDummyObject(classUnderTest.schema,
+                                                                                                       new JsonObject());
+        final HttpCallback<GraphQLResponse<DummyObject>> mockCallback = mock(HttpCallback.class);
+        final NetworkBehavior networkBehavior = NetworkBehavior.create();
+        networkBehavior.setErrorPercent(1);
+        final MockRetrofit mockRetrofit = new MockRetrofit.Builder(classUnderTest.getRetrofit())
+                .networkBehavior(networkBehavior)
+                .build();
 
         // Arrange - Stubbing
         doAnswer(invocation -> {
-            Callback<GraphQLResponse<Object>> callback = invocation.getArgument(0);
-            callback.onResponse(mockCall, stubResponse);
+            flag.set(true);
             return null;
-        }).when(mockCall).enqueue(Mockito.any());
+        }).when(mockCallback).onException(any());
 
         // Act
-        classUnderTest.sendRequest(mockCall, mockCallback);
+        classUnderTest.sendRequest(dummyCall, mockCallback);
+        await().forever().until(flag::get);
 
         // Verify
-        verify(mockCall)
-                .enqueue(Mockito.any());
-        verify(mockLoggerProvider)
-                .log(eq(Level.SEVERE), Mockito.anyString(), Mockito.any());
-        verify(mockCallback)
-                .onException(exceptionCapture.capture());
-
-        Exception actual = exceptionCapture.getValue();
-
-        // Assert
-        assertNotNull(actual);
-    }
-
-    @Test
-    void sendRequest_Async_RequestFailed_LogsExceptionAndNotifiesCallback() {
-        // Arrange - Data
-        final Exception dummyException = new Exception("DUMMY EXCEPTION");
-        final Request stubRequest = mock(Request.class);
-        final Call<GraphQLResponse<Object>> mockCall = mock(Call.class);
-        final HttpCallback<GraphQLResponse<Object>> mockCallback = mock(HttpCallback.class);
-        final ArgumentCaptor<Exception> exceptionCapture = ArgumentCaptor.forClass(Exception.class);
-
-        // Arrange - Stubbing
-        when(stubRequest.toString()).thenReturn("STUB REQUEST");
-        doAnswer(invocation -> {
-            Callback<GraphQLResponse<Object>> callback = invocation.getArgument(0);
-            callback.onFailure(mockCall, dummyException);
-            return null;
-        }).when(mockCall).enqueue(any());
-        doReturn(stubRequest).when(mockCall).request();
-
-        // Act
-        classUnderTest.sendRequest(mockCall, mockCallback);
-
-        // Verify
-        verify(mockCall)
-                .enqueue(any());
         verify(mockLoggerProvider)
                 .log(eq(Level.SEVERE), anyString(), any());
         verify(mockCallback)
-                .onException(exceptionCapture.capture());
-
-        Exception actual = exceptionCapture.getValue();
-
-        // Assert
-        assertNotNull(actual);
+                .onException(any());
     }
 
-    private static <T> GraphQLResponse<T> createGraphQLResponseWithData(T data) {
-        return new GraphQLResponse<>(null, data, null, null);
+    @Test
+    @Timeout(value = 5, unit = TimeUnit.SECONDS)
+    void sendRequest_Async_RequestFailed_LogsExceptionAndNotifiesCallback() {
+        // Arrange - Data
+        final AtomicBoolean flag = new AtomicBoolean();
+        final Call<GraphQLResponse<DummyObject>> dummyCall = classUnderTest.fakeService.getDummyObject(classUnderTest.schema,
+                                                                                                       new JsonObject());
+        final HttpCallback<GraphQLResponse<DummyObject>> mockCallback = mock(HttpCallback.class);
+        final MockResponse mockResponse = new MockResponse()
+                .addHeader("Content-Type: application/json")
+                .setResponseCode(400)
+                .setBody("???");
+        mockWebServer.enqueue(mockResponse);
+
+        // Arrange - Stubbing
+        doAnswer(invocation -> {
+            flag.set(true);
+            return null;
+        }).when(mockCallback).onException(any());
+
+        // Act
+        classUnderTest.sendRequest(dummyCall, mockCallback);
+        await().forever().until(flag::get);
+
+        // Verify
+        verify(mockLoggerProvider)
+                .log(eq(Level.SEVERE), anyString(), any());
+        verify(mockCallback)
+                .onException(any());
     }
 
-    private static <T> Response<T> createBadStubResponse() {
-        return mock(Response.class, invocation -> new RuntimeException("STUB EXCEPTION"));
+    private interface FakeService {
+
+        @POST("/graphql/{schema}")
+        @Headers("Content-Type: application/json")
+        Call<GraphQLResponse<DummyObject>> getDummyObject(@Path("schema") String schema,
+                                                          @Body JsonObject request);
+
+    }
+
+    private static class TestableBaseSchema extends BaseSchema implements Testable {
+
+        private static final Field retrofitField;
+
+        public final FakeService fakeService;
+
+        static {
+            Class<BaseSchema> c = BaseSchema.class;
+            retrofitField = Testable.getField(c, "retrofit");
+            retrofitField.setAccessible(true);
+        }
+
+        public TestableBaseSchema(TrustedPlatformMiddleware middleware,
+                                  String schema,
+                                  LoggerProvider loggerProvider) {
+            super(middleware, schema, loggerProvider);
+            fakeService = (FakeService) createService(FakeService.class);
+        }
+
+        @SneakyThrows
+        public Retrofit getRetrofit() {
+            return (Retrofit) retrofitField.get(this);
+        }
+
+    }
+
+    @EqualsAndHashCode
+    private static class DummyObject {
+
+        private final Integer integer;
+
+        public DummyObject(Integer integer) {
+            this.integer = integer;
+        }
+
+        private static DummyObject createDefault() {
+            return new DummyObject(0);
+        }
+
     }
 
 }

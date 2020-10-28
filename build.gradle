@@ -13,9 +13,11 @@ buildscript {
             'junitPlatform'           : "org.junit.platform:junit-platform-engine:${junitPlatformVersion}",
             'junitJupiter'            : "org.junit.jupiter:junit-jupiter:${junitJupiterVersion}",
             'mockWebServer'           : "com.squareup.okhttp3:mockwebserver:${mockWebServerVersion}",
+            'retrofitMock'            : "com.squareup.retrofit2:retrofit-mock:${retrofitMockVersion}",
             'mockito'                 : "org.mockito:mockito-core:${mockitoVerson}",
             'mockitoJupiter'          : "org.mockito:mockito-junit-jupiter:${mockitoVerson}",
             'mockitoInline'           : "org.mockito:mockito-inline:${mockitoVerson}",
+            'awaitility'              : "org.awaitility:awaitility-kotlin:${awaitilityVersion}",
     ]
 
     repositories {
