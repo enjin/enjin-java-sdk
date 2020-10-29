@@ -9,8 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 import retrofit2.Converter;
 
@@ -37,10 +36,6 @@ class DelegateToStringConverterTest {
 
         // Act
         String actual = classUnderTest.convert(dummyObject);
-
-        // Verify
-        verify(mockConverter)
-                .convert(dummyObject);
 
         // Assert
         assertNotNull(actual);
