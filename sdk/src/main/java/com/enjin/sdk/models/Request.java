@@ -42,12 +42,6 @@ public class Request {
 
     /**
      * -- Getter --
-     * @return the icon URL for this transaction
-     */
-    private String icon;
-
-    /**
-     * -- Getter --
      * @return the value of this transaction
      */
     private String value;
