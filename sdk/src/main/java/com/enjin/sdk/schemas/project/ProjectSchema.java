@@ -4,7 +4,6 @@ import com.enjin.sdk.TrustedPlatformMiddleware;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpCallback;
 import com.enjin.sdk.models.Wallet;
-import com.enjin.sdk.schemas.project.mutations.UnlinkPlayerWallet;
 import com.enjin.sdk.schemas.project.queries.GetWallet;
 import com.enjin.sdk.schemas.project.queries.GetWallets;
 import com.enjin.sdk.services.PlayerService;
@@ -22,7 +21,6 @@ import com.enjin.sdk.schemas.project.mutations.SetTransferable;
 import com.enjin.sdk.schemas.project.mutations.SetUri;
 import com.enjin.sdk.schemas.project.mutations.SetWhitelisted;
 import com.enjin.sdk.schemas.project.mutations.UnlinkWallet;
-import com.enjin.sdk.schemas.project.mutations.UpdateName;
 import com.enjin.sdk.schemas.project.queries.AuthPlayer;
 import com.enjin.sdk.schemas.project.queries.AuthProject;
 import com.enjin.sdk.schemas.project.queries.GetPlayer;
@@ -481,27 +479,6 @@ public class ProjectSchema extends SharedSchema {
     }
 
     /**
-     * Sends {@link UnlinkPlayerWallet} request synchronously.
-     *
-     * @param request the request
-     * @return the response
-     * @throws IOException if a problem occurred talking to the server
-     */
-    public GraphQLResponse<Boolean> unlinkPlayerWallet(UnlinkPlayerWallet request) {
-        return sendRequest(playerService.delete(schema, createRequestBody(request)));
-    }
-
-    /**
-     * Sends {@link UnlinkPlayerWallet} request asynchronously.
-     *
-     * @param request the request
-     * @param callback the callback
-     */
-    public void unlinkPlayerWallet(UnlinkPlayerWallet request, HttpCallback<GraphQLResponse<Boolean>> callback) {
-        sendRequest(playerService.delete(schema, createRequestBody(request)), callback);
-    }
-
-    /**
      * Sends {@link UnlinkWallet} request synchronously.
      *
      * @param request the request
@@ -521,28 +498,6 @@ public class ProjectSchema extends SharedSchema {
     public void unlinkWallet(UnlinkWallet request,
                              HttpCallback<GraphQLResponse<Boolean>> callback) {
         sendRequest(playerService.delete(schema, createRequestBody(request)), callback);
-    }
-
-    /**
-     * Sends {@link UpdateName} request synchronously.
-     *
-     * @param request the request
-     * @return the response
-     * @throws IOException if a problem occurred talking to the server
-     */
-    public GraphQLResponse<Request> updateName(UpdateName request) {
-        return transactionRequest(request);
-    }
-
-    /**
-     * Sends {@link UpdateName} request asynchronously.
-     *
-     * @param request the request
-     * @param callback the callback
-     */
-    public void updateName(UpdateName request,
-                           HttpCallback<GraphQLResponse<Request>> callback) {
-        transactionRequest(request, callback);
     }
 
 }
