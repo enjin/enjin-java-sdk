@@ -1,14 +1,13 @@
 package com.enjin.sdk.schemas.shared.arguments;
 
-import com.enjin.sdk.graphql.VariableHolder;
-
 /**
  * Fragment interface used to request certain information from players returned by the platform.
  *
  * @param <T> the type of the implementing class
  * @see com.enjin.sdk.models.Player
  */
-public interface PlayerFragmentArguments<T extends VariableHolder<T>> extends VariableHolder<T> {
+public interface PlayerFragmentArguments<T extends WalletFragmentArguments<T>>
+        extends WalletFragmentArguments<T> {
 
     /**
      * Sets the request to include the linking information with the player.
