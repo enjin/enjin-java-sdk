@@ -38,7 +38,7 @@ import java.util.List;
 /**
  * Class for sending requests in the project schema.
  */
-public class ProjectSchema extends SharedSchema {
+public class ProjectSchema extends SharedSchema implements IProjectSchema {
 
     /**
      * The name of the schema.
@@ -67,6 +67,7 @@ public class ProjectSchema extends SharedSchema {
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
+    @Override
     public GraphQLResponse<AccessToken> authPlayer(AuthPlayer request) {
         return sendRequest(playerService.getAuth(schema, createRequestBody(request)));
     }
@@ -77,6 +78,7 @@ public class ProjectSchema extends SharedSchema {
      * @param request the request
      * @param callback the callback
      */
+    @Override
     public void authPlayer(AuthPlayer request,
                            HttpCallback<GraphQLResponse<AccessToken>> callback) {
         sendRequest(playerService.getAuth(schema, createRequestBody(request)), callback);
@@ -89,6 +91,7 @@ public class ProjectSchema extends SharedSchema {
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
+    @Override
     public GraphQLResponse<AccessToken> authProject(AuthProject request) {
         return sendRequest(projectService.getAuth(schema, createRequestBody(request)));
     }
@@ -99,6 +102,7 @@ public class ProjectSchema extends SharedSchema {
      * @param request the request
      * @param callback the callback
      */
+    @Override
     public void authProject(AuthProject request,
                             HttpCallback<GraphQLResponse<AccessToken>> callback) {
         sendRequest(projectService.getAuth(schema, createRequestBody(request)), callback);
@@ -111,6 +115,7 @@ public class ProjectSchema extends SharedSchema {
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
+    @Override
     public GraphQLResponse<AccessToken> createPlayer(CreatePlayer request) {
         return sendRequest(playerService.getAuth(schema, createRequestBody(request)));
     }
@@ -121,6 +126,7 @@ public class ProjectSchema extends SharedSchema {
      * @param request the request
      * @param callback the callback
      */
+    @Override
     public void createPlayer(CreatePlayer request,
                              HttpCallback<GraphQLResponse<AccessToken>> callback) {
         sendRequest(playerService.getAuth(schema, createRequestBody(request)), callback);
@@ -133,6 +139,7 @@ public class ProjectSchema extends SharedSchema {
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
+    @Override
     public GraphQLResponse<Request> createToken(CreateToken request) {
         return transactionRequest(request);
     }
@@ -143,6 +150,7 @@ public class ProjectSchema extends SharedSchema {
      * @param request the request
      * @param callback the callback
      */
+    @Override
     public void createToken(CreateToken request,
                             HttpCallback<GraphQLResponse<Request>> callback) {
         transactionRequest(request, callback);
@@ -155,6 +163,7 @@ public class ProjectSchema extends SharedSchema {
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
+    @Override
     public GraphQLResponse<Request> decreaseMaxMeltFee(DecreaseMaxMeltFee request) {
         return transactionRequest(request);
     }
@@ -165,6 +174,7 @@ public class ProjectSchema extends SharedSchema {
      * @param request the request
      * @param callback the callback
      */
+    @Override
     public void decreaseMaxMeltFee(DecreaseMaxMeltFee request,
                                    HttpCallback<GraphQLResponse<Request>> callback) {
         transactionRequest(request, callback);
@@ -177,6 +187,7 @@ public class ProjectSchema extends SharedSchema {
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
+    @Override
     public GraphQLResponse<Request> decreaseMaxTransferFee(DecreaseMaxTransferFee request) {
         return transactionRequest(request);
     }
@@ -187,6 +198,7 @@ public class ProjectSchema extends SharedSchema {
      * @param request the request
      * @param callback the callback
      */
+    @Override
     public void decreaseMaxTransferFee(DecreaseMaxTransferFee request,
                                        HttpCallback<GraphQLResponse<Request>> callback) {
         transactionRequest(request, callback);
@@ -199,6 +211,7 @@ public class ProjectSchema extends SharedSchema {
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
+    @Override
     public GraphQLResponse<Boolean> deletePlayer(DeletePlayer request) {
         return sendRequest(playerService.delete(schema, createRequestBody(request)));
     }
@@ -209,6 +222,7 @@ public class ProjectSchema extends SharedSchema {
      * @param request the request
      * @param callback the callback
      */
+    @Override
     public void deletePlayer(DeletePlayer request,
                              HttpCallback<GraphQLResponse<Boolean>> callback) {
         sendRequest(playerService.delete(schema, createRequestBody(request)), callback);
@@ -221,6 +235,7 @@ public class ProjectSchema extends SharedSchema {
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
+    @Override
     public GraphQLResponse<Player> getPlayer(GetPlayer request) {
         return sendRequest(playerService.getOne(schema, createRequestBody(request)));
     }
@@ -231,6 +246,7 @@ public class ProjectSchema extends SharedSchema {
      * @param request the request
      * @param callback the callback
      */
+    @Override
     public void getPlayer(GetPlayer request,
                           HttpCallback<GraphQLResponse<Player>> callback) {
         sendRequest(playerService.getOne(schema, createRequestBody(request)), callback);
@@ -243,6 +259,7 @@ public class ProjectSchema extends SharedSchema {
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
+    @Override
     public GraphQLResponse<List<Player>> getPlayers(GetPlayers request) {
         return sendRequest(playerService.getMany(schema, createRequestBody(request)));
     }
@@ -253,6 +270,7 @@ public class ProjectSchema extends SharedSchema {
      * @param request the request
      * @param callback the callback
      */
+    @Override
     public void getPlayers(GetPlayers request,
                            HttpCallback<GraphQLResponse<List<Player>>> callback) {
         sendRequest(playerService.getMany(schema, createRequestBody(request)), callback);
@@ -265,6 +283,7 @@ public class ProjectSchema extends SharedSchema {
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
+    @Override
     public GraphQLResponse<Wallet> getWallet(GetWallet request) {
         return sendRequest(walletService.getOne(schema, createRequestBody(request)));
     }
@@ -275,6 +294,7 @@ public class ProjectSchema extends SharedSchema {
      * @param request the request
      * @param callback the callback
      */
+    @Override
     public void getWallet(GetWallet request,
                           HttpCallback<GraphQLResponse<Wallet>> callback) {
         sendRequest(walletService.getOne(schema, createRequestBody(request)), callback);
@@ -287,6 +307,7 @@ public class ProjectSchema extends SharedSchema {
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
+    @Override
     public GraphQLResponse<List<Wallet>> getWallets(GetWallets request) {
         return sendRequest(walletService.getMany(schema, createRequestBody(request)));
     }
@@ -297,6 +318,7 @@ public class ProjectSchema extends SharedSchema {
      * @param request the request
      * @param callback the callback
      */
+    @Override
     public void getWallets(GetWallets request,
                            HttpCallback<GraphQLResponse<List<Wallet>>> callback) {
         sendRequest(walletService.getMany(schema, createRequestBody(request)), callback);
@@ -309,6 +331,7 @@ public class ProjectSchema extends SharedSchema {
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
+    @Override
     public GraphQLResponse<Boolean> invalidateTokenMetadata(InvalidateTokenMetadata request) {
         return sendRequest(projectService.delete(schema, createRequestBody(request)));
     }
@@ -319,6 +342,7 @@ public class ProjectSchema extends SharedSchema {
      * @param request the request
      * @param callback the callback
      */
+    @Override
     public void invalidateTokenMetadata(InvalidateTokenMetadata request,
                                         HttpCallback<GraphQLResponse<Boolean>> callback) {
         sendRequest(projectService.delete(schema, createRequestBody(request)), callback);
@@ -331,6 +355,7 @@ public class ProjectSchema extends SharedSchema {
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
+    @Override
     public GraphQLResponse<Request> mintToken(MintToken request) {
         return transactionRequest(request);
     }
@@ -341,6 +366,7 @@ public class ProjectSchema extends SharedSchema {
      * @param request the request
      * @param callback the callback
      */
+    @Override
     public void mintToken(MintToken request,
                           HttpCallback<GraphQLResponse<Request>> callback) {
         transactionRequest(request, callback);
@@ -353,6 +379,7 @@ public class ProjectSchema extends SharedSchema {
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
+    @Override
     public GraphQLResponse<Request> releaseReserve(ReleaseReserve request) {
         return transactionRequest(request);
     }
@@ -363,6 +390,7 @@ public class ProjectSchema extends SharedSchema {
      * @param request the request
      * @param callback the callback
      */
+    @Override
     public void releaseReserve(ReleaseReserve request,
                                HttpCallback<GraphQLResponse<Request>> callback) {
         transactionRequest(request, callback);
@@ -375,6 +403,7 @@ public class ProjectSchema extends SharedSchema {
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
+    @Override
     public GraphQLResponse<Request> setMeltFee(SetMeltFee request) {
         return transactionRequest(request);
     }
@@ -385,6 +414,7 @@ public class ProjectSchema extends SharedSchema {
      * @param request the request
      * @param callback the callback
      */
+    @Override
     public void setMeltFee(SetMeltFee request,
                            HttpCallback<GraphQLResponse<Request>> callback) {
         transactionRequest(request, callback);
@@ -397,6 +427,7 @@ public class ProjectSchema extends SharedSchema {
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
+    @Override
     public GraphQLResponse<Request> setTransferable(SetTransferable request) {
         return transactionRequest(request);
     }
@@ -407,6 +438,7 @@ public class ProjectSchema extends SharedSchema {
      * @param request the request
      * @param callback the callback
      */
+    @Override
     public void setTransferable(SetTransferable request,
                                 HttpCallback<GraphQLResponse<Request>> callback) {
         transactionRequest(request, callback);
@@ -419,6 +451,7 @@ public class ProjectSchema extends SharedSchema {
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
+    @Override
     public GraphQLResponse<Request> setTransferFee(SetTransferFee request) {
         return transactionRequest(request);
     }
@@ -429,6 +462,7 @@ public class ProjectSchema extends SharedSchema {
      * @param request the request
      * @param callback the callback
      */
+    @Override
     public void setTransferFee(SetTransferFee request,
                                HttpCallback<GraphQLResponse<Request>> callback) {
         transactionRequest(request, callback);
@@ -441,6 +475,7 @@ public class ProjectSchema extends SharedSchema {
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
+    @Override
     public GraphQLResponse<Request> setUri(SetUri request) {
         return transactionRequest(request);
     }
@@ -451,6 +486,7 @@ public class ProjectSchema extends SharedSchema {
      * @param request the request
      * @param callback the callback
      */
+    @Override
     public void setUri(SetUri request,
                        HttpCallback<GraphQLResponse<Request>> callback) {
         transactionRequest(request, callback);
@@ -463,6 +499,7 @@ public class ProjectSchema extends SharedSchema {
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
+    @Override
     public GraphQLResponse<Request> setWhitelisted(SetWhitelisted request) {
         return transactionRequest(request);
     }
@@ -473,6 +510,7 @@ public class ProjectSchema extends SharedSchema {
      * @param request the request
      * @param callback the callback
      */
+    @Override
     public void setWhitelisted(SetWhitelisted request,
                                HttpCallback<GraphQLResponse<Request>> callback) {
         transactionRequest(request, callback);
@@ -485,6 +523,7 @@ public class ProjectSchema extends SharedSchema {
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
+    @Override
     public GraphQLResponse<Boolean> unlinkWallet(UnlinkWallet request) {
         return sendRequest(playerService.delete(schema, createRequestBody(request)));
     }
@@ -495,6 +534,7 @@ public class ProjectSchema extends SharedSchema {
      * @param request the request
      * @param callback the callback
      */
+    @Override
     public void unlinkWallet(UnlinkWallet request,
                              HttpCallback<GraphQLResponse<Boolean>> callback) {
         sendRequest(playerService.delete(schema, createRequestBody(request)), callback);

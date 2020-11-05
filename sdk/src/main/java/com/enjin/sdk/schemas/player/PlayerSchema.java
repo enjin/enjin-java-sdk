@@ -18,7 +18,7 @@ import java.io.IOException;
 /**
  * Class for sending requests in the player schema.
  */
-public class PlayerSchema extends SharedSchema {
+public class PlayerSchema extends SharedSchema implements IPlayerSchema {
 
     /**
      * The name of the schema.
@@ -47,6 +47,7 @@ public class PlayerSchema extends SharedSchema {
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
+    @Override
     public GraphQLResponse<Player> getPlayer(GetPlayer request) {
         return sendRequest(playerService.getOne(schema, createRequestBody(request)));
     }
@@ -57,6 +58,7 @@ public class PlayerSchema extends SharedSchema {
      * @param request the request
      * @param callback the callback
      */
+    @Override
     public void getPlayer(GetPlayer request,
                           HttpCallback<GraphQLResponse<Player>> callback) {
         sendRequest(playerService.getOne(schema, createRequestBody(request)), callback);
@@ -69,6 +71,7 @@ public class PlayerSchema extends SharedSchema {
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
+    @Override
     public GraphQLResponse<Wallet> getWallet(GetWallet request) {
         return sendRequest(walletService.getOne(schema, createRequestBody(request)));
     }
@@ -79,6 +82,7 @@ public class PlayerSchema extends SharedSchema {
      * @param request the request
      * @param callback the callback
      */
+    @Override
     public void getWallet(GetWallet request,
                           HttpCallback<GraphQLResponse<Wallet>> callback) {
         sendRequest(walletService.getOne(schema, createRequestBody(request)), callback);
@@ -91,6 +95,7 @@ public class PlayerSchema extends SharedSchema {
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
+    @Override
     public GraphQLResponse<Boolean> unlinkWallet(UnlinkWallet request) {
         return sendRequest(playerService.delete(schema, createRequestBody(request)));
     }
@@ -101,6 +106,7 @@ public class PlayerSchema extends SharedSchema {
      * @param request the request
      * @param callback the callback
      */
+    @Override
     public void unlinkWallet(UnlinkWallet request,
                              HttpCallback<GraphQLResponse<Boolean>> callback) {
         sendRequest(playerService.delete(schema, createRequestBody(request)), callback);
