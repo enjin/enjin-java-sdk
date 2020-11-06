@@ -23,7 +23,7 @@ public class AuthProject extends GraphQLRequest<AuthProject> {
      * @param appId the ID
      * @return this request for chaining
      */
-    public AuthProject id(String appId) {
+    public AuthProject id(Integer appId) {
         return set("id", appId);
     }
 
