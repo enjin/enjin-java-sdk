@@ -1,6 +1,5 @@
 package com.enjin.sdk.models;
 
-import com.google.gson.JsonObject;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
@@ -39,7 +38,7 @@ public class BlockchainData {
      * -- Getter --
      * @return the receipt for the transaction
      */
-    private JsonObject receipt;
+    private TransactionReceipt receipt;
 
     /**
      * -- Getter --

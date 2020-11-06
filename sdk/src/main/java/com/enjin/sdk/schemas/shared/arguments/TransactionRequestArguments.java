@@ -19,7 +19,6 @@ public interface TransactionRequestArguments<T extends TransactionFragmentArgume
         return set("ethAddress", ethAddress);
     }
 
-    // TODO: Replace arg type with boolean.
     /**
      * Sets whether the request will test the transaction before creating it.
      * <br>
@@ -31,11 +30,10 @@ public interface TransactionRequestArguments<T extends TransactionFragmentArgume
      * @param test the test state
      * @return this request for chaining
      */
-    default T test(String test) {
+    default T test(boolean test) {
         return set("test", test);
     }
 
-    // TODO: Replace arg type with boolean.
     /**
      * Sets whether the request will send the transaction to the blockchain.
      * <br>
@@ -46,7 +44,7 @@ public interface TransactionRequestArguments<T extends TransactionFragmentArgume
      * @param send the send state
      * @return this request for chaining
      */
-    default T send(String send) {
+    default T send(boolean send) {
         return set("send", send);
     }
 

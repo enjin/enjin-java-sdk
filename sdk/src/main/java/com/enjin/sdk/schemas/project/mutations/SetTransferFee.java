@@ -1,7 +1,6 @@
 package com.enjin.sdk.schemas.project.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.models.TokenTransferFeeSettings;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 /**
@@ -40,15 +39,14 @@ public class SetTransferFee
         return set("tokenIndex", tokenIndex);
     }
 
-    // TODO: Replace this method with one to set the value.
     /**
-     * Sets the transfer fee settings.
+     * Sets the new transfer fee value in Wei.
      *
-     * @param transferFeeSettings the settings
+     * @param transferFee the new transfer fee
      * @return this request for chaining
      */
-    public SetTransferFee transferFeeSettings(TokenTransferFeeSettings transferFeeSettings) {
-        return set("transferFeeSettings", transferFeeSettings);
+    public SetTransferFee transferFee(String transferFee) {
+        return set("transferFee", transferFee);
     }
 
 }

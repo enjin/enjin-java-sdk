@@ -49,7 +49,7 @@ class PlayerFilterTest implements TestFilterInterface {
         final TestablePlayerFilter filter = new TestablePlayerFilter();
 
         // Act
-        filter.idIn(null);
+        filter.idIn((String[]) null);
         List<String> actual = filter.getIdIn();
 
         // Assert

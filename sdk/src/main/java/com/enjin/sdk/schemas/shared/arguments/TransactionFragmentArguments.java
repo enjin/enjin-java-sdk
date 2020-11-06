@@ -97,9 +97,31 @@ public interface TransactionFragmentArguments<T extends VariableHolder<T>> exten
      * {@link TransactionFragmentArguments#withBlockchainData()}.
      *
      * @return this request for chaining
+     * @see TransactionFragmentArguments#withReceiptLogs()
      */
     default T withReceipt() {
         return set("withReceipt", true);
+    }
+
+    /**
+     * Sets the request to include the logs in the receipt when used with
+     * {@link TransactionFragmentArguments#withReceipt()}.
+     *
+     * @return this request for chaining
+     * @see TransactionFragmentArguments#withLogEvent()
+     */
+    default T withReceiptLogs() {
+        return set("withReceiptLogs", true);
+    }
+
+    /**
+     * Sets the request to include the event data in the receipt logs when used with
+     * {@link TransactionFragmentArguments#withReceiptLogs()}.
+     *
+     * @return this request for chaining
+     */
+    default T withLogEvent() {
+        return set("withLogEvent", true);
     }
 
 }

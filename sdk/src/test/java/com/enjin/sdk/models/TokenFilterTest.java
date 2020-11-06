@@ -21,7 +21,7 @@ class TokenFilterTest implements TestFilterInterface {
         assumeTrue(args.length > 0);
 
         // Act
-        filter.idId(args);
+        filter.idIn(args);
         List<String> actual = filter.getIdIn();
 
         // Assert
@@ -36,7 +36,7 @@ class TokenFilterTest implements TestFilterInterface {
         final TestableTokenFilter filter = new TestableTokenFilter();
 
         // Act
-        filter.idId();
+        filter.idIn();
         List<String> actual = filter.getIdIn();
 
         // Assert
@@ -49,7 +49,7 @@ class TokenFilterTest implements TestFilterInterface {
         final TestableTokenFilter filter = new TestableTokenFilter();
 
         // Act
-        filter.idId(null);
+        filter.idIn((String[]) null);
         List<String> actual = filter.getIdIn();
 
         // Assert
@@ -93,7 +93,7 @@ class TokenFilterTest implements TestFilterInterface {
         final TestableTokenFilter filter = new TestableTokenFilter();
 
         // Act
-        filter.nameIn(null);
+        filter.nameIn((String[]) null);
         List<String> actual = filter.getNameIn();
 
         // Assert
@@ -137,7 +137,7 @@ class TokenFilterTest implements TestFilterInterface {
         final TestableTokenFilter filter = new TestableTokenFilter();
 
         // Act
-        filter.walletIn(null);
+        filter.walletIn((String[]) null);
         List<String> actual = filter.getWalletIn();
 
         // Assert
