@@ -60,7 +60,7 @@ class FilterTest {
         final TestableFilter filter = new TestableFilter();
 
         // Act
-        filter.and(null);
+        filter.and((TestableFilter[]) null);
         List<TestableFilter> actual = filter.getAnd();
 
         // Assert
@@ -104,7 +104,7 @@ class FilterTest {
         final TestableFilter filter = new TestableFilter();
 
         // Act
-        filter.or(null);
+        filter.or((TestableFilter[]) null);
         List<TestableFilter> actual = filter.getOr();
 
         // Assert
