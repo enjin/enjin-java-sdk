@@ -49,7 +49,7 @@ class BalanceFilterTest implements TestFilterInterface {
         final TestableBalanceFilter filter = new TestableBalanceFilter();
 
         // Act
-        filter.tokenIdIn(null);
+        filter.tokenIdIn((String[]) null);
         List<String> actual = filter.getTokenIdIn();
 
         // Assert
@@ -93,7 +93,7 @@ class BalanceFilterTest implements TestFilterInterface {
         final TestableBalanceFilter filter = new TestableBalanceFilter();
 
         // Act
-        filter.walletIn(null);
+        filter.walletIn((String[]) null);
         List<String> actual = filter.getWalletIn();
 
         // Assert

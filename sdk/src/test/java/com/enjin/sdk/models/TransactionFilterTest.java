@@ -49,7 +49,7 @@ class TransactionFilterTest implements TestFilterInterface {
         final TestableTransactionFilter filter = new TestableTransactionFilter();
 
         // Act
-        filter.idIn(null);
+        filter.idIn((String[]) null);
         List<String> actual = filter.getIdIn();
 
         // Assert
@@ -93,7 +93,7 @@ class TransactionFilterTest implements TestFilterInterface {
         final TestableTransactionFilter filter = new TestableTransactionFilter();
 
         // Act
-        filter.transactionIdIn(null);
+        filter.transactionIdIn((String[]) null);
         List<String> actual = filter.getTransactIdIn();
 
         // Assert
@@ -137,7 +137,7 @@ class TransactionFilterTest implements TestFilterInterface {
         final TestableTransactionFilter filter = new TestableTransactionFilter();
 
         // Act
-        filter.tokenIdIn(null);
+        filter.tokenIdIn((String[]) null);
         List<String> actual = filter.getTokenIdIn();
 
         // Assert
@@ -181,7 +181,7 @@ class TransactionFilterTest implements TestFilterInterface {
         final TestableTransactionFilter filter = new TestableTransactionFilter();
 
         // Act
-        filter.typeIn(null);
+        filter.typeIn((RequestType[]) null);
         List<RequestType> actual = filter.getTypeIn();
 
         // Assert
@@ -225,7 +225,7 @@ class TransactionFilterTest implements TestFilterInterface {
         final TestableTransactionFilter filter = new TestableTransactionFilter();
 
         // Act
-        filter.stateIn(null);
+        filter.stateIn((RequestState[]) null);
         List<RequestState> actual = filter.getStateIn();
 
         // Assert
@@ -269,7 +269,7 @@ class TransactionFilterTest implements TestFilterInterface {
         final TestableTransactionFilter filter = new TestableTransactionFilter();
 
         // Act
-        filter.walletIn(null);
+        filter.walletIn((String[]) null);
         List<String> actual = filter.getWalletIn();
 
         // Assert
