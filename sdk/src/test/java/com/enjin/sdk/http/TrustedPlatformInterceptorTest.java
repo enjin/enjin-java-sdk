@@ -57,7 +57,7 @@ class TrustedPlatformInterceptorTest {
         final Chain stubChain = mock(Chain.class);
         final Request stubRequest = mock(Request.class);
         final Request.Builder mockBuilder = mock(Request.Builder.class);
-        classUnderTest.auth("xyz");
+        classUnderTest.setToken("xyz");
 
         // Arrange - Stubbing
         when(stubChain.request()).thenReturn(stubRequest);
@@ -78,9 +78,9 @@ class TrustedPlatformInterceptorTest {
     }
 
     @Test
-    void isAuthenticated_HasBeenAuthenticated_ReturnsTrue() {
+    void isAuthenticated_AuthTokenHasBeenSet_ReturnsTrue() {
         // Arrange
-        classUnderTest.auth("xyz");
+        classUnderTest.setToken("xyz");
 
         // Act
         boolean actual = classUnderTest.isAuthenticated();
@@ -90,7 +90,7 @@ class TrustedPlatformInterceptorTest {
     }
 
     @Test
-    void isAuthenticated_HasNotBeenAuthenticated_ReturnsFalse() {
+    void isAuthenticated_AuthTokenHasNotBeenSet_ReturnsFalse() {
         // Act
         boolean actual = classUnderTest.isAuthenticated();
 
@@ -99,9 +99,9 @@ class TrustedPlatformInterceptorTest {
     }
 
     @Test
-    void isAuthenticated_AuthenticatedWithEmptyToken_ReturnsFalse() {
+    void isAuthenticated_AuthTokenIsEmpty_ReturnsFalse() {
         // Arrange
-        classUnderTest.auth("");
+        classUnderTest.setToken("");
 
         // Act
         boolean actual = classUnderTest.isAuthenticated();
