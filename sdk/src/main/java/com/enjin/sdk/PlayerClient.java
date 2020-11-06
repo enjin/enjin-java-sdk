@@ -11,7 +11,7 @@ import java.util.logging.Logger;
  *
  * @see EnjinHosts
  */
-public final class PlayerClient extends PlayerSchema {
+public final class PlayerClient extends PlayerSchema implements IClient {
 
     /**
      * Constructs a client with the targeted URL and default settings.
@@ -41,6 +41,16 @@ public final class PlayerClient extends PlayerSchema {
      */
     public PlayerClient(@NonNull String baseUrl, boolean debug, @NonNull LoggerProvider loggerProvider) {
         super(new TrustedPlatformMiddleware(baseUrl, debug), loggerProvider);
+    }
+
+    @Override
+    public void auth(String token) {
+        middleware.getTrustedPlatformInterceptor().setToken(token);
+    }
+
+    @Override
+    public boolean isAuthenticated() {
+        return middleware.getTrustedPlatformInterceptor().isAuthenticated();
     }
 
 }
