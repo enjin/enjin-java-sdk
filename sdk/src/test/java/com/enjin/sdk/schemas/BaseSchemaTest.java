@@ -78,7 +78,6 @@ class BaseSchemaTest {
     }
 
     @BeforeEach
-    @SneakyThrows
     public void BeforeEach() {
         try {
             mockWebServer.start();
