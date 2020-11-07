@@ -3,7 +3,9 @@ package com.enjin.sdk;
 import com.enjin.sdk.schemas.project.ProjectSchema;
 import com.enjin.sdk.utils.LoggerProvider;
 import lombok.NonNull;
+import okhttp3.OkHttpClient;
 
+import java.util.concurrent.ExecutorService;
 import java.util.logging.Logger;
 
 /**
@@ -49,8 +51,26 @@ public final class ProjectClient extends ProjectSchema implements IClient {
     }
 
     @Override
+    public void close() {
+        OkHttpClient httpClient = middleware.getHttpClient();
+        ExecutorService executorService = httpClient.dispatcher().executorService();
+        if (!executorService.isShutdown()) {
+            executorService.shutdown();
+            httpClient.connectionPool().evictAll();
+        }
+    }
+
+    @Override
     public boolean isAuthenticated() {
         return middleware.getTrustedPlatformInterceptor().isAuthenticated();
+    }
+
+    @Override
+    public boolean isClosed() {
+        return middleware.getHttpClient()
+                         .dispatcher()
+                         .executorService()
+                         .isShutdown();
     }
 
 }
