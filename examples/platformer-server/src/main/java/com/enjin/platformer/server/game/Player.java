@@ -8,9 +8,8 @@ import com.enjin.sdk.graphql.GraphQLError;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpResponse;
 import com.enjin.sdk.models.AccessToken;
-import com.enjin.sdk.models.user.AuthPlayer;
-import com.enjin.sdk.models.user.CreateUser;
-import com.enjin.sdk.models.user.User;
+import com.enjin.sdk.schemas.project.mutations.CreatePlayer;
+import com.enjin.sdk.schemas.project.queries.AuthPlayer;
 import lombok.Getter;
 
 public class Player {
@@ -30,13 +29,13 @@ public class Player {
     }
 
     public void auth() {
-        AuthPlayer input = new AuthPlayer().id(name);
-        server.getSdk().getUserService().authUserAsync(input, this::onAuth);
+        AuthPlayer request = new AuthPlayer().id(name);
+        server.getSdk().authPlayer(request, this::onAuth);
     }
 
     private void register() {
-        CreateUser input = new CreateUser().name(name);
-        server.getSdk().getUserService().createUserAsync(input, this::onRegister);
+        CreatePlayer request = new CreatePlayer().id(name);
+        server.getSdk().createPlayer(request, this::onAuth);
     }
 
     private void onAuth(HttpResponse<GraphQLResponse<AccessToken>> httpResponse) {
@@ -59,17 +58,6 @@ public class Player {
         peer.send(new PacketOutAuthenticated(accessToken,
                                              server.getConfig().getAppId(),
                                              server.getConfig().getTokens()));
-    }
-
-    private void onRegister(HttpResponse<GraphQLResponse<User>> httpResponse) {
-        if (httpResponse.isEmpty())
-            return;
-
-        GraphQLResponse<User> graphQLResponse = httpResponse.body();
-        if (!graphQLResponse.isSuccess())
-            return;
-
-        auth();
     }
 
 }
