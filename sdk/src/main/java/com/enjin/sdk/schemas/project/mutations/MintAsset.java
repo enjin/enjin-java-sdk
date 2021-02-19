@@ -7,29 +7,29 @@ import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 import java.util.Collection;
 
 /**
- * Request for minting a token (item).
+ * Request for minting a asset.
  *
  * @see com.enjin.sdk.schemas.project.ProjectSchema
  */
-public class MintToken
-        extends GraphQLRequest<MintToken>
-        implements TransactionRequestArguments<MintToken> {
+public class MintAsset
+        extends GraphQLRequest<MintAsset>
+        implements TransactionRequestArguments<MintAsset> {
 
     /**
      * Sole constructor.
      */
-    public MintToken() {
-        super("enjin.sdk.project.MintToken");
+    public MintAsset() {
+        super("enjin.sdk.project.MintAsset");
     }
 
     /**
-     * Sets the token (item) ID.
+     * Sets the asset ID.
      *
-     * @param tokenId the ID
+     * @param assetId the ID
      * @return this request for chaining
      */
-    public MintToken tokenId(String tokenId) {
-        return set("tokenId", tokenId);
+    public MintAsset assetId(String assetId) {
+        return set("assetId", assetId);
     }
 
     /**
@@ -38,7 +38,7 @@ public class MintToken
      * @param mints the mints
      * @return this request for chaining
      */
-    public MintToken mints(Collection<MintInput> mints) {
+    public MintAsset mints(Collection<MintInput> mints) {
         return set("mints", mints);
     }
 

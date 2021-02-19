@@ -4,15 +4,15 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
- * Models the state data of a {@link Token}.
+ * Models the state data of a {@link Asset}.
  */
 @EqualsAndHashCode
 @Getter
-public class TokenStateData {
+public class AssetStateData {
 
     /**
      * -- Getter --
-     * @return whether the item is non-fungible
+     * @return whether the asset is non-fungible
      */
     private Boolean nonFungible;
 
@@ -24,43 +24,43 @@ public class TokenStateData {
 
     /**
      * -- Getter --
-     * @return the creator of the item
+     * @return the creator of the asset
      */
     private String creator;
 
     /**
      * -- Getter --
-     * @return the first block the item appeared in
+     * @return the first block the asset appeared in
      */
     private Integer firstBlock;
 
     /**
      * -- Getter --
-     * @return the reserve of the item
+     * @return the reserve of the asset
      */
     private String reserve;
 
     /**
      * -- Getter --
-     * @return the supply model of the item
+     * @return the supply model of the asset
      */
-    private TokenSupplyModel supplyModel;
+    private AssetSupplyModel supplyModel;
 
     /**
      * -- Getter --
-     * @return the circulating supply of the item
+     * @return the circulating supply of the asset
      */
     private String circulatingSupply;
 
     /**
      * -- Getter --
-     * @return the number of items available to mint
+     * @return the number of assets available to mint
      */
     private String mintableSupply;
 
     /**
      * -- Getter --
-     * @return the total supply of the item
+     * @return the total supply of the asset
      */
     private String totalSupply;
 

@@ -1,5 +1,6 @@
 package com.enjin.sdk.models;
 
+import com.enjin.sdk.schemas.shared.queries.GetAssets;
 import com.google.gson.annotations.SerializedName;
 import lombok.EqualsAndHashCode;
 
@@ -7,12 +8,12 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Models a filter input for token queries.
+ * Models a filter input for asset queries.
  *
- * @see com.enjin.sdk.schemas.shared.queries.GetTokens
+ * @see GetAssets
  */
 @EqualsAndHashCode(callSuper = true)
-public class TokenFilter extends Filter<TokenFilter> {
+public class AssetFilter extends Filter<AssetFilter> {
 
     private String id;
     @SerializedName("id_in")
@@ -31,12 +32,12 @@ public class TokenFilter extends Filter<TokenFilter> {
     private List<String> walletIn;
 
     /**
-     * Sets the token (item) ID to filter for.
+     * Sets the asset ID to filter for.
      *
      * @param id the ID
      * @return this filter for chaining
      */
-    public TokenFilter id(String id) {
+    public AssetFilter id(String id) {
         this.id = id;
         return this;
     }
@@ -47,29 +48,29 @@ public class TokenFilter extends Filter<TokenFilter> {
      * @param name the name
      * @return this filter for chaining
      */
-    public TokenFilter name(String name) {
+    public AssetFilter name(String name) {
         this.name = name;
         return this;
     }
 
     /**
-     * Sets the filter to include items with names which include the passed string.
+     * Sets the filter to include assets with names which include the passed string.
      *
      * @param text the text
      * @return this filter for chaining
      */
-    public TokenFilter nameContains(String text) {
+    public AssetFilter nameContains(String text) {
         nameContains = text;
         return this;
     }
 
     /**
-     * Sets the token (item) IDs to filter for.
+     * Sets the asset IDs to filter for.
      *
      * @param ids the IDs
      * @return this filter for chaining
      */
-    public TokenFilter idIn(String... ids) {
+    public AssetFilter idIn(String... ids) {
         idIn = ids == null
                 ? null
                 : Arrays.asList(ids);
@@ -82,7 +83,7 @@ public class TokenFilter extends Filter<TokenFilter> {
      * @param names the names
      * @return this filter for chaining
      */
-    public TokenFilter nameIn(String... names) {
+    public AssetFilter nameIn(String... names) {
         nameIn = names == null
                 ? null
                 : Arrays.asList(names);
@@ -90,23 +91,23 @@ public class TokenFilter extends Filter<TokenFilter> {
     }
 
     /**
-     * Sets the filter to include items with names which start with the passed string.
+     * Sets the filter to include assets with names which start with the passed string.
      *
      * @param prefix the prefix
      * @return this filter for chaining
      */
-    public TokenFilter nameStartsWith(String prefix) {
+    public AssetFilter nameStartsWith(String prefix) {
         nameStartsWith = prefix;
         return this;
     }
 
     /**
-     * Sets the filter to include items with names which end with the passed string.
+     * Sets the filter to include assets with names which end with the passed string.
      *
      * @param suffix the suffix
      * @return this filter for chaining
      */
-    public TokenFilter nameEndsWith(String suffix) {
+    public AssetFilter nameEndsWith(String suffix) {
         nameEndsWith = suffix;
         return this;
     }
@@ -117,7 +118,7 @@ public class TokenFilter extends Filter<TokenFilter> {
      * @param wallet the wallet address
      * @return this filter for chaining
      */
-    public TokenFilter wallet(String wallet) {
+    public AssetFilter wallet(String wallet) {
         this.wallet = wallet;
         return this;
     }
@@ -128,7 +129,7 @@ public class TokenFilter extends Filter<TokenFilter> {
      * @param wallets the wallet addresses
      * @return this filter for chaining
      */
-    public TokenFilter walletIn(String... wallets) {
+    public AssetFilter walletIn(String... wallets) {
         walletIn = wallets == null
                 ? null
                 : Arrays.asList(wallets);

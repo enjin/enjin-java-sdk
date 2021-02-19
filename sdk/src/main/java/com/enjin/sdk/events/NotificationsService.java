@@ -125,26 +125,26 @@ public interface NotificationsService {
     boolean isSubscribedToPlayer(int app, String player);
 
     /**
-     * Opens a channel for the specified token (item), allowing listeners to receive events for that token.
+     * Opens a channel for the specified asset, allowing listeners to receive events for that asset.
      *
-     * @param token the token ID
+     * @param asset the asset ID
      */
-    void subscribeToToken(String token);
+    void subscribeToAsset(String asset);
 
     /**
-     * Closes a channel for the specified token (item), preventing listeners from receiving events for that token.
+     * Closes a channel for the specified asset, preventing listeners from receiving events for that asset.
      *
-     * @param token the token ID
+     * @param asset the asset ID
      */
-    void unsubscribeToToken(String token);
+    void unsubscribeToAsset(String asset);
 
     /**
-     * Determines if the channel is open for the specified token (item).
+     * Determines if the channel is open for the specified asset.
      *
-     * @param token the token ID
+     * @param asset the asset ID
      * @return true if open, else false
      */
-    boolean isSubscribedToToken(String token);
+    boolean isSubscribedToAsset(String asset);
 
     /**
      * Opens a channel for the specified wallet address, allowing listeners to receive events for that wallet.

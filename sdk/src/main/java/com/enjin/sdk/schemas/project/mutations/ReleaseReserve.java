@@ -4,7 +4,7 @@ import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 /**
- * Request for releasing the reserve of an item.
+ * Request for releasing the reserve of an asset.
  *
  * @see com.enjin.sdk.schemas.project.ProjectSchema
  */
@@ -20,13 +20,13 @@ public class ReleaseReserve
     }
 
     /**
-     * Sets the token (item) ID.
+     * Sets the asset ID.
      *
-     * @param tokenId the ID
+     * @param assetId the ID
      * @return this request for chaining
      */
-    public ReleaseReserve tokenId(String tokenId) {
-        return set("tokenId", tokenId);
+    public ReleaseReserve assetId(String assetId) {
+        return set("assetId", assetId);
     }
 
     /**

@@ -1,6 +1,6 @@
 package com.enjin.platformer.server.conf;
 
-import com.enjin.platformer.server.game.Token;
+import com.enjin.platformer.server.game.Asset;
 import com.enjin.platformer.server.serialization.PostProcessFactory;
 import com.enjin.platformer.server.serialization.PostProcessable;
 import com.google.gson.Gson;
@@ -27,7 +27,7 @@ public class Config implements PostProcessable {
                                                       .create();
     private static final File CONFIG_DIR = new File("./");
     private static final File CONFIG_FILE = new File(CONFIG_DIR, "config.json");
-    private static final List<String> TOKEN_KEYS = Arrays.asList("coin", "crown", "key", "health_upgrade");
+    private static final List<String> ASSET_KEYS = Arrays.asList("coin", "crown", "key", "health_upgrade");
 
     private String host = "0.0.0.0";
     private int port = 11011;
@@ -35,7 +35,7 @@ public class Config implements PostProcessable {
     private int appId = -1;
     @Getter
     private String appSecret = "";
-    private Map<String, Token> tokens = getTokens();
+    private Map<String, Asset> assets = getAssets();
     @Getter
     private String devWallet = "";
 
@@ -74,7 +74,7 @@ public class Config implements PostProcessable {
         boolean validAppId = appId >= MIN_APP_ID;
         boolean validAppSecret = !appSecret.isEmpty();
         boolean validDevWallet = !(devWallet == null || devWallet.isEmpty());
-        boolean validTokens = validateTokens();
+        boolean validAssets = validateAssets();
 
         if (!validPort)
             System.out.println(String.format("Port must be a number from %s through %s.", MIN_PORT, MAX_PORT));
@@ -88,32 +88,32 @@ public class Config implements PostProcessable {
         if (!validDevWallet)
             System.out.println("Developer wallet must be set.");
 
-        return validPort && validAppId && validAppSecret && validDevWallet && validTokens;
+        return validPort && validAppId && validAppSecret && validDevWallet && validAssets;
     }
 
     public boolean validatePort() {
         return port >= MIN_PORT && port <= MAX_PORT;
     }
 
-    public boolean validateTokens() {
-        boolean keysValid = TOKEN_KEYS.stream().allMatch(tokens::containsKey);
-        boolean idsValid = tokens.values().stream().allMatch(t -> !(t.getId() == null || t.getId().isEmpty()));
+    public boolean validateAssets() {
+        boolean keysValid = ASSET_KEYS.stream().allMatch(assets::containsKey);
+        boolean idsValid = assets.values().stream().allMatch(t -> !(t.getId() == null || t.getId().isEmpty()));
 
         if (!keysValid)
-            System.out.println(String.format("One of the following tokens is undefined: %s",
-                                             String.join(",", TOKEN_KEYS)));
+            System.out.println(String.format("One of the following assets is undefined: %s",
+                                             String.join(",", ASSET_KEYS)));
 
         return keysValid && idsValid;
     }
 
-    public Map<String, Token> getTokens() {
-        if (tokens == null) {
-            tokens = new HashMap<>();
-            for (String key : TOKEN_KEYS)
-                tokens.put(key, new Token());
+    public Map<String, Asset> getAssets() {
+        if (assets == null) {
+            assets = new HashMap<>();
+            for (String key : ASSET_KEYS)
+                assets.put(key, new Asset());
         }
 
-        return tokens;
+        return assets;
     }
 
 }

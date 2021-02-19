@@ -4,7 +4,7 @@ import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 /**
- * Request for allowing an operator complete control of all tokens owned by the caller.
+ * Request for allowing an operator complete control of all assets owned by the caller.
  *
  * @see com.enjin.sdk.schemas.shared.SharedSchema
  */

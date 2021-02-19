@@ -1,69 +1,69 @@
 package com.enjin.sdk.schemas.project.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.models.TokenSupplyModel;
-import com.enjin.sdk.models.TokenTransferFeeSettingsInput;
-import com.enjin.sdk.models.TokenTransferable;
+import com.enjin.sdk.models.AssetSupplyModel;
+import com.enjin.sdk.models.AssetTransferFeeSettingsInput;
+import com.enjin.sdk.models.AssetTransferable;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 /**
- * Request for creating a token (item) on the platform.
+ * Request for creating a asset on the platform.
  *
  * @see com.enjin.sdk.schemas.project.ProjectSchema
  */
-public class CreateToken
-        extends GraphQLRequest<CreateToken>
-        implements TransactionRequestArguments<CreateToken> {
+public class CreateAsset
+        extends GraphQLRequest<CreateAsset>
+        implements TransactionRequestArguments<CreateAsset> {
 
     /**
      * Sole constructor.
      */
-    public CreateToken() {
-        super("enjin.sdk.project.CreateToken");
+    public CreateAsset() {
+        super("enjin.sdk.project.CreateAsset");
     }
 
     /**
-     * Sets the name of the token (item).
+     * Sets the name of the asset.
      *
      * @param name the name
      * @return this request for chaining
      */
-    public CreateToken name(String name) {
+    public CreateAsset name(String name) {
         return set("name", name);
     }
 
     /**
-     * Sets the total supply of the token (item).
+     * Sets the total supply of the asset.
      *
      * @param totalSupply the total supply
      * @return this request for chaining
      */
-    public CreateToken totalSupply(String totalSupply) {
+    public CreateAsset totalSupply(String totalSupply) {
         return set("totalSupply", totalSupply);
     }
 
     /**
-     * Sets the initial reserve of the token (item).
+     * Sets the initial reserve of the asset.
      *
      * @param initialReserve the reserve
      * @return this request for chaining
      */
-    public CreateToken initialReserve(String initialReserve) {
+    public CreateAsset initialReserve(String initialReserve) {
         return set("initialReserve", initialReserve);
     }
 
     /**
-     * Sets the supply model of the token (item).
+     * Sets the supply model of the asset.
      *
      * @param supplyModel the model
      * @return this request for chaining
      */
-    public CreateToken supplyModel(TokenSupplyModel supplyModel) {
+    public CreateAsset supplyModel(AssetSupplyModel supplyModel) {
         return set("supplyModel", supplyModel);
     }
 
     /**
-     * Sets the melt value of the token (item).
+     * Sets the melt value of the asset.
      * <br>
      * <p>
      *     Corresponds to the exchange rate.
@@ -72,7 +72,7 @@ public class CreateToken
      * @param meltValue the value
      * @return this request for chaining
      */
-    public CreateToken meltValue(String meltValue) {
+    public CreateAsset meltValue(String meltValue) {
         return set("meltValue", meltValue);
     }
 
@@ -86,32 +86,32 @@ public class CreateToken
      * @param meltFeeRatio the ratio
      * @return this request for chaining
      */
-    public CreateToken meltFeeRatio(int meltFeeRatio) {
+    public CreateAsset meltFeeRatio(int meltFeeRatio) {
         return set("meltFeeRatio", meltFeeRatio);
     }
 
     /**
-     * Sets the transferable type of the token (item).
+     * Sets the transferable type of the asset.
      *
      * @param transferable the transferable type
      * @return this request for chaining
      */
-    public CreateToken transferable(TokenTransferable transferable) {
+    public CreateAsset transferable(AssetTransferable transferable) {
         return set("transferable", transferable);
     }
 
     /**
-     * Sets the transfer fee settings of the token (item).
+     * Sets the transfer fee settings of the asset.
      *
      * @param transferFeeSettings the settings
      * @return this request for chaining
      */
-    public CreateToken transferFeeSettings(TokenTransferFeeSettingsInput transferFeeSettings) {
+    public CreateAsset transferFeeSettings(AssetTransferFeeSettingsInput transferFeeSettings) {
         return set("transferFeeSettings", transferFeeSettings);
     }
 
     /**
-     * Sets the fungible state of the token (item).
+     * Sets the fungible state of the asset.
      *
      * @param nonFungible the state
      * @return this request for chaining

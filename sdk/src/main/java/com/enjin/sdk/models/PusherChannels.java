@@ -26,9 +26,9 @@ public class PusherChannels {
 
     /**
      * -- Getter --
-     * @return the token channel
+     * @return the asset channel
      */
-    private String token;
+    private String asset;
 
     /**
      * -- Getter --

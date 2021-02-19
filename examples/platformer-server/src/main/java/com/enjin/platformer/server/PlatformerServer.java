@@ -2,7 +2,7 @@ package com.enjin.platformer.server;
 
 import com.enjin.platformer.server.conf.Config;
 import com.enjin.platformer.server.data.PacketInHandshake;
-import com.enjin.platformer.server.data.PacketInSendToken;
+import com.enjin.platformer.server.data.PacketInSendAsset;
 import com.enjin.platformer.server.data.PacketProcessor;
 import com.enjin.platformer.server.data.PacketType;
 import com.enjin.platformer.server.game.Player;
@@ -14,7 +14,7 @@ import com.enjin.sdk.graphql.GraphQLError;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpResponse;
 import com.enjin.sdk.models.Request;
-import com.enjin.sdk.schemas.shared.mutations.SendToken;
+import com.enjin.sdk.schemas.shared.mutations.SendAsset;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import org.java_websocket.WebSocket;
@@ -63,7 +63,7 @@ public class PlatformerServer extends WebSocketServer {
 
     private void registerPacketDelegates() {
         processor.register(PacketType.HANDSHAKE, this::onHandshake);
-        processor.register(PacketType.SEND_TOKEN, this::onSendToken);
+        processor.register(PacketType.SEND_ASSET, this::onSendAsset);
     }
 
     @Override
@@ -115,18 +115,18 @@ public class PlatformerServer extends WebSocketServer {
         });
     }
 
-    private void onSendToken(WebSocket conn, PacketInSendToken packet) {
+    private void onSendAsset(WebSocket conn, PacketInSendAsset packet) {
         Optional<Peer> attachment = Optional.ofNullable(conn.getAttachment());
         attachment.ifPresent(peer -> {
-            SendToken request = new SendToken().tokenId(packet.getToken())
+            SendAsset request = new SendAsset().assetId(packet.getAsset())
                                                .value(String.valueOf(packet.getAmount()))
                                                .ethAddress(config.getDevWallet())
                                                .recipientAddress(packet.getRecipientWallet());
-            sdk.sendToken(request, this::onSendTokenComplete);
+            sdk.sendAsset(request, this::onSendAssetComplete);
         });
     }
 
-    private void onSendTokenComplete(HttpResponse<GraphQLResponse<Request>> httpResponse) {
+    private void onSendAssetComplete(HttpResponse<GraphQLResponse<Request>> httpResponse) {
         if (httpResponse.isSuccess() && httpResponse.body().hasErrors()) {
             for (GraphQLError error : httpResponse.body().getErrors())
                 System.out.println(String.format("Error %s: %s", error.getCode(), error.getMessage()));

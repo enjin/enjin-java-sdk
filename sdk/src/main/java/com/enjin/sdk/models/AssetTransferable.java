@@ -3,9 +3,9 @@ package com.enjin.sdk.models;
 /**
  * The transferable type.
  *
- * @see Token
+ * @see Asset
  */
-public enum TokenTransferable {
+public enum AssetTransferable {
 
     PERMANENT,
     TEMPORARY,

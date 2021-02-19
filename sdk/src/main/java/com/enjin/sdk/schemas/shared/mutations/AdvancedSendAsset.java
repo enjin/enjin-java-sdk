@@ -5,20 +5,20 @@ import com.enjin.sdk.models.Transfers;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 /**
- * Request for sending one or more items in a single transaction.
+ * Request for sending one or more assets in a single transaction.
  *
- * @see SendToken
+ * @see SendAsset
  * @see com.enjin.sdk.schemas.shared.SharedSchema
  */
-public class AdvancedSendToken
-        extends GraphQLRequest<AdvancedSendToken>
-        implements TransactionRequestArguments<AdvancedSendToken> {
+public class AdvancedSendAsset
+        extends GraphQLRequest<AdvancedSendAsset>
+        implements TransactionRequestArguments<AdvancedSendAsset> {
 
     /**
      * Sole constructor.
      */
-    public AdvancedSendToken() {
-        super("enjin.sdk.shared.AdvancedSendToken");
+    public AdvancedSendAsset() {
+        super("enjin.sdk.shared.AdvancedSendAsset");
     }
 
     /**
@@ -27,7 +27,7 @@ public class AdvancedSendToken
      * @param transfers the transfers
      * @return this request for chaining
      */
-    public AdvancedSendToken transfers(Transfers... transfers) {
+    public AdvancedSendAsset transfers(Transfers... transfers) {
         return set("transfers", transfers);
     }
 
@@ -37,7 +37,7 @@ public class AdvancedSendToken
      * @param data the data
      * @return this request for chaining
      */
-    public AdvancedSendToken data(String data) {
+    public AdvancedSendAsset data(String data) {
         return set("data", data);
     }
 

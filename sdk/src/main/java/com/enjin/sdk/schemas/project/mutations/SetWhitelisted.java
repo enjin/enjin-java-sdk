@@ -5,7 +5,7 @@ import com.enjin.sdk.models.Whitelisted;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 /**
- * Request for setting an item's whitelist.
+ * Request for setting an asset's whitelist.
  *
  * @see com.enjin.sdk.schemas.project.ProjectSchema
  */
@@ -21,13 +21,13 @@ public class SetWhitelisted
     }
 
     /**
-     * Sets the token (item) ID.
+     * Sets the asset ID.
      *
-     * @param tokenId the ID
+     * @param assetId the ID
      * @return this request for chaining
      */
-    public SetWhitelisted tokenId(String tokenId) {
-        return set("tokenId", tokenId);
+    public SetWhitelisted assetId(String assetId) {
+        return set("assetId", assetId);
     }
 
     /**

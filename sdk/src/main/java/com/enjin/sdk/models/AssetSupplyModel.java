@@ -1,11 +1,11 @@
 package com.enjin.sdk.models;
 
 /**
- * Values used to specify the token supply models.
+ * Values used to specify the asset supply models.
  *
- * @see Token
+ * @see Asset
  */
-public enum TokenSupplyModel {
+public enum AssetSupplyModel {
 
     FIXED,
     SETTABLE,

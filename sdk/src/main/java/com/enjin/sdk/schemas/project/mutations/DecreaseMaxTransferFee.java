@@ -4,7 +4,7 @@ import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 /**
- * Request for setting an item's max transfer fee to a lower value.
+ * Request for setting an asset's max transfer fee to a lower value.
  *
  * @see com.enjin.sdk.schemas.project.ProjectSchema
  */
@@ -20,23 +20,23 @@ public class DecreaseMaxTransferFee
     }
 
     /**
-     * Sets the token (item) ID.
+     * Sets the asset ID.
      *
-     * @param tokenId the ID
+     * @param assetId the ID
      * @return this request for chaining
      */
-    public DecreaseMaxTransferFee tokenId(String tokenId) {
-        return set("tokenId", tokenId);
+    public DecreaseMaxTransferFee assetId(String assetId) {
+        return set("assetId", assetId);
     }
 
     /**
-     * Sets the index for non-fungible items.
+     * Sets the index for non-fungible assets.
      *
-     * @param tokenIndex the index
+     * @param assetIndex the index
      * @return this request for chaining
      */
-    public DecreaseMaxTransferFee tokenIndex(String tokenIndex) {
-        return set("tokenIndex", tokenIndex);
+    public DecreaseMaxTransferFee assetIndex(String assetIndex) {
+        return set("assetIndex", assetIndex);
     }
 
     /**
