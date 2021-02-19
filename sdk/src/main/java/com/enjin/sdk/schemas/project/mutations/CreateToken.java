@@ -2,7 +2,7 @@ package com.enjin.sdk.schemas.project.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.models.TokenSupplyModel;
-import com.enjin.sdk.models.TokenTransferFeeSettings;
+import com.enjin.sdk.models.TokenTransferFeeSettingsInput;
 import com.enjin.sdk.models.TokenTransferable;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
@@ -106,7 +106,7 @@ public class CreateToken
      * @param transferFeeSettings the settings
      * @return this request for chaining
      */
-    public CreateToken transferFeeSettings(TokenTransferFeeSettings transferFeeSettings) {
+    public CreateToken transferFeeSettings(TokenTransferFeeSettingsInput transferFeeSettings) {
         return set("transferFeeSettings", transferFeeSettings);
     }
 
