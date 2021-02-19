@@ -107,32 +107,32 @@ class PusherNotificationServiceTest {
     }
 
     @Test
-    void subscribeToApp_IsSubscribeToChannel() {
+    void subscribeToProject_IsSubscribeToChannel() {
         // Arrange
-        final int APP = 1234;
+        final int PROJECT = 1234;
         final PusherNotificationService service = defaultPusherNotificationService();
         service.start();
 
         // Act
-        service.subscribeToApp(APP);
+        service.subscribeToProject(PROJECT);
 
         // Assert
-        assertTrue(service.isSubscribedToApp(APP));
+        assertTrue(service.isSubscribedToProject(PROJECT));
     }
 
     @Test
     void subscribeToPlayer_IsSubscribeToChannel() {
         // Arrange
-        final int APP = 1234;
+        final int PROJECT = 1234;
         final String PLAYER = "player 1";
         final PusherNotificationService service = defaultPusherNotificationService();
         service.start();
 
         // Act
-        service.subscribeToPlayer(APP, PLAYER);
+        service.subscribeToPlayer(PROJECT, PLAYER);
 
         // Assert
-        assertTrue(service.isSubscribedToPlayer(APP, PLAYER));
+        assertTrue(service.isSubscribedToPlayer(PROJECT, PLAYER));
     }
 
     @Test
@@ -164,34 +164,34 @@ class PusherNotificationServiceTest {
     }
 
     @Test
-    void unsubscribeToApp_IsNotSubscribeToChannel() {
+    void unsubscribeToProject_IsNotSubscribeToChannel() {
         // Arrange
-        final int APP = 1234;
+        final int PROJECT = 1234;
         final PusherNotificationService service = defaultPusherNotificationService();
         service.start();
-        service.subscribeToApp(APP);
+        service.subscribeToProject(PROJECT);
 
         // Act
-        service.unsubscribeToApp(APP);
+        service.unsubscribeToProject(PROJECT);
 
         // Assert
-        assertFalse(service.isSubscribedToApp(APP));
+        assertFalse(service.isSubscribedToProject(PROJECT));
     }
 
     @Test
     void unsubscribeToPlayer_IsNotSubscribeToChannel() {
         // Arrange
-        final int APP = 1234;
+        final int PROJECT = 1234;
         final String PLAYER = "player 1";
         final PusherNotificationService service = defaultPusherNotificationService();
         service.start();
-        service.subscribeToPlayer(APP, PLAYER);
+        service.subscribeToPlayer(PROJECT, PLAYER);
 
         // Act
-        service.unsubscribeToPlayer(APP, PLAYER);
+        service.unsubscribeToPlayer(PROJECT, PLAYER);
 
         // Assert
-        assertFalse(service.isSubscribedToPlayer(APP, PLAYER));
+        assertFalse(service.isSubscribedToPlayer(PROJECT, PLAYER));
     }
 
     @Test

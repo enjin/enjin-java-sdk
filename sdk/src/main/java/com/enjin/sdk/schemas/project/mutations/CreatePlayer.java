@@ -3,7 +3,7 @@ package com.enjin.sdk.schemas.project.mutations;
 import com.enjin.sdk.graphql.GraphQLRequest;
 
 /**
- * Request for creating a player for the application.
+ * Request for creating a player for the project.
  *
  * @see com.enjin.sdk.schemas.project.ProjectSchema
  */

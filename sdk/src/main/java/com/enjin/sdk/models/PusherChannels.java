@@ -13,9 +13,9 @@ public class PusherChannels {
 
     /**
      * -- Getter --
-     * @return the app channel
+     * @return the project channel
      */
-    @SerializedName("app")
+    @SerializedName("project")
     private String project;
 
     /**

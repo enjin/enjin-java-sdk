@@ -33,7 +33,7 @@ public class Balance {
      * -- Getter --
      * @return the project for this balance's asset
      */
-    @SerializedName("app")
+    @SerializedName("project")
     private Project project;
 
     /**

@@ -4,7 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
- * Models a application on the platform.
+ * Models a project on the platform.
  */
 @EqualsAndHashCode
 @Getter
@@ -12,25 +12,25 @@ public class Project {
 
     /**
      * -- Getter --
-     * @return the ID of this app
+     * @return the ID of this project
      */
     private Integer id;
 
     /**
      * -- Getter --
-     * @return the name of this app
+     * @return the name of this project
      */
     private String name;
 
     /**
      * -- Getter --
-     * @return the description of this app
+     * @return the description of this project
      */
     private String description;
 
     /**
      * -- Getter --
-     * @return the URL for the image of this app
+     * @return the URL for the image of this project
      */
     private String image;
 

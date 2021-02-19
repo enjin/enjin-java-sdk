@@ -4,7 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
- * Models a player on a application.
+ * Models a player on a project.
  */
 @EqualsAndHashCode
 @Getter

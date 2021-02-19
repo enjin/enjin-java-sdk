@@ -73,20 +73,20 @@ class NotificationListenerRegistrationTest {
 
     }
 
-    @EventFilter(value = {EventType.APP_CREATED, EventType.APP_DELETED})
+    @EventFilter(value = {EventType.PROJECT_CREATED, EventType.PROJECT_DELETED})
     private static class AllowedFilteredListener implements NotificationListener {
 
-        public static final EventType[] ALLOWED_EVENTS = {EventType.APP_CREATED, EventType.APP_DELETED};
+        public static final EventType[] ALLOWED_EVENTS = {EventType.PROJECT_CREATED, EventType.PROJECT_DELETED};
 
         @Override
         public void notificationReceived(NotificationEvent event) { }
 
     }
 
-    @EventFilter(allow = false, value = {EventType.APP_CREATED, EventType.APP_DELETED})
+    @EventFilter(allow = false, value = {EventType.PROJECT_CREATED, EventType.PROJECT_DELETED})
     private static class IgnoredFilteredListener implements NotificationListener {
 
-        public static final EventType[] IGNORED_EVENTS = {EventType.APP_CREATED, EventType.APP_DELETED};
+        public static final EventType[] IGNORED_EVENTS = {EventType.PROJECT_CREATED, EventType.PROJECT_DELETED};
 
         @Override
         public void notificationReceived(NotificationEvent event) { }

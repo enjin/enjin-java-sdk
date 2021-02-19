@@ -4,35 +4,31 @@ import com.enjin.sdk.models.Platform;
 import lombok.NonNull;
 
 /**
- * Represents a channel to subscribe to for Enjin Cloud player events.
+ * Represents a channel to subscribe to for Enjin Cloud project events.
  *
  * @see com.enjin.sdk.events.NotificationsService
  */
-public class PlayerChannel implements Channel {
+public class ProjectChannel implements Channel {
 
     private final Platform platform;
     private final int project;
-    private final String player;
 
     /**
-     * Constructs a channel for the given network and player on a project.
+     * Constructs a channel for the given network and project.
      *
      * @param platform the platform
      * @param project the project ID
-     * @param player the identity ID
      */
-    public PlayerChannel(@NonNull Platform platform, int project, String player) {
+    public ProjectChannel(@NonNull Platform platform, int project) {
         this.platform = platform;
         this.project = project;
-        this.player = player;
     }
 
     @Override
     public String channel() {
-        return String.format("enjincloud.%s.project.%s.player.%s",
+        return String.format("enjincloud.%s.project.%s",
                              platform.getNetwork().toLowerCase(),
-                             project,
-                             player);
+                             project);
     }
 
 }

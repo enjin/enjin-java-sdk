@@ -43,7 +43,7 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     /**
      * The name of the schema.
      */
-    public static final String SCHEMA = "app";
+    public static final String SCHEMA = "project";
 
     protected final PlayerService playerService;
     protected final WalletService walletService;
