@@ -4,11 +4,11 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
- * Models the configuration data of a {@link Token}.
+ * Models the configuration data of a {@link Asset}.
  */
 @EqualsAndHashCode
 @Getter
-public class TokenConfigData {
+public class AssetConfigData {
 
     /**
      * -- Getter --
@@ -39,13 +39,13 @@ public class TokenConfigData {
      *     Corresponds to this item's exchange rate.
      * </p>
      *
-     * @return the melt value for the item
+     * @return the melt value for the asset
      */
     private String meltValue;
 
     /**
      * -- Getter --
-     * @return the metadata URI for the item
+     * @return the metadata URI for the asset
      */
     private String metadataURI;
 
@@ -53,12 +53,12 @@ public class TokenConfigData {
      * -- Getter --
      * @return the transferable type
      */
-    private TokenTransferable transferable;
+    private AssetTransferable transferable;
 
     /**
      * -- Getter --
-     * @return the fee settings for the item
+     * @return the fee settings for the asset
      */
-    private TokenTransferFeeSettings transferFeeSettings;
+    private AssetTransferFeeSettings transferFeeSettings;
 
 }

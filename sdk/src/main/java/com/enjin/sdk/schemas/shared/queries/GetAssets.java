@@ -1,27 +1,28 @@
 package com.enjin.sdk.schemas.shared.queries;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.models.TokenFilter;
-import com.enjin.sdk.models.TokenSort;
+import com.enjin.sdk.models.Asset;
+import com.enjin.sdk.models.AssetFilter;
+import com.enjin.sdk.models.AssetSort;
 import com.enjin.sdk.schemas.shared.arguments.PaginationArguments;
-import com.enjin.sdk.schemas.shared.arguments.TokenFragmentArguments;
+import com.enjin.sdk.schemas.shared.arguments.AssetFragmentArguments;
 
 /**
- * Request for getting tokens (items) on the platform.
+ * Request for getting assets on the platform.
  *
- * @see com.enjin.sdk.models.Token
+ * @see Asset
  * @see com.enjin.sdk.schemas.shared.SharedSchema
  */
-public class GetTokens
-        extends GraphQLRequest<GetTokens>
-        implements TokenFragmentArguments<GetTokens>,
-        PaginationArguments<GetTokens> {
+public class GetAssets
+        extends GraphQLRequest<GetAssets>
+        implements AssetFragmentArguments<GetAssets>,
+        PaginationArguments<GetAssets> {
 
     /**
      * Sole constructor.
      */
-    public GetTokens() {
-        super("enjin.sdk.shared.GetTokens");
+    public GetAssets() {
+        super("enjin.sdk.shared.GetAssets");
     }
 
     /**
@@ -30,7 +31,7 @@ public class GetTokens
      * @param filter the filter
      * @return this request for chaining
      */
-    public GetTokens filter(TokenFilter filter) {
+    public GetAssets filter(AssetFilter filter) {
         return set("filter", filter);
     }
 
@@ -40,7 +41,7 @@ public class GetTokens
      * @param sort the sort options
      * @return this request for chaining
      */
-    public GetTokens sort(TokenSort sort) {
+    public GetAssets sort(AssetSort sort) {
         return set("sort", sort);
     }
 

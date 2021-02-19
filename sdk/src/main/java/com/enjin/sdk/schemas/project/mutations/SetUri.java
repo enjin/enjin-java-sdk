@@ -4,7 +4,7 @@ import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 /**
- * Request to set the metadata URI of an item.
+ * Request to set the metadata URI of an asset.
  *
  * @see com.enjin.sdk.schemas.project.ProjectSchema
  */
@@ -20,27 +20,27 @@ public class SetUri
     }
 
     /**
-     * Sets the token (item) ID.
+     * Sets the asset ID.
      *
-     * @param tokenId the ID
+     * @param assetId the ID
      * @return this request for chaining
      */
-    public SetUri tokenId(String tokenId) {
-        return set("tokenId", tokenId);
+    public SetUri assetId(String assetId) {
+        return set("assetId", assetId);
     }
 
     /**
-     * Sets the index for non-fungible items.
+     * Sets the index for non-fungible assets.
      *
-     * @param tokenIndex the index
+     * @param assetIndex the index
      * @return this request for chaining
      */
-    public SetUri tokenIndex(String tokenIndex) {
-        return set("tokenIndex", tokenIndex);
+    public SetUri assetIndex(String assetIndex) {
+        return set("assetIndex", assetIndex);
     }
 
     /**
-     * Sets the new URI for the item's metadata.
+     * Sets the new URI for the asset's metadata.
      *
      * @param uri the new URI
      * @return this request for chaining

@@ -4,7 +4,7 @@ import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 /**
- * Request for setting the transfer fee of a item.
+ * Request for setting the transfer fee of a asset.
  *
  * @see com.enjin.sdk.schemas.project.ProjectSchema
  */
@@ -20,23 +20,23 @@ public class SetTransferFee
     }
 
     /**
-     * Sets the token (item) ID.
+     * Sets the asset ID.
      *
-     * @param tokenId the ID
+     * @param assetId the ID
      * @return this request for chaining
      */
-    public SetTransferFee tokenId(String tokenId) {
-        return set("tokenId", tokenId);
+    public SetTransferFee assetId(String assetId) {
+        return set("assetId", assetId);
     }
 
     /**
-     * Sets the index for non-fungible items.
+     * Sets the index for non-fungible assets.
      *
-     * @param tokenIndex the index
+     * @param assetIndex the index
      * @return this request for chaining
      */
-    public SetTransferFee tokenIndex(String tokenIndex) {
-        return set("tokenIndex", tokenIndex);
+    public SetTransferFee assetIndex(String assetIndex) {
+        return set("assetIndex", assetIndex);
     }
 
     /**

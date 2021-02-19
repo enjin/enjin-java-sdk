@@ -4,7 +4,7 @@ import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 /**
- * Request for setting an item's max melt fee to a lower value.
+ * Request for setting an asset's max melt fee to a lower value.
  *
  * @see com.enjin.sdk.schemas.project.ProjectSchema
  */
@@ -20,27 +20,27 @@ public class DecreaseMaxMeltFee
     }
 
     /**
-     * Sets the token (item) ID.
+     * Sets the asset ID.
      *
-     * @param tokenId the ID
+     * @param assetId the ID
      * @return this request for chaining
      */
-    public DecreaseMaxMeltFee tokenId(String tokenId) {
-        return set("tokenId", tokenId);
+    public DecreaseMaxMeltFee assetId(String assetId) {
+        return set("assetId", assetId);
     }
 
     /**
-     * Sets the index for non-fungible items.
+     * Sets the index for non-fungible assets.
      *
-     * @param tokenIndex the index
+     * @param assetIndex the index
      * @return this request for chaining
      */
-    public DecreaseMaxMeltFee tokenIndex(String tokenIndex) {
-        return set("tokenIndex", tokenIndex);
+    public DecreaseMaxMeltFee assetIndex(String assetIndex) {
+        return set("assetIndex", assetIndex);
     }
 
     /**
-     * Sets the new max melt fee for the item.
+     * Sets the new max melt fee for the asset.
      * <br>
      * <p>
      *     The ratio is in the range 0-5000 to allow fractional ratios, e.g. 1 = 0.01%, 5000 = 50%, ect...

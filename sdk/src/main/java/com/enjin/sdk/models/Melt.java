@@ -1,43 +1,44 @@
 package com.enjin.sdk.models;
 
+import com.enjin.sdk.schemas.shared.mutations.MeltAsset;
 import lombok.EqualsAndHashCode;
 
 /**
  * Models a melt input for melt requests.
  *
- * @see com.enjin.sdk.schemas.shared.mutations.MeltToken
+ * @see MeltAsset
  */
 @EqualsAndHashCode
 public class Melt {
 
-    private String tokenId;
-    private String tokenIndex;
+    private String assetId;
+    private String assetIndex;
     private String value;
 
     /**
-     * Sets the token (item) ID to melt.
+     * Sets the asset ID to melt.
      *
-     * @param tokenId the ID
+     * @param assetId the ID
      * @return this input for chaining
      */
-    public Melt tokenId(String tokenId) {
-        this.tokenId = tokenId;
+    public Melt assetId(String assetId) {
+        this.assetId = assetId;
         return this;
     }
 
     /**
-     * Sets the token (item) index of a non-fungible item to melt.
+     * Sets the index of a non-fungible asset to melt.
      *
-     * @param tokenIndex the index
+     * @param assetIndex the index
      * @return this input for chaining
      */
-    public Melt tokenIndex(String tokenIndex) {
-        this.tokenIndex = tokenIndex;
+    public Melt assetIndex(String assetIndex) {
+        this.assetIndex = assetIndex;
         return this;
     }
 
     /**
-     * Sets the number of items to melt.
+     * Sets the number of assets to melt.
      *
      * @param value the amount
      * @return this input for chaining

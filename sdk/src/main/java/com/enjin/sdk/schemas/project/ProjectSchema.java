@@ -8,12 +8,12 @@ import com.enjin.sdk.schemas.project.queries.GetWallet;
 import com.enjin.sdk.schemas.project.queries.GetWallets;
 import com.enjin.sdk.services.PlayerService;
 import com.enjin.sdk.schemas.project.mutations.CreatePlayer;
-import com.enjin.sdk.schemas.project.mutations.CreateToken;
+import com.enjin.sdk.schemas.project.mutations.CreateAsset;
 import com.enjin.sdk.schemas.project.mutations.DecreaseMaxMeltFee;
 import com.enjin.sdk.schemas.project.mutations.DecreaseMaxTransferFee;
 import com.enjin.sdk.schemas.project.mutations.DeletePlayer;
-import com.enjin.sdk.schemas.project.mutations.InvalidateTokenMetadata;
-import com.enjin.sdk.schemas.project.mutations.MintToken;
+import com.enjin.sdk.schemas.project.mutations.InvalidateAssetMetadata;
+import com.enjin.sdk.schemas.project.mutations.MintAsset;
 import com.enjin.sdk.schemas.project.mutations.ReleaseReserve;
 import com.enjin.sdk.schemas.project.mutations.SetMeltFee;
 import com.enjin.sdk.schemas.project.mutations.SetTransferFee;
@@ -133,25 +133,25 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     }
 
     /**
-     * Sends {@link CreateToken} request synchronously.
+     * Sends {@link CreateAsset} request synchronously.
      *
      * @param request the request
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
     @Override
-    public GraphQLResponse<Request> createToken(CreateToken request) {
+    public GraphQLResponse<Request> createAsset(CreateAsset request) {
         return transactionRequest(request);
     }
 
     /**
-     * Sends {@link CreateToken} request asynchronously.
+     * Sends {@link CreateAsset} request asynchronously.
      *
      * @param request the request
      * @param callback the callback
      */
     @Override
-    public void createToken(CreateToken request,
+    public void createAsset(CreateAsset request,
                             HttpCallback<GraphQLResponse<Request>> callback) {
         transactionRequest(request, callback);
     }
@@ -325,49 +325,49 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     }
 
     /**
-     * Sends {@link InvalidateTokenMetadata} request synchronously.
+     * Sends {@link InvalidateAssetMetadata} request synchronously.
      *
      * @param request the request
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
     @Override
-    public GraphQLResponse<Boolean> invalidateTokenMetadata(InvalidateTokenMetadata request) {
+    public GraphQLResponse<Boolean> invalidateAssetMetadata(InvalidateAssetMetadata request) {
         return sendRequest(projectService.delete(schema, createRequestBody(request)));
     }
 
     /**
-     * Sends {@link InvalidateTokenMetadata} request asynchronously.
+     * Sends {@link InvalidateAssetMetadata} request asynchronously.
      *
      * @param request the request
      * @param callback the callback
      */
     @Override
-    public void invalidateTokenMetadata(InvalidateTokenMetadata request,
+    public void invalidateAssetMetadata(InvalidateAssetMetadata request,
                                         HttpCallback<GraphQLResponse<Boolean>> callback) {
         sendRequest(projectService.delete(schema, createRequestBody(request)), callback);
     }
 
     /**
-     * Sends {@link MintToken} request synchronously.
+     * Sends {@link MintAsset} request synchronously.
      *
      * @param request the request
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
     @Override
-    public GraphQLResponse<Request> mintToken(MintToken request) {
+    public GraphQLResponse<Request> mintAsset(MintAsset request) {
         return transactionRequest(request);
     }
 
     /**
-     * Sends {@link MintToken} request asynchronously.
+     * Sends {@link MintAsset} request asynchronously.
      *
      * @param request the request
      * @param callback the callback
      */
     @Override
-    public void mintToken(MintToken request,
+    public void mintAsset(MintAsset request,
                           HttpCallback<GraphQLResponse<Request>> callback) {
         transactionRequest(request, callback);
     }

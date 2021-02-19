@@ -119,7 +119,7 @@ class EventTypeTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = { "app", "player", "token", "wallet" })
+    @ValueSource(strings = { "app", "player", "asset", "wallet" })
     void filterByChannelTypes_ValidChannel_ReturnEventsContainingChannel(String channel) {
         // Act
         List<EventType> actualTypes = EventType.filterByChannelTypes(channel);

@@ -13,13 +13,12 @@ import com.enjin.sdk.models.Platform;
 import com.enjin.sdk.events.NotificationListenerRegistration.RegistrationListenerConfiguration;
 import com.enjin.sdk.events.channels.AppChannel;
 import com.enjin.sdk.events.channels.PlayerChannel;
-import com.enjin.sdk.events.channels.TokenChannel;
+import com.enjin.sdk.events.channels.AssetChannel;
 import com.enjin.sdk.events.channels.WalletChannel;
 import com.enjin.sdk.utils.LoggerProvider;
 import com.pusher.client.Pusher;
 import com.pusher.client.PusherOptions;
 import com.pusher.client.channel.Channel;
-import com.pusher.client.channel.PusherEvent;
 import com.pusher.client.connection.ConnectionEventListener;
 import com.pusher.client.connection.ConnectionState;
 import com.pusher.client.connection.ConnectionStateChange;
@@ -217,18 +216,18 @@ public class PusherNotificationService implements NotificationsService {
     }
 
     @Override
-    public void subscribeToToken(String token) {
-        subscribe(new TokenChannel(platform, token).channel());
+    public void subscribeToAsset(String asset) {
+        subscribe(new AssetChannel(platform, asset).channel());
     }
 
     @Override
-    public void unsubscribeToToken(String token) {
-        unsubscribe(new TokenChannel(platform, token).channel());
+    public void unsubscribeToAsset(String asset) {
+        unsubscribe(new AssetChannel(platform, asset).channel());
     }
 
     @Override
-    public boolean isSubscribedToToken(String token) {
-        return subscribed.containsKey(new TokenChannel(platform, token).channel());
+    public boolean isSubscribedToAsset(String asset) {
+        return subscribed.containsKey(new AssetChannel(platform, asset).channel());
     }
 
     @Override

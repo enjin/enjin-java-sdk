@@ -5,19 +5,19 @@ import com.enjin.sdk.models.Melt;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 /**
- * Request for melting a item.
+ * Request for melting a asset.
  *
  * @see com.enjin.sdk.schemas.shared.SharedSchema
  */
-public class MeltToken
-        extends GraphQLRequest<MeltToken>
-        implements TransactionRequestArguments<MeltToken> {
+public class MeltAsset
+        extends GraphQLRequest<MeltAsset>
+        implements TransactionRequestArguments<MeltAsset> {
 
     /**
      * Sole constructor.
      */
-    public MeltToken() {
-        super("enjin.sdk.shared.MeltToken");
+    public MeltAsset() {
+        super("enjin.sdk.shared.MeltAsset");
     }
 
     /**
@@ -26,7 +26,7 @@ public class MeltToken
      * @param melts the melts
      * @return this request for chaining
      */
-    public MeltToken melts(Melt... melts) {
+    public MeltAsset melts(Melt... melts) {
         return set("melts", melts);
     }
 

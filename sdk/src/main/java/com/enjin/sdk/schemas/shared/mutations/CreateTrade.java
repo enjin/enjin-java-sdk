@@ -22,23 +22,23 @@ public class CreateTrade
     }
 
     /**
-     * Sets the tokens (items) the sender is asking for.
+     * Sets the assets the sender is asking for.
      *
-     * @param tokens the items
+     * @param assets the assets
      * @return this request for chaining
      */
-    public CreateTrade askingTokens(Trade... tokens) {
-        return set("askingTokens", tokens);
+    public CreateTrade askingAssets(Trade... assets) {
+        return set("askingAssets", assets);
     }
 
     /**
-     * Sets the tokens (items) to be offered by the sender.
+     * Sets the assets to be offered by the sender.
      *
-     * @param tokens the items
+     * @param assets the assets
      * @return this request for chaining
      */
-    public CreateTrade offeringTokens(Trade... tokens) {
-        return set("offeringTokens", tokens);
+    public CreateTrade offeringAssets(Trade... assets) {
+        return set("offeringAssets", assets);
     }
 
     /**

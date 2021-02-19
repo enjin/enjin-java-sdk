@@ -38,8 +38,8 @@ public class Wallet {
 
     /**
      * -- Getter --
-     * @return the tokens (items) this wallet has created
+     * @return the assets this wallet has created
      */
-    private Collection<Token> tokensCreated;
+    private Collection<Asset> assetsCreated;
 
 }

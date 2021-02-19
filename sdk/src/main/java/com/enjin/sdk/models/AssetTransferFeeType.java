@@ -3,9 +3,9 @@ package com.enjin.sdk.models;
 /**
  * Represents the transfer fee type.
  *
- * @see TokenTransferFeeSettings
+ * @see AssetTransferFeeSettings
  */
-public enum TokenTransferFeeType {
+public enum AssetTransferFeeType {
 
     NONE,
     PER_TRANSFER,

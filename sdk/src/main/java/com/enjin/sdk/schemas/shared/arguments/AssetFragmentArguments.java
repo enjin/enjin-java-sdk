@@ -1,63 +1,64 @@
 package com.enjin.sdk.schemas.shared.arguments;
 
 import com.enjin.sdk.graphql.VariableHolder;
-import com.enjin.sdk.models.TokenIdFormat;
+import com.enjin.sdk.models.Asset;
+import com.enjin.sdk.models.AssetIdFormat;
 
 /**
- * Fragment interface used to request certain information from tokens returned by the platform.
+ * Fragment interface used to request certain information from assets returned by the platform.
  *
  * @param <T> the type of the implementing class
- * @see com.enjin.sdk.models.Token
+ * @see Asset
  */
-public interface TokenFragmentArguments<T extends VariableHolder<T>> extends VariableHolder<T> {
+public interface AssetFragmentArguments<T extends VariableHolder<T>> extends VariableHolder<T> {
 
     /**
-     * Sets the desired token (item) ID format.
+     * Sets the desired asset ID format.
      *
-     * @param tokenIdFormat the format
+     * @param assetIdFormat the format
      * @return this request for chaining
      */
-    default T tokenIdFormat(TokenIdFormat tokenIdFormat) {
-        return set("tokenIdFormat", tokenIdFormat);
+    default T assetIdFormat(AssetIdFormat assetIdFormat) {
+        return set("assetIdFormat", assetIdFormat);
     }
 
     /**
-     * Sets the request to include state data about the token (item).
+     * Sets the request to include state data about the asset.
      *
      * @return this request for chaining
-     * @see TokenFragmentArguments#withCreator()
-     * @see TokenFragmentArguments#withTokenBlocks()
-     * @see TokenFragmentArguments#withSupplyDetails()
+     * @see AssetFragmentArguments#withCreator()
+     * @see AssetFragmentArguments#withAssetBlocks()
+     * @see AssetFragmentArguments#withSupplyDetails()
      */
     default T withStateData() {
         return set("withStateData", true);
     }
 
     /**
-     * Sets the request to include configuration data about the token (item).
+     * Sets the request to include configuration data about the asset.
      *
      * @return this request for chaining
-     * @see TokenFragmentArguments#withMeltDetails()
-     * @see TokenFragmentArguments#withMetadataUri()
-     * @see TokenFragmentArguments#withTransferSettings()
+     * @see AssetFragmentArguments#withMeltDetails()
+     * @see AssetFragmentArguments#withMetadataUri()
+     * @see AssetFragmentArguments#withTransferSettings()
      */
     default T withConfigData() {
         return set("withConfigData", true);
     }
 
     /**
-     * Sets the request to include the block data with the token (item) when used with
-     * {@link TokenFragmentArguments#withStateData()}.
+     * Sets the request to include the block data with the asset when used with
+     * {@link AssetFragmentArguments#withStateData()}.
      *
      * @return this request for chaining
      */
-    default T withTokenBlocks() {
-        return set("withTokenBlocks", true);
+    default T withAssetBlocks() {
+        return set("withAssetBlocks", true);
     }
 
     /**
-     * Sets the request to include the creator with the item when used with
-     * {@link TokenFragmentArguments#withStateData()}.
+     * Sets the request to include the creator with the asset when used with
+     * {@link AssetFragmentArguments#withStateData()}.
      *
      * @return this request for chaining
      */
@@ -66,8 +67,8 @@ public interface TokenFragmentArguments<T extends VariableHolder<T>> extends Var
     }
 
     /**
-     * Sets the request to include the melt details with the item when used with
-     * {@link TokenFragmentArguments#withConfigData()}.
+     * Sets the request to include the melt details with the asset when used with
+     * {@link AssetFragmentArguments#withConfigData()}.
      *
      * @return this request for chaining
      */
@@ -76,8 +77,8 @@ public interface TokenFragmentArguments<T extends VariableHolder<T>> extends Var
     }
 
     /**
-     * Sets the request to include the metadata URI with the item when used with
-     * {@link TokenFragmentArguments#withConfigData()}.
+     * Sets the request to include the metadata URI with the asset when used with
+     * {@link AssetFragmentArguments#withConfigData()}.
      *
      * @return this request for chaining
      */
@@ -86,8 +87,8 @@ public interface TokenFragmentArguments<T extends VariableHolder<T>> extends Var
     }
 
     /**
-     * Sets the request to include the supply details with the item when used with
-     * {@link TokenFragmentArguments#withStateData()}.
+     * Sets the request to include the supply details with the asset when used with
+     * {@link AssetFragmentArguments#withStateData()}.
      *
      * @return this request for chaining
      */
@@ -96,8 +97,8 @@ public interface TokenFragmentArguments<T extends VariableHolder<T>> extends Var
     }
 
     /**
-     * Sets the request to include the transfer settings with the item when used with
-     * {@link TokenFragmentArguments#withConfigData()}.
+     * Sets the request to include the transfer settings with the asset when used with
+     * {@link AssetFragmentArguments#withConfigData()}.
      *
      * @return this request for chaining
      */
@@ -106,26 +107,26 @@ public interface TokenFragmentArguments<T extends VariableHolder<T>> extends Var
     }
 
     /**
-     * Sets the request to include the variant mode with the item.
+     * Sets the request to include the variant mode with the asset.
      *
      * @return this request for chaining
      */
-    default T withTokenVariantMode() {
-        return set("withTokenVariantMode", true);
+    default T withAssetVariantMode() {
+        return set("withAssetVariantMode", true);
     }
 
     /**
-     * Sets the request to include the variants with the item.
+     * Sets the request to include the variants with the asset.
      *
      * @return this request for chaining
      */
-    default T withTokenVariants() {
-        return set("withTokenVariants", true);
+    default T withAssetVariants() {
+        return set("withAssetVariants", true);
     }
 
     /**
-     * Sets the request to include the metadata for the variant(s) with the item when used with
-     * {@link TokenFragmentArguments#withTokenVariants()}.
+     * Sets the request to include the metadata for the variant(s) with the asset when used with
+     * {@link AssetFragmentArguments#withAssetVariants()}.
      *
      * @return this request for chaining
      */

@@ -5,31 +5,31 @@ import lombok.Getter;
 import lombok.ToString;
 
 /**
- * Models transfer fee settings for an item.
+ * Models transfer fee settings for an asset.
  *
- * @see Token
+ * @see Asset
  */
 @EqualsAndHashCode
 @Getter
 @ToString
-public class TokenTransferFeeSettings {
+public class AssetTransferFeeSettings {
 
     /**
      * -- GETTER --
      * @return the transfer fee type
      */
-    private TokenTransferFeeType type;
+    private AssetTransferFeeType type;
 
     /**
      * -- GETTER --
      * <br>
      * <p>
-     *     Will either be the item ID or "0" for ENJ.
+     *     Will either be the asset ID or "0" for ENJ.
      * </p>
      *
-     * @return the token (item) ID
+     * @return the asset ID
      */
-    private String tokenId;
+    private String assetId;
 
     /**
      * -- GETTER --

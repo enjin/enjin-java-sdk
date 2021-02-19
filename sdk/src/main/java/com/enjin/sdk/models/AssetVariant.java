@@ -1,52 +1,41 @@
 package com.enjin.sdk.models;
 
+import com.google.gson.JsonObject;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
-import java.util.List;
-
 /**
- * Models a item on the platform.
+ * Models a asset variant.
+ *
+ * @see Asset
  */
 @EqualsAndHashCode
 @Getter
-public class Token {
+public final class AssetVariant {
 
     /**
      * -- Getter --
-     * @return the base ID of this item
+     * @return the ID of this variant
      */
-    private String id;
+    private Integer id;
 
     /**
      * -- Getter --
-     * @return the name of this item
+     * @return the asset ID this variant belongs to
      */
-    private String name;
+    private String assetId;
 
     /**
      * -- Getter --
-     * @return the state data of this item
+     * @return the metadata for this variant
      */
-    private TokenStateData stateData;
+    private JsonObject variantMetadata;
 
     /**
      * -- Getter --
-     * @return the config data of this item
+     * @return the usage count
      */
-    private TokenConfigData configData;
-
-    /**
-     * -- Getter --
-     * @return the token variant mode
-     */
-    private TokenVariantMode variantMode;
-
-    /**
-     * -- Getter --
-     * @return the token variants of this item
-     */
-    private List<TokenVariant> variants;
+    private Integer usageCount;
 
     /**
      * -- Getter --

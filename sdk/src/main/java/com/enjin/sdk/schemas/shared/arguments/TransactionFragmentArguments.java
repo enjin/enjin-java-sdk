@@ -44,12 +44,12 @@ public interface TransactionFragmentArguments<T extends VariableHolder<T>> exten
     }
 
     /**
-     * Sets the request to include the token (item) data with the transaction.
+     * Sets the request to include the asset data with the transaction.
      *
      * @return this request for chaining
      */
-    default T withTokenData() {
-        return set("withTokenData", true);
+    default T withAssetData() {
+        return set("withAssetData", true);
     }
 
     /**

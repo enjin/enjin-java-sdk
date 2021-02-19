@@ -136,17 +136,17 @@ class PusherNotificationServiceTest {
     }
 
     @Test
-    void subscribeToToken_IsSubscribeToChannel() {
+    void subscribeToAsset_IsSubscribeToChannel() {
         // Arrange
-        final String TOKEN = "0000000000000000";
+        final String ASSET = "0000000000000000";
         final PusherNotificationService service = defaultPusherNotificationService();
         service.start();
 
         // Act
-        service.subscribeToToken(TOKEN);
+        service.subscribeToAsset(ASSET);
 
         // Assert
-        assertTrue(service.isSubscribedToToken(TOKEN));
+        assertTrue(service.isSubscribedToAsset(ASSET));
     }
 
     @Test
@@ -195,18 +195,18 @@ class PusherNotificationServiceTest {
     }
 
     @Test
-    void unsubscribeToToken_IsNotSubscribeToChannel() {
+    void unsubscribeToAsset_IsNotSubscribeToChannel() {
         // Arrange
-        final String TOKEN = "0000000000000000";
+        final String ASSET = "0000000000000000";
         final PusherNotificationService service = defaultPusherNotificationService();
         service.start();
-        service.subscribeToToken(TOKEN);
+        service.subscribeToAsset(ASSET);
 
         // Act
-        service.unsubscribeToToken(TOKEN);
+        service.unsubscribeToAsset(ASSET);
 
         // Assert
-        assertFalse(service.isSubscribedToToken(TOKEN));
+        assertFalse(service.isSubscribedToAsset(ASSET));
     }
 
     @Test

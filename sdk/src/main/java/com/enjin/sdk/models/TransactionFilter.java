@@ -20,9 +20,9 @@ public class TransactionFilter extends Filter<TransactionFilter> {
     private String transactionId;
     @SerializedName("transactionId_in")
     private List<String> transactionIdIn;
-    private String tokenId;
-    @SerializedName("tokenId_in")
-    private List<String> tokenIdIn;
+    private String assetId;
+    @SerializedName("assetId_in")
+    private List<String> assetIdIn;
     private RequestType type;
     @SerializedName("type_in")
     private List<RequestType> typeIn;
@@ -91,26 +91,26 @@ public class TransactionFilter extends Filter<TransactionFilter> {
     }
 
     /**
-     * Sets the token (item) ID to filter for.
+     * Sets the asset ID to filter for.
      *
-     * @param tokenId the ID
+     * @param assetId the ID
      * @return this filter for chaining
      */
-    public TransactionFilter tokenId(String tokenId) {
-        this.tokenId = tokenId;
+    public TransactionFilter assetId(String assetId) {
+        this.assetId = assetId;
         return this;
     }
 
     /**
-     * Sets the token (item) IDs to filter for.
+     * Sets the asset IDs to filter for.
      *
-     * @param tokenIds the IDs
+     * @param assetIds the IDs
      * @return this filter for chaining
      */
-    public TransactionFilter tokenIdIn(String... tokenIds) {
-        tokenIdIn = tokenIds == null
+    public TransactionFilter assetIdIn(String... assetIds) {
+        assetIdIn = assetIds == null
                 ? null
-                : Arrays.asList(tokenIds);
+                : Arrays.asList(assetIds);
         return this;
     }
 

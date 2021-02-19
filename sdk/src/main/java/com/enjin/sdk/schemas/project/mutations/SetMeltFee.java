@@ -4,7 +4,7 @@ import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 /**
- * Request for setting the melt fee of an item.
+ * Request for setting the melt fee of an asset.
  *
  * @see com.enjin.sdk.schemas.project.ProjectSchema
  */
@@ -20,27 +20,27 @@ public class SetMeltFee
     }
 
     /**
-     * Sets the token (item) ID.
+     * Sets the asset ID.
      *
-     * @param tokenId the ID
+     * @param assetId the ID
      * @return this request for chaining
      */
-    public SetMeltFee tokenId(String tokenId) {
-        return set("tokenId", tokenId);
+    public SetMeltFee assetId(String assetId) {
+        return set("assetId", assetId);
     }
 
     /**
-     * Sets the index for non-fungible items.
+     * Sets the index for non-fungible assets.
      *
-     * @param tokenIndex the index
-     * @return  this request for chaining
+     * @param assetIndex the index
+     * @return this request for chaining
      */
-    public SetMeltFee tokenIndex(String tokenIndex) {
-        return set("tokenIndex", tokenIndex);
+    public SetMeltFee assetIndex(String assetIndex) {
+        return set("assetIndex", assetIndex);
     }
 
     /**
-     * Sets the new melt fee for the item.
+     * Sets the new melt fee for the asset.
      * <br>
      * <p>
      *     The ratio is in the range 0-5000 to allow fractional ratios, e.g. 1 = 0.01%, 5000 = 50%, ect...

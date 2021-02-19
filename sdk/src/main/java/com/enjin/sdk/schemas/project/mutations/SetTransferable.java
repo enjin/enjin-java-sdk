@@ -1,11 +1,11 @@
 package com.enjin.sdk.schemas.project.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.models.TokenTransferable;
+import com.enjin.sdk.models.AssetTransferable;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 /**
- * Request for setting if a item may be transferred.
+ * Request for setting if a asset may be transferred.
  *
  * @see com.enjin.sdk.schemas.project.ProjectSchema
  */
@@ -21,23 +21,23 @@ public class SetTransferable
     }
 
     /**
-     * Sets the token (item) ID.
+     * Sets the asset ID.
      *
-     * @param tokenId the ID
+     * @param assetId the ID
      * @return this request for chaining
      */
-    public SetTransferable tokenId(String tokenId) {
-        return set("tokenId", tokenId);
+    public SetTransferable assetId(String assetId) {
+        return set("assetId", assetId);
     }
 
     /**
-     * Sets the index for non-fungible items.
+     * Sets the index for non-fungible assets.
      *
-     * @param tokenIndex the index
+     * @param assetIndex the index
      * @return this request for chaining
      */
-    public SetTransferable tokenIndex(String tokenIndex) {
-        return set("tokenIndex", tokenIndex);
+    public SetTransferable assetIndex(String assetIndex) {
+        return set("assetIndex", assetIndex);
     }
 
     /**
@@ -46,7 +46,7 @@ public class SetTransferable
      * @param transferable the new mode
      * @return this request for chaining
      */
-    public SetTransferable transferable(TokenTransferable transferable) {
+    public SetTransferable transferable(AssetTransferable transferable) {
         return set("transferable", transferable);
     }
 

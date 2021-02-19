@@ -1,17 +1,18 @@
 package com.enjin.sdk.models;
 
+import com.enjin.sdk.schemas.project.mutations.CreateAsset;
 import lombok.EqualsAndHashCode;
 
 /**
  * Models input for the transfer fee settings used in GraphQL requests.
  *
- * @see com.enjin.sdk.schemas.project.mutations.CreateToken
+ * @see CreateAsset
  */
 @EqualsAndHashCode
-public class TokenTransferFeeSettingsInput {
+public class AssetTransferFeeSettingsInput {
 
-    private TokenTransferFeeType type;
-    private String tokenId;
+    private AssetTransferFeeType type;
+    private String assetId;
     private String value;
 
     /**
@@ -20,19 +21,19 @@ public class TokenTransferFeeSettingsInput {
      * @param type the type
      * @return this request for chaining
      */
-    public TokenTransferFeeSettingsInput type(TokenTransferFeeType type) {
+    public AssetTransferFeeSettingsInput type(AssetTransferFeeType type) {
         this.type = type;
         return this;
     }
 
     /**
-     * Sets the token ID for this input.
+     * Sets the asset ID for this input.
      *
-     * @param tokenId the ID
+     * @param assetId the ID
      * @return this request for chaining
      */
-    public TokenTransferFeeSettingsInput tokenId(String tokenId) {
-        this.tokenId = tokenId;
+    public AssetTransferFeeSettingsInput assetId(String assetId) {
+        this.assetId = assetId;
         return this;
     }
 
@@ -42,7 +43,7 @@ public class TokenTransferFeeSettingsInput {
      * @param value the value
      * @return this request for chaining
      */
-    public TokenTransferFeeSettingsInput value(String value) {
+    public AssetTransferFeeSettingsInput value(String value) {
         this.value = value;
         return this;
     }

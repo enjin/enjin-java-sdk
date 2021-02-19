@@ -1,19 +1,20 @@
 package com.enjin.sdk.models;
 
+import com.enjin.sdk.schemas.shared.mutations.AdvancedSendAsset;
 import lombok.EqualsAndHashCode;
 
 /**
  * Models transfer input when making requests.
  *
- * @see com.enjin.sdk.schemas.shared.mutations.AdvancedSendToken
+ * @see AdvancedSendAsset
  */
 @EqualsAndHashCode
 public class Transfers {
 
     private String from;
     private String to;
-    private String tokenId;
-    private String tokenIndex;
+    private String assetId;
+    private String assetIndex;
     private String value;
 
     /**
@@ -39,7 +40,7 @@ public class Transfers {
     }
 
     /**
-     * Sets the token (item) ID to transfer.
+     * Sets the asset ID to transfer.
      * <br>
      * <p>
      *     If null or omitted then ENJ will be traded instead.
@@ -48,24 +49,24 @@ public class Transfers {
      * @param id the ID
      * @return this input for chaining
      */
-    public Transfers tokenId(String id) {
-        tokenId = id;
+    public Transfers assetId(String id) {
+        assetId = id;
         return this;
     }
 
     /**
-     * Sets the index for non-fungible items.
+     * Sets the index for non-fungible assets.
      *
      * @param index the index
      * @return this input for chaining
      */
-    public Transfers tokenIndex(String index) {
-        tokenIndex = index;
+    public Transfers assetIndex(String index) {
+        assetIndex = index;
         return this;
     }
 
     /**
-     * Sets the number of items to transfer.
+     * Sets the number of assets to transfer.
      * <br>
      * <p>
      *     If transferring ENJ, the value is the amount to send in Wei (10^18 e.g. 1 ENJ = 1000000000000000000).

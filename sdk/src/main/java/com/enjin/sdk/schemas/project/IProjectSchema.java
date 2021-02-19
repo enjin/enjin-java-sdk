@@ -7,12 +7,12 @@ import com.enjin.sdk.models.Player;
 import com.enjin.sdk.models.Request;
 import com.enjin.sdk.models.Wallet;
 import com.enjin.sdk.schemas.project.mutations.CreatePlayer;
-import com.enjin.sdk.schemas.project.mutations.CreateToken;
+import com.enjin.sdk.schemas.project.mutations.CreateAsset;
 import com.enjin.sdk.schemas.project.mutations.DecreaseMaxMeltFee;
 import com.enjin.sdk.schemas.project.mutations.DecreaseMaxTransferFee;
 import com.enjin.sdk.schemas.project.mutations.DeletePlayer;
-import com.enjin.sdk.schemas.project.mutations.InvalidateTokenMetadata;
-import com.enjin.sdk.schemas.project.mutations.MintToken;
+import com.enjin.sdk.schemas.project.mutations.InvalidateAssetMetadata;
+import com.enjin.sdk.schemas.project.mutations.MintAsset;
 import com.enjin.sdk.schemas.project.mutations.ReleaseReserve;
 import com.enjin.sdk.schemas.project.mutations.SetMeltFee;
 import com.enjin.sdk.schemas.project.mutations.SetTransferFee;
@@ -89,21 +89,21 @@ public interface IProjectSchema {
                       HttpCallback<GraphQLResponse<AccessToken>> callback);
 
     /**
-     * Sends {@link CreateToken} request synchronously.
+     * Sends {@link CreateAsset} request synchronously.
      *
      * @param request the request
      *
      * @return the response
      */
-    GraphQLResponse<Request> createToken(CreateToken request);
+    GraphQLResponse<Request> createAsset(CreateAsset request);
 
     /**
-     * Sends {@link CreateToken} request asynchronously.
+     * Sends {@link CreateAsset} request asynchronously.
      *
      * @param request  the request
      * @param callback the callback
      */
-    void createToken(CreateToken request,
+    void createAsset(CreateAsset request,
                      HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
@@ -233,39 +233,39 @@ public interface IProjectSchema {
                     HttpCallback<GraphQLResponse<List<Wallet>>> callback);
 
     /**
-     * Sends {@link InvalidateTokenMetadata} request synchronously.
+     * Sends {@link InvalidateAssetMetadata} request synchronously.
      *
      * @param request the request
      *
      * @return the response
      */
-    GraphQLResponse<Boolean> invalidateTokenMetadata(InvalidateTokenMetadata request);
+    GraphQLResponse<Boolean> invalidateAssetMetadata(InvalidateAssetMetadata request);
 
     /**
-     * Sends {@link InvalidateTokenMetadata} request asynchronously.
+     * Sends {@link InvalidateAssetMetadata} request asynchronously.
      *
      * @param request  the request
      * @param callback the callback
      */
-    void invalidateTokenMetadata(InvalidateTokenMetadata request,
+    void invalidateAssetMetadata(InvalidateAssetMetadata request,
                                  HttpCallback<GraphQLResponse<Boolean>> callback);
 
     /**
-     * Sends {@link MintToken} request synchronously.
+     * Sends {@link MintAsset} request synchronously.
      *
      * @param request the request
      *
      * @return the response
      */
-    GraphQLResponse<Request> mintToken(MintToken request);
+    GraphQLResponse<Request> mintAsset(MintAsset request);
 
     /**
-     * Sends {@link MintToken} request asynchronously.
+     * Sends {@link MintAsset} request asynchronously.
      *
      * @param request  the request
      * @param callback the callback
      */
-    void mintToken(MintToken request,
+    void mintAsset(MintAsset request,
                    HttpCallback<GraphQLResponse<Request>> callback);
 
     /**

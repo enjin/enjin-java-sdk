@@ -3,11 +3,11 @@ package com.enjin.sdk.models;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * The fields of the {@link Token} type.
+ * The fields of the {@link Asset} type.
  *
- * @see TokenSort
+ * @see AssetSort
  */
-public enum TokenField {
+public enum AssetField {
 
     @SerializedName("id")
     ID,

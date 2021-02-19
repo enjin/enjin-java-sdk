@@ -3,9 +3,9 @@ package com.enjin.sdk.models;
 /**
  * Represents the mode that determines variant behavior.
  *
- * @see Token
+ * @see Asset
  */
-public enum TokenVariantMode {
+public enum AssetVariantMode {
 
     NONE,
     BEAM,
