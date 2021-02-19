@@ -3,7 +3,7 @@ package com.enjin.sdk.schemas.shared.queries;
 import com.enjin.sdk.graphql.GraphQLRequest;
 
 /**
- * Request for getting a application on the platform.
+ * Request for getting a project on the platform.
  *
  * @see com.enjin.sdk.models.Project
  * @see com.enjin.sdk.schemas.shared.SharedSchema
@@ -18,7 +18,7 @@ public final class GetProject extends GraphQLRequest<GetProject> {
     }
 
     /**
-     * Sets the application ID.
+     * Sets the project ID.
      *
      * @param id the ID
      * @return this request for chaining
@@ -28,7 +28,7 @@ public final class GetProject extends GraphQLRequest<GetProject> {
     }
 
     /**
-     * Sets the application name.
+     * Sets the project name.
      *
      * @param name the name
      * @return this request for chaining

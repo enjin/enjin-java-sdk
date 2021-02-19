@@ -3,7 +3,7 @@ package com.enjin.sdk.schemas.project.mutations;
 import com.enjin.sdk.graphql.GraphQLRequest;
 
 /**
- * Request for deleting a player from the application.
+ * Request for deleting a player from the project.
  *
  * @see com.enjin.sdk.schemas.project.ProjectSchema
  */

@@ -3,7 +3,7 @@ package com.enjin.sdk.schemas.project.queries;
 import com.enjin.sdk.graphql.GraphQLRequest;
 
 /**
- * Request to obtain the access token for the application.
+ * Request to obtain the access token for the project.
  *
  * @see com.enjin.sdk.models.AccessToken
  * @see com.enjin.sdk.schemas.project.ProjectSchema
@@ -18,13 +18,13 @@ public class AuthProject extends GraphQLRequest<AuthProject> {
     }
 
     /**
-     * Sets the application ID.
+     * Sets the project ID.
      *
-     * @param appId the ID
+     * @param id the ID
      * @return this request for chaining
      */
-    public AuthProject id(Integer appId) {
-        return set("id", appId);
+    public AuthProject id(Integer id) {
+        return set("id", id);
     }
 
     /**

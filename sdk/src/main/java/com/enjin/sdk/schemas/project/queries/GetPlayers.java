@@ -6,7 +6,7 @@ import com.enjin.sdk.schemas.shared.arguments.PaginationArguments;
 import com.enjin.sdk.schemas.shared.arguments.PlayerFragmentArguments;
 
 /**
- * Request for getting players on the application.
+ * Request for getting players on the project.
  *
  * @see com.enjin.sdk.models.Player
  * @see com.enjin.sdk.schemas.project.ProjectSchema

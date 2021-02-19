@@ -12,11 +12,11 @@ class PlayerChannelTest {
     @Test
     void channel_ReturnsExpectedString() {
         // Arrange
-        final String expected = "enjincloud.test.app.1234.player.player1";
-        final int app = 1234;
+        final String expected = "enjincloud.test.project.1234.player.player1";
+        final int project = 1234;
         final String player = "player1";
         final Platform platform = PlatformUtils.createFakePlatform(PLATFORM_NAME);
-        final Channel channel = new PlayerChannel(platform, app, player);
+        final Channel channel = new PlayerChannel(platform, project, player);
 
         // Act
         String actual = channel.channel();
