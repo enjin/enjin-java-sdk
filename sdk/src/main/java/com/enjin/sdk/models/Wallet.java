@@ -3,7 +3,7 @@ package com.enjin.sdk.models;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
-import java.util.Collection;
+import java.util.List;
 
 /**
  * Models a wallet on the platform.
@@ -40,6 +40,6 @@ public class Wallet {
      * -- Getter --
      * @return the assets this wallet has created
      */
-    private Collection<Asset> assetsCreated;
+    private List<Asset> assetsCreated;
 
 }

@@ -4,7 +4,7 @@ import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.models.MintInput;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
-import java.util.Collection;
+import java.util.List;
 
 /**
  * Request for minting a asset.
@@ -38,7 +38,7 @@ public class MintAsset
      * @param mints the mints
      * @return this request for chaining
      */
-    public MintAsset mints(Collection<MintInput> mints) {
+    public MintAsset mints(List<MintInput> mints) {
         return set("mints", mints);
     }
 
