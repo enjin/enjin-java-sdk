@@ -1,5 +1,6 @@
 package com.enjin.sdk.models;
 
+import com.google.gson.annotations.SerializedName;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
@@ -47,7 +48,8 @@ public class AssetConfigData {
      * -- Getter --
      * @return the metadata URI for the asset
      */
-    private String metadataURI;
+    @SerializedName("metadataURI")
+    private String metadataUri;
 
     /**
      * -- Getter --
