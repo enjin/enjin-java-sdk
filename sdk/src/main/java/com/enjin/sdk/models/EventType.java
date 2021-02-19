@@ -13,6 +13,9 @@ import java.util.List;
  */
 public enum EventType {
 
+    /**
+     * Value used by the SDK to indicate an unknown event type.
+     */
     UNKNOWN(null),
     APP_CREATED("EnjinCloud\\Events\\AppCreated", "app"),
     APP_DELETED("EnjinCloud\\Events\\AppDeleted", "app"),

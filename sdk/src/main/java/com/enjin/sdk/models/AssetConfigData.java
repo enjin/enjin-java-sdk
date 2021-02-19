@@ -47,7 +47,7 @@ public class TokenConfigData {
      * -- Getter --
      * @return the metadata URI for the item
      */
-    private String metadataUri;
+    private String metadataURI;
 
     /**
      * -- Getter --

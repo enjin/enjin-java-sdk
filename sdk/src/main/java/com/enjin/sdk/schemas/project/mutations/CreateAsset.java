@@ -113,11 +113,11 @@ public class CreateToken
     /**
      * Sets the fungible state of the token (item).
      *
-     * @param nonfungible the state
+     * @param nonFungible the state
      * @return this request for chaining
      */
-    public CreateToken nonfungible(boolean nonfungible) {
-        return set("nonfungible", nonfungible);
+    public CreateAsset nonFungible(boolean nonFungible) {
+        return set("nonFungible", nonFungible);
     }
 
 }

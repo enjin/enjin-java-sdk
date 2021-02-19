@@ -82,7 +82,7 @@ public interface TokenFragmentArguments<T extends VariableHolder<T>> extends Var
      * @return this request for chaining
      */
     default T withMetadataUri() {
-        return set("withMetadataUri", true);
+        return set("withMetadataURI", true);
     }
 
     /**

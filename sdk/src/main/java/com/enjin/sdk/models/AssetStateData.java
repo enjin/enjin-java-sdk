@@ -14,7 +14,7 @@ public class TokenStateData {
      * -- Getter --
      * @return whether the item is non-fungible
      */
-    private Boolean nonfungible;
+    private Boolean nonFungible;
 
     /**
      * -- Getter --
