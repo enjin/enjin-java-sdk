@@ -20,21 +20,6 @@ public interface TransactionRequestArguments<T extends TransactionFragmentArgume
     }
 
     /**
-     * Sets whether the request will test the transaction before creating it.
-     * <br>
-     * <p>
-     *     Setting this to false will skip checks, but may run the risk of losing gas fees if the transaction fails on
-     *     the blockchain.
-     * </p>
-     *
-     * @param test the test state
-     * @return this request for chaining
-     */
-    default T test(boolean test) {
-        return set("test", test);
-    }
-
-    /**
      * Sets whether the request will send the transaction to the blockchain.
      * <br>
      * <p>
