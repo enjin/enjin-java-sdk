@@ -101,7 +101,7 @@ class TransactionFilterTest implements TestFilterInterface {
     }
 
     @Test
-    void tokenIdIn_PassedArguments_FieldContainsArguments() {
+    void assetIdIn_PassedArguments_FieldContainsArguments() {
         // Arrange
         final TestableTransactionFilter filter = new TestableTransactionFilter();
         final String[] args = ids.toArray(new String[0]);
@@ -109,8 +109,8 @@ class TransactionFilterTest implements TestFilterInterface {
         assumeTrue(args.length > 0);
 
         // Act
-        filter.tokenIdIn(args);
-        List<String> actual = filter.getTokenIdIn();
+        filter.assetIdIn(args);
+        List<String> actual = filter.getAssetIdIn();
 
         // Assert
         for (String s : args) {
@@ -119,26 +119,26 @@ class TransactionFilterTest implements TestFilterInterface {
     }
 
     @Test
-    void tokenIdIn_NoArguments_FieldIsEmpty() {
+    void assetIdIn_NoArguments_FieldIsEmpty() {
         // Arrange
         final TestableTransactionFilter filter = new TestableTransactionFilter();
 
         // Act
-        filter.tokenIdIn();
-        List<String> actual = filter.getTokenIdIn();
+        filter.assetIdIn();
+        List<String> actual = filter.getAssetIdIn();
 
         // Assert
         assertTrue(actual.isEmpty());
     }
 
     @Test
-    void tokenIdIn_NullArguments_FieldIsNull() {
+    void assetIdIn_NullArguments_FieldIsNull() {
         // Arrange
         final TestableTransactionFilter filter = new TestableTransactionFilter();
 
         // Act
-        filter.tokenIdIn((String[]) null);
-        List<String> actual = filter.getTokenIdIn();
+        filter.assetIdIn((String[]) null);
+        List<String> actual = filter.getAssetIdIn();
 
         // Assert
         assertNull(actual);
@@ -280,7 +280,7 @@ class TransactionFilterTest implements TestFilterInterface {
 
         private static final Field idInField;
         private static final Field transactIdInField;
-        private static final Field tokenIdInField;
+        private static final Field assetIdInField;
         private static final Field typeInField;
         private static final Field stateInField;
         private static final Field walletInField;
@@ -289,7 +289,7 @@ class TransactionFilterTest implements TestFilterInterface {
             Class<TransactionFilter> c = TransactionFilter.class;
             idInField = Testable.getField(c, "idIn");
             transactIdInField = Testable.getField(c, "transactionIdIn");
-            tokenIdInField = Testable.getField(c, "tokenIdIn");
+            assetIdInField = Testable.getField(c, "assetIdIn");
             typeInField = Testable.getField(c, "typeIn");
             stateInField = Testable.getField(c, "stateIn");
             walletInField = Testable.getField(c, "walletIn");
@@ -306,8 +306,8 @@ class TransactionFilterTest implements TestFilterInterface {
         }
 
         @SneakyThrows
-        public List<String> getTokenIdIn() {
-            return (List<String>) tokenIdInField.get(this);
+        public List<String> getAssetIdIn() {
+            return (List<String>) assetIdInField.get(this);
         }
 
         @SneakyThrows

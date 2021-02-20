@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
- * Models a token balance.
+ * Models a asset balance.
  */
 @EqualsAndHashCode
 @Getter
@@ -13,27 +13,27 @@ public class Balance {
 
     /**
      * -- Getter --
-     * @return the token (item) ID for this balance
+     * @return the asset ID for this balance
      */
     private String id;
 
     /**
      * -- Getter --
-     * @return the token (item) index for this balance
+     * @return the asset index for this balance
      */
     private String index;
 
     /**
      * -- Getter --
-     * @return the balance for the token
+     * @return the amount of the asset
      */
     private Integer value;
 
     /**
      * -- Getter --
-     * @return the project for this balance's token
+     * @return the project for this balance's asset
      */
-    @SerializedName("app")
+    @SerializedName("project")
     private Project project;
 
     /**

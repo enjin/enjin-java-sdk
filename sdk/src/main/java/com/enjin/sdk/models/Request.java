@@ -72,12 +72,6 @@ public class Request {
 
     /**
      * -- Getter --
-     * @return the token (item) ID for this transaction
-     */
-    private String tokenId;
-
-    /**
-     * -- Getter --
      * <br>
      * <p>
      *     Formatted as an ISO 8601 string.

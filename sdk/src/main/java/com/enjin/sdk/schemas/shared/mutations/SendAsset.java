@@ -4,20 +4,20 @@ import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
 
 /**
- * Request for sending a token (item).
+ * Request for sending a asset.
  *
- * @see AdvancedSendToken
+ * @see AdvancedSendAsset
  * @see com.enjin.sdk.schemas.shared.SharedSchema
  */
-public class SendToken
-        extends GraphQLRequest<SendToken>
-        implements TransactionRequestArguments<SendToken> {
+public class SendAsset
+        extends GraphQLRequest<SendAsset>
+        implements TransactionRequestArguments<SendAsset> {
 
     /**
      * Sole constructor.
      */
-    public SendToken() {
-        super("enjin.sdk.shared.SendToken");
+    public SendAsset() {
+        super("enjin.sdk.shared.SendAsset");
     }
 
     /**
@@ -26,28 +26,28 @@ public class SendToken
      * @param recipientAddress the address
      * @return this request for chaining
      */
-    public SendToken recipientAddress(String recipientAddress) {
+    public SendAsset recipientAddress(String recipientAddress) {
         return set("recipientAddress", recipientAddress);
     }
 
     /**
-     * Sets the token (item) ID.
+     * Sets the asset ID.
      *
-     * @param tokenId the ID
+     * @param assetId the ID
      * @return this request for chaining
      */
-    public SendToken tokenId(String tokenId) {
-        return set("tokenId", tokenId);
+    public SendAsset assetId(String assetId) {
+        return set("assetId", assetId);
     }
 
     /**
-     * Sets the index for non-fungible items.
+     * Sets the index for non-fungible assets.
      *
-     * @param tokenIndex the index
+     * @param assetIndex the index
      * @return this request for chaining
      */
-    public SendToken tokenIndex(String tokenIndex) {
-        return set("tokenIndex", tokenIndex);
+    public SendAsset assetIndex(String assetIndex) {
+        return set("assetIndex", assetIndex);
     }
 
     /**
@@ -56,7 +56,7 @@ public class SendToken
      * @param value the amount
      * @return this request for chaining
      */
-    public SendToken value(String value) {
+    public SendAsset value(String value) {
         return set("value", value);
     }
 
@@ -66,7 +66,7 @@ public class SendToken
      * @param data the data
      * @return this request for chaining
      */
-    public SendToken data(String data) {
+    public SendAsset data(String data) {
         return set("data", data);
     }
 

@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-public class Token {
+public class Asset {
 
     @Getter
     private String id = "";

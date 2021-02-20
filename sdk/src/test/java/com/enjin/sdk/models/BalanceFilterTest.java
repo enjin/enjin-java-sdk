@@ -13,7 +13,7 @@ import java.util.List;
 class BalanceFilterTest implements TestFilterInterface {
 
     @Test
-    void tokenIdIn_PassedArguments_FieldContainsArguments() {
+    void assetIdIn_PassedArguments_FieldContainsArguments() {
         // Arrange
         final TestableBalanceFilter filter = new TestableBalanceFilter();
         final String[] args = ids.toArray(new String[0]);
@@ -21,8 +21,8 @@ class BalanceFilterTest implements TestFilterInterface {
         assumeTrue(args.length > 0);
 
         // Act
-        filter.tokenIdIn(args);
-        List<String> actual = filter.getTokenIdIn();
+        filter.assetIdIn(args);
+        List<String> actual = filter.getAssetIdIn();
 
         // Assert
         for (String s : args) {
@@ -31,26 +31,26 @@ class BalanceFilterTest implements TestFilterInterface {
     }
 
     @Test
-    void tokenIdIn_NoArguments_FieldIsEmpty() {
+    void assetIdIn_NoArguments_FieldIsEmpty() {
         // Arrange
         final TestableBalanceFilter filter = new TestableBalanceFilter();
 
         // Act
-        filter.tokenIdIn();
-        List<String> actual = filter.getTokenIdIn();
+        filter.assetIdIn();
+        List<String> actual = filter.getAssetIdIn();
 
         // Assert
         assertTrue(actual.isEmpty());
     }
 
     @Test
-    void tokenIdIn_NullArgument_FieldIsNull() {
+    void assetIdIn_NullArgument_FieldIsNull() {
         // Arrange
         final TestableBalanceFilter filter = new TestableBalanceFilter();
 
         // Act
-        filter.tokenIdIn((String[]) null);
-        List<String> actual = filter.getTokenIdIn();
+        filter.assetIdIn((String[]) null);
+        List<String> actual = filter.getAssetIdIn();
 
         // Assert
         assertNull(actual);
@@ -102,18 +102,18 @@ class BalanceFilterTest implements TestFilterInterface {
 
     private static class TestableBalanceFilter extends BalanceFilter implements Testable {
 
-        private static final Field tokenIdInField;
+        private static final Field assetIdInField;
         private static final Field walletInField;
 
         static {
             Class<BalanceFilter> c = BalanceFilter.class;
-            tokenIdInField = Testable.getField(c, "tokenIdIn");
+            assetIdInField = Testable.getField(c, "assetIdIn");
             walletInField = Testable.getField(c, "walletIn");
         }
 
         @SneakyThrows
-        public List<String> getTokenIdIn() {
-            return (List<String>) tokenIdInField.get(this);
+        public List<String> getAssetIdIn() {
+            return (List<String>) assetIdInField.get(this);
         }
 
         @SneakyThrows

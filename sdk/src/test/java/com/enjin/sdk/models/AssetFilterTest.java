@@ -10,12 +10,12 @@ import org.junit.jupiter.api.Test;
 import java.lang.reflect.Field;
 import java.util.List;
 
-class TokenFilterTest implements TestFilterInterface {
+class AssetFilterTest implements TestFilterInterface {
 
     @Test
     void idIn_PassedArguments_FieldContainsArguments() {
         // Arrange
-        final TestableTokenFilter filter = new TestableTokenFilter();
+        final TestableAssetFilter filter = new TestableAssetFilter();
         final String[] args = ids.toArray(new String[0]);
 
         assumeTrue(args.length > 0);
@@ -33,7 +33,7 @@ class TokenFilterTest implements TestFilterInterface {
     @Test
     void idIn_NoArguments_FieldIsEmpty() {
         // Arrange
-        final TestableTokenFilter filter = new TestableTokenFilter();
+        final TestableAssetFilter filter = new TestableAssetFilter();
 
         // Act
         filter.idIn();
@@ -46,7 +46,7 @@ class TokenFilterTest implements TestFilterInterface {
     @Test
     void idIn_NullArguments_FieldIsNull() {
         // Arrange
-        final TestableTokenFilter filter = new TestableTokenFilter();
+        final TestableAssetFilter filter = new TestableAssetFilter();
 
         // Act
         filter.idIn((String[]) null);
@@ -59,7 +59,7 @@ class TokenFilterTest implements TestFilterInterface {
     @Test
     void nameIn_PassedArguments_FieldContainsArguments() {
         // Arrange
-        final TestableTokenFilter filter = new TestableTokenFilter();
+        final TestableAssetFilter filter = new TestableAssetFilter();
         final String[] args = ids.toArray(new String[0]);
 
         assumeTrue(args.length > 0);
@@ -77,7 +77,7 @@ class TokenFilterTest implements TestFilterInterface {
     @Test
     void nameIn_NoArguments_FieldIsEmpty() {
         // Arrange
-        final TestableTokenFilter filter = new TestableTokenFilter();
+        final TestableAssetFilter filter = new TestableAssetFilter();
 
         // Act
         filter.nameIn();
@@ -90,7 +90,7 @@ class TokenFilterTest implements TestFilterInterface {
     @Test
     void nameIn_NullArguments_FieldIsNull() {
         // Arrange
-        final TestableTokenFilter filter = new TestableTokenFilter();
+        final TestableAssetFilter filter = new TestableAssetFilter();
 
         // Act
         filter.nameIn((String[]) null);
@@ -103,7 +103,7 @@ class TokenFilterTest implements TestFilterInterface {
     @Test
     void walletIn_PassedArguments_FieldContainsArguments() {
         // Arrange
-        final TestableTokenFilter filter = new TestableTokenFilter();
+        final TestableAssetFilter filter = new TestableAssetFilter();
         final String[] args = ids.toArray(new String[0]);
 
         assumeTrue(args.length > 0);
@@ -121,7 +121,7 @@ class TokenFilterTest implements TestFilterInterface {
     @Test
     void walletIn_NoArguments_FieldIsEmpty() {
         // Arrange
-        final TestableTokenFilter filter = new TestableTokenFilter();
+        final TestableAssetFilter filter = new TestableAssetFilter();
 
         // Act
         filter.walletIn();
@@ -134,7 +134,7 @@ class TokenFilterTest implements TestFilterInterface {
     @Test
     void walletIn_NullArguments_FieldIsNull() {
         // Arrange
-        final TestableTokenFilter filter = new TestableTokenFilter();
+        final TestableAssetFilter filter = new TestableAssetFilter();
 
         // Act
         filter.walletIn((String[]) null);
@@ -144,14 +144,14 @@ class TokenFilterTest implements TestFilterInterface {
         assertNull(actual);
     }
 
-    private static class TestableTokenFilter extends TokenFilter implements Testable {
+    private static class TestableAssetFilter extends AssetFilter implements Testable {
 
         private static final Field idInField;
         private static final Field nameInField;
         private static final Field walletInField;
 
         static {
-            Class<TokenFilter> c = TokenFilter.class;
+            Class<AssetFilter> c = AssetFilter.class;
             idInField = Testable.getField(c, "idIn");
             nameInField = Testable.getField(c, "nameIn");
             walletInField = Testable.getField(c, "walletIn");

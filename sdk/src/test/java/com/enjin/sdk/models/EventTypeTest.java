@@ -15,8 +15,8 @@ class EventTypeTest {
     @Test
     void getFromName_ValidName_ReturnCorrectEnum() {
         // Arrange
-        final String name = "APP_LINKED";
-        final EventType expected = EventType.APP_LINKED;
+        final String name = "PROJECT_LINKED";
+        final EventType expected = EventType.PROJECT_LINKED;
 
         // Act
         EventType actual = EventType.getFromName(name);
@@ -41,8 +41,8 @@ class EventTypeTest {
     @Test
     void getFromKey_ValidKey_ReturnCorrectEnum() {
         // Arrange
-        final String key = "EnjinCloud\\Events\\AppLinked";
-        final EventType expected = EventType.APP_LINKED;
+        final String key = "EnjinCloud\\Events\\ProjectLinked";
+        final EventType expected = EventType.PROJECT_LINKED;
 
         // Act
         EventType actual = EventType.getFromKey(key);
@@ -67,8 +67,8 @@ class EventTypeTest {
     @Test
     void in_IsInFilter_ReturnTrue() {
         // Arrange
-        final EventType TYPE = EventType.APP_LINKED;
-        final EventType[] VALUES = { EventType.APP_LINKED, EventType.APP_UNLINKED };
+        final EventType TYPE = EventType.PROJECT_LINKED;
+        final EventType[] VALUES = {EventType.PROJECT_LINKED, EventType.PROJECT_UNLINKED};
         final EventFilter filter = createEventFilter(VALUES);
 
         // Act
@@ -81,8 +81,8 @@ class EventTypeTest {
     @Test
     void in_IsNotInFilter_ReturnTrue() {
         // Arrange
-        final EventType TYPE = EventType.APP_LINKED;
-        final EventType[] VALUES = { EventType.APP_CREATED, EventType.APP_UNLINKED };
+        final EventType TYPE = EventType.PROJECT_LINKED;
+        final EventType[] VALUES = {EventType.PROJECT_CREATED, EventType.PROJECT_UNLINKED};
         final EventFilter filter = createEventFilter(VALUES);
 
         // Act
@@ -95,8 +95,8 @@ class EventTypeTest {
     @Test
     void in_IsInParams_ReturnTrue() {
         // Arrange
-        final EventType TYPE = EventType.APP_LINKED;
-        final EventType[] TYPES = { EventType.APP_LINKED, EventType.APP_UNLINKED };
+        final EventType TYPE = EventType.PROJECT_LINKED;
+        final EventType[] TYPES = {EventType.PROJECT_LINKED, EventType.PROJECT_UNLINKED};
 
         // Act
         boolean actual = TYPE.in(TYPES);
@@ -108,8 +108,8 @@ class EventTypeTest {
     @Test
     void in_IsNotInParams_ReturnFalse() {
         // Arrange
-        final EventType TYPE = EventType.APP_LINKED;
-        final EventType[] TYPES = { EventType.APP_CREATED, EventType.APP_UNLINKED };
+        final EventType TYPE = EventType.PROJECT_LINKED;
+        final EventType[] TYPES = {EventType.PROJECT_CREATED, EventType.PROJECT_UNLINKED};
 
         // Act
         boolean actual = TYPE.in(TYPES);
@@ -119,7 +119,7 @@ class EventTypeTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = { "app", "player", "token", "wallet" })
+    @ValueSource(strings = { "project", "player", "asset", "wallet" })
     void filterByChannelTypes_ValidChannel_ReturnEventsContainingChannel(String channel) {
         // Act
         List<EventType> actualTypes = EventType.filterByChannelTypes(channel);

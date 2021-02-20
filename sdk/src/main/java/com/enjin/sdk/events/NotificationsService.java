@@ -78,73 +78,73 @@ public interface NotificationsService {
     void unregisterListener(NotificationListener listener);
 
     /**
-     * Opens a channel for the specified application, allowing listeners to receive events for that application.
+     * Opens a channel for the specified project, allowing listeners to receive events for that project.
      *
-     * @param app the app ID
+     * @param project the project ID
      */
-    void subscribeToApp(int app);
+    void subscribeToProject(int project);
 
     /**
-     * Closes a channel for the specified application, preventing listeners from receiving events for that application.
+     * Closes a channel for the specified project, preventing listeners from receiving events for that project.
      *
-     * @param app the app ID
+     * @param project the project ID
      */
-    void unsubscribeToApp(int app);
+    void unsubscribeToProject(int project);
 
     /**
-     * Determines if the channel is open for the specified application.
+     * Determines if the channel is open for the specified project.
      *
-     * @param app the app ID
+     * @param project the project ID
      * @return true if open, else false
      */
-    boolean isSubscribedToApp(int app);
+    boolean isSubscribedToProject(int project);
 
     /**
      * Opens a channel for the specified player, allowing listeners to receive events for that identity.
      *
-     * @param app the ID of the app the player is on
+     * @param project the ID of the project the player is on
      * @param player the player ID
      */
-    void subscribeToPlayer(int app, String player);
+    void subscribeToPlayer(int project, String player);
 
     /**
      * Closes a channel for the specified player, preventing listeners from receiving events for that identity.
      *
-     * @param app the ID of the app the player is on
+     * @param project the ID of the project the player is on
      * @param player the player ID
      */
-    void unsubscribeToPlayer(int app, String player);
+    void unsubscribeToPlayer(int project, String player);
 
     /**
      * Determines if the channel is open for the specified player.
      *
-     * @param app the ID of the app the player is on
+     * @param project the ID of the project the player is on
      * @param player the player ID
      * @return true if open, else false
      */
-    boolean isSubscribedToPlayer(int app, String player);
+    boolean isSubscribedToPlayer(int project, String player);
 
     /**
-     * Opens a channel for the specified token (item), allowing listeners to receive events for that token.
+     * Opens a channel for the specified asset, allowing listeners to receive events for that asset.
      *
-     * @param token the token ID
+     * @param asset the asset ID
      */
-    void subscribeToToken(String token);
+    void subscribeToAsset(String asset);
 
     /**
-     * Closes a channel for the specified token (item), preventing listeners from receiving events for that token.
+     * Closes a channel for the specified asset, preventing listeners from receiving events for that asset.
      *
-     * @param token the token ID
+     * @param asset the asset ID
      */
-    void unsubscribeToToken(String token);
+    void unsubscribeToAsset(String asset);
 
     /**
-     * Determines if the channel is open for the specified token (item).
+     * Determines if the channel is open for the specified asset.
      *
-     * @param token the token ID
+     * @param asset the asset ID
      * @return true if open, else false
      */
-    boolean isSubscribedToToken(String token);
+    boolean isSubscribedToAsset(String asset);
 
     /**
      * Opens a channel for the specified wallet address, allowing listeners to receive events for that wallet.

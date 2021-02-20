@@ -3,7 +3,7 @@ package com.enjin.sdk.schemas.project.mutations;
 import com.enjin.sdk.graphql.GraphQLRequest;
 
 /**
- * Request for unlinking a wallet from the application.
+ * Request for unlinking a wallet from the project.
  *
  * @see com.enjin.sdk.schemas.project.ProjectSchema
  */

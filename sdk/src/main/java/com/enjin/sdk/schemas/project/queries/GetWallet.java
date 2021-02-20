@@ -1,6 +1,7 @@
 package com.enjin.sdk.schemas.project.queries;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
+import com.enjin.sdk.schemas.shared.arguments.WalletFragmentArguments;
 
 /**
  * Request for getting a player's wallet.
@@ -8,7 +9,9 @@ import com.enjin.sdk.graphql.GraphQLRequest;
  * @see com.enjin.sdk.models.Wallet
  * @see com.enjin.sdk.schemas.project.ProjectSchema
  */
-public class GetWallet extends GraphQLRequest<GetWallet> {
+public class GetWallet
+        extends GraphQLRequest<GetWallet>
+        implements WalletFragmentArguments<GetWallet> {
 
     /**
      * Sole constructor.

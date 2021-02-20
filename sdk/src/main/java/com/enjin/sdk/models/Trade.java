@@ -10,38 +10,38 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode
 public class Trade {
 
-    private String tokenId;
-    private String tokenIndex;
+    private String assetId;
+    private String assetIndex;
     private String value;
 
     /**
-     * Sets the token (item) ID to trade.
+     * Sets the asset ID to trade.
      * <br>
      * <p>
      *     If null or omitted then ENJ will be traded instead.
      * </p>
      *
-     * @param tokenId the token ID
+     * @param assetId the asset ID
      * @return this input for chaining
      */
-    public Trade tokenId(String tokenId) {
-        this.tokenId = tokenId;
+    public Trade assetId(String assetId) {
+        this.assetId = assetId;
         return this;
     }
 
     /**
-     * Sets the index for non-fungible items.
+     * Sets the index for non-fungible assets.
      *
-     * @param tokenIndex the index
+     * @param assetIndex the index
      * @return this input for chaining
      */
-    public Trade tokenIndex(String tokenIndex) {
-        this.tokenIndex = tokenIndex;
+    public Trade assetIndex(String assetIndex) {
+        this.assetIndex = assetIndex;
         return this;
     }
 
     /**
-     * Sets the number of items to trade.
+     * Sets the number of assets to trade.
      * <br>
      * <p>
      *     If trading ENJ, the value is the amount to send in Wei (10^18 e.g. 1 ENJ = 1000000000000000000).

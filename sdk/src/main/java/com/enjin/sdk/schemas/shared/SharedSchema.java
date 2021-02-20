@@ -9,24 +9,24 @@ import com.enjin.sdk.models.GasPrices;
 import com.enjin.sdk.models.Platform;
 import com.enjin.sdk.models.Project;
 import com.enjin.sdk.models.Request;
-import com.enjin.sdk.models.Token;
+import com.enjin.sdk.models.Asset;
 import com.enjin.sdk.schemas.shared.mutations.CancelTransaction;
 import com.enjin.sdk.services.BalanceService;
 import com.enjin.sdk.schemas.BaseSchema;
 import com.enjin.sdk.services.PlatformService;
 import com.enjin.sdk.services.ProjectService;
 import com.enjin.sdk.services.RequestService;
-import com.enjin.sdk.services.TokenService;
-import com.enjin.sdk.schemas.shared.mutations.AdvancedSendToken;
+import com.enjin.sdk.services.AssetService;
+import com.enjin.sdk.schemas.shared.mutations.AdvancedSendAsset;
 import com.enjin.sdk.schemas.shared.mutations.ApproveEnj;
 import com.enjin.sdk.schemas.shared.mutations.ApproveMaxEnj;
 import com.enjin.sdk.schemas.shared.mutations.CompleteTrade;
 import com.enjin.sdk.schemas.shared.mutations.CreateTrade;
-import com.enjin.sdk.schemas.shared.mutations.MeltToken;
+import com.enjin.sdk.schemas.shared.mutations.MeltAsset;
 import com.enjin.sdk.schemas.shared.mutations.Message;
 import com.enjin.sdk.schemas.shared.mutations.ResetEnjApproval;
 import com.enjin.sdk.schemas.shared.mutations.SendEnj;
-import com.enjin.sdk.schemas.shared.mutations.SendToken;
+import com.enjin.sdk.schemas.shared.mutations.SendAsset;
 import com.enjin.sdk.schemas.shared.mutations.SetApprovalForAll;
 import com.enjin.sdk.schemas.shared.queries.GetBalances;
 import com.enjin.sdk.schemas.shared.queries.GetGasPrices;
@@ -34,8 +34,8 @@ import com.enjin.sdk.schemas.shared.queries.GetPlatform;
 import com.enjin.sdk.schemas.shared.queries.GetProject;
 import com.enjin.sdk.schemas.shared.queries.GetRequest;
 import com.enjin.sdk.schemas.shared.queries.GetRequests;
-import com.enjin.sdk.schemas.shared.queries.GetToken;
-import com.enjin.sdk.schemas.shared.queries.GetTokens;
+import com.enjin.sdk.schemas.shared.queries.GetAsset;
+import com.enjin.sdk.schemas.shared.queries.GetAssets;
 import com.enjin.sdk.utils.LoggerProvider;
 
 import java.io.IOException;
@@ -50,7 +50,7 @@ public class SharedSchema extends BaseSchema implements ISharedSchema {
     protected final PlatformService platformService;
     protected final ProjectService projectService;
     protected final RequestService requestService;
-    protected final TokenService tokenService;
+    protected final AssetService assetService;
 
     /**
      * Sole constructor, used internally.
@@ -65,29 +65,29 @@ public class SharedSchema extends BaseSchema implements ISharedSchema {
         platformService = (PlatformService) createService(PlatformService.class);
         projectService = (ProjectService) createService(ProjectService.class);
         requestService = (RequestService) createService(RequestService.class);
-        tokenService = (TokenService) createService(TokenService.class);
+        assetService = (AssetService) createService(AssetService.class);
     }
 
     /**
-     * Sends {@link AdvancedSendToken} request synchronously.
+     * Sends {@link AdvancedSendAsset} request synchronously.
      *
      * @param request the request
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
     @Override
-    public GraphQLResponse<Request> advancedSendToken(AdvancedSendToken request) {
+    public GraphQLResponse<Request> advancedSendAsset(AdvancedSendAsset request) {
         return transactionRequest(request);
     }
 
     /**
-     * Sends {@link AdvancedSendToken} request asynchronously.
+     * Sends {@link AdvancedSendAsset} request asynchronously.
      *
      * @param request the request
      * @param callback the callback
      */
     @Override
-    public void advancedSendToken(AdvancedSendToken request,
+    public void advancedSendAsset(AdvancedSendAsset request,
                                   HttpCallback<GraphQLResponse<Request>> callback) {
         transactionRequest(request, callback);
     }
@@ -357,73 +357,73 @@ public class SharedSchema extends BaseSchema implements ISharedSchema {
     }
 
     /**
-     * Sends {@link GetToken} request synchronously.
+     * Sends {@link GetAsset} request synchronously.
      *
      * @param request the request
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
     @Override
-    public GraphQLResponse<Token> getToken(GetToken request) {
-        return sendRequest(tokenService.getOne(schema, createRequestBody(request)));
+    public GraphQLResponse<Asset> getAsset(GetAsset request) {
+        return sendRequest(assetService.getOne(schema, createRequestBody(request)));
     }
 
     /**
-     * Sends {@link GetToken} request asynchronously.
+     * Sends {@link GetAsset} request asynchronously.
      *
      * @param request the request
      * @param callback the callback
      */
     @Override
-    public void getToken(GetToken request,
-                         HttpCallback<GraphQLResponse<Token>> callback) {
-        sendRequest(tokenService.getOne(schema, createRequestBody(request)), callback);
+    public void getAsset(GetAsset request,
+                         HttpCallback<GraphQLResponse<Asset>> callback) {
+        sendRequest(assetService.getOne(schema, createRequestBody(request)), callback);
     }
 
     /**
-     * Sends {@link GetTokens} request synchronously.
+     * Sends {@link GetAssets} request synchronously.
      *
      * @param request the request
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
     @Override
-    public GraphQLResponse<List<Token>> getTokens(GetTokens request) {
-        return sendRequest(tokenService.getMany(schema, createRequestBody(request)));
+    public GraphQLResponse<List<Asset>> getAssets(GetAssets request) {
+        return sendRequest(assetService.getMany(schema, createRequestBody(request)));
     }
 
     /**
-     * Sends {@link GetTokens} request asynchronously.
+     * Sends {@link GetAssets} request asynchronously.
      *
      * @param request the request
      * @param callback the callback
      */
     @Override
-    public void getTokens(GetTokens request,
-                          HttpCallback<GraphQLResponse<List<Token>>> callback) {
-        sendRequest(tokenService.getMany(schema, createRequestBody(request)), callback);
+    public void getAssets(GetAssets request,
+                          HttpCallback<GraphQLResponse<List<Asset>>> callback) {
+        sendRequest(assetService.getMany(schema, createRequestBody(request)), callback);
     }
 
     /**
-     * Sends {@link MeltToken} request synchronously.
+     * Sends {@link MeltAsset} request synchronously.
      *
      * @param request the request
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
     @Override
-    public GraphQLResponse<Request> meltToken(MeltToken request) {
+    public GraphQLResponse<Request> meltAsset(MeltAsset request) {
         return transactionRequest(request);
     }
 
     /**
-     * Sends {@link MeltToken} request asynchronously.
+     * Sends {@link MeltAsset} request asynchronously.
      *
      * @param request the request
      * @param callback the callback
      */
     @Override
-    public void meltToken(MeltToken request,
+    public void meltAsset(MeltAsset request,
                           HttpCallback<GraphQLResponse<Request>> callback) {
         transactionRequest(request, callback);
     }
@@ -501,25 +501,25 @@ public class SharedSchema extends BaseSchema implements ISharedSchema {
     }
 
     /**
-     * Sends {@link SendToken} request synchronously.
+     * Sends {@link SendAsset} request synchronously.
      *
      * @param request the request
      * @return the response
      * @throws IOException if a problem occurred talking to the server
      */
     @Override
-    public GraphQLResponse<Request> sendToken(SendToken request) {
+    public GraphQLResponse<Request> sendAsset(SendAsset request) {
         return transactionRequest(request);
     }
 
     /**
-     * Sends {@link SendToken} request asynchronously.
+     * Sends {@link SendAsset} request asynchronously.
      *
      * @param request the request
      * @param callback the callback
      */
     @Override
-    public void sendToken(SendToken request,
+    public void sendAsset(SendAsset request,
                           HttpCallback<GraphQLResponse<Request>> callback) {
         transactionRequest(request, callback);
     }

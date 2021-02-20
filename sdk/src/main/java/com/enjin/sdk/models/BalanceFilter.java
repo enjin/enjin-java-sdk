@@ -14,9 +14,9 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 public class BalanceFilter extends Filter<BalanceFilter> {
 
-    private String tokenId;
-    @SerializedName("tokenId_in")
-    private List<String> tokenIdIn;
+    private String assetId;
+    @SerializedName("assetId_in")
+    private List<String> assetIdIn;
     private String wallet;
     @SerializedName("wallet_in")
     private List<String> walletIn;
@@ -31,26 +31,26 @@ public class BalanceFilter extends Filter<BalanceFilter> {
     private Integer valueLte;
 
     /**
-     * Sets the token (item) ID to filter for.
+     * Sets the asset ID to filter for.
      *
-     * @param tokenId the token ID
+     * @param assetId the asset ID
      * @return this filter for chaining
      */
-    public BalanceFilter tokenId(String tokenId) {
-        this.tokenId = tokenId;
+    public BalanceFilter assetId(String assetId) {
+        this.assetId = assetId;
         return this;
     }
 
     /**
-     * Sets the token (item) IDs to filter for.
+     * Sets the asset IDs to filter for.
      *
-     * @param tokenIds the token IDs
+     * @param assetIds the asset IDs
      * @return this filter for chaining
      */
-    public BalanceFilter tokenIdIn(String... tokenIds) {
-        tokenIdIn = tokenIds == null
+    public BalanceFilter assetIdIn(String... assetIds) {
+        assetIdIn = assetIds == null
                 ? null
-                : Arrays.asList(tokenIds);
+                : Arrays.asList(assetIds);
         return this;
     }
 

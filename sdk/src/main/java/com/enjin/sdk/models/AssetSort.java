@@ -3,12 +3,12 @@ package com.enjin.sdk.models;
 import lombok.EqualsAndHashCode;
 
 /**
- * Models sorting input for tokens (items).
+ * Models sorting input for assets.
  */
 @EqualsAndHashCode
-public class TokenSort {
+public class AssetSort {
 
-    private TokenField field;
+    private AssetField field;
     private SortDirection direction;
 
     /**
@@ -17,7 +17,7 @@ public class TokenSort {
      * @param field the field
      * @return this input for chaining
      */
-    public TokenSort field(TokenField field) {
+    public AssetSort field(AssetField field) {
         this.field = field;
         return this;
     }
@@ -28,7 +28,7 @@ public class TokenSort {
      * @param direction the direction
      * @return this input for chaining
      */
-    public TokenSort direction(SortDirection direction) {
+    public AssetSort direction(SortDirection direction) {
         this.direction = direction;
         return this;
     }

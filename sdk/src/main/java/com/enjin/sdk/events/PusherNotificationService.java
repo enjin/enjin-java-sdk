@@ -11,15 +11,14 @@ import com.enjin.sdk.models.EventType;
 import com.enjin.sdk.models.Notifications;
 import com.enjin.sdk.models.Platform;
 import com.enjin.sdk.events.NotificationListenerRegistration.RegistrationListenerConfiguration;
-import com.enjin.sdk.events.channels.AppChannel;
+import com.enjin.sdk.events.channels.ProjectChannel;
 import com.enjin.sdk.events.channels.PlayerChannel;
-import com.enjin.sdk.events.channels.TokenChannel;
+import com.enjin.sdk.events.channels.AssetChannel;
 import com.enjin.sdk.events.channels.WalletChannel;
 import com.enjin.sdk.utils.LoggerProvider;
 import com.pusher.client.Pusher;
 import com.pusher.client.PusherOptions;
 import com.pusher.client.channel.Channel;
-import com.pusher.client.channel.PusherEvent;
 import com.pusher.client.connection.ConnectionEventListener;
 import com.pusher.client.connection.ConnectionState;
 import com.pusher.client.connection.ConnectionStateChange;
@@ -187,48 +186,48 @@ public class PusherNotificationService implements NotificationsService {
     }
 
     @Override
-    public void subscribeToApp(int app) {
-        subscribe(new AppChannel(platform, app).channel());
+    public void subscribeToProject(int project) {
+        subscribe(new ProjectChannel(platform, project).channel());
     }
 
     @Override
-    public void unsubscribeToApp(int app) {
-        unsubscribe(new AppChannel(platform, app).channel());
+    public void unsubscribeToProject(int project) {
+        unsubscribe(new ProjectChannel(platform, project).channel());
     }
 
     @Override
-    public boolean isSubscribedToApp(int app) {
-        return subscribed.containsKey(new AppChannel(platform, app).channel());
+    public boolean isSubscribedToProject(int project) {
+        return subscribed.containsKey(new ProjectChannel(platform, project).channel());
     }
 
     @Override
-    public void subscribeToPlayer(int app, String player) {
-        subscribe(new PlayerChannel(platform, app, player).channel());
+    public void subscribeToPlayer(int project, String player) {
+        subscribe(new PlayerChannel(platform, project, player).channel());
     }
 
     @Override
-    public void unsubscribeToPlayer(int app, String player) {
-        unsubscribe(new PlayerChannel(platform, app, player).channel());
+    public void unsubscribeToPlayer(int project, String player) {
+        unsubscribe(new PlayerChannel(platform, project, player).channel());
     }
 
     @Override
-    public boolean isSubscribedToPlayer(int app, String player) {
-        return subscribed.containsKey(new PlayerChannel(platform, app, player).channel());
+    public boolean isSubscribedToPlayer(int project, String player) {
+        return subscribed.containsKey(new PlayerChannel(platform, project, player).channel());
     }
 
     @Override
-    public void subscribeToToken(String token) {
-        subscribe(new TokenChannel(platform, token).channel());
+    public void subscribeToAsset(String asset) {
+        subscribe(new AssetChannel(platform, asset).channel());
     }
 
     @Override
-    public void unsubscribeToToken(String token) {
-        unsubscribe(new TokenChannel(platform, token).channel());
+    public void unsubscribeToAsset(String asset) {
+        unsubscribe(new AssetChannel(platform, asset).channel());
     }
 
     @Override
-    public boolean isSubscribedToToken(String token) {
-        return subscribed.containsKey(new TokenChannel(platform, token).channel());
+    public boolean isSubscribedToAsset(String asset) {
+        return subscribed.containsKey(new AssetChannel(platform, asset).channel());
     }
 
     @Override

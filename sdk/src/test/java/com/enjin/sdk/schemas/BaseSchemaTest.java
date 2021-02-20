@@ -13,7 +13,7 @@ import com.enjin.sdk.services.PlatformService;
 import com.enjin.sdk.services.PlayerService;
 import com.enjin.sdk.services.ProjectService;
 import com.enjin.sdk.services.RequestService;
-import com.enjin.sdk.services.TokenService;
+import com.enjin.sdk.services.AssetService;
 import com.enjin.sdk.services.WalletService;
 import com.enjin.sdk.utils.LoggerProvider;
 import com.google.gson.Gson;
@@ -158,9 +158,9 @@ class BaseSchemaTest {
     }
 
     @Test
-    void createService_TokenService_CreatesService() {
+    void createService_AssetService_CreatesService() {
         // Act
-        TokenService actual = (TokenService) classUnderTest.createService(TokenService.class);
+        AssetService actual = (AssetService) classUnderTest.createService(AssetService.class);
 
         // Assert
         assertNotNull(actual);
