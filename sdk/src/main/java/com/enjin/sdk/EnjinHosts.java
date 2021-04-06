@@ -15,6 +15,11 @@ public final class EnjinHosts {
      */
     public static final String KOVAN = "https://kovan.cloud.enjin.io/";
 
+    /**
+     * The URL for the JumpNet network.
+     */
+    public static final String JUMP_NET = "https://jumpnet.cloud.enjin.io/";
+
     private EnjinHosts() {
         throw new IllegalStateException("Utility class");
     }
