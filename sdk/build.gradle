@@ -31,6 +31,8 @@ dependencies {
     implementation deps.okhttpUrlConnection
     implementation deps.retrofit
     implementation deps.retrofitGson
+    implementation deps.log4j2Api
+    implementation deps.log4j2Core
 
     testImplementation(
             deps.junitPlatform,
