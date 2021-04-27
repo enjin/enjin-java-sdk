@@ -18,6 +18,8 @@ buildscript {
             'mockitoJupiter'          : "org.mockito:mockito-junit-jupiter:${mockitoVerson}",
             'mockitoInline'           : "org.mockito:mockito-inline:${mockitoVerson}",
             'awaitility'              : "org.awaitility:awaitility-kotlin:${awaitilityVersion}",
+            'log4j2Api'               : "org.apache.logging.log4j:log4j-api:${log4j2Version}",
+            'log4j2Core'              : "org.apache.logging.log4j:log4j-core:${log4j2Version}",
     ]
 
     repositories {
