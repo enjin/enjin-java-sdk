@@ -8,14 +8,14 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import com.enjin.sdk.graphql.GraphQLError;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.models.PaginationCursor;
 import com.enjin.sdk.serialization.BigIntegerDeserializer;
 import com.enjin.sdk.utils.GsonUtil;
+import com.enjin.sdk.utils.LogLevel;
+import com.enjin.sdk.utils.Logger;
 import com.enjin.sdk.utils.LoggerProvider;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -70,7 +70,7 @@ public class GraphConverter extends Converter.Factory {
      * Protected constructor because we want to make use of the Factory Pattern to create our converter.
      */
     protected GraphConverter() {
-        this(new LoggerProvider(Logger.getGlobal()));
+        this(new LoggerProvider(new Logger()));
     }
 
     /**
@@ -169,7 +169,7 @@ public class GraphConverter extends Converter.Factory {
                     cursor = getCursor(root);
                 }
             } catch (IOException e) {
-                loggerProvider.log(Level.SEVERE, "An exception occurred:", e);
+                loggerProvider.log(LogLevel.SEVERE, "An exception occurred:", e);
             }
 
             return new GraphQLResponse<>(raw, result, errors, cursor);

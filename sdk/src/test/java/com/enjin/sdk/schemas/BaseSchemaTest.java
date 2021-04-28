@@ -15,6 +15,7 @@ import com.enjin.sdk.services.ProjectService;
 import com.enjin.sdk.services.RequestService;
 import com.enjin.sdk.services.AssetService;
 import com.enjin.sdk.services.WalletService;
+import com.enjin.sdk.utils.LogLevel;
 import com.enjin.sdk.utils.LoggerProvider;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -52,7 +53,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.logging.Level;
 
 @ExtendWith({MockitoExtension.class,})
 class BaseSchemaTest {
@@ -335,7 +335,7 @@ class BaseSchemaTest {
 
         // Verify
         verify(mockLoggerProvider)
-                .log(eq(Level.SEVERE), anyString(), any());
+                .log(eq(LogLevel.SEVERE), anyString(), any());
         verify(mockCallback)
                 .onException(any());
     }
@@ -366,7 +366,7 @@ class BaseSchemaTest {
 
         // Verify
         verify(mockLoggerProvider)
-                .log(eq(Level.SEVERE), anyString(), any());
+                .log(eq(LogLevel.SEVERE), anyString(), any());
         verify(mockCallback)
                 .onException(any());
     }

@@ -1,12 +1,12 @@
 package com.enjin.sdk;
 
 import com.enjin.sdk.schemas.player.PlayerSchema;
+import com.enjin.sdk.utils.Logger;
 import com.enjin.sdk.utils.LoggerProvider;
 import lombok.NonNull;
 import okhttp3.OkHttpClient;
 
 import java.util.concurrent.ExecutorService;
-import java.util.logging.Logger;
 
 /**
  * Client for using the player schema.
@@ -31,7 +31,7 @@ public final class PlayerClient extends PlayerSchema implements IClient {
      * @param debug whether debugging is enabled
      */
     public PlayerClient(@NonNull String baseUrl, boolean debug) {
-        this(baseUrl, debug, new LoggerProvider(Logger.getGlobal()));
+        this(baseUrl, debug, new LoggerProvider(new Logger()));
     }
 
     /**

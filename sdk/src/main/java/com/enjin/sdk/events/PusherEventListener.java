@@ -1,9 +1,8 @@
 package com.enjin.sdk.events;
 
-import java.util.logging.Level;
-
 import com.enjin.sdk.models.NotificationEvent;
 import com.enjin.sdk.models.EventType;
+import com.enjin.sdk.utils.LogLevel;
 import com.pusher.client.channel.PusherEvent;
 import com.pusher.client.channel.SubscriptionEventListener;
 
@@ -40,13 +39,13 @@ public class PusherEventListener implements SubscriptionEventListener {
 
     private void call(String key, String channel, String message) {
         if (service.listeners.isEmpty()) {
-            service.getLoggerProvider().log(Level.INFO, "No registered listeners received on event");
+            service.getLoggerProvider().log(LogLevel.INFO, "No registered listeners received on event");
             return;
         }
 
         EventType type = EventType.getFromKey(key);
         if (type == EventType.UNKNOWN) {
-            service.getLoggerProvider().log(Level.WARNING, String.format("Unknown event type for key %s", key));
+            service.getLoggerProvider().log(LogLevel.WARN, String.format("Unknown event type for key %s", key));
             return;
         }
 

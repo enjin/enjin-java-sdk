@@ -3,7 +3,6 @@ package com.enjin.sdk.schemas;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.Objects;
-import java.util.logging.Level;
 
 import com.enjin.sdk.TrustedPlatformMiddleware;
 import com.enjin.sdk.graphql.GraphQLRequest;
@@ -14,6 +13,7 @@ import com.enjin.sdk.http.HttpResponse;
 import com.enjin.sdk.serialization.BigIntegerDeserializer;
 import com.enjin.sdk.serialization.converter.GraphConverter;
 import com.enjin.sdk.serialization.converter.JsonStringConverter;
+import com.enjin.sdk.utils.LogLevel;
 import com.enjin.sdk.utils.LoggerProvider;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -134,7 +134,7 @@ public class BaseSchema {
                 try {
                     callback.onComplete(createResult(response));
                 } catch (Exception e) {
-                    loggerProvider.log(Level.SEVERE, "An exception occurred:", e);
+                    loggerProvider.log(LogLevel.SEVERE, "An exception occurred:", e);
                     callback.onException(e);
                 }
             }
@@ -143,7 +143,7 @@ public class BaseSchema {
             public void onFailure(@NotNull Call<GraphQLResponse<T>> call,
                                   @NotNull Throwable throwable) {
                 Exception exception = new Exception("Request Failed: " + call.request().toString(), throwable);
-                loggerProvider.log(Level.SEVERE, "An exception occurred:", exception);
+                loggerProvider.log(LogLevel.SEVERE, "An exception occurred:", exception);
                 callback.onException(exception);
             }
         });
