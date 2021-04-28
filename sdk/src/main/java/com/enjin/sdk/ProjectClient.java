@@ -1,12 +1,12 @@
 package com.enjin.sdk;
 
 import com.enjin.sdk.schemas.project.ProjectSchema;
+import com.enjin.sdk.utils.Logger;
 import com.enjin.sdk.utils.LoggerProvider;
 import lombok.NonNull;
 import okhttp3.OkHttpClient;
 
 import java.util.concurrent.ExecutorService;
-import java.util.logging.Logger;
 
 /**
  * Client for using the project schema.
@@ -31,7 +31,7 @@ public final class ProjectClient extends ProjectSchema implements IClient {
      * @param debug whether debugging is enabled
      */
     public ProjectClient(@NonNull String baseUrl, boolean debug) {
-        this(baseUrl, debug, new LoggerProvider(Logger.getGlobal()));
+        this(baseUrl, debug, new LoggerProvider(new Logger()));
     }
 
     /**
