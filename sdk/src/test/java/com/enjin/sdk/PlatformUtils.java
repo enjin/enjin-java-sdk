@@ -20,13 +20,12 @@ public class PlatformUtils {
     }
 
     public Platform createFakePlatform(String network) {
-        return createFakePlatform(network, "xyz", "xyz", "xyz", true);
+        return createFakePlatform(network, "a826ad9293ce1ae1a036", "mt1", true);
     }
 
     @SneakyThrows
     public Platform createFakePlatform(String network,
                                        String key,
-                                       String namespace,
                                        String cluster,
                                        boolean encrypted) {
         StringBuilder builder = new StringBuilder()
@@ -36,8 +35,6 @@ public class PlatformUtils {
                 .append("\"pusher\": {")
                 .append("\"key\":")
                 .append(key)
-                .append(", \"namespace\": ")
-                .append(namespace)
                 .append(", \"options\": {")
                 .append("\"cluster\": ")
                 .append(cluster)

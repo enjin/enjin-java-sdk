@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import com.enjin.sdk.models.EventType;
 import com.enjin.sdk.models.Notifications;
@@ -15,6 +13,8 @@ import com.enjin.sdk.events.channels.ProjectChannel;
 import com.enjin.sdk.events.channels.PlayerChannel;
 import com.enjin.sdk.events.channels.AssetChannel;
 import com.enjin.sdk.events.channels.WalletChannel;
+import com.enjin.sdk.utils.LogLevel;
+import com.enjin.sdk.utils.Logger;
 import com.enjin.sdk.utils.LoggerProvider;
 import com.pusher.client.Pusher;
 import com.pusher.client.PusherOptions;
@@ -56,7 +56,7 @@ public class PusherNotificationService implements NotificationsService {
      * @param platform the platform
      */
     public PusherNotificationService(@NonNull Platform platform) {
-        this(new LoggerProvider(Logger.getGlobal()), platform);
+        this(new LoggerProvider(new Logger()), platform);
     }
 
     /**
@@ -101,7 +101,7 @@ public class PusherNotificationService implements NotificationsService {
 
             @Override
             public void onError(String message, String code, Exception e) {
-                loggerProvider.log(Level.SEVERE, "Unable to connect to pusher service.", e);
+                loggerProvider.log(LogLevel.SEVERE, "Unable to connect to pusher service.", e);
             }
         }, ConnectionState.ALL);
     }
