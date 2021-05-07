@@ -14,7 +14,6 @@ import com.enjin.sdk.events.channels.PlayerChannel;
 import com.enjin.sdk.events.channels.AssetChannel;
 import com.enjin.sdk.events.channels.WalletChannel;
 import com.enjin.sdk.utils.LogLevel;
-import com.enjin.sdk.utils.Logger;
 import com.enjin.sdk.utils.LoggerProvider;
 import com.pusher.client.Pusher;
 import com.pusher.client.PusherOptions;
@@ -56,16 +55,16 @@ public class PusherNotificationService implements NotificationsService {
      * @param platform the platform
      */
     public PusherNotificationService(@NonNull Platform platform) {
-        this(new LoggerProvider(new Logger()), platform);
+        this(platform, null);
     }
 
     /**
      * Constructs the notification service using the platform details and logger provider.
      *
-     * @param loggerProvider the logger provider
      * @param platform the platform
+     * @param loggerProvider the logger provider
      */
-    public PusherNotificationService(@NonNull LoggerProvider loggerProvider, @NonNull Platform platform) {
+    public PusherNotificationService(@NonNull Platform platform, LoggerProvider loggerProvider) {
         this.loggerProvider = loggerProvider;
         this.platform = platform;
     }
@@ -101,7 +100,8 @@ public class PusherNotificationService implements NotificationsService {
 
             @Override
             public void onError(String message, String code, Exception e) {
-                loggerProvider.log(LogLevel.SEVERE, "Unable to connect to pusher service.", e);
+                if (loggerProvider != null)
+                    loggerProvider.log(LogLevel.SEVERE, "Unable to connect to pusher service.", e);
             }
         }, ConnectionState.ALL);
     }

@@ -1,7 +1,6 @@
 package com.enjin.sdk;
 
 import com.enjin.sdk.schemas.player.PlayerSchema;
-import com.enjin.sdk.utils.Logger;
 import com.enjin.sdk.utils.LoggerProvider;
 import lombok.NonNull;
 import okhttp3.OkHttpClient;
@@ -25,13 +24,13 @@ public final class PlayerClient extends PlayerSchema implements IClient {
     }
 
     /**
-     * Constructs a client with the targeted URL, debugging state, and default logger provider.
+     * Constructs a client with the targeted URL, debugging state.
      *
      * @param baseUrl the base URL
      * @param debug whether debugging is enabled
      */
     public PlayerClient(@NonNull String baseUrl, boolean debug) {
-        this(baseUrl, debug, new LoggerProvider(new Logger()));
+        this(baseUrl, debug, null);
     }
 
     /**
@@ -39,9 +38,9 @@ public final class PlayerClient extends PlayerSchema implements IClient {
      *
      * @param baseUrl the base URL
      * @param debug whether debugging is enabled
-     * @param loggerProvider the logger provider to be used
+     * @param loggerProvider the logger provider
      */
-    public PlayerClient(@NonNull String baseUrl, boolean debug, @NonNull LoggerProvider loggerProvider) {
+    public PlayerClient(@NonNull String baseUrl, boolean debug, LoggerProvider loggerProvider) {
         super(new TrustedPlatformMiddleware(baseUrl, debug), loggerProvider);
     }
 

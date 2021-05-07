@@ -1,7 +1,6 @@
 package com.enjin.sdk;
 
 import com.enjin.sdk.schemas.project.ProjectSchema;
-import com.enjin.sdk.utils.Logger;
 import com.enjin.sdk.utils.LoggerProvider;
 import lombok.NonNull;
 import okhttp3.OkHttpClient;
@@ -25,13 +24,13 @@ public final class ProjectClient extends ProjectSchema implements IClient {
     }
 
     /**
-     * Constructs a client with the targeted URL, debugging state, and default logger provider.
+     * Constructs a client with the targeted URL, debugging state.
      *
      * @param baseUrl the base URL
      * @param debug whether debugging is enabled
      */
     public ProjectClient(@NonNull String baseUrl, boolean debug) {
-        this(baseUrl, debug, new LoggerProvider(new Logger()));
+        this(baseUrl, debug, null);
     }
 
     /**
@@ -39,9 +38,9 @@ public final class ProjectClient extends ProjectSchema implements IClient {
      *
      * @param baseUrl the base URL
      * @param debug whether debugging is enabled
-     * @param loggerProvider the logger provider to be used
+     * @param loggerProvider the logger provider
      */
-    public ProjectClient(@NonNull String baseUrl, boolean debug, @NonNull LoggerProvider loggerProvider) {
+    public ProjectClient(@NonNull String baseUrl, boolean debug, LoggerProvider loggerProvider) {
         super(new TrustedPlatformMiddleware(baseUrl, debug), loggerProvider);
     }
 
