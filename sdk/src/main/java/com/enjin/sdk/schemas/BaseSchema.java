@@ -134,7 +134,9 @@ public class BaseSchema {
                 try {
                     callback.onComplete(createResult(response));
                 } catch (Exception e) {
-                    loggerProvider.log(LogLevel.SEVERE, "An exception occurred:", e);
+                    if (loggerProvider != null)
+                        loggerProvider.log(LogLevel.SEVERE, "An exception occurred:", e);
+
                     callback.onException(e);
                 }
             }
@@ -143,7 +145,10 @@ public class BaseSchema {
             public void onFailure(@NotNull Call<GraphQLResponse<T>> call,
                                   @NotNull Throwable throwable) {
                 Exception exception = new Exception("Request Failed: " + call.request().toString(), throwable);
-                loggerProvider.log(LogLevel.SEVERE, "An exception occurred:", exception);
+
+                if (loggerProvider != null)
+                    loggerProvider.log(LogLevel.SEVERE, "An exception occurred:", exception);
+
                 callback.onException(exception);
             }
         });
