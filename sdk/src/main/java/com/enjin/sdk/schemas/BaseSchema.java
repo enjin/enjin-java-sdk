@@ -73,7 +73,7 @@ public class BaseSchema {
         this.retrofit = new Retrofit.Builder()
                 .baseUrl(this.middleware.getBaseUrl())
                 .client(this.middleware.getHttpClient())
-                .addConverterFactory(GraphConverter.create())
+                .addConverterFactory(GraphConverter.create(this.loggerProvider))
                 .addConverterFactory(JsonStringConverter.create(gsonFactory))
                 .addConverterFactory(gsonFactory)
                 .build();
