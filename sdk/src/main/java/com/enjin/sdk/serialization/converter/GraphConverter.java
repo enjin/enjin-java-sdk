@@ -15,7 +15,6 @@ import com.enjin.sdk.models.PaginationCursor;
 import com.enjin.sdk.serialization.BigIntegerDeserializer;
 import com.enjin.sdk.utils.GsonUtil;
 import com.enjin.sdk.utils.LogLevel;
-import com.enjin.sdk.utils.Logger;
 import com.enjin.sdk.utils.LoggerProvider;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -25,7 +24,6 @@ import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
 import lombok.Getter;
-import lombok.NonNull;
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
@@ -70,7 +68,7 @@ public class GraphConverter extends Converter.Factory {
      * Protected constructor because we want to make use of the Factory Pattern to create our converter.
      */
     protected GraphConverter() {
-        this(new LoggerProvider(new Logger()));
+        this(null);
     }
 
     /**
@@ -78,7 +76,7 @@ public class GraphConverter extends Converter.Factory {
      *
      * @param loggerProvider the logger provider
      */
-    protected GraphConverter(@NonNull LoggerProvider loggerProvider) {
+    protected GraphConverter(LoggerProvider loggerProvider) {
         this.loggerProvider = loggerProvider;
     }
 
@@ -169,7 +167,8 @@ public class GraphConverter extends Converter.Factory {
                     cursor = getCursor(root);
                 }
             } catch (IOException e) {
-                loggerProvider.log(LogLevel.SEVERE, "An exception occurred:", e);
+                if (loggerProvider != null)
+                    loggerProvider.log(LogLevel.SEVERE, "An exception occurred:", e);
             }
 
             return new GraphQLResponse<>(raw, result, errors, cursor);
