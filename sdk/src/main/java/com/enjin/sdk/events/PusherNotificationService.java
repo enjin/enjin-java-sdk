@@ -2,8 +2,10 @@ package com.enjin.sdk.events;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.enjin.sdk.models.EventType;
 import com.enjin.sdk.models.Notifications;
@@ -104,6 +106,8 @@ public class PusherNotificationService implements NotificationsService {
                     loggerProvider.log(LogLevel.SEVERE, "Unable to connect to pusher service.", e);
             }
         }, ConnectionState.ALL);
+
+        resubscribeToAll();
     }
 
     @Override
@@ -252,6 +256,15 @@ public class PusherNotificationService implements NotificationsService {
         Channel pusherChannel = pusher.subscribe(channel);
         subscribed.put(channel, pusherChannel);
         bind(pusherChannel);
+    }
+
+    private void resubscribeToAll() {
+        Set<String> channels = new HashSet<>(subscribed.keySet());
+        subscribed.clear();
+
+        for (String channel : channels) {
+            subscribe(channel);
+        }
     }
 
     private void unsubscribe(@NonNull String channel) {
