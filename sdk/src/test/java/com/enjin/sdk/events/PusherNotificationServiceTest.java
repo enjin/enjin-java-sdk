@@ -3,6 +3,7 @@ package com.enjin.sdk.events;
 import com.enjin.sdk.PlatformUtils;
 import com.enjin.sdk.models.EventType;
 import com.enjin.sdk.models.NotificationEvent;
+import static org.junit.Assume.*;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -222,6 +223,24 @@ class PusherNotificationServiceTest {
 
         // Assert
         assertFalse(service.isSubscribedToWallet(WALLET));
+    }
+
+    @Test
+    void start_PreviouslyActiveServiceResubscribesToChannels() {
+        // Arrange
+        final int PROJECT = 1234;
+        final PusherNotificationService service = defaultPusherNotificationService();
+        service.start();                     // Service is started for the first time and subscribes to the channel
+        service.subscribeToProject(PROJECT); //
+        service.shutdown(); // Shutdown the service to be restarted on 'Act'
+
+        assumeTrue(service.isSubscribedToProject(PROJECT));
+
+        // Act
+        service.start();
+
+        // Assert
+        assertTrue(service.isSubscribedToProject(PROJECT));
     }
 
     private static PusherNotificationService defaultPusherNotificationService() {
