@@ -26,7 +26,7 @@ public class MintInput {
     }
 
     /**
-     * Sets the number of items to mint.
+     * Sets the number of assets to mint.
      *
      * @param value the amount to mint
      * @return this input for chaining
