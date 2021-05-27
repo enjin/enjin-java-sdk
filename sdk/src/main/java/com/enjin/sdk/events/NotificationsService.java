@@ -21,6 +21,21 @@ public interface NotificationsService {
     void start(Platform platform);
 
     /**
+     * Starts this service with the provided connection listener.
+     *
+     * @param listener the listener
+     */
+    void start(ConnectionEventListener listener);
+
+    /**
+     * Starts this service with the provided platform details and connection listener.
+     *
+     * @param platform the platform
+     * @param listener the listener
+     */
+    void start(Platform platform, ConnectionEventListener listener);
+
+    /**
      * Checks if this service is connected to the platform.
      *
      * @return true if connected, else false
