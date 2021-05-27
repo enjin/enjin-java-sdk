@@ -3,6 +3,8 @@ package com.enjin.sdk.events;
 import com.enjin.sdk.models.EventType;
 import com.enjin.sdk.models.Platform;
 
+import java.util.concurrent.Future;
+
 /**
  * Notification service interface for subscribing to and registering for events from the Enjin Cloud.
  */
@@ -96,15 +98,17 @@ public interface NotificationsService {
      * Opens a channel for the specified project, allowing listeners to receive events for that project.
      *
      * @param project the project ID
+     * @return the future for this operation
      */
-    void subscribeToProject(int project);
+    Future<Void> subscribeToProject(int project);
 
     /**
      * Closes a channel for the specified project, preventing listeners from receiving events for that project.
      *
      * @param project the project ID
+     * @return the future for this operation
      */
-    void unsubscribeToProject(int project);
+    Future<Void> unsubscribeToProject(int project);
 
     /**
      * Determines if the channel is open for the specified project.
@@ -115,20 +119,22 @@ public interface NotificationsService {
     boolean isSubscribedToProject(int project);
 
     /**
-     * Opens a channel for the specified player, allowing listeners to receive events for that identity.
+     * Opens a channel for the specified player, allowing listeners to receive events for that player.
      *
      * @param project the ID of the project the player is on
      * @param player the player ID
+     * @return the future for this operation
      */
-    void subscribeToPlayer(int project, String player);
+    Future<Void> subscribeToPlayer(int project, String player);
 
     /**
-     * Closes a channel for the specified player, preventing listeners from receiving events for that identity.
+     * Closes a channel for the specified player, preventing listeners from receiving events for that player.
      *
      * @param project the ID of the project the player is on
      * @param player the player ID
+     * @return the future for this operation
      */
-    void unsubscribeToPlayer(int project, String player);
+    Future<Void> unsubscribeToPlayer(int project, String player);
 
     /**
      * Determines if the channel is open for the specified player.
@@ -143,15 +149,17 @@ public interface NotificationsService {
      * Opens a channel for the specified asset, allowing listeners to receive events for that asset.
      *
      * @param asset the asset ID
+     * @return the future for this operation
      */
-    void subscribeToAsset(String asset);
+    Future<Void> subscribeToAsset(String asset);
 
     /**
      * Closes a channel for the specified asset, preventing listeners from receiving events for that asset.
      *
      * @param asset the asset ID
+     * @return the future for this operation
      */
-    void unsubscribeToAsset(String asset);
+    Future<Void> unsubscribeToAsset(String asset);
 
     /**
      * Determines if the channel is open for the specified asset.
@@ -165,15 +173,17 @@ public interface NotificationsService {
      * Opens a channel for the specified wallet address, allowing listeners to receive events for that wallet.
      *
      * @param wallet the address
+     * @return the future for this operation
      */
-    void subscribeToWallet(String wallet);
+    Future<Void> subscribeToWallet(String wallet);
 
     /**
      * Closes a channel for the specified wallet address, preventing listeners from receiving events for that wallet.
      *
      * @param wallet the address
+     * @return the future for this operation
      */
-    void unsubscribeToWallet(String wallet);
+    Future<Void> unsubscribeToWallet(String wallet);
 
     /**
      * Determines if the channel is open for the specified wallet address.
