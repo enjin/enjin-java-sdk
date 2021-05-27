@@ -226,7 +226,7 @@ public class PusherNotificationService implements NotificationsService {
     /**
      * Opens a channel for the specified project, allowing listeners to receive events for that project.
      * <p>
-     *     The future returned by this method may never complete of this service does not successfully subscribe to the
+     *     The future returned by this method may never complete if this service does not successfully subscribe to the
      *     requested channel.
      * </p>
      *
@@ -251,7 +251,7 @@ public class PusherNotificationService implements NotificationsService {
     /**
      * Opens a channel for the specified player, allowing listeners to receive events for that player.
      * <p>
-     *     The future returned by this method may never complete of this service does not successfully subscribe to the
+     *     The future returned by this method may never complete if this service does not successfully subscribe to the
      *     requested channel.
      * </p>
      *
@@ -277,7 +277,7 @@ public class PusherNotificationService implements NotificationsService {
     /**
      * Opens a channel for the specified asset, allowing listeners to receive events for that asset.
      * <p>
-     *     The future returned by this method may never complete of this service does not successfully subscribe to the
+     *     The future returned by this method may never complete if this service does not successfully subscribe to the
      *     requested channel.
      * </p>
      *
@@ -302,7 +302,7 @@ public class PusherNotificationService implements NotificationsService {
     /**
      * Opens a channel for the specified wallet address, allowing listeners to receive events for that wallet.
      * <p>
-     *     The future returned by this method may never complete of this service does not successfully subscribe to the
+     *     The future returned by this method may never complete if this service does not successfully subscribe to the
      *     requested channel.
      * </p>
      *
