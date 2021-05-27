@@ -20,7 +20,6 @@ import com.enjin.sdk.utils.LoggerProvider;
 import com.pusher.client.Pusher;
 import com.pusher.client.PusherOptions;
 import com.pusher.client.channel.Channel;
-import com.pusher.client.connection.ConnectionEventListener;
 import com.pusher.client.connection.ConnectionState;
 import com.pusher.client.connection.ConnectionStateChange;
 
@@ -47,6 +46,7 @@ public class PusherNotificationService implements NotificationsService {
     private final LoggerProvider loggerProvider;
     private Platform platform;
     private Pusher pusher;
+    private ConnectionEventListener connectionListener;
     private PusherEventListener listener;
 
     private final Map<String, Channel> subscribed = new HashMap<>();
@@ -95,15 +95,28 @@ public class PusherNotificationService implements NotificationsService {
         this.pusher = new Pusher(key, options);
         listener = new PusherEventListener(this);
 
-        this.pusher.connect(new ConnectionEventListener() {
+        this.pusher.connect(new com.pusher.client.connection.ConnectionEventListener() {
             @Override
             public void onConnectionStateChange(ConnectionStateChange change) {
+                if (connectionListener == null)
+                    return;
+
+                switch (change.getCurrentState()) {
+                    case CONNECTED:
+                        connectionListener.onConnect();
+                        break;
+                    case DISCONNECTED:
+                        connectionListener.onDisconnect();
+                        break;
+                }
             }
 
             @Override
             public void onError(String message, String code, Exception e) {
                 if (loggerProvider != null)
-                    loggerProvider.log(LogLevel.SEVERE, "Unable to connect to pusher service.", e);
+                    loggerProvider.log(LogLevel.SEVERE, "Error on Pusher client: ", e);
+                if (connectionListener != null)
+                    connectionListener.onError(new Exception(String.format("message: %s; code: %s", message, code), e));
             }
         }, ConnectionState.ALL);
 
@@ -113,6 +126,19 @@ public class PusherNotificationService implements NotificationsService {
     @Override
     public void start(Platform platform) {
         this.platform = platform;
+        start();
+    }
+
+    @Override
+    public void start(ConnectionEventListener listener) {
+        connectionListener = listener;
+        start();
+    }
+
+    @Override
+    public void start(Platform platform, ConnectionEventListener listener) {
+        this.platform = platform;
+        connectionListener = listener;
         start();
     }
 
