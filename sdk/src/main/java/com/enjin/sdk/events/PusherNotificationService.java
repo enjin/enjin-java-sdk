@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 import com.enjin.sdk.models.EventType;
 import com.enjin.sdk.models.Notifications;
@@ -17,6 +18,7 @@ import com.enjin.sdk.events.channels.ProjectChannel;
 import com.enjin.sdk.events.channels.PlayerChannel;
 import com.enjin.sdk.events.channels.AssetChannel;
 import com.enjin.sdk.events.channels.WalletChannel;
+import static com.enjin.sdk.utils.FutureUtil.failedFuture;
 import com.enjin.sdk.utils.LogLevel;
 import com.enjin.sdk.utils.LoggerProvider;
 import com.pusher.client.Pusher;
@@ -24,7 +26,6 @@ import com.pusher.client.PusherOptions;
 import com.pusher.client.channel.Channel;
 import com.pusher.client.channel.ChannelEventListener;
 import com.pusher.client.channel.PusherEvent;
-import com.pusher.client.connection.ConnectionEventListener;
 import com.pusher.client.connection.ConnectionState;
 import com.pusher.client.connection.ConnectionStateChange;
 
@@ -50,12 +51,17 @@ public class PusherNotificationService implements NotificationsService {
      */
     @Getter
     private final LoggerProvider loggerProvider;
+    private final Map<String, Channel> subscribed = new HashMap<>();
     private Platform platform;
     private Pusher pusher;
+
+    // Listeners
+    private PusherConnectionEventListener pusherConnectionListener;
     private ConnectionEventListener connectionEventListener;
     private PusherEventListener listener;
 
-    private final Map<String, Channel> subscribed = new HashMap<>();
+    // Mutexes
+    private final Object subscribedMutex = new Object();
 
     /**
      * Constructs the notification service using the platform details.
@@ -78,22 +84,22 @@ public class PusherNotificationService implements NotificationsService {
     }
 
     @Override
-    public void start() {
+    public Future<Void> start() {
         shutdown();
 
         Notifications notifications = platform.getNotifications();
         if (notifications == null)
-            return;
+            return failedFuture(new IllegalStateException("Platform has null data for 'notifications'."));
 
         com.enjin.sdk.models.Pusher pusher = notifications.getPusher();
         if (pusher == null)
-            return;
+            return failedFuture(new IllegalStateException("Platform has null data for 'pusher'."));
 
         String key = pusher.getKey();
         String cluster = pusher.getOptions().getCluster();
         boolean encrypted = pusher.getOptions().getEncrypted();
         if (key == null || key.isEmpty() || cluster == null || cluster.isEmpty())
-            return;
+            return failedFuture(new IllegalStateException("Platform has null data for 'key', 'cluster', or 'encrypted'."));
 
         PusherOptions options = new PusherOptions()
                 .setCluster(cluster)
@@ -101,9 +107,21 @@ public class PusherNotificationService implements NotificationsService {
         this.pusher = new Pusher(key, options);
         listener = new PusherEventListener(this);
 
+        // Set up Pusher connection event listener
+        pusherConnectionListener = new PusherConnectionEventListener();
+        pusherConnectionListener.appendConnectAction(() -> {
+            try {
+                resubscribeToAll().get();
+            } catch (Exception e) {
+                throw new RuntimeException("Failed to resubscribe to all channels.", e);
+            }
+        });
+
         this.pusher.connect(new com.pusher.client.connection.ConnectionEventListener() {
             @Override
             public void onConnectionStateChange(ConnectionStateChange change) {
+                pusherConnectionListener.onConnectionStateChange(change);
+
                 if (connectionEventListener == null)
                     return;
 
@@ -119,33 +137,37 @@ public class PusherNotificationService implements NotificationsService {
 
             @Override
             public void onError(String message, String code, Exception e) {
+                Exception newException = new Exception(String.format("msg: %s; code: %s", message, code), e);
+
+                pusherConnectionListener.onError(message, code, newException);
+
                 if (loggerProvider != null)
                     loggerProvider.log(LogLevel.SEVERE, "Error on Pusher client: ", e);
                 if (connectionEventListener != null)
-                    connectionEventListener.onError(new Exception(String.format("message: %s; code: %s", message, code), e));
+                    connectionEventListener.onError(newException);
             }
         }, ConnectionState.ALL);
 
-        resubscribeToAll();
+        return pusherConnectionListener.getConnectFuture();
     }
 
     @Override
-    public void start(Platform platform) {
+    public Future<Void> start(Platform platform) {
         this.platform = platform;
-        start();
+        return start();
     }
 
     @Override
-    public void start(ConnectionEventListener listener) {
+    public Future<Void> start(ConnectionEventListener listener) {
         connectionEventListener = listener;
-        start();
+        return start();
     }
 
     @Override
-    public void start(Platform platform, ConnectionEventListener listener) {
+    public Future<Void> start(Platform platform, ConnectionEventListener listener) {
         this.platform = platform;
         connectionEventListener = listener;
-        start();
+        return start();
     }
 
     @Override
@@ -154,9 +176,12 @@ public class PusherNotificationService implements NotificationsService {
     }
 
     @Override
-    public void shutdown() {
-        if (pusher != null)
-            pusher.disconnect();
+    public Future<Void> shutdown() {
+        if (pusher == null)
+            return failedFuture(new IllegalStateException("Event service has not been started."));
+
+        pusher.disconnect();
+        return pusherConnectionListener.getDisconnectFuture();
     }
 
     @Override
@@ -226,11 +251,12 @@ public class PusherNotificationService implements NotificationsService {
     /**
      * Opens a channel for the specified project, allowing listeners to receive events for that project.
      * <p>
-     *     The future returned by this method may never complete if this service does not successfully subscribe to the
-     *     requested channel.
+     * The future returned by this method may never complete if this service does not successfully subscribe to the
+     * requested channel.
      * </p>
      *
      * @param project the project ID
+     *
      * @return the future for this operation
      */
     @Override
@@ -251,12 +277,13 @@ public class PusherNotificationService implements NotificationsService {
     /**
      * Opens a channel for the specified player, allowing listeners to receive events for that player.
      * <p>
-     *     The future returned by this method may never complete if this service does not successfully subscribe to the
-     *     requested channel.
+     * The future returned by this method may never complete if this service does not successfully subscribe to the
+     * requested channel.
      * </p>
      *
      * @param project the ID of the project the player is on
-     * @param player the player ID
+     * @param player  the player ID
+     *
      * @return the future for this operation
      */
     @Override
@@ -277,11 +304,12 @@ public class PusherNotificationService implements NotificationsService {
     /**
      * Opens a channel for the specified asset, allowing listeners to receive events for that asset.
      * <p>
-     *     The future returned by this method may never complete if this service does not successfully subscribe to the
-     *     requested channel.
+     * The future returned by this method may never complete if this service does not successfully subscribe to the
+     * requested channel.
      * </p>
      *
      * @param asset the asset ID
+     *
      * @return the future for this operation
      */
     @Override
@@ -302,11 +330,12 @@ public class PusherNotificationService implements NotificationsService {
     /**
      * Opens a channel for the specified wallet address, allowing listeners to receive events for that wallet.
      * <p>
-     *     The future returned by this method may never complete if this service does not successfully subscribe to the
-     *     requested channel.
+     * The future returned by this method may never complete if this service does not successfully subscribe to the
+     * requested channel.
      * </p>
      *
      * @param wallet the address
+     *
      * @return the future for this operation
      */
     @Override
@@ -332,7 +361,7 @@ public class PusherNotificationService implements NotificationsService {
 
         Channel pusherChannel;
 
-        synchronized (subscribed) {
+        synchronized (subscribedMutex) {
             if (subscribed.containsKey(channel))
                 return CompletableFuture.completedFuture(null);
 
@@ -345,6 +374,7 @@ public class PusherNotificationService implements NotificationsService {
                 @Override
                 public void onEvent(PusherEvent event) { }
             });
+
             subscribed.put(channel, pusherChannel);
         }
 
@@ -353,35 +383,43 @@ public class PusherNotificationService implements NotificationsService {
         return future;
     }
 
-    private void resubscribeToAll() {
-        Set<String> channels = new HashSet<>(subscribed.keySet());
-        subscribed.clear();
+    private Future<Void> resubscribeToAll() {
+        return CompletableFuture.runAsync(() -> {
+            Set<String> channels;
 
-        for (String channel : channels) {
-            subscribe(channel);
-        }
+            synchronized (subscribedMutex) {
+                channels = new HashSet<>(subscribed.keySet());
+                subscribed.clear();
+            }
+
+            for (String channel : channels) {
+                try {
+                    subscribe(channel).get(3000, TimeUnit.MILLISECONDS); // 3 second timeout
+                } catch (Exception e) {
+                    throw new RuntimeException(String.format("Failed to subscribe to channel %s.", channel), e);
+                }
+            }
+        });
     }
 
     private Future<Void> unsubscribe(@NonNull String channel) {
         if (pusher == null)
             return failedFuture(new IllegalStateException("Event service has not been started."));
 
-        return CompletableFuture.supplyAsync(() -> {
-            synchronized (subscribed) {
+        return CompletableFuture.runAsync(() -> {
+            synchronized (subscribedMutex) {
                 if (!subscribed.containsKey(channel))
-                    return null;
+                    return;
 
                 subscribed.remove(channel);
             }
 
             pusher.unsubscribe(channel);
-
-            return null;
         });
     }
 
     private boolean isSubscribed(@NonNull String channel) {
-        synchronized (subscribed) {
+        synchronized (subscribedMutex) {
             return subscribed.containsKey(channel);
         }
     }
@@ -389,12 +427,6 @@ public class PusherNotificationService implements NotificationsService {
     private void bind(@NonNull Channel channel) {
         for (EventType event : EventType.filterByChannelTypes(channel.getName()))
             channel.bind(event.getKey(), listener);
-    }
-
-    private static <T> Future<T> failedFuture(Throwable e) {
-        CompletableFuture<T> future = new CompletableFuture<>();
-        future.completeExceptionally(e);
-        return future;
     }
 
 }
