@@ -11,10 +11,14 @@ import com.enjin.sdk.models.Platform;
 import com.pusher.client.Pusher;
 import com.pusher.client.channel.Channel;
 import com.pusher.client.channel.ChannelEventListener;
+import com.pusher.client.connection.ConnectionEventListener;
+import com.pusher.client.connection.ConnectionState;
+import com.pusher.client.connection.ConnectionStateChange;
 import lombok.SneakyThrows;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.*;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
@@ -28,6 +32,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 class PusherNotificationServiceTest {
 
@@ -183,22 +188,28 @@ class PusherNotificationServiceTest {
     }
 
     @Test
+    @Timeout(value = 2, unit = TimeUnit.SECONDS)
+    @SneakyThrows
     void subscribeToProject_AfterStartingService_IsSubscribeToChannel() {
         // Arrange - Data
         final int project = 1234;
         final String channelName = new ProjectChannel(DEFAULT_PLATFORM, project).channel();
         final PusherNotificationService service = defaultPusherNotificationService();
-        final Channel mockChannel = mock(Channel.class);
+        final ConnectionStateChange stubConnectedState = mock(ConnectionStateChange.class);
+        final Channel stubChannel = mock(Channel.class);
 
         // Arrange - Stubbing
-        doAnswer(invocation -> channelName).when(mockChannel).getName();
+        doAnswer(invocation -> ConnectionState.CONNECTING).when(stubConnectedState).getPreviousState();
+        doAnswer(invocation -> ConnectionState.CONNECTED).when(stubConnectedState).getCurrentState();
+        doAnswer(invocation -> channelName).when(stubChannel).getName();
 
         try (MockedConstruction<Pusher> mocked = mockConstruction(Pusher.class, (mock, context) -> {
-            // Pusher client Stubbing
-            stubPusherSubscribe(mock, mockChannel, channelName);
+            // Pusher client stubbing
+            stubPusherConnect(mock, stubConnectedState);
+            stubPusherSubscribe(mock, stubChannel, channelName);
         })) {
             // Arrange - Data (continued)
-            service.start();
+            service.start().get();
 
             // Act
             Future<Void> future = service.subscribeToProject(project);
@@ -215,23 +226,29 @@ class PusherNotificationServiceTest {
     }
 
     @Test
+    @Timeout(value = 2, unit = TimeUnit.SECONDS)
+    @SneakyThrows
     void subscribeToPlayer_AfterStartingService_IsSubscribeToChannel() {
         // Arrange - Data
         final int project = 1234;
         final String player = "xyz";
         final String channelName = new PlayerChannel(DEFAULT_PLATFORM, project, player).channel();
         final PusherNotificationService service = defaultPusherNotificationService();
-        final Channel mockChannel = mock(Channel.class);
+        final ConnectionStateChange stubConnectedState = mock(ConnectionStateChange.class);
+        final Channel stubChannel = mock(Channel.class);
 
         // Arrange - Stubbing
-        doAnswer(invocation -> channelName).when(mockChannel).getName();
+        doAnswer(invocation -> ConnectionState.CONNECTING).when(stubConnectedState).getPreviousState();
+        doAnswer(invocation -> ConnectionState.CONNECTED).when(stubConnectedState).getCurrentState();
+        doAnswer(invocation -> channelName).when(stubChannel).getName();
 
         try (MockedConstruction<Pusher> mocked = mockConstruction(Pusher.class, (mock, context) -> {
-            // Pusher client Stubbing
-            stubPusherSubscribe(mock, mockChannel, channelName);
+            // Pusher client stubbing
+            stubPusherConnect(mock, stubConnectedState);
+            stubPusherSubscribe(mock, stubChannel, channelName);
         })) {
             // Arrange - Data (continued)
-            service.start();
+            service.start().get();
 
             // Act
             Future<Void> future = service.subscribeToPlayer(project, player);
@@ -248,22 +265,28 @@ class PusherNotificationServiceTest {
     }
 
     @Test
+    @Timeout(value = 2, unit = TimeUnit.SECONDS)
+    @SneakyThrows
     void subscribeToAsset_AfterStartingService_IsSubscribeToChannel() {
         // Arrange - Data
         final String asset = "xyz";
         final String channelName = new AssetChannel(DEFAULT_PLATFORM, asset).channel();
         final PusherNotificationService service = defaultPusherNotificationService();
-        final Channel mockChannel = mock(Channel.class);
+        final ConnectionStateChange stubConnectedState = mock(ConnectionStateChange.class);
+        final Channel stubChannel = mock(Channel.class);
 
         // Arrange - Stubbing
-        doAnswer(invocation -> channelName).when(mockChannel).getName();
+        doAnswer(invocation -> ConnectionState.CONNECTING).when(stubConnectedState).getPreviousState();
+        doAnswer(invocation -> ConnectionState.CONNECTED).when(stubConnectedState).getCurrentState();
+        doAnswer(invocation -> channelName).when(stubChannel).getName();
 
         try (MockedConstruction<Pusher> mocked = mockConstruction(Pusher.class, (mock, context) -> {
-            // Pusher client Stubbing
-            stubPusherSubscribe(mock, mockChannel, channelName);
+            // Pusher client stubbing
+            stubPusherConnect(mock, stubConnectedState);
+            stubPusherSubscribe(mock, stubChannel, channelName);
         })) {
             // Arrange - Data (continued)
-            service.start();
+            service.start().get();
 
             // Act
             Future<Void> future = service.subscribeToAsset(asset);
@@ -280,22 +303,28 @@ class PusherNotificationServiceTest {
     }
 
     @Test
+    @Timeout(value = 2, unit = TimeUnit.SECONDS)
+    @SneakyThrows
     void subscribeToWallet_AfterStartingService_IsSubscribeToChannel() {
         // Arrange - Data
         final String wallet = "xyz";
         final String channelName = new WalletChannel(DEFAULT_PLATFORM, wallet).channel();
         final PusherNotificationService service = defaultPusherNotificationService();
-        final Channel mockChannel = mock(Channel.class);
+        final ConnectionStateChange stubConnectedState = mock(ConnectionStateChange.class);
+        final Channel stubChannel = mock(Channel.class);
 
         // Arrange - Stubbing
-        doAnswer(invocation -> channelName).when(mockChannel).getName();
+        doAnswer(invocation -> ConnectionState.CONNECTING).when(stubConnectedState).getPreviousState();
+        doAnswer(invocation -> ConnectionState.CONNECTED).when(stubConnectedState).getCurrentState();
+        doAnswer(invocation -> channelName).when(stubChannel).getName();
 
         try (MockedConstruction<Pusher> mocked = mockConstruction(Pusher.class, (mock, context) -> {
-            // Pusher client Stubbing
-            stubPusherSubscribe(mock, mockChannel, channelName);
+            // Pusher client stubbing
+            stubPusherConnect(mock, stubConnectedState);
+            stubPusherSubscribe(mock, stubChannel, channelName);
         })) {
             // Arrange - Data (continued)
-            service.start();
+            service.start().get();
 
             // Act
             Future<Void> future = service.subscribeToWallet(wallet);
@@ -365,24 +394,29 @@ class PusherNotificationServiceTest {
     }
 
     @Test
+    @Timeout(value = 2, unit = TimeUnit.SECONDS)
     @SneakyThrows
     void unsubscribeToProject_AfterStartingService_IsNoLongerSubscribedToChannel() {
         // Arrange - Data
         final int project = 1234;
         final String channelName = new ProjectChannel(DEFAULT_PLATFORM, project).channel();
         final PusherNotificationService service = defaultPusherNotificationService();
-        final Channel mockChannel = mock(Channel.class);
+        final ConnectionStateChange stubConnectedState = mock(ConnectionStateChange.class);
+        final Channel stubChannel = mock(Channel.class);
 
         // Arrange - Stubbing
-        doAnswer(invocation -> channelName).when(mockChannel).getName();
+        doAnswer(invocation -> ConnectionState.CONNECTING).when(stubConnectedState).getPreviousState();
+        doAnswer(invocation -> ConnectionState.CONNECTED).when(stubConnectedState).getCurrentState();
+        doAnswer(invocation -> channelName).when(stubChannel).getName();
 
         try (MockedConstruction<Pusher> mocked = mockConstruction(Pusher.class, (mock, context) -> {
-            // Pusher client Stubbing
-            stubPusherSubscribe(mock, mockChannel, channelName);
-            stubPusherUnsubscribe(mock, mockChannel, channelName);
+            // Pusher client stubbing
+            stubPusherConnect(mock, stubConnectedState);
+            stubPusherSubscribe(mock, stubChannel, channelName);
+            stubPusherUnsubscribe(mock, stubChannel, channelName);
         })) {
             // Arrange - Data (continued)
-            service.start();
+            service.start().get();
             service.subscribeToProject(project).get();
 
             assumeTrue(service.isSubscribedToProject(project));
@@ -402,6 +436,7 @@ class PusherNotificationServiceTest {
     }
 
     @Test
+    @Timeout(value = 2, unit = TimeUnit.SECONDS)
     @SneakyThrows
     void unsubscribeToPlayer_AfterStartingService_IsNoLongerSubscribedToChannel() {
         // Arrange - Data
@@ -409,18 +444,22 @@ class PusherNotificationServiceTest {
         final String player = "xyz";
         final String channelName = new PlayerChannel(DEFAULT_PLATFORM, project, player).channel();
         final PusherNotificationService service = defaultPusherNotificationService();
-        final Channel mockChannel = mock(Channel.class);
+        final ConnectionStateChange stubConnectedState = mock(ConnectionStateChange.class);
+        final Channel stubChannel = mock(Channel.class);
 
         // Arrange - Stubbing
-        doAnswer(invocation -> channelName).when(mockChannel).getName();
+        doAnswer(invocation -> ConnectionState.CONNECTING).when(stubConnectedState).getPreviousState();
+        doAnswer(invocation -> ConnectionState.CONNECTED).when(stubConnectedState).getCurrentState();
+        doAnswer(invocation -> channelName).when(stubChannel).getName();
 
         try (MockedConstruction<Pusher> mocked = mockConstruction(Pusher.class, (mock, context) -> {
-            // Pusher client Stubbing
-            stubPusherSubscribe(mock, mockChannel, channelName);
-            stubPusherUnsubscribe(mock, mockChannel, channelName);
+            // Pusher client stubbing
+            stubPusherConnect(mock, stubConnectedState);
+            stubPusherSubscribe(mock, stubChannel, channelName);
+            stubPusherUnsubscribe(mock, stubChannel, channelName);
         })) {
             // Arrange - Data (continued)
-            service.start();
+            service.start().get();
             service.subscribeToPlayer(project, player).get();
 
             assumeTrue(service.isSubscribedToPlayer(project, player));
@@ -440,24 +479,29 @@ class PusherNotificationServiceTest {
     }
 
     @Test
+    @Timeout(value = 2, unit = TimeUnit.SECONDS)
     @SneakyThrows
     void unsubscribeToAsset_AfterStartingService_IsNoLongerSubscribedToChannel() {
         // Arrange - Data
         final String asset = "xyz";
         final String channelName = new AssetChannel(DEFAULT_PLATFORM, asset).channel();
         final PusherNotificationService service = defaultPusherNotificationService();
-        final Channel mockChannel = mock(Channel.class);
+        final ConnectionStateChange stubConnectedState = mock(ConnectionStateChange.class);
+        final Channel stubChannel = mock(Channel.class);
 
         // Arrange - Stubbing
-        doAnswer(invocation -> channelName).when(mockChannel).getName();
+        doAnswer(invocation -> ConnectionState.CONNECTING).when(stubConnectedState).getPreviousState();
+        doAnswer(invocation -> ConnectionState.CONNECTED).when(stubConnectedState).getCurrentState();
+        doAnswer(invocation -> channelName).when(stubChannel).getName();
 
         try (MockedConstruction<Pusher> mocked = mockConstruction(Pusher.class, (mock, context) -> {
-            // Pusher client Stubbing
-            stubPusherSubscribe(mock, mockChannel, channelName);
-            stubPusherUnsubscribe(mock, mockChannel, channelName);
+            // Pusher client stubbing
+            stubPusherConnect(mock, stubConnectedState);
+            stubPusherSubscribe(mock, stubChannel, channelName);
+            stubPusherUnsubscribe(mock, stubChannel, channelName);
         })) {
             // Arrange - Data (continued)
-            service.start();
+            service.start().get();
             service.subscribeToAsset(asset).get();
 
             assumeTrue(service.isSubscribedToAsset(asset));
@@ -477,24 +521,29 @@ class PusherNotificationServiceTest {
     }
 
     @Test
+    @Timeout(value = 2, unit = TimeUnit.SECONDS)
     @SneakyThrows
     void unsubscribeToWallet_AfterStartingService_IsNoLongerSubscribedToChannel() {
         // Arrange - Data
         final String wallet = "xyz";
         final String channelName = new WalletChannel(DEFAULT_PLATFORM, wallet).channel();
         final PusherNotificationService service = defaultPusherNotificationService();
-        final Channel mockChannel = mock(Channel.class);
+        final ConnectionStateChange stubConnectedState = mock(ConnectionStateChange.class);
+        final Channel stubChannel = mock(Channel.class);
 
         // Arrange - Stubbing
-        doAnswer(invocation -> channelName).when(mockChannel).getName();
+        doAnswer(invocation -> ConnectionState.CONNECTING).when(stubConnectedState).getPreviousState();
+        doAnswer(invocation -> ConnectionState.CONNECTED).when(stubConnectedState).getCurrentState();
+        doAnswer(invocation -> channelName).when(stubChannel).getName();
 
         try (MockedConstruction<Pusher> mocked = mockConstruction(Pusher.class, (mock, context) -> {
-            // Pusher client Stubbing
-            stubPusherSubscribe(mock, mockChannel, channelName);
-            stubPusherUnsubscribe(mock, mockChannel, channelName);
+            // Pusher client stubbing
+            stubPusherConnect(mock, stubConnectedState);
+            stubPusherSubscribe(mock, stubChannel, channelName);
+            stubPusherUnsubscribe(mock, stubChannel, channelName);
         })) {
             // Arrange - Data (continued)
-            service.start();
+            service.start().get();
             service.subscribeToWallet(wallet).get();
 
             assumeTrue(service.isSubscribedToWallet(wallet));
@@ -514,33 +563,39 @@ class PusherNotificationServiceTest {
     }
 
     @Test
+    @Timeout(value = 2, unit = TimeUnit.SECONDS)
     @SneakyThrows
-    void start_PreviouslyActiveServiceResubscribesToChannels() {
+    void start_PreviouslyActiveService_ResubscribesToChannels() {
         // Arrange - Data
         final int project = 1234;
         final String channelName = new ProjectChannel(DEFAULT_PLATFORM, project).channel();
         final PusherNotificationService service = defaultPusherNotificationService();
-        final Channel mockChannel = mock(Channel.class);
+        final ConnectionStateChange stubConnectedState = mock(ConnectionStateChange.class);
+        final Channel stubChannel = mock(Channel.class);
 
         // Arrange - Stubbing
-        doAnswer(invocation -> channelName).when(mockChannel).getName();
+        doAnswer(invocation -> ConnectionState.CONNECTING).when(stubConnectedState).getPreviousState();
+        doAnswer(invocation -> ConnectionState.CONNECTED).when(stubConnectedState).getCurrentState();
+        doAnswer(invocation -> channelName).when(stubChannel).getName();
 
         try (MockedConstruction<Pusher> mocked = mockConstruction(Pusher.class, (mock, context) -> {
-            // Pusher client Stubbing
-            stubPusherSubscribe(mock, mockChannel, channelName);
-            stubPusherUnsubscribe(mock, mockChannel, channelName);
+            // Pusher client stubbing
+            stubPusherConnect(mock, stubConnectedState);
+            stubPusherSubscribe(mock, stubChannel, channelName);
+            stubPusherUnsubscribe(mock, stubChannel, channelName);
         })) {
             // Arrange - Data (continued)
-            service.start();                           // Service is started for the first and subscribes to the channel
+            service.start().get();                     // Service is started for the first and subscribes to the channel
             service.subscribeToProject(project).get(); //
-            service.shutdown(); // Shutdown the service to be restarted on 'Act'
+            service.shutdown(); // Shutdown the service to be restarted on 'Act' (do not wait for future)
 
             assumeTrue(service.isSubscribedToProject(project));
 
             // Act
-            service.start();
+            Future<Void> future = service.start();
 
             // Assert
+            assertDoesNotThrow((Executable) future::get);
             assertTrue(service.isSubscribedToProject(project));
 
             // Verify
@@ -558,20 +613,29 @@ class PusherNotificationServiceTest {
         return new NotificationEvent(type, "", "");
     }
 
-    private static void stubPusherSubscribe(Pusher mockPusher, Channel mockChannel, String channelName) {
+    private static void stubPusherConnect(Pusher mockPusher, ConnectionStateChange stateChange) {
+        doAnswer(invocation -> {
+            ConnectionEventListener listener = invocation.getArgument(0, ConnectionEventListener.class);
+            listener.onConnectionStateChange(stateChange);
+            return null;
+        }).when(mockPusher)
+          .connect(any(ConnectionEventListener.class), any(ConnectionState.class));
+    }
+
+    private static void stubPusherSubscribe(Pusher mockPusher, Channel pusherChannel, String channelName) {
         doAnswer(invocation -> {
             ChannelEventListener listener = invocation.getArgument(1, ChannelEventListener.class);
             if (listener != null)
                 listener.onSubscriptionSucceeded(channelName);
 
-            return mockChannel;
+            return pusherChannel;
         }).when(mockPusher)
           .subscribe(eq(channelName), any(ChannelEventListener.class));
-        doAnswer(invocation -> mockChannel).when(mockPusher).subscribe(eq(channelName));
+        doAnswer(invocation -> pusherChannel).when(mockPusher).subscribe(eq(channelName));
     }
 
-    private static void stubPusherUnsubscribe(Pusher mockPusher, Channel mockChannel, String channelName) {
-        doAnswer(invocation -> mockChannel).when(mockPusher).unsubscribe(eq(channelName));
+    private static void stubPusherUnsubscribe(Pusher mockPusher, Channel pusherChannel, String channelName) {
+        doAnswer(invocation -> pusherChannel).when(mockPusher).unsubscribe(eq(channelName));
     }
 
 }
