@@ -12,30 +12,35 @@ public interface NotificationsService {
 
     /**
      * Starts this service.
+     *
+     * @return the future for this operation
      */
-    void start();
+    Future<Void> start();
 
     /**
      * Starts this service with the provided platform details.
      *
      * @param platform the platform
+     * @return the future for this operation
      */
-    void start(Platform platform);
+    Future<Void> start(Platform platform);
 
     /**
      * Starts this service with the provided connection listener.
      *
      * @param listener the listener
+     * @return the future for this operation
      */
-    void start(ConnectionEventListener listener);
+    Future<Void> start(ConnectionEventListener listener);
 
     /**
      * Starts this service with the provided platform details and connection listener.
      *
      * @param platform the platform
      * @param listener the listener
+     * @return the future for this operation
      */
-    void start(Platform platform, ConnectionEventListener listener);
+    Future<Void> start(Platform platform, ConnectionEventListener listener);
 
     /**
      * Checks if this service is connected to the platform.
@@ -46,8 +51,10 @@ public interface NotificationsService {
 
     /**
      * Shuts down this service.
+     *
+     * @return the future for this operation
      */
-    void shutdown();
+    Future<Void> shutdown();
 
     /**
      * Registers a notification listener and provides the registration object used for it.
