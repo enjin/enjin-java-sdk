@@ -56,9 +56,9 @@ public class PusherNotificationService implements NotificationsService {
     private Pusher pusher;
 
     // Listeners
+    private final PusherEventListener pusherEventListener;
     private PusherConnectionEventListener pusherConnectionListener;
     private ConnectionEventListener connectionEventListener;
-    private PusherEventListener listener;
 
     // Mutexes
     private final Object subscribedMutex = new Object();
@@ -81,6 +81,7 @@ public class PusherNotificationService implements NotificationsService {
     public PusherNotificationService(@NonNull Platform platform, LoggerProvider loggerProvider) {
         this.loggerProvider = loggerProvider;
         this.platform = platform;
+        this.pusherEventListener = new PusherEventListener(this);
     }
 
     @Override
@@ -105,7 +106,6 @@ public class PusherNotificationService implements NotificationsService {
                 .setCluster(cluster)
                 .setUseTLS(encrypted);
         this.pusher = new Pusher(key, options);
-        listener = new PusherEventListener(this);
 
         // Set up Pusher connection event listener
         pusherConnectionListener = new PusherConnectionEventListener();
@@ -426,7 +426,7 @@ public class PusherNotificationService implements NotificationsService {
 
     private void bind(@NonNull Channel channel) {
         for (EventType event : EventType.filterByChannelTypes(channel.getName()))
-            channel.bind(event.getKey(), listener);
+            channel.bind(event.getKey(), pusherEventListener);
     }
 
 }
