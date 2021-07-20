@@ -135,7 +135,7 @@ public class Token {
      *
      * @return the number of tokens
      */
-    private Boolean availableToMint;
+    private BigInteger availableToMint;
 
     /**
      * -- GETTER --
