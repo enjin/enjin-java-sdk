@@ -43,6 +43,16 @@ public interface TokenEventFragment<T extends GraphQLRequest<T>> extends GraphQL
     }
 
     /**
+     * Sets the request to include the transaction the event belongs to in the response.
+     *
+     * @return this request
+     */
+    default T withEventTransaction() {
+        set("withEventTransaction", true);
+        return (T) this;
+    }
+
+    /**
      * Sets the request to include the event's timestamps in the response.
      *
      * @return this request

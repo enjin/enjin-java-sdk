@@ -3,6 +3,8 @@ package com.enjin.sdk.services.platform.impl;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpCallback;
 import com.enjin.sdk.http.HttpResponse;
+import com.enjin.sdk.models.platform.GasPrices;
+import com.enjin.sdk.models.platform.GetGasPrice;
 import com.enjin.sdk.models.platform.GetPlatform;
 import com.enjin.sdk.models.platform.PlatformDetails;
 import com.enjin.sdk.services.GraphQLServiceBase;
@@ -34,8 +36,18 @@ public class PlatformServiceImpl extends GraphQLServiceBase implements PlatformS
     }
 
     @Override
+    public void getGasPriceAsync(GetGasPrice query, HttpCallback<GraphQLResponse<GasPrices>> callback) {
+        enqueueGraphQLCall(this.service.getGasPrice(query), callback);
+    }
+
+    @Override
     public HttpResponse<GraphQLResponse<PlatformDetails>> getPlatformSync(GetPlatform query) {
         return executeGraphQLCall(this.service.getPlatform(query));
+    }
+
+    @Override
+    public HttpResponse<GraphQLResponse<GasPrices>> getGasPrice(GetGasPrice query) {
+        return executeGraphQLCall(this.service.getGasPrice(query));
     }
 
 }

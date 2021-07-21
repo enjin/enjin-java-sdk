@@ -1,6 +1,7 @@
 package com.enjin.sdk.models.app;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
+import com.enjin.sdk.models.app.data.AppOptionsData;
 import com.enjin.sdk.services.app.AppsService;
 
 /**
@@ -51,6 +52,17 @@ public class UpdateApp extends GraphQLRequest<UpdateApp> implements AppFragment<
      */
     public UpdateApp image(String image) {
         set("image", image);
+        return this;
+    }
+
+    /**
+     * Sets the application options data.
+     *
+     * @param data the data
+     * @return     this request
+     */
+    public UpdateApp options(AppOptionsData data) {
+        set("options", data);
         return this;
     }
 

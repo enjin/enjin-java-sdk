@@ -1,5 +1,6 @@
 package com.enjin.sdk.models.balance;
 
+import com.enjin.sdk.models.app.App;
 import com.enjin.sdk.services.balance.BalancesService;
 import lombok.Getter;
 import lombok.ToString;
@@ -36,5 +37,13 @@ public class Balance {
      * @return the balance
      */
     private Integer value;
+
+    /**
+     * -- GETTER --
+     * Returns the application for the balance's token.
+     *
+     * @return the app
+     */
+    private App app;
 
 }
