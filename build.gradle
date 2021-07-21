@@ -19,6 +19,10 @@ buildscript {
     repositories {
         mavenCentral()
         gradlePluginPortal()
+        maven {
+            name = 'ajoberstar-backup'
+            url = 'https://ajoberstar.org/bintray-backup/'
+        }
     }
 }
 
