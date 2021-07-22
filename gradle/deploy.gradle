@@ -21,6 +21,4 @@ publishing {
 signing {
     // Use GPG Agent
     useGpgCmd()
-
-    sign configurations.archives
 }
