@@ -12,10 +12,6 @@ buildscript {
             'websocket'               : "org.java-websocket:Java-WebSocket:${websocketVersion}"
     ]
 
-    ext.local = new Properties()
-    File file = project.rootProject.file('local.properties')
-    if (file.exists()) local.load(file.newDataInputStream())
-
     repositories {
         mavenCentral()
         gradlePluginPortal()
@@ -32,6 +28,14 @@ plugins {
     id 'org.ajoberstar.git-publish' version "${gitPublishVersion}"
 }
 
+def local = new Properties()
+File file = project.rootProject.file('local.properties')
+if (file.exists()) local.load(file.newDataInputStream())
+
+for (prop in local) {
+    project.ext.setProperty(prop.key, prop.value)
+}
+
 allprojects {
     group = GROUP
     version = VERSION_NAME
@@ -45,7 +49,7 @@ allprojects {
 subprojects {
     apply plugin: 'java'
     apply plugin: 'java-library'
-    apply plugin: 'maven'
+    apply plugin: 'maven-publish'
     apply plugin: 'io.freefair.lombok'
     apply plugin: 'com.github.johnrengelman.shadow'
 

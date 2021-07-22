@@ -1,14 +1,26 @@
 apply plugin: 'com.vanniktech.maven.publish'
 
 mavenPublish {
-    targets {
-        uploadArchives {
-            releaseRepositoryUrl = RELEASE_REPOSITORY_URL
-            snapshotRepositoryUrl = SNAPSHOT_REPOSITORY_URL
-            if (project.local.containsKey('SONATYPE_NEXUS_USERNAME'))
-                repositoryUsername = local.getProperty('SONATYPE_NEXUS_USERNAME')
-            if (project.local.containsKey('SONATYPE_NEXUS_PASSWORD'))
-                repositoryPassword = local.getProperty('SONATYPE_NEXUS_PASSWORD')
+    sonatypeHost = null
+}
+
+publishing {
+    repositories {
+        maven {
+            def releaseRepoUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+            def snapshotRepoUrl = 'https://oss.sonatype.org/content/repositories/snapshots/'
+            url = version.endsWith('SNAPSHOT') ? snapshotRepoUrl : releaseRepoUrl
+            credentials {
+                username = project.findProperty('deployment.username')
+                password = project.findProperty('deployment.password')
+            }
         }
     }
+}
+
+signing {
+    // Use GPG Agent
+    useGpgCmd()
+
+    sign configurations.archives
 }

@@ -1,0 +1,7 @@
+# Maven Deployment
+deployment.username=
+deployment.password=
+
+# GPG Signing
+signing.gnupg.keyName=
+signing.gnupg.passphrase=

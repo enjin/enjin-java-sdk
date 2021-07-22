@@ -1,10 +1,10 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Deploy SDK Archives" type="GradleRunConfiguration" factoryName="Gradle">
+  <configuration default="false" name="Publish Archives To Local" type="GradleRunConfiguration" factoryName="Gradle">
     <ExternalSystemSettings>
       <option name="executionName" />
       <option name="externalProjectPath" value="$PROJECT_DIR$/sdk" />
       <option name="externalSystemIdString" value="GRADLE" />
-      <option name="scriptParameters" value="" />
+      <option name="scriptParameters" value="-PRELEASE_SIGNING_ENABLED=false" />
       <option name="taskDescriptions">
         <list />
       </option>
@@ -12,12 +12,14 @@
         <list>
           <option value="clean" />
           <option value="build" />
-          <option value="uploadArchives" />
+          <option value="publishToMavenLocal" />
         </list>
       </option>
       <option name="vmOptions" value="" />
     </ExternalSystemSettings>
-    <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+    <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+    <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+    <DebugAllEnabled>false</DebugAllEnabled>
     <method v="2" />
   </configuration>
 </component>
