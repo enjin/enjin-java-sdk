@@ -104,53 +104,53 @@ public interface NotificationsService {
     /**
      * Opens a channel for the specified project, allowing listeners to receive events for that project.
      *
-     * @param project the project ID
+     * @param project the project's UUID
      * @return the future for this operation
      */
-    Future<Void> subscribeToProject(int project);
+    Future<Void> subscribeToProject(String project);
 
     /**
      * Closes a channel for the specified project, preventing listeners from receiving events for that project.
      *
-     * @param project the project ID
+     * @param project the project's UUID
      * @return the future for this operation
      */
-    Future<Void> unsubscribeToProject(int project);
+    Future<Void> unsubscribeToProject(String project);
 
     /**
      * Determines if the channel is open for the specified project.
      *
-     * @param project the project ID
+     * @param project the project's UUID
      * @return true if open, else false
      */
-    boolean isSubscribedToProject(int project);
+    boolean isSubscribedToProject(String project);
 
     /**
      * Opens a channel for the specified player, allowing listeners to receive events for that player.
      *
-     * @param project the ID of the project the player is on
+     * @param project the UUID of the project the player is on
      * @param player the player ID
      * @return the future for this operation
      */
-    Future<Void> subscribeToPlayer(int project, String player);
+    Future<Void> subscribeToPlayer(String project, String player);
 
     /**
      * Closes a channel for the specified player, preventing listeners from receiving events for that player.
      *
-     * @param project the ID of the project the player is on
+     * @param project the UUID of the project the player is on
      * @param player the player ID
      * @return the future for this operation
      */
-    Future<Void> unsubscribeToPlayer(int project, String player);
+    Future<Void> unsubscribeToPlayer(String project, String player);
 
     /**
      * Determines if the channel is open for the specified player.
      *
-     * @param project the ID of the project the player is on
+     * @param project the UUID of the project the player is on
      * @param player the player ID
      * @return true if open, else false
      */
-    boolean isSubscribedToPlayer(int project, String player);
+    boolean isSubscribedToPlayer(String project, String player);
 
     /**
      * Opens a channel for the specified asset, allowing listeners to receive events for that asset.

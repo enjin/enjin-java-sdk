@@ -11,17 +11,17 @@ import lombok.NonNull;
 public class PlayerChannel implements Channel {
 
     private final Platform platform;
-    private final int project;
+    private final String project;
     private final String player;
 
     /**
      * Constructs a channel for the given network and player on a project.
      *
      * @param platform the platform
-     * @param project the project ID
+     * @param project the project's UUID
      * @param player the identity ID
      */
-    public PlayerChannel(@NonNull Platform platform, int project, String player) {
+    public PlayerChannel(@NonNull Platform platform, String project, String player) {
         this.platform = platform;
         this.project = project;
         this.player = player;

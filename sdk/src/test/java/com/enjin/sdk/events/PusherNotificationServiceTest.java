@@ -137,7 +137,7 @@ class PusherNotificationServiceTest {
     @Test
     void subscribeToProject_BeforeStartingService_ReturnsExceptionalFuture() {
         // Arrange - Data
-        final int project = 1234;
+        final String project = "xyz";
         final PusherNotificationService service = defaultPusherNotificationService();
 
         // Act
@@ -150,7 +150,7 @@ class PusherNotificationServiceTest {
     @Test
     void subscribeToPlayer_BeforeStartingService_ReturnsExceptionalFuture() {
         // Arrange - Data
-        final int project = 1234;
+        final String project = "xyz";
         final String player = "xyz";
         final PusherNotificationService service = defaultPusherNotificationService();
 
@@ -192,7 +192,7 @@ class PusherNotificationServiceTest {
     @SneakyThrows
     void subscribeToProject_AfterStartingService_IsSubscribeToChannel() {
         // Arrange - Data
-        final int project = 1234;
+        final String project = "xyz";
         final String channelName = new ProjectChannel(DEFAULT_PLATFORM, project).channel();
         final PusherNotificationService service = defaultPusherNotificationService();
         final ConnectionStateChange stubConnectedState = mock(ConnectionStateChange.class);
@@ -230,7 +230,7 @@ class PusherNotificationServiceTest {
     @SneakyThrows
     void subscribeToPlayer_AfterStartingService_IsSubscribeToChannel() {
         // Arrange - Data
-        final int project = 1234;
+        final String project = "xyz";
         final String player = "xyz";
         final String channelName = new PlayerChannel(DEFAULT_PLATFORM, project, player).channel();
         final PusherNotificationService service = defaultPusherNotificationService();
@@ -343,7 +343,7 @@ class PusherNotificationServiceTest {
     @Test
     void unsubscribeToProject_BeforeStartingService_ReturnsExceptionalFuture() {
         // Arrange - Data
-        final int project = 1234;
+        final String project = "xyz";
         final PusherNotificationService service = defaultPusherNotificationService();
 
         // Act
@@ -356,7 +356,7 @@ class PusherNotificationServiceTest {
     @Test
     void unsubscribeToPlayer_BeforeStartingService_ReturnsExceptionalFuture() {
         // Arrange - Data
-        final int project = 1234;
+        final String project = "xyz";
         final String player = "xyz";
         final PusherNotificationService service = defaultPusherNotificationService();
 
@@ -398,7 +398,7 @@ class PusherNotificationServiceTest {
     @SneakyThrows
     void unsubscribeToProject_AfterStartingService_IsNoLongerSubscribedToChannel() {
         // Arrange - Data
-        final int project = 1234;
+        final String project = "xyz";
         final String channelName = new ProjectChannel(DEFAULT_PLATFORM, project).channel();
         final PusherNotificationService service = defaultPusherNotificationService();
         final ConnectionStateChange stubConnectedState = mock(ConnectionStateChange.class);
@@ -440,7 +440,7 @@ class PusherNotificationServiceTest {
     @SneakyThrows
     void unsubscribeToPlayer_AfterStartingService_IsNoLongerSubscribedToChannel() {
         // Arrange - Data
-        final int project = 1234;
+        final String project = "xyz";
         final String player = "xyz";
         final String channelName = new PlayerChannel(DEFAULT_PLATFORM, project, player).channel();
         final PusherNotificationService service = defaultPusherNotificationService();
@@ -567,7 +567,7 @@ class PusherNotificationServiceTest {
     @SneakyThrows
     void start_PreviouslyActiveService_ResubscribesToChannels() {
         // Arrange - Data
-        final int project = 1234;
+        final String project = "xyz";
         final String channelName = new ProjectChannel(DEFAULT_PLATFORM, project).channel();
         final PusherNotificationService service = defaultPusherNotificationService();
         final ConnectionStateChange stubConnectedState = mock(ConnectionStateChange.class);

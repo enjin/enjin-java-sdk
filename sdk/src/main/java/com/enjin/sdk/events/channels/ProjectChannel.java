@@ -11,15 +11,15 @@ import lombok.NonNull;
 public class ProjectChannel implements Channel {
 
     private final Platform platform;
-    private final int project;
+    private final String project;
 
     /**
      * Constructs a channel for the given network and project.
      *
      * @param platform the platform
-     * @param project the project ID
+     * @param project the project's UUID
      */
-    public ProjectChannel(@NonNull Platform platform, int project) {
+    public ProjectChannel(@NonNull Platform platform, String project) {
         this.platform = platform;
         this.project = project;
     }
