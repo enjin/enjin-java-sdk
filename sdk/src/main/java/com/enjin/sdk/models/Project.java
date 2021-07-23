@@ -18,6 +18,12 @@ public class Project {
 
     /**
      * -- Getter --
+     * @return the UUID of this project.
+     */
+    private String uuid;
+
+    /**
+     * -- Getter --
      * @return the name of this project
      */
     private String name;
