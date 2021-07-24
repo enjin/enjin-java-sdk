@@ -66,6 +66,12 @@ public class Request {
 
     /**
      * -- Getter --
+     * @return whether the wallet is a project wallet.
+     */
+    private Boolean projectWallet;
+
+    /**
+     * -- Getter --
      * @return the blockchain data of this transaction
      */
     private BlockchainData blockchainData;

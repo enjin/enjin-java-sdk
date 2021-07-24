@@ -12,8 +12,8 @@ class ProjectChannelTest {
     @Test
     void channel_ReturnsExpectedString() {
         // Arrange
-        final String expected = "enjincloud.test.project.1234";
-        final int project = 1234;
+        final String expected = "enjincloud.test.project.xyz";
+        final String project = "xyz";
         final Platform fakePlatform = PlatformUtils.createFakePlatform(PLATFORM_NAME);
         final Channel channel = new ProjectChannel(fakePlatform, project);
 

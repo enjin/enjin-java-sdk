@@ -1,6 +1,5 @@
 package com.enjin.sdk.models;
 
-import com.google.gson.annotations.SerializedName;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
@@ -15,7 +14,6 @@ public class PusherChannels {
      * -- Getter --
      * @return the project channel
      */
-    @SerializedName("project")
     private String project;
 
     /**

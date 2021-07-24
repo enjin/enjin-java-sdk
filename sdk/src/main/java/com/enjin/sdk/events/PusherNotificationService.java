@@ -255,22 +255,22 @@ public class PusherNotificationService implements NotificationsService {
      * requested channel.
      * </p>
      *
-     * @param project the project ID
+     * @param project the project's UUID
      *
      * @return the future for this operation
      */
     @Override
-    public Future<Void> subscribeToProject(int project) {
+    public Future<Void> subscribeToProject(String project) {
         return subscribe(new ProjectChannel(platform, project).channel());
     }
 
     @Override
-    public Future<Void> unsubscribeToProject(int project) {
+    public Future<Void> unsubscribeToProject(String project) {
         return unsubscribe(new ProjectChannel(platform, project).channel());
     }
 
     @Override
-    public boolean isSubscribedToProject(int project) {
+    public boolean isSubscribedToProject(String project) {
         return isSubscribed(new ProjectChannel(platform, project).channel());
     }
 
@@ -281,23 +281,23 @@ public class PusherNotificationService implements NotificationsService {
      * requested channel.
      * </p>
      *
-     * @param project the ID of the project the player is on
+     * @param project the UUID of the project the player is on
      * @param player  the player ID
      *
      * @return the future for this operation
      */
     @Override
-    public Future<Void> subscribeToPlayer(int project, String player) {
+    public Future<Void> subscribeToPlayer(String project, String player) {
         return subscribe(new PlayerChannel(platform, project, player).channel());
     }
 
     @Override
-    public Future<Void> unsubscribeToPlayer(int project, String player) {
+    public Future<Void> unsubscribeToPlayer(String project, String player) {
         return unsubscribe(new PlayerChannel(platform, project, player).channel());
     }
 
     @Override
-    public boolean isSubscribedToPlayer(int project, String player) {
+    public boolean isSubscribedToPlayer(String project, String player) {
         return isSubscribed(new PlayerChannel(platform, project, player).channel());
     }
 
