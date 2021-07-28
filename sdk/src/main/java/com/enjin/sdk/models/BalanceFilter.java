@@ -14,6 +14,9 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 public class BalanceFilter extends Filter<BalanceFilter> {
 
+    private String projectUuid;
+    @SerializedName("projectUuid_in")
+    private List<String> projectUuidIn;
     private String assetId;
     @SerializedName("assetId_in")
     private List<String> assetIdIn;
@@ -21,14 +24,32 @@ public class BalanceFilter extends Filter<BalanceFilter> {
     @SerializedName("wallet_in")
     private List<String> walletIn;
     private Integer value;
-    @SerializedName("value_gt")
-    private Integer valueGt;
-    @SerializedName("value_gte")
-    private Integer valueGte;
-    @SerializedName("value_lt")
-    private Integer valueLt;
-    @SerializedName("value_lte")
-    private Integer valueLte;
+    @SerializedName("value_is")
+    private Operator valueIs;
+
+    /**
+     * Sets the project UUID to filter for.
+     *
+     * @param projectUuid the project UUID
+     * @return this filter for chaining
+     */
+    public BalanceFilter projectUuid(String projectUuid) {
+        this.projectUuid = projectUuid;
+        return this;
+    }
+
+    /**
+     * Sets the project UUIDs to filter for.
+     *
+     * @param projectUuids the project UUIDs
+     * @return this filter for chaining
+     */
+    public BalanceFilter projectUuidIn(String... projectUuids) {
+        projectUuidIn = projectUuids == null
+                ? null
+                : Arrays.asList(projectUuids);
+        return this;
+    }
 
     /**
      * Sets the asset ID to filter for.
@@ -66,46 +87,13 @@ public class BalanceFilter extends Filter<BalanceFilter> {
     }
 
     /**
-     * Sets the filter to include balances greater than the passed value.
+     * Sets the filter operator type for values.
      *
-     * @param value the value to compare by
+     * @param valueIs the operator for comparison
      * @return this filter for chaining
      */
-    public BalanceFilter valueGreaterThan(Integer value) {
-        valueGt = value;
-        return this;
-    }
-
-    /**
-     * Sets the filter to include balances greater than or equal to the passed value.
-     *
-     * @param value the value to compare by
-     * @return this filter for chaining
-     */
-    public BalanceFilter valueGreaterThanOrEqual(Integer value) {
-        valueGte = value;
-        return this;
-    }
-
-    /**
-     * Sets the filter to include balances less than the passed value.
-     *
-     * @param value the value to compare by
-     * @return this filter for chaining
-     */
-    public BalanceFilter valueLessThan(Integer value) {
-        valueLt = value;
-        return this;
-    }
-
-    /**
-     * Sets the filter to include balances less than or equal to the passed value.
-     *
-     * @param value the value to compare by
-     * @return this filter for chaining
-     */
-    public BalanceFilter valueLessThanOrEqual(Integer value) {
-        valueLte = value;
+    public BalanceFilter valueIs(Operator valueIs) {
+        this.valueIs = valueIs;
         return this;
     }
 

@@ -21,7 +21,7 @@ public class SdkUpdateTask extends TimerTask {
 
     @Override
     public void run() {
-        AuthProject request = new AuthProject().id(config.getAppId())
+        AuthProject request = new AuthProject().uuid(config.getAppUuid())
                                                .secret(config.getAppSecret());
         GraphQLResponse<AccessToken> response = sdk.authProject(request);
         if (!response.isSuccess())

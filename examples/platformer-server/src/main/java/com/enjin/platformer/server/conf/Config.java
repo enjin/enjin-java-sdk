@@ -32,7 +32,7 @@ public class Config implements PostProcessable {
     private String host = "0.0.0.0";
     private int port = 11011;
     @Getter
-    private int appId = -1;
+    private String appUuid = "";
     @Getter
     private String appSecret = "";
     private Map<String, Asset> assets = getAssets();
@@ -71,7 +71,7 @@ public class Config implements PostProcessable {
 
     public boolean validate() {
         boolean validPort = validatePort();
-        boolean validAppId = appId >= MIN_APP_ID;
+        boolean validAppUuid = !(appUuid == null || appUuid.isEmpty());
         boolean validAppSecret = !appSecret.isEmpty();
         boolean validDevWallet = !(devWallet == null || devWallet.isEmpty());
         boolean validAssets = validateAssets();
@@ -79,8 +79,8 @@ public class Config implements PostProcessable {
         if (!validPort)
             System.out.println(String.format("Port must be a number from %s through %s.", MIN_PORT, MAX_PORT));
 
-        if (!validAppId)
-            System.out.println(String.format("App ID must be a number greater than or equal to %s.", MIN_APP_ID));
+        if (!validAppUuid)
+            System.out.println("App uuid must be provided.");
 
         if (!validAppSecret)
             System.out.println("App secret must be provided.");
@@ -88,7 +88,7 @@ public class Config implements PostProcessable {
         if (!validDevWallet)
             System.out.println("Developer wallet must be set.");
 
-        return validPort && validAppId && validAppSecret && validDevWallet && validAssets;
+        return validPort && validAppUuid && validAppSecret && validDevWallet && validAssets;
     }
 
     public boolean validatePort() {
