@@ -18,13 +18,13 @@ public class AuthProject extends GraphQLRequest<AuthProject> {
     }
 
     /**
-     * Sets the project ID.
+     * Sets the project UUID.
      *
-     * @param id the ID
+     * @param uuid the UUID
      * @return this request for chaining
      */
-    public AuthProject id(Integer id) {
-        return set("id", id);
+    public AuthProject uuid(String uuid) {
+        return set("uuid", uuid);
     }
 
     /**

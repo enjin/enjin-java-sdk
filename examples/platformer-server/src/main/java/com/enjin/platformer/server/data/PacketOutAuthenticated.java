@@ -11,14 +11,14 @@ import java.util.Map;
 public class PacketOutAuthenticated extends Packet {
 
     private AccessToken session;
-    @SerializedName("app_id")
-    private int appId;
+    @SerializedName("app_uuid")
+    private String appUuid;
     private Map<String, Asset> assets;
 
-    public PacketOutAuthenticated(AccessToken session, int appId, Map<String, Asset> assets) {
+    public PacketOutAuthenticated(AccessToken session, String appUuid, Map<String, Asset> assets) {
         super(PacketType.AUTHENTICATED);
         this.session = session;
-        this.appId = appId;
+        this.appUuid = appUuid;
         this.assets = assets;
     }
 

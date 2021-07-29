@@ -56,7 +56,7 @@ public class Player {
 
         accessToken = graphQLResponse.getData();
         peer.send(new PacketOutAuthenticated(accessToken,
-                                             server.getConfig().getAppId(),
+                                             server.getConfig().getAppUuid(),
                                              server.getConfig().getAssets()));
     }
 
