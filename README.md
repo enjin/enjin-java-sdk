@@ -27,3 +27,17 @@ GPG signing is required to publish release builds to Maven Central. You must con
 signing.gnupg.keyName=<last 8 characters of key>
 signing.gnupg.passphrase=<key passphrase>
 ```
+
+To deploy to a local maven repository:
+
+```
+clean build publishToMavenLocal -PRELEASE_SIGNING_ENABLED=false
+```
+
+To deploy to maven central run:
+
+```
+clean build publish
+```
+
+Note that it is important to run clean before building, otherwise the generated TemplateConstants class may not be updated.
