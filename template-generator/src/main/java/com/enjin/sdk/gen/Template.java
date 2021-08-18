@@ -52,8 +52,8 @@ public class Template {
     }
 
     protected String compile() {
-        StringBuilder builder = new StringBuilder(String.join("\n", contents));
-        
+        StringBuilder builder = new StringBuilder(String.join(" ", contents));
+
         if (type == TemplateType.FRAGMENT)
             return builder.toString();
 
@@ -78,16 +78,21 @@ public class Template {
                                       .filter(p -> !parameters.contains(p))
                                       .collect(Collectors.toList()));
 
-            builder.append(fragment.compile()).append('\n');
+            builder.append(" ").append(fragment.compile());
             processedFragments.add(fragment.namespace);
         }
 
         String template = builder.toString();
-        return template.replace(type.name().toLowerCase(),
-                                String.format("%s %s(\n    %s\n)",
-                                              type.name().toLowerCase(),
-                                              name,
-                                              String.join(",\n    ", parameters)));
+        String replaceTerm = type.name().toLowerCase();
+        StringBuilder newTermBuilder = new StringBuilder(String.format("%s %s", replaceTerm, name));
+
+        if (!parameters.isEmpty()) {
+            newTermBuilder.append("(")
+                          .append(String.join(", ", parameters))
+                          .append(")");
+        }
+
+        return template.replace(replaceTerm, newTermBuilder.toString());
     }
 
     protected static String readNamespace(String[] contents) {
