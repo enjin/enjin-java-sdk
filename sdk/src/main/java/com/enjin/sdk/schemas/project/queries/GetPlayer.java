@@ -7,7 +7,7 @@ import com.enjin.sdk.schemas.shared.arguments.PlayerFragmentArguments;
  * Request for getting a player on the project.
  *
  * @see com.enjin.sdk.models.Player
- * @see com.enjin.sdk.schemas.project.ProjectSchema
+ * @see com.enjin.sdk.schemas.project.IProjectSchema
  */
 public class GetPlayer
         extends GraphQLRequest<GetPlayer>

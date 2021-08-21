@@ -5,7 +5,7 @@ import com.enjin.sdk.graphql.GraphQLRequest;
 /**
  * Request for creating a player for the project.
  *
- * @see com.enjin.sdk.schemas.project.ProjectSchema
+ * @see com.enjin.sdk.schemas.project.IProjectSchema
  */
 public class CreatePlayer extends GraphQLRequest<CreatePlayer> {
 

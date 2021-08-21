@@ -5,7 +5,7 @@ import com.enjin.sdk.graphql.GraphQLRequest;
 /**
  * Request for deleting a player from the project.
  *
- * @see com.enjin.sdk.schemas.project.ProjectSchema
+ * @see com.enjin.sdk.schemas.project.IProjectSchema
  */
 public class DeletePlayer extends GraphQLRequest<DeletePlayer> {
 

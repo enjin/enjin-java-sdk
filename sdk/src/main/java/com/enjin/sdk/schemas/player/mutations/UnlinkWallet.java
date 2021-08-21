@@ -5,7 +5,7 @@ import com.enjin.sdk.graphql.GraphQLRequest;
 /**
  * Request for unlinking a wallet from the player.
  *
- * @see com.enjin.sdk.schemas.player.PlayerSchema
+ * @see com.enjin.sdk.schemas.player.IPlayerSchema
  */
 public class UnlinkWallet extends GraphQLRequest<UnlinkWallet> {
 

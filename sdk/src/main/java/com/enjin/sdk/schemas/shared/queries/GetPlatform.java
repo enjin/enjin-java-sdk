@@ -6,7 +6,7 @@ import com.enjin.sdk.graphql.GraphQLRequest;
  * Request for getting the platform details.
  *
  * @see com.enjin.sdk.models.Platform
- * @see com.enjin.sdk.schemas.shared.SharedSchema
+ * @see com.enjin.sdk.schemas.shared.ISharedSchema
  */
 public class GetPlatform extends GraphQLRequest<GetPlatform> {
 

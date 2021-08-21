@@ -1,14 +1,13 @@
 package com.enjin.sdk.schemas.shared.queries;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.models.Asset;
 import com.enjin.sdk.schemas.shared.arguments.AssetFragmentArguments;
 
 /**
  * Request for getting a asset on the platform.
  *
- * @see Asset
- * @see com.enjin.sdk.schemas.shared.SharedSchema
+ * @see com.enjin.sdk.models.Asset
+ * @see com.enjin.sdk.schemas.shared.ISharedSchema
  */
 public class GetAsset
         extends GraphQLRequest<GetAsset>

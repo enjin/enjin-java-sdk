@@ -7,7 +7,7 @@ import com.enjin.sdk.schemas.shared.arguments.TransactionFragmentArguments;
  * Request for getting a transaction on the platform.
  *
  * @see com.enjin.sdk.models.Request
- * @see com.enjin.sdk.schemas.shared.SharedSchema
+ * @see com.enjin.sdk.schemas.shared.ISharedSchema
  */
 public class GetRequest
         extends GraphQLRequest<GetRequest>

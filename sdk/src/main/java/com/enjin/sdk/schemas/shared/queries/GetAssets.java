@@ -1,7 +1,6 @@
 package com.enjin.sdk.schemas.shared.queries;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.models.Asset;
 import com.enjin.sdk.models.AssetFilter;
 import com.enjin.sdk.models.AssetSort;
 import com.enjin.sdk.schemas.shared.arguments.PaginationArguments;
@@ -10,8 +9,8 @@ import com.enjin.sdk.schemas.shared.arguments.AssetFragmentArguments;
 /**
  * Request for getting assets on the platform.
  *
- * @see Asset
- * @see com.enjin.sdk.schemas.shared.SharedSchema
+ * @see com.enjin.sdk.models.Asset
+ * @see com.enjin.sdk.schemas.shared.ISharedSchema
  */
 public class GetAssets
         extends GraphQLRequest<GetAssets>

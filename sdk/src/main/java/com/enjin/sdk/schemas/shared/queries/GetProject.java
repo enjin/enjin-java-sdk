@@ -6,7 +6,7 @@ import com.enjin.sdk.graphql.GraphQLRequest;
  * Request for getting a project on the platform.
  *
  * @see com.enjin.sdk.models.Project
- * @see com.enjin.sdk.schemas.shared.SharedSchema
+ * @see com.enjin.sdk.schemas.shared.ISharedSchema
  */
 public final class GetProject extends GraphQLRequest<GetProject> {
 

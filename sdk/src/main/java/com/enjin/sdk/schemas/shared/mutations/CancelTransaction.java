@@ -5,7 +5,7 @@ import com.enjin.sdk.graphql.GraphQLRequest;
 /**
  * Request for canceling a transaction on the platform.
  *
- * @see com.enjin.sdk.schemas.shared.SharedSchema
+ * @see com.enjin.sdk.schemas.shared.ISharedSchema
  */
 public class CancelTransaction extends GraphQLRequest<CancelTransaction> {
 
