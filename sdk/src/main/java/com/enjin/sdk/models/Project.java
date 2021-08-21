@@ -12,12 +12,6 @@ public class Project {
 
     /**
      * -- Getter --
-     * @return the ID of this project
-     */
-    private Integer id;
-
-    /**
-     * -- Getter --
      * @return the UUID of this project.
      */
     private String uuid;
