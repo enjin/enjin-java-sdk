@@ -1,14 +1,13 @@
 package com.enjin.sdk.schemas.shared.arguments;
 
 import com.enjin.sdk.graphql.VariableHolder;
-import com.enjin.sdk.models.Asset;
 import com.enjin.sdk.models.AssetIdFormat;
 
 /**
  * Fragment interface used to request certain information from assets returned by the platform.
  *
  * @param <T> the type of the implementing class
- * @see Asset
+ * @see com.enjin.sdk.models.Asset
  */
 public interface AssetFragmentArguments<T extends VariableHolder<T>> extends VariableHolder<T> {
 

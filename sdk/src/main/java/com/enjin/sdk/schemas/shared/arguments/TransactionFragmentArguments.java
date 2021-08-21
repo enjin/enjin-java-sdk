@@ -124,4 +124,14 @@ public interface TransactionFragmentArguments<T extends VariableHolder<T>> exten
         return set("withLogEvent", true);
     }
 
+    /**
+     * Sets the request to include the {@link com.enjin.sdk.models.Project}
+     * with its UUID that the transaction belongs to.
+     *
+     * @return this request for chaining.
+     */
+    default T withTransactionProjectUuid() {
+        return set("withTransactionProjectUuid", true);
+    }
+
 }

@@ -1,24 +1,24 @@
-package com.enjin.sdk.schemas.shared.mutations;
+package com.enjin.sdk.schemas.player.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.models.Transfers;
-import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
+import com.enjin.sdk.schemas.shared.arguments.TransactionFragmentArguments;
 
 /**
  * Request for sending one or more assets in a single transaction.
  *
  * @see SendAsset
- * @see com.enjin.sdk.schemas.shared.SharedSchema
+ * @see com.enjin.sdk.schemas.player.IPlayerSchema
  */
 public class AdvancedSendAsset
         extends GraphQLRequest<AdvancedSendAsset>
-        implements TransactionRequestArguments<AdvancedSendAsset> {
+        implements TransactionFragmentArguments<AdvancedSendAsset> {
 
     /**
      * Sole constructor.
      */
     public AdvancedSendAsset() {
-        super("enjin.sdk.shared.AdvancedSendAsset");
+        super("enjin.sdk.player.AdvancedSendAsset");
     }
 
     /**

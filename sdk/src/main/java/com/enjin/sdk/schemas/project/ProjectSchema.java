@@ -4,6 +4,17 @@ import com.enjin.sdk.TrustedPlatformMiddleware;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpCallback;
 import com.enjin.sdk.models.Wallet;
+import com.enjin.sdk.schemas.project.mutations.AdvancedSendAsset;
+import com.enjin.sdk.schemas.project.mutations.ApproveEnj;
+import com.enjin.sdk.schemas.project.mutations.ApproveMaxEnj;
+import com.enjin.sdk.schemas.project.mutations.CompleteTrade;
+import com.enjin.sdk.schemas.project.mutations.CreateTrade;
+import com.enjin.sdk.schemas.project.mutations.MeltAsset;
+import com.enjin.sdk.schemas.project.mutations.Message;
+import com.enjin.sdk.schemas.project.mutations.ResetEnjApproval;
+import com.enjin.sdk.schemas.project.mutations.SendAsset;
+import com.enjin.sdk.schemas.project.mutations.SendEnj;
+import com.enjin.sdk.schemas.project.mutations.SetApprovalForAll;
 import com.enjin.sdk.schemas.project.queries.GetWallet;
 import com.enjin.sdk.schemas.project.queries.GetWallets;
 import com.enjin.sdk.services.PlayerService;
@@ -51,7 +62,7 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     /**
      * Sole constructor, used internally.
      *
-     * @param middleware the middleware
+     * @param middleware     the middleware
      * @param loggerProvider the logger provider
      */
     public ProjectSchema(TrustedPlatformMiddleware middleware, LoggerProvider loggerProvider) {
@@ -61,10 +72,90 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     }
 
     /**
+     * Sends {@link AdvancedSendAsset} request synchronously.
+     *
+     * @param request the request
+     *
+     * @return the response
+     *
+     * @throws IOException if a problem occurred talking to the server
+     */
+    @Override
+    public GraphQLResponse<Request> advancedSendAsset(AdvancedSendAsset request) {
+        return transactionRequest(request);
+    }
+
+    /**
+     * Sends {@link AdvancedSendAsset} request asynchronously.
+     *
+     * @param request  the request
+     * @param callback the callback
+     */
+    @Override
+    public void advancedSendAsset(AdvancedSendAsset request,
+                                  HttpCallback<GraphQLResponse<Request>> callback) {
+        transactionRequest(request, callback);
+    }
+
+    /**
+     * Sends {@link ApproveEnj} request synchronously.
+     *
+     * @param request the request
+     *
+     * @return the response
+     *
+     * @throws IOException if a problem occurred talking to the server
+     */
+    @Override
+    public GraphQLResponse<Request> approveEnj(ApproveEnj request) {
+        return transactionRequest(request);
+    }
+
+    /**
+     * Sends {@link ApproveEnj} request asynchronously.
+     *
+     * @param request  the request
+     * @param callback the callback
+     */
+    @Override
+    public void approveEnj(ApproveEnj request,
+                           HttpCallback<GraphQLResponse<Request>> callback) {
+        transactionRequest(request, callback);
+    }
+
+    /**
+     * Sends {@link ApproveMaxEnj} request synchronously.
+     *
+     * @param request the request
+     *
+     * @return the response
+     *
+     * @throws IOException if a problem occurred talking to the server
+     */
+    @Override
+    public GraphQLResponse<Request> approveMaxEnj(ApproveMaxEnj request) {
+        return transactionRequest(request);
+    }
+
+    /**
+     * Sends {@link ApproveMaxEnj} request asynchronously.
+     *
+     * @param request  the request
+     * @param callback the callback
+     */
+    @Override
+    public void approveMaxEnj(ApproveMaxEnj request,
+                              HttpCallback<GraphQLResponse<Request>> callback) {
+        transactionRequest(request, callback);
+    }
+
+    /**
      * Sends {@link AuthPlayer} request synchronously.
      *
      * @param request the request
+     *
      * @return the response
+     *
      * @throws IOException if a problem occurred talking to the server
      */
     @Override
@@ -75,7 +166,7 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     /**
      * Sends {@link AuthPlayer} request asynchronously.
      *
-     * @param request the request
+     * @param request  the request
      * @param callback the callback
      */
     @Override
@@ -88,7 +179,9 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
      * Sends {@link AuthProject} request synchronously.
      *
      * @param request the request
+     *
      * @return the response
+     *
      * @throws IOException if a problem occurred talking to the server
      */
     @Override
@@ -99,7 +192,7 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     /**
      * Sends {@link AuthProject} request asynchronously.
      *
-     * @param request the request
+     * @param request  the request
      * @param callback the callback
      */
     @Override
@@ -109,34 +202,38 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     }
 
     /**
-     * Sends {@link CreatePlayer} request synchronously.
+     * Sends {@link CompleteTrade} request synchronously.
      *
      * @param request the request
+     *
      * @return the response
+     *
      * @throws IOException if a problem occurred talking to the server
      */
     @Override
-    public GraphQLResponse<AccessToken> createPlayer(CreatePlayer request) {
-        return sendRequest(playerService.getAuth(schema, createRequestBody(request)));
+    public GraphQLResponse<Request> completeTrade(CompleteTrade request) {
+        return transactionRequest(request);
     }
 
     /**
-     * Sends {@link CreatePlayer} request asynchronously.
+     * Sends {@link CompleteTrade} request asynchronously.
      *
-     * @param request the request
+     * @param request  the request
      * @param callback the callback
      */
     @Override
-    public void createPlayer(CreatePlayer request,
-                             HttpCallback<GraphQLResponse<AccessToken>> callback) {
-        sendRequest(playerService.getAuth(schema, createRequestBody(request)), callback);
+    public void completeTrade(CompleteTrade request,
+                              HttpCallback<GraphQLResponse<Request>> callback) {
+        transactionRequest(request, callback);
     }
 
     /**
      * Sends {@link CreateAsset} request synchronously.
      *
      * @param request the request
+     *
      * @return the response
+     *
      * @throws IOException if a problem occurred talking to the server
      */
     @Override
@@ -147,7 +244,7 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     /**
      * Sends {@link CreateAsset} request asynchronously.
      *
-     * @param request the request
+     * @param request  the request
      * @param callback the callback
      */
     @Override
@@ -157,10 +254,64 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     }
 
     /**
+     * Sends {@link CreatePlayer} request synchronously.
+     *
+     * @param request the request
+     *
+     * @return the response
+     *
+     * @throws IOException if a problem occurred talking to the server
+     */
+    @Override
+    public GraphQLResponse<AccessToken> createPlayer(CreatePlayer request) {
+        return sendRequest(playerService.getAuth(schema, createRequestBody(request)));
+    }
+
+    /**
+     * Sends {@link CreatePlayer} request asynchronously.
+     *
+     * @param request  the request
+     * @param callback the callback
+     */
+    @Override
+    public void createPlayer(CreatePlayer request,
+                             HttpCallback<GraphQLResponse<AccessToken>> callback) {
+        sendRequest(playerService.getAuth(schema, createRequestBody(request)), callback);
+    }
+
+    /**
+     * Sends {@link CreateTrade} request synchronously.
+     *
+     * @param request the request
+     *
+     * @return the response
+     *
+     * @throws IOException if a problem occurred talking to the server
+     */
+    @Override
+    public GraphQLResponse<Request> createTrade(CreateTrade request) {
+        return transactionRequest(request);
+    }
+
+    /**
+     * Sends {@link CreateTrade} request asynchronously.
+     *
+     * @param request  the request
+     * @param callback the callback
+     */
+    @Override
+    public void createTrade(CreateTrade request,
+                            HttpCallback<GraphQLResponse<Request>> callback) {
+        transactionRequest(request, callback);
+    }
+
+    /**
      * Sends {@link DecreaseMaxMeltFee} request synchronously.
      *
      * @param request the request
+     *
      * @return the response
+     *
      * @throws IOException if a problem occurred talking to the server
      */
     @Override
@@ -171,7 +322,7 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     /**
      * Sends {@link DecreaseMaxMeltFee} request asynchronously.
      *
-     * @param request the request
+     * @param request  the request
      * @param callback the callback
      */
     @Override
@@ -184,7 +335,9 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
      * Sends {@link DecreaseMaxTransferFee} request synchronously.
      *
      * @param request the request
+     *
      * @return the response
+     *
      * @throws IOException if a problem occurred talking to the server
      */
     @Override
@@ -195,7 +348,7 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     /**
      * Sends {@link DecreaseMaxTransferFee} request asynchronously.
      *
-     * @param request the request
+     * @param request  the request
      * @param callback the callback
      */
     @Override
@@ -208,7 +361,9 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
      * Sends {@link DeletePlayer} request synchronously.
      *
      * @param request the request
+     *
      * @return the response
+     *
      * @throws IOException if a problem occurred talking to the server
      */
     @Override
@@ -219,7 +374,7 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     /**
      * Sends {@link DeletePlayer} request asynchronously.
      *
-     * @param request the request
+     * @param request  the request
      * @param callback the callback
      */
     @Override
@@ -232,7 +387,9 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
      * Sends {@link GetPlayer} request synchronously.
      *
      * @param request the request
+     *
      * @return the response
+     *
      * @throws IOException if a problem occurred talking to the server
      */
     @Override
@@ -243,7 +400,7 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     /**
      * Sends {@link GetPlayer} request asynchronously.
      *
-     * @param request the request
+     * @param request  the request
      * @param callback the callback
      */
     @Override
@@ -256,7 +413,9 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
      * Sends {@link GetPlayers} request synchronously.
      *
      * @param request the request
+     *
      * @return the response
+     *
      * @throws IOException if a problem occurred talking to the server
      */
     @Override
@@ -267,7 +426,7 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     /**
      * Sends {@link GetPlayers} request asynchronously.
      *
-     * @param request the request
+     * @param request  the request
      * @param callback the callback
      */
     @Override
@@ -280,7 +439,9 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
      * Sends {@link GetWallet} request synchronously.
      *
      * @param request the request
+     *
      * @return the response
+     *
      * @throws IOException if a problem occurred talking to the server
      */
     @Override
@@ -291,7 +452,7 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     /**
      * Sends {@link GetWallet} request asynchronously.
      *
-     * @param request the request
+     * @param request  the request
      * @param callback the callback
      */
     @Override
@@ -304,7 +465,9 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
      * Sends {@link GetWallets} request synchronously.
      *
      * @param request the request
+     *
      * @return the response
+     *
      * @throws IOException if a problem occurred talking to the server
      */
     @Override
@@ -315,7 +478,7 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     /**
      * Sends {@link GetWallets} request asynchronously.
      *
-     * @param request the request
+     * @param request  the request
      * @param callback the callback
      */
     @Override
@@ -328,7 +491,9 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
      * Sends {@link InvalidateAssetMetadata} request synchronously.
      *
      * @param request the request
+     *
      * @return the response
+     *
      * @throws IOException if a problem occurred talking to the server
      */
     @Override
@@ -339,7 +504,7 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     /**
      * Sends {@link InvalidateAssetMetadata} request asynchronously.
      *
-     * @param request the request
+     * @param request  the request
      * @param callback the callback
      */
     @Override
@@ -349,10 +514,64 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     }
 
     /**
+     * Sends {@link MeltAsset} request synchronously.
+     *
+     * @param request the request
+     *
+     * @return the response
+     *
+     * @throws IOException if a problem occurred talking to the server
+     */
+    @Override
+    public GraphQLResponse<Request> meltAsset(MeltAsset request) {
+        return transactionRequest(request);
+    }
+
+    /**
+     * Sends {@link MeltAsset} request asynchronously.
+     *
+     * @param request  the request
+     * @param callback the callback
+     */
+    @Override
+    public void meltAsset(MeltAsset request,
+                          HttpCallback<GraphQLResponse<Request>> callback) {
+        transactionRequest(request, callback);
+    }
+
+    /**
+     * Sends {@link Message} request synchronously.
+     *
+     * @param request the request
+     *
+     * @return the response
+     *
+     * @throws IOException if a problem occurred talking to the server
+     */
+    @Override
+    public GraphQLResponse<Request> message(Message request) {
+        return transactionRequest(request);
+    }
+
+    /**
+     * Sends {@link Message} request asynchronously.
+     *
+     * @param request  the request
+     * @param callback the callback
+     */
+    @Override
+    public void message(Message request,
+                        HttpCallback<GraphQLResponse<Request>> callback) {
+        transactionRequest(request, callback);
+    }
+
+    /**
      * Sends {@link MintAsset} request synchronously.
      *
      * @param request the request
+     *
      * @return the response
+     *
      * @throws IOException if a problem occurred talking to the server
      */
     @Override
@@ -363,7 +582,7 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     /**
      * Sends {@link MintAsset} request asynchronously.
      *
-     * @param request the request
+     * @param request  the request
      * @param callback the callback
      */
     @Override
@@ -376,7 +595,9 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
      * Sends {@link ReleaseReserve} request synchronously.
      *
      * @param request the request
+     *
      * @return the response
+     *
      * @throws IOException if a problem occurred talking to the server
      */
     @Override
@@ -387,7 +608,7 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     /**
      * Sends {@link ReleaseReserve} request asynchronously.
      *
-     * @param request the request
+     * @param request  the request
      * @param callback the callback
      */
     @Override
@@ -397,10 +618,116 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     }
 
     /**
+     * Sends {@link ResetEnjApproval} request synchronously.
+     *
+     * @param request the request
+     *
+     * @return the response
+     *
+     * @throws IOException if a problem occurred talking to the server
+     */
+    @Override
+    public GraphQLResponse<Request> resetEnjApproval(ResetEnjApproval request) {
+        return transactionRequest(request);
+    }
+
+    /**
+     * Sends {@link ResetEnjApproval} request asynchronously.
+     *
+     * @param request  the request
+     * @param callback the callback
+     */
+    @Override
+    public void resetEnjApproval(ResetEnjApproval request,
+                                 HttpCallback<GraphQLResponse<Request>> callback) {
+        transactionRequest(request, callback);
+    }
+
+    /**
+     * Sends {@link SendAsset} request synchronously.
+     *
+     * @param request the request
+     *
+     * @return the response
+     *
+     * @throws IOException if a problem occurred talking to the server
+     */
+    @Override
+    public GraphQLResponse<Request> sendAsset(SendAsset request) {
+        return transactionRequest(request);
+    }
+
+    /**
+     * Sends {@link SendAsset} request asynchronously.
+     *
+     * @param request  the request
+     * @param callback the callback
+     */
+    @Override
+    public void sendAsset(SendAsset request,
+                          HttpCallback<GraphQLResponse<Request>> callback) {
+        transactionRequest(request, callback);
+    }
+
+    /**
+     * Sends {@link SendEnj} request synchronously.
+     *
+     * @param request the request
+     *
+     * @return the response
+     *
+     * @throws IOException if a problem occurred talking to the server
+     */
+    @Override
+    public GraphQLResponse<Request> sendEnj(SendEnj request) {
+        return transactionRequest(request);
+    }
+
+    /**
+     * Sends {@link SendEnj} request asynchronously.
+     *
+     * @param request  the request
+     * @param callback the callback
+     */
+    @Override
+    public void sendEnj(SendEnj request,
+                        HttpCallback<GraphQLResponse<Request>> callback) {
+        transactionRequest(request, callback);
+    }
+
+    /**
+     * Sends {@link SetApprovalForAll} request synchronously.
+     *
+     * @param request the request
+     *
+     * @return the response
+     *
+     * @throws IOException if a problem occurred talking to the server
+     */
+    @Override
+    public GraphQLResponse<Request> setApprovalForAll(SetApprovalForAll request) {
+        return transactionRequest(request);
+    }
+
+    /**
+     * Sends {@link SetApprovalForAll} request asynchronously.
+     *
+     * @param request  the request
+     * @param callback the callback
+     */
+    @Override
+    public void setApprovalForAll(SetApprovalForAll request,
+                                  HttpCallback<GraphQLResponse<Request>> callback) {
+        transactionRequest(request, callback);
+    }
+
+    /**
      * Sends {@link SetMeltFee} request synchronously.
      *
      * @param request the request
+     *
      * @return the response
+     *
      * @throws IOException if a problem occurred talking to the server
      */
     @Override
@@ -411,7 +738,7 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     /**
      * Sends {@link SetMeltFee} request asynchronously.
      *
-     * @param request the request
+     * @param request  the request
      * @param callback the callback
      */
     @Override
@@ -424,7 +751,9 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
      * Sends {@link SetTransferable} request synchronously.
      *
      * @param request the request
+     *
      * @return the response
+     *
      * @throws IOException if a problem occurred talking to the server
      */
     @Override
@@ -435,7 +764,7 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     /**
      * Sends {@link SetTransferable} request asynchronously.
      *
-     * @param request the request
+     * @param request  the request
      * @param callback the callback
      */
     @Override
@@ -448,7 +777,9 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
      * Sends {@link SetTransferFee} request synchronously.
      *
      * @param request the request
+     *
      * @return the response
+     *
      * @throws IOException if a problem occurred talking to the server
      */
     @Override
@@ -459,7 +790,7 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     /**
      * Sends {@link SetTransferFee} request asynchronously.
      *
-     * @param request the request
+     * @param request  the request
      * @param callback the callback
      */
     @Override
@@ -472,7 +803,9 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
      * Sends {@link SetUri} request synchronously.
      *
      * @param request the request
+     *
      * @return the response
+     *
      * @throws IOException if a problem occurred talking to the server
      */
     @Override
@@ -483,7 +816,7 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     /**
      * Sends {@link SetUri} request asynchronously.
      *
-     * @param request the request
+     * @param request  the request
      * @param callback the callback
      */
     @Override
@@ -496,7 +829,9 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
      * Sends {@link SetWhitelisted} request synchronously.
      *
      * @param request the request
+     *
      * @return the response
+     *
      * @throws IOException if a problem occurred talking to the server
      */
     @Override
@@ -507,7 +842,7 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     /**
      * Sends {@link SetWhitelisted} request asynchronously.
      *
-     * @param request the request
+     * @param request  the request
      * @param callback the callback
      */
     @Override
@@ -520,7 +855,9 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
      * Sends {@link UnlinkWallet} request synchronously.
      *
      * @param request the request
+     *
      * @return the response
+     *
      * @throws IOException if a problem occurred talking to the server
      */
     @Override
@@ -531,7 +868,7 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     /**
      * Sends {@link UnlinkWallet} request asynchronously.
      *
-     * @param request the request
+     * @param request  the request
      * @param callback the callback
      */
     @Override

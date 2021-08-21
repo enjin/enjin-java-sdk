@@ -6,7 +6,7 @@ import com.enjin.sdk.graphql.GraphQLRequest;
  * Request to obtain an access token for a player.
  *
  * @see com.enjin.sdk.models.AccessToken
- * @see com.enjin.sdk.schemas.project.ProjectSchema
+ * @see com.enjin.sdk.schemas.project.IProjectSchema
  */
 public class AuthPlayer extends GraphQLRequest<AuthPlayer> {
 

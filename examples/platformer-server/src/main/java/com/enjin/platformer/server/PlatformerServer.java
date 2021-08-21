@@ -14,7 +14,7 @@ import com.enjin.sdk.graphql.GraphQLError;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.http.HttpResponse;
 import com.enjin.sdk.models.Request;
-import com.enjin.sdk.schemas.shared.mutations.SendAsset;
+import com.enjin.sdk.schemas.project.mutations.SendAsset;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import org.java_websocket.WebSocket;

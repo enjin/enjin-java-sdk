@@ -6,7 +6,7 @@ import com.enjin.sdk.graphql.GraphQLRequest;
  * Request for getting the latest gas prices.
  *
  * @see com.enjin.sdk.models.GasPrices
- * @see com.enjin.sdk.schemas.shared.SharedSchema
+ * @see com.enjin.sdk.schemas.shared.ISharedSchema
  */
 public class GetGasPrices extends GraphQLRequest<GetGasPrices> {
 

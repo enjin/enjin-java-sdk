@@ -1,22 +1,22 @@
-package com.enjin.sdk.schemas.shared.mutations;
+package com.enjin.sdk.schemas.player.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
+import com.enjin.sdk.schemas.shared.arguments.TransactionFragmentArguments;
 
 /**
  * Request to sign a message to prove wallet ownership.
  *
- * @see com.enjin.sdk.schemas.shared.SharedSchema
+ * @see com.enjin.sdk.schemas.player.IPlayerSchema
  */
 public class Message
         extends GraphQLRequest<Message>
-        implements TransactionRequestArguments<Message> {
+        implements TransactionFragmentArguments<Message> {
 
     /**
      * Sole constructor.
      */
     public Message() {
-        super("enjin.sdk.shared.Message");
+        super("enjin.sdk.player.Message");
     }
 
     /**

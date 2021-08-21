@@ -9,7 +9,7 @@ import com.enjin.sdk.schemas.shared.arguments.PaginationArguments;
  * Request for getting balances on the platform.
  *
  * @see com.enjin.sdk.models.Balance
- * @see com.enjin.sdk.schemas.shared.SharedSchema
+ * @see com.enjin.sdk.schemas.shared.ISharedSchema
  */
 public class GetBalances
         extends GraphQLRequest<GetBalances>

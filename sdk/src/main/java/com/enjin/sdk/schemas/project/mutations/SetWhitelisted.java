@@ -2,16 +2,16 @@ package com.enjin.sdk.schemas.project.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.models.Whitelisted;
-import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
+import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArguments;
 
 /**
  * Request for setting an asset's whitelist.
  *
- * @see com.enjin.sdk.schemas.project.ProjectSchema
+ * @see com.enjin.sdk.schemas.project.IProjectSchema
  */
 public class SetWhitelisted
         extends GraphQLRequest<SetWhitelisted>
-        implements TransactionRequestArguments<SetWhitelisted> {
+        implements ProjectTransactionRequestArguments<SetWhitelisted> {
 
     /**
      * Sole constructor.

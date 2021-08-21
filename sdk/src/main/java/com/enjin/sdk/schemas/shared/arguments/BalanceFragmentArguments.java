@@ -33,12 +33,12 @@ public interface BalanceFragmentArguments<T extends VariableHolder<T>> extends V
     }
 
     /**
-     * Sets the request to include the project ID with the balance.
+     * Sets the request to include the project UUID with the balance.
      *
      * @return this request for chaining
      */
-    default T withBalProjectId() {
-        return set("withBalProjectId", true);
+    default T withBalProjectUuid() {
+        return set("withBalProjectUuid", true);
     }
 
     /**

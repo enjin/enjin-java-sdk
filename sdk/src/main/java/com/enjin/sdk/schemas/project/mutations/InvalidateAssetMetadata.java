@@ -5,7 +5,7 @@ import com.enjin.sdk.graphql.GraphQLRequest;
 /**
  * Request for invalidating the cached metadata of a asset on the platform.
  *
- * @see com.enjin.sdk.schemas.project.ProjectSchema
+ * @see com.enjin.sdk.schemas.project.IProjectSchema
  */
 public class InvalidateAssetMetadata extends GraphQLRequest<InvalidateAssetMetadata> {
 

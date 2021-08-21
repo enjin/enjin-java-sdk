@@ -1,16 +1,16 @@
 package com.enjin.sdk.schemas.project.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
+import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArguments;
 
 /**
  * Request for setting the melt fee of an asset.
  *
- * @see com.enjin.sdk.schemas.project.ProjectSchema
+ * @see com.enjin.sdk.schemas.project.IProjectSchema
  */
 public class SetMeltFee
         extends GraphQLRequest<SetMeltFee>
-        implements TransactionRequestArguments<SetMeltFee> {
+        implements ProjectTransactionRequestArguments<SetMeltFee> {
 
     /**
      * Sole constructor.
@@ -27,16 +27,6 @@ public class SetMeltFee
      */
     public SetMeltFee assetId(String assetId) {
         return set("assetId", assetId);
-    }
-
-    /**
-     * Sets the index for non-fungible assets.
-     *
-     * @param assetIndex the index
-     * @return this request for chaining
-     */
-    public SetMeltFee assetIndex(String assetIndex) {
-        return set("assetIndex", assetIndex);
     }
 
     /**

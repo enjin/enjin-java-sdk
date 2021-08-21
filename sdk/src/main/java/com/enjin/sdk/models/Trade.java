@@ -5,7 +5,8 @@ import lombok.EqualsAndHashCode;
 /**
  * Models a trade input for requests.
  *
- * @see com.enjin.sdk.schemas.shared.mutations.CreateTrade
+ * @see com.enjin.sdk.schemas.player.mutations.CreateTrade
+ * @see com.enjin.sdk.schemas.project.mutations.CreateTrade
  */
 @EqualsAndHashCode
 public class Trade {
@@ -18,10 +19,11 @@ public class Trade {
      * Sets the asset ID to trade.
      * <br>
      * <p>
-     *     If null or omitted then ENJ will be traded instead.
+     * If null or omitted then ENJ will be traded instead.
      * </p>
      *
      * @param assetId the asset ID
+     *
      * @return this input for chaining
      */
     public Trade assetId(String assetId) {
@@ -33,6 +35,7 @@ public class Trade {
      * Sets the index for non-fungible assets.
      *
      * @param assetIndex the index
+     *
      * @return this input for chaining
      */
     public Trade assetIndex(String assetIndex) {
@@ -44,10 +47,11 @@ public class Trade {
      * Sets the number of assets to trade.
      * <br>
      * <p>
-     *     If trading ENJ, the value is the amount to send in Wei (10^18 e.g. 1 ENJ = 1000000000000000000).
+     * If trading ENJ, the value is the amount to send in Wei (10^18 e.g. 1 ENJ = 1000000000000000000).
      * </p>
      *
      * @param value the amount
+     *
      * @return this input for chaining
      */
     public Trade value(String value) {

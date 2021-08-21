@@ -1,16 +1,16 @@
 package com.enjin.sdk.schemas.project.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
+import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArguments;
 
 /**
  * Request for setting an asset's max transfer fee to a lower value.
  *
- * @see com.enjin.sdk.schemas.project.ProjectSchema
+ * @see com.enjin.sdk.schemas.project.IProjectSchema
  */
 public class DecreaseMaxTransferFee
         extends GraphQLRequest<DecreaseMaxTransferFee>
-        implements TransactionRequestArguments<DecreaseMaxTransferFee> {
+        implements ProjectTransactionRequestArguments<DecreaseMaxTransferFee> {
 
     /**
      * Sole constructor.
@@ -27,16 +27,6 @@ public class DecreaseMaxTransferFee
      */
     public DecreaseMaxTransferFee assetId(String assetId) {
         return set("assetId", assetId);
-    }
-
-    /**
-     * Sets the index for non-fungible assets.
-     *
-     * @param assetIndex the index
-     * @return this request for chaining
-     */
-    public DecreaseMaxTransferFee assetIndex(String assetIndex) {
-        return set("assetIndex", assetIndex);
     }
 
     /**

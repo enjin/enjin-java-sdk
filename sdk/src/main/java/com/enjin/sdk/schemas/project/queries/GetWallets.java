@@ -7,7 +7,8 @@ import com.enjin.sdk.schemas.shared.arguments.WalletFragmentArguments;
 /**
  * Request for getting player wallets.
  *
- * @see com.enjin.sdk.schemas.project.ProjectSchema
+ * @see com.enjin.sdk.models.Wallet
+ * @see com.enjin.sdk.schemas.project.IProjectSchema
  */
 public class GetWallets
         extends GraphQLRequest<GetWallets>

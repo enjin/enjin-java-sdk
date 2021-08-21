@@ -8,18 +8,7 @@ import com.enjin.sdk.models.Platform;
 import com.enjin.sdk.models.Project;
 import com.enjin.sdk.models.Request;
 import com.enjin.sdk.models.Asset;
-import com.enjin.sdk.schemas.shared.mutations.AdvancedSendAsset;
-import com.enjin.sdk.schemas.shared.mutations.ApproveEnj;
-import com.enjin.sdk.schemas.shared.mutations.ApproveMaxEnj;
 import com.enjin.sdk.schemas.shared.mutations.CancelTransaction;
-import com.enjin.sdk.schemas.shared.mutations.CompleteTrade;
-import com.enjin.sdk.schemas.shared.mutations.CreateTrade;
-import com.enjin.sdk.schemas.shared.mutations.MeltAsset;
-import com.enjin.sdk.schemas.shared.mutations.Message;
-import com.enjin.sdk.schemas.shared.mutations.ResetEnjApproval;
-import com.enjin.sdk.schemas.shared.mutations.SendEnj;
-import com.enjin.sdk.schemas.shared.mutations.SendAsset;
-import com.enjin.sdk.schemas.shared.mutations.SetApprovalForAll;
 import com.enjin.sdk.schemas.shared.queries.GetBalances;
 import com.enjin.sdk.schemas.shared.queries.GetGasPrices;
 import com.enjin.sdk.schemas.shared.queries.GetPlatform;
@@ -35,60 +24,6 @@ import java.util.List;
  * Interface for shared schema implementation.
  */
 public interface ISharedSchema {
-
-    /**
-     * Sends {@link AdvancedSendAsset} request synchronously.
-     *
-     * @param request the request
-     *
-     * @return the response
-     */
-    GraphQLResponse<Request> advancedSendAsset(AdvancedSendAsset request);
-
-    /**
-     * Sends {@link AdvancedSendAsset} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void advancedSendAsset(AdvancedSendAsset request,
-                           HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link ApproveEnj} request synchronously.
-     *
-     * @param request the request
-     *
-     * @return the response
-     */
-    GraphQLResponse<Request> approveEnj(ApproveEnj request);
-
-    /**
-     * Sends {@link ApproveEnj} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void approveEnj(ApproveEnj request,
-                    HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link ApproveMaxEnj} request synchronously.
-     *
-     * @param request the request
-     *
-     * @return the response
-     */
-    GraphQLResponse<Request> approveMaxEnj(ApproveMaxEnj request);
-
-    /**
-     * Sends {@link ApproveMaxEnj} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void approveMaxEnj(ApproveMaxEnj request,
-                       HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * Sends {@link CancelTransaction} request synchronously.
@@ -109,40 +44,40 @@ public interface ISharedSchema {
                            HttpCallback<GraphQLResponse<Boolean>> callback);
 
     /**
-     * Sends {@link CompleteTrade} request synchronously.
+     * Sends {@link GetAsset} request synchronously.
      *
      * @param request the request
      *
      * @return the response
      */
-    GraphQLResponse<Request> completeTrade(CompleteTrade request);
+    GraphQLResponse<Asset> getAsset(GetAsset request);
 
     /**
-     * Sends {@link CompleteTrade} request asynchronously.
+     * Sends {@link GetAsset} request asynchronously.
      *
      * @param request  the request
      * @param callback the callback
      */
-    void completeTrade(CompleteTrade request,
-                       HttpCallback<GraphQLResponse<Request>> callback);
+    void getAsset(GetAsset request,
+                  HttpCallback<GraphQLResponse<Asset>> callback);
 
     /**
-     * Sends {@link CreateTrade} request synchronously.
+     * Sends {@link GetAssets} request synchronously.
      *
      * @param request the request
      *
      * @return the response
      */
-    GraphQLResponse<Request> createTrade(CreateTrade request);
+    GraphQLResponse<List<Asset>> getAssets(GetAssets request);
 
     /**
-     * Sends {@link CreateTrade} request asynchronously.
+     * Sends {@link GetAssets} request asynchronously.
      *
      * @param request  the request
      * @param callback the callback
      */
-    void createTrade(CreateTrade request,
-                     HttpCallback<GraphQLResponse<Request>> callback);
+    void getAssets(GetAssets request,
+                   HttpCallback<GraphQLResponse<List<Asset>>> callback);
 
     /**
      * Sends {@link GetBalances} request synchronously.
@@ -251,149 +186,5 @@ public interface ISharedSchema {
      */
     void getRequests(GetRequests request,
                      HttpCallback<GraphQLResponse<List<Request>>> callback);
-
-    /**
-     * Sends {@link GetAsset} request synchronously.
-     *
-     * @param request the request
-     *
-     * @return the response
-     */
-    GraphQLResponse<Asset> getAsset(GetAsset request);
-
-    /**
-     * Sends {@link GetAsset} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void getAsset(GetAsset request,
-                  HttpCallback<GraphQLResponse<Asset>> callback);
-
-    /**
-     * Sends {@link GetAssets} request synchronously.
-     *
-     * @param request the request
-     *
-     * @return the response
-     */
-    GraphQLResponse<List<Asset>> getAssets(GetAssets request);
-
-    /**
-     * Sends {@link GetAssets} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void getAssets(GetAssets request,
-                   HttpCallback<GraphQLResponse<List<Asset>>> callback);
-
-    /**
-     * Sends {@link MeltAsset} request synchronously.
-     *
-     * @param request the request
-     *
-     * @return the response
-     */
-    GraphQLResponse<Request> meltAsset(MeltAsset request);
-
-    /**
-     * Sends {@link MeltAsset} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void meltAsset(MeltAsset request,
-                   HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link Message} request synchronously.
-     *
-     * @param request the request
-     *
-     * @return the response
-     */
-    GraphQLResponse<Request> message(Message request);
-
-    /**
-     * Sends {@link Message} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void message(Message request,
-                 HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link ResetEnjApproval} request synchronously.
-     *
-     * @param request the request
-     *
-     * @return the response
-     */
-    GraphQLResponse<Request> resetEnjApproval(ResetEnjApproval request);
-
-    /**
-     * Sends {@link ResetEnjApproval} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void resetEnjApproval(ResetEnjApproval request,
-                          HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link SendAsset} request synchronously.
-     *
-     * @param request the request
-     *
-     * @return the response
-     */
-    GraphQLResponse<Request> sendAsset(SendAsset request);
-
-    /**
-     * Sends {@link SendAsset} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void sendAsset(SendAsset request,
-                   HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link SendEnj} request synchronously.
-     *
-     * @param request the request
-     *
-     * @return the response
-     */
-    GraphQLResponse<Request> sendEnj(SendEnj request);
-
-    /**
-     * Sends {@link SendEnj} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void sendEnj(SendEnj request,
-                 HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link SetApprovalForAll} request synchronously.
-     *
-     * @param request the request
-     *
-     * @return the response
-     */
-    GraphQLResponse<Request> setApprovalForAll(SetApprovalForAll request);
-
-    /**
-     * Sends {@link SetApprovalForAll} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void setApprovalForAll(SetApprovalForAll request,
-                           HttpCallback<GraphQLResponse<Request>> callback);
 
 }

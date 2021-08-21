@@ -2,16 +2,16 @@ package com.enjin.sdk.schemas.project.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.models.AssetTransferable;
-import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
+import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArguments;
 
 /**
  * Request for setting if a asset may be transferred.
  *
- * @see com.enjin.sdk.schemas.project.ProjectSchema
+ * @see com.enjin.sdk.schemas.project.IProjectSchema
  */
 public class SetTransferable
         extends GraphQLRequest<SetTransferable>
-        implements TransactionRequestArguments<SetTransferable> {
+        implements ProjectTransactionRequestArguments<SetTransferable> {
 
     /**
      * Sole constructor.
