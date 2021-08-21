@@ -1,16 +1,16 @@
 package com.enjin.sdk.schemas.project.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
+import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArguments;
 
 /**
  * Request for releasing the reserve of an asset.
  *
- * @see com.enjin.sdk.schemas.project.ProjectSchema
+ * @see com.enjin.sdk.schemas.project.IProjectSchema
  */
 public class ReleaseReserve
         extends GraphQLRequest<ReleaseReserve>
-        implements TransactionRequestArguments<ReleaseReserve> {
+        implements ProjectTransactionRequestArguments<ReleaseReserve> {
 
     /**
      * Sole constructor.

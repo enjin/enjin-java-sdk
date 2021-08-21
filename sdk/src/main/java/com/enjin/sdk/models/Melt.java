@@ -1,12 +1,12 @@
 package com.enjin.sdk.models;
 
-import com.enjin.sdk.schemas.shared.mutations.MeltAsset;
 import lombok.EqualsAndHashCode;
 
 /**
  * Models a melt input for melt requests.
  *
- * @see MeltAsset
+ * @see com.enjin.sdk.schemas.player.mutations.MeltAsset
+ * @see com.enjin.sdk.schemas.project.mutations.MeltAsset
  */
 @EqualsAndHashCode
 public class Melt {
@@ -19,6 +19,7 @@ public class Melt {
      * Sets the asset ID to melt.
      *
      * @param assetId the ID
+     *
      * @return this input for chaining
      */
     public Melt assetId(String assetId) {
@@ -30,6 +31,7 @@ public class Melt {
      * Sets the index of a non-fungible asset to melt.
      *
      * @param assetIndex the index
+     *
      * @return this input for chaining
      */
     public Melt assetIndex(String assetIndex) {
@@ -41,6 +43,7 @@ public class Melt {
      * Sets the number of assets to melt.
      *
      * @param value the amount
+     *
      * @return this input for chaining
      */
     public Melt value(String value) {

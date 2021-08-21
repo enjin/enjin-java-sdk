@@ -1,23 +1,23 @@
-package com.enjin.sdk.schemas.shared.mutations;
+package com.enjin.sdk.schemas.player.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
+import com.enjin.sdk.schemas.shared.arguments.TransactionFragmentArguments;
 
 /**
  * Request for sending a asset.
  *
  * @see AdvancedSendAsset
- * @see com.enjin.sdk.schemas.shared.SharedSchema
+ * @see com.enjin.sdk.schemas.player.IPlayerSchema
  */
 public class SendAsset
         extends GraphQLRequest<SendAsset>
-        implements TransactionRequestArguments<SendAsset> {
+        implements TransactionFragmentArguments<SendAsset> {
 
     /**
      * Sole constructor.
      */
     public SendAsset() {
-        super("enjin.sdk.shared.SendAsset");
+        super("enjin.sdk.player.SendAsset");
     }
 
     /**

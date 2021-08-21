@@ -1,22 +1,22 @@
-package com.enjin.sdk.schemas.shared.mutations;
+package com.enjin.sdk.schemas.player.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
+import com.enjin.sdk.schemas.shared.arguments.TransactionFragmentArguments;
 
 /**
  * Request for sending send ENJ.
  *
- * @see com.enjin.sdk.schemas.shared.SharedSchema
+ * @see com.enjin.sdk.schemas.player.IPlayerSchema
  */
 public class SendEnj
         extends GraphQLRequest<SendEnj>
-        implements TransactionRequestArguments<SendEnj> {
+        implements TransactionFragmentArguments<SendEnj> {
 
     /**
      * Sole constructor.
      */
     public SendEnj() {
-        super("enjin.sdk.shared.SendEnj");
+        super("enjin.sdk.player.SendEnj");
     }
 
     /**

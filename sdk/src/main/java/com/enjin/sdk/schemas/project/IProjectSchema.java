@@ -6,14 +6,25 @@ import com.enjin.sdk.models.AccessToken;
 import com.enjin.sdk.models.Player;
 import com.enjin.sdk.models.Request;
 import com.enjin.sdk.models.Wallet;
+import com.enjin.sdk.schemas.project.mutations.AdvancedSendAsset;
+import com.enjin.sdk.schemas.project.mutations.ApproveEnj;
+import com.enjin.sdk.schemas.project.mutations.ApproveMaxEnj;
+import com.enjin.sdk.schemas.project.mutations.CompleteTrade;
 import com.enjin.sdk.schemas.project.mutations.CreatePlayer;
 import com.enjin.sdk.schemas.project.mutations.CreateAsset;
+import com.enjin.sdk.schemas.project.mutations.CreateTrade;
 import com.enjin.sdk.schemas.project.mutations.DecreaseMaxMeltFee;
 import com.enjin.sdk.schemas.project.mutations.DecreaseMaxTransferFee;
 import com.enjin.sdk.schemas.project.mutations.DeletePlayer;
 import com.enjin.sdk.schemas.project.mutations.InvalidateAssetMetadata;
+import com.enjin.sdk.schemas.project.mutations.MeltAsset;
+import com.enjin.sdk.schemas.project.mutations.Message;
 import com.enjin.sdk.schemas.project.mutations.MintAsset;
 import com.enjin.sdk.schemas.project.mutations.ReleaseReserve;
+import com.enjin.sdk.schemas.project.mutations.ResetEnjApproval;
+import com.enjin.sdk.schemas.project.mutations.SendAsset;
+import com.enjin.sdk.schemas.project.mutations.SendEnj;
+import com.enjin.sdk.schemas.project.mutations.SetApprovalForAll;
 import com.enjin.sdk.schemas.project.mutations.SetMeltFee;
 import com.enjin.sdk.schemas.project.mutations.SetTransferFee;
 import com.enjin.sdk.schemas.project.mutations.SetTransferable;
@@ -33,6 +44,60 @@ import java.util.List;
  * Interface for project schema implementation.
  */
 public interface IProjectSchema {
+
+    /**
+     * Sends {@link AdvancedSendAsset} request synchronously.
+     *
+     * @param request the request
+     *
+     * @return the response
+     */
+    GraphQLResponse<Request> advancedSendAsset(AdvancedSendAsset request);
+
+    /**
+     * Sends {@link AdvancedSendAsset} request asynchronously.
+     *
+     * @param request  the request
+     * @param callback the callback
+     */
+    void advancedSendAsset(AdvancedSendAsset request,
+                           HttpCallback<GraphQLResponse<Request>> callback);
+
+    /**
+     * Sends {@link ApproveEnj} request synchronously.
+     *
+     * @param request the request
+     *
+     * @return the response
+     */
+    GraphQLResponse<Request> approveEnj(ApproveEnj request);
+
+    /**
+     * Sends {@link ApproveEnj} request asynchronously.
+     *
+     * @param request  the request
+     * @param callback the callback
+     */
+    void approveEnj(ApproveEnj request,
+                    HttpCallback<GraphQLResponse<Request>> callback);
+
+    /**
+     * Sends {@link ApproveMaxEnj} request synchronously.
+     *
+     * @param request the request
+     *
+     * @return the response
+     */
+    GraphQLResponse<Request> approveMaxEnj(ApproveMaxEnj request);
+
+    /**
+     * Sends {@link ApproveMaxEnj} request asynchronously.
+     *
+     * @param request  the request
+     * @param callback the callback
+     */
+    void approveMaxEnj(ApproveMaxEnj request,
+                       HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * Sends {@link AuthPlayer} request synchronously.
@@ -71,6 +136,42 @@ public interface IProjectSchema {
                      HttpCallback<GraphQLResponse<AccessToken>> callback);
 
     /**
+     * Sends {@link CompleteTrade} request synchronously.
+     *
+     * @param request the request
+     *
+     * @return the response
+     */
+    GraphQLResponse<Request> completeTrade(CompleteTrade request);
+
+    /**
+     * Sends {@link CompleteTrade} request asynchronously.
+     *
+     * @param request  the request
+     * @param callback the callback
+     */
+    void completeTrade(CompleteTrade request,
+                       HttpCallback<GraphQLResponse<Request>> callback);
+
+    /**
+     * Sends {@link CreateAsset} request synchronously.
+     *
+     * @param request the request
+     *
+     * @return the response
+     */
+    GraphQLResponse<Request> createAsset(CreateAsset request);
+
+    /**
+     * Sends {@link CreateAsset} request asynchronously.
+     *
+     * @param request  the request
+     * @param callback the callback
+     */
+    void createAsset(CreateAsset request,
+                     HttpCallback<GraphQLResponse<Request>> callback);
+
+    /**
      * Sends {@link CreatePlayer} request synchronously.
      *
      * @param request the request
@@ -89,21 +190,21 @@ public interface IProjectSchema {
                       HttpCallback<GraphQLResponse<AccessToken>> callback);
 
     /**
-     * Sends {@link CreateAsset} request synchronously.
+     * Sends {@link CreateTrade} request synchronously.
      *
      * @param request the request
      *
      * @return the response
      */
-    GraphQLResponse<Request> createAsset(CreateAsset request);
+    GraphQLResponse<Request> createTrade(CreateTrade request);
 
     /**
-     * Sends {@link CreateAsset} request asynchronously.
+     * Sends {@link CreateTrade} request asynchronously.
      *
      * @param request  the request
      * @param callback the callback
      */
-    void createAsset(CreateAsset request,
+    void createTrade(CreateTrade request,
                      HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
@@ -251,6 +352,42 @@ public interface IProjectSchema {
                                  HttpCallback<GraphQLResponse<Boolean>> callback);
 
     /**
+     * Sends {@link MeltAsset} request synchronously.
+     *
+     * @param request the request
+     *
+     * @return the response
+     */
+    GraphQLResponse<Request> meltAsset(MeltAsset request);
+
+    /**
+     * Sends {@link MeltAsset} request asynchronously.
+     *
+     * @param request  the request
+     * @param callback the callback
+     */
+    void meltAsset(MeltAsset request,
+                   HttpCallback<GraphQLResponse<Request>> callback);
+
+    /**
+     * Sends {@link Message} request synchronously.
+     *
+     * @param request the request
+     *
+     * @return the response
+     */
+    GraphQLResponse<Request> message(Message request);
+
+    /**
+     * Sends {@link Message} request asynchronously.
+     *
+     * @param request  the request
+     * @param callback the callback
+     */
+    void message(Message request,
+                 HttpCallback<GraphQLResponse<Request>> callback);
+
+    /**
      * Sends {@link MintAsset} request synchronously.
      *
      * @param request the request
@@ -285,6 +422,78 @@ public interface IProjectSchema {
      */
     void releaseReserve(ReleaseReserve request,
                         HttpCallback<GraphQLResponse<Request>> callback);
+
+    /**
+     * Sends {@link ResetEnjApproval} request synchronously.
+     *
+     * @param request the request
+     *
+     * @return the response
+     */
+    GraphQLResponse<Request> resetEnjApproval(ResetEnjApproval request);
+
+    /**
+     * Sends {@link ResetEnjApproval} request asynchronously.
+     *
+     * @param request  the request
+     * @param callback the callback
+     */
+    void resetEnjApproval(ResetEnjApproval request,
+                          HttpCallback<GraphQLResponse<Request>> callback);
+
+    /**
+     * Sends {@link SendAsset} request synchronously.
+     *
+     * @param request the request
+     *
+     * @return the response
+     */
+    GraphQLResponse<Request> sendAsset(SendAsset request);
+
+    /**
+     * Sends {@link SendAsset} request asynchronously.
+     *
+     * @param request  the request
+     * @param callback the callback
+     */
+    void sendAsset(SendAsset request,
+                   HttpCallback<GraphQLResponse<Request>> callback);
+
+    /**
+     * Sends {@link SendEnj} request synchronously.
+     *
+     * @param request the request
+     *
+     * @return the response
+     */
+    GraphQLResponse<Request> sendEnj(SendEnj request);
+
+    /**
+     * Sends {@link SendEnj} request asynchronously.
+     *
+     * @param request  the request
+     * @param callback the callback
+     */
+    void sendEnj(SendEnj request,
+                 HttpCallback<GraphQLResponse<Request>> callback);
+
+    /**
+     * Sends {@link SetApprovalForAll} request synchronously.
+     *
+     * @param request the request
+     *
+     * @return the response
+     */
+    GraphQLResponse<Request> setApprovalForAll(SetApprovalForAll request);
+
+    /**
+     * Sends {@link SetApprovalForAll} request asynchronously.
+     *
+     * @param request  the request
+     * @param callback the callback
+     */
+    void setApprovalForAll(SetApprovalForAll request,
+                           HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * Sends {@link SetMeltFee} request synchronously.

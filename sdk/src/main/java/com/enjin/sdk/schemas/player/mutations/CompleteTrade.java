@@ -1,23 +1,23 @@
-package com.enjin.sdk.schemas.shared.mutations;
+package com.enjin.sdk.schemas.player.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
+import com.enjin.sdk.schemas.shared.arguments.TransactionFragmentArguments;
 
 /**
  * Request for completing a trade between two wallets.
  *
  * @see CreateTrade
- * @see com.enjin.sdk.schemas.shared.SharedSchema
+ * @see com.enjin.sdk.schemas.player.IPlayerSchema
  */
 public class CompleteTrade
         extends GraphQLRequest<CompleteTrade>
-        implements TransactionRequestArguments<CompleteTrade> {
+        implements TransactionFragmentArguments<CompleteTrade> {
 
     /**
      * Sole constructor.
      */
     public CompleteTrade() {
-        super("enjin.sdk.shared.CompleteTrade");
+        super("enjin.sdk.player.CompleteTrade");
     }
 
     /**

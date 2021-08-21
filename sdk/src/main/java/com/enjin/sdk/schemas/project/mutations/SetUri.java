@@ -1,16 +1,16 @@
 package com.enjin.sdk.schemas.project.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
+import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArguments;
 
 /**
  * Request to set the metadata URI of an asset.
  *
- * @see com.enjin.sdk.schemas.project.ProjectSchema
+ * @see com.enjin.sdk.schemas.project.IProjectSchema
  */
 public class SetUri
         extends GraphQLRequest<SetUri>
-        implements TransactionRequestArguments<SetUri> {
+        implements ProjectTransactionRequestArguments<SetUri> {
 
     /**
      * Sole constructor.

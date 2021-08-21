@@ -1,22 +1,22 @@
-package com.enjin.sdk.schemas.shared.mutations;
+package com.enjin.sdk.schemas.player.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.schemas.shared.arguments.TransactionRequestArguments;
+import com.enjin.sdk.schemas.shared.arguments.TransactionFragmentArguments;
 
 /**
  * Request for approving the crypto items contract to spend ENJ.
  *
- * @see com.enjin.sdk.schemas.shared.SharedSchema
+ * @see com.enjin.sdk.schemas.player.IPlayerSchema
  */
 public class ApproveEnj
         extends GraphQLRequest<ApproveEnj>
-        implements TransactionRequestArguments<ApproveEnj> {
+        implements TransactionFragmentArguments<ApproveEnj> {
 
     /**
      * Sole constructor.
      */
     public ApproveEnj() {
-        super("enjin.sdk.shared.ApproveEnj");
+        super("enjin.sdk.player.ApproveEnj");
     }
 
     /**
