@@ -78,6 +78,12 @@ public class Request {
 
     /**
      * -- Getter --
+     * @return the project this transaction belongs to
+     */
+    private Project project;
+
+    /**
+     * -- Getter --
      * <br>
      * <p>
      *     Formatted as an ISO 8601 string.
