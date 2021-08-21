@@ -9,8 +9,6 @@ import com.enjin.sdk.models.Wallet;
 import com.enjin.sdk.schemas.player.mutations.AdvancedSendAsset;
 import com.enjin.sdk.schemas.player.mutations.ApproveEnj;
 import com.enjin.sdk.schemas.player.mutations.ApproveMaxEnj;
-import com.enjin.sdk.schemas.player.mutations.CompleteTrade;
-import com.enjin.sdk.schemas.player.mutations.CreateTrade;
 import com.enjin.sdk.schemas.player.mutations.MeltAsset;
 import com.enjin.sdk.schemas.player.mutations.Message;
 import com.enjin.sdk.schemas.player.mutations.ResetEnjApproval;
@@ -127,58 +125,6 @@ public class PlayerSchema extends SharedSchema implements IPlayerSchema {
     @Override
     public void approveMaxEnj(ApproveMaxEnj request,
                               HttpCallback<GraphQLResponse<Request>> callback) {
-        transactionRequest(request, callback);
-    }
-
-    /**
-     * Sends {@link CompleteTrade} request synchronously.
-     *
-     * @param request the request
-     *
-     * @return the response
-     *
-     * @throws IOException if a problem occurred talking to the server
-     */
-    @Override
-    public GraphQLResponse<Request> completeTrade(CompleteTrade request) {
-        return transactionRequest(request);
-    }
-
-    /**
-     * Sends {@link CompleteTrade} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    @Override
-    public void completeTrade(CompleteTrade request,
-                              HttpCallback<GraphQLResponse<Request>> callback) {
-        transactionRequest(request, callback);
-    }
-
-    /**
-     * Sends {@link CreateTrade} request synchronously.
-     *
-     * @param request the request
-     *
-     * @return the response
-     *
-     * @throws IOException if a problem occurred talking to the server
-     */
-    @Override
-    public GraphQLResponse<Request> createTrade(CreateTrade request) {
-        return transactionRequest(request);
-    }
-
-    /**
-     * Sends {@link CreateTrade} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    @Override
-    public void createTrade(CreateTrade request,
-                            HttpCallback<GraphQLResponse<Request>> callback) {
         transactionRequest(request, callback);
     }
 

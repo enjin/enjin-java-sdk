@@ -8,8 +8,6 @@ import com.enjin.sdk.models.Wallet;
 import com.enjin.sdk.schemas.player.mutations.AdvancedSendAsset;
 import com.enjin.sdk.schemas.player.mutations.ApproveEnj;
 import com.enjin.sdk.schemas.player.mutations.ApproveMaxEnj;
-import com.enjin.sdk.schemas.player.mutations.CompleteTrade;
-import com.enjin.sdk.schemas.player.mutations.CreateTrade;
 import com.enjin.sdk.schemas.player.mutations.MeltAsset;
 import com.enjin.sdk.schemas.player.mutations.Message;
 import com.enjin.sdk.schemas.player.mutations.ResetEnjApproval;
@@ -78,42 +76,6 @@ public interface IPlayerSchema {
      */
     void approveMaxEnj(ApproveMaxEnj request,
                        HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link CompleteTrade} request synchronously.
-     *
-     * @param request the request
-     *
-     * @return the response
-     */
-    GraphQLResponse<Request> completeTrade(CompleteTrade request);
-
-    /**
-     * Sends {@link CompleteTrade} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void completeTrade(CompleteTrade request,
-                       HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link CreateTrade} request synchronously.
-     *
-     * @param request the request
-     *
-     * @return the response
-     */
-    GraphQLResponse<Request> createTrade(CreateTrade request);
-
-    /**
-     * Sends {@link CreateTrade} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void createTrade(CreateTrade request,
-                     HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * Sends {@link GetPlayer} request synchronously.
