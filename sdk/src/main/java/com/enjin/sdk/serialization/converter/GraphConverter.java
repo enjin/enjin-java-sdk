@@ -186,6 +186,8 @@ public class GraphConverter extends Converter.Factory {
                 return fromJson.fromJson(result, resultType);
             } else if (GsonUtil.isJsonArray(optional)) {
                 return fromJson.fromJson(optional.get(), resultType);
+            } else if (GsonUtil.isJsonPrimitive(optional)) {
+                return fromJson.fromJson(optional.get(), resultType);
             }
 
             return null;
