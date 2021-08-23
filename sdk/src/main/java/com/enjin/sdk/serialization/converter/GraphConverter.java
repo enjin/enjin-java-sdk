@@ -43,11 +43,6 @@ public class GraphConverter extends Converter.Factory {
     private static final String CURSOR_PATH = RESULT_PATH + '.' + CURSOR_KEY;
 
     /**
-     * Protected parser to make use of the default parse settings.
-     */
-    protected final JsonParser parser = new JsonParser();
-
-    /**
      * Protected gson builder to make use of custom builder settings for deserialization.
      */
     protected final Gson fromJson = new GsonBuilder()
@@ -159,7 +154,7 @@ public class GraphConverter extends Converter.Factory {
             try {
                 raw = responseBody.string();
 
-                JsonElement elem = parser.parse(raw);
+                JsonElement elem = JsonParser.parseString(raw);
                 if (elem.isJsonObject()) {
                     JsonObject root = elem.getAsJsonObject();
                     result = getResult(root);
