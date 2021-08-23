@@ -202,10 +202,7 @@ public class GraphConverter extends Converter.Factory {
         private PaginationCursor getCursor(JsonObject root) {
             Optional<JsonElement> optional = GsonUtil.getJsonElement(root, CURSOR_PATH);
 
-            if (!optional.isPresent())
-                return null;
-
-            return fromJson.fromJson(optional.get(), PaginationCursor.class);
+            return optional.map(jsonElement -> fromJson.fromJson(jsonElement, PaginationCursor.class)).orElse(null);
         }
     }
 
