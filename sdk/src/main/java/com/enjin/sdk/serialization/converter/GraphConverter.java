@@ -43,11 +43,6 @@ public class GraphConverter extends Converter.Factory {
     private static final String CURSOR_PATH = RESULT_PATH + '.' + CURSOR_KEY;
 
     /**
-     * Protected parser to make use of the default parse settings.
-     */
-    protected final JsonParser parser = new JsonParser();
-
-    /**
      * Protected gson builder to make use of custom builder settings for deserialization.
      */
     protected final Gson fromJson = new GsonBuilder()
@@ -159,7 +154,7 @@ public class GraphConverter extends Converter.Factory {
             try {
                 raw = responseBody.string();
 
-                JsonElement elem = parser.parse(raw);
+                JsonElement elem = JsonParser.parseString(raw);
                 if (elem.isJsonObject()) {
                     JsonObject root = elem.getAsJsonObject();
                     result = getResult(root);
@@ -186,6 +181,8 @@ public class GraphConverter extends Converter.Factory {
                 return fromJson.fromJson(result, resultType);
             } else if (GsonUtil.isJsonArray(optional)) {
                 return fromJson.fromJson(optional.get(), resultType);
+            } else if (GsonUtil.isJsonPrimitive(optional)) {
+                return fromJson.fromJson(optional.get(), resultType);
             }
 
             return null;
@@ -205,10 +202,7 @@ public class GraphConverter extends Converter.Factory {
         private PaginationCursor getCursor(JsonObject root) {
             Optional<JsonElement> optional = GsonUtil.getJsonElement(root, CURSOR_PATH);
 
-            if (!optional.isPresent())
-                return null;
-
-            return fromJson.fromJson(optional.get(), PaginationCursor.class);
+            return optional.map(jsonElement -> fromJson.fromJson(jsonElement, PaginationCursor.class)).orElse(null);
         }
     }
 

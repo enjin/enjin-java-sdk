@@ -88,4 +88,14 @@ public final class GsonUtil {
         return optional.isPresent() && optional.get().isJsonArray();
     }
 
+    /**
+     * Checks if a json element is a json primitive.
+     *
+     * @param optional the element
+     * @return true if the element is a json primitive, false otherwise
+     */
+    public static boolean isJsonPrimitive(Optional<JsonElement> optional) {
+        return optional.isPresent() && optional.get().isJsonPrimitive();
+    }
+
 }
