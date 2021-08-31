@@ -105,17 +105,15 @@ public interface NotificationsService {
      * Opens a channel for the specified project, allowing listeners to receive events for that project.
      *
      * @param project the project's UUID
-     * @return the future for this operation
      */
-    Future<Void> subscribeToProject(String project);
+    void subscribeToProject(String project);
 
     /**
      * Closes a channel for the specified project, preventing listeners from receiving events for that project.
      *
      * @param project the project's UUID
-     * @return the future for this operation
      */
-    Future<Void> unsubscribeToProject(String project);
+    void unsubscribeToProject(String project);
 
     /**
      * Determines if the channel is open for the specified project.
@@ -130,18 +128,16 @@ public interface NotificationsService {
      *
      * @param project the UUID of the project the player is on
      * @param player the player ID
-     * @return the future for this operation
      */
-    Future<Void> subscribeToPlayer(String project, String player);
+    void subscribeToPlayer(String project, String player);
 
     /**
      * Closes a channel for the specified player, preventing listeners from receiving events for that player.
      *
      * @param project the UUID of the project the player is on
      * @param player the player ID
-     * @return the future for this operation
      */
-    Future<Void> unsubscribeToPlayer(String project, String player);
+    void unsubscribeToPlayer(String project, String player);
 
     /**
      * Determines if the channel is open for the specified player.
@@ -156,17 +152,15 @@ public interface NotificationsService {
      * Opens a channel for the specified asset, allowing listeners to receive events for that asset.
      *
      * @param asset the asset ID
-     * @return the future for this operation
      */
-    Future<Void> subscribeToAsset(String asset);
+    void subscribeToAsset(String asset);
 
     /**
      * Closes a channel for the specified asset, preventing listeners from receiving events for that asset.
      *
      * @param asset the asset ID
-     * @return the future for this operation
      */
-    Future<Void> unsubscribeToAsset(String asset);
+    void unsubscribeToAsset(String asset);
 
     /**
      * Determines if the channel is open for the specified asset.
@@ -180,17 +174,15 @@ public interface NotificationsService {
      * Opens a channel for the specified wallet address, allowing listeners to receive events for that wallet.
      *
      * @param wallet the address
-     * @return the future for this operation
      */
-    Future<Void> subscribeToWallet(String wallet);
+    void subscribeToWallet(String wallet);
 
     /**
      * Closes a channel for the specified wallet address, preventing listeners from receiving events for that wallet.
      *
      * @param wallet the address
-     * @return the future for this operation
      */
-    Future<Void> unsubscribeToWallet(String wallet);
+    void unsubscribeToWallet(String wallet);
 
     /**
      * Determines if the channel is open for the specified wallet address.
