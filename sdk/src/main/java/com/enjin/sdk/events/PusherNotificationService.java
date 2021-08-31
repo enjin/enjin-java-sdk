@@ -131,7 +131,7 @@ public class PusherNotificationService implements NotificationsService {
                 pusherConnectionListener.onError(message, code, newException);
 
                 if (loggerProvider != null)
-                    loggerProvider.log(LogLevel.SEVERE, "Error on Pusher client: ", e);
+                    loggerProvider.log(LogLevel.ERROR, "Error on Pusher client: ", newException);
                 if (connectionEventListener != null)
                     connectionEventListener.onError(newException);
             }
