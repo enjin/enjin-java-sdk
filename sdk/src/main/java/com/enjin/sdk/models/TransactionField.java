@@ -17,5 +17,6 @@ public enum TransactionField {
     TITLE,
     @SerializedName("createdAt")
     CREATED_AT,
-
+    @SerializedName("updatedAt")
+    UPDATED_AT,
 }

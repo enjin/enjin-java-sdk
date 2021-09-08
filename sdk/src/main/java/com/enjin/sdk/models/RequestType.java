@@ -33,5 +33,7 @@ public enum RequestType {
     SET_DECIMALS,
     SET_SYMBOL,
     MESSAGE,
+    ACCEPT_ASSIGNMENT,
+    ASSIGN,
 
 }
