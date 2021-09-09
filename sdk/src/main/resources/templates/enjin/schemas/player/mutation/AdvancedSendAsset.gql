@@ -1,0 +1,14 @@
+#namespace enjin.sdk.player.AdvancedSendAsset
+#import enjin.sdk.shared.Transaction
+
+#arg transfers [TransferInput!]!
+#arg data String
+
+mutation {
+    result: AdvancedSendAsset(
+        transfers: $transfers,
+        data: $data
+    ) {
+        ...Transaction
+    }
+}

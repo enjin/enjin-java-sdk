@@ -1,0 +1,10 @@
+#namespace enjin.sdk.shared.Project
+
+fragment Project on Project {
+    uuid
+    name
+    description
+    image
+    createdAt
+    updatedAt
+}

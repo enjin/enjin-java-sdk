@@ -1,0 +1,12 @@
+#namespace enjin.sdk.project.ApproveMaxEnj
+#import enjin.sdk.shared.Transaction
+
+#arg ethAddress EthAddress
+
+mutation {
+    result: ApproveMaxEnj(
+        wallet: $ethAddress
+    ) {
+        ...Transaction
+    }
+}

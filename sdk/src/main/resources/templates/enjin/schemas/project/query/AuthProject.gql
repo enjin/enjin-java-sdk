@@ -1,0 +1,14 @@
+#namespace enjin.sdk.project.AuthProject
+
+#arg uuid String!
+#arg secret String!
+
+query {
+    result: AuthProject(
+        uuid: $uuid,
+        secret: $secret
+    ) {
+        accessToken
+        expiresIn
+    }
+}

@@ -1,0 +1,12 @@
+#namespace enjin.sdk.project.ResetEnjApproval
+#import enjin.sdk.shared.Transaction
+
+#arg ethAddress EthAddress
+
+mutation {
+    result: ResetEnjApproval(
+        wallet: $ethAddress
+    ) {
+        ...Transaction
+    }
+}

@@ -1,0 +1,20 @@
+#namespace enjin.sdk.project.GetWallets
+#import enjin.sdk.shared.Wallet
+#import enjin.sdk.shared.PaginationCursor
+
+#arg userIds [String]
+#arg ethAddresses [EthAddress]
+
+query {
+    results: GetWallets(
+        userIds: $userIds
+        ethAddresses: $ethAddresses
+    ) {
+        items {
+            ...Wallet
+        }
+        cursor {
+            ...PaginationCursor
+        }
+    }
+}

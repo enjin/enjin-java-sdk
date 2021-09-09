@@ -1,0 +1,12 @@
+#namespace enjin.sdk.player.ApproveEnj
+#import enjin.sdk.shared.Transaction
+
+#arg value BigInt!
+
+mutation {
+    result: ApproveEnj(
+        value: $value
+    ) {
+        ...Transaction
+    }
+}

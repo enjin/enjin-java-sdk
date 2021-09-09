@@ -1,0 +1,16 @@
+#namespace enjin.sdk.project.AdvancedSendAsset
+#import enjin.sdk.shared.Transaction
+
+#arg transfers [TransferInput!]!
+#arg data String
+#arg ethAddress EthAddress
+
+mutation {
+    result: AdvancedSendAsset(
+        transfers: $transfers,
+        data: $data,
+        wallet: $ethAddress
+    ) {
+        ...Transaction
+    }
+}

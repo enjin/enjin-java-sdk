@@ -1,0 +1,12 @@
+#namespace enjin.sdk.shared.PaginationCursor
+
+fragment PaginationCursor on PaginationCursor {
+    total
+    perPage
+    currentPage
+    hasPages
+    from
+    to
+    lastPage
+    hasMorePages
+}
