@@ -1,0 +1,20 @@
+#namespace enjin.sdk.project.GetPlayers
+#import enjin.sdk.shared.Player
+#import enjin.sdk.shared.PaginationCursor
+
+#arg filter PlayerFilter
+#arg pagination PaginationInput {page:1,limit:100}
+
+query {
+    result: GetPlayers(
+        filter: $filter
+        pagination: $pagination
+    ) {
+        items {
+            ...Player
+        }
+        cursor {
+            ...PaginationCursor
+        }
+    }
+}

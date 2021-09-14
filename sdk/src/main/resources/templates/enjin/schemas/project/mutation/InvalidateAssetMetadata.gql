@@ -1,0 +1,9 @@
+#namespace enjin.sdk.project.InvalidateAssetMetadata
+
+#arg id String!
+
+mutation {
+    result: InvalidateAssetMetadata(
+        id: $id
+    )
+}

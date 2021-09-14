@@ -1,0 +1,22 @@
+#namespace enjin.sdk.project.SetWhitelisted
+#import enjin.sdk.shared.Transaction
+
+#arg assetId String!
+#arg accountAddress EthAddress!
+#arg whitelisted Whitelisted!
+#arg whitelistedAddress EthAddress
+#arg on Boolean!
+#arg ethAddress EthAddress
+
+mutation {
+    result: SetWhitelisted(
+        assetId: $assetId,
+        account: $accountAddress,
+        whitelisted: $whitelisted,
+        whitelistedAddress: $whitelistedAddress,
+        on: $on
+        wallet: $ethAddress
+    ) {
+        ...Transaction
+    }
+}

@@ -1,0 +1,30 @@
+#namespace enjin.sdk.project.CreateAsset
+#import enjin.sdk.shared.Transaction
+
+#arg name String!
+#arg totalSupply BigInt!
+#arg initialReserve BigInt!
+#arg supplyModel AssetSupplyModel!
+#arg meltValue BigInt!
+#arg meltFeeRatio Int!
+#arg transferable AssetTransferable!
+#arg transferFeeSettings AssetTransferFeeSettingsInput
+#arg nonFungible Boolean!
+#arg ethAddress EthAddress
+
+mutation {
+    result: CreateAsset(
+        name: $name,
+        totalSupply: $totalSupply,
+        initialReserve: $initialReserve,
+        supplyModel: $supplyModel,
+        meltValue: $meltValue,
+        meltFeeRatio: $meltFeeRatio,
+        transferable: $transferable,
+        transferFeeSettings: $transferFeeSettings,
+        nonFungible: $nonFungible,
+        wallet: $ethAddress
+    ) {
+        ...Transaction
+    }
+}

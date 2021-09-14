@@ -1,0 +1,18 @@
+#namespace enjin.sdk.project.SetUri
+#import enjin.sdk.shared.Transaction
+
+#arg assetId String!
+#arg assetIndex String
+#arg uri String
+#arg ethAddress EthAddress
+
+mutation {
+    result: SetUri(
+        assetId: $assetId,
+        assetIndex: $assetIndex,
+        uri: $uri,
+        wallet: $ethAddress
+    ) {
+        ...Transaction
+    }
+}

@@ -1,0 +1,16 @@
+#namespace enjin.sdk.project.SetTransferFee
+#import enjin.sdk.shared.Transaction
+
+#arg assetId String!
+#arg transferFee BigInt!
+#arg ethAddress EthAddress
+
+mutation {
+    result: SetTransferFee(
+        assetId: $assetId,
+        transferFee: $transferFee,
+        wallet: $ethAddress
+    ) {
+        ...Transaction
+    }
+}

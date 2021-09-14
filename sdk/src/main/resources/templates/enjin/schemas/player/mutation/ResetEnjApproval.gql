@@ -1,0 +1,8 @@
+#namespace enjin.sdk.player.ResetEnjApproval
+#import enjin.sdk.shared.Transaction
+
+mutation {
+    result: ResetEnjApproval {
+        ...Transaction
+    }
+}

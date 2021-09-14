@@ -1,0 +1,22 @@
+#namespace enjin.sdk.shared.GetAssets
+#import enjin.sdk.shared.Asset
+#import enjin.sdk.shared.PaginationCursor
+
+#arg filter AssetFilter
+#arg sort AssetSortInput {field:id,direction:asc}
+#arg pagination PaginationInput {page:1,limit:100}
+
+query {
+    result: GetAssets(
+        filter: $filter,
+        sort: $sort,
+        pagination: $pagination
+    ) {
+        items {
+            ...Asset
+        }
+        cursor {
+            ...PaginationCursor
+        }
+    }
+}

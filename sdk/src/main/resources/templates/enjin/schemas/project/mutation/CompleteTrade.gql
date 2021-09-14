@@ -1,0 +1,14 @@
+#namespace enjin.sdk.project.CompleteTrade
+#import enjin.sdk.shared.Transaction
+
+#arg tradeId String!
+#arg ethAddress EthAddress
+
+mutation {
+    result: CompleteTrade(
+        tradeId: $tradeId,
+        wallet: $ethAddress
+    ) {
+        ...Transaction
+    }
+}

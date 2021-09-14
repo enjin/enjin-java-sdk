@@ -1,0 +1,12 @@
+#namespace enjin.sdk.shared.GetAsset
+#import enjin.sdk.shared.Asset
+
+#arg id String!
+
+query {
+    result: GetAsset(
+        id: $id
+    ) {
+        ...Asset
+    }
+}
