@@ -45,7 +45,7 @@ The Enjin Java SDK requires at a minimum Java 8.
 
 ```groovy
 dependencies {
-    implementation 'com.enjin:blockchain-sdk:1.0.1'
+    implementation 'com.enjin:blockchain-sdk:2.0.0'
 }
 ```
 
@@ -55,8 +55,8 @@ For those that do not use Maven or Gradle, the SDK may be built manually and add
 
 1. Clone the Java SDK repository using git.
 2. Build the Java SDK:
- * `./gradlew sdk:build` (Linux)
- * `./gradlew.bat sdk:build` (Windows)
+    * `./gradlew sdk:build` (Linux)
+    * `./gradlew.bat sdk:build` (Windows)
 3. Navigate to the `build/libs` folder in the `sdk` module.
 4. Add the jar ending in `-all` to your project's classpath.
 
