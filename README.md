@@ -127,6 +127,8 @@ request to merge your changes to be included in the next release.
 
 Ensure that tests under the `sdk` module are passing and add any necessary test classes or test cases for your code.
 
+Be sure to include your name in the list of contributors.
+
 ## Deploying
 
 To deploy to maven central you should set the following in your `local.properties`.
