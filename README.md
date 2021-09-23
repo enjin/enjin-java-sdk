@@ -24,6 +24,7 @@ Sign up to Enjin Cloud: [Kovan (Testnet)](https://kovan.cloud.enjin.io/),
     * [Issues](#issues)
     * [Pull Requests](#pull-requests)
 * [Deploying](#deploying)
+* [Copyright and Licensing](#copyright-and-licensing)
 
 ## Compatibility
 
