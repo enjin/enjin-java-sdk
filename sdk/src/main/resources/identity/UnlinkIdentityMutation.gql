@@ -1,0 +1,9 @@
+mutation {
+    result: UnlinkIdentity(
+        id: $id
+    ) {
+        ...IdentityFragment
+    }
+}
+
+$id: Int

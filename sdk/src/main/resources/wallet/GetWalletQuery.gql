@@ -1,0 +1,9 @@
+query {
+    result: EnjinWallet(
+        ethAddress: $ethAddr
+    ) {
+        ...WalletFragment
+    }
+}
+
+$ethAddr: String

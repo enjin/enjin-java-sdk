@@ -1,0 +1,42 @@
+query {
+    result: EnjinTokens(
+        id: $id,
+        appId: $appId,
+        name: $name,
+        creator: $creator,
+        totalSupply: $totalSupply,
+        reserve: $reserve,
+        supplyModel: $supplyModel,
+        meltValue: $meltValue,
+        meltFeeRatio: $meltFeeRatio,
+        nonFungible: $nonFungible,
+        firstBlock: $firstBlock,
+        blockHeight: $blockHeight,
+        markedForDelete: $markedForDelete,
+        sortBy: $sort,
+        pagination: $pagination
+    ) {
+        items {
+            ...TokenFragment
+        }
+        cursor {
+            ...PaginationCursorFragment
+        }
+    }
+}
+
+$id: String
+$appId: Int
+$name: String
+$creator: String
+$totalSupply: BigInt
+$reserve: String
+$supplyModel: TokenSupplyModel
+$meltValue: BigInt
+$meltFeeRatio: String
+$nonFungible: Boolean
+$firstBlock: Int
+$blockHeight: Int
+$markedForDelete: Boolean
+$sort: TokenSortInput
+$pagination: PaginationInput = { page: 1, limit: 100 }

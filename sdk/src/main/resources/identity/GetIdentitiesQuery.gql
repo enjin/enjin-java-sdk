@@ -1,0 +1,15 @@
+query {
+    result: EnjinIdentities(
+        id: $id,
+        appId: $appId,
+        ethAddress: $ethAddr,
+        linkingCode: $linkingCode
+    ) {
+        ...IdentityFragment
+    }
+}
+
+$id: Int
+$appId: Int
+$ethAddr: String
+$linkingCode: String

@@ -1,0 +1,5 @@
+mutation {
+    result: InvalidateTokenMetadata(id: $id)
+}
+
+$id: String!

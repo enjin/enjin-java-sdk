@@ -1,0 +1,9 @@
+mutation {
+    result: DeleteEnjinIdentity(
+        id: $id
+    ) {
+        ...IdentityFragment
+    }
+}
+
+$id: Int

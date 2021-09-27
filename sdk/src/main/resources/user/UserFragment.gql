@@ -1,0 +1,16 @@
+fragment UserFragment on EnjinUser {
+    id
+    name
+    accessTokens @include(if: $withUserAccessTokens)
+    isPlayer
+    emailVerified
+    identities @include(if: $withUserIdentities) {
+        ...IdentityFragment
+    }
+    createdAt @include(if: $withUserTimestamps)
+    updatedAt @include(if: $withUserTimestamps)
+}
+
+$withUserAccessTokens: Boolean = false
+$withUserIdentities: Boolean = false
+$withUserTimestamps: Boolean = false

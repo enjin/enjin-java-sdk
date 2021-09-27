@@ -1,0 +1,9 @@
+mutation {
+    result: DeleteEnjinApp(
+        id: $id
+    ) {
+        ...AppFragment
+    }
+}
+
+$id: Int

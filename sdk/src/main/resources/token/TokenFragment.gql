@@ -1,0 +1,40 @@
+fragment TokenFragment on EnjinToken {
+    id(format: $tokenIdFormat)
+    index @include(if: $withTokenIndex)
+    name
+    appId
+    nonFungible
+    creator @include(if: $withCreator)
+    blockHeight @include(if: $withTokenBlocks)
+    firstBlock @include(if: $withTokenBlocks)
+    icon @include(if: $withTokenIcon)
+    meltFeeRatio @include(if: $withMeltDetails)
+    meltFeeMaxRatio @include(if: $withMeltDetails)
+    meltValue @include(if: $withMeltDetails)
+    markedForDelete @include(if: $withDeleteStatus)
+    availableToMint @include(if: $withSupplyDetails)
+    reserve @include(if: $withSupplyDetails)
+    supplyModel @include(if: $withSupplyDetails)
+    circulatingSupply @include(if: $withSupplyDetails)
+    totalSupply @include(if: $withSupplyDetails)
+    transferFeeSettings @include(if: $withTransferSettings) {
+        ...TokenTransferFeeSettingsFragment
+    }
+    transferable @include(if: $withTransferSettings)
+    itemURI(replace_uri_parameters: $replaceUriParams) @include(if: $withItemUri)
+    createdAt @include(if: $withTokenTimestamps)
+    updatedAt @include(if: $withTokenTimestamps)
+}
+
+$tokenIdFormat: TokenIdFormat
+$replaceUriParams: Boolean
+$withTokenIndex: Boolean = false
+$withCreator: Boolean = false
+$withTokenBlocks: Boolean = false
+$withTokenIcon: Boolean = false
+$withMeltDetails: Boolean = false
+$withDeleteStatus: Boolean = false
+$withSupplyDetails: Boolean = false
+$withTransferSettings: Boolean = false
+$withItemUri: Boolean = false
+$withTokenTimestamps: Boolean = false

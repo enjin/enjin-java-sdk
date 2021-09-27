@@ -1,0 +1,9 @@
+mutation {
+    result: CreateEnjinUser(
+        name: $name
+    ) {
+        ...UserFragment
+    }
+}
+
+$name: String

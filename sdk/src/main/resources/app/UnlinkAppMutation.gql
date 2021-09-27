@@ -1,0 +1,11 @@
+mutation {
+  result: UnlinkApp(
+      id: $id,
+      ethAddress: $ethAddress
+  ) {
+      ...AppFragment
+  }
+}
+
+$id: Int
+$ethAddress: String

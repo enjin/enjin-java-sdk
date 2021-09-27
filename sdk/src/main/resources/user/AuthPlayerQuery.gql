@@ -1,0 +1,10 @@
+query {
+    result: AuthPlayer(
+        id: $id
+    ) {
+        accessToken
+        expiresIn
+    }
+}
+
+$id: String!
