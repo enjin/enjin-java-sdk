@@ -1,0 +1,9 @@
+query {
+    result: AuthApp(id: $id, secret: $secret) {
+        accessToken
+        expiresIn
+    }
+}
+
+$id: Int!
+$secret: String!

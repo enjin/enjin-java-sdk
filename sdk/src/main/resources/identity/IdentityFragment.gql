@@ -1,0 +1,17 @@
+fragment IdentityFragment on EnjinIdentity {
+    id
+    appId
+    linkingCode @include(if: $withLinkingCode)
+    linkingCodeQr(size: $linkingCodeQrSize) @include(if: $withLinkingCodeQr)
+    wallet @include(if: $withWallet) {
+        ...WalletFragment
+    }
+    createdAt @include(if: $withIdentityTimestamps)
+    updatedAt @include(if: $withIdentityTimestamps)
+}
+
+$withLinkingCode: Boolean = false
+$withLinkingCodeQr: Boolean = false
+$linkingCodeQrSize: Int
+$withWallet: Boolean = false
+$withIdentityTimestamps: Boolean = false

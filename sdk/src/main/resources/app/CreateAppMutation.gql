@@ -1,0 +1,13 @@
+mutation {
+    result: CreateEnjinApp(
+        name: $name,
+        description: $description,
+        image: $image
+    ) {
+        ...AppFragment
+    }
+}
+
+$name: String
+$description: String
+$image: String

@@ -1,0 +1,23 @@
+query {
+    result: EnjinBalances(
+        appIds: $appIds,
+        ethAddress: $ethAddress,
+        tokenId: $tokenId,
+        value: $value,
+        value_gt: $valGt,
+        value_gte: $valGte,
+        value_lt: $valLt,
+        value_lte: $valLte
+    ) {
+        ...BalanceFragment
+    }
+}
+
+$appIds: [Int]
+$ethAddress: String
+$tokenId: String
+$value: Int
+$valGt: Int
+$valGte: Int
+$valLt: Int
+$valLte: Int

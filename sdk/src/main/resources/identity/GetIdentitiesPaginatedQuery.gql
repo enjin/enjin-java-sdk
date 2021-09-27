@@ -1,0 +1,17 @@
+query {
+    result: EnjinIdentities(
+        id: $id,
+        appId: $appId,
+        ethAddress: $ethAddr,
+        linkingCode: $linkingCode,
+        pagination: $pagination
+    ) {
+        ...IdentityFragment
+    }
+}
+
+$id: Int
+$appId: Int
+$ethAddr: String
+$linkingCode: String
+$pagination: PaginationInput = { page: 1, limit: 100 }

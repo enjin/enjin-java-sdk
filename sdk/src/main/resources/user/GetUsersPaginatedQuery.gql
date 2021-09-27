@@ -1,0 +1,20 @@
+query {
+    result: EnjinUsers(
+        id: $id,
+        name: $name,
+        email: $email,
+        pagination: $pagination
+    ) {
+        items {
+            ...UserFragment
+        }
+        cursor {
+            ...PaginationCursorFragment
+        }
+    }
+}
+
+$id: Int
+$name: String
+$email: String
+$pagination: PaginationInput = { page: 1, limit: 100 }

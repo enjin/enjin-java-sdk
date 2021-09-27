@@ -1,0 +1,15 @@
+mutation {
+    result: CreateEnjinIdentity(
+        appId: $appId,
+        userId: $userId,
+        email: $email,
+        ethAddress: $ethAddr
+    ) {
+        ...IdentityFragment
+    }
+}
+
+$appId: Int
+$userId: Int
+$email: String
+$ethAddr: String

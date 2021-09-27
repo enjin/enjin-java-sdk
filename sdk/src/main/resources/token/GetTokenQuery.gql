@@ -1,0 +1,11 @@
+query {
+    result: EnjinToken(
+        id: $id,
+        appId: $appId
+    ) {
+        ...TokenFragment
+    }
+}
+
+$id: String
+$appId: Int

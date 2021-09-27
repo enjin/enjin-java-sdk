@@ -1,0 +1,12 @@
+query {
+    result: EnjinOauth(
+        email: $email,
+        password: $password
+    ) {
+        id,
+        accessTokens
+    }
+}
+
+$email: String!
+$password: String!

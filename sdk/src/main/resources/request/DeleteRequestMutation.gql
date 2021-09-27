@@ -1,0 +1,7 @@
+mutation {
+    result: DeleteEnjinRequest(
+        id: $id
+    )
+}
+
+$id: Int!

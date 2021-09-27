@@ -1,0 +1,15 @@
+mutation {
+    result: UpdateEnjinApp(
+        id: $id,
+        name: $name,
+        description: $description,
+        image: $image
+    ) {
+        ...AppFragment
+    }
+}
+
+$id: Int
+$name: String
+$description: String
+$image: String

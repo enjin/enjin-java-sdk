@@ -1,0 +1,13 @@
+query {
+    result: EnjinUsers(
+        id: $id,
+        name: $name,
+        email: $email
+    ) {
+        ...UserFragment
+    }
+}
+
+$id: Int
+$name: String
+$email: String

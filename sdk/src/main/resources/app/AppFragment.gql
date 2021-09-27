@@ -1,0 +1,27 @@
+fragment AppFragment on EnjinApp {
+    id
+    secret @include(if: $withSecret)
+    name
+    description
+    image
+    linkingCode @include(if: $withLinkingCode)
+    linkingCodeQr(size: $linkingCodeQrSize) @include(if: $withLinkingCodeQr)
+    identity @include(if: $withCurrentUserIdentity) {
+        ...IdentityFragment
+    }
+    owner @include(if: $withOwner) {
+        id
+    }
+    tokenCount @include(if: $withTokenCount)
+    createdAt @include(if: $withAppTimestamps)
+    updatedAt @include(if: $withAppTimestamps)
+}
+
+$withSecret: Boolean = false
+$withLinkingCode: Boolean = false
+$withLinkingCodeQr: Boolean = false
+$linkingCodeQrSize: Int
+$withCurrentUserIdentity: Boolean = false
+$withOwner: Boolean = false
+$withTokenCount: Boolean = false
+$withAppTimestamps: Boolean = false

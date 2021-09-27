@@ -1,0 +1,22 @@
+query {
+    result: EnjinTokenEvents(
+        id: $id,
+        tokenId: $tokenId,
+        event: $eventType,
+        blockNumber: $blockNumber,
+        pagination: $pagination
+    ) {
+        items {
+            ...TokenEventFragment
+        }
+        cursor {
+            ...PaginationCursorFragment
+        }
+    }
+}
+
+$id: Int
+$tokenId: String
+$eventType: TokenEventType
+$blockNumber: Int
+$pagination: PaginationInput = { page: 1, limit: 100 }

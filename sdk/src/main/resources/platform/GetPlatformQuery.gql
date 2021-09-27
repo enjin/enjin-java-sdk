@@ -1,0 +1,14 @@
+query {
+    result: Platform {
+        id
+        name
+        network
+        blockHeight @include(if: $withBlockHeight)
+        contracts @include(if: $withContracts)
+        notifications @include(if: $withNotificationDrivers)
+    }
+}
+
+$withBlockHeight: Boolean = false
+$withContracts: Boolean = false
+$withNotificationDrivers: Boolean = false

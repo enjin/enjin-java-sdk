@@ -1,0 +1,31 @@
+query {
+    result: EnjinTransactions(
+        id: $id,
+        transactionId: $txId,
+        identityId: $identityId,
+        type: $txType,
+        recipientId: $recipientId,
+        recipientAddress: $recipientAddr,
+        senderOrRecipientId: $senderOrRecipientId,
+        tokenId: $tokenId,
+        value: $value,
+        states: $txStateIn,
+        sortBy: $sort,
+        onlyBroadcastable: $broadcastOnly
+    ) {
+        ...TransactionFragment
+    }
+}
+
+$id: Int
+$txId: String
+$identityId: Int
+$txType: TransactionType
+$recipientId: Int
+$recipientAddr: String
+$senderOrRecipientId: Int
+$tokenId: String
+$value: String
+$txStateIn: [TransactionState]
+$sort: TransactionSortInput
+$broadcastOnly: Boolean

@@ -1,0 +1,10 @@
+fragment PaginationCursorFragment on PaginationCursor {
+    total
+    perPage
+    currentPage
+    hasPages
+    from
+    to
+    lastPage
+    hasMorePages
+}

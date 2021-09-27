@@ -1,0 +1,30 @@
+fragment WalletFragment on EnjinWallet {
+    ethAddress
+    ethBalance
+    enjBalance
+    enjAllowance
+    balances(
+        appId: $balAppId,
+        tokenId: $balTokenId,
+        value: $balVal,
+        value_gt: $balGt,
+        value_gte: $balGte,
+        value_lt: $balLt,
+        value_lte: $balLte
+    ) @include(if: $withBalances) {
+        ...BalanceFragment
+    }
+    tokensCreated @include(if: $withTokensCreated) {
+        ...TokenFragment
+    }
+}
+
+$balAppId: Int
+$balTokenId: String
+$balVal: Int
+$balGt: Int
+$balGte: Int
+$balLt: Int
+$balLte: Int
+$withBalances: Boolean = true
+$withTokensCreated: Boolean = false
