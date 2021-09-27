@@ -152,7 +152,7 @@ signing.gnupg.passphrase=<key passphrase>
 The license summary below may be copied.
 
 ```text
-Copyright 2021 Enjin Pte Ltd.
+Copyright 2021 Enjin Pte. Ltd.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
