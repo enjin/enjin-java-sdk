@@ -1,7 +1,24 @@
+/* Copyright 2021 Enjin Pte. Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.enjin.sdk.gen;
 
+import com.squareup.javapoet.CodeBlock;
 import com.squareup.javapoet.FieldSpec;
 import com.squareup.javapoet.JavaFile;
+import com.squareup.javapoet.ParameterizedTypeName;
 import com.squareup.javapoet.TypeSpec;
 import io.freefair.gradle.codegenerator.api.Generator;
 import io.freefair.gradle.codegenerator.api.ProjectContext;
@@ -13,6 +30,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 @CodeGenerator
@@ -33,31 +52,44 @@ public class TemplateGenerator implements Generator {
         TypeSpec.Builder typeSpec = TypeSpec.classBuilder("TemplateConstants")
                                             .addModifiers(Modifier.PUBLIC, Modifier.FINAL);
 
-        for (Map.Entry<String, Template> entry : templateLoader.getOperations().entrySet()) {
-            String fieldName = entry.getKey()
-                                    .replace("Mutation", "")
-                                    .replace("Query", "");
-            String fieldValue = entry.getValue().compile().replace("\n", " ");
-            FieldSpec spec = FieldSpec.builder(String.class,
-                                               fieldName,
-                                               Modifier.STATIC,
-                                               Modifier.FINAL,
-                                               Modifier.PUBLIC)
-                                      .initializer("$S", fieldValue)
-                                      .build();
-            typeSpec.addField(spec);
+        ParameterizedTypeName typeName = ParameterizedTypeName.get(Map.class, String.class, String.class);
+        typeSpec.addField(FieldSpec.builder(typeName,
+                                            "TEMPLATES",
+                                            Modifier.PUBLIC,
+                                            Modifier.STATIC,
+                                            Modifier.FINAL)
+                                   .build());
+
+        // Builds the statements used to put the template namespace and compiled contents into the templates map
+        CodeBlock.Builder staticBlockBuilder = CodeBlock.builder()
+                                                        .addStatement("$T<$T, $T> map = new $T<>()",
+                                                                      Map.class,
+                                                                      String.class,
+                                                                      String.class,
+                                                                      HashMap.class);
+
+        for (Template template : templateLoader.getOperations().values()) {
+            String key   = template.getNamespace();
+            String value = template.compile().replace("\n", " ");
+            staticBlockBuilder.addStatement("$L.put($S, $S)", "map", key, value);
 
             File dir = new File(context.getOutputDir(), "../../../gql/compiled-templates/");
             dir.mkdirs();
-            File file = new File(dir, fieldName + ".gql");
+            File file = new File(dir, template.getName() + ".gql");
             file.delete();
             file.createNewFile();
             try (FileWriter fw = new FileWriter(file)){
                 try (BufferedWriter bw = new BufferedWriter(fw)) {
-                    bw.write(entry.getValue().compile());
+                    bw.write(template.compile());
                 }
             }
         }
+
+        typeSpec.addStaticBlock(staticBlockBuilder.addStatement("$L = $T.unmodifiableMap($L)",
+                                                                "TEMPLATES",
+                                                                Collections.class,
+                                                                "map")
+                                                  .build());
 
         JavaFile javaFile = JavaFile.builder("com.enjin.sdk.graphql", typeSpec.build())
                                     .indent("    ")

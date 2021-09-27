@@ -1,0 +1,14 @@
+#namespace enjin.sdk.player.SetApprovalForAll
+#import enjin.sdk.shared.Transaction
+
+#arg operatorAddress EthAddress!
+#arg approved Boolean!
+
+mutation {
+    result: SetApprovalForAll(
+        operator: $operatorAddress,
+        approved: $approved
+    ) {
+        ...Transaction
+    }
+}

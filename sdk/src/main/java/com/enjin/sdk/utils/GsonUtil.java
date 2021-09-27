@@ -1,3 +1,18 @@
+/* Copyright 2021 Enjin Pte. Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.enjin.sdk.utils;
 
 import com.google.gson.JsonElement;
@@ -19,7 +34,6 @@ public final class GsonUtil {
      *
      * @param root the object to search in
      * @param path the path to fetch
-     *
      * @return true if the path exists, false otherwise
      */
     public static boolean pathExists(JsonObject root, String path) {
@@ -47,7 +61,6 @@ public final class GsonUtil {
      *
      * @param root the object to search in
      * @param path the path to fetch
-     *
      * @return empty optional if path does not exist or is null, else optional wrapped element
      */
     public static Optional<JsonElement> getJsonElement(JsonObject root, String path) {
@@ -74,7 +87,6 @@ public final class GsonUtil {
      * Checks if a json element is a json object.
      *
      * @param optional the element
-     *
      * @return true if the element is a json object, false otherwise
      */
     public static boolean isJsonObject(Optional<JsonElement> optional) {
@@ -85,11 +97,20 @@ public final class GsonUtil {
      * Checks if a json element is a json array.
      *
      * @param optional the element
-     *
      * @return true if the element is a json array, false otherwise
      */
     public static boolean isJsonArray(Optional<JsonElement> optional) {
         return optional.isPresent() && optional.get().isJsonArray();
+    }
+
+    /**
+     * Checks if a json element is a json primitive.
+     *
+     * @param optional the element
+     * @return true if the element is a json primitive, false otherwise
+     */
+    public static boolean isJsonPrimitive(Optional<JsonElement> optional) {
+        return optional.isPresent() && optional.get().isJsonPrimitive();
     }
 
 }

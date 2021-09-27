@@ -1,0 +1,12 @@
+#namespace enjin.sdk.player.MeltAsset
+#import enjin.sdk.shared.Transaction
+
+#arg melts [MeltInput!]!
+
+mutation {
+    result: MeltAsset(
+        melts: $melts
+    ) {
+        ...Transaction
+    }
+}

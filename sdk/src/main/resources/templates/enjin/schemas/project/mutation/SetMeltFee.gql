@@ -1,0 +1,16 @@
+#namespace enjin.sdk.project.SetMeltFee
+#import enjin.sdk.shared.Transaction
+
+#arg assetId String!
+#arg meltFee Int!
+#arg ethAddress EthAddress
+
+mutation {
+    result: SetMeltFee(
+        assetId: $assetId,
+        meltFee: $meltFee,
+        wallet: $ethAddress
+    ) {
+        ...Transaction
+    }
+}

@@ -1,0 +1,14 @@
+#namespace enjin.sdk.project.Message
+#import enjin.sdk.shared.Transaction
+
+#arg message String!
+#arg ethAddress EthAddress
+
+mutation {
+    result: Message(
+        message: $message,
+        wallet: $ethAddress
+    ) {
+        ...Transaction
+    }
+}

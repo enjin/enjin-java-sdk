@@ -1,27 +1,49 @@
+/* Copyright 2021 Enjin Pte. Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.enjin.sdk.models;
 
+import com.google.gson.annotations.SerializedName;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
+import java.util.Objects;
+
 /**
- * Models an access token.
+ * Models a successful auth object.
  */
+@EqualsAndHashCode
 @Getter
 public class AccessToken {
 
     /**
-     * -- GETTER --
-     * Returns the access token's identifier.
-     *
-     * @return the identifier
+     * -- Getter --
+     * @return the token for the auth
      */
-    private String accessToken;
+    @SerializedName("accessToken")
+    private String token;
 
     /**
-     * -- GETTER --
-     * Returns the number of seconds the access token expires in.
-     *
-     * @return the number of seconds
+     * -- Getter --
+     * @return the number of seconds until the auth expires
      */
     private long expiresIn;
+
+    @Override
+    public String toString() {
+        return Objects.toString(this);
+    }
 
 }

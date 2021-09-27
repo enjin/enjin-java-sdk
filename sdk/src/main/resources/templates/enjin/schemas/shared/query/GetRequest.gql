@@ -1,0 +1,14 @@
+#namespace enjin.sdk.shared.GetRequest
+#import enjin.sdk.shared.Transaction
+
+#arg id Int
+#arg transactionId String
+
+query {
+    result: GetTransaction(
+        id: $id,
+        transactionId: $transactionId
+    ) {
+        ...Transaction
+    }
+}

@@ -1,0 +1,12 @@
+#namespace enjin.sdk.project.GetPlayer
+#import enjin.sdk.shared.Player
+
+#arg id String!
+
+query {
+    result: GetPlayer(
+        id: $id
+    ) {
+        ...Player
+    }
+}

@@ -1,0 +1,14 @@
+#namespace enjin.sdk.project.ApproveEnj
+#import enjin.sdk.shared.Transaction
+
+#arg value BigInt!
+#arg ethAddress EthAddress
+
+mutation {
+    result: ApproveEnj(
+        value: $value,
+        wallet: $ethAddress
+    ) {
+        ...Transaction
+    }
+}

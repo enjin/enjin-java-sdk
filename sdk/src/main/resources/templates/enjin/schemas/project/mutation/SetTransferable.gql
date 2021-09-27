@@ -1,0 +1,18 @@
+#namespace enjin.sdk.project.SetTransferable
+#import enjin.sdk.shared.Transaction
+
+#arg assetId String!
+#arg assetIndex String
+#arg transferable AssetTransferable!
+#arg ethAddress EthAddress
+
+mutation {
+    result: SetTransferable(
+        assetId: $assetId,
+        assetIndex: $assetIndex,
+        transferable: $transferable,
+        wallet: $ethAddress
+    ) {
+        ...Transaction
+    }
+}

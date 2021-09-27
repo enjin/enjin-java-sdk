@@ -1,0 +1,18 @@
+#namespace enjin.sdk.project.CreateTrade
+#import enjin.sdk.shared.Transaction
+
+#arg askingAssets [TradeInput!]!
+#arg offeringAssets [TradeInput!]!
+#arg recipientAddress EthAddress!
+#arg ethAddress EthAddress
+
+mutation {
+    result: CreateTrade(
+        askingAssets: $askingAssets,
+        offeringAssets: $offeringAssets,
+        secondParty: $recipientAddress,
+        wallet: $ethAddress
+    ) {
+        ...Transaction
+    }
+}

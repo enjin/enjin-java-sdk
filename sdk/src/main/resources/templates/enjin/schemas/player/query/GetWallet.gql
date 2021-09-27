@@ -1,0 +1,8 @@
+#namespace enjin.sdk.player.GetWallet
+#import enjin.sdk.shared.Wallet
+
+query {
+    result: GetWallet {
+        ...Wallet
+    }
+}

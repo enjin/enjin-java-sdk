@@ -1,0 +1,14 @@
+#namespace enjin.sdk.player.SendEnj
+#import enjin.sdk.shared.Transaction
+
+#arg recipientAddress EthAddress!
+#arg value BigInt!
+
+mutation {
+    result: SendEnj(
+        to: $recipientAddress,
+        value: $value
+    ) {
+        ...Transaction
+    }
+}

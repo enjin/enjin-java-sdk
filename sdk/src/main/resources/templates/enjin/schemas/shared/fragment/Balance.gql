@@ -1,0 +1,18 @@
+#namespace enjin.sdk.shared.Balance
+
+#arg balIdFormat AssetIdFormat
+#arg balIndexFormat AssetIndexFormat
+#arg withBalProjectUuid Boolean false
+#arg withBalWalletAddress Boolean false
+
+fragment Balance on Balance {
+    id(format: $balIdFormat)
+    index(format: $balIndexFormat)
+    value
+    project @include(if: $withBalProjectUuid) {
+        uuid
+    }
+    wallet @include(if: $withBalWalletAddress) {
+        ethAddress
+    }
+}

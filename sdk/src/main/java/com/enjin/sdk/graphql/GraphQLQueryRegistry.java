@@ -1,8 +1,20 @@
+/* Copyright 2021 Enjin Pte. Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.enjin.sdk.graphql;
 
-import lombok.SneakyThrows;
-
-import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,7 +23,7 @@ import java.util.Map;
  */
 public class GraphQLQueryRegistry {
 
-    private Map<String, String> registered = new HashMap<>();
+    private final Map<String, String> registered = new HashMap<>();
 
     /**
      * Sole constructor.
@@ -21,29 +33,26 @@ public class GraphQLQueryRegistry {
     }
 
     /**
-     * Registers a template with a registry.
+     * Registers a new template.
      *
-     * @param name  the template name
+     * @param name the template name
      * @param query the template to register
-     *
      * @return true if registered, false if already exists
      */
     public boolean register(String name, String query) {
-        boolean result = false;
-
-        if (!registered.containsKey(query)) {
+        if (!registered.containsKey(name)) {
             registered.put(name, query);
-            result = true;
+            return true;
         }
 
-        return result;
+        return false;
     }
 
     /**
-     * Returns true if the registry contains the template.
+     * Returns true if this registry contains the template.
      *
      * @param key the template name
-     * @return    true if the template is registered, false otherwise
+     * @return true if the template is registered, false otherwise
      */
     public boolean has(String key) {
         return registered.containsKey(key);
@@ -53,20 +62,14 @@ public class GraphQLQueryRegistry {
      * Returns the query string if the registry contains the template or null if not.
      *
      * @param key the template name
-     * @return    the query
+     * @return the query
      */
     public String get(String key) {
         return registered.get(key);
     }
 
-    @SneakyThrows
     private void registerTemplateConstants() {
-        Field[] fields = TemplateConstants.class.getDeclaredFields();
-        for (Field field : fields) {
-            String name = field.getName();
-            String query = (String) field.get(null);
-            register(name, query);
-        }
+        TemplateConstants.TEMPLATES.forEach(this::register);
     }
 
 }

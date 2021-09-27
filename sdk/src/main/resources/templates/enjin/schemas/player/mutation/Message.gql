@@ -1,0 +1,12 @@
+#namespace enjin.sdk.player.Message
+#import enjin.sdk.shared.Transaction
+
+#arg message String!
+
+mutation {
+    result: Message(
+        message: $message
+    ) {
+        ...Transaction
+    }
+}

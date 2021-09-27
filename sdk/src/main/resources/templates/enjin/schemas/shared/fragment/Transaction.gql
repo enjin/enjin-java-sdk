@@ -1,0 +1,66 @@
+#namespace enjin.sdk.shared.Transaction
+
+#arg withMeta Boolean false
+#arg withBlockchainData Boolean false
+#arg withEncodedData Boolean false
+#arg withAssetData Boolean false
+#arg withSignedTxs Boolean false
+#arg withError Boolean false
+#arg withNonce Boolean false
+#arg withState Boolean false
+#arg withReceipt Boolean false
+#arg withReceiptLogs Boolean false
+#arg withLogEvent Boolean false
+#arg withTransactionProjectUuid Boolean false
+
+fragment Transaction on Transaction {
+    id
+    transactionId
+    title @include(if: $withMeta)
+    contract @include(if: $withMeta)
+    projectWallet @include(if: $withMeta)
+    type
+    value @include(if: $withAssetData)
+    retryState @include(if: $withState)
+    state @include(if: $withState)
+    accepted @include(if: $withState)
+    blockchainData @include(if: $withBlockchainData) {
+        encodedData @include(if: $withEncodedData)
+        signedTransaction @include(if: $withSignedTxs)
+        signedBackupTransaction @include(if: $withSignedTxs)
+        signedCancelTransaction @include(if: $withSignedTxs)
+        receipt @include(if: $withReceipt) {
+            blockHash
+            blockNumber
+            cumulativeGasUsed
+            gasUsed
+            from
+            to
+            transactionHash
+            transactionIndex
+            status
+            logs @include(if: $withReceiptLogs) {
+                blockNumber
+                address
+                transactionHash
+                data
+                topics
+                event @include(if: $withLogEvent) {
+                    name
+                    inputs
+                    nonIndexedInputs
+                    indexedInputs
+                    signature
+                    encodedSignature
+                }
+            }
+        }
+        error @include(if: $withError)
+        nonce @include(if: $withNonce)
+    }
+    project @include(if: $withTransactionProjectUuid) {
+        uuid
+    }
+    createdAt
+    updatedAt
+}

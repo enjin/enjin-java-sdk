@@ -1,0 +1,5 @@
+#namespace: enjin.sdk.player.UnlinkWallet
+
+mutation {
+    result: UnlinkWallet
+}
