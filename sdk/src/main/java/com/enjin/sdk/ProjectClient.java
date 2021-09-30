@@ -29,33 +29,7 @@ import java.util.concurrent.ExecutorService;
  */
 public final class ProjectClient extends ProjectSchema implements IClient {
 
-    /**
-     * Constructs a client with the targeted URL and default settings.
-     *
-     * @param baseUrl the base URL
-     */
-    public ProjectClient(@NonNull String baseUrl) {
-        this(baseUrl, false);
-    }
-
-    /**
-     * Constructs a client with the targeted URL, debugging state.
-     *
-     * @param baseUrl the base URL
-     * @param debug whether debugging is enabled
-     */
-    public ProjectClient(@NonNull String baseUrl, boolean debug) {
-        this(baseUrl, debug, null);
-    }
-
-    /**
-     * Constructs a client with the targeted settings.
-     *
-     * @param baseUrl the base URL
-     * @param debug whether debugging is enabled
-     * @param loggerProvider the logger provider
-     */
-    public ProjectClient(@NonNull String baseUrl, boolean debug, LoggerProvider loggerProvider) {
+    private ProjectClient(@NonNull String baseUrl, boolean debug, LoggerProvider loggerProvider) {
         super(new TrustedPlatformMiddleware(baseUrl, debug), loggerProvider);
     }
 
@@ -85,6 +59,82 @@ public final class ProjectClient extends ProjectSchema implements IClient {
                          .dispatcher()
                          .executorService()
                          .isShutdown();
+    }
+
+    /**
+     * Creates a builder for this class.
+     *
+     * @return The builder.
+     */
+    public static ProjectClientBuilder builder() {
+        return new ProjectClientBuilder();
+    }
+
+    /**
+     * Builder class for {@link ProjectClient}.
+     */
+    public static class ProjectClientBuilder {
+
+        private String baseUri;
+        private boolean debugEnabled = false;
+        private LoggerProvider loggerProvider;
+
+        private ProjectClientBuilder() {
+        }
+
+        /**
+         * Builds the client.
+         *
+         * @return The client.
+         *
+         * @throws IllegalStateException Thrown if the base URI is a null value at the time this method is called.
+         */
+        public ProjectClient build() throws IllegalStateException {
+            if (baseUri == null)
+                throw new IllegalStateException(String.format("Cannot build %s with null base URI",
+                                                              ProjectClient.class.getName()));
+
+            return new ProjectClient(baseUri, debugEnabled, loggerProvider);
+        }
+
+        /**
+         * Sets the base URI the client will be using.
+         *
+         * @param baseUri The base URI.
+         *
+         * @return This builder for chaining.
+         *
+         * @see EnjinHosts
+         */
+        public ProjectClientBuilder baseUri(String baseUri) {
+            this.baseUri = baseUri;
+            return this;
+        }
+
+        /**
+         * Sets whether debugging will be set for the client.
+         *
+         * @param enabled Whether debugging is enabled for the client.
+         *
+         * @return This builder for chaining.
+         */
+        public ProjectClientBuilder debugEnabled(boolean enabled) {
+            debugEnabled = enabled;
+            return this;
+        }
+
+        /**
+         * Sets the logger provider for the client to use.
+         *
+         * @param loggerProvider The logger provider.
+         *
+         * @return This builder for chaining.
+         */
+        public ProjectClientBuilder loggerProvider(LoggerProvider loggerProvider) {
+            this.loggerProvider = loggerProvider;
+            return this;
+        }
+
     }
 
 }
