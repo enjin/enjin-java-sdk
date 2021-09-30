@@ -19,8 +19,6 @@ import com.google.gson.annotations.SerializedName;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
-import java.util.Objects;
-
 /**
  * Models a successful auth object.
  */
@@ -43,7 +41,7 @@ public class AccessToken {
 
     @Override
     public String toString() {
-        return Objects.toString(this);
+        return String.format("token: %s, expiresIn: %s", token, expiresIn);
     }
 
 }
