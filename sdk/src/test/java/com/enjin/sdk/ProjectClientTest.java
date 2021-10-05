@@ -36,7 +36,9 @@ class ProjectClientTest {
             mockWebServer.start();
         } catch (Exception ignored) {
         }
-        classUnderTest = new ProjectClient(mockWebServer.url("/").toString());
+        classUnderTest = ProjectClient.builder()
+                                      .baseUri(mockWebServer.url("/").toString())
+                                      .build();
     }
 
     @AfterEach
