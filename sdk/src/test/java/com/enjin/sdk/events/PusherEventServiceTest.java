@@ -52,7 +52,7 @@ import static org.mockito.Mockito.verify;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
-class PusherNotificationServiceTest {
+class PusherEventServiceTest {
 
     private static final Platform DEFAULT_PLATFORM = PlatformUtils.FAKE_PLATFORM;
 
@@ -65,7 +65,7 @@ class PusherNotificationServiceTest {
     void registerListener_ReturnRegistrationWithListener() {
         // Arrange
         final NotificationListener expected = mock(NotificationListener.class);
-        final PusherNotificationService service = defaultPusherNotificationService();
+        final PusherEventService service = defaultPusherNotificationService();
 
         // Act
         NotificationListener actual = service.registerListener(expected)
@@ -79,7 +79,7 @@ class PusherNotificationServiceTest {
     void unregisterListener_ContainsListenerRegistration() {
         // Arrange
         final NotificationListener listener = mock(NotificationListener.class);
-        final PusherNotificationService service = defaultPusherNotificationService();
+        final PusherEventService service = defaultPusherNotificationService();
 
         // Act
         NotificationListenerRegistration registration = service.registerListener(listener);
@@ -92,7 +92,7 @@ class PusherNotificationServiceTest {
     void unregisterListener_ListenerIsUnregistered() {
         // Arrange
         final NotificationListener listener = mock(NotificationListener.class);
-        final PusherNotificationService service = defaultPusherNotificationService();
+        final PusherEventService service = defaultPusherNotificationService();
         final NotificationListenerRegistration registration = service.registerListener(listener);
 
         // Act
@@ -107,7 +107,7 @@ class PusherNotificationServiceTest {
         // Arrange
         final EventMatcher expected = event -> true;
         final NotificationListener listener = mock(NotificationListener.class);
-        final PusherNotificationService service = defaultPusherNotificationService();
+        final PusherEventService service = defaultPusherNotificationService();
 
         // Act
         EventMatcher actual = service.registerListenerWithMatcher(listener, expected)
@@ -122,7 +122,7 @@ class PusherNotificationServiceTest {
     void registerListenerIncludingTypes_IncludesEvent_ReturnRegistrationWithCorrectMatcher(EventType includedType) {
         // Arrange
         final NotificationListener listener = mock(NotificationListener.class);
-        final PusherNotificationService service = defaultPusherNotificationService();
+        final PusherEventService service = defaultPusherNotificationService();
 
         // Act
         EventMatcher matcher = service.registerListenerIncludingTypes(listener, includedType)
@@ -142,7 +142,7 @@ class PusherNotificationServiceTest {
     void registerListenerExcludingTypes_ExcludesEvent_ReturnRegistrationWithCorrectMatcher(EventType excludedType) {
         // Arrange
         final NotificationListener listener = mock(NotificationListener.class);
-        final PusherNotificationService service = defaultPusherNotificationService();
+        final PusherEventService service = defaultPusherNotificationService();
 
         // Act
         EventMatcher matcher = service.registerListenerExcludingTypes(listener, excludedType)
@@ -161,7 +161,7 @@ class PusherNotificationServiceTest {
     void subscribeToProject_BeforeStartingService_IsNotSubscribedToProject() {
         // Arrange - Data
         final String project = "xyz";
-        final PusherNotificationService service = defaultPusherNotificationService();
+        final PusherEventService service = defaultPusherNotificationService();
 
         // Act
         service.subscribeToProject(project);
@@ -175,7 +175,7 @@ class PusherNotificationServiceTest {
         // Arrange - Data
         final String project = "xyz";
         final String player = "xyz";
-        final PusherNotificationService service = defaultPusherNotificationService();
+        final PusherEventService service = defaultPusherNotificationService();
 
         // Act
         service.subscribeToPlayer(project, player);
@@ -188,7 +188,7 @@ class PusherNotificationServiceTest {
     void subscribeToAsset_BeforeStartingService_IsNotSubscribedToAsset() {
         // Arrange - Data
         final String asset = "xyz";
-        final PusherNotificationService service = defaultPusherNotificationService();
+        final PusherEventService service = defaultPusherNotificationService();
 
         // Act
         service.subscribeToAsset(asset);
@@ -201,7 +201,7 @@ class PusherNotificationServiceTest {
     void subscribeToWallet_BeforeStartingService_IsNotSubscribedToWallet() {
         // Arrange - Data
         final String wallet = "xyz";
-        final PusherNotificationService service = defaultPusherNotificationService();
+        final PusherEventService service = defaultPusherNotificationService();
 
         // Act
         service.subscribeToWallet(wallet);
@@ -217,7 +217,7 @@ class PusherNotificationServiceTest {
         // Arrange - Data
         final String project = "xyz";
         final String channelName = new ProjectChannel(DEFAULT_PLATFORM, project).channel();
-        final PusherNotificationService service = defaultPusherNotificationService();
+        final PusherEventService service = defaultPusherNotificationService();
         final ConnectionStateChange stubConnectedState = mock(ConnectionStateChange.class);
         final Channel stubChannel = mock(Channel.class);
 
@@ -257,7 +257,7 @@ class PusherNotificationServiceTest {
         final String project = "xyz";
         final String player = "xyz";
         final String channelName = new PlayerChannel(DEFAULT_PLATFORM, project, player).channel();
-        final PusherNotificationService service = defaultPusherNotificationService();
+        final PusherEventService service = defaultPusherNotificationService();
         final ConnectionStateChange stubConnectedState = mock(ConnectionStateChange.class);
         final Channel stubChannel = mock(Channel.class);
 
@@ -296,7 +296,7 @@ class PusherNotificationServiceTest {
         // Arrange - Data
         final String asset = "xyz";
         final String channelName = new AssetChannel(DEFAULT_PLATFORM, asset).channel();
-        final PusherNotificationService service = defaultPusherNotificationService();
+        final PusherEventService service = defaultPusherNotificationService();
         final ConnectionStateChange stubConnectedState = mock(ConnectionStateChange.class);
         final Channel stubChannel = mock(Channel.class);
 
@@ -335,7 +335,7 @@ class PusherNotificationServiceTest {
         // Arrange - Data
         final String wallet = "xyz";
         final String channelName = new WalletChannel(DEFAULT_PLATFORM, wallet).channel();
-        final PusherNotificationService service = defaultPusherNotificationService();
+        final PusherEventService service = defaultPusherNotificationService();
         final ConnectionStateChange stubConnectedState = mock(ConnectionStateChange.class);
         final Channel stubChannel = mock(Channel.class);
 
@@ -374,7 +374,7 @@ class PusherNotificationServiceTest {
         // Arrange - Data
         final String project = "xyz";
         final String channelName = new ProjectChannel(DEFAULT_PLATFORM, project).channel();
-        final PusherNotificationService service = defaultPusherNotificationService();
+        final PusherEventService service = defaultPusherNotificationService();
         final ConnectionStateChange stubConnectedState = mock(ConnectionStateChange.class);
         final Channel stubChannel = mock(Channel.class);
 
@@ -417,7 +417,7 @@ class PusherNotificationServiceTest {
         final String project = "xyz";
         final String player = "xyz";
         final String channelName = new PlayerChannel(DEFAULT_PLATFORM, project, player).channel();
-        final PusherNotificationService service = defaultPusherNotificationService();
+        final PusherEventService service = defaultPusherNotificationService();
         final ConnectionStateChange stubConnectedState = mock(ConnectionStateChange.class);
         final Channel stubChannel = mock(Channel.class);
 
@@ -459,7 +459,7 @@ class PusherNotificationServiceTest {
         // Arrange - Data
         final String asset = "xyz";
         final String channelName = new AssetChannel(DEFAULT_PLATFORM, asset).channel();
-        final PusherNotificationService service = defaultPusherNotificationService();
+        final PusherEventService service = defaultPusherNotificationService();
         final ConnectionStateChange stubConnectedState = mock(ConnectionStateChange.class);
         final Channel stubChannel = mock(Channel.class);
 
@@ -501,7 +501,7 @@ class PusherNotificationServiceTest {
         // Arrange - Data
         final String wallet = "xyz";
         final String channelName = new WalletChannel(DEFAULT_PLATFORM, wallet).channel();
-        final PusherNotificationService service = defaultPusherNotificationService();
+        final PusherEventService service = defaultPusherNotificationService();
         final ConnectionStateChange stubConnectedState = mock(ConnectionStateChange.class);
         final Channel stubChannel = mock(Channel.class);
 
@@ -543,7 +543,7 @@ class PusherNotificationServiceTest {
         // Arrange - Data
         final String project = "xyz";
         final String channelName = new ProjectChannel(DEFAULT_PLATFORM, project).channel();
-        final PusherNotificationService service = defaultPusherNotificationService();
+        final PusherEventService service = defaultPusherNotificationService();
         final ConnectionStateChange stubConnectedState = mock(ConnectionStateChange.class);
         final Channel stubChannel = mock(Channel.class);
 
@@ -582,8 +582,8 @@ class PusherNotificationServiceTest {
         }
     }
 
-    private static PusherNotificationService defaultPusherNotificationService() {
-        return PusherNotificationService.builder().platform(DEFAULT_PLATFORM).build();
+    private static PusherEventService defaultPusherNotificationService() {
+        return PusherEventService.builder().platform(DEFAULT_PLATFORM).build();
     }
 
     private static NotificationEvent createNotificationEvent(EventType type) {

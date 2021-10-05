@@ -23,7 +23,7 @@ import lombok.Getter;
  * that may be used in event handling.
  *
  * @see NotificationListener
- * @see NotificationsService
+ * @see IEventService
  */
 public class NotificationListenerRegistration {
 

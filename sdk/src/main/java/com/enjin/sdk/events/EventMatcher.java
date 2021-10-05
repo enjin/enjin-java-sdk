@@ -20,7 +20,7 @@ import com.enjin.sdk.models.NotificationEvent;
 /**
  * Matches events.
  *
- * @see NotificationsService
+ * @see IEventService
  */
 public interface EventMatcher {
 

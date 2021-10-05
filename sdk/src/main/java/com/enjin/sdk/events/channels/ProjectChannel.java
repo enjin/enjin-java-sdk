@@ -21,7 +21,7 @@ import lombok.NonNull;
 /**
  * Represents a channel to subscribe to for Enjin Cloud project events.
  *
- * @see com.enjin.sdk.events.NotificationsService
+ * @see com.enjin.sdk.events.IEventService
  */
 public class ProjectChannel implements IChannel {
 

@@ -21,9 +21,9 @@ import com.enjin.sdk.models.Platform;
 import java.util.concurrent.Future;
 
 /**
- * Notification service interface for subscribing to and registering for events from the Enjin Cloud.
+ * Event service interface for subscribing to and registering for events from the Enjin Cloud.
  */
-public interface NotificationsService {
+public interface IEventService {
 
     /**
      * Starts this service.

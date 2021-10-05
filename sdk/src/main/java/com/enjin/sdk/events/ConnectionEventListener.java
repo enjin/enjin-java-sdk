@@ -18,7 +18,7 @@ package com.enjin.sdk.events;
 /**
  * Listener for receiving notifications about the connection state of the event service.
  *
- * @see NotificationsService
+ * @see IEventService
  */
 public interface ConnectionEventListener {
 

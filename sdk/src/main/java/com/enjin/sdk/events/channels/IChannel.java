@@ -18,7 +18,7 @@ package com.enjin.sdk.events.channels;
 /**
  * Interface for Enjin Cloud event channels.
  *
- * @see com.enjin.sdk.events.NotificationsService
+ * @see com.enjin.sdk.events.IEventService
  */
 public interface IChannel {
 

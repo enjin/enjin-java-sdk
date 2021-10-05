@@ -20,7 +20,7 @@ import com.enjin.sdk.models.NotificationEvent;
 /**
  * Notification event listener.
  *
- * @see NotificationsService
+ * @see IEventService
  */
 public interface NotificationListener {
 

@@ -44,11 +44,11 @@ import lombok.Getter;
 import lombok.NonNull;
 
 /**
- * Implementation class of {@link NotificationsService} utilizing Pusher channel events.
+ * Implementation class of {@link IEventService} utilizing Pusher channel events.
  *
  * @see NotificationListener
  */
-public class PusherNotificationService implements NotificationsService {
+public class PusherEventService implements IEventService {
 
     /**
      * The list of listener registrations.
@@ -74,7 +74,7 @@ public class PusherNotificationService implements NotificationsService {
     // Mutexes
     private final Object subscribedMutex = new Object();
 
-    private PusherNotificationService(@NonNull Platform platform, LoggerProvider loggerProvider) {
+    private PusherEventService(@NonNull Platform platform, LoggerProvider loggerProvider) {
         this.loggerProvider = loggerProvider;
         this.platform = platform;
         this.pusherEventListener = new PusherEventListener(this);
@@ -360,19 +360,19 @@ public class PusherNotificationService implements NotificationsService {
      *
      * @return The builder.
      */
-    public static PusherNotificationServiceBuilder builder() {
-        return new PusherNotificationServiceBuilder();
+    public static PusherEventServiceBuilder builder() {
+        return new PusherEventServiceBuilder();
     }
 
     /**
-     * Builder class for {@link PusherNotificationService}.
+     * Builder class for {@link PusherEventService}.
      */
-    public static class PusherNotificationServiceBuilder {
+    public static class PusherEventServiceBuilder {
 
         private LoggerProvider loggerProvider;
         private Platform platform;
 
-        private PusherNotificationServiceBuilder() {
+        private PusherEventServiceBuilder() {
         }
 
         /**
@@ -382,12 +382,12 @@ public class PusherNotificationService implements NotificationsService {
          *
          * @throws IllegalStateException Thrown if platform is a null value at the time this method is called.
          */
-        public PusherNotificationService build() throws IllegalStateException {
+        public PusherEventService build() throws IllegalStateException {
             if (platform == null)
                 throw new IllegalStateException(String.format("Cannot build %s with null platform",
-                                                              PusherNotificationService.class.getName()));
+                                                              PusherEventService.class.getName()));
 
-            return new PusherNotificationService(platform, loggerProvider);
+            return new PusherEventService(platform, loggerProvider);
         }
 
         /**
@@ -397,7 +397,7 @@ public class PusherNotificationService implements NotificationsService {
          *
          * @return This builder for chaining.
          */
-        public PusherNotificationServiceBuilder loggerProvider(LoggerProvider loggerProvider) {
+        public PusherEventServiceBuilder loggerProvider(LoggerProvider loggerProvider) {
             this.loggerProvider = loggerProvider;
             return this;
         }
@@ -409,7 +409,7 @@ public class PusherNotificationService implements NotificationsService {
          *
          * @return This builder for chaining.
          */
-        public PusherNotificationServiceBuilder platform(Platform platform) {
+        public PusherEventServiceBuilder platform(Platform platform) {
             this.platform = platform;
             return this;
         }
