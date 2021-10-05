@@ -81,7 +81,9 @@ public class Main {
     public static void main(String... args) {
         // Builds the project client to run on the Goerli test network.
         // See: https://goerli.cloud.enjin.io to sign up for the test network.
-        ProjectClient client = new ProjectClient(EnjinHosts.GOERLI);
+        ProjectClient client = ProjectClient.builder()
+                                            .BaseUri(EnjinHosts.GOERLI)
+                                            .build();
 
         // Creates the request to authenticate the client.
         // Replace the appropriate strings with the project's UUID and secret.

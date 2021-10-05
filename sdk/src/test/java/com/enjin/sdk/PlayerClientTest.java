@@ -36,7 +36,9 @@ class PlayerClientTest {
             mockWebServer.start();
         } catch (Exception ignored) {
         }
-        classUnderTest = new PlayerClient(mockWebServer.url("/").toString());
+        classUnderTest = PlayerClient.builder()
+                                     .baseUri(mockWebServer.url("/").toString())
+                                     .build();
     }
 
     @AfterEach
