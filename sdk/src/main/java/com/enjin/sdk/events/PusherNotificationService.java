@@ -74,22 +74,7 @@ public class PusherNotificationService implements NotificationsService {
     // Mutexes
     private final Object subscribedMutex = new Object();
 
-    /**
-     * Constructs the notification service using the platform details.
-     *
-     * @param platform the platform
-     */
-    public PusherNotificationService(@NonNull Platform platform) {
-        this(platform, null);
-    }
-
-    /**
-     * Constructs the notification service using the platform details and logger provider.
-     *
-     * @param platform       the platform
-     * @param loggerProvider the logger provider
-     */
-    public PusherNotificationService(@NonNull Platform platform, LoggerProvider loggerProvider) {
+    private PusherNotificationService(@NonNull Platform platform, LoggerProvider loggerProvider) {
         this.loggerProvider = loggerProvider;
         this.platform = platform;
         this.pusherEventListener = new PusherEventListener(this);
@@ -368,6 +353,67 @@ public class PusherNotificationService implements NotificationsService {
     private void bind(@NonNull Channel channel) {
         for (EventType event : EventType.filterByChannelTypes(channel.getName()))
             channel.bind(event.getKey(), pusherEventListener);
+    }
+
+    /**
+     * Creates a builder for this class.
+     *
+     * @return The builder.
+     */
+    public static PusherNotificationServiceBuilder builder() {
+        return new PusherNotificationServiceBuilder();
+    }
+
+    /**
+     * Builder class for {@link PusherNotificationService}.
+     */
+    public static class PusherNotificationServiceBuilder {
+
+        private LoggerProvider loggerProvider;
+        private Platform platform;
+
+        private PusherNotificationServiceBuilder() {
+        }
+
+        /**
+         * Builds the service.
+         *
+         * @return The service.
+         *
+         * @throws IllegalStateException Thrown if platform is a null value at the time this method is called.
+         */
+        public PusherNotificationService build() throws IllegalStateException {
+            if (platform == null)
+                throw new IllegalStateException(String.format("Cannot build %s with null platform",
+                                                              PusherNotificationService.class.getName()));
+
+            return new PusherNotificationService(platform, loggerProvider);
+        }
+
+        /**
+         * Sets the logger provider for the service to use.
+         *
+         * @param loggerProvider The logger provider.
+         *
+         * @return This builder for chaining.
+         */
+        public PusherNotificationServiceBuilder loggerProvider(LoggerProvider loggerProvider) {
+            this.loggerProvider = loggerProvider;
+            return this;
+        }
+
+        /**
+         * Sets the platform data the service will be using.
+         *
+         * @param platform The platform.
+         *
+         * @return This builder for chaining.
+         */
+        public PusherNotificationServiceBuilder platform(Platform platform) {
+            this.platform = platform;
+            return this;
+        }
+
     }
 
 }
