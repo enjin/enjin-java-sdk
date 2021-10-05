@@ -23,7 +23,7 @@ import lombok.NonNull;
  *
  * @see com.enjin.sdk.events.NotificationsService
  */
-public class WalletChannel implements Channel {
+public class WalletChannel implements IChannel {
 
     private final Platform platform;
     private final String wallet;

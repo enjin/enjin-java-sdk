@@ -20,7 +20,7 @@ package com.enjin.sdk.events.channels;
  *
  * @see com.enjin.sdk.events.NotificationsService
  */
-public interface Channel {
+public interface IChannel {
 
     /**
      * Returns the channel formatted as a string.

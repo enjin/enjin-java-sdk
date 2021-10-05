@@ -23,7 +23,7 @@ import lombok.NonNull;
  *
  * @see com.enjin.sdk.events.NotificationsService
  */
-public class AssetChannel implements Channel {
+public class AssetChannel implements IChannel {
 
     private final Platform platform;
     private final String asset;
