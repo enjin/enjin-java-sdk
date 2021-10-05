@@ -583,7 +583,7 @@ class PusherNotificationServiceTest {
     }
 
     private static PusherNotificationService defaultPusherNotificationService() {
-        return new PusherNotificationService(DEFAULT_PLATFORM);
+        return PusherNotificationService.builder().platform(DEFAULT_PLATFORM).build();
     }
 
     private static NotificationEvent createNotificationEvent(EventType type) {
