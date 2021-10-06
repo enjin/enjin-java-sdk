@@ -26,7 +26,7 @@ import java.util.concurrent.Future;
 import com.enjin.sdk.models.EventType;
 import com.enjin.sdk.models.Notifications;
 import com.enjin.sdk.models.Platform;
-import com.enjin.sdk.events.NotificationListenerRegistration.RegistrationListenerConfiguration;
+import com.enjin.sdk.events.EventListenerRegistration.RegistrationListenerConfiguration;
 import com.enjin.sdk.events.channels.ProjectChannel;
 import com.enjin.sdk.events.channels.PlayerChannel;
 import com.enjin.sdk.events.channels.AssetChannel;
@@ -46,14 +46,14 @@ import lombok.NonNull;
 /**
  * Implementation class of {@link IEventService} utilizing Pusher channel events.
  *
- * @see NotificationListener
+ * @see IEventListener
  */
 public class PusherEventService implements IEventService {
 
     /**
      * The list of listener registrations.
      */
-    protected List<NotificationListenerRegistration> listeners = new ArrayList<>();
+    protected List<EventListenerRegistration> listeners = new ArrayList<>();
 
     /**
      * -- GETTER --
@@ -176,25 +176,25 @@ public class PusherEventService implements IEventService {
     }
 
     @Override
-    public NotificationListenerRegistration registerListener(@NonNull NotificationListener listener) {
-        return register(NotificationListenerRegistration.configure(listener));
+    public EventListenerRegistration registerListener(@NonNull IEventListener listener) {
+        return register(EventListenerRegistration.configure(listener));
     }
 
     @Override
-    public NotificationListenerRegistration registerListenerWithMatcher(@NonNull NotificationListener listener,
-                                                                        EventMatcher matcher) {
+    public EventListenerRegistration registerListenerWithMatcher(@NonNull IEventListener listener,
+                                                                 EventMatcher matcher) {
         return register(configureListener(listener).withMatcher(matcher));
     }
 
     @Override
-    public NotificationListenerRegistration registerListenerIncludingTypes(@NonNull NotificationListener listener,
-                                                                           EventType... types) {
+    public EventListenerRegistration registerListenerIncludingTypes(@NonNull IEventListener listener,
+                                                                    EventType... types) {
         return register(configureListener(listener).withAllowedEvents(types));
     }
 
     @Override
-    public NotificationListenerRegistration registerListenerExcludingTypes(@NonNull NotificationListener listener,
-                                                                           EventType... types) {
+    public EventListenerRegistration registerListenerExcludingTypes(@NonNull IEventListener listener,
+                                                                    EventType... types) {
         return register(configureListener(listener).withIgnoredEvents(types));
     }
 
@@ -205,8 +205,8 @@ public class PusherEventService implements IEventService {
      *
      * @return the listener configuration
      */
-    protected RegistrationListenerConfiguration configureListener(@NonNull NotificationListener listener) {
-        return NotificationListenerRegistration.configure(listener);
+    protected RegistrationListenerConfiguration configureListener(@NonNull IEventListener listener) {
+        return EventListenerRegistration.configure(listener);
     }
 
     /**
@@ -216,22 +216,22 @@ public class PusherEventService implements IEventService {
      *
      * @return the registration wrapper, or null if registration failed
      */
-    protected NotificationListenerRegistration register(@NonNull RegistrationListenerConfiguration configuration) {
-        for (NotificationListenerRegistration reg : listeners) {
+    protected EventListenerRegistration register(@NonNull RegistrationListenerConfiguration configuration) {
+        for (EventListenerRegistration reg : listeners) {
             if (reg.getListener().equals(configuration.listener))
                 return reg;
         }
 
-        NotificationListenerRegistration registration = configuration.create();
+        EventListenerRegistration registration = configuration.create();
         listeners.add(registration);
 
         return registration;
     }
 
     @Override
-    public void unregisterListener(@NonNull NotificationListener listener) {
+    public void unregisterListener(@NonNull IEventListener listener) {
         for (int i = 0; i < listeners.size(); i++) {
-            NotificationListenerRegistration reg = listeners.get(i);
+            EventListenerRegistration reg = listeners.get(i);
             if (reg.getListener().equals(listener)) {
                 listeners.remove(i);
                 return;

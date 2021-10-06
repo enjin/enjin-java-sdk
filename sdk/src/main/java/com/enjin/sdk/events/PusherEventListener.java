@@ -73,7 +73,7 @@ public class PusherEventListener implements SubscriptionEventListener {
 
         NotificationEvent notificationEvent = new NotificationEvent(type, channel, message);
 
-        for (NotificationListenerRegistration registration : service.listeners) {
+        for (EventListenerRegistration registration : service.listeners) {
             if (registration.getEventMatcher().matches(notificationEvent))
                 registration.getListener().notificationReceived(notificationEvent);
         }

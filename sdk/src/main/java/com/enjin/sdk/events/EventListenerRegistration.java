@@ -19,13 +19,13 @@ import com.enjin.sdk.models.EventType;
 import lombok.Getter;
 
 /**
- * Registration wrapper for a {@link NotificationListener} that extracts any metadata from the notification listener
- * that may be used in event handling.
+ * Registration wrapper for a {@link IEventListener} that extracts any metadata from the notification listener that may
+ * be used in event handling.
  *
- * @see NotificationListener
+ * @see IEventListener
  * @see IEventService
  */
-public class NotificationListenerRegistration {
+public class EventListenerRegistration {
 
     /**
      * A matcher that matches all events.
@@ -34,13 +34,15 @@ public class NotificationListenerRegistration {
 
     /**
      * -- GETTER --
+     *
      * @return the listener
      */
     @Getter
-    private final NotificationListener listener;
+    private final IEventListener listener;
 
     /**
      * -- GETTER --
+     *
      * @return the matcher
      */
     @Getter
@@ -51,7 +53,7 @@ public class NotificationListenerRegistration {
      *
      * @param listener the listener
      */
-    protected NotificationListenerRegistration(NotificationListener listener) {
+    protected EventListenerRegistration(IEventListener listener) {
         this.listener = listener;
     }
 
@@ -59,9 +61,9 @@ public class NotificationListenerRegistration {
      * Constructs the registration for the specified listener with the specified event matcher.
      *
      * @param listener the listener.
-     * @param matcher the event matcher.
+     * @param matcher  the event matcher.
      */
-    protected NotificationListenerRegistration(NotificationListener listener, EventMatcher matcher) {
+    protected EventListenerRegistration(IEventListener listener, EventMatcher matcher) {
         this(listener);
         this.eventMatcher = matcher;
     }
@@ -70,10 +72,11 @@ public class NotificationListenerRegistration {
      * Creates a new registration configuration for the provided listener.
      *
      * @param listener the listener to configure
+     *
      * @return the configuration
      */
     @SuppressWarnings("rawtypes")
-    public static RegistrationListenerConfiguration configure(NotificationListener listener) {
+    public static RegistrationListenerConfiguration configure(IEventListener listener) {
         return new RegistrationListenerConfiguration(listener);
     }
 
@@ -87,7 +90,7 @@ public class NotificationListenerRegistration {
         /**
          * The notification listener of the configuration.
          */
-        protected NotificationListener listener;
+        protected IEventListener listener;
 
         /**
          * The event matcher of the configuration.
@@ -99,7 +102,7 @@ public class NotificationListenerRegistration {
          *
          * @param listener the listener
          */
-        protected RegistrationListenerConfiguration(NotificationListener listener) {
+        protected RegistrationListenerConfiguration(IEventListener listener) {
             this.listener = listener;
             this.detectAndApplyListenerAnnotations();
         }
@@ -109,6 +112,7 @@ public class NotificationListenerRegistration {
          * is null then the default event matcher that allows all event will be assigned.
          *
          * @param eventMatcher the event matcher
+         *
          * @return this configuration for chaining
          */
         @SuppressWarnings("unchecked")
@@ -121,6 +125,7 @@ public class NotificationListenerRegistration {
          * Creates and assigns an event matcher that will allow the specified event types.
          *
          * @param types the types to allow
+         *
          * @return this configuration for chaining
          */
         public T withAllowedEvents(final EventType... types) {
@@ -133,6 +138,7 @@ public class NotificationListenerRegistration {
          * Creates and assigns an event matcher that will ignore the specified event types.
          *
          * @param types the types to ignore
+         *
          * @return this configuration for chaining
          */
         public T withIgnoredEvents(final EventType... types) {
@@ -146,11 +152,11 @@ public class NotificationListenerRegistration {
          *
          * @return a new instance if listener is not null, else null
          */
-        public NotificationListenerRegistration create() {
-            NotificationListenerRegistration registration = null;
+        public EventListenerRegistration create() {
+            EventListenerRegistration registration = null;
 
             if (this.listener != null) {
-                registration = new NotificationListenerRegistration(this.listener, this.eventMatcher);
+                registration = new EventListenerRegistration(this.listener, this.eventMatcher);
             }
 
             return registration;

@@ -15,7 +15,7 @@
 
 package com.enjin.sdk.events;
 
-import com.enjin.sdk.events.NotificationListenerRegistration.RegistrationListenerConfiguration;
+import com.enjin.sdk.events.EventListenerRegistration.RegistrationListenerConfiguration;
 import com.enjin.sdk.models.EventType;
 import com.enjin.sdk.models.NotificationEvent;
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,12 +28,12 @@ class RegistrationListenerConfigurationTest {
     @Test
     void create_CreatedRegistrationHasListener() {
         // Arrange
-        final NotificationListener expected = new Listener();
-        final RegistrationListenerConfiguration configuration = NotificationListenerRegistration.configure(expected);
+        final IEventListener expected = new Listener();
+        final RegistrationListenerConfiguration configuration = EventListenerRegistration.configure(expected);
 
         // Act
-        NotificationListener actual = configuration.create()
-                                                   .getListener();
+        IEventListener actual = configuration.create()
+                                             .getListener();
 
         // Assert
         assertSame(expected, actual);
@@ -112,10 +112,10 @@ class RegistrationListenerConfigurationTest {
     }
 
     private static RegistrationListenerConfiguration defaultRegistrationListenerConfiguration() {
-        return NotificationListenerRegistration.configure(new Listener());
+        return EventListenerRegistration.configure(new Listener());
     }
 
-    private static class Listener implements NotificationListener {
+    private static class Listener implements IEventListener {
 
         @Override
         public void notificationReceived(NotificationEvent event) { }

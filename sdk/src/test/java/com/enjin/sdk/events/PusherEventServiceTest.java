@@ -64,12 +64,12 @@ class PusherEventServiceTest {
     @Test
     void registerListener_ReturnRegistrationWithListener() {
         // Arrange
-        final NotificationListener expected = mock(NotificationListener.class);
+        final IEventListener expected = mock(IEventListener.class);
         final PusherEventService service = defaultPusherNotificationService();
 
         // Act
-        NotificationListener actual = service.registerListener(expected)
-                                             .getListener();
+        IEventListener actual = service.registerListener(expected)
+                                       .getListener();
 
         // Assert
         assertSame(expected, actual);
@@ -78,11 +78,11 @@ class PusherEventServiceTest {
     @Test
     void unregisterListener_ContainsListenerRegistration() {
         // Arrange
-        final NotificationListener listener = mock(NotificationListener.class);
+        final IEventListener listener = mock(IEventListener.class);
         final PusherEventService service = defaultPusherNotificationService();
 
         // Act
-        NotificationListenerRegistration registration = service.registerListener(listener);
+        EventListenerRegistration registration = service.registerListener(listener);
 
         // Assert
         assertTrue(service.listeners.contains(registration));
@@ -91,9 +91,9 @@ class PusherEventServiceTest {
     @Test
     void unregisterListener_ListenerIsUnregistered() {
         // Arrange
-        final NotificationListener listener = mock(NotificationListener.class);
+        final IEventListener listener = mock(IEventListener.class);
         final PusherEventService service = defaultPusherNotificationService();
-        final NotificationListenerRegistration registration = service.registerListener(listener);
+        final EventListenerRegistration registration = service.registerListener(listener);
 
         // Act
         service.unregisterListener(listener);
@@ -106,7 +106,7 @@ class PusherEventServiceTest {
     void registerListenerWithMatcher_ReturnRegistrationWithMatcher() {
         // Arrange
         final EventMatcher expected = event -> true;
-        final NotificationListener listener = mock(NotificationListener.class);
+        final IEventListener listener = mock(IEventListener.class);
         final PusherEventService service = defaultPusherNotificationService();
 
         // Act
@@ -121,7 +121,7 @@ class PusherEventServiceTest {
     @EnumSource
     void registerListenerIncludingTypes_IncludesEvent_ReturnRegistrationWithCorrectMatcher(EventType includedType) {
         // Arrange
-        final NotificationListener listener = mock(NotificationListener.class);
+        final IEventListener listener = mock(IEventListener.class);
         final PusherEventService service = defaultPusherNotificationService();
 
         // Act
@@ -141,7 +141,7 @@ class PusherEventServiceTest {
     @EnumSource
     void registerListenerExcludingTypes_ExcludesEvent_ReturnRegistrationWithCorrectMatcher(EventType excludedType) {
         // Arrange
-        final NotificationListener listener = mock(NotificationListener.class);
+        final IEventListener listener = mock(IEventListener.class);
         final PusherEventService service = defaultPusherNotificationService();
 
         // Act

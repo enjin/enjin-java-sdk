@@ -23,10 +23,10 @@ import java.lang.annotation.Target;
 import com.enjin.sdk.models.EventType;
 
 /**
- * Indicates the events to be filtered by the type. This annotation is intended to be used on the
- * {@link NotificationListener} class type.
+ * Indicates the events to be filtered by the type. This annotation is intended to be used on classes implementing
+ * {@link IEventListener}.
  *
- * @see NotificationListener
+ * @see IEventListener
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
