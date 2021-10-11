@@ -105,13 +105,13 @@ class PusherEventServiceTest {
     @Test
     void registerListenerWithMatcher_ReturnRegistrationWithMatcher() {
         // Arrange
-        final EventMatcher expected = event -> true;
+        final IEventMatcher expected = event -> true;
         final IEventListener listener = mock(IEventListener.class);
         final PusherEventService service = defaultPusherNotificationService();
 
         // Act
-        EventMatcher actual = service.registerListenerWithMatcher(listener, expected)
-                                     .getEventMatcher();
+        IEventMatcher actual = service.registerListenerWithMatcher(listener, expected)
+                                      .getEventMatcher();
 
         // Assert
         assertSame(expected, actual);
@@ -125,8 +125,8 @@ class PusherEventServiceTest {
         final PusherEventService service = defaultPusherNotificationService();
 
         // Act
-        EventMatcher matcher = service.registerListenerIncludingTypes(listener, includedType)
-                                      .getEventMatcher();
+        IEventMatcher matcher = service.registerListenerIncludingTypes(listener, includedType)
+                                       .getEventMatcher();
 
         // Assert
         for (EventType type : EventType.values()) {
@@ -145,8 +145,8 @@ class PusherEventServiceTest {
         final PusherEventService service = defaultPusherNotificationService();
 
         // Act
-        EventMatcher matcher = service.registerListenerExcludingTypes(listener, excludedType)
-                                      .getEventMatcher();
+        IEventMatcher matcher = service.registerListenerExcludingTypes(listener, excludedType)
+                                       .getEventMatcher();
 
         // Assert
         for (EventType type : EventType.values()) {

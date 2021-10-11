@@ -87,7 +87,7 @@ public interface IEventService {
      * @return the registration
      */
     EventListenerRegistration registerListenerWithMatcher(IEventListener listener,
-                                                          EventMatcher matcher);
+                                                          IEventMatcher matcher);
 
     /**
      * Registers a event listener with event types to allow and provides the registration object used for it.

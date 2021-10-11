@@ -47,7 +47,7 @@ class IEventListenerRegistrationTest {
 
         // Act
         RegistrationListenerConfiguration configuration = EventListenerRegistration.configure(filteredListener);
-        EventMatcher matcher = configuration.eventMatcher;
+        IEventMatcher matcher = configuration.eventMatcher;
 
         // Assert
         for (EventType type : EventType.values()) {
@@ -66,7 +66,7 @@ class IEventListenerRegistrationTest {
 
         // Act
         RegistrationListenerConfiguration configuration = EventListenerRegistration.configure(filteredListener);
-        EventMatcher matcher = configuration.eventMatcher;
+        IEventMatcher matcher = configuration.eventMatcher;
 
         // Assert
         for (EventType type : EventType.values()) {

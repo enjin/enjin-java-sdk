@@ -45,8 +45,8 @@ class RegistrationListenerConfigurationTest {
         final RegistrationListenerConfiguration configuration = defaultRegistrationListenerConfiguration();
 
         // Act
-        EventMatcher actual = configuration.create()
-                                           .getEventMatcher();
+        IEventMatcher actual = configuration.create()
+                                            .getEventMatcher();
 
         // Assert
         assertNotNull(actual);
@@ -55,13 +55,13 @@ class RegistrationListenerConfigurationTest {
     @Test
     void withMatcher_CreatedRegistrationHasMatcher() {
         // Arrange
-        final EventMatcher expected = event -> true;
+        final IEventMatcher expected = event -> true;
         final RegistrationListenerConfiguration configuration = defaultRegistrationListenerConfiguration();
 
         // Act
-        EventMatcher actual = configuration.withMatcher(expected)
-                                           .create()
-                                           .getEventMatcher();
+        IEventMatcher actual = configuration.withMatcher(expected)
+                                            .create()
+                                            .getEventMatcher();
 
         // Assert
         assertSame(expected, actual);
@@ -74,9 +74,9 @@ class RegistrationListenerConfigurationTest {
         final RegistrationListenerConfiguration configuration = defaultRegistrationListenerConfiguration();
 
         // Act
-        EventMatcher matcher = configuration.withAllowedEvents(allowedType)
-                                            .create()
-                                            .getEventMatcher();
+        IEventMatcher matcher = configuration.withAllowedEvents(allowedType)
+                                             .create()
+                                             .getEventMatcher();
 
         // Assert
         for (EventType type : EventType.values()) {
@@ -94,9 +94,9 @@ class RegistrationListenerConfigurationTest {
         final RegistrationListenerConfiguration configuration = defaultRegistrationListenerConfiguration();
 
         // Act
-        EventMatcher matcher = configuration.withIgnoredEvents(ignoredType)
-                                            .create()
-                                            .getEventMatcher();
+        IEventMatcher matcher = configuration.withIgnoredEvents(ignoredType)
+                                             .create()
+                                             .getEventMatcher();
 
         // Assert
         for (EventType type : EventType.values()) {

@@ -182,7 +182,7 @@ public class PusherEventService implements IEventService {
 
     @Override
     public EventListenerRegistration registerListenerWithMatcher(@NonNull IEventListener listener,
-                                                                 EventMatcher matcher) {
+                                                                 IEventMatcher matcher) {
         return register(configureListener(listener).withMatcher(matcher));
     }
 

@@ -30,7 +30,7 @@ public class EventListenerRegistration {
     /**
      * A matcher that matches all events.
      */
-    public static final EventMatcher ALLOW_ALL_MATCHER = event -> true;
+    public static final IEventMatcher ALLOW_ALL_MATCHER = event -> true;
 
     /**
      * -- GETTER --
@@ -46,7 +46,7 @@ public class EventListenerRegistration {
      * @return the matcher
      */
     @Getter
-    private EventMatcher eventMatcher = ALLOW_ALL_MATCHER;
+    private IEventMatcher eventMatcher = ALLOW_ALL_MATCHER;
 
     /**
      * Constructs the registration for the specified listener.
@@ -63,7 +63,7 @@ public class EventListenerRegistration {
      * @param listener the listener.
      * @param matcher  the event matcher.
      */
-    protected EventListenerRegistration(IEventListener listener, EventMatcher matcher) {
+    protected EventListenerRegistration(IEventListener listener, IEventMatcher matcher) {
         this(listener);
         this.eventMatcher = matcher;
     }
@@ -95,7 +95,7 @@ public class EventListenerRegistration {
         /**
          * The event matcher of the configuration.
          */
-        protected EventMatcher eventMatcher = ALLOW_ALL_MATCHER;
+        protected IEventMatcher eventMatcher = ALLOW_ALL_MATCHER;
 
         /**
          * Sole constructor.
@@ -116,7 +116,7 @@ public class EventListenerRegistration {
          * @return this configuration for chaining
          */
         @SuppressWarnings("unchecked")
-        public T withMatcher(EventMatcher eventMatcher) {
+        public T withMatcher(IEventMatcher eventMatcher) {
             this.eventMatcher = eventMatcher == null ? ALLOW_ALL_MATCHER : eventMatcher;
             return (T) this;
         }
@@ -129,9 +129,7 @@ public class EventListenerRegistration {
          * @return this configuration for chaining
          */
         public T withAllowedEvents(final EventType... types) {
-            return this.withMatcher(types == null
-                                            ? null
-                                            : (EventMatcher) event -> event.getType().in(types));
+            return this.withMatcher(types == null ? null : event -> event.getType().in(types));
         }
 
         /**
@@ -142,9 +140,7 @@ public class EventListenerRegistration {
          * @return this configuration for chaining
          */
         public T withIgnoredEvents(final EventType... types) {
-            return this.withMatcher(types == null
-                                            ? null
-                                            : (EventMatcher) event -> !event.getType().in(types));
+            return this.withMatcher(types == null ? null : event -> !event.getType().in(types));
         }
 
         /**

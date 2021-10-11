@@ -18,11 +18,11 @@ package com.enjin.sdk.events;
 import com.enjin.sdk.models.NotificationEvent;
 
 /**
- * Matches events.
+ * Interface for matching events.
  *
  * @see IEventService
  */
-public interface EventMatcher {
+public interface IEventMatcher {
 
     /**
      * Method to check events to see if they match.
