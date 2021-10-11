@@ -16,11 +16,11 @@
 package com.enjin.sdk.events;
 
 /**
- * Listener for receiving notifications about the connection state of the event service.
+ * Interface for receiving notifications about the connection state of the event service.
  *
  * @see IEventService
  */
-public interface ConnectionEventListener {
+public interface IConnectionEventListener {
 
     /**
      * Callback used when the service connects to the server.

@@ -69,7 +69,7 @@ public class PusherEventService implements IEventService {
     // Listeners
     private final PusherEventListener pusherEventListener;
     private PusherConnectionEventListener pusherConnectionListener;
-    private ConnectionEventListener connectionEventListener;
+    private IConnectionEventListener connectionEventListener;
 
     // Mutexes
     private final Object subscribedMutex = new Object();
@@ -149,13 +149,13 @@ public class PusherEventService implements IEventService {
     }
 
     @Override
-    public Future<Void> start(ConnectionEventListener listener) {
+    public Future<Void> start(IConnectionEventListener listener) {
         connectionEventListener = listener;
         return start();
     }
 
     @Override
-    public Future<Void> start(Platform platform, ConnectionEventListener listener) {
+    public Future<Void> start(Platform platform, IConnectionEventListener listener) {
         this.platform = platform;
         connectionEventListener = listener;
         return start();

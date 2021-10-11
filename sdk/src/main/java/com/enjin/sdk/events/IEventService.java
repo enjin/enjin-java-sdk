@@ -46,7 +46,7 @@ public interface IEventService {
      * @param listener the listener
      * @return the future for this operation
      */
-    Future<Void> start(ConnectionEventListener listener);
+    Future<Void> start(IConnectionEventListener listener);
 
     /**
      * Starts this service with the provided platform details and connection listener.
@@ -55,7 +55,7 @@ public interface IEventService {
      * @param listener the listener
      * @return the future for this operation
      */
-    Future<Void> start(Platform platform, ConnectionEventListener listener);
+    Future<Void> start(Platform platform, IConnectionEventListener listener);
 
     /**
      * Checks if this service is connected to the platform.
