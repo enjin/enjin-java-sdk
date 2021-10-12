@@ -16,6 +16,7 @@
 package com.enjin.sdk.schemas.shared.arguments;
 
 import com.enjin.sdk.graphql.VariableHolder;
+import com.enjin.sdk.models.AssetIdFormat;
 
 /**
  * Fragment interface used to request certain information from transactions returned by the platform.
@@ -62,6 +63,7 @@ public interface TransactionFragmentArguments<T extends VariableHolder<T>> exten
      * Sets the request to include the asset data with the transaction.
      *
      * @return this request for chaining
+     * @see TransactionFragmentArguments#assetIdFormat(AssetIdFormat)
      */
     default T withAssetData() {
         return set("withAssetData", true);
@@ -140,13 +142,23 @@ public interface TransactionFragmentArguments<T extends VariableHolder<T>> exten
     }
 
     /**
-     * Sets the request to include the {@link com.enjin.sdk.models.Project}
-     * with its UUID that the transaction belongs to.
+     * Sets the request to include the {@link com.enjin.sdk.models.Project} with its UUID that the transaction belongs
+     * to.
      *
      * @return this request for chaining.
      */
     default T withTransactionProjectUuid() {
         return set("withTransactionProjectUuid", true);
+    }
+
+    /**
+     * Sets the desired asset ID format when used with {@link TransactionFragmentArguments#withAssetData()}.
+     *
+     * @param assetIdFormat the format
+     * @return this request for chaining
+     */
+    default T assetIdFormat(AssetIdFormat assetIdFormat) {
+        return set("assetIdFormat", assetIdFormat);
     }
 
 }
