@@ -21,9 +21,9 @@ import lombok.NonNull;
 /**
  * Represents a channel to subscribe to for Enjin Cloud wallet events.
  *
- * @see com.enjin.sdk.events.NotificationsService
+ * @see com.enjin.sdk.events.IEventService
  */
-public class WalletChannel implements Channel {
+public class WalletChannel implements IChannel {
 
     private final Platform platform;
     private final String wallet;

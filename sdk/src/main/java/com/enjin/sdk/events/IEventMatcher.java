@@ -15,31 +15,21 @@
 
 package com.enjin.sdk.events;
 
+import com.enjin.sdk.models.NotificationEvent;
+
 /**
- * Listener for receiving notifications about the connection state of the event service.
+ * Interface for matching events emitted from the platform.
  *
- * @see NotificationsService
+ * @see IEventService
  */
-public interface ConnectionEventListener {
+public interface IEventMatcher {
 
     /**
-     * Callback used when the service connects to the server.
-     */
-    default void onConnect() {
-    }
-
-    /**
-     * Callback used when the service disconnects from the server.
-     */
-    default void onDisconnect() {
-    }
-
-    /**
-     * Callback used when the service encounters an error with its connection to the server.
+     * Method to check events to see if they match.
      *
-     * @param e the exception
+     * @param event the event to match
+     * @return true if matched, else false
      */
-    default void onError(Exception e) {
-    }
+    boolean matches(NotificationEvent event);
 
 }
