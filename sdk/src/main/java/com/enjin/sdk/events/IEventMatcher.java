@@ -18,7 +18,7 @@ package com.enjin.sdk.events;
 import com.enjin.sdk.models.NotificationEvent;
 
 /**
- * Interface for matching events.
+ * Interface for matching events emitted from the platform.
  *
  * @see IEventService
  */

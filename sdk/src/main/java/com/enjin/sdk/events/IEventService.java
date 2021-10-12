@@ -21,7 +21,7 @@ import com.enjin.sdk.models.Platform;
 import java.util.concurrent.Future;
 
 /**
- * Event service interface for subscribing to and registering for events from the Enjin Cloud.
+ * Interface for an event service for subscribing to and registering for events from the Enjin Cloud.
  */
 public interface IEventService {
 
