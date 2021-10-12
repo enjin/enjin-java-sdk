@@ -21,9 +21,9 @@ import com.enjin.sdk.models.Platform;
 import java.util.concurrent.Future;
 
 /**
- * Notification service interface for subscribing to and registering for events from the Enjin Cloud.
+ * Interface for an event service for subscribing to and registering for events from the Enjin Cloud.
  */
-public interface NotificationsService {
+public interface IEventService {
 
     /**
      * Starts this service.
@@ -46,7 +46,7 @@ public interface NotificationsService {
      * @param listener the listener
      * @return the future for this operation
      */
-    Future<Void> start(ConnectionEventListener listener);
+    Future<Void> start(IConnectionEventListener listener);
 
     /**
      * Starts this service with the provided platform details and connection listener.
@@ -55,7 +55,7 @@ public interface NotificationsService {
      * @param listener the listener
      * @return the future for this operation
      */
-    Future<Void> start(Platform platform, ConnectionEventListener listener);
+    Future<Void> start(Platform platform, IConnectionEventListener listener);
 
     /**
      * Checks if this service is connected to the platform.
@@ -72,49 +72,49 @@ public interface NotificationsService {
     Future<Void> shutdown();
 
     /**
-     * Registers a notification listener and provides the registration object used for it.
+     * Registers a event listener and provides the registration object used for it.
      *
      * @param listener the listener
      * @return the registration
      */
-    NotificationListenerRegistration registerListener(NotificationListener listener);
+    EventListenerRegistration registerListener(IEventListener listener);
 
     /**
-     * Registers a notification listener with an event matcher and provides the registration object used for it.
+     * Registers a event listener with an event matcher and provides the registration object used for it.
      *
      * @param listener the listener
      * @param matcher the event matcher
      * @return the registration
      */
-    NotificationListenerRegistration registerListenerWithMatcher(NotificationListener listener,
-                                                                 EventMatcher matcher);
+    EventListenerRegistration registerListenerWithMatcher(IEventListener listener,
+                                                          IEventMatcher matcher);
 
     /**
-     * Adds a notification listener with event types to allow and provides the registration object used for it.
+     * Registers a event listener with event types to allow and provides the registration object used for it.
      *
      * @param listener the listener
      * @param types the events to listen for
      * @return the registration
      */
-    NotificationListenerRegistration registerListenerIncludingTypes(NotificationListener listener,
-                                                                    EventType... types);
+    EventListenerRegistration registerListenerIncludingTypes(IEventListener listener,
+                                                             EventType... types);
 
     /**
-     * Adds a notification listener with event types to ignore and provides the registration object used for it.
+     * Registers a event listener with event types to ignore and provides the registration object used for it.
      *
      * @param listener the listener
      * @param types the events to ignore
      * @return the registration
      */
-    NotificationListenerRegistration registerListenerExcludingTypes(NotificationListener listener,
-                                                                    EventType... types);
+    EventListenerRegistration registerListenerExcludingTypes(IEventListener listener,
+                                                             EventType... types);
 
     /**
-     * Unregisters a notification listener.
+     * Unregisters a event listener.
      *
      * @param listener the listener
      */
-    void unregisterListener(NotificationListener listener);
+    void unregisterListener(IEventListener listener);
 
     /**
      * Opens a channel for the specified project, allowing listeners to receive events for that project.

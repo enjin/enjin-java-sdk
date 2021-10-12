@@ -16,7 +16,7 @@
 package com.enjin.sdk.models;
 
 import com.enjin.sdk.serialization.RequestTypeDeserializer;
-import com.enjin.sdk.events.NotificationsService;
+import com.enjin.sdk.events.IEventService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -29,7 +29,7 @@ import lombok.ToString;
 /**
  * Container class for notification data from the platform.
  *
- * @see NotificationsService
+ * @see IEventService
  * @see EventType
  */
 @EqualsAndHashCode

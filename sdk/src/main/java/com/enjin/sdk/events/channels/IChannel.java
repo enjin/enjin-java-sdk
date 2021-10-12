@@ -13,22 +13,20 @@
  * limitations under the License.
  */
 
-package com.enjin.sdk.events;
-
-import com.enjin.sdk.models.NotificationEvent;
+package com.enjin.sdk.events.channels;
 
 /**
- * Notification event listener.
+ * Interface for Enjin Cloud event channels.
  *
- * @see NotificationsService
+ * @see com.enjin.sdk.events.IEventService
  */
-public interface NotificationListener {
+public interface IChannel {
 
     /**
-     * Called when an event is received.
+     * Returns the channel formatted as a string.
      *
-     * @param event the event received
+     * @return the string
      */
-    void notificationReceived(NotificationEvent event);
+    String channel();
 
 }
