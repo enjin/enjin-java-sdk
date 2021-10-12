@@ -21,9 +21,9 @@ import lombok.NonNull;
 /**
  * Represents a channel to subscribe to for Enjin Cloud asset events.
  *
- * @see com.enjin.sdk.events.NotificationsService
+ * @see com.enjin.sdk.events.IEventService
  */
-public class AssetChannel implements Channel {
+public class AssetChannel implements IChannel {
 
     private final Platform platform;
     private final String asset;

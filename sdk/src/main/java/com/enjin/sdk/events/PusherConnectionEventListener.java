@@ -26,7 +26,7 @@ import java.util.concurrent.CompletableFuture;
  * internally.
  *
  * @see com.pusher.client.Pusher
- * @see PusherNotificationService
+ * @see PusherEventService
  */
 class PusherConnectionEventListener implements ConnectionEventListener {
 
