@@ -15,7 +15,7 @@
 
 package com.enjin.sdk.events;
 
-import com.enjin.sdk.events.NotificationListenerRegistration.RegistrationListenerConfiguration;
+import com.enjin.sdk.events.EventListenerRegistration.RegistrationListenerConfiguration;
 import com.enjin.sdk.models.EventType;
 import com.enjin.sdk.models.NotificationEvent;
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,12 +28,12 @@ class RegistrationListenerConfigurationTest {
     @Test
     void create_CreatedRegistrationHasListener() {
         // Arrange
-        final NotificationListener expected = new Listener();
-        final RegistrationListenerConfiguration configuration = NotificationListenerRegistration.configure(expected);
+        final IEventListener expected = new Listener();
+        final RegistrationListenerConfiguration configuration = EventListenerRegistration.configure(expected);
 
         // Act
-        NotificationListener actual = configuration.create()
-                                                   .getListener();
+        IEventListener actual = configuration.create()
+                                             .getListener();
 
         // Assert
         assertSame(expected, actual);
@@ -45,8 +45,8 @@ class RegistrationListenerConfigurationTest {
         final RegistrationListenerConfiguration configuration = defaultRegistrationListenerConfiguration();
 
         // Act
-        EventMatcher actual = configuration.create()
-                                           .getEventMatcher();
+        IEventMatcher actual = configuration.create()
+                                            .getEventMatcher();
 
         // Assert
         assertNotNull(actual);
@@ -55,13 +55,13 @@ class RegistrationListenerConfigurationTest {
     @Test
     void withMatcher_CreatedRegistrationHasMatcher() {
         // Arrange
-        final EventMatcher expected = event -> true;
+        final IEventMatcher expected = event -> true;
         final RegistrationListenerConfiguration configuration = defaultRegistrationListenerConfiguration();
 
         // Act
-        EventMatcher actual = configuration.withMatcher(expected)
-                                           .create()
-                                           .getEventMatcher();
+        IEventMatcher actual = configuration.withMatcher(expected)
+                                            .create()
+                                            .getEventMatcher();
 
         // Assert
         assertSame(expected, actual);
@@ -74,9 +74,9 @@ class RegistrationListenerConfigurationTest {
         final RegistrationListenerConfiguration configuration = defaultRegistrationListenerConfiguration();
 
         // Act
-        EventMatcher matcher = configuration.withAllowedEvents(allowedType)
-                                            .create()
-                                            .getEventMatcher();
+        IEventMatcher matcher = configuration.withAllowedEvents(allowedType)
+                                             .create()
+                                             .getEventMatcher();
 
         // Assert
         for (EventType type : EventType.values()) {
@@ -94,9 +94,9 @@ class RegistrationListenerConfigurationTest {
         final RegistrationListenerConfiguration configuration = defaultRegistrationListenerConfiguration();
 
         // Act
-        EventMatcher matcher = configuration.withIgnoredEvents(ignoredType)
-                                            .create()
-                                            .getEventMatcher();
+        IEventMatcher matcher = configuration.withIgnoredEvents(ignoredType)
+                                             .create()
+                                             .getEventMatcher();
 
         // Assert
         for (EventType type : EventType.values()) {
@@ -112,10 +112,10 @@ class RegistrationListenerConfigurationTest {
     }
 
     private static RegistrationListenerConfiguration defaultRegistrationListenerConfiguration() {
-        return NotificationListenerRegistration.configure(new Listener());
+        return EventListenerRegistration.configure(new Listener());
     }
 
-    private static class Listener implements NotificationListener {
+    private static class Listener implements IEventListener {
 
         @Override
         public void notificationReceived(NotificationEvent event) { }

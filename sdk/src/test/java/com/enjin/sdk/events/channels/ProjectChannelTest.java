@@ -30,7 +30,7 @@ class ProjectChannelTest {
         final String expected = "enjincloud.test.project.xyz";
         final String project = "xyz";
         final Platform fakePlatform = PlatformUtils.createFakePlatform(PLATFORM_NAME);
-        final Channel channel = new ProjectChannel(fakePlatform, project);
+        final IChannel channel = new ProjectChannel(fakePlatform, project);
 
         // Act
         String actual = channel.channel();

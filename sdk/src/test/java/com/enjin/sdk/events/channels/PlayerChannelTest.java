@@ -31,7 +31,7 @@ class PlayerChannelTest {
         final String project = "xyz";
         final String player = "player1";
         final Platform platform = PlatformUtils.createFakePlatform(PLATFORM_NAME);
-        final Channel channel = new PlayerChannel(platform, project, player);
+        final IChannel channel = new PlayerChannel(platform, project, player);
 
         // Act
         String actual = channel.channel();
