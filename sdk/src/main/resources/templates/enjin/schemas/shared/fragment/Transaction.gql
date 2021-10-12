@@ -1,5 +1,6 @@
 #namespace enjin.sdk.shared.Transaction
 
+#arg assetIdFormat AssetIdFormat
 #arg withMeta Boolean false
 #arg withBlockchainData Boolean false
 #arg withEncodedData Boolean false
@@ -60,6 +61,9 @@ fragment Transaction on Transaction {
     }
     project @include(if: $withTransactionProjectUuid) {
         uuid
+    }
+    asset @include(if: $withAssetData) {
+        id(format: $assetIdFormat)
     }
     createdAt
     updatedAt
