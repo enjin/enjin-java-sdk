@@ -26,7 +26,7 @@ import java.util.concurrent.Future;
 import com.enjin.sdk.models.EventType;
 import com.enjin.sdk.models.Notifications;
 import com.enjin.sdk.models.Platform;
-import com.enjin.sdk.events.NotificationListenerRegistration.RegistrationListenerConfiguration;
+import com.enjin.sdk.events.EventListenerRegistration.RegistrationListenerConfiguration;
 import com.enjin.sdk.events.channels.ProjectChannel;
 import com.enjin.sdk.events.channels.PlayerChannel;
 import com.enjin.sdk.events.channels.AssetChannel;
@@ -44,16 +44,16 @@ import lombok.Getter;
 import lombok.NonNull;
 
 /**
- * Implementation class of {@link NotificationsService} utilizing Pusher channel events.
+ * Implementation class of {@link IEventService} utilizing Pusher channel events.
  *
- * @see NotificationListener
+ * @see IEventListener
  */
-public class PusherNotificationService implements NotificationsService {
+public class PusherEventService implements IEventService {
 
     /**
      * The list of listener registrations.
      */
-    protected List<NotificationListenerRegistration> listeners = new ArrayList<>();
+    protected List<EventListenerRegistration> listeners = new ArrayList<>();
 
     /**
      * -- GETTER --
@@ -69,12 +69,12 @@ public class PusherNotificationService implements NotificationsService {
     // Listeners
     private final PusherEventListener pusherEventListener;
     private PusherConnectionEventListener pusherConnectionListener;
-    private ConnectionEventListener connectionEventListener;
+    private IConnectionEventListener connectionEventListener;
 
     // Mutexes
     private final Object subscribedMutex = new Object();
 
-    private PusherNotificationService(@NonNull Platform platform, LoggerProvider loggerProvider) {
+    private PusherEventService(@NonNull Platform platform, LoggerProvider loggerProvider) {
         this.loggerProvider = loggerProvider;
         this.platform = platform;
         this.pusherEventListener = new PusherEventListener(this);
@@ -149,13 +149,13 @@ public class PusherNotificationService implements NotificationsService {
     }
 
     @Override
-    public Future<Void> start(ConnectionEventListener listener) {
+    public Future<Void> start(IConnectionEventListener listener) {
         connectionEventListener = listener;
         return start();
     }
 
     @Override
-    public Future<Void> start(Platform platform, ConnectionEventListener listener) {
+    public Future<Void> start(Platform platform, IConnectionEventListener listener) {
         this.platform = platform;
         connectionEventListener = listener;
         return start();
@@ -176,25 +176,25 @@ public class PusherNotificationService implements NotificationsService {
     }
 
     @Override
-    public NotificationListenerRegistration registerListener(@NonNull NotificationListener listener) {
-        return register(NotificationListenerRegistration.configure(listener));
+    public EventListenerRegistration registerListener(@NonNull IEventListener listener) {
+        return register(EventListenerRegistration.configure(listener));
     }
 
     @Override
-    public NotificationListenerRegistration registerListenerWithMatcher(@NonNull NotificationListener listener,
-                                                                        EventMatcher matcher) {
+    public EventListenerRegistration registerListenerWithMatcher(@NonNull IEventListener listener,
+                                                                 IEventMatcher matcher) {
         return register(configureListener(listener).withMatcher(matcher));
     }
 
     @Override
-    public NotificationListenerRegistration registerListenerIncludingTypes(@NonNull NotificationListener listener,
-                                                                           EventType... types) {
+    public EventListenerRegistration registerListenerIncludingTypes(@NonNull IEventListener listener,
+                                                                    EventType... types) {
         return register(configureListener(listener).withAllowedEvents(types));
     }
 
     @Override
-    public NotificationListenerRegistration registerListenerExcludingTypes(@NonNull NotificationListener listener,
-                                                                           EventType... types) {
+    public EventListenerRegistration registerListenerExcludingTypes(@NonNull IEventListener listener,
+                                                                    EventType... types) {
         return register(configureListener(listener).withIgnoredEvents(types));
     }
 
@@ -205,8 +205,8 @@ public class PusherNotificationService implements NotificationsService {
      *
      * @return the listener configuration
      */
-    protected RegistrationListenerConfiguration configureListener(@NonNull NotificationListener listener) {
-        return NotificationListenerRegistration.configure(listener);
+    protected RegistrationListenerConfiguration configureListener(@NonNull IEventListener listener) {
+        return EventListenerRegistration.configure(listener);
     }
 
     /**
@@ -216,22 +216,22 @@ public class PusherNotificationService implements NotificationsService {
      *
      * @return the registration wrapper, or null if registration failed
      */
-    protected NotificationListenerRegistration register(@NonNull RegistrationListenerConfiguration configuration) {
-        for (NotificationListenerRegistration reg : listeners) {
+    protected EventListenerRegistration register(@NonNull RegistrationListenerConfiguration configuration) {
+        for (EventListenerRegistration reg : listeners) {
             if (reg.getListener().equals(configuration.listener))
                 return reg;
         }
 
-        NotificationListenerRegistration registration = configuration.create();
+        EventListenerRegistration registration = configuration.create();
         listeners.add(registration);
 
         return registration;
     }
 
     @Override
-    public void unregisterListener(@NonNull NotificationListener listener) {
+    public void unregisterListener(@NonNull IEventListener listener) {
         for (int i = 0; i < listeners.size(); i++) {
-            NotificationListenerRegistration reg = listeners.get(i);
+            EventListenerRegistration reg = listeners.get(i);
             if (reg.getListener().equals(listener)) {
                 listeners.remove(i);
                 return;
@@ -360,19 +360,19 @@ public class PusherNotificationService implements NotificationsService {
      *
      * @return The builder.
      */
-    public static PusherNotificationServiceBuilder builder() {
-        return new PusherNotificationServiceBuilder();
+    public static PusherEventServiceBuilder builder() {
+        return new PusherEventServiceBuilder();
     }
 
     /**
-     * Builder class for {@link PusherNotificationService}.
+     * Builder class for {@link PusherEventService}.
      */
-    public static class PusherNotificationServiceBuilder {
+    public static class PusherEventServiceBuilder {
 
         private LoggerProvider loggerProvider;
         private Platform platform;
 
-        private PusherNotificationServiceBuilder() {
+        private PusherEventServiceBuilder() {
         }
 
         /**
@@ -382,12 +382,12 @@ public class PusherNotificationService implements NotificationsService {
          *
          * @throws IllegalStateException Thrown if platform is a null value at the time this method is called.
          */
-        public PusherNotificationService build() throws IllegalStateException {
+        public PusherEventService build() throws IllegalStateException {
             if (platform == null)
                 throw new IllegalStateException(String.format("Cannot build %s with null platform",
-                                                              PusherNotificationService.class.getName()));
+                                                              PusherEventService.class.getName()));
 
-            return new PusherNotificationService(platform, loggerProvider);
+            return new PusherEventService(platform, loggerProvider);
         }
 
         /**
@@ -397,7 +397,7 @@ public class PusherNotificationService implements NotificationsService {
          *
          * @return This builder for chaining.
          */
-        public PusherNotificationServiceBuilder loggerProvider(LoggerProvider loggerProvider) {
+        public PusherEventServiceBuilder loggerProvider(LoggerProvider loggerProvider) {
             this.loggerProvider = loggerProvider;
             return this;
         }
@@ -409,7 +409,7 @@ public class PusherNotificationService implements NotificationsService {
          *
          * @return This builder for chaining.
          */
-        public PusherNotificationServiceBuilder platform(Platform platform) {
+        public PusherEventServiceBuilder platform(Platform platform) {
             this.platform = platform;
             return this;
         }
