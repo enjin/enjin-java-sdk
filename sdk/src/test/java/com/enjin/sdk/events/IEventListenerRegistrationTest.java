@@ -15,7 +15,7 @@
 
 package com.enjin.sdk.events;
 
-import com.enjin.sdk.events.NotificationListenerRegistration.RegistrationListenerConfiguration;
+import com.enjin.sdk.events.EventListenerRegistration.RegistrationListenerConfiguration;
 import com.enjin.sdk.models.EventType;
 import com.enjin.sdk.models.NotificationEvent;
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,16 +24,16 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
-class NotificationListenerRegistrationTest {
+class IEventListenerRegistrationTest {
 
     @Test
     void configure_ConfigurationHasListener() {
         // Arrange
-        final NotificationListener expected = new Listener();
+        final IEventListener expected = new Listener();
 
         // Act
-        RegistrationListenerConfiguration configuration = NotificationListenerRegistration.configure(expected);
-        NotificationListener actual = configuration.listener;
+        RegistrationListenerConfiguration configuration = EventListenerRegistration.configure(expected);
+        IEventListener actual = configuration.listener;
 
         // Assert
         assertSame(expected, actual);
@@ -43,11 +43,11 @@ class NotificationListenerRegistrationTest {
     void configure_AllowedEvents_ConfigurationAppliesEventFilter() {
         // Arrange
         final List<EventType> allowedTypes = Arrays.asList(AllowedFilteredListener.ALLOWED_EVENTS);
-        final NotificationListener filteredListener = new AllowedFilteredListener();
+        final IEventListener filteredListener = new AllowedFilteredListener();
 
         // Act
-        RegistrationListenerConfiguration configuration = NotificationListenerRegistration.configure(filteredListener);
-        EventMatcher matcher = configuration.eventMatcher;
+        RegistrationListenerConfiguration configuration = EventListenerRegistration.configure(filteredListener);
+        IEventMatcher matcher = configuration.eventMatcher;
 
         // Assert
         for (EventType type : EventType.values()) {
@@ -62,11 +62,11 @@ class NotificationListenerRegistrationTest {
     void configure_IgnoredEvents_ConfigurationAppliesEventFilter() {
         // Arrange
         final List<EventType> ignoredTypes = Arrays.asList(IgnoredFilteredListener.IGNORED_EVENTS);
-        final NotificationListener filteredListener = new IgnoredFilteredListener();
+        final IEventListener filteredListener = new IgnoredFilteredListener();
 
         // Act
-        RegistrationListenerConfiguration configuration = NotificationListenerRegistration.configure(filteredListener);
-        EventMatcher matcher = configuration.eventMatcher;
+        RegistrationListenerConfiguration configuration = EventListenerRegistration.configure(filteredListener);
+        IEventMatcher matcher = configuration.eventMatcher;
 
         // Assert
         for (EventType type : EventType.values()) {
@@ -81,7 +81,7 @@ class NotificationListenerRegistrationTest {
         return new NotificationEvent(type, "", "");
     }
 
-    private static class Listener implements NotificationListener {
+    private static class Listener implements IEventListener {
 
         @Override
         public void notificationReceived(NotificationEvent event) { }
@@ -89,7 +89,7 @@ class NotificationListenerRegistrationTest {
     }
 
     @EventFilter(value = {EventType.PROJECT_CREATED, EventType.PROJECT_DELETED})
-    private static class AllowedFilteredListener implements NotificationListener {
+    private static class AllowedFilteredListener implements IEventListener {
 
         public static final EventType[] ALLOWED_EVENTS = {EventType.PROJECT_CREATED, EventType.PROJECT_DELETED};
 
@@ -99,7 +99,7 @@ class NotificationListenerRegistrationTest {
     }
 
     @EventFilter(allow = false, value = {EventType.PROJECT_CREATED, EventType.PROJECT_DELETED})
-    private static class IgnoredFilteredListener implements NotificationListener {
+    private static class IgnoredFilteredListener implements IEventListener {
 
         public static final EventType[] IGNORED_EVENTS = {EventType.PROJECT_CREATED, EventType.PROJECT_DELETED};
 
