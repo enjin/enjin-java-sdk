@@ -182,7 +182,7 @@ public class Transaction {
      *
      * @return the status
      */
-    private Integer accepted;
+    private Boolean accepted;
 
     /**
      * -- GETTER --
