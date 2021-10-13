@@ -99,6 +99,12 @@ public class Request {
 
     /**
      * -- Getter --
+     * @return the asset for this transaction
+     */
+    private Asset asset;
+
+    /**
+     * -- Getter --
      * <br>
      * <p>
      *     Formatted as an ISO 8601 string.
