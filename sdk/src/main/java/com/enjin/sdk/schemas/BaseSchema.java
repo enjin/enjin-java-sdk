@@ -18,12 +18,10 @@ package com.enjin.sdk.schemas;
 import java.math.BigInteger;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionException;
 
 import com.enjin.sdk.TrustedPlatformMiddleware;
 import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.graphql.GraphQLResponse;
-import com.enjin.sdk.http.HttpResponse;
 
 import com.enjin.sdk.serialization.BigIntegerDeserializer;
 import com.enjin.sdk.serialization.converter.GraphConverter;
@@ -38,7 +36,6 @@ import lombok.SneakyThrows;
 import okhttp3.MediaType;
 import okhttp3.ResponseBody;
 import org.jetbrains.annotations.NotNull;
-import retrofit2.Call;
 import retrofit2.Converter;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -123,41 +120,37 @@ public class BaseSchema {
     /**
      * Sends a request and returns a future containing the response.
      *
-     * @param response the retrofit response future
+     * @param response the future containing the retrofit response
      * @param <T>      the type of the response
      *
      * @return the future for this operation
      */
     @SneakyThrows
     protected <T> CompletableFuture<GraphQLResponse<T>> sendRequest(CompletableFuture<Response<GraphQLResponse<T>>> response) {
-        return response.thenApply(res -> createResult(res).body());
+        return response.thenApply(BaseSchema::createResult);
     }
 
     /**
-     * Wraps an HTTP response.
+     * Processes the retrofit response and returns the GraphQL response.
      *
-     * @param response the response
+     * @param response the retrofit response
      * @param <T>      the type of the response
      *
-     * @return the response wrapper
+     * @return the GraphQL response
      */
     @SneakyThrows
-    protected static <T> HttpResponse<GraphQLResponse<T>> createResult(Response<GraphQLResponse<T>> response) {
-        int code = response.code();
-        GraphQLResponse<T> body = null;
+    protected static <T> GraphQLResponse<T> createResult(Response<GraphQLResponse<T>> response) {
+        if (response.isSuccessful() || response.body() != null)
+            return response.body();
 
-        if (response.isSuccessful() || response.body() != null) {
-            body = response.body();
-        } else if (response.errorBody() != null) {
-            ResponseBody errorBody = response.errorBody();
-            if (Objects.equals(errorBody.contentType(), JSON)) {
-                TypeToken<GraphQLResponse<T>> token = new TypeToken<GraphQLResponse<T>>() {};
-                String rawBody = errorBody.string();
-                body = (GraphQLResponse<T>) GSON.fromJson(rawBody, token.getRawType());
-            }
+        ResponseBody errorBody = response.errorBody();
+        if (errorBody != null && Objects.equals(errorBody.contentType(), JSON)) {
+            TypeToken<GraphQLResponse<T>> token = new TypeToken<GraphQLResponse<T>>() {};
+            String rawBody = errorBody.string();
+            return (GraphQLResponse<T>) GSON.fromJson(rawBody, token.getRawType());
         }
 
-        return new HttpResponse<>(code, body);
+        return null;
     }
 
     /**
