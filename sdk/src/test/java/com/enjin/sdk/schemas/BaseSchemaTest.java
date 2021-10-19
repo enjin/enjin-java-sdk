@@ -44,7 +44,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.http.Body;
 import retrofit2.http.Headers;
@@ -53,7 +53,6 @@ import retrofit2.http.Path;
 import retrofit2.mock.MockRetrofit;
 import retrofit2.mock.NetworkBehavior;
 
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -186,8 +185,8 @@ class BaseSchemaTest {
         // Arrange
         final DummyObject expectedData = DummyObject.createDefault();
         final String responseBody = String.format("{\"data\": {\"result\": %s}}", GSON.toJson(expectedData));
-        final Call<GraphQLResponse<DummyObject>> dummyCall = classUnderTest.fakeService.getDummyObject(classUnderTest.schema,
-                                                                                                       new JsonObject());
+        final CompletableFuture<Response<GraphQLResponse<DummyObject>>> dummyCall =
+                classUnderTest.fakeService.getDummyObject(classUnderTest.schema, new JsonObject());
         final MockResponse mockResponse = new MockResponse()
                 .addHeader("Content-Type: application/json")
                 .setResponseCode(200)
@@ -206,8 +205,8 @@ class BaseSchemaTest {
     void sendRequest_ResponseHasGraphqlErrors_ReturnsResponseWithErrors() {
         // Arrange
         final String responseBody = String.format("{\"errors\": %s}", GSON.toJson(DEFAULT_GRAPH_QL_ERRORS));
-        final Call<GraphQLResponse<DummyObject>> dummyCall = classUnderTest.fakeService.getDummyObject(classUnderTest.schema,
-                                                                                                       new JsonObject());
+        final CompletableFuture<Response<GraphQLResponse<DummyObject>>> dummyCall =
+                classUnderTest.fakeService.getDummyObject(classUnderTest.schema, new JsonObject());
         final MockResponse mockResponse = new MockResponse()
                 .addHeader("Content-Type: application/json")
                 .setResponseCode(400)
@@ -225,8 +224,8 @@ class BaseSchemaTest {
     @SneakyThrows
     void sendRequest_RequestFailed_FutureCompletesExceptionally() {
         // Arrange
-        final Call<GraphQLResponse<DummyObject>> dummyCall = classUnderTest.fakeService.getDummyObject(classUnderTest.schema,
-                                                                                                       new JsonObject());
+        final CompletableFuture<Response<GraphQLResponse<DummyObject>>> dummyCall =
+                classUnderTest.fakeService.getDummyObject(classUnderTest.schema, new JsonObject());
         final NetworkBehavior networkBehavior = NetworkBehavior.create();
         networkBehavior.setErrorPercent(1);
         final MockRetrofit mockRetrofit = new MockRetrofit.Builder(classUnderTest.getRetrofit())
@@ -244,8 +243,8 @@ class BaseSchemaTest {
 
         @POST("/graphql/{schema}")
         @Headers("Content-Type: application/json")
-        Call<GraphQLResponse<DummyObject>> getDummyObject(@Path("schema") String schema,
-                                                          @Body JsonObject request);
+        CompletableFuture<Response<GraphQLResponse<DummyObject>>> getDummyObject(@Path("schema") String schema,
+                                                                                 @Body JsonObject request);
 
     }
 

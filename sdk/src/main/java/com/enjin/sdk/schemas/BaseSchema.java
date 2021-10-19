@@ -123,19 +123,14 @@ public class BaseSchema {
     /**
      * Sends a request and returns a future containing the response.
      *
-     * @param call the call
-     * @param <T>  the type of the response
+     * @param response the retrofit response future
+     * @param <T>      the type of the response
      *
-     * @return the future for the operation
+     * @return the future for this operation
      */
-    protected <T> CompletableFuture<GraphQLResponse<T>> sendRequest(Call<GraphQLResponse<T>> call) {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return createResult(call.execute()).body();
-            } catch (Exception e) {
-                throw new CompletionException(e);
-            }
-        });
+    @SneakyThrows
+    protected <T> CompletableFuture<GraphQLResponse<T>> sendRequest(CompletableFuture<Response<GraphQLResponse<T>>> response) {
+        return response.thenApply(res -> createResult(res).body());
     }
 
     /**
