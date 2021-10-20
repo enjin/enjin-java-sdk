@@ -15,20 +15,17 @@
 
 package com.enjin.sdk.schemas;
 
-import java.io.IOException;
 import java.math.BigInteger;
 import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
 
 import com.enjin.sdk.TrustedPlatformMiddleware;
 import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.graphql.GraphQLResponse;
-import com.enjin.sdk.http.HttpCallback;
-import com.enjin.sdk.http.HttpResponse;
 
 import com.enjin.sdk.serialization.BigIntegerDeserializer;
 import com.enjin.sdk.serialization.converter.GraphConverter;
 import com.enjin.sdk.serialization.converter.JsonStringConverter;
-import com.enjin.sdk.utils.LogLevel;
 import com.enjin.sdk.utils.LoggerProvider;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -39,8 +36,6 @@ import lombok.SneakyThrows;
 import okhttp3.MediaType;
 import okhttp3.ResponseBody;
 import org.jetbrains.annotations.NotNull;
-import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Converter;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -60,6 +55,7 @@ public class BaseSchema {
 
     /**
      * -- Getter --
+     *
      * @return the logger provider
      */
     @Getter
@@ -72,8 +68,8 @@ public class BaseSchema {
     /**
      * Sole constructor, used internally.
      *
-     * @param middleware the middleware
-     * @param schema the schema
+     * @param middleware     the middleware
+     * @param schema         the schema
      * @param loggerProvider the logger provider
      */
     public BaseSchema(TrustedPlatformMiddleware middleware, String schema, LoggerProvider loggerProvider) {
@@ -98,7 +94,8 @@ public class BaseSchema {
      * Creates the serialized request body to be sent to the platform.
      *
      * @param request the request
-     * @param <T> the type of the request
+     * @param <T>     the type of the request
+     *
      * @return the serialized request
      */
     protected <T extends GraphQLRequest<T>> JsonObject createRequestBody(GraphQLRequest<T> request) {
@@ -112,7 +109,8 @@ public class BaseSchema {
      * Creates a retrofit service.
      *
      * @param service the service class
-     * @param <T> the type of the service
+     * @param <T>     the type of the service
+     *
      * @return the created service
      */
     protected <T> Object createService(@NotNull Class<T> service) {
@@ -120,79 +118,39 @@ public class BaseSchema {
     }
 
     /**
-     * Sends a request synchronously.
+     * Sends a request and returns a future containing the response.
      *
-     * @param call the call
-     * @param <T> the type of the response
-     * @return the response
-     * @throws IOException if a problem occurred talking to the server
+     * @param response the future containing the retrofit response
+     * @param <T>      the type of the response
+     *
+     * @return the future for this operation
      */
-    @NotNull
     @SneakyThrows
-    protected <T> GraphQLResponse<T> sendRequest(Call<GraphQLResponse<T>> call) {
-        Response<GraphQLResponse<T>> response = call.execute();
-        return createResult(response).body();
+    protected <T> CompletableFuture<GraphQLResponse<T>> sendRequest(CompletableFuture<Response<GraphQLResponse<T>>> response) {
+        return response.thenApply(BaseSchema::createResult);
     }
 
     /**
-     * Sends a request asynchronously with a callback to be used once a response is received.
+     * Processes the retrofit response and returns the GraphQL response.
      *
-     * @param call the call
-     * @param callback the callback
-     * @param <T> the type of the response
-     */
-    protected <T> void sendRequest(Call<GraphQLResponse<T>> call, final HttpCallback<GraphQLResponse<T>> callback) {
-        call.enqueue(new Callback<GraphQLResponse<T>>() {
-            @Override
-            public void onResponse(@NotNull Call<GraphQLResponse<T>> call,
-                                   @NotNull Response<GraphQLResponse<T>> response) {
-                try {
-                    callback.onComplete(createResult(response));
-                } catch (Exception e) {
-                    if (loggerProvider != null)
-                        loggerProvider.log(LogLevel.SEVERE, "An exception occurred:", e);
-
-                    callback.onException(e);
-                }
-            }
-
-            @Override
-            public void onFailure(@NotNull Call<GraphQLResponse<T>> call,
-                                  @NotNull Throwable throwable) {
-                Exception exception = new Exception("Request Failed: " + call.request().toString(), throwable);
-
-                if (loggerProvider != null)
-                    loggerProvider.log(LogLevel.SEVERE, "An exception occurred:", exception);
-
-                callback.onException(exception);
-            }
-        });
-    }
-
-    /**
-     * Wraps an HTTP response.
+     * @param response the retrofit response
+     * @param <T>      the type of the response
      *
-     * @param response the response
-     * @param <T> the type of the response
-     * @return the response wrapper
+     * @return the GraphQL response
      */
     @SneakyThrows
-    protected <T> HttpResponse<GraphQLResponse<T>> createResult(Response<GraphQLResponse<T>> response) {
-        int code = response.code();
-        GraphQLResponse<T> body = null;
+    protected static <T> GraphQLResponse<T> createResult(Response<GraphQLResponse<T>> response) {
+        if (response.isSuccessful() || response.body() != null)
+            return response.body();
 
-        if (response.isSuccessful() || response.body() != null) {
-            body = response.body();
-        } else if (response.errorBody() != null) {
-            ResponseBody errorBody = response.errorBody();
-            if (Objects.equals(errorBody.contentType(), JSON)) {
-                TypeToken<GraphQLResponse<T>> token = new TypeToken<GraphQLResponse<T>>(){};
-                String rawBody = errorBody.string();
-                body = (GraphQLResponse<T>) GSON.fromJson(rawBody, token.getRawType());
-            }
+        ResponseBody errorBody = response.errorBody();
+        if (errorBody != null && Objects.equals(errorBody.contentType(), JSON)) {
+            TypeToken<GraphQLResponse<T>> token = new TypeToken<GraphQLResponse<T>>() {};
+            String rawBody = errorBody.string();
+            return (GraphQLResponse<T>) GSON.fromJson(rawBody, token.getRawType());
         }
 
-        return new HttpResponse<>(code, body);
+        return null;
     }
 
     /**
