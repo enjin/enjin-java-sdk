@@ -89,7 +89,7 @@ public class Main {
                 .secret("<the-project's-secret>");
 
         // Sends the request to the platform and gets the response.
-        GraphQLResponse<AccessToken> res = client.authProject(req);
+        GraphQLResponse<AccessToken> res = client.authProject(req).get();
 
         // Checks if the request was successful.
         if (!res.isSuccess()) {
