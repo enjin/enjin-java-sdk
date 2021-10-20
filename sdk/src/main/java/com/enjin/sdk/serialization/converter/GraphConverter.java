@@ -69,6 +69,7 @@ public class GraphConverter extends Converter.Factory {
 
     /**
      * -- Getter --
+     *
      * @return the logger provider
      */
     @Getter
@@ -95,8 +96,8 @@ public class GraphConverter extends Converter.Factory {
      * of the json response results.
      *
      * @param annotations all the annotation applied to the requesting Call method
-     * @param retrofit the retrofit object representing the response
-     * @param type the generic type declared on the Call method
+     * @param retrofit    the retrofit object representing the response
+     * @param type        the generic type declared on the Call method
      *
      * @see GraphResponseConverter
      * @see retrofit2.Call
@@ -127,6 +128,7 @@ public class GraphConverter extends Converter.Factory {
      * Returns a new graph converter that uses the given logger provider.
      *
      * @param loggerProvider the logger provider
+     *
      * @return the created graph converter
      */
     public static GraphConverter create(LoggerProvider loggerProvider) {
@@ -152,11 +154,15 @@ public class GraphConverter extends Converter.Factory {
         }
 
         /**
+         * Converts the response body into a GraphQL response.
+         * <p>
          * Converter contains logic on how to handle responses, since GraphQL responses follow the JsonAPI spec it makes
          * sense to wrap our base query response results and errors response in here, the logic remains open to the
          * implementation.
+         * </p>
          *
          * @param responseBody the retrofit response body received from the network
+         *
          * @return the type declared in the Call of the request
          */
         @Override
@@ -179,6 +185,8 @@ public class GraphConverter extends Converter.Factory {
             } catch (IOException e) {
                 if (loggerProvider != null)
                     loggerProvider.log(LogLevel.SEVERE, "An exception occurred:", e);
+            } finally {
+                responseBody.close();
             }
 
             return new GraphQLResponse<>(raw, result, errors, cursor);
@@ -194,9 +202,7 @@ public class GraphConverter extends Converter.Factory {
                     return fromJson.fromJson(result.get(ITEM_KEY), resultType);
 
                 return fromJson.fromJson(result, resultType);
-            } else if (GsonUtil.isJsonArray(optional)) {
-                return fromJson.fromJson(optional.get(), resultType);
-            } else if (GsonUtil.isJsonPrimitive(optional)) {
+            } else if (GsonUtil.isJsonArray(optional) || GsonUtil.isJsonPrimitive(optional)) {
                 return fromJson.fromJson(optional.get(), resultType);
             }
 
@@ -208,7 +214,7 @@ public class GraphConverter extends Converter.Factory {
 
             if (root.has(ERRORS_KEY)) {
                 errors = fromJson.fromJson(root.get(ERRORS_KEY),
-                                         TypeToken.getParameterized(ArrayList.class, GraphQLError.class).getType());
+                                           TypeToken.getParameterized(ArrayList.class, GraphQLError.class).getType());
             }
 
             return errors;

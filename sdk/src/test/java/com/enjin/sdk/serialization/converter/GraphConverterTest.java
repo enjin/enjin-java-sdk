@@ -31,6 +31,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
@@ -144,16 +146,19 @@ class GraphConverterTest {
         final Type responseType = DummyObject.class;
         final GraphResponseConverter<DummyObject> responseConverter = createGraphResponseConverter(classUnderTest,
                                                                                                    responseType);
-        final ResponseBody stubResponseBody = mock(ResponseBody.class);
+        final ResponseBody mockResponseBody = mock(ResponseBody.class);
 
         // Arrange - Stubbing
-        when(stubResponseBody.string()).thenReturn(expectedRaw);
+        when(mockResponseBody.string()).thenReturn(expectedRaw);
 
         // Act
-        GraphQLResponse<DummyObject> actual = responseConverter.convert(stubResponseBody);
+        GraphQLResponse<DummyObject> actual = responseConverter.convert(mockResponseBody);
 
         // Assert
         assertNotNull(actual);
+
+        // Verify
+        verify(mockResponseBody, times(1)).close();
     }
 
     @Test
@@ -164,16 +169,19 @@ class GraphConverterTest {
         final Type responseType = TypeToken.getParameterized(List.class, DummyObject.class).getType();
         final GraphResponseConverter<List<DummyObject>> responseConverter = createGraphResponseConverter(classUnderTest,
                                                                                                          responseType);
-        final ResponseBody stubResponseBody = mock(ResponseBody.class);
+        final ResponseBody mockResponseBody = mock(ResponseBody.class);
 
         // Arrange - Stubbing
-        when(stubResponseBody.string()).thenReturn(expectedRaw);
+        when(mockResponseBody.string()).thenReturn(expectedRaw);
 
         // Act
-        GraphQLResponse<List<DummyObject>> actual = responseConverter.convert(stubResponseBody);
+        GraphQLResponse<List<DummyObject>> actual = responseConverter.convert(mockResponseBody);
 
         // Assert
         assertNotNull(actual);
+
+        // Verify
+        verify(mockResponseBody, times(1)).close();
     }
 
     @Test
@@ -184,16 +192,19 @@ class GraphConverterTest {
         final Type responseType = DummyObject.class;
         final GraphResponseConverter<DummyObject> responseConverter = createGraphResponseConverter(classUnderTest,
                                                                                                    responseType);
-        final ResponseBody stubResponseBody = mock(ResponseBody.class);
+        final ResponseBody mockResponseBody = mock(ResponseBody.class);
 
         // Arrange - Stubbing
-        when(stubResponseBody.string()).thenReturn(expectedRaw);
+        when(mockResponseBody.string()).thenReturn(expectedRaw);
 
         // Act
-        GraphQLResponse<DummyObject> actual = responseConverter.convert(stubResponseBody);
+        GraphQLResponse<DummyObject> actual = responseConverter.convert(mockResponseBody);
 
         // Assert
         assertNotNull(actual);
+
+        // Verify
+        verify(mockResponseBody, times(1)).close();
     }
 
     @Test
@@ -204,16 +215,19 @@ class GraphConverterTest {
         final Type responseType = DummyObject.class;
         final GraphResponseConverter<DummyObject> responseConverter = createGraphResponseConverter(classUnderTest,
                                                                                                    responseType);
-        final ResponseBody stubResponseBody = mock(ResponseBody.class);
+        final ResponseBody mockResponseBody = mock(ResponseBody.class);
 
         // Arrange - Stubbing
-        when(stubResponseBody.string()).thenReturn(expectedRaw);
+        when(mockResponseBody.string()).thenReturn(expectedRaw);
 
         // Act
-        GraphQLResponse<DummyObject> actual = responseConverter.convert(stubResponseBody);
+        GraphQLResponse<DummyObject> actual = responseConverter.convert(mockResponseBody);
 
         // Assert
         assertNotNull(actual);
+
+        // Verify
+        verify(mockResponseBody, times(1)).close();
     }
 
     private static <T> GraphResponseConverter<T> createGraphResponseConverter(GraphConverter converter, Type... types) {
