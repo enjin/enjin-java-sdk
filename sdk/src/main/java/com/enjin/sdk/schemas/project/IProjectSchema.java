@@ -16,7 +16,6 @@
 package com.enjin.sdk.schemas.project;
 
 import com.enjin.sdk.graphql.GraphQLResponse;
-import com.enjin.sdk.http.HttpCallback;
 import com.enjin.sdk.models.AccessToken;
 import com.enjin.sdk.models.Player;
 import com.enjin.sdk.models.Request;
@@ -57,6 +56,7 @@ import com.enjin.sdk.schemas.project.queries.GetWallet;
 import com.enjin.sdk.schemas.project.queries.GetWallets;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Interface for project schema implementation.
@@ -64,615 +64,309 @@ import java.util.List;
 public interface IProjectSchema {
 
     /**
-     * Sends {@link AdvancedSendAsset} request synchronously.
+     * Sends {@link AdvancedSendAsset} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<Request> advancedSendAsset(AdvancedSendAsset request);
+    CompletableFuture<GraphQLResponse<Request>> advancedSendAsset(AdvancedSendAsset request);
 
     /**
-     * Sends {@link AdvancedSendAsset} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void advancedSendAsset(AdvancedSendAsset request,
-                           HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link ApproveEnj} request synchronously.
+     * Sends {@link ApproveEnj} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<Request> approveEnj(ApproveEnj request);
+    CompletableFuture<GraphQLResponse<Request>> approveEnj(ApproveEnj request);
 
     /**
-     * Sends {@link ApproveEnj} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void approveEnj(ApproveEnj request,
-                    HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link ApproveMaxEnj} request synchronously.
+     * Sends {@link ApproveMaxEnj} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<Request> approveMaxEnj(ApproveMaxEnj request);
+    CompletableFuture<GraphQLResponse<Request>> approveMaxEnj(ApproveMaxEnj request);
 
     /**
-     * Sends {@link ApproveMaxEnj} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void approveMaxEnj(ApproveMaxEnj request,
-                       HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link AuthPlayer} request synchronously.
+     * Sends {@link AuthPlayer} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<AccessToken> authPlayer(AuthPlayer request);
+    CompletableFuture<GraphQLResponse<AccessToken>> authPlayer(AuthPlayer request);
 
     /**
-     * Sends {@link AuthPlayer} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void authPlayer(AuthPlayer request,
-                    HttpCallback<GraphQLResponse<AccessToken>> callback);
-
-    /**
-     * Sends {@link AuthProject} request synchronously.
+     * Sends {@link AuthProject} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<AccessToken> authProject(AuthProject request);
+    CompletableFuture<GraphQLResponse<AccessToken>> authProject(AuthProject request);
 
     /**
-     * Sends {@link AuthProject} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void authProject(AuthProject request,
-                     HttpCallback<GraphQLResponse<AccessToken>> callback);
-
-    /**
-     * Sends {@link BridgeAsset} request synchronously.
+     * Sends {@link BridgeAsset} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<Request> bridgeAsset(BridgeAsset request);
+    CompletableFuture<GraphQLResponse<Request>> bridgeAsset(BridgeAsset request);
 
     /**
-     * Sends {@link BridgeAsset} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void bridgeAsset(BridgeAsset request,
-                     HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link BridgeAssets} request synchronously.
+     * Sends {@link BridgeAssets} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<Request> bridgeAssets(BridgeAssets request);
+    CompletableFuture<GraphQLResponse<Request>> bridgeAssets(BridgeAssets request);
 
     /**
-     * Sends {@link BridgeAssets} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void bridgeAssets(BridgeAssets request,
-                      HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link BridgeClaimAsset} request synchronously.
+     * Sends {@link BridgeClaimAsset} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<Request> bridgeClaimAsset(BridgeClaimAsset request);
+    CompletableFuture<GraphQLResponse<Request>> bridgeClaimAsset(BridgeClaimAsset request);
 
     /**
-     * Sends {@link BridgeClaimAsset} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void bridgeClaimAsset(BridgeClaimAsset request,
-                          HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link CompleteTrade} request synchronously.
+     * Sends {@link CompleteTrade} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<Request> completeTrade(CompleteTrade request);
+    CompletableFuture<GraphQLResponse<Request>> completeTrade(CompleteTrade request);
 
     /**
-     * Sends {@link CompleteTrade} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void completeTrade(CompleteTrade request,
-                       HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link CreateAsset} request synchronously.
+     * Sends {@link CreateAsset} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<Request> createAsset(CreateAsset request);
+    CompletableFuture<GraphQLResponse<Request>> createAsset(CreateAsset request);
 
     /**
-     * Sends {@link CreateAsset} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void createAsset(CreateAsset request,
-                     HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link CreatePlayer} request synchronously.
+     * Sends {@link CreatePlayer} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<AccessToken> createPlayer(CreatePlayer request);
+    CompletableFuture<GraphQLResponse<AccessToken>> createPlayer(CreatePlayer request);
 
     /**
-     * Sends {@link CreatePlayer} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void createPlayer(CreatePlayer request,
-                      HttpCallback<GraphQLResponse<AccessToken>> callback);
-
-    /**
-     * Sends {@link CreateTrade} request synchronously.
+     * Sends {@link CreateTrade} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<Request> createTrade(CreateTrade request);
+    CompletableFuture<GraphQLResponse<Request>> createTrade(CreateTrade request);
 
     /**
-     * Sends {@link CreateTrade} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void createTrade(CreateTrade request,
-                     HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link DecreaseMaxMeltFee} request synchronously.
+     * Sends {@link DecreaseMaxMeltFee} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<Request> decreaseMaxMeltFee(DecreaseMaxMeltFee request);
+    CompletableFuture<GraphQLResponse<Request>> decreaseMaxMeltFee(DecreaseMaxMeltFee request);
 
     /**
-     * Sends {@link DecreaseMaxMeltFee} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void decreaseMaxMeltFee(DecreaseMaxMeltFee request,
-                            HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link DecreaseMaxTransferFee} request synchronously.
+     * Sends {@link DecreaseMaxTransferFee} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<Request> decreaseMaxTransferFee(DecreaseMaxTransferFee request);
+    CompletableFuture<GraphQLResponse<Request>> decreaseMaxTransferFee(DecreaseMaxTransferFee request);
 
     /**
-     * Sends {@link DecreaseMaxTransferFee} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void decreaseMaxTransferFee(DecreaseMaxTransferFee request,
-                                HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link DeletePlayer} request synchronously.
+     * Sends {@link DeletePlayer} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<Boolean> deletePlayer(DeletePlayer request);
+    CompletableFuture<GraphQLResponse<Boolean>> deletePlayer(DeletePlayer request);
 
     /**
-     * Sends {@link DeletePlayer} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void deletePlayer(DeletePlayer request,
-                      HttpCallback<GraphQLResponse<Boolean>> callback);
-
-    /**
-     * Sends {@link GetPlayer} request synchronously.
+     * Sends {@link GetPlayer} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<Player> getPlayer(GetPlayer request);
+    CompletableFuture<GraphQLResponse<Player>> getPlayer(GetPlayer request);
 
     /**
-     * Sends {@link GetPlayer} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void getPlayer(GetPlayer request,
-                   HttpCallback<GraphQLResponse<Player>> callback);
-
-    /**
-     * Sends {@link GetPlayers} request synchronously.
+     * Sends {@link GetPlayers} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<List<Player>> getPlayers(GetPlayers request);
+    CompletableFuture<GraphQLResponse<List<Player>>> getPlayers(GetPlayers request);
 
     /**
-     * Sends {@link GetPlayers} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void getPlayers(GetPlayers request,
-                    HttpCallback<GraphQLResponse<List<Player>>> callback);
-
-    /**
-     * Sends {@link GetWallet} request synchronously.
+     * Sends {@link GetWallet} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<Wallet> getWallet(GetWallet request);
+    CompletableFuture<GraphQLResponse<Wallet>> getWallet(GetWallet request);
 
     /**
-     * Sends {@link GetWallet} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void getWallet(GetWallet request,
-                   HttpCallback<GraphQLResponse<Wallet>> callback);
-
-    /**
-     * Sends {@link GetWallets} request synchronously.
+     * Sends {@link GetWallets} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<List<Wallet>> getWallets(GetWallets request);
+    CompletableFuture<GraphQLResponse<List<Wallet>>> getWallets(GetWallets request);
 
     /**
-     * Sends {@link GetWallets} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void getWallets(GetWallets request,
-                    HttpCallback<GraphQLResponse<List<Wallet>>> callback);
-
-    /**
-     * Sends {@link InvalidateAssetMetadata} request synchronously.
+     * Sends {@link InvalidateAssetMetadata} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<Boolean> invalidateAssetMetadata(InvalidateAssetMetadata request);
+    CompletableFuture<GraphQLResponse<Boolean>> invalidateAssetMetadata(InvalidateAssetMetadata request);
 
     /**
-     * Sends {@link InvalidateAssetMetadata} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void invalidateAssetMetadata(InvalidateAssetMetadata request,
-                                 HttpCallback<GraphQLResponse<Boolean>> callback);
-
-    /**
-     * Sends {@link MeltAsset} request synchronously.
+     * Sends {@link MeltAsset} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<Request> meltAsset(MeltAsset request);
+    CompletableFuture<GraphQLResponse<Request>> meltAsset(MeltAsset request);
 
     /**
-     * Sends {@link MeltAsset} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void meltAsset(MeltAsset request,
-                   HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link Message} request synchronously.
+     * Sends {@link Message} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<Request> message(Message request);
+    CompletableFuture<GraphQLResponse<Request>> message(Message request);
 
     /**
-     * Sends {@link Message} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void message(Message request,
-                 HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link MintAsset} request synchronously.
+     * Sends {@link MintAsset} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<Request> mintAsset(MintAsset request);
+    CompletableFuture<GraphQLResponse<Request>> mintAsset(MintAsset request);
 
     /**
-     * Sends {@link MintAsset} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void mintAsset(MintAsset request,
-                   HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link ReleaseReserve} request synchronously.
+     * Sends {@link ReleaseReserve} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<Request> releaseReserve(ReleaseReserve request);
+    CompletableFuture<GraphQLResponse<Request>> releaseReserve(ReleaseReserve request);
 
     /**
-     * Sends {@link ReleaseReserve} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void releaseReserve(ReleaseReserve request,
-                        HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link ResetEnjApproval} request synchronously.
+     * Sends {@link ResetEnjApproval} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<Request> resetEnjApproval(ResetEnjApproval request);
+    CompletableFuture<GraphQLResponse<Request>> resetEnjApproval(ResetEnjApproval request);
 
     /**
-     * Sends {@link ResetEnjApproval} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void resetEnjApproval(ResetEnjApproval request,
-                          HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link SendAsset} request synchronously.
+     * Sends {@link SendAsset} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<Request> sendAsset(SendAsset request);
+    CompletableFuture<GraphQLResponse<Request>> sendAsset(SendAsset request);
 
     /**
-     * Sends {@link SendAsset} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void sendAsset(SendAsset request,
-                   HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link SendEnj} request synchronously.
+     * Sends {@link SendEnj} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<Request> sendEnj(SendEnj request);
+    CompletableFuture<GraphQLResponse<Request>> sendEnj(SendEnj request);
 
     /**
-     * Sends {@link SendEnj} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void sendEnj(SendEnj request,
-                 HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link SetApprovalForAll} request synchronously.
+     * Sends {@link SetApprovalForAll} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<Request> setApprovalForAll(SetApprovalForAll request);
+    CompletableFuture<GraphQLResponse<Request>> setApprovalForAll(SetApprovalForAll request);
 
     /**
-     * Sends {@link SetApprovalForAll} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void setApprovalForAll(SetApprovalForAll request,
-                           HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link SetMeltFee} request synchronously.
+     * Sends {@link SetMeltFee} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<Request> setMeltFee(SetMeltFee request);
+    CompletableFuture<GraphQLResponse<Request>> setMeltFee(SetMeltFee request);
 
     /**
-     * Sends {@link SetMeltFee} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void setMeltFee(SetMeltFee request,
-                    HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link SetTransferable} request synchronously.
+     * Sends {@link SetTransferable} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<Request> setTransferable(SetTransferable request);
+    CompletableFuture<GraphQLResponse<Request>> setTransferable(SetTransferable request);
 
     /**
-     * Sends {@link SetTransferable} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void setTransferable(SetTransferable request,
-                         HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link SetTransferFee} request synchronously.
+     * Sends {@link SetTransferFee} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<Request> setTransferFee(SetTransferFee request);
+    CompletableFuture<GraphQLResponse<Request>> setTransferFee(SetTransferFee request);
 
     /**
-     * Sends {@link SetTransferFee} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void setTransferFee(SetTransferFee request,
-                        HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link SetUri} request synchronously.
+     * Sends {@link SetUri} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<Request> setUri(SetUri request);
+    CompletableFuture<GraphQLResponse<Request>> setUri(SetUri request);
 
     /**
-     * Sends {@link SetUri} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void setUri(SetUri request,
-                HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link SetWhitelisted} request synchronously.
+     * Sends {@link SetWhitelisted} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<Request> setWhitelisted(SetWhitelisted request);
+    CompletableFuture<GraphQLResponse<Request>> setWhitelisted(SetWhitelisted request);
 
     /**
-     * Sends {@link SetWhitelisted} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void setWhitelisted(SetWhitelisted request,
-                        HttpCallback<GraphQLResponse<Request>> callback);
-
-    /**
-     * Sends {@link UnlinkWallet} request synchronously.
+     * Sends {@link UnlinkWallet} request to the platform.
      *
      * @param request the request
      *
-     * @return the response
+     * @return the future for this operation
      */
-    GraphQLResponse<Boolean> unlinkWallet(UnlinkWallet request);
-
-    /**
-     * Sends {@link UnlinkWallet} request asynchronously.
-     *
-     * @param request  the request
-     * @param callback the callback
-     */
-    void unlinkWallet(UnlinkWallet request,
-                      HttpCallback<GraphQLResponse<Boolean>> callback);
+    CompletableFuture<GraphQLResponse<Boolean>> unlinkWallet(UnlinkWallet request);
 
 }
