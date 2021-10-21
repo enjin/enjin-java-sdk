@@ -15,6 +15,7 @@
 
 package com.enjin.sdk;
 
+import com.enjin.sdk.http.HttpLogLevel;
 import com.enjin.sdk.schemas.player.PlayerSchema;
 import com.enjin.sdk.utils.LoggerProvider;
 import lombok.NonNull;
@@ -29,8 +30,8 @@ import java.util.concurrent.ExecutorService;
  */
 public final class PlayerClient extends PlayerSchema implements IClient {
 
-    private PlayerClient(@NonNull String baseUrl, boolean debug, LoggerProvider loggerProvider) {
-        super(new TrustedPlatformMiddleware(baseUrl, debug), loggerProvider);
+    private PlayerClient(@NonNull String baseUrl, HttpLogLevel logLevel, LoggerProvider loggerProvider) {
+        super(new TrustedPlatformMiddleware(baseUrl, logLevel, loggerProvider), loggerProvider);
     }
 
     @Override
@@ -76,7 +77,7 @@ public final class PlayerClient extends PlayerSchema implements IClient {
     public static class PlayerClientBuilder {
 
         private String baseUri;
-        private boolean debugEnabled = false;
+        private HttpLogLevel httpLogLevel = HttpLogLevel.NONE;
         private LoggerProvider loggerProvider;
 
         private PlayerClientBuilder() {
@@ -94,7 +95,7 @@ public final class PlayerClient extends PlayerSchema implements IClient {
                 throw new IllegalStateException(String.format("Cannot build %s with null base URI",
                                                               PlayerClient.class.getName()));
 
-            return new PlayerClient(baseUri, debugEnabled, loggerProvider);
+            return new PlayerClient(baseUri, httpLogLevel, loggerProvider);
         }
 
         /**
@@ -112,14 +113,14 @@ public final class PlayerClient extends PlayerSchema implements IClient {
         }
 
         /**
-         * Sets whether debugging will be set for the client.
+         * Sets the log level for HTTP traffic.
          *
-         * @param enabled Whether debugging is enabled for the client.
+         * @param logLevel The log level.
          *
          * @return This builder for chaining.
          */
-        public PlayerClientBuilder debugEnabled(boolean enabled) {
-            debugEnabled = enabled;
+        public PlayerClientBuilder httpLogLevel(@NonNull HttpLogLevel logLevel) {
+            httpLogLevel = logLevel;
             return this;
         }
 
