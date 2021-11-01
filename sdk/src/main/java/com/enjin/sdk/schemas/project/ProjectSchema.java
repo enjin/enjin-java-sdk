@@ -22,6 +22,9 @@ import com.enjin.sdk.models.Wallet;
 import com.enjin.sdk.schemas.project.mutations.AdvancedSendAsset;
 import com.enjin.sdk.schemas.project.mutations.ApproveEnj;
 import com.enjin.sdk.schemas.project.mutations.ApproveMaxEnj;
+import com.enjin.sdk.schemas.project.mutations.BridgeAsset;
+import com.enjin.sdk.schemas.project.mutations.BridgeAssets;
+import com.enjin.sdk.schemas.project.mutations.BridgeClaimAsset;
 import com.enjin.sdk.schemas.project.mutations.CompleteTrade;
 import com.enjin.sdk.schemas.project.mutations.CreateTrade;
 import com.enjin.sdk.schemas.project.mutations.MeltAsset;
@@ -214,6 +217,66 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     public void authProject(AuthProject request,
                             HttpCallback<GraphQLResponse<AccessToken>> callback) {
         sendRequest(projectService.getAuth(schema, createRequestBody(request)), callback);
+    }
+
+    /**
+     * Sends {@link BridgeAsset} request synchronously.
+     *
+     * @param request the request
+     *
+     * @return the response
+     *
+     * @throws IOException if a problem occurred talking to the server
+     */
+    @Override
+    public GraphQLResponse<Request> bridgeAsset(BridgeAsset request) {
+        return transactionRequest(request);
+    }
+
+    @Override
+    public void bridgeAsset(BridgeAsset request,
+                            HttpCallback<GraphQLResponse<Request>> callback) {
+        transactionRequest(request, callback);
+    }
+
+    /**
+     * Sends {@link BridgeAssets} request synchronously.
+     *
+     * @param request the request
+     *
+     * @return the response
+     *
+     * @throws IOException if a problem occurred talking to the server
+     */
+    @Override
+    public GraphQLResponse<Request> bridgeAssets(BridgeAssets request) {
+        return transactionRequest(request);
+    }
+
+    @Override
+    public void bridgeAssets(BridgeAssets request,
+                             HttpCallback<GraphQLResponse<Request>> callback) {
+        transactionRequest(request, callback);
+    }
+
+    /**
+     * Sends {@link BridgeClaimAsset} request synchronously.
+     *
+     * @param request the request
+     *
+     * @return the response
+     *
+     * @throws IOException if a problem occurred talking to the server
+     */
+    @Override
+    public GraphQLResponse<Request> bridgeClaimAsset(BridgeClaimAsset request) {
+        return transactionRequest(request);
+    }
+
+    @Override
+    public void bridgeClaimAsset(BridgeClaimAsset request,
+                                 HttpCallback<GraphQLResponse<Request>> callback) {
+        transactionRequest(request, callback);
     }
 
     /**
