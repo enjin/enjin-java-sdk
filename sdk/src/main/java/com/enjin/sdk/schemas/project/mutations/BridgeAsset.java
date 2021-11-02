@@ -55,7 +55,7 @@ public class BridgeAsset
      * @return this request for chaining
      */
     public BridgeAsset assetIndex(String assetIndex) {
-        set("assetId", assetIndex);
+        set("assetIndex", assetIndex);
         return this;
     }
 
@@ -67,7 +67,7 @@ public class BridgeAsset
      * @return this request for chaining
      */
     public BridgeAsset value(String value) {
-        set("assetId", value);
+        set("value", value);
         return this;
     }
 
