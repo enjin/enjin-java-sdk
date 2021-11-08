@@ -1,0 +1,14 @@
+#namespace enjin.sdk.player.BridgeAssets
+#import enjin.sdk.shared.Transaction
+
+#arg assetId String!
+#arg assetIndices [String!]!
+
+mutation {
+    result: BridgeAssets(
+        assetId: $assetId
+        assetIndices: $assetIndices
+    ) {
+        ...Transaction
+    }
+}

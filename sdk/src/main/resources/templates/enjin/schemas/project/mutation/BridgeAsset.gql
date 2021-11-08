@@ -1,0 +1,18 @@
+#namespace enjin.sdk.project.BridgeAsset
+#import enjin.sdk.shared.Transaction
+
+#arg assetId String!
+#arg assetIndex String
+#arg value BigInt
+#arg ethAddress EthAddress
+
+mutation {
+    result: BridgeAsset(
+        assetId: $assetId
+        assetIndex: $assetIndex
+        value: $value
+        wallet: $ethAddress
+    ) {
+        ...Transaction
+    }
+}

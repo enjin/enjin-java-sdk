@@ -24,6 +24,9 @@ import com.enjin.sdk.models.Wallet;
 import com.enjin.sdk.schemas.project.mutations.AdvancedSendAsset;
 import com.enjin.sdk.schemas.project.mutations.ApproveEnj;
 import com.enjin.sdk.schemas.project.mutations.ApproveMaxEnj;
+import com.enjin.sdk.schemas.project.mutations.BridgeAsset;
+import com.enjin.sdk.schemas.project.mutations.BridgeAssets;
+import com.enjin.sdk.schemas.project.mutations.BridgeClaimAsset;
 import com.enjin.sdk.schemas.project.mutations.CompleteTrade;
 import com.enjin.sdk.schemas.project.mutations.CreatePlayer;
 import com.enjin.sdk.schemas.project.mutations.CreateAsset;
@@ -149,6 +152,60 @@ public interface IProjectSchema {
      */
     void authProject(AuthProject request,
                      HttpCallback<GraphQLResponse<AccessToken>> callback);
+
+    /**
+     * Sends {@link BridgeAsset} request synchronously.
+     *
+     * @param request the request
+     *
+     * @return the response
+     */
+    GraphQLResponse<Request> bridgeAsset(BridgeAsset request);
+
+    /**
+     * Sends {@link BridgeAsset} request asynchronously.
+     *
+     * @param request  the request
+     * @param callback the callback
+     */
+    void bridgeAsset(BridgeAsset request,
+                     HttpCallback<GraphQLResponse<Request>> callback);
+
+    /**
+     * Sends {@link BridgeAssets} request synchronously.
+     *
+     * @param request the request
+     *
+     * @return the response
+     */
+    GraphQLResponse<Request> bridgeAssets(BridgeAssets request);
+
+    /**
+     * Sends {@link BridgeAssets} request asynchronously.
+     *
+     * @param request  the request
+     * @param callback the callback
+     */
+    void bridgeAssets(BridgeAssets request,
+                      HttpCallback<GraphQLResponse<Request>> callback);
+
+    /**
+     * Sends {@link BridgeClaimAsset} request synchronously.
+     *
+     * @param request the request
+     *
+     * @return the response
+     */
+    GraphQLResponse<Request> bridgeClaimAsset(BridgeClaimAsset request);
+
+    /**
+     * Sends {@link BridgeClaimAsset} request asynchronously.
+     *
+     * @param request  the request
+     * @param callback the callback
+     */
+    void bridgeClaimAsset(BridgeClaimAsset request,
+                          HttpCallback<GraphQLResponse<Request>> callback);
 
     /**
      * Sends {@link CompleteTrade} request synchronously.

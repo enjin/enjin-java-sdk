@@ -1,0 +1,12 @@
+#namespace enjin.sdk.player.BridgeClaimAsset
+#import enjin.sdk.shared.Transaction
+
+#arg assetId String
+
+mutation {
+    result: BridgeClaimAsset(
+        assetId: $assetId
+    ) {
+        ...Transaction
+    }
+}
