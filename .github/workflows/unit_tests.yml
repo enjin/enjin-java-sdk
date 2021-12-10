@@ -25,7 +25,7 @@ jobs:
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@v1
 
-      - name: Generate
+      - name: Run Tests
         run: |
           chmod +x ./gradlew
-          ./gradlew :sdk:test
+          ./gradlew :sdk:test -D test.ignoreFailures=false clean build
