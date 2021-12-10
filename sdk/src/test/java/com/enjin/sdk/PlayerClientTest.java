@@ -45,12 +45,6 @@ class PlayerClientTest {
         mockWebServer.shutdown();
     }
 
-    // TODO: DELETE THIS AFTER TESTING WORKFLOW ON GITHUB.
-    @Test
-    void failedTest() {
-        fail();
-    }
-
     @Test
     void isAuthenticated_AuthenticatedWithValidToken_ReturnsTrue() {
         // Arrange
