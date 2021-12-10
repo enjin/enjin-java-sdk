@@ -1,5 +1,7 @@
 # Blockchain SDK by Enjin for Java
 
+![Tests](https://github.com/enjin/enjin-java-sdk/actions/workflows/Tests.yml/badge.svg?branch=master)
+
 Create blockchain video games and applications using the Java programming language.
 
 [Learn more](https://enjin.io/) about the Enjin blockchain platform.

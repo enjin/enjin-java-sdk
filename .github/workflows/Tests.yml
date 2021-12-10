@@ -1,4 +1,4 @@
-name: unit_tests
+name: Tests
 
 on:
   push:
@@ -10,7 +10,7 @@ permissions: read-all
 
 jobs:
   tests:
-    name: Unit Tests
+    name: Tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
