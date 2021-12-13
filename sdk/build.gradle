@@ -61,6 +61,6 @@ compileJava {
 
 test {
     useJUnitPlatform()
-    ignoreFailures true
+    ignoreFailures Boolean.getBoolean("test.ignoreFailures")
     systemProperty 'junit.jupiter.execution.timeout.mode', 'disabled_on_debug'
 }
