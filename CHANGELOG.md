@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0-alpha.5] - 2021-12-13
+### Fixed
+- Updated Log4j 2 to version `2.15.0` to address security vulnerability in plugin
+
 ## [2.0.0-alpha.4] - 2021-11-09
 ### Added
 - Added [Enjin Bridge mutations](https://docs.enjin.io/enjin-api/sending-and-receiving-requests/enjin-bridge) for
@@ -123,7 +127,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial release.
 
-[Unreleased]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-alpha.4...HEAD
+[Unreleased]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-alpha.5...HEAD
+[2.0.0-alpha.5]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-alpha.4...2.0.0-alpha.5
 [2.0.0-alpha.4]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-alpha.3...2.0.0-alpha.4
 [2.0.0-alpha.3]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-alpha.2...2.0.0-alpha.3
 [2.0.0-alpha.2]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-alpha.1...2.0.0-alpha.2
