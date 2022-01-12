@@ -55,6 +55,12 @@ task processSource(type: Sync) {
     into "$buildDir/src"
 }
 
+model {
+    tasks.generatePomFileForMavenPublication {
+        destination = file("$project.projectDir/pom.xml")
+    }
+}
+
 compileJava {
     source = processSource.outputs
 }
