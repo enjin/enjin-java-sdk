@@ -36,11 +36,13 @@ import lombok.EqualsAndHashCode;
 import lombok.SneakyThrows;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
+import static org.junit.Assume.assumeNoException;
 import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -57,6 +59,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 
 @ExtendWith({MockitoExtension.class,})
 class BaseSchemaTest {
@@ -67,7 +70,7 @@ class BaseSchemaTest {
     private static final String SCHEMA = "test";
     private static final List<GraphQLError> DEFAULT_GRAPH_QL_ERRORS = new ArrayList<>();
 
-    private final MockWebServer mockWebServer = new MockWebServer();
+    private MockWebServer mockWebServer;
 
     @Mock
     private LoggerProvider mockLoggerProvider;
@@ -83,9 +86,12 @@ class BaseSchemaTest {
 
     @BeforeEach
     public void BeforeEach() {
+        mockWebServer = new MockWebServer();
+
         try {
             mockWebServer.start();
-        } catch (Exception ignored) {
+        } catch (Exception e) {
+            assumeNoException(e);
         }
 
         TrustedPlatformMiddleware middleware = PlatformUtils.createMiddleware(mockWebServer.url("/").toString());
@@ -180,18 +186,19 @@ class BaseSchemaTest {
     }
 
     @Test
+    @Timeout(value = 5, unit = TimeUnit.SECONDS)
     @SneakyThrows
     void sendRequest_ResponseHasGraphqlData_ReturnsResponseWithData() {
-        // Arrange
+        // Arrange - Data
         final DummyObject expectedData = DummyObject.createDefault();
         final String responseBody = String.format("{\"data\": {\"result\": %s}}", GSON.toJson(expectedData));
         final CompletableFuture<Response<GraphQLResponse<DummyObject>>> dummyCall =
                 classUnderTest.fakeService.getDummyObject(classUnderTest.schema, new JsonObject());
-        final MockResponse mockResponse = new MockResponse()
-                .addHeader("Content-Type: application/json")
-                .setResponseCode(200)
-                .setBody(responseBody);
-        mockWebServer.enqueue(mockResponse);
+
+        // Arrange - Stubbing
+        mockWebServer.enqueue(new MockResponse().addHeader("Content-Type: application/json")
+                                                .setResponseCode(200)
+                                                .setBody(responseBody));
 
         // Act
         GraphQLResponse<DummyObject> response = classUnderTest.sendRequest(dummyCall).get();
@@ -201,17 +208,18 @@ class BaseSchemaTest {
     }
 
     @Test
+    @Timeout(value = 5, unit = TimeUnit.SECONDS)
     @SneakyThrows
     void sendRequest_ResponseHasGraphqlErrors_ReturnsResponseWithErrors() {
-        // Arrange
+        // Arrange - Data
         final String responseBody = String.format("{\"errors\": %s}", GSON.toJson(DEFAULT_GRAPH_QL_ERRORS));
         final CompletableFuture<Response<GraphQLResponse<DummyObject>>> dummyCall =
                 classUnderTest.fakeService.getDummyObject(classUnderTest.schema, new JsonObject());
-        final MockResponse mockResponse = new MockResponse()
-                .addHeader("Content-Type: application/json")
-                .setResponseCode(400)
-                .setBody(responseBody);
-        mockWebServer.enqueue(mockResponse);
+
+        // Arrange - Stubbing
+        mockWebServer.enqueue(new MockResponse().addHeader("Content-Type: application/json")
+                                                .setResponseCode(400)
+                                                .setBody(responseBody));
 
         // Act
         GraphQLResponse<DummyObject> response = classUnderTest.sendRequest(dummyCall).get();
@@ -221,6 +229,7 @@ class BaseSchemaTest {
     }
 
     @Test
+    @Timeout(value = 20, unit = TimeUnit.SECONDS)
     @SneakyThrows
     void sendRequest_RequestFailed_FutureCompletesExceptionally() {
         // Arrange

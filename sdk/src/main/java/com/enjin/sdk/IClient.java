@@ -23,23 +23,23 @@ import java.io.Closeable;
 public interface IClient extends Closeable {
 
     /**
-     * Authenticates the client with the given token.
+     * Authenticates this client with the given token.
      *
-     * @param token the auth token
+     * @param token The auth token.
      */
     void auth(String token);
 
     /**
-     * Determines whether the client is authenticated.
+     * Determines whether this client is authenticated.
      *
-     * @return true if authenticated, false otherwise
+     * @return True if authenticated, false otherwise.
      */
     boolean isAuthenticated();
 
     /**
-     * Determines whether the client is closed.
+     * Determines whether this client is closed.
      *
-     * @return true if closed, false otherwise
+     * @return True if closed, false otherwise.
      */
     boolean isClosed();
 
