@@ -99,9 +99,12 @@ class BaseSchemaTest {
     }
 
     @AfterEach
-    @SneakyThrows
     public void AfterEach() {
-        mockWebServer.shutdown();
+        try {
+            mockWebServer.shutdown();
+        } catch (Exception e) {
+            assumeNoException(e);
+        }
     }
 
     @Test
@@ -230,7 +233,6 @@ class BaseSchemaTest {
 
     @Test
     @Timeout(value = 20, unit = TimeUnit.SECONDS)
-    @SneakyThrows
     void sendRequest_RequestFailed_FutureCompletesExceptionally() {
         // Arrange
         final CompletableFuture<Response<GraphQLResponse<DummyObject>>> dummyCall =

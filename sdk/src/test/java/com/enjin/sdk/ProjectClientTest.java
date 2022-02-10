@@ -54,19 +54,21 @@ class ProjectClientTest {
 
         try {
             mockWebServer.start();
+            classUnderTest = ProjectClient.builder()
+                                          .baseUri(mockWebServer.url("/").toString())
+                                          .build();
         } catch (Exception e) {
             assumeNoException(e);
         }
-
-        classUnderTest = ProjectClient.builder()
-                                      .baseUri(mockWebServer.url("/").toString())
-                                      .build();
     }
 
     @AfterEach
-    @SneakyThrows
     public void AfterEach() {
-        mockWebServer.shutdown();
+        try {
+            mockWebServer.shutdown();
+        } catch (Exception e) {
+            assumeNoException(e);
+        }
     }
 
     @Test
@@ -138,27 +140,29 @@ class ProjectClientReauthenticateTest {
 
         try {
             mockWebServer.start();
+            classUnderTest = ProjectClient.builder()
+                                          .baseUri(mockWebServer.url("/").toString())
+                                          .enableAutomaticReauthentication()
+                                          .authenticationListener(mockAuthListener)
+                                          .build();
         } catch (Exception e) {
             assumeNoException(e);
         }
-
-        classUnderTest = ProjectClient.builder()
-                                      .baseUri(mockWebServer.url("/").toString())
-                                      .enableAutomaticReauthentication()
-                                      .authenticationListener(mockAuthListener)
-                                      .build();
     }
 
     @AfterEach
-    @SneakyThrows
     public void AfterEach() {
-        mockWebServer.shutdown();
+        try {
+            mockWebServer.shutdown();
+        } catch (Exception e) {
+            assumeNoException(e);
+        }
     }
 
     @Test
     void auth_GivenAccessTokenWhileClientHasNullUuidAndSecret_DoesNotStartReauthenticationTimer() {
         // Arrange
-        final AccessToken fakeToken = createFakeAccessToken("xyz", 5000L);
+        final AccessToken fakeToken = createFakeAccessToken("xyz", 1000L);
 
         // Assumption
         assumeTrue(classUnderTest.isAutomaticReauthenticationEnabled(), "Automatic reauthentication is disabled.");

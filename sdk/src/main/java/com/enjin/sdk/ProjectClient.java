@@ -42,13 +42,15 @@ public final class ProjectClient extends ProjectSchema implements IClient {
     /**
      * -- Getter --
      *
-     * @return Whether this client is enabled for automatic authentication.
+     * @return Whether this client is enabled for automatic reauthentication.
      */
     @Getter
     private final boolean automaticReauthenticationEnabled;
 
     /**
-     * Whether the authentication timer is running.
+     * -- Getter --
+     *
+     * @return Whether the reauthentication timer is running.
      */
     @Getter(onMethod_ = @Synchronized("authMutex"))
     private boolean reauthenticationRunning = false;
@@ -66,7 +68,7 @@ public final class ProjectClient extends ProjectSchema implements IClient {
     /**
      * Amount of time in seconds to preempt the expiration period of an access token.
      */
-    private static final int PREEMPT_AUTH_EXPIRATION_TIME = 60;
+    private static final short PREEMPT_AUTH_EXPIRATION_TIME = 60;
 
     private ProjectClient(@NonNull String baseUrl,
                           boolean automaticAuthentication,
@@ -98,8 +100,8 @@ public final class ProjectClient extends ProjectSchema implements IClient {
     /**
      * Authenticates the client using the given access token model.
      * <p>
-     * If this client has automatic reauthentication enabled, then this method may halt the reauthentication timer
-     * when {@code accessToken} is null. Otherwise the timer will be restarted.
+     * If this client has automatic reauthentication enabled, then this method may halt the reauthentication timer when
+     * {@code accessToken} is null. Otherwise the timer will be restarted.
      * </p>
      *
      * @param accessToken The access token.
@@ -138,7 +140,7 @@ public final class ProjectClient extends ProjectSchema implements IClient {
     public CompletableFuture<Void> authClient(@NonNull String uuid,
                                               @NonNull String secret) throws IllegalStateException {
         if (isClosed())
-            throw new IllegalStateException("");
+            throw new IllegalStateException("Cannot authenticate after client was closed.");
 
         if (isAutomaticReauthenticationEnabled()) {
             synchronized (authMutex) {
