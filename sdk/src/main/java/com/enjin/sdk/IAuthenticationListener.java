@@ -15,32 +15,16 @@
 
 package com.enjin.sdk;
 
-import java.io.Closeable;
+import java.util.EventListener;
 
 /**
- * Interface for client implementation.
+ * Listener interface to be used by platform clients to emit events related to authentication.
  */
-public interface IClient extends Closeable {
+public interface IAuthenticationListener extends EventListener {
 
     /**
-     * Authenticates this client with the given token.
-     *
-     * @param token The auth token.
+     * Method to be invoked when a client's automatic reauthentication stops.
      */
-    void auth(String token);
-
-    /**
-     * Determines whether this client is authenticated.
-     *
-     * @return True if authenticated, false otherwise.
-     */
-    boolean isAuthenticated();
-
-    /**
-     * Determines whether this client is closed.
-     *
-     * @return True if closed, false otherwise.
-     */
-    boolean isClosed();
+    void onAutomaticReauthenticationStopped();
 
 }

@@ -19,9 +19,11 @@ import java.io.IOException;
 
 import com.enjin.sdk.schemas.BaseSchema;
 import lombok.Setter;
+import lombok.Synchronized;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * A interceptor class for the Trusted Platform.
@@ -47,8 +49,11 @@ public class TrustedPlatformInterceptor implements Interceptor {
      * -- Setter --
      * @param token the new access token
      */
-    @Setter
+    @Setter(onMethod_ = @Synchronized("tokenMutex"))
     private String token;
+
+    // Mutexes
+    private final Object tokenMutex = new Object();
 
     /**
      * Rewrites calls to the Trusted Platform.
@@ -57,14 +62,17 @@ public class TrustedPlatformInterceptor implements Interceptor {
      * @return the response
      * @throws IOException if the chain fails to proceed
      */
+    @NotNull
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request.Builder builder = chain.request().newBuilder();
 
         builder.header(USER_AGENT, String.format(USER_AGENT_VAL, BaseSchema.version()));
 
-        if (isAuthenticated()) {
-            builder.header(AUTHORIZATION, String.format("Bearer %s", token));
+        synchronized (tokenMutex) {
+            if (isAuthenticated()) {
+                builder.header(AUTHORIZATION, String.format("Bearer %s", token));
+            }
         }
 
         return chain.proceed(builder.build());
@@ -75,8 +83,9 @@ public class TrustedPlatformInterceptor implements Interceptor {
      *
      * @return true if authenticated, false otherwise
      */
+    @Synchronized("tokenMutex")
     public boolean isAuthenticated() {
-        return !(token == null || token.isEmpty());
+            return !(token == null || token.isEmpty());
     }
 
 }

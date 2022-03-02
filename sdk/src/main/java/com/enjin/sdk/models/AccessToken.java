@@ -37,7 +37,7 @@ public class AccessToken {
      * -- Getter --
      * @return the number of seconds until the auth expires
      */
-    private long expiresIn;
+    private Long expiresIn;
 
     @Override
     public String toString() {
