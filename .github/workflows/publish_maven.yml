@@ -2,7 +2,7 @@ name: publish_maven
 
 on:
   release:
-    types: [published]
+    types: [ published ]
 
 permissions: read-all
 
@@ -23,7 +23,9 @@ jobs:
         uses: gradle/wrapper-validation-action@v1
 
       - name: Publish package
-        run: gradle publish
+        run: samuelmeuli/action-maven-publish@v1
         env:
-          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+          gpg_private_key: ${{ secrets.GPG_KEY_ID }}
+          gpg_passphrase: ${{ secrets.GPG_PASSPHRASE }}
+          nexus_username: ${{ secrets.OSSRH_USERNAME }}
+          nexus_password: ${{ secrets.OSSRH_TOKEN }}
