@@ -16,7 +16,6 @@
 package com.enjin.sdk.schemas.project.queries;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.schemas.shared.arguments.PaginationArguments;
 import com.enjin.sdk.schemas.shared.arguments.WalletFragmentArguments;
 
 /**
@@ -27,8 +26,7 @@ import com.enjin.sdk.schemas.shared.arguments.WalletFragmentArguments;
  */
 public class GetWallets
         extends GraphQLRequest<GetWallets>
-        implements WalletFragmentArguments<GetWallets>,
-        PaginationArguments<GetWallets> {
+        implements WalletFragmentArguments<GetWallets> {
 
     /**
      * Sole constructor.
@@ -41,6 +39,7 @@ public class GetWallets
      * Sets the user IDs owning the wallets to get.
      *
      * @param userIds the IDs
+     *
      * @return this request for chaining
      */
     public GetWallets userIds(String... userIds) {
@@ -51,6 +50,7 @@ public class GetWallets
      * Sets the Ethereum addresses of the wallets to get.
      *
      * @param ethAddresses the addresses
+     *
      * @return this request for chaining
      */
     public GetWallets ethAddresses(String... ethAddresses) {
