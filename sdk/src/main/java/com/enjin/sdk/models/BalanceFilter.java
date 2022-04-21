@@ -29,9 +29,6 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 public class BalanceFilter extends Filter<BalanceFilter> {
 
-    private String projectUuid;
-    @SerializedName("projectUuid_in")
-    private List<String> projectUuidIn;
     private String assetId;
     @SerializedName("assetId_in")
     private List<String> assetIdIn;
@@ -43,33 +40,10 @@ public class BalanceFilter extends Filter<BalanceFilter> {
     private Operator valueIs;
 
     /**
-     * Sets the project UUID to filter for.
-     *
-     * @param projectUuid the project UUID
-     * @return this filter for chaining
-     */
-    public BalanceFilter projectUuid(String projectUuid) {
-        this.projectUuid = projectUuid;
-        return this;
-    }
-
-    /**
-     * Sets the project UUIDs to filter for.
-     *
-     * @param projectUuids the project UUIDs
-     * @return this filter for chaining
-     */
-    public BalanceFilter projectUuidIn(String... projectUuids) {
-        projectUuidIn = projectUuids == null
-                ? null
-                : Arrays.asList(projectUuids);
-        return this;
-    }
-
-    /**
      * Sets the asset ID to filter for.
      *
      * @param assetId the asset ID
+     *
      * @return this filter for chaining
      */
     public BalanceFilter assetId(String assetId) {
@@ -81,6 +55,7 @@ public class BalanceFilter extends Filter<BalanceFilter> {
      * Sets the asset IDs to filter for.
      *
      * @param assetIds the asset IDs
+     *
      * @return this filter for chaining
      */
     public BalanceFilter assetIdIn(String... assetIds) {
@@ -94,6 +69,7 @@ public class BalanceFilter extends Filter<BalanceFilter> {
      * Sets the filter to include balances equal to the passed value.
      *
      * @param value the value to compare by
+     *
      * @return this filter for chaining
      */
     public BalanceFilter value(Integer value) {
@@ -105,6 +81,7 @@ public class BalanceFilter extends Filter<BalanceFilter> {
      * Sets the filter operator type for values.
      *
      * @param valueIs the operator for comparison
+     *
      * @return this filter for chaining
      */
     public BalanceFilter valueIs(Operator valueIs) {
@@ -116,6 +93,7 @@ public class BalanceFilter extends Filter<BalanceFilter> {
      * Sets the wallet to filter for.
      *
      * @param wallet the wallet address
+     *
      * @return this filter for chaining
      */
     public BalanceFilter wallet(String wallet) {
@@ -127,6 +105,7 @@ public class BalanceFilter extends Filter<BalanceFilter> {
      * Sets the wallets to filter for.
      *
      * @param wallets the wallet addresses
+     *
      * @return this filter for chaining
      */
     public BalanceFilter walletIn(String... wallets) {
