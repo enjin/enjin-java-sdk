@@ -6,13 +6,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0-alpha.8] - 2022-04-25
+### Changed
+- Removed `projectUuid` and `projectUuidIn` methods from `BalanceFilter`.
+
 ## [2.0.0-alpha.7] - 2022-04-11
 ### Changed
 - `GetWallets` query in project schema no longer implements `PaginationArguments`.
 
 ### Fixed
 - Fixed typo for `result` in `GetWallets.gql` template file for project schema.
-- Updated Gradle plugin `org.ajoberstar.git-publish` to `3.0.1`
+- Updated Gradle plugin `org.ajoberstar.git-publish` to `3.0.1`.
 
 ## [2.0.0-alpha.6] - 2022-01-13
 ### Fixed
@@ -143,7 +147,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial release.
 
-[Unreleased]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-alpha.7...HEAD
+[Unreleased]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-alpha.8...HEAD
+[2.0.0-alpha.8]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-alpha.7...2.0.0-alpha.8
 [2.0.0-alpha.7]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-alpha.6...2.0.0-alpha.7
 [2.0.0-alpha.6]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-alpha.5...2.0.0-alpha.6
 [2.0.0-alpha.5]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-alpha.4...2.0.0-alpha.5
