@@ -22,12 +22,14 @@ import com.enjin.sdk.utils.LoggerProvider;
 import com.pusher.client.channel.PusherEvent;
 import com.pusher.client.channel.SubscriptionEventListener;
 
+import java.util.EventListener;
+
 /**
  * Event listener class for subscribed pusher events. Used internally.
  *
  * @see PusherEventService
  */
-class PusherEventListener implements SubscriptionEventListener {
+class PusherEventListener implements SubscriptionEventListener, EventListener {
 
     private final PusherEventService service;
 
