@@ -27,7 +27,7 @@ import com.pusher.client.channel.SubscriptionEventListener;
  *
  * @see PusherEventService
  */
-public class PusherEventListener implements SubscriptionEventListener {
+class PusherEventListener implements SubscriptionEventListener {
 
     private final PusherEventService service;
 
