@@ -17,14 +17,12 @@ package com.enjin.sdk.events;
 
 import com.enjin.sdk.models.NotificationEvent;
 
-import java.util.EventListener;
-
 /**
  * Interface for receiving notifications from the platform.
  *
  * @see IEventService
  */
-public interface IEventListener extends EventListener {
+public interface IEventListener {
 
     /**
      * Called when an event is received.

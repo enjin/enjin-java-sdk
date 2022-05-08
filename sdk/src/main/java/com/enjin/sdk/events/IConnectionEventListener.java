@@ -15,14 +15,12 @@
 
 package com.enjin.sdk.events;
 
-import java.util.EventListener;
-
 /**
  * Interface for receiving notifications about the connection state of the event service.
  *
  * @see IEventService
  */
-public interface IConnectionEventListener extends EventListener {
+public interface IConnectionEventListener {
 
     /**
      * Callback used when the service connects to the server.

@@ -19,7 +19,6 @@ import com.pusher.client.connection.ConnectionEventListener;
 import com.pusher.client.connection.ConnectionState;
 import com.pusher.client.connection.ConnectionStateChange;
 
-import java.util.EventListener;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -29,7 +28,7 @@ import java.util.concurrent.CompletableFuture;
  * @see com.pusher.client.Pusher
  * @see PusherEventService
  */
-class PusherConnectionEventListener implements ConnectionEventListener, EventListener {
+class PusherConnectionEventListener implements ConnectionEventListener {
 
     // Futures
     private final CompletableFuture<Void> connectFutureFirst = new CompletableFuture<>();

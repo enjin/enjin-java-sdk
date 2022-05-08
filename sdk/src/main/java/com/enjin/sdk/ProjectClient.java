@@ -55,7 +55,7 @@ public final class ProjectClient extends ProjectSchema implements IClient {
     @Getter(onMethod_ = @Synchronized("authMutex"))
     private boolean reauthenticationRunning = false;
 
-    private final IAuthenticationEventListener authListener;
+    private final IAuthenticationListener authListener;
     private final Timer authTimer;
 
     // Auth data
@@ -72,7 +72,7 @@ public final class ProjectClient extends ProjectSchema implements IClient {
 
     private ProjectClient(@NonNull String baseUrl,
                           boolean automaticAuthentication,
-                          IAuthenticationEventListener authListener,
+                          IAuthenticationListener authListener,
                           HttpLogLevel logLevel,
                           LoggerProvider loggerProvider) {
         super(new TrustedPlatformMiddleware(baseUrl, logLevel, loggerProvider), loggerProvider);
@@ -264,7 +264,7 @@ public final class ProjectClient extends ProjectSchema implements IClient {
      */
     public static class ProjectClientBuilder {
 
-        private IAuthenticationEventListener authListener;
+        private IAuthenticationListener authListener;
         private String baseUri;
         private Boolean automaticAuthentication;
         private HttpLogLevel httpLogLevel = HttpLogLevel.NONE;
@@ -299,7 +299,7 @@ public final class ProjectClient extends ProjectSchema implements IClient {
          *
          * @return This builder for chaining.
          */
-        public ProjectClientBuilder authenticationListener(IAuthenticationEventListener listener) {
+        public ProjectClientBuilder authenticationListener(IAuthenticationListener listener) {
             authListener = listener;
             return this;
         }
