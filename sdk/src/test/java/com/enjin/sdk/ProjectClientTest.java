@@ -126,7 +126,7 @@ class ProjectClientReauthenticateTest {
     private ProjectClient classUnderTest;
 
     @Mock
-    private IAuthenticationListener mockAuthListener;
+    private IAuthenticationEventListener mockAuthListener;
 
     private MockWebServer mockWebServer = new MockWebServer();
 
