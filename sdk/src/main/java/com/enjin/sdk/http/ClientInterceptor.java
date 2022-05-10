@@ -26,9 +26,9 @@ import okhttp3.Response;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * A interceptor class for the Trusted Platform.
+ * Interceptor class for platform clients.
  */
-public class TrustedPlatformInterceptor implements Interceptor {
+public class ClientInterceptor implements Interceptor {
 
     /**
      * The authorization key.
@@ -56,7 +56,7 @@ public class TrustedPlatformInterceptor implements Interceptor {
     private final Object tokenMutex = new Object();
 
     /**
-     * Rewrites calls to the Trusted Platform.
+     * Adds headers to request for user-agent and authorization info.
      *
      * @param chain the chain
      * @return the response
@@ -79,7 +79,7 @@ public class TrustedPlatformInterceptor implements Interceptor {
     }
 
     /**
-     * Determines if the SDK is authenticated.
+     * Determines if the client is authenticated.
      *
      * @return true if authenticated, false otherwise
      */

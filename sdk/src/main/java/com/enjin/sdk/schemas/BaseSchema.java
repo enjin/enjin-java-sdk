@@ -19,7 +19,7 @@ import java.math.BigInteger;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 
-import com.enjin.sdk.TrustedPlatformMiddleware;
+import com.enjin.sdk.ClientMiddleware;
 import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.graphql.GraphQLResponse;
 
@@ -62,7 +62,7 @@ public class BaseSchema {
     private final LoggerProvider loggerProvider;
 
     private final Retrofit retrofit;
-    protected final TrustedPlatformMiddleware middleware;
+    protected final ClientMiddleware middleware;
     protected final String schema;
 
     /**
@@ -72,7 +72,7 @@ public class BaseSchema {
      * @param schema         the schema
      * @param loggerProvider the logger provider
      */
-    public BaseSchema(TrustedPlatformMiddleware middleware, String schema, LoggerProvider loggerProvider) {
+    public BaseSchema(ClientMiddleware middleware, String schema, LoggerProvider loggerProvider) {
         this.schema = schema;
         this.middleware = middleware;
         this.loggerProvider = loggerProvider;

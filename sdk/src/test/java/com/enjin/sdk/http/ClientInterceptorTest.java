@@ -30,15 +30,15 @@ import static org.mockito.Mockito.ignoreStubs;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class TrustedPlatformInterceptorTest {
+class ClientInterceptorTest {
 
-    private final TrustedPlatformInterceptor classUnderTest = new TrustedPlatformInterceptor();
+    private final ClientInterceptor classUnderTest = new ClientInterceptor();
 
     @Test
     @SneakyThrows
     void intercept_HasNotBeenAuthenticated_AddsOnlyUserToHeader() {
         // Arrange - Data
-        final String expectedUserHeader = TrustedPlatformInterceptor.USER_AGENT;
+        final String expectedUserHeader = ClientInterceptor.USER_AGENT;
         final Request dummyRequest = mock(Request.class);
         final Response dummyResponse = mock(Response.class);
         final Chain stubChain = mock(Chain.class);
@@ -65,8 +65,8 @@ class TrustedPlatformInterceptorTest {
     @SneakyThrows
     void intercept_HasBeenAuthenticated_AddsUserAndAuthToHeader() {
         // Arrange - Data
-        final String expectedUserHeader = TrustedPlatformInterceptor.USER_AGENT;
-        final String expectedAuthHeader = TrustedPlatformInterceptor.AUTHORIZATION;
+        final String expectedUserHeader = ClientInterceptor.USER_AGENT;
+        final String expectedAuthHeader = ClientInterceptor.AUTHORIZATION;
         final Request dummyRequest = mock(Request.class);
         final Response dummyResponse = mock(Response.class);
         final Chain stubChain = mock(Chain.class);

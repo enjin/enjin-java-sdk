@@ -18,7 +18,7 @@ package com.enjin.sdk;
 import com.enjin.sdk.graphql.GraphQLQueryRegistry;
 import com.enjin.sdk.http.HttpLogLevel;
 import com.enjin.sdk.http.SessionCookieJar;
-import com.enjin.sdk.http.TrustedPlatformInterceptor;
+import com.enjin.sdk.http.ClientInterceptor;
 import com.enjin.sdk.utils.LoggerProvider;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -31,9 +31,9 @@ import java.io.Closeable;
 import java.util.concurrent.ExecutorService;
 
 /**
- * Middleware for communicating with the Trusted Platform.
+ * Middleware used by clients to communicate with the platform.
  */
-public class TrustedPlatformMiddleware implements Closeable {
+public class ClientMiddleware implements Closeable {
 
     /**
      * -- Getter --
@@ -44,10 +44,12 @@ public class TrustedPlatformMiddleware implements Closeable {
     private final HttpUrl baseUrl;
 
     /**
-     * @return the TP interceptor
+     * -- Getter --
+     *
+     * @return the client interceptor
      */
     @Getter(AccessLevel.PACKAGE)
-    private final TrustedPlatformInterceptor trustedPlatformInterceptor;
+    private final ClientInterceptor clientInterceptor;
 
     /**
      * -- Getter --
@@ -72,13 +74,13 @@ public class TrustedPlatformMiddleware implements Closeable {
      * @param logLevel       the HTTP log level
      * @param loggerProvider the logger provider
      */
-    protected TrustedPlatformMiddleware(String baseUrl, HttpLogLevel logLevel, LoggerProvider loggerProvider) {
+    protected ClientMiddleware(String baseUrl, HttpLogLevel logLevel, LoggerProvider loggerProvider) {
         this.baseUrl = HttpUrl.get(baseUrl);
-        this.trustedPlatformInterceptor = new TrustedPlatformInterceptor();
+        this.clientInterceptor = new ClientInterceptor();
         this.queryRegistry = new GraphQLQueryRegistry();
 
         OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
-                .addInterceptor(this.trustedPlatformInterceptor)
+                .addInterceptor(this.clientInterceptor)
                 .cookieJar(new SessionCookieJar());
 
         if (loggerProvider != null)

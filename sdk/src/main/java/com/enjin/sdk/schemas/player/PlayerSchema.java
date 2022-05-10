@@ -15,7 +15,7 @@
 
 package com.enjin.sdk.schemas.player;
 
-import com.enjin.sdk.TrustedPlatformMiddleware;
+import com.enjin.sdk.ClientMiddleware;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.models.Player;
 import com.enjin.sdk.models.Request;
@@ -61,7 +61,7 @@ public class PlayerSchema extends SharedSchema implements IPlayerSchema {
      * @param middleware     the middleware
      * @param loggerProvider the logger provider
      */
-    public PlayerSchema(TrustedPlatformMiddleware middleware, LoggerProvider loggerProvider) {
+    public PlayerSchema(ClientMiddleware middleware, LoggerProvider loggerProvider) {
         super(middleware, SCHEMA, loggerProvider);
         playerService = (PlayerService) createService(PlayerService.class);
         walletService = (WalletService) createService(WalletService.class);
