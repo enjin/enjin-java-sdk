@@ -105,6 +105,12 @@ public class Request {
 
     /**
      * -- Getter --
+     * @return the wallet this transaction belongs to
+     */
+    private Wallet wallet;
+
+    /**
+     * -- Getter --
      * <br>
      * <p>
      *     Formatted as an ISO 8601 string.

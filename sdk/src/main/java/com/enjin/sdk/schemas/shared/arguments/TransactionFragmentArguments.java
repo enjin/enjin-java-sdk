@@ -22,6 +22,7 @@ import com.enjin.sdk.models.AssetIdFormat;
  * Fragment interface used to request certain information from transactions returned by the platform.
  *
  * @param <T> the type of the implementing class
+ *
  * @see com.enjin.sdk.models.Request
  */
 public interface TransactionFragmentArguments<T extends VariableHolder<T>> extends VariableHolder<T> {
@@ -30,6 +31,7 @@ public interface TransactionFragmentArguments<T extends VariableHolder<T>> exten
      * Sets the request to include the blockchain data with the transaction.
      *
      * @return this request for chaining
+     *
      * @see TransactionFragmentArguments#withEncodedData()
      * @see TransactionFragmentArguments#withSignedTxs()
      * @see TransactionFragmentArguments#withReceipt()
@@ -63,6 +65,7 @@ public interface TransactionFragmentArguments<T extends VariableHolder<T>> exten
      * Sets the request to include the asset data with the transaction.
      *
      * @return this request for chaining
+     *
      * @see TransactionFragmentArguments#assetIdFormat(AssetIdFormat)
      */
     default T withAssetData() {
@@ -114,6 +117,7 @@ public interface TransactionFragmentArguments<T extends VariableHolder<T>> exten
      * {@link TransactionFragmentArguments#withBlockchainData()}.
      *
      * @return this request for chaining
+     *
      * @see TransactionFragmentArguments#withReceiptLogs()
      */
     default T withReceipt() {
@@ -125,6 +129,7 @@ public interface TransactionFragmentArguments<T extends VariableHolder<T>> exten
      * {@link TransactionFragmentArguments#withReceipt()}.
      *
      * @return this request for chaining
+     *
      * @see TransactionFragmentArguments#withLogEvent()
      */
     default T withReceiptLogs() {
@@ -152,9 +157,20 @@ public interface TransactionFragmentArguments<T extends VariableHolder<T>> exten
     }
 
     /**
+     * Sets the request to include the {@link com.enjin.sdk.models.Wallet} with its Ethereum address that belongs to the
+     * transaction.
+     *
+     * @return this request for chaining.
+     */
+    default T withTransactionWalletAddress() {
+        return set("withTransactionWalletAddress", true);
+    }
+
+    /**
      * Sets the desired asset ID format when used with {@link TransactionFragmentArguments#withAssetData()}.
      *
      * @param assetIdFormat the format
+     *
      * @return this request for chaining
      */
     default T assetIdFormat(AssetIdFormat assetIdFormat) {
