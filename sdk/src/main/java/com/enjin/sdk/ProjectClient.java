@@ -75,7 +75,7 @@ public final class ProjectClient extends ProjectSchema implements IClient {
                           IAuthenticationEventListener authListener,
                           HttpLogLevel logLevel,
                           LoggerProvider loggerProvider) {
-        super(new TrustedPlatformMiddleware(baseUrl, logLevel, loggerProvider), loggerProvider);
+        super(new ClientMiddleware(baseUrl, logLevel, loggerProvider), loggerProvider);
 
         this.authListener = authListener;
 
@@ -171,7 +171,7 @@ public final class ProjectClient extends ProjectSchema implements IClient {
 
     @Override
     public boolean isAuthenticated() {
-        return middleware.getTrustedPlatformInterceptor().isAuthenticated();
+        return middleware.getClientInterceptor().isAuthenticated();
     }
 
     @Override
@@ -189,7 +189,7 @@ public final class ProjectClient extends ProjectSchema implements IClient {
                 timerRestarted = restartAuthenticationTimer(expiresIn);
         }
 
-        middleware.getTrustedPlatformInterceptor().setToken(token);
+        middleware.getClientInterceptor().setToken(token);
 
         if (authListener != null && authTimer != null && !timerRestarted)
             authListener.onAutomaticReauthenticationStopped();

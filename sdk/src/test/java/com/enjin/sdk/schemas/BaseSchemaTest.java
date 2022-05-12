@@ -17,7 +17,7 @@ package com.enjin.sdk.schemas;
 
 import com.enjin.sdk.PlatformUtils;
 import com.enjin.sdk.Testable;
-import com.enjin.sdk.TrustedPlatformMiddleware;
+import com.enjin.sdk.ClientMiddleware;
 import com.enjin.sdk.graphql.GraphQLError;
 import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.graphql.GraphQLResponse;
@@ -94,7 +94,7 @@ class BaseSchemaTest {
             assumeNoException(e);
         }
 
-        TrustedPlatformMiddleware middleware = PlatformUtils.createMiddleware(mockWebServer.url("/").toString());
+        ClientMiddleware middleware = PlatformUtils.createMiddleware(mockWebServer.url("/").toString());
         classUnderTest = new TestableBaseSchema(middleware, SCHEMA, mockLoggerProvider);
     }
 
@@ -271,7 +271,7 @@ class BaseSchemaTest {
             retrofitField.setAccessible(true);
         }
 
-        public TestableBaseSchema(TrustedPlatformMiddleware middleware,
+        public TestableBaseSchema(ClientMiddleware middleware,
                                   String schema,
                                   LoggerProvider loggerProvider) {
             super(middleware, schema, loggerProvider);

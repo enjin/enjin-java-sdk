@@ -31,8 +31,8 @@ public class PlatformUtils {
 
     public final Platform FAKE_PLATFORM = createFakePlatform("fake");
 
-    public TrustedPlatformMiddleware createMiddleware(String baseUri) {
-        return new TrustedPlatformMiddleware(baseUri, HttpLogLevel.NONE, null);
+    public ClientMiddleware createMiddleware(String baseUri) {
+        return new ClientMiddleware(baseUri, HttpLogLevel.NONE, null);
     }
 
     public Platform createFakePlatform(String network) {
