@@ -15,7 +15,7 @@
 
 package com.enjin.sdk;
 
-import com.enjin.sdk.http.TrustedPlatformInterceptor;
+import com.enjin.sdk.http.ClientInterceptor;
 import com.enjin.sdk.models.AccessToken;
 import com.google.gson.Gson;
 import lombok.NonNull;
@@ -182,7 +182,7 @@ class ProjectClientReauthenticateTest {
         // Arrange - Data
         final String authToken = "FakeAuthToken";
         final String expectedPath = "/graphql/project";
-        final String expectedHeader = TrustedPlatformInterceptor.AUTHORIZATION;
+        final String expectedHeader = ClientInterceptor.AUTHORIZATION;
         final String expectedHeaderValue = String.format("Bearer %s", authToken);
         final AccessToken fakeToken = createFakeAccessToken(authToken, 1L);
         final String responseBody = String.format("{\"data\":{\"result\":%s}}", GSON.toJson(fakeToken));
