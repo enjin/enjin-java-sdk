@@ -15,7 +15,7 @@
 
 package com.enjin.sdk.schemas.project;
 
-import com.enjin.sdk.TrustedPlatformMiddleware;
+import com.enjin.sdk.ClientMiddleware;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.models.Wallet;
 import com.enjin.sdk.schemas.project.mutations.AdvancedSendAsset;
@@ -82,7 +82,7 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
      * @param middleware     the middleware
      * @param loggerProvider the logger provider
      */
-    public ProjectSchema(TrustedPlatformMiddleware middleware, LoggerProvider loggerProvider) {
+    public ProjectSchema(ClientMiddleware middleware, LoggerProvider loggerProvider) {
         super(middleware, SCHEMA, loggerProvider);
         playerService = (PlayerService) createService(PlayerService.class);
         walletService = (WalletService) createService(WalletService.class);

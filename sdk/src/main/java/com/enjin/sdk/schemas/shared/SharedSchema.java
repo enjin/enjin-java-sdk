@@ -15,7 +15,7 @@
 
 package com.enjin.sdk.schemas.shared;
 
-import com.enjin.sdk.TrustedPlatformMiddleware;
+import com.enjin.sdk.ClientMiddleware;
 import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.models.Balance;
@@ -62,7 +62,7 @@ public class SharedSchema extends BaseSchema implements ISharedSchema {
      * @param schema         the schema
      * @param loggerProvider the logger provider
      */
-    public SharedSchema(TrustedPlatformMiddleware middleware, String schema, LoggerProvider loggerProvider) {
+    public SharedSchema(ClientMiddleware middleware, String schema, LoggerProvider loggerProvider) {
         super(middleware, schema, loggerProvider);
         balanceService = (BalanceService) createService(BalanceService.class);
         platformService = (PlatformService) createService(PlatformService.class);
