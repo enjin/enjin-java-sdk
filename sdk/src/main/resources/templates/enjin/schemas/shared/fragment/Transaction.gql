@@ -13,6 +13,7 @@
 #arg withReceiptLogs Boolean false
 #arg withLogEvent Boolean false
 #arg withTransactionProjectUuid Boolean false
+#arg withTransactionWalletAddress Boolean false
 
 fragment Transaction on Transaction {
     id
@@ -64,6 +65,9 @@ fragment Transaction on Transaction {
     }
     asset @include(if: $withAssetData) {
         id(format: $assetIdFormat)
+    }
+    wallet @include(if: $withTransactionWalletAddress) {
+        ethAddress
     }
     createdAt
     updatedAt
