@@ -66,7 +66,7 @@ public interface TransactionFragmentArguments<T extends VariableHolder<T>> exten
      *
      * @return this request for chaining
      *
-     * @see TransactionFragmentArguments#assetIdFormat(AssetIdFormat)
+     * @see TransactionFragmentArguments#transactionAssetIdFormat(AssetIdFormat)
      */
     default T withAssetData() {
         return set("withAssetData", true);
@@ -173,8 +173,8 @@ public interface TransactionFragmentArguments<T extends VariableHolder<T>> exten
      *
      * @return this request for chaining
      */
-    default T assetIdFormat(AssetIdFormat assetIdFormat) {
-        return set("assetIdFormat", assetIdFormat);
+    default T transactionAssetIdFormat(AssetIdFormat assetIdFormat) {
+        return set("transactionAssetIdFormat", assetIdFormat);
     }
 
 }
