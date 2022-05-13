@@ -29,32 +29,51 @@ public class Wallet {
 
     /**
      * -- Getter --
+     *
      * @return the Ethereum address of this wallet
      */
     private String ethAddress;
 
     /**
      * -- Getter --
+     *
      * @return the ENJ allowance given to crypto items
      */
     private Float enjAllowance;
 
     /**
      * -- Getter --
+     *
      * @return the ENJ balance for this wallet
      */
     private Float enjBalance;
 
     /**
      * -- Getter --
+     *
      * @return the ETH balance for this wallet
      */
     private Float ethBalance;
 
     /**
      * -- Getter --
+     *
      * @return the assets this wallet has created
      */
     private List<Asset> assetsCreated;
+
+    /**
+     * -- Getter --
+     *
+     * @return the balances for this wallet
+     */
+    private List<Balance> balances;
+
+    /**
+     * -- Getter --
+     *
+     * @return the transactions this wallet has signed
+     */
+    private List<Request> transactions;
 
 }
