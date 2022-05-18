@@ -16,22 +16,23 @@
 package com.enjin.sdk.schemas.shared.queries;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
+import com.enjin.sdk.models.Transaction;
 import com.enjin.sdk.schemas.shared.arguments.TransactionFragmentArguments;
 
 /**
  * Request for getting a transaction on the platform.
  *
- * @see com.enjin.sdk.models.Request
+ * @see Transaction
  * @see com.enjin.sdk.schemas.shared.ISharedSchema
  */
-public class GetRequest
-        extends GraphQLRequest<GetRequest>
-        implements TransactionFragmentArguments<GetRequest> {
+public class GetTransaction
+        extends GraphQLRequest<GetTransaction>
+        implements TransactionFragmentArguments<GetTransaction> {
 
     /**
      * Sole constructor.
      */
-    public GetRequest() {
+    public GetTransaction() {
         super("enjin.sdk.shared.GetTransaction");
     }
 
@@ -42,7 +43,7 @@ public class GetRequest
      *
      * @return this request for chaining
      */
-    public GetRequest id(Integer id) {
+    public GetTransaction id(Integer id) {
         return set("id", id);
     }
 
@@ -53,7 +54,7 @@ public class GetRequest
      *
      * @return this request for chaining
      */
-    public GetRequest transactionId(String id) {
+    public GetTransaction transactionId(String id) {
         return set("transactionId", id);
     }
 

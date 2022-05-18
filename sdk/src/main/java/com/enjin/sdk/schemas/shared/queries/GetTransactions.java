@@ -16,6 +16,7 @@
 package com.enjin.sdk.schemas.shared.queries;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
+import com.enjin.sdk.models.Transaction;
 import com.enjin.sdk.models.TransactionFilter;
 import com.enjin.sdk.models.TransactionSort;
 import com.enjin.sdk.schemas.shared.arguments.PaginationArguments;
@@ -24,18 +25,18 @@ import com.enjin.sdk.schemas.shared.arguments.TransactionFragmentArguments;
 /**
  * Request for getting transactions on the platform.
  *
- * @see com.enjin.sdk.models.Request
+ * @see Transaction
  * @see com.enjin.sdk.schemas.shared.ISharedSchema
  */
-public class GetRequests
-        extends GraphQLRequest<GetRequests>
-        implements TransactionFragmentArguments<GetRequests>,
-        PaginationArguments<GetRequests> {
+public class GetTransactions
+        extends GraphQLRequest<GetTransactions>
+        implements TransactionFragmentArguments<GetTransactions>,
+        PaginationArguments<GetTransactions> {
 
     /**
      * Sole constructor.
      */
-    public GetRequests() {
+    public GetTransactions() {
         super("enjin.sdk.shared.GetTransactions");
     }
 
@@ -46,7 +47,7 @@ public class GetRequests
      *
      * @return this request for chaining
      */
-    public GetRequests filter(TransactionFilter filter) {
+    public GetTransactions filter(TransactionFilter filter) {
         return set("filter", filter);
     }
 
@@ -57,7 +58,7 @@ public class GetRequests
      *
      * @return this request for chaining
      */
-    public GetRequests sort(TransactionSort sort) {
+    public GetTransactions sort(TransactionSort sort) {
         return set("sort", sort);
     }
 

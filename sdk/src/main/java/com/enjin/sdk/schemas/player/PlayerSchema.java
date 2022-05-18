@@ -18,7 +18,7 @@ package com.enjin.sdk.schemas.player;
 import com.enjin.sdk.ClientMiddleware;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.models.Player;
-import com.enjin.sdk.models.Request;
+import com.enjin.sdk.models.Transaction;
 import com.enjin.sdk.models.Wallet;
 import com.enjin.sdk.schemas.player.mutations.AdvancedSendAsset;
 import com.enjin.sdk.schemas.player.mutations.ApproveEnj;
@@ -68,32 +68,32 @@ public class PlayerSchema extends SharedSchema implements IPlayerSchema {
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> advancedSendAsset(AdvancedSendAsset request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> advancedSendAsset(AdvancedSendAsset request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> approveEnj(ApproveEnj request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> approveEnj(ApproveEnj request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> approveMaxEnj(ApproveMaxEnj request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> approveMaxEnj(ApproveMaxEnj request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> bridgeAsset(BridgeAsset request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> bridgeAsset(BridgeAsset request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> bridgeAssets(BridgeAssets request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> bridgeAssets(BridgeAssets request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> bridgeClaimAsset(BridgeClaimAsset request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> bridgeClaimAsset(BridgeClaimAsset request) {
         return transactionRequest(request);
     }
 
@@ -108,32 +108,32 @@ public class PlayerSchema extends SharedSchema implements IPlayerSchema {
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> meltAsset(MeltAsset request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> meltAsset(MeltAsset request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> message(Message request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> message(Message request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> resetEnjApproval(ResetEnjApproval request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> resetEnjApproval(ResetEnjApproval request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> sendAsset(SendAsset request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> sendAsset(SendAsset request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> sendEnj(SendEnj request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> sendEnj(SendEnj request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> setApprovalForAll(SetApprovalForAll request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> setApprovalForAll(SetApprovalForAll request) {
         return transactionRequest(request);
     }
 

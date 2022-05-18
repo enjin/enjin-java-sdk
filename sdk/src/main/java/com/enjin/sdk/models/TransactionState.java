@@ -18,9 +18,9 @@ package com.enjin.sdk.models;
 /**
  * Represents the state of a transaction.
  *
- * @see Request
+ * @see Transaction
  */
-public enum RequestState {
+public enum TransactionState {
 
     PENDING,
     BROADCAST,

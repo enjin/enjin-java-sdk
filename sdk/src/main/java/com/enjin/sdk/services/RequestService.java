@@ -16,7 +16,7 @@
 package com.enjin.sdk.services;
 
 import com.enjin.sdk.graphql.GraphQLResponse;
-import com.enjin.sdk.models.Request;
+import com.enjin.sdk.models.Transaction;
 import com.google.gson.JsonObject;
 import retrofit2.Response;
 import retrofit2.http.Body;
@@ -34,12 +34,12 @@ public interface RequestService extends Delete {
 
     @POST("/graphql/{schema}")
     @Headers("Content-Type: application/json")
-    CompletableFuture<Response<GraphQLResponse<Request>>> getOne(@Path("schema") String schema,
-                                                                 @Body JsonObject request);
+    CompletableFuture<Response<GraphQLResponse<Transaction>>> getOne(@Path("schema") String schema,
+                                                                     @Body JsonObject request);
 
     @POST("/graphql/{schema}")
     @Headers("Content-Type: application/json")
-    CompletableFuture<Response<GraphQLResponse<List<Request>>>> getMany(@Path("schema") String schema,
-                                                                        @Body JsonObject request);
+    CompletableFuture<Response<GraphQLResponse<List<Transaction>>>> getMany(@Path("schema") String schema,
+                                                                            @Body JsonObject request);
 
 }

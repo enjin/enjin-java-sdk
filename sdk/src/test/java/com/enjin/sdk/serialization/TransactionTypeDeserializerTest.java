@@ -15,7 +15,7 @@
 
 package com.enjin.sdk.serialization;
 
-import com.enjin.sdk.models.RequestType;
+import com.enjin.sdk.models.TransactionType;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -28,20 +28,20 @@ import static org.mockito.Mockito.mock;
 
 import java.lang.reflect.Type;
 
-class RequestTypeDeserializerTest {
+class TransactionTypeDeserializerTest {
 
-    private final RequestTypeDeserializer classUnderTest = new RequestTypeDeserializer();
+    private final TransactionTypeDeserializer classUnderTest = new TransactionTypeDeserializer();
 
     @Test
     void deserialize_JsonElementIsNotJsonPrimitive_ReturnsUnknown() {
         // Arrange
-        final RequestType expected = RequestType.UNKNOWN;
+        final TransactionType expected = TransactionType.UNKNOWN;
         final JsonElement jsonElement = new JsonObject();
         final Type dummyType = mock(Type.class);
         final JsonDeserializationContext dummyContext = mock(JsonDeserializationContext.class);
 
         // Act
-        RequestType actual = classUnderTest.deserialize(jsonElement, dummyType, dummyContext);
+        TransactionType actual = classUnderTest.deserialize(jsonElement, dummyType, dummyContext);
 
         // Assert
         assertEquals(expected, actual);
@@ -49,14 +49,14 @@ class RequestTypeDeserializerTest {
 
     @ParameterizedTest
     @EnumSource
-    void deserialize_ValidString_ReturnsExpectedRequestType(RequestType expected) {
+    void deserialize_ValidString_ReturnsExpectedRequestType(TransactionType expected) {
         // Arrange
         final JsonElement jsonElement = new JsonPrimitive(expected.toString());
         final Type dummyType = mock(Type.class);
         final JsonDeserializationContext dummyContext = mock(JsonDeserializationContext.class);
 
         // Act
-        RequestType actual = classUnderTest.deserialize(jsonElement, dummyType, dummyContext);
+        TransactionType actual = classUnderTest.deserialize(jsonElement, dummyType, dummyContext);
 
         // Assert
         assertEquals(expected, actual);
@@ -65,13 +65,13 @@ class RequestTypeDeserializerTest {
     @Test
     void deserialize_InvalidString_ReturnsUnknown() {
         // Arrange
-        final RequestType expected = RequestType.UNKNOWN;
+        final TransactionType expected = TransactionType.UNKNOWN;
         final JsonElement jsonElement = new JsonPrimitive("");
         final Type dummyType = mock(Type.class);
         final JsonDeserializationContext dummyContext = mock(JsonDeserializationContext.class);
 
         // Act
-        RequestType actual = classUnderTest.deserialize(jsonElement, dummyType, dummyContext);
+        TransactionType actual = classUnderTest.deserialize(jsonElement, dummyType, dummyContext);
 
         // Assert
         assertEquals(expected, actual);
