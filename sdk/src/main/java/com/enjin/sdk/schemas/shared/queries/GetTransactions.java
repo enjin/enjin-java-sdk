@@ -18,7 +18,7 @@ package com.enjin.sdk.schemas.shared.queries;
 import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.models.Transaction;
 import com.enjin.sdk.models.TransactionFilter;
-import com.enjin.sdk.models.TransactionSort;
+import com.enjin.sdk.models.TransactionSortInput;
 import com.enjin.sdk.schemas.shared.arguments.PaginationArguments;
 import com.enjin.sdk.schemas.shared.arguments.TransactionFragmentArguments;
 
@@ -54,11 +54,11 @@ public class GetTransactions
     /**
      * Sets the request to sort the results by the specified options.
      *
-     * @param sort the sort options
+     * @param sort the sort input
      *
      * @return this request for chaining
      */
-    public GetTransactions sort(TransactionSort sort) {
+    public GetTransactions sort(TransactionSortInput sort) {
         return set("sort", sort);
     }
 

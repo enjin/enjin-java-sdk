@@ -20,7 +20,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * The fields of the {@link Transaction} type.
  *
- * @see TransactionSort
+ * @see TransactionSortInput
  */
 public enum TransactionField {
 

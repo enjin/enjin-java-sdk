@@ -18,51 +18,35 @@ package com.enjin.sdk.models;
 import lombok.EqualsAndHashCode;
 
 /**
- * Models a melt input for melt requests.
- *
- * @see com.enjin.sdk.schemas.player.mutations.MeltAsset
- * @see com.enjin.sdk.schemas.project.mutations.MeltAsset
+ * Models sorting input for assets.
  */
 @EqualsAndHashCode
-public class Melt {
+public class AssetSortInput {
 
-    private String assetId;
-    private String assetIndex;
-    private String value;
+    private AssetField field;
+    private SortDirection direction;
 
     /**
-     * Sets the asset ID to melt.
+     * Sets the field to sort by.
      *
-     * @param assetId the ID
+     * @param field the field
      *
      * @return this input for chaining
      */
-    public Melt assetId(String assetId) {
-        this.assetId = assetId;
+    public AssetSortInput field(AssetField field) {
+        this.field = field;
         return this;
     }
 
     /**
-     * Sets the index of a non-fungible asset to melt.
+     * Sets the direction to sort by.
      *
-     * @param assetIndex the index
-     *
-     * @return this input for chaining
-     */
-    public Melt assetIndex(String assetIndex) {
-        this.assetIndex = assetIndex;
-        return this;
-    }
-
-    /**
-     * Sets the number of assets to melt.
-     *
-     * @param value the amount
+     * @param direction the direction
      *
      * @return this input for chaining
      */
-    public Melt value(String value) {
-        this.value = value;
+    public AssetSortInput direction(SortDirection direction) {
+        this.direction = direction;
         return this;
     }
 

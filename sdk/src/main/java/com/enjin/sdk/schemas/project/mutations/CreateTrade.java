@@ -16,7 +16,7 @@
 package com.enjin.sdk.schemas.project.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.models.Trade;
+import com.enjin.sdk.models.TradeInput;
 import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArguments;
 
 /**
@@ -42,7 +42,7 @@ public class CreateTrade
      * @param assets the assets
      * @return this request for chaining
      */
-    public CreateTrade askingAssets(Trade... assets) {
+    public CreateTrade askingAssets(TradeInput... assets) {
         return set("askingAssets", assets);
     }
 
@@ -52,7 +52,7 @@ public class CreateTrade
      * @param assets the assets
      * @return this request for chaining
      */
-    public CreateTrade offeringAssets(Trade... assets) {
+    public CreateTrade offeringAssets(TradeInput... assets) {
         return set("offeringAssets", assets);
     }
 
