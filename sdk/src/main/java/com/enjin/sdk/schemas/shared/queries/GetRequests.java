@@ -36,13 +36,14 @@ public class GetRequests
      * Sole constructor.
      */
     public GetRequests() {
-        super("enjin.sdk.shared.GetRequests");
+        super("enjin.sdk.shared.GetTransactions");
     }
 
     /**
      * Sets the filter the request will use.
      *
      * @param filter the filter
+     *
      * @return this request for chaining
      */
     public GetRequests filter(TransactionFilter filter) {
@@ -53,6 +54,7 @@ public class GetRequests
      * Sets the request to sort the results by the specified options.
      *
      * @param sort the sort options
+     *
      * @return this request for chaining
      */
     public GetRequests sort(TransactionSort sort) {

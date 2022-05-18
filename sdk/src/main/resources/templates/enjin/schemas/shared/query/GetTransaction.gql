@@ -1,4 +1,4 @@
-#namespace enjin.sdk.shared.GetRequest
+#namespace enjin.sdk.shared.GetTransaction
 #import enjin.sdk.shared.Transaction
 
 #arg id Int

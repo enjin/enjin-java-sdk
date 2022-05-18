@@ -32,13 +32,14 @@ public class GetRequest
      * Sole constructor.
      */
     public GetRequest() {
-        super("enjin.sdk.shared.GetRequest");
+        super("enjin.sdk.shared.GetTransaction");
     }
 
     /**
      * Sets the transaction ID.
      *
      * @param id the ID
+     *
      * @return this request for chaining
      */
     public GetRequest id(Integer id) {
@@ -49,6 +50,7 @@ public class GetRequest
      * Sets the transaction hash ID.
      *
      * @param id the hash ID
+     *
      * @return this request for chaining
      */
     public GetRequest transactionId(String id) {
