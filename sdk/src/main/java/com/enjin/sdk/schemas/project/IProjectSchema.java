@@ -18,7 +18,7 @@ package com.enjin.sdk.schemas.project;
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.models.AccessToken;
 import com.enjin.sdk.models.Player;
-import com.enjin.sdk.models.Request;
+import com.enjin.sdk.models.Transaction;
 import com.enjin.sdk.models.Wallet;
 import com.enjin.sdk.schemas.project.mutations.AdvancedSendAsset;
 import com.enjin.sdk.schemas.project.mutations.ApproveEnj;
@@ -70,7 +70,7 @@ public interface IProjectSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> advancedSendAsset(AdvancedSendAsset request);
+    CompletableFuture<GraphQLResponse<Transaction>> advancedSendAsset(AdvancedSendAsset request);
 
     /**
      * Sends {@link ApproveEnj} request to the platform.
@@ -79,7 +79,7 @@ public interface IProjectSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> approveEnj(ApproveEnj request);
+    CompletableFuture<GraphQLResponse<Transaction>> approveEnj(ApproveEnj request);
 
     /**
      * Sends {@link ApproveMaxEnj} request to the platform.
@@ -88,7 +88,7 @@ public interface IProjectSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> approveMaxEnj(ApproveMaxEnj request);
+    CompletableFuture<GraphQLResponse<Transaction>> approveMaxEnj(ApproveMaxEnj request);
 
     /**
      * Sends {@link AuthPlayer} request to the platform.
@@ -115,7 +115,7 @@ public interface IProjectSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> bridgeAsset(BridgeAsset request);
+    CompletableFuture<GraphQLResponse<Transaction>> bridgeAsset(BridgeAsset request);
 
     /**
      * Sends {@link BridgeAssets} request to the platform.
@@ -124,7 +124,7 @@ public interface IProjectSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> bridgeAssets(BridgeAssets request);
+    CompletableFuture<GraphQLResponse<Transaction>> bridgeAssets(BridgeAssets request);
 
     /**
      * Sends {@link BridgeClaimAsset} request to the platform.
@@ -133,7 +133,7 @@ public interface IProjectSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> bridgeClaimAsset(BridgeClaimAsset request);
+    CompletableFuture<GraphQLResponse<Transaction>> bridgeClaimAsset(BridgeClaimAsset request);
 
     /**
      * Sends {@link CompleteTrade} request to the platform.
@@ -142,7 +142,7 @@ public interface IProjectSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> completeTrade(CompleteTrade request);
+    CompletableFuture<GraphQLResponse<Transaction>> completeTrade(CompleteTrade request);
 
     /**
      * Sends {@link CreateAsset} request to the platform.
@@ -151,7 +151,7 @@ public interface IProjectSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> createAsset(CreateAsset request);
+    CompletableFuture<GraphQLResponse<Transaction>> createAsset(CreateAsset request);
 
     /**
      * Sends {@link CreatePlayer} request to the platform.
@@ -169,7 +169,7 @@ public interface IProjectSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> createTrade(CreateTrade request);
+    CompletableFuture<GraphQLResponse<Transaction>> createTrade(CreateTrade request);
 
     /**
      * Sends {@link DecreaseMaxMeltFee} request to the platform.
@@ -178,7 +178,7 @@ public interface IProjectSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> decreaseMaxMeltFee(DecreaseMaxMeltFee request);
+    CompletableFuture<GraphQLResponse<Transaction>> decreaseMaxMeltFee(DecreaseMaxMeltFee request);
 
     /**
      * Sends {@link DecreaseMaxTransferFee} request to the platform.
@@ -187,7 +187,7 @@ public interface IProjectSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> decreaseMaxTransferFee(DecreaseMaxTransferFee request);
+    CompletableFuture<GraphQLResponse<Transaction>> decreaseMaxTransferFee(DecreaseMaxTransferFee request);
 
     /**
      * Sends {@link DeletePlayer} request to the platform.
@@ -250,7 +250,7 @@ public interface IProjectSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> meltAsset(MeltAsset request);
+    CompletableFuture<GraphQLResponse<Transaction>> meltAsset(MeltAsset request);
 
     /**
      * Sends {@link Message} request to the platform.
@@ -259,7 +259,7 @@ public interface IProjectSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> message(Message request);
+    CompletableFuture<GraphQLResponse<Transaction>> message(Message request);
 
     /**
      * Sends {@link MintAsset} request to the platform.
@@ -268,7 +268,7 @@ public interface IProjectSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> mintAsset(MintAsset request);
+    CompletableFuture<GraphQLResponse<Transaction>> mintAsset(MintAsset request);
 
     /**
      * Sends {@link ReleaseReserve} request to the platform.
@@ -277,7 +277,7 @@ public interface IProjectSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> releaseReserve(ReleaseReserve request);
+    CompletableFuture<GraphQLResponse<Transaction>> releaseReserve(ReleaseReserve request);
 
     /**
      * Sends {@link ResetEnjApproval} request to the platform.
@@ -286,7 +286,7 @@ public interface IProjectSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> resetEnjApproval(ResetEnjApproval request);
+    CompletableFuture<GraphQLResponse<Transaction>> resetEnjApproval(ResetEnjApproval request);
 
     /**
      * Sends {@link SendAsset} request to the platform.
@@ -295,7 +295,7 @@ public interface IProjectSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> sendAsset(SendAsset request);
+    CompletableFuture<GraphQLResponse<Transaction>> sendAsset(SendAsset request);
 
     /**
      * Sends {@link SendEnj} request to the platform.
@@ -304,7 +304,7 @@ public interface IProjectSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> sendEnj(SendEnj request);
+    CompletableFuture<GraphQLResponse<Transaction>> sendEnj(SendEnj request);
 
     /**
      * Sends {@link SetApprovalForAll} request to the platform.
@@ -313,7 +313,7 @@ public interface IProjectSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> setApprovalForAll(SetApprovalForAll request);
+    CompletableFuture<GraphQLResponse<Transaction>> setApprovalForAll(SetApprovalForAll request);
 
     /**
      * Sends {@link SetMeltFee} request to the platform.
@@ -322,7 +322,7 @@ public interface IProjectSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> setMeltFee(SetMeltFee request);
+    CompletableFuture<GraphQLResponse<Transaction>> setMeltFee(SetMeltFee request);
 
     /**
      * Sends {@link SetTransferable} request to the platform.
@@ -331,7 +331,7 @@ public interface IProjectSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> setTransferable(SetTransferable request);
+    CompletableFuture<GraphQLResponse<Transaction>> setTransferable(SetTransferable request);
 
     /**
      * Sends {@link SetTransferFee} request to the platform.
@@ -340,7 +340,7 @@ public interface IProjectSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> setTransferFee(SetTransferFee request);
+    CompletableFuture<GraphQLResponse<Transaction>> setTransferFee(SetTransferFee request);
 
     /**
      * Sends {@link SetUri} request to the platform.
@@ -349,7 +349,7 @@ public interface IProjectSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> setUri(SetUri request);
+    CompletableFuture<GraphQLResponse<Transaction>> setUri(SetUri request);
 
     /**
      * Sends {@link SetWhitelisted} request to the platform.
@@ -358,7 +358,7 @@ public interface IProjectSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> setWhitelisted(SetWhitelisted request);
+    CompletableFuture<GraphQLResponse<Transaction>> setWhitelisted(SetWhitelisted request);
 
     /**
      * Sends {@link UnlinkWallet} request to the platform.

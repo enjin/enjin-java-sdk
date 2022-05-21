@@ -20,7 +20,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * The fields of the {@link Asset} type.
  *
- * @see AssetSort
+ * @see AssetSortInput
  */
 public enum AssetField {
 

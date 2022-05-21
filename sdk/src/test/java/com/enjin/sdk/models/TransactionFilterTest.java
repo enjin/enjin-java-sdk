@@ -163,16 +163,16 @@ class TransactionFilterTest implements TestFilterInterface {
     void typeIn_PassedArguments_FieldContainsArguments() {
         // Arrange
         final TestableTransactionFilter filter = new TestableTransactionFilter();
-        final RequestType[] args = RequestType.values();
+        final TransactionType[] args = TransactionType.values();
 
         assumeTrue(args.length > 0);
 
         // Act
         filter.typeIn(args);
-        List<RequestType> actual = filter.getTypeIn();
+        List<TransactionType> actual = filter.getTypeIn();
 
         // Assert
-        for (RequestType v : args) {
+        for (TransactionType v : args) {
             assertTrue(actual.contains(v));
         }
     }
@@ -184,7 +184,7 @@ class TransactionFilterTest implements TestFilterInterface {
 
         // Act
         filter.typeIn();
-        List<RequestType> actual = filter.getTypeIn();
+        List<TransactionType> actual = filter.getTypeIn();
 
         // Assert
         assertTrue(actual.isEmpty());
@@ -196,8 +196,8 @@ class TransactionFilterTest implements TestFilterInterface {
         final TestableTransactionFilter filter = new TestableTransactionFilter();
 
         // Act
-        filter.typeIn((RequestType[]) null);
-        List<RequestType> actual = filter.getTypeIn();
+        filter.typeIn((TransactionType[]) null);
+        List<TransactionType> actual = filter.getTypeIn();
 
         // Assert
         assertNull(actual);
@@ -207,16 +207,16 @@ class TransactionFilterTest implements TestFilterInterface {
     void stateIn_PassedArguments_FieldContainsArguments() {
         // Arrange
         final TestableTransactionFilter filter = new TestableTransactionFilter();
-        final RequestState[] args = RequestState.values();
+        final TransactionState[] args = TransactionState.values();
 
         assumeTrue(args.length > 0);
 
         // Act
         filter.stateIn(args);
-        List<RequestState> actual = filter.getStateIn();
+        List<TransactionState> actual = filter.getStateIn();
 
         // Assert
-        for (RequestState v : args) {
+        for (TransactionState v : args) {
             assertTrue(actual.contains(v));
         }
     }
@@ -228,7 +228,7 @@ class TransactionFilterTest implements TestFilterInterface {
 
         // Act
         filter.stateIn();
-        List<RequestState> actual = filter.getStateIn();
+        List<TransactionState> actual = filter.getStateIn();
 
         // Assert
         assertTrue(actual.isEmpty());
@@ -240,8 +240,8 @@ class TransactionFilterTest implements TestFilterInterface {
         final TestableTransactionFilter filter = new TestableTransactionFilter();
 
         // Act
-        filter.stateIn((RequestState[]) null);
-        List<RequestState> actual = filter.getStateIn();
+        filter.stateIn((TransactionState[]) null);
+        List<TransactionState> actual = filter.getStateIn();
 
         // Assert
         assertNull(actual);
@@ -326,13 +326,13 @@ class TransactionFilterTest implements TestFilterInterface {
         }
 
         @SneakyThrows
-        public List<RequestType> getTypeIn() {
-            return (List<RequestType>) typeInField.get(this);
+        public List<TransactionType> getTypeIn() {
+            return (List<TransactionType>) typeInField.get(this);
         }
 
         @SneakyThrows
-        public List<RequestState> getStateIn() {
-            return (List<RequestState>) stateInField.get(this);
+        public List<TransactionState> getStateIn() {
+            return (List<TransactionState>) stateInField.get(this);
         }
 
         @SneakyThrows

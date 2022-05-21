@@ -18,35 +18,35 @@ package com.enjin.sdk.models;
 import lombok.EqualsAndHashCode;
 
 /**
- * Models a pagination input for pagination requests.
- *
- * @see com.enjin.sdk.schemas.shared.arguments.PaginationArguments
+ * Models sorting input for transactions.
  */
 @EqualsAndHashCode
-public class PaginationOptions {
+public class TransactionSortInput {
 
-    private Integer page;
-    private Integer limit;
+    private TransactionField field;
+    private SortDirection direction;
 
     /**
-     * Sets the page number to start at.
+     * Sets the field to sort by.
      *
-     * @param page the page
+     * @param field the field
+     *
      * @return this input for chaining
      */
-    public PaginationOptions page(Integer page) {
-        this.page = page;
+    public TransactionSortInput field(TransactionField field) {
+        this.field = field;
         return this;
     }
 
     /**
-     * Sets the number of results to return per page.
+     * Sets the direction to sort by.
      *
-     * @param limit the limit
+     * @param direction the direction
+     *
      * @return this input for chaining
      */
-    public PaginationOptions limit(Integer limit) {
-        this.limit = limit;
+    public TransactionSortInput direction(SortDirection direction) {
+        this.direction = direction;
         return this;
     }
 
