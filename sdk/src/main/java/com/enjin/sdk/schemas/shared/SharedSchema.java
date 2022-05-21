@@ -22,7 +22,7 @@ import com.enjin.sdk.models.Balance;
 import com.enjin.sdk.models.GasPrices;
 import com.enjin.sdk.models.Platform;
 import com.enjin.sdk.models.Project;
-import com.enjin.sdk.models.Request;
+import com.enjin.sdk.models.Transaction;
 import com.enjin.sdk.models.Asset;
 import com.enjin.sdk.schemas.shared.mutations.CancelTransaction;
 import com.enjin.sdk.services.BalanceService;
@@ -35,8 +35,8 @@ import com.enjin.sdk.schemas.shared.queries.GetBalances;
 import com.enjin.sdk.schemas.shared.queries.GetGasPrices;
 import com.enjin.sdk.schemas.shared.queries.GetPlatform;
 import com.enjin.sdk.schemas.shared.queries.GetProject;
-import com.enjin.sdk.schemas.shared.queries.GetRequest;
-import com.enjin.sdk.schemas.shared.queries.GetRequests;
+import com.enjin.sdk.schemas.shared.queries.GetTransaction;
+import com.enjin.sdk.schemas.shared.queries.GetTransactions;
 import com.enjin.sdk.schemas.shared.queries.GetAsset;
 import com.enjin.sdk.schemas.shared.queries.GetAssets;
 import com.enjin.sdk.utils.LoggerProvider;
@@ -107,12 +107,12 @@ public class SharedSchema extends BaseSchema implements ISharedSchema {
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> getRequest(GetRequest request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> getRequest(GetTransaction request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<List<Request>>> getRequests(GetRequests request) {
+    public CompletableFuture<GraphQLResponse<List<Transaction>>> getRequests(GetTransactions request) {
         return sendRequest(requestService.getMany(schema, createRequestBody(request)));
     }
 
@@ -124,7 +124,7 @@ public class SharedSchema extends BaseSchema implements ISharedSchema {
      *
      * @return the future for the request
      */
-    protected <T extends GraphQLRequest<T>> CompletableFuture<GraphQLResponse<Request>> transactionRequest(
+    protected <T extends GraphQLRequest<T>> CompletableFuture<GraphQLResponse<Transaction>> transactionRequest(
             GraphQLRequest<T> request) {
         return sendRequest(requestService.getOne(schema, createRequestBody(request)));
     }

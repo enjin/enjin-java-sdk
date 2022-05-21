@@ -18,9 +18,9 @@ package com.enjin.sdk.models;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * The fields of the {@link Request} type.
+ * The fields of the {@link Transaction} type.
  *
- * @see TransactionSort
+ * @see TransactionSortInput
  */
 public enum TransactionField {
 

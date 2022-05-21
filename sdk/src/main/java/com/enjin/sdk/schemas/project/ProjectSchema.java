@@ -56,7 +56,7 @@ import com.enjin.sdk.schemas.project.queries.GetPlayers;
 import com.enjin.sdk.models.AccessToken;
 import com.enjin.sdk.schemas.shared.SharedSchema;
 import com.enjin.sdk.models.Player;
-import com.enjin.sdk.models.Request;
+import com.enjin.sdk.models.Transaction;
 import com.enjin.sdk.services.WalletService;
 import com.enjin.sdk.utils.LoggerProvider;
 
@@ -89,17 +89,17 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> advancedSendAsset(AdvancedSendAsset request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> advancedSendAsset(AdvancedSendAsset request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> approveEnj(ApproveEnj request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> approveEnj(ApproveEnj request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> approveMaxEnj(ApproveMaxEnj request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> approveMaxEnj(ApproveMaxEnj request) {
         return transactionRequest(request);
     }
 
@@ -114,27 +114,27 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> bridgeAsset(BridgeAsset request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> bridgeAsset(BridgeAsset request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> bridgeAssets(BridgeAssets request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> bridgeAssets(BridgeAssets request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> bridgeClaimAsset(BridgeClaimAsset request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> bridgeClaimAsset(BridgeClaimAsset request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> completeTrade(CompleteTrade request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> completeTrade(CompleteTrade request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> createAsset(CreateAsset request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> createAsset(CreateAsset request) {
         return transactionRequest(request);
     }
 
@@ -144,17 +144,17 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> createTrade(CreateTrade request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> createTrade(CreateTrade request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> decreaseMaxMeltFee(DecreaseMaxMeltFee request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> decreaseMaxMeltFee(DecreaseMaxMeltFee request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> decreaseMaxTransferFee(DecreaseMaxTransferFee request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> decreaseMaxTransferFee(DecreaseMaxTransferFee request) {
         return transactionRequest(request);
     }
 
@@ -189,67 +189,67 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> meltAsset(MeltAsset request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> meltAsset(MeltAsset request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> message(Message request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> message(Message request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> mintAsset(MintAsset request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> mintAsset(MintAsset request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> releaseReserve(ReleaseReserve request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> releaseReserve(ReleaseReserve request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> resetEnjApproval(ResetEnjApproval request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> resetEnjApproval(ResetEnjApproval request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> sendAsset(SendAsset request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> sendAsset(SendAsset request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> sendEnj(SendEnj request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> sendEnj(SendEnj request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> setApprovalForAll(SetApprovalForAll request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> setApprovalForAll(SetApprovalForAll request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> setMeltFee(SetMeltFee request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> setMeltFee(SetMeltFee request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> setTransferable(SetTransferable request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> setTransferable(SetTransferable request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> setTransferFee(SetTransferFee request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> setTransferFee(SetTransferFee request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> setUri(SetUri request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> setUri(SetUri request) {
         return transactionRequest(request);
     }
 
     @Override
-    public CompletableFuture<GraphQLResponse<Request>> setWhitelisted(SetWhitelisted request) {
+    public CompletableFuture<GraphQLResponse<Transaction>> setWhitelisted(SetWhitelisted request) {
         return transactionRequest(request);
     }
 

@@ -17,7 +17,7 @@ package com.enjin.sdk.schemas.player;
 
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.models.Player;
-import com.enjin.sdk.models.Request;
+import com.enjin.sdk.models.Transaction;
 import com.enjin.sdk.models.Wallet;
 import com.enjin.sdk.schemas.player.mutations.AdvancedSendAsset;
 import com.enjin.sdk.schemas.player.mutations.ApproveEnj;
@@ -49,7 +49,7 @@ public interface IPlayerSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> advancedSendAsset(AdvancedSendAsset request);
+    CompletableFuture<GraphQLResponse<Transaction>> advancedSendAsset(AdvancedSendAsset request);
 
     /**
      * Sends {@link ApproveEnj} request to the platform.
@@ -58,7 +58,7 @@ public interface IPlayerSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> approveEnj(ApproveEnj request);
+    CompletableFuture<GraphQLResponse<Transaction>> approveEnj(ApproveEnj request);
 
     /**
      * Sends {@link ApproveMaxEnj} request to the platform.
@@ -67,7 +67,7 @@ public interface IPlayerSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> approveMaxEnj(ApproveMaxEnj request);
+    CompletableFuture<GraphQLResponse<Transaction>> approveMaxEnj(ApproveMaxEnj request);
 
     /**
      * Sends {@link BridgeAsset} request to the platform.
@@ -76,7 +76,7 @@ public interface IPlayerSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> bridgeAsset(BridgeAsset request);
+    CompletableFuture<GraphQLResponse<Transaction>> bridgeAsset(BridgeAsset request);
 
     /**
      * Sends {@link BridgeAssets} request to the platform.
@@ -85,7 +85,7 @@ public interface IPlayerSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> bridgeAssets(BridgeAssets request);
+    CompletableFuture<GraphQLResponse<Transaction>> bridgeAssets(BridgeAssets request);
 
     /**
      * Sends {@link BridgeClaimAsset} request to the platform.
@@ -94,7 +94,7 @@ public interface IPlayerSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> bridgeClaimAsset(BridgeClaimAsset request);
+    CompletableFuture<GraphQLResponse<Transaction>> bridgeClaimAsset(BridgeClaimAsset request);
 
     /**
      * Sends {@link GetPlayer} request to the platform.
@@ -121,7 +121,7 @@ public interface IPlayerSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> meltAsset(MeltAsset request);
+    CompletableFuture<GraphQLResponse<Transaction>> meltAsset(MeltAsset request);
 
     /**
      * Sends {@link Message} request to the platform.
@@ -130,7 +130,7 @@ public interface IPlayerSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> message(Message request);
+    CompletableFuture<GraphQLResponse<Transaction>> message(Message request);
 
     /**
      * Sends {@link ResetEnjApproval} request to the platform.
@@ -139,7 +139,7 @@ public interface IPlayerSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> resetEnjApproval(ResetEnjApproval request);
+    CompletableFuture<GraphQLResponse<Transaction>> resetEnjApproval(ResetEnjApproval request);
 
     /**
      * Sends {@link SendAsset} request to the platform.
@@ -148,7 +148,7 @@ public interface IPlayerSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> sendAsset(SendAsset request);
+    CompletableFuture<GraphQLResponse<Transaction>> sendAsset(SendAsset request);
 
     /**
      * Sends {@link SendEnj} request to the platform.
@@ -157,7 +157,7 @@ public interface IPlayerSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> sendEnj(SendEnj request);
+    CompletableFuture<GraphQLResponse<Transaction>> sendEnj(SendEnj request);
 
     /**
      * Sends {@link SetApprovalForAll} request to the platform.
@@ -166,7 +166,7 @@ public interface IPlayerSchema {
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> setApprovalForAll(SetApprovalForAll request);
+    CompletableFuture<GraphQLResponse<Transaction>> setApprovalForAll(SetApprovalForAll request);
 
     /**
      * Sends {@link UnlinkWallet} request to the platform.

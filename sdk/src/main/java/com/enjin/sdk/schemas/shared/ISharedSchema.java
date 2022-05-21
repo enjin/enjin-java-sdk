@@ -20,15 +20,15 @@ import com.enjin.sdk.models.Balance;
 import com.enjin.sdk.models.GasPrices;
 import com.enjin.sdk.models.Platform;
 import com.enjin.sdk.models.Project;
-import com.enjin.sdk.models.Request;
+import com.enjin.sdk.models.Transaction;
 import com.enjin.sdk.models.Asset;
 import com.enjin.sdk.schemas.shared.mutations.CancelTransaction;
 import com.enjin.sdk.schemas.shared.queries.GetBalances;
 import com.enjin.sdk.schemas.shared.queries.GetGasPrices;
 import com.enjin.sdk.schemas.shared.queries.GetPlatform;
 import com.enjin.sdk.schemas.shared.queries.GetProject;
-import com.enjin.sdk.schemas.shared.queries.GetRequest;
-import com.enjin.sdk.schemas.shared.queries.GetRequests;
+import com.enjin.sdk.schemas.shared.queries.GetTransaction;
+import com.enjin.sdk.schemas.shared.queries.GetTransactions;
 import com.enjin.sdk.schemas.shared.queries.GetAsset;
 import com.enjin.sdk.schemas.shared.queries.GetAssets;
 
@@ -104,21 +104,21 @@ public interface ISharedSchema {
     CompletableFuture<GraphQLResponse<Project>> getProject(GetProject request);
 
     /**
-     * Sends {@link GetRequest} request to the platform.
+     * Sends {@link GetTransaction} request to the platform.
      *
      * @param request the request
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<Request>> getRequest(GetRequest request);
+    CompletableFuture<GraphQLResponse<Transaction>> getRequest(GetTransaction request);
 
     /**
-     * Sends {@link GetRequests} request to the platform.
+     * Sends {@link GetTransactions} request to the platform.
      *
      * @param request the request
      *
      * @return the future for this operation
      */
-    CompletableFuture<GraphQLResponse<List<Request>>> getRequests(GetRequests request);
+    CompletableFuture<GraphQLResponse<List<Transaction>>> getRequests(GetTransactions request);
 
 }

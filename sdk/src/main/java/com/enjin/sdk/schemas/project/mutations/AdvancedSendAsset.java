@@ -16,7 +16,7 @@
 package com.enjin.sdk.schemas.project.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.models.Transfers;
+import com.enjin.sdk.models.TransferInput;
 import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArguments;
 
 /**
@@ -40,9 +40,10 @@ public class AdvancedSendAsset
      * Sets the different transfers to perform.
      *
      * @param transfers the transfers
+     *
      * @return this request for chaining
      */
-    public AdvancedSendAsset transfers(Transfers... transfers) {
+    public AdvancedSendAsset transfers(TransferInput... transfers) {
         return set("transfers", transfers);
     }
 
@@ -50,6 +51,7 @@ public class AdvancedSendAsset
      * Sets the data to forward with the transaction.
      *
      * @param data the data
+     *
      * @return this request for chaining
      */
     public AdvancedSendAsset data(String data) {

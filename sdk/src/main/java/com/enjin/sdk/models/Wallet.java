@@ -74,6 +74,6 @@ public class Wallet {
      *
      * @return the transactions this wallet has signed
      */
-    private List<Request> transactions;
+    private List<Transaction> transactions;
 
 }

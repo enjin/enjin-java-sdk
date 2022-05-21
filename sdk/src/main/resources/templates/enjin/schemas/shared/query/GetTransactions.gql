@@ -1,4 +1,4 @@
-#namespace enjin.sdk.shared.GetRequests
+#namespace enjin.sdk.shared.GetTransactions
 #import enjin.sdk.shared.Transaction
 #import enjin.sdk.shared.PaginationCursor
 

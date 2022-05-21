@@ -18,33 +18,37 @@ package com.enjin.sdk.models;
 import lombok.EqualsAndHashCode;
 
 /**
- * Models sorting input for assets.
+ * Models a pagination input for pagination requests.
+ *
+ * @see com.enjin.sdk.schemas.shared.arguments.PaginationArguments
  */
 @EqualsAndHashCode
-public class AssetSort {
+public class PaginationInput {
 
-    private AssetField field;
-    private SortDirection direction;
+    private Integer page;
+    private Integer limit;
 
     /**
-     * Sets the field to sort by.
+     * Sets the page number to start at.
      *
-     * @param field the field
+     * @param page the page
+     *
      * @return this input for chaining
      */
-    public AssetSort field(AssetField field) {
-        this.field = field;
+    public PaginationInput page(Integer page) {
+        this.page = page;
         return this;
     }
 
     /**
-     * Sets the direction to sort by.
+     * Sets the number of results to return per page.
      *
-     * @param direction the direction
+     * @param limit the limit
+     *
      * @return this input for chaining
      */
-    public AssetSort direction(SortDirection direction) {
-        this.direction = direction;
+    public PaginationInput limit(Integer limit) {
+        this.limit = limit;
         return this;
     }
 
