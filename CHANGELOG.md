@@ -1,4 +1,5 @@
 # Changelog
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
@@ -6,46 +7,80 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [2.0.0-alpha.8] - 2022-04-25
+## [2.0.0-alpha.9] - 2022-05-23
+
+### Added
+
+- Added arguments and fields to `Transaction.gql` template file for getting the wallet address.
+- Added arguments and fields to `Wallet.gql` template file for getting balances and transactions.
+- Added `withTransactionWalletAddress` method to `TransactionFragmentArguments`.
+- Added `walletBalanceFilter`, `withWalletBalances`, `withWalletTransactions`, and methods to `WalletFragmentArguments`.
+- Added field and getter for wallet object to `Request` model.
+- Added fields and getters for list balances and list transactions to `Wallet` model.
+
 ### Changed
+
+- Changed name of method `assetIdFormat` in `TransactionFragmentArguments` to `transactionAssetIdFormat`.
+- `WalletFragmentArguments` now extends `BalanceFragmentArguments` and `TransactionFragmentArguments`.
+
+## [2.0.0-alpha.8] - 2022-04-25
+
+### Changed
+
 - Removed `projectUuid` and `projectUuidIn` methods from `BalanceFilter`.
 
 ## [2.0.0-alpha.7] - 2022-04-11
+
 ### Changed
+
 - `GetWallets` query in project schema no longer implements `PaginationArguments`.
 
 ### Fixed
+
 - Fixed typo for `result` in `GetWallets.gql` template file for project schema.
 - Updated Gradle plugin `org.ajoberstar.git-publish` to `3.0.1`.
 
 ## [2.0.0-alpha.6] - 2022-01-13
+
 ### Fixed
+
 - Updated Log4j 2 to version `2.17.1` to address security vulnerability in plugin.
 
 ## [2.0.0-alpha.5] - 2021-12-13
+
 ### Fixed
+
 - Updated Log4j 2 to version `2.15.0` to address security vulnerability in plugin.
 
 ## [2.0.0-alpha.4] - 2021-11-09
+
 ### Added
+
 - Added [Enjin Bridge mutations](https://docs.enjin.io/enjin-api/sending-and-receiving-requests/enjin-bridge) for
   project and player schemas.
 
 ## [2.0.0-alpha.3] - 2021-10-13
+
 ### Added
+
 - Added `getAsset` method to `Request`.
 - Added `assetIdFormat` method to `TransactionFragmentArguments`.
 
 ### Changed
+
 - The asset for transactions is now included in returned `Request` models when using `withAssetData()` in requests which
   implement `TransactionFragmentArguments`.
 
 ## [2.0.0-alpha.2] - 2021-10-05
+
 ### Fixed
+
 - Fixed error caused by recursive calls made within `AccessToken.toString()`.
 
 ## [2.0.0-alpha.1] - 2021-09-28
+
 ### Added
+
 - Introduced support for the new V2 Platform Schemas (Player and Project).
 - Added `EnjinHosts` utility class.
 - Added `LogLevel` enum class.
@@ -58,6 +93,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added override for `debug` method in `LoggerProvider` to accept log an exception at the debug level.
 
 ### Changed
+
 - Changed package structure throughout the SDK.
 - Replaced universal platform client with dedicated clients for the player and project schemas which implement `IClient`
   and schema classes that have access only to requests utilized by their schema.
@@ -79,29 +115,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   values.
 
 ### Removed
+
 - Removed support for the V1 Platform Schema (Default).
 - Removed example platform server.
 - Removed `getEventType` method from `EventType`.
 - Removed `setDebug` method from `LoggerProvider`.
 
 ## [1.0.8] - 2022-03-28
+
 ### Fixed
+
 - Updated Gradle plugin `org.ajoberstar.git-publish` to `3.0.1`
 
 ## [1.0.7] - 2021-10-15
+
 ### Changed
+
 - Replaced git-submodules for templates with included template files.
 
 ### Fixed
+
 - Fixed type of `Transaction.getAccepted()`.
 
 ## [1.0.6] - 2021-07-29
+
 ### Changed
+
 - Reset template submodule branch to `master`.
 - Updated Gradle to `7.1.1`.
 
 ## [1.0.5] - 2021-07-22
+
 ### Added
+
 - Added `AppOtionsData` input class.
 - Added `TokenVarientMode` enum class.
 - Added `GasPrices` model.
@@ -121,47 +167,78 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added `userAppId` to `UserFragment`.
 
 ### Changed
+
 - Changed template submodule to use `development` branch.
 
 ### Deprecated
+
 - Deprecated old filter methods in `GetBalances` query.
 
 ## [1.0.4] - 2020-08-12
+
 ### Fixed
+
 - Fixed return type for of `deleteRequest` methods.
 - Updated template submodule to correct commit.
 
 ## [1.0.3] - 2020-07-03
+
 ### Fixed
+
 - Fixed authentication not being cleared when attempting to reauthenticate a platform client.
 
 ## [1.0.2] - 2020-06-05
+
 ### Added
+
 - Added methods to `TrustedPlatformClient` to set auth token.
 
 ## [1.0.1] - 2020-06-01
+
 ### Fixed
+
 - Fixed duplicate parameters in compiled templates.
 
 ## [1.0.0] - 2020-05-27
+
 ### Added
+
 - Initial release.
 
-[Unreleased]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-alpha.8...HEAD
+[Unreleased]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-alpha.9...HEAD
+
+[2.0.0-alpha.9]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-alpha.8...2.0.0-alpha.9
+
 [2.0.0-alpha.8]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-alpha.7...2.0.0-alpha.8
+
 [2.0.0-alpha.7]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-alpha.6...2.0.0-alpha.7
+
 [2.0.0-alpha.6]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-alpha.5...2.0.0-alpha.6
+
 [2.0.0-alpha.5]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-alpha.4...2.0.0-alpha.5
+
 [2.0.0-alpha.4]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-alpha.3...2.0.0-alpha.4
+
 [2.0.0-alpha.3]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-alpha.2...2.0.0-alpha.3
+
 [2.0.0-alpha.2]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-alpha.1...2.0.0-alpha.2
+
 [2.0.0-alpha.1]: https://github.com/enjin/enjin-java-sdk/compare/v1.0.8...2.0.0-alpha.1
-[1.0.7]: https://github.com/enjin/enjin-java-sdk/compare/v1.0.7...v1.0.8
+
+[1.0.8]: https://github.com/enjin/enjin-java-sdk/compare/v1.0.7...v1.0.8
+
 [1.0.7]: https://github.com/enjin/enjin-java-sdk/compare/v1.0.6...v1.0.7
+
 [1.0.6]: https://github.com/enjin/enjin-java-sdk/compare/v1.0.5...v1.0.6
+
 [1.0.5]: https://github.com/enjin/enjin-java-sdk/compare/v1.0.4...v1.0.5
+
 [1.0.4]: https://github.com/enjin/enjin-java-sdk/compare/v1.0.3...v1.0.4
+
 [1.0.3]: https://github.com/enjin/enjin-java-sdk/compare/v1.0.2...v1.0.3
+
 [1.0.2]: https://github.com/enjin/enjin-java-sdk/compare/v1.0.1...v1.0.2
+
 [1.0.1]: https://github.com/enjin/enjin-java-sdk/compare/v1.0.0...v1.0.1
+
 [1.0.0]: https://github.com/enjin/enjin-java-sdk/releases/tag/v1.0.0
