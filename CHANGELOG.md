@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Updated Gson to `2.9.0`.
 - Changed name of method `assetIdFormat` in `TransactionFragmentArguments` to `transactionAssetIdFormat`.
 - `WalletFragmentArguments` now extends `BalanceFragmentArguments` and `TransactionFragmentArguments`.
 
@@ -120,6 +121,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Removed example platform server.
 - Removed `getEventType` method from `EventType`.
 - Removed `setDebug` method from `LoggerProvider`.
+
+## [1.0.8] - 2022-05-23
+
+### Changed
+
+- Updated Gson to `2.9.0`.
 
 ## [1.0.8] - 2022-03-28
 
@@ -223,7 +230,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [2.0.0-alpha.2]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-alpha.1...2.0.0-alpha.2
 
-[2.0.0-alpha.1]: https://github.com/enjin/enjin-java-sdk/compare/v1.0.8...2.0.0-alpha.1
+[2.0.0-alpha.1]: https://github.com/enjin/enjin-java-sdk/compare/v1.0.9...2.0.0-alpha.1
+
+[1.0.9]: https://github.com/enjin/enjin-java-sdk/compare/v1.0.8...v1.0.9
 
 [1.0.8]: https://github.com/enjin/enjin-java-sdk/compare/v1.0.7...v1.0.8
 
