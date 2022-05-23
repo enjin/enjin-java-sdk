@@ -1,6 +1,7 @@
 # Blockchain SDK by Enjin for Java
 
-![Tests](https://github.com/enjin/enjin-java-sdk/actions/workflows/Tests.yml/badge.svg?branch=master)
+[![Tests](https://github.com/enjin/enjin-java-sdk/actions/workflows/Tests.yml/badge.svg?branch=master)](https://github.com/enjin/enjin-java-sdk/actions/workflows/Tests.yml)
+[![Maven Central](https://img.shields.io/maven-central/v/com.enjin/blockchain-sdk.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.enjin%22%20AND%20a:%22blockchain-sdk%22)
 
 Create blockchain video games and applications using the Java programming language.
 
@@ -40,7 +41,7 @@ The Enjin Java SDK requires at a minimum Java 8.
 <dependency>
     <groupId>com.enjin</groupId>
     <artifactId>blockchain-sdk</artifactId>
-    <version>2.0.0-alpha.8</version>
+    <version>2.0.0-alpha.9</version>
 </dependency>
 ```
 
@@ -48,7 +49,7 @@ The Enjin Java SDK requires at a minimum Java 8.
 
 ```groovy
 dependencies {
-    implementation 'com.enjin:blockchain-sdk:2.0.0-alpha.8'
+    implementation 'com.enjin:blockchain-sdk:2.0.0-alpha.9'
 }
 ```
 
