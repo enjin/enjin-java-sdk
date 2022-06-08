@@ -29,7 +29,7 @@ import com.enjin.sdk.services.BalanceService;
 import com.enjin.sdk.schemas.BaseSchema;
 import com.enjin.sdk.services.PlatformService;
 import com.enjin.sdk.services.ProjectService;
-import com.enjin.sdk.services.RequestService;
+import com.enjin.sdk.services.TransactionService;
 import com.enjin.sdk.services.AssetService;
 import com.enjin.sdk.schemas.shared.queries.GetBalances;
 import com.enjin.sdk.schemas.shared.queries.GetGasPrices;
@@ -52,7 +52,7 @@ public class SharedSchema extends BaseSchema implements ISharedSchema {
     protected final BalanceService balanceService;
     protected final PlatformService platformService;
     protected final ProjectService projectService;
-    protected final RequestService requestService;
+    protected final TransactionService transactionService;
     protected final AssetService assetService;
 
     /**
@@ -67,13 +67,13 @@ public class SharedSchema extends BaseSchema implements ISharedSchema {
         balanceService = (BalanceService) createService(BalanceService.class);
         platformService = (PlatformService) createService(PlatformService.class);
         projectService = (ProjectService) createService(ProjectService.class);
-        requestService = (RequestService) createService(RequestService.class);
+        transactionService = (TransactionService) createService(TransactionService.class);
         assetService = (AssetService) createService(AssetService.class);
     }
 
     @Override
     public CompletableFuture<GraphQLResponse<Boolean>> cancelTransaction(CancelTransaction request) {
-        return sendRequest(requestService.delete(schema, createRequestBody(request)));
+        return sendRequest(transactionService.delete(schema, createRequestBody(request)));
     }
 
     @Override
@@ -113,7 +113,7 @@ public class SharedSchema extends BaseSchema implements ISharedSchema {
 
     @Override
     public CompletableFuture<GraphQLResponse<List<Transaction>>> getRequests(GetTransactions request) {
-        return sendRequest(requestService.getMany(schema, createRequestBody(request)));
+        return sendRequest(transactionService.getMany(schema, createRequestBody(request)));
     }
 
     /**
@@ -126,7 +126,7 @@ public class SharedSchema extends BaseSchema implements ISharedSchema {
      */
     protected <T extends GraphQLRequest<T>> CompletableFuture<GraphQLResponse<Transaction>> transactionRequest(
             GraphQLRequest<T> request) {
-        return sendRequest(requestService.getOne(schema, createRequestBody(request)));
+        return sendRequest(transactionService.getOne(schema, createRequestBody(request)));
     }
 
 }

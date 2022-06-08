@@ -30,7 +30,7 @@ import java.util.concurrent.CompletableFuture;
 /**
  * Used internally for transaction requests.
  */
-public interface RequestService extends Delete {
+public interface TransactionService extends Delete {
 
     @POST("/graphql/{schema}")
     @Headers("Content-Type: application/json")
