@@ -16,7 +16,7 @@
 package com.enjin.sdk.schemas.project.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArguments;
+import com.enjin.sdk.schemas.project.arguments.TransactionRequestArguments;
 
 /**
  * Request for resetting the crypto items contract approval for ENJ.
@@ -25,7 +25,7 @@ import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArgument
  */
 public class ResetEnjApproval
         extends GraphQLRequest<ResetEnjApproval>
-        implements ProjectTransactionRequestArguments<ResetEnjApproval> {
+        implements TransactionRequestArguments<ResetEnjApproval> {
 
     /**
      * Sole constructor.

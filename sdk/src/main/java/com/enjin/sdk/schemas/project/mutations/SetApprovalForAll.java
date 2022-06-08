@@ -16,7 +16,7 @@
 package com.enjin.sdk.schemas.project.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArguments;
+import com.enjin.sdk.schemas.project.arguments.TransactionRequestArguments;
 
 /**
  * Request for allowing an operator complete control of all assets owned by the caller.
@@ -25,7 +25,7 @@ import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArgument
  */
 public class SetApprovalForAll
         extends GraphQLRequest<SetApprovalForAll>
-        implements ProjectTransactionRequestArguments<SetApprovalForAll> {
+        implements TransactionRequestArguments<SetApprovalForAll> {
 
     /**
      * Sole constructor.

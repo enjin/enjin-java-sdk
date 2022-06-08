@@ -17,7 +17,7 @@ package com.enjin.sdk.schemas.project.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.models.TransferInput;
-import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArguments;
+import com.enjin.sdk.schemas.project.arguments.TransactionRequestArguments;
 
 /**
  * Request for sending one or more assets in a single transaction.
@@ -27,7 +27,7 @@ import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArgument
  */
 public class AdvancedSendAsset
         extends GraphQLRequest<AdvancedSendAsset>
-        implements ProjectTransactionRequestArguments<AdvancedSendAsset> {
+        implements TransactionRequestArguments<AdvancedSendAsset> {
 
     /**
      * Sole constructor.

@@ -19,7 +19,7 @@ import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.models.AssetSupplyModel;
 import com.enjin.sdk.models.AssetTransferFeeSettingsInput;
 import com.enjin.sdk.models.AssetTransferable;
-import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArguments;
+import com.enjin.sdk.schemas.project.arguments.TransactionRequestArguments;
 
 /**
  * Request for creating a asset on the platform.
@@ -28,7 +28,7 @@ import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArgument
  */
 public class CreateAsset
         extends GraphQLRequest<CreateAsset>
-        implements ProjectTransactionRequestArguments<CreateAsset> {
+        implements TransactionRequestArguments<CreateAsset> {
 
     /**
      * Sole constructor.
