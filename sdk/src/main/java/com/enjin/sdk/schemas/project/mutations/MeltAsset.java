@@ -17,7 +17,7 @@ package com.enjin.sdk.schemas.project.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.models.MeltInput;
-import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArguments;
+import com.enjin.sdk.schemas.project.arguments.TransactionRequestArguments;
 
 /**
  * Request for melting a asset.
@@ -26,7 +26,7 @@ import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArgument
  */
 public class MeltAsset
         extends GraphQLRequest<MeltAsset>
-        implements ProjectTransactionRequestArguments<MeltAsset> {
+        implements TransactionRequestArguments<MeltAsset> {
 
     /**
      * Sole constructor.

@@ -16,7 +16,7 @@
 package com.enjin.sdk.schemas.project.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArguments;
+import com.enjin.sdk.schemas.project.arguments.TransactionRequestArguments;
 
 /**
  * Request for bridging multiple indices of an NFT in a single transaction.
@@ -26,7 +26,7 @@ import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArgument
  */
 public class BridgeAssets
         extends GraphQLRequest<BridgeAssets>
-        implements ProjectTransactionRequestArguments<BridgeAssets> {
+        implements TransactionRequestArguments<BridgeAssets> {
 
     /**
      * Sole constructor.

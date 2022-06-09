@@ -16,7 +16,7 @@
 package com.enjin.sdk.schemas.project.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArguments;
+import com.enjin.sdk.schemas.project.arguments.TransactionRequestArguments;
 
 /**
  * Request for claiming assets on the bridge.
@@ -25,7 +25,7 @@ import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArgument
  */
 public class BridgeClaimAsset
         extends GraphQLRequest<BridgeClaimAsset>
-        implements ProjectTransactionRequestArguments<BridgeClaimAsset> {
+        implements TransactionRequestArguments<BridgeClaimAsset> {
 
     /**
      * Sole constructor.

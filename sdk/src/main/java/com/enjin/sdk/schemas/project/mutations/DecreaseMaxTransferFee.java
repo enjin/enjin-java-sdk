@@ -16,7 +16,7 @@
 package com.enjin.sdk.schemas.project.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArguments;
+import com.enjin.sdk.schemas.project.arguments.TransactionRequestArguments;
 
 /**
  * Request for setting an asset's max transfer fee to a lower value.
@@ -25,7 +25,7 @@ import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArgument
  */
 public class DecreaseMaxTransferFee
         extends GraphQLRequest<DecreaseMaxTransferFee>
-        implements ProjectTransactionRequestArguments<DecreaseMaxTransferFee> {
+        implements TransactionRequestArguments<DecreaseMaxTransferFee> {
 
     /**
      * Sole constructor.

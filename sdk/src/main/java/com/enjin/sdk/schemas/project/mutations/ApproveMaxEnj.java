@@ -16,7 +16,7 @@
 package com.enjin.sdk.schemas.project.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArguments;
+import com.enjin.sdk.schemas.project.arguments.TransactionRequestArguments;
 
 /**
  * Request for approving the crypto items contract to spend the maximum amount of ENJ.
@@ -25,7 +25,7 @@ import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArgument
  */
 public class ApproveMaxEnj
         extends GraphQLRequest<ApproveMaxEnj>
-        implements ProjectTransactionRequestArguments<ApproveMaxEnj> {
+        implements TransactionRequestArguments<ApproveMaxEnj> {
 
     /**
      * Sole constructor.

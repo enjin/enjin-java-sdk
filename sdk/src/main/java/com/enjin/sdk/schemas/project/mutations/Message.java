@@ -16,7 +16,7 @@
 package com.enjin.sdk.schemas.project.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArguments;
+import com.enjin.sdk.schemas.project.arguments.TransactionRequestArguments;
 
 /**
  * Request to sign a message to prove wallet ownership.
@@ -25,7 +25,7 @@ import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArgument
  */
 public class Message
         extends GraphQLRequest<Message>
-        implements ProjectTransactionRequestArguments<Message> {
+        implements TransactionRequestArguments<Message> {
 
     /**
      * Sole constructor.

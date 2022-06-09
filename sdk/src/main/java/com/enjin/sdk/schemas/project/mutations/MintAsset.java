@@ -17,7 +17,7 @@ package com.enjin.sdk.schemas.project.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.models.MintInput;
-import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArguments;
+import com.enjin.sdk.schemas.project.arguments.TransactionRequestArguments;
 
 /**
  * Request for minting a asset.
@@ -26,7 +26,7 @@ import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArgument
  */
 public class MintAsset
         extends GraphQLRequest<MintAsset>
-        implements ProjectTransactionRequestArguments<MintAsset> {
+        implements TransactionRequestArguments<MintAsset> {
 
     /**
      * Sole constructor.
