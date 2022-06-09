@@ -25,7 +25,7 @@ import com.enjin.sdk.services.BalanceService;
 import com.enjin.sdk.services.PlatformService;
 import com.enjin.sdk.services.PlayerService;
 import com.enjin.sdk.services.ProjectService;
-import com.enjin.sdk.services.RequestService;
+import com.enjin.sdk.services.TransactionService;
 import com.enjin.sdk.services.AssetService;
 import com.enjin.sdk.services.WalletService;
 import com.enjin.sdk.utils.LoggerProvider;
@@ -164,7 +164,7 @@ class BaseSchemaTest {
     @Test
     void createService_RequestService_CreatesService() {
         // Act
-        RequestService actual = (RequestService) classUnderTest.createService(RequestService.class);
+        TransactionService actual = (TransactionService) classUnderTest.createService(TransactionService.class);
 
         // Assert
         assertNotNull(actual);
