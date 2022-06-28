@@ -31,14 +31,6 @@ public final class EnjinHosts {
     public static final String GOERLI = "https://goerli.cloud.enjin.io/";
 
     /**
-     * The URL for the Enjin Platform on the Kovan test network.
-     *
-     * @deprecated This host may no longer be supported. Use the {@link EnjinHosts#GOERLI} host.
-     */
-    @Deprecated
-    public static final String KOVAN = "https://kovan.cloud.enjin.io/";
-
-    /**
      * The URL for the Enjin Platform on the JumpNet network.
      */
     public static final String JUMP_NET = "https://jumpnet.cloud.enjin.io/";
