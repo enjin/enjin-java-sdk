@@ -7,7 +7,7 @@ Create blockchain video games and applications using the Java programming langua
 
 [Learn more](https://enjin.io/) about the Enjin blockchain platform.
 
-Sign up to Enjin Cloud: [Kovan (Testnet)](https://kovan.cloud.enjin.io/),
+Sign up to Enjin Cloud: [Goerli (Testnet)](https://goerli.cloud.enjin.io/),
 [Mainnet (Production)](https://cloud.enjin.io/) or [JumpNet](https://jumpnet.cloud.enjin.io/).
 
 ### Resources
@@ -79,9 +79,9 @@ import com.enjin.sdk.schemas.project.queries.AuthProject;
 public class Main {
 
     public static void main(String... args) {
-        // Builds the project client to run on the Kovan test network.
-        // See: https://kovan.cloud.enjin.io to sign up for the test network.
-        ProjectClient client = new ProjectClient(EnjinHosts.KOVAN);
+        // Builds the project client to run on the Goerli test network.
+        // See: https://goerli.cloud.enjin.io to sign up for the test network.
+        ProjectClient client = new ProjectClient(EnjinHosts.GOERLI);
 
         // Creates the request to authenticate the client.
         // Replace the appropriate strings with the project's UUID and secret.
