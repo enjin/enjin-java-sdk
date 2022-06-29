@@ -4,7 +4,7 @@ Create blockchain video games and applications using the Java programming langua
 
 [Learn more](https://enjin.io/) about the Enjin blockchain platform.
 
-Sign up to Enjin Cloud: [Kovan (Testnet)](https://kovan.cloud.enjin.io/),
+Sign up to Enjin Cloud: [Goerli (Testnet)](https://goerli.cloud.enjin.io/),
 [Mainnet (Production)](https://cloud.enjin.io/) or [JumpNet](https://jumpnet.cloud.enjin.io/).
 
 ### Resources
