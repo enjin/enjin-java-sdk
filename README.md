@@ -4,7 +4,7 @@ Create blockchain video games and applications using the Java programming langua
 
 [Learn more](https://enjin.io/) about the Enjin blockchain platform.
 
-Sign up to Enjin Cloud: [Kovan (Testnet)](https://kovan.cloud.enjin.io/),
+Sign up to Enjin Cloud: [Goerli (Testnet)](https://goerli.cloud.enjin.io/),
 [Mainnet (Production)](https://cloud.enjin.io/) or [JumpNet](https://jumpnet.cloud.enjin.io/).
 
 ### Resources
@@ -38,7 +38,7 @@ The Enjin Java SDK requires at a minimum Java 8.
 <dependency>
     <groupId>com.enjin</groupId>
     <artifactId>blockchain-sdk</artifactId>
-    <version>1.0.9</version>
+    <version>1.0.10</version>
 </dependency>
 ```
 
@@ -46,7 +46,7 @@ The Enjin Java SDK requires at a minimum Java 8.
 
 ```groovy
 dependencies {
-    implementation 'com.enjin:blockchain-sdk:1.0.9'
+    implementation 'com.enjin:blockchain-sdk:1.0.10'
 }
 ```
 

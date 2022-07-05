@@ -15,12 +15,26 @@ import java.util.concurrent.TimeUnit;
 public class TrustedPlatformClientBuilder {
 
     /**
-     * The url for the main Enjin cloud.
+     * The URL for the Enjin Platform on the main network.
      */
     public static final HttpUrl MAIN_NET = HttpUrl.get("https://cloud.enjin.io/");
+
     /**
-     * The url for the kovan Enjin cloud.
+     * The URL for the Enjin Platform on the JumpNet network.
      */
+    public static final String JUMP_NET = "https://jumpnet.cloud.enjin.io/";
+
+    /**
+     * The URL for the Enjin Platform on the Goerli test network.
+     */
+    public static final HttpUrl GOERLI = HttpUrl.get("https://goerli.cloud.enjin.io/");
+
+    /**
+     * The URL for the Enjin Platform on the Kovan test network.
+     *
+     * @deprecated This host may no longer be supported. Use the {@link TrustedPlatformClientBuilder#GOERLI} host.
+     */
+    @Deprecated
     public static final HttpUrl KOVAN = HttpUrl.get("https://kovan.cloud.enjin.io/");
 
     /**

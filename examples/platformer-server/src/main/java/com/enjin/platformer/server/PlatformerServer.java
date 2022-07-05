@@ -50,7 +50,7 @@ public class PlatformerServer extends WebSocketServer {
         super(config.getAddress());
         this.config = config;
         this.processor = new PacketProcessor();
-        this.sdk = new TrustedPlatformClientBuilder().baseUrl(TrustedPlatformClientBuilder.KOVAN)
+        this.sdk = new TrustedPlatformClientBuilder().baseUrl(TrustedPlatformClientBuilder.GOERLI)
                                                      .httpLogLevel(Level.BODY)
                                                      .build();
         this.updateTimer = new Timer();
