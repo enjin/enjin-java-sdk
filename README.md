@@ -41,7 +41,7 @@ The Enjin Java SDK requires at a minimum Java 8.
 <dependency>
     <groupId>com.enjin</groupId>
     <artifactId>blockchain-sdk</artifactId>
-    <version>2.0.0-beta.1</version>
+    <version>2.0.0-beta.2</version>
 </dependency>
 ```
 
@@ -49,7 +49,7 @@ The Enjin Java SDK requires at a minimum Java 8.
 
 ```groovy
 dependencies {
-    implementation 'com.enjin:blockchain-sdk:2.0.0-beta.1'
+    implementation 'com.enjin:blockchain-sdk:2.0.0-beta.2'
 }
 ```
 

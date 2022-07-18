@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0-beta.2] - 2022-07-18
+
+### Change
+
+- Updated Log4j2 to `2.18.0`.
+
+### Removed
+
+- Removed unused Java websockets dependency.
+
+### Security
+
+- Updated OkHttp to `4.10.0` to resolve vulnerability within the library (CVE-2021-0341).
+- Updated Pusher websockets to `2.4.0` to resolve vulnerability with the library (CVE-2020-11050).
+
 ## [2.0.0-beta.1] - 2022-07-18
 
 ### Added
@@ -280,7 +295,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release.
 
-[Unreleased]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-beta.1...HEAD
+[Unreleased]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-beta.2...HEAD
+
+[2.0.0-beta.2]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-beta.1...2.0.0-beta.2
 
 [2.0.0-beta.1]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-alpha.10...2.0.0-beta.1
 
