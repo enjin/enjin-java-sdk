@@ -15,6 +15,7 @@
 
 package com.enjin.sdk;
 
+import com.enjin.sdk.http.HttpLogLevel;
 import com.enjin.sdk.models.Platform;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -30,8 +31,8 @@ public class PlatformUtils {
 
     public final Platform FAKE_PLATFORM = createFakePlatform("fake");
 
-    public TrustedPlatformMiddleware createMiddleware(String baseUri) {
-        return new TrustedPlatformMiddleware(baseUri, false);
+    public ClientMiddleware createMiddleware(String baseUri) {
+        return new ClientMiddleware(baseUri, HttpLogLevel.NONE, null);
     }
 
     public Platform createFakePlatform(String network) {

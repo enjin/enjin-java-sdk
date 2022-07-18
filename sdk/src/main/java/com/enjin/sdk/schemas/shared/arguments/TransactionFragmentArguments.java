@@ -23,7 +23,7 @@ import com.enjin.sdk.models.AssetIdFormat;
  *
  * @param <T> the type of the implementing class
  *
- * @see com.enjin.sdk.models.Request
+ * @see com.enjin.sdk.models.Transaction
  */
 public interface TransactionFragmentArguments<T extends VariableHolder<T>> extends VariableHolder<T> {
 

@@ -17,7 +17,7 @@ package com.enjin.sdk.schemas.shared.queries;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
 import com.enjin.sdk.models.AssetFilter;
-import com.enjin.sdk.models.AssetSort;
+import com.enjin.sdk.models.AssetSortInput;
 import com.enjin.sdk.schemas.shared.arguments.PaginationArguments;
 import com.enjin.sdk.schemas.shared.arguments.AssetFragmentArguments;
 
@@ -43,6 +43,7 @@ public class GetAssets
      * Sets the filter the request will use.
      *
      * @param filter the filter
+     *
      * @return this request for chaining
      */
     public GetAssets filter(AssetFilter filter) {
@@ -52,10 +53,11 @@ public class GetAssets
     /**
      * Sets the request to sort the results by the specified options.
      *
-     * @param sort the sort options
+     * @param sort the sort input
+     *
      * @return this request for chaining
      */
-    public GetAssets sort(AssetSort sort) {
+    public GetAssets sort(AssetSortInput sort) {
         return set("sort", sort);
     }
 

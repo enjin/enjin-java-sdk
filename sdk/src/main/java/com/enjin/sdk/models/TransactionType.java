@@ -18,9 +18,9 @@ package com.enjin.sdk.models;
 /**
  * Represents the transaction type when creating or updating a transaction.
  *
- * @see Request
+ * @see Transaction
  */
-public enum RequestType {
+public enum TransactionType {
 
     UNKNOWN,
     APPROVE,

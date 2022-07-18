@@ -15,33 +15,41 @@
 
 package com.enjin.sdk.models;
 
-import com.google.gson.annotations.SerializedName;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 
 /**
- * Models a successful auth object.
+ * Models a pagination input for pagination requests.
+ *
+ * @see com.enjin.sdk.schemas.shared.arguments.PaginationArguments
  */
 @EqualsAndHashCode
-@Getter
-public class AccessToken {
+public class PaginationInput {
+
+    private Integer page;
+    private Integer limit;
 
     /**
-     * -- Getter --
-     * @return the token for the auth
+     * Sets the page number to start at.
+     *
+     * @param page the page
+     *
+     * @return this input for chaining
      */
-    @SerializedName("accessToken")
-    private String token;
+    public PaginationInput page(Integer page) {
+        this.page = page;
+        return this;
+    }
 
     /**
-     * -- Getter --
-     * @return the number of seconds until the auth expires
+     * Sets the number of results to return per page.
+     *
+     * @param limit the limit
+     *
+     * @return this input for chaining
      */
-    private Long expiresIn;
-
-    @Override
-    public String toString() {
-        return String.format("token: %s, expiresIn: %s", token, expiresIn);
+    public PaginationInput limit(Integer limit) {
+        this.limit = limit;
+        return this;
     }
 
 }

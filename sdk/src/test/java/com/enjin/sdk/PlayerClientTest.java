@@ -17,6 +17,7 @@ package com.enjin.sdk;
 
 import lombok.SneakyThrows;
 import okhttp3.mockwebserver.MockWebServer;
+import static org.junit.Assume.assumeNoException;
 import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,17 +27,23 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 class PlayerClientTest {
 
-    private final MockWebServer mockWebServer = new MockWebServer();
+    private MockWebServer mockWebServer;
 
     private PlayerClient classUnderTest;
 
     @BeforeEach
     public void BeforeEach() {
+        mockWebServer = new MockWebServer();
+
         try {
             mockWebServer.start();
-        } catch (Exception ignored) {
+        } catch (Exception e) {
+            assumeNoException(e);
         }
-        classUnderTest = new PlayerClient(mockWebServer.url("/").toString());
+
+        classUnderTest = PlayerClient.builder()
+                                     .baseUri(mockWebServer.url("/").toString())
+                                     .build();
     }
 
     @AfterEach

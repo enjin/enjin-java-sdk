@@ -19,7 +19,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
- * Models the blockchain data of a {@link Request}.
+ * Models the blockchain data of a {@link Transaction}.
  */
 @EqualsAndHashCode
 @Getter

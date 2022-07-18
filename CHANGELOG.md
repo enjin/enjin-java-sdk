@@ -7,6 +7,54 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0-beta.1] - 2022-07-18
+
+### Added
+
+- Added `HttpLogLevel` enum values.
+- Added `IAuthenticationEventListener`.
+- Added reauthentication features to `ProjectClient`.
+
+### Changed
+
+- Renamed `AssetSort` to `AssetSortInput`.
+- Renamed `Melt` to `MeltInput`.
+- Renamed `PaginationOptions` to `PaginationInput`.
+- Renamed `Request` to `Transaction`.
+- Renamed `RequestState` to `TransactionState`.
+- Renamed `RequestType` to `TransactionType`.
+- Renamed `Trade` to `TradeInput`.
+- Renamed `TransactionSort` to `TransactionSortInput`.
+- Renamed `Transfers` to `TransferInput`.
+- Renamed `GetRequest` to `GetTransaction`.
+- Renamed `GetRequests` to `GetTransactions`.
+- Renamed `ProjectTransactionRequestArguments` to `TransactionRequestArguments`.
+- Renamed `TrustedPlatformMiddleware` to `ClientMiddleware`.
+- Renamed `TrustedPlatformInterceptor` to `ClientInterceptor`.
+- Renamed `Channel` to `IChannel`.
+- Renamed `NotificationService` to `IEventService`.
+- Renamed `NotificationListener` to `IEventListener`.
+- Renamed `EventMatcher` to `IEventMatcher`.
+- Renamed `ConnectionEventListener` to `IConnectionEventListener`.
+- Renamed `PusherNotificationService` to `PusherEventService`.
+- Renamed `NotificationListenerRegistration` to `EventListenerRegistration`.
+- Renamed `RequestService` to `TransactionService`.
+- Renamed `RequestTypeDeserializer` to `TransactionTypeDeserializer`.
+- `ClientInterceptor` now locks its authentication token with a mutex.
+- Changed type of `AccessToken.expiresIn` from primitive to wrapper class.
+- Platform clients and event services now utilize builders.
+- Replaced async and sync platform request methods in clients with a singular request method which returns a future.
+- Replaced Boolean input to set HTTP debugging in platform clients and middleware with `HttpLogLevel` enum.
+- The logger provider passed to the platform clients now handles HTTP logs when HTTP debugging is enabled.
+- Retrofit services now return a future instead of a call instance.
+- Event listeners now implement `java.util.EventListener`.
+- `PusherEventService` is now in the package-protected scope instead of public.
+
+### Removed
+
+- Removed constructors from platform clients and event services.
+- Removed `HttpCallback` interface and `HttpResponse` class.
+
 ## [2.0.0-alpha.10] - 2022-07-05
 
 ### Added
@@ -232,7 +280,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release.
 
-[Unreleased]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-alpha.10...HEAD
+[Unreleased]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-beta.1...HEAD
+
+[2.0.0-beta.1]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-alpha.10...2.0.0-beta.1
 
 [2.0.0-alpha.10]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-alpha.9...2.0.0-alpha.10
 

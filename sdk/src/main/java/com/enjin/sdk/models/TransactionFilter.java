@@ -15,6 +15,7 @@
 
 package com.enjin.sdk.models;
 
+import com.enjin.sdk.schemas.shared.queries.GetTransactions;
 import com.google.gson.annotations.SerializedName;
 import lombok.EqualsAndHashCode;
 
@@ -24,7 +25,7 @@ import java.util.List;
 /**
  * Models a filter input for transaction queries.
  *
- * @see com.enjin.sdk.schemas.shared.queries.GetRequests
+ * @see GetTransactions
  */
 @EqualsAndHashCode(callSuper = true)
 public class TransactionFilter extends Filter<TransactionFilter> {
@@ -38,9 +39,9 @@ public class TransactionFilter extends Filter<TransactionFilter> {
     private String assetId;
     @SerializedName("assetId_in")
     private List<String> assetIdIn;
-    private RequestType type;
+    private TransactionType type;
     @SerializedName("type_in")
-    private List<RequestType> typeIn;
+    private List<TransactionType> typeIn;
     private Integer value;
     @SerializedName("value_gt")
     private Integer valueGt;
@@ -50,9 +51,9 @@ public class TransactionFilter extends Filter<TransactionFilter> {
     private Integer valueLt;
     @SerializedName("value_lte")
     private Integer valueLte;
-    private RequestState state;
+    private TransactionState state;
     @SerializedName("state_in")
-    private List<RequestState> stateIn;
+    private List<TransactionState> stateIn;
     private String wallet;
     @SerializedName("wallet_in")
     private List<String> walletIn;
@@ -135,7 +136,7 @@ public class TransactionFilter extends Filter<TransactionFilter> {
      * @param type the type
      * @return this filter for chaining
      */
-    public TransactionFilter type(RequestType type) {
+    public TransactionFilter type(TransactionType type) {
         this.type = type;
         return this;
     }
@@ -146,7 +147,7 @@ public class TransactionFilter extends Filter<TransactionFilter> {
      * @param types the types
      * @return this filter for chaining
      */
-    public TransactionFilter typeIn(RequestType... types) {
+    public TransactionFilter typeIn(TransactionType... types) {
         typeIn = types == null
                 ? null
                 : Arrays.asList(types);
@@ -214,7 +215,7 @@ public class TransactionFilter extends Filter<TransactionFilter> {
      * @param state the state
      * @return this filter for chaining
      */
-    public TransactionFilter state(RequestState state) {
+    public TransactionFilter state(TransactionState state) {
         this.state = state;
         return this;
     }
@@ -225,7 +226,7 @@ public class TransactionFilter extends Filter<TransactionFilter> {
      * @param states the states
      * @return this filter for chaining
      */
-    public TransactionFilter stateIn(RequestState... states) {
+    public TransactionFilter stateIn(TransactionState... states) {
         stateIn = states == null
                 ? null
                 : Arrays.asList(states);

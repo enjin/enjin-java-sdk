@@ -13,20 +13,22 @@
  * limitations under the License.
  */
 
-package com.enjin.sdk.events.channels;
+package com.enjin.sdk.models;
 
 /**
- * Interface for Enjin Cloud event channels.
+ * Represents the state of a transaction.
  *
- * @see com.enjin.sdk.events.NotificationsService
+ * @see Transaction
  */
-public interface Channel {
+public enum TransactionState {
 
-    /**
-     * Returns the channel formatted as a string.
-     *
-     * @return the string
-     */
-    String channel();
+    PENDING,
+    BROADCAST,
+    TP_PROCESSING,
+    EXECUTED,
+    CANCELED_USER,
+    CANCELED_PLATFORM,
+    DROPPED,
+    FAILED,
 
 }

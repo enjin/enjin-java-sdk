@@ -13,23 +13,18 @@
  * limitations under the License.
  */
 
-package com.enjin.sdk.events;
+package com.enjin.sdk;
 
-import com.enjin.sdk.models.NotificationEvent;
+import java.util.EventListener;
 
 /**
- * Matches events.
- *
- * @see NotificationsService
+ * Listener interface to be used by platform clients to emit events related to authentication.
  */
-public interface EventMatcher {
+public interface IAuthenticationEventListener extends EventListener {
 
     /**
-     * Method to check events to see if they match.
-     *
-     * @param event the event to match
-     * @return true if matched, else false
+     * Method to be invoked when a client's automatic reauthentication stops.
      */
-    boolean matches(NotificationEvent event);
+    void onAutomaticReauthenticationStopped();
 
 }

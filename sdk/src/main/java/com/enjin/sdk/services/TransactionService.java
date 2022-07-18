@@ -16,29 +16,30 @@
 package com.enjin.sdk.services;
 
 import com.enjin.sdk.graphql.GraphQLResponse;
-import com.enjin.sdk.models.Request;
+import com.enjin.sdk.models.Transaction;
 import com.google.gson.JsonObject;
-import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Used internally for transaction requests.
  */
-public interface RequestService extends Delete {
+public interface TransactionService extends Delete {
 
     @POST("/graphql/{schema}")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<Request>> getOne(@Path("schema") String schema,
-                                          @Body JsonObject request);
+    CompletableFuture<Response<GraphQLResponse<Transaction>>> getOne(@Path("schema") String schema,
+                                                                     @Body JsonObject request);
 
     @POST("/graphql/{schema}")
     @Headers("Content-Type: application/json")
-    Call<GraphQLResponse<List<Request>>> getMany(@Path("schema") String schema,
-                                                 @Body JsonObject request);
+    CompletableFuture<Response<GraphQLResponse<List<Transaction>>>> getMany(@Path("schema") String schema,
+                                                                            @Body JsonObject request);
 
 }

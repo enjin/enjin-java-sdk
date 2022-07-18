@@ -30,7 +30,7 @@ class AssetChannelTest {
         final String expected = "enjincloud.test.asset.0";
         final String asset = "0";
         final Platform platform = PlatformUtils.createFakePlatform(PLATFORM_NAME);
-        final Channel channel = new AssetChannel(platform, asset);
+        final IChannel channel = new AssetChannel(platform, asset);
 
         // Act
         String actual = channel.channel();

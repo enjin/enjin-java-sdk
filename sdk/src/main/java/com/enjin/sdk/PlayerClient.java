@@ -15,6 +15,7 @@
 
 package com.enjin.sdk;
 
+import com.enjin.sdk.http.HttpLogLevel;
 import com.enjin.sdk.schemas.player.PlayerSchema;
 import com.enjin.sdk.utils.LoggerProvider;
 import lombok.NonNull;
@@ -29,39 +30,13 @@ import java.util.concurrent.ExecutorService;
  */
 public final class PlayerClient extends PlayerSchema implements IClient {
 
-    /**
-     * Constructs a client with the targeted URL and default settings.
-     *
-     * @param baseUrl the base URL
-     */
-    public PlayerClient(@NonNull String baseUrl) {
-        this(baseUrl, false);
-    }
-
-    /**
-     * Constructs a client with the targeted URL, debugging state.
-     *
-     * @param baseUrl the base URL
-     * @param debug whether debugging is enabled
-     */
-    public PlayerClient(@NonNull String baseUrl, boolean debug) {
-        this(baseUrl, debug, null);
-    }
-
-    /**
-     * Constructs a client with the targeted settings.
-     *
-     * @param baseUrl the base URL
-     * @param debug whether debugging is enabled
-     * @param loggerProvider the logger provider
-     */
-    public PlayerClient(@NonNull String baseUrl, boolean debug, LoggerProvider loggerProvider) {
-        super(new TrustedPlatformMiddleware(baseUrl, debug), loggerProvider);
+    private PlayerClient(@NonNull String baseUrl, HttpLogLevel logLevel, LoggerProvider loggerProvider) {
+        super(new ClientMiddleware(baseUrl, logLevel, loggerProvider), loggerProvider);
     }
 
     @Override
     public void auth(String token) {
-        middleware.getTrustedPlatformInterceptor().setToken(token);
+        middleware.getClientInterceptor().setToken(token);
     }
 
     @Override
@@ -76,7 +51,7 @@ public final class PlayerClient extends PlayerSchema implements IClient {
 
     @Override
     public boolean isAuthenticated() {
-        return middleware.getTrustedPlatformInterceptor().isAuthenticated();
+        return middleware.getClientInterceptor().isAuthenticated();
     }
 
     @Override
@@ -85,6 +60,82 @@ public final class PlayerClient extends PlayerSchema implements IClient {
                          .dispatcher()
                          .executorService()
                          .isShutdown();
+    }
+
+    /**
+     * Creates a builder for this class.
+     *
+     * @return The builder.
+     */
+    public static PlayerClientBuilder builder() {
+        return new PlayerClientBuilder();
+    }
+
+    /**
+     * Builder class for {@link PlayerClient}.
+     */
+    public static class PlayerClientBuilder {
+
+        private String baseUri;
+        private HttpLogLevel httpLogLevel = HttpLogLevel.NONE;
+        private LoggerProvider loggerProvider;
+
+        private PlayerClientBuilder() {
+        }
+
+        /**
+         * Builds the client.
+         *
+         * @return The client.
+         *
+         * @throws IllegalStateException Thrown if the base URI is a null value at the time this method is called.
+         */
+        public PlayerClient build() throws IllegalStateException {
+            if (baseUri == null)
+                throw new IllegalStateException(String.format("Cannot build %s with null base URI",
+                                                              PlayerClient.class.getName()));
+
+            return new PlayerClient(baseUri, httpLogLevel, loggerProvider);
+        }
+
+        /**
+         * Sets the base URI the client will be using.
+         *
+         * @param baseUri The base URI.
+         *
+         * @return This builder for chaining.
+         *
+         * @see EnjinHosts
+         */
+        public PlayerClientBuilder baseUri(String baseUri) {
+            this.baseUri = baseUri;
+            return this;
+        }
+
+        /**
+         * Sets the log level for HTTP traffic.
+         *
+         * @param logLevel The log level.
+         *
+         * @return This builder for chaining.
+         */
+        public PlayerClientBuilder httpLogLevel(@NonNull HttpLogLevel logLevel) {
+            httpLogLevel = logLevel;
+            return this;
+        }
+
+        /**
+         * Sets the logger provider for the client to use.
+         *
+         * @param loggerProvider The logger provider.
+         *
+         * @return This builder for chaining.
+         */
+        public PlayerClientBuilder loggerProvider(LoggerProvider loggerProvider) {
+            this.loggerProvider = loggerProvider;
+            return this;
+        }
+
     }
 
 }

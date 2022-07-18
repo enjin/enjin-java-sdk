@@ -13,25 +13,24 @@
  * limitations under the License.
  */
 
-package com.enjin.sdk.schemas.project.mutations;
+package com.enjin.sdk.events;
 
-import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.schemas.project.arguments.TransactionRequestArguments;
+import com.enjin.sdk.models.NotificationEvent;
+
+import java.util.EventListener;
 
 /**
- * Request for approving the crypto items contract to spend the maximum amount of ENJ.
+ * Interface for receiving notifications from the platform.
  *
- * @see com.enjin.sdk.schemas.project.IProjectSchema
+ * @see IEventService
  */
-public class ApproveMaxEnj
-        extends GraphQLRequest<ApproveMaxEnj>
-        implements TransactionRequestArguments<ApproveMaxEnj> {
+public interface IEventListener extends EventListener {
 
     /**
-     * Sole constructor.
+     * Called when an event is received.
+     *
+     * @param event the event received
      */
-    public ApproveMaxEnj() {
-        super("enjin.sdk.project.ApproveMaxEnj");
-    }
+    void notificationReceived(NotificationEvent event);
 
 }

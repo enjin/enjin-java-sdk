@@ -13,33 +13,31 @@
  * limitations under the License.
  */
 
-package com.enjin.sdk.events;
+package com.enjin.sdk.http;
 
 /**
- * Listener for receiving notifications about the connection state of the event service.
- *
- * @see NotificationsService
+ * Enum for different logging levels of HTTP traffic.
  */
-public interface ConnectionEventListener {
+public enum HttpLogLevel {
 
     /**
-     * Callback used when the service connects to the server.
+     * No logging.
      */
-    default void onConnect() {
-    }
+    NONE,
 
     /**
-     * Callback used when the service disconnects from the server.
+     * Logs request and response lines.
      */
-    default void onDisconnect() {
-    }
+    BASIC,
 
     /**
-     * Callback used when the service encounters an error with its connection to the server.
-     *
-     * @param e the exception
+     * Logs request and response lines as well as their respective headers.
      */
-    default void onError(Exception e) {
-    }
+    HEADERS,
+
+    /**
+     * Logs request and response lines as well as their respective headers and bodies if present.
+     */
+    BODY,
 
 }

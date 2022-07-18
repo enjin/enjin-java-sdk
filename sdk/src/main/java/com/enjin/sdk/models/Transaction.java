@@ -23,7 +23,7 @@ import lombok.Getter;
  */
 @EqualsAndHashCode
 @Getter
-public class Request {
+public class Transaction {
 
     /**
      * -- Getter --
@@ -53,7 +53,7 @@ public class Request {
      * -- Getter --
      * @return the transaction type
      */
-    private RequestType type;
+    private TransactionType type;
 
     /**
      * -- Getter --
@@ -71,7 +71,7 @@ public class Request {
      * -- Getter --
      * @return the transaction state
      */
-    private RequestState state;
+    private TransactionState state;
 
     /**
      * -- Getter --

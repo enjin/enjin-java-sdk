@@ -25,12 +25,12 @@ class WalletChannelTest {
     private static final String NETWORK_NAME = "test";
 
     @Test
-    void channel_ReturnCorrectString() {
+    void channel_ReturnsExpectedString() {
         // Arrange
         final String expected = "enjincloud.test.wallet.0";
         final String wallet = "0";
         final Platform platform = PlatformUtils.createFakePlatform(NETWORK_NAME);
-        final Channel channel = new WalletChannel(platform, wallet);
+        final IChannel channel = new WalletChannel(platform, wallet);
 
         // Act
         String actual = channel.channel();

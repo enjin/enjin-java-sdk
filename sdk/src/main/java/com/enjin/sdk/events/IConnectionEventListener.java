@@ -13,39 +13,35 @@
  * limitations under the License.
  */
 
-package com.enjin.sdk.models;
+package com.enjin.sdk.events;
 
-import lombok.EqualsAndHashCode;
+import java.util.EventListener;
 
 /**
- * Models sorting input for assets.
+ * Interface for receiving notifications about the connection state of the event service.
+ *
+ * @see IEventService
  */
-@EqualsAndHashCode
-public class AssetSort {
-
-    private AssetField field;
-    private SortDirection direction;
+public interface IConnectionEventListener extends EventListener {
 
     /**
-     * Sets the field to sort by.
-     *
-     * @param field the field
-     * @return this input for chaining
+     * Callback used when the service connects to the server.
      */
-    public AssetSort field(AssetField field) {
-        this.field = field;
-        return this;
+    default void onConnect() {
     }
 
     /**
-     * Sets the direction to sort by.
-     *
-     * @param direction the direction
-     * @return this input for chaining
+     * Callback used when the service disconnects from the server.
      */
-    public AssetSort direction(SortDirection direction) {
-        this.direction = direction;
-        return this;
+    default void onDisconnect() {
+    }
+
+    /**
+     * Callback used when the service encounters an error with its connection to the server.
+     *
+     * @param e the exception
+     */
+    default void onError(Exception e) {
     }
 
 }

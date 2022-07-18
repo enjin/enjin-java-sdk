@@ -16,37 +16,44 @@
 package com.enjin.sdk;
 
 import com.enjin.sdk.graphql.GraphQLQueryRegistry;
+import com.enjin.sdk.http.HttpLogLevel;
 import com.enjin.sdk.http.SessionCookieJar;
-import com.enjin.sdk.http.TrustedPlatformInterceptor;
+import com.enjin.sdk.http.ClientInterceptor;
+import com.enjin.sdk.utils.LoggerProvider;
 import lombok.AccessLevel;
 import lombok.Getter;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
+import okhttp3.logging.HttpLoggingInterceptor.Level;
 
 import java.io.Closeable;
 import java.util.concurrent.ExecutorService;
 
 /**
- * Middleware for communicating with the Trusted Platform.
+ * Middleware used by clients to communicate with the platform.
  */
-public class TrustedPlatformMiddleware implements Closeable {
+public class ClientMiddleware implements Closeable {
 
     /**
      * -- Getter --
+     *
      * @return the base URL
      */
     @Getter
     private final HttpUrl baseUrl;
 
     /**
-     * @return the TP interceptor
+     * -- Getter --
+     *
+     * @return the client interceptor
      */
     @Getter(AccessLevel.PACKAGE)
-    private final TrustedPlatformInterceptor trustedPlatformInterceptor;
+    private final ClientInterceptor clientInterceptor;
 
     /**
      * -- Getter --
+     *
      * @return the HTTP client
      */
     @Getter
@@ -54,6 +61,7 @@ public class TrustedPlatformMiddleware implements Closeable {
 
     /**
      * -- Getter --
+     *
      * @return the query registry
      */
     @Getter
@@ -62,26 +70,24 @@ public class TrustedPlatformMiddleware implements Closeable {
     /**
      * Sole constructor.
      *
-     * @param baseUrl the base URL
-     * @param debug whether debugging is enabled
+     * @param baseUrl        the base URL
+     * @param logLevel       the HTTP log level
+     * @param loggerProvider the logger provider
      */
-    protected TrustedPlatformMiddleware(String baseUrl, boolean debug) {
-        // Cookie Jar
-        SessionCookieJar cookieJar = new SessionCookieJar();
-
+    protected ClientMiddleware(String baseUrl, HttpLogLevel logLevel, LoggerProvider loggerProvider) {
         this.baseUrl = HttpUrl.get(baseUrl);
-        this.trustedPlatformInterceptor = new TrustedPlatformInterceptor();
-        this.httpClient = debug
-                ? new OkHttpClient.Builder()
-                                  .cookieJar(cookieJar)
-                                  .addInterceptor(this.trustedPlatformInterceptor)
-                                  .addNetworkInterceptor(new HttpLoggingInterceptor())
-                                  .build()
-                : new OkHttpClient.Builder()
-                                  .cookieJar(cookieJar)
-                                  .addInterceptor(this.trustedPlatformInterceptor)
-                                  .build();
+        this.clientInterceptor = new ClientInterceptor();
         this.queryRegistry = new GraphQLQueryRegistry();
+
+        OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
+                .addInterceptor(this.clientInterceptor)
+                .cookieJar(new SessionCookieJar());
+
+        if (loggerProvider != null)
+            clientBuilder.addNetworkInterceptor(new HttpLoggingInterceptor(loggerProvider::debug)
+                                                        .setLevel(convertLogLevel(logLevel)));
+
+        this.httpClient = clientBuilder.build();
     }
 
     @Override
@@ -102,6 +108,19 @@ public class TrustedPlatformMiddleware implements Closeable {
         return httpClient.dispatcher()
                          .executorService()
                          .isShutdown();
+    }
+
+    private static Level convertLogLevel(HttpLogLevel level) {
+        switch (level) {
+            case BASIC:
+                return Level.BASIC;
+            case HEADERS:
+                return Level.HEADERS;
+            case BODY:
+                return Level.BODY;
+            default:
+                return Level.NONE;
+        }
     }
 
 }

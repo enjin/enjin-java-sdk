@@ -13,22 +13,23 @@
  * limitations under the License.
  */
 
-package com.enjin.sdk.models;
+package com.enjin.sdk.events;
+
+import com.enjin.sdk.models.NotificationEvent;
 
 /**
- * Represents the state of a transaction.
+ * Interface for matching events emitted from the platform.
  *
- * @see Request
+ * @see IEventService
  */
-public enum RequestState {
+public interface IEventMatcher {
 
-    PENDING,
-    BROADCAST,
-    TP_PROCESSING,
-    EXECUTED,
-    CANCELED_USER,
-    CANCELED_PLATFORM,
-    DROPPED,
-    FAILED,
+    /**
+     * Method to check events to see if they match.
+     *
+     * @param event the event to match
+     * @return true if matched, else false
+     */
+    boolean matches(NotificationEvent event);
 
 }

@@ -16,8 +16,8 @@
 package com.enjin.sdk.schemas.project.mutations;
 
 import com.enjin.sdk.graphql.GraphQLRequest;
-import com.enjin.sdk.models.Trade;
-import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArguments;
+import com.enjin.sdk.models.TradeInput;
+import com.enjin.sdk.schemas.project.arguments.TransactionRequestArguments;
 
 /**
  * Request for creating a trade between two wallets.
@@ -27,7 +27,7 @@ import com.enjin.sdk.schemas.project.arguments.ProjectTransactionRequestArgument
  */
 public class CreateTrade
         extends GraphQLRequest<CreateTrade>
-        implements ProjectTransactionRequestArguments<CreateTrade> {
+        implements TransactionRequestArguments<CreateTrade> {
 
     /**
      * Sole constructor.
@@ -42,7 +42,7 @@ public class CreateTrade
      * @param assets the assets
      * @return this request for chaining
      */
-    public CreateTrade askingAssets(Trade... assets) {
+    public CreateTrade askingAssets(TradeInput... assets) {
         return set("askingAssets", assets);
     }
 
@@ -52,7 +52,7 @@ public class CreateTrade
      * @param assets the assets
      * @return this request for chaining
      */
-    public CreateTrade offeringAssets(Trade... assets) {
+    public CreateTrade offeringAssets(TradeInput... assets) {
         return set("offeringAssets", assets);
     }
 

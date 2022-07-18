@@ -22,21 +22,23 @@ import com.enjin.sdk.utils.LoggerProvider;
 import com.pusher.client.channel.PusherEvent;
 import com.pusher.client.channel.SubscriptionEventListener;
 
+import java.util.EventListener;
+
 /**
  * Event listener class for subscribed pusher events. Used internally.
  *
- * @see PusherNotificationService
+ * @see PusherEventService
  */
-public class PusherEventListener implements SubscriptionEventListener {
+class PusherEventListener implements SubscriptionEventListener, EventListener {
 
-    private final PusherNotificationService service;
+    private final PusherEventService service;
 
     /**
      * Sole constructor.
      *
      * @param service the pusher service
      */
-    public PusherEventListener(PusherNotificationService service) {
+    public PusherEventListener(PusherEventService service) {
         this.service = service;
     }
 
@@ -73,7 +75,7 @@ public class PusherEventListener implements SubscriptionEventListener {
 
         NotificationEvent notificationEvent = new NotificationEvent(type, channel, message);
 
-        for (NotificationListenerRegistration registration : service.listeners) {
+        for (EventListenerRegistration registration : service.listeners) {
             if (registration.getEventMatcher().matches(notificationEvent))
                 registration.getListener().notificationReceived(notificationEvent);
         }

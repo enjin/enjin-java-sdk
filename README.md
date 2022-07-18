@@ -41,7 +41,7 @@ The Enjin Java SDK requires at a minimum Java 8.
 <dependency>
     <groupId>com.enjin</groupId>
     <artifactId>blockchain-sdk</artifactId>
-    <version>2.0.0-alpha.10</version>
+    <version>2.0.0-beta.1</version>
 </dependency>
 ```
 
@@ -49,7 +49,7 @@ The Enjin Java SDK requires at a minimum Java 8.
 
 ```groovy
 dependencies {
-    implementation 'com.enjin:blockchain-sdk:2.0.0-alpha.10'
+    implementation 'com.enjin:blockchain-sdk:2.0.0-beta.1'
 }
 ```
 
@@ -81,7 +81,9 @@ public class Main {
     public static void main(String... args) {
         // Builds the project client to run on the Goerli test network.
         // See: https://goerli.cloud.enjin.io to sign up for the test network.
-        ProjectClient client = new ProjectClient(EnjinHosts.GOERLI);
+        ProjectClient client = ProjectClient.builder()
+                                            .BaseUri(EnjinHosts.GOERLI)
+                                            .build();
 
         // Creates the request to authenticate the client.
         // Replace the appropriate strings with the project's UUID and secret.
@@ -90,7 +92,7 @@ public class Main {
                 .secret("<the-project's-secret>");
 
         // Sends the request to the platform and gets the response.
-        GraphQLResponse<AccessToken> res = client.authProject(req);
+        GraphQLResponse<AccessToken> res = client.authProject(req).get();
 
         // Checks if the request was successful.
         if (!res.isSuccess()) {
