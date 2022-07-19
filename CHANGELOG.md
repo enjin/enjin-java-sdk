@@ -195,6 +195,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Removed `getEventType` method from `EventType`.
 - Removed `setDebug` method from `LoggerProvider`.
 
+## [1.0.11] - 2022-07-18
+
+### Change
+
+- Updated Java websockets to `1.5.3`.
+
+### Security
+
+- Updated OkHttp to `4.10.0` to resolve vulnerability within the library (CVE-2021-0341).
+- Updated Pusher websockets to `2.4.0` to resolve vulnerability with the library (CVE-2020-11050).
+
 ## [1.0.10] - 2022-07-05
 
 ### Added
@@ -319,7 +330,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [2.0.0-alpha.2]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-alpha.1...2.0.0-alpha.2
 
-[2.0.0-alpha.1]: https://github.com/enjin/enjin-java-sdk/compare/v1.0.9...2.0.0-alpha.1
+[2.0.0-alpha.1]: https://github.com/enjin/enjin-java-sdk/compare/v1.0.11...2.0.0-alpha.1
+
+[1.0.11]: https://github.com/enjin/enjin-java-sdk/compare/v1.0.10...v1.0.11
 
 [1.0.10]: https://github.com/enjin/enjin-java-sdk/compare/v1.0.9...v1.0.10
 
