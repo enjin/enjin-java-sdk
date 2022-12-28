@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added `UpdateName` request to `IProjectSchema`.
+
+### Fixed
+
+- Fixed GraphQL template argument type for `BridgeClaimAsset`.
+
 ## [2.0.0-beta.1] - 2022-07-18
 
 ### Added
