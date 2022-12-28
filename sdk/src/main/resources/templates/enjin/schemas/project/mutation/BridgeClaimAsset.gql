@@ -1,7 +1,7 @@
 #namespace enjin.sdk.project.BridgeClaimAsset
 #import enjin.sdk.shared.Transaction
 
-#arg assetId String
+#arg assetId String!
 #arg wallet EthAddress
 
 mutation {
