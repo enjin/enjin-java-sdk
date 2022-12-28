@@ -32,6 +32,7 @@ import com.enjin.sdk.schemas.project.mutations.ResetEnjApproval;
 import com.enjin.sdk.schemas.project.mutations.SendAsset;
 import com.enjin.sdk.schemas.project.mutations.SendEnj;
 import com.enjin.sdk.schemas.project.mutations.SetApprovalForAll;
+import com.enjin.sdk.schemas.project.mutations.UpdateName;
 import com.enjin.sdk.schemas.project.queries.GetWallet;
 import com.enjin.sdk.schemas.project.queries.GetWallets;
 import com.enjin.sdk.services.PlayerService;
@@ -256,6 +257,11 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     @Override
     public CompletableFuture<GraphQLResponse<Boolean>> unlinkWallet(UnlinkWallet request) {
         return sendRequest(playerService.delete(schema, createRequestBody(request)));
+    }
+
+    @Override
+    public CompletableFuture<GraphQLResponse<Transaction>> updateName(UpdateName request) {
+        return transactionRequest(request);
     }
 
 }

@@ -48,6 +48,7 @@ import com.enjin.sdk.schemas.project.mutations.SetTransferable;
 import com.enjin.sdk.schemas.project.mutations.SetUri;
 import com.enjin.sdk.schemas.project.mutations.SetWhitelisted;
 import com.enjin.sdk.schemas.project.mutations.UnlinkWallet;
+import com.enjin.sdk.schemas.project.mutations.UpdateName;
 import com.enjin.sdk.schemas.project.queries.AuthPlayer;
 import com.enjin.sdk.schemas.project.queries.AuthProject;
 import com.enjin.sdk.schemas.project.queries.GetPlayer;
@@ -368,5 +369,14 @@ public interface IProjectSchema {
      * @return the future for this operation
      */
     CompletableFuture<GraphQLResponse<Boolean>> unlinkWallet(UnlinkWallet request);
+
+    /**
+     * Sends {@link UpdateName} request to the platform.
+     *
+     * @param request the request
+     *
+     * @return the future for this operation
+     */
+    CompletableFuture<GraphQLResponse<Transaction>> updateName(UpdateName request);
 
 }
