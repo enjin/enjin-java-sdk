@@ -1,7 +1,7 @@
 #namespace enjin.sdk.player.BridgeClaimAsset
 #import enjin.sdk.shared.Transaction
 
-#arg assetId String
+#arg assetId String!
 
 mutation {
     result: BridgeClaimAsset(
