@@ -17,6 +17,7 @@ package com.enjin.sdk.schemas.project;
 
 import com.enjin.sdk.ClientMiddleware;
 import com.enjin.sdk.graphql.GraphQLResponse;
+import com.enjin.sdk.models.Asset;
 import com.enjin.sdk.models.Wallet;
 import com.enjin.sdk.schemas.project.mutations.AdvancedSendAsset;
 import com.enjin.sdk.schemas.project.mutations.ApproveEnj;
@@ -33,6 +34,7 @@ import com.enjin.sdk.schemas.project.mutations.SendAsset;
 import com.enjin.sdk.schemas.project.mutations.SendEnj;
 import com.enjin.sdk.schemas.project.mutations.SetApprovalForAll;
 import com.enjin.sdk.schemas.project.mutations.UpdateName;
+import com.enjin.sdk.schemas.project.queries.GetAssetsFromProjects;
 import com.enjin.sdk.schemas.project.queries.GetWallet;
 import com.enjin.sdk.schemas.project.queries.GetWallets;
 import com.enjin.sdk.services.PlayerService;
@@ -162,6 +164,11 @@ public class ProjectSchema extends SharedSchema implements IProjectSchema {
     @Override
     public CompletableFuture<GraphQLResponse<Boolean>> deletePlayer(DeletePlayer request) {
         return sendRequest(playerService.delete(schema, createRequestBody(request)));
+    }
+
+    @Override
+    public CompletableFuture<GraphQLResponse<List<Asset>>> getAssetsFromProjects(GetAssetsFromProjects request) {
+        return sendRequest(assetService.getMany(schema, createRequestBody(request)));
     }
 
     @Override

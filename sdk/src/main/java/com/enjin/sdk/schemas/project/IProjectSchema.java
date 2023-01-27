@@ -17,6 +17,7 @@ package com.enjin.sdk.schemas.project;
 
 import com.enjin.sdk.graphql.GraphQLResponse;
 import com.enjin.sdk.models.AccessToken;
+import com.enjin.sdk.models.Asset;
 import com.enjin.sdk.models.Player;
 import com.enjin.sdk.models.Transaction;
 import com.enjin.sdk.models.Wallet;
@@ -51,6 +52,7 @@ import com.enjin.sdk.schemas.project.mutations.UnlinkWallet;
 import com.enjin.sdk.schemas.project.mutations.UpdateName;
 import com.enjin.sdk.schemas.project.queries.AuthPlayer;
 import com.enjin.sdk.schemas.project.queries.AuthProject;
+import com.enjin.sdk.schemas.project.queries.GetAssetsFromProjects;
 import com.enjin.sdk.schemas.project.queries.GetPlayer;
 import com.enjin.sdk.schemas.project.queries.GetPlayers;
 import com.enjin.sdk.schemas.project.queries.GetWallet;
@@ -198,6 +200,15 @@ public interface IProjectSchema {
      * @return the future for this operation
      */
     CompletableFuture<GraphQLResponse<Boolean>> deletePlayer(DeletePlayer request);
+
+    /**
+     * Sends {@link GetAssetsFromProjects} request to the platform.
+     *
+     * @param request the request
+     *
+     * @return the future for this operation
+     */
+    CompletableFuture<GraphQLResponse<List<Asset>>> getAssetsFromProjects(GetAssetsFromProjects request);
 
     /**
      * Sends {@link GetPlayer} request to the platform.
