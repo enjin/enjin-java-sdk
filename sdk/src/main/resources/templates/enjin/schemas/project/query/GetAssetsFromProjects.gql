@@ -1,0 +1,24 @@
+#namespace enjin.sdk.project.GetAssetsFromProjects
+#import enjin.sdk.shared.Asset
+#import enjin.sdk.shared.PaginationCursor
+
+#arg projects [String!]!
+#arg filter AssetFilter
+#arg sort AssetSortInput {field:id,direction:asc}
+#arg pagination PaginationInput {page:1,limit:100}
+
+query {
+    result: GetAssetsFromProjects(
+        projects: $projects,
+        filter: $filter,
+        sort: $sort,
+        pagination: $pagination
+    ) {
+        items {
+            ...Asset
+        }
+        cursor {
+            ...PaginationCursor
+        }
+    }
+}
