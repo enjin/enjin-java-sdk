@@ -1,0 +1,22 @@
+#namespace enjin.sdk.shared.GetBalancesFromProjects
+#import enjin.sdk.shared.Balance
+#import enjin.sdk.shared.PaginationCursor
+
+#arg projects [String!]!
+#arg filter BalanceFilter
+#arg pagination PaginationInput {page:1,limit:100}
+
+query {
+    result: GetBalancesFromProjects(
+        projects: $projects,
+        filter: $filter,
+        pagination: $pagination
+    ) {
+        items {
+            ...Balance
+        }
+        cursor {
+            ...PaginationCursor
+        }
+    }
+}
