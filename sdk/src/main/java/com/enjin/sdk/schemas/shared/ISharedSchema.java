@@ -24,6 +24,7 @@ import com.enjin.sdk.models.Transaction;
 import com.enjin.sdk.models.Asset;
 import com.enjin.sdk.schemas.shared.mutations.CancelTransaction;
 import com.enjin.sdk.schemas.shared.queries.GetBalances;
+import com.enjin.sdk.schemas.shared.queries.GetBalancesFromProjects;
 import com.enjin.sdk.schemas.shared.queries.GetGasPrices;
 import com.enjin.sdk.schemas.shared.queries.GetPlatform;
 import com.enjin.sdk.schemas.shared.queries.GetProject;
@@ -75,6 +76,15 @@ public interface ISharedSchema {
      * @return the future for this operation
      */
     CompletableFuture<GraphQLResponse<List<Balance>>> getBalances(GetBalances request);
+
+    /**
+     * Sends {@link GetBalancesFromProjects} request to the platform.
+     *
+     * @param request the request
+     *
+     * @return the future for this operation
+     */
+    CompletableFuture<GraphQLResponse<List<Balance>>> getBalancesFromProjects(GetBalancesFromProjects request);
 
     /**
      * Sends {@link GetGasPrices} request to the platform.
