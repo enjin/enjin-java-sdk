@@ -25,6 +25,7 @@ import com.enjin.sdk.models.Project;
 import com.enjin.sdk.models.Transaction;
 import com.enjin.sdk.models.Asset;
 import com.enjin.sdk.schemas.shared.mutations.CancelTransaction;
+import com.enjin.sdk.schemas.shared.queries.GetBalancesFromProjects;
 import com.enjin.sdk.services.BalanceService;
 import com.enjin.sdk.schemas.BaseSchema;
 import com.enjin.sdk.services.PlatformService;
@@ -88,6 +89,11 @@ public class SharedSchema extends BaseSchema implements ISharedSchema {
 
     @Override
     public CompletableFuture<GraphQLResponse<List<Balance>>> getBalances(GetBalances request) {
+        return sendRequest(balanceService.getMany(schema, createRequestBody(request)));
+    }
+
+    @Override
+    public CompletableFuture<GraphQLResponse<List<Balance>>> getBalancesFromProjects(GetBalancesFromProjects request) {
         return sendRequest(balanceService.getMany(schema, createRequestBody(request)));
     }
 
