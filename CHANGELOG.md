@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0-beta.4] - 2023-04-10
+
+- Added `GetAssetsFromProjects` request to `IProjectSchema`.
+- Added `GetBalancsFromProjects` request to `ISharedSchema`.
+
 ## [2.0.0-beta.3] - 2023-01-02
 
 ### Added
@@ -316,7 +321,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release.
 
-[Unreleased]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-beta.3...HEAD
+[Unreleased]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-beta.4...HEAD
+
+[2.0.0-beta.4]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-beta.3...2.0.0-beta.4
 
 [2.0.0-beta.3]: https://github.com/enjin/enjin-java-sdk/compare/2.0.0-beta.2...2.0.0-beta.3
 
